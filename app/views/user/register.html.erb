@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<title>Odtü İlan</title>
+		<%= csrf_meta_tags %>
+		<%= javascript_tag "window._token = '#{form_authenticity_token}';" %>
+		<meta charset="utf-8">
+
+		<META http-equiv=content-type content=text/html;charset=iso-8859-9>
+		<META http-equiv=content-type content=text/html;charset=windows-1254>
+		<META http-equiv=content-type content=text/html;charset=x-mac-turkish>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+
+		<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
+		queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page
+		via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/
+		html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/
+		respond.min.js"></script>
+		<![endif]-->
+
+		<!--plugins: -->
+
+		<!-- dropdown login box -->
+
+		<link rel="stylesheet"
+		href="resources/plugins/dropdownloginbox/css/style.css" />
+
+		<script src="resources/plugins/dropdownloginbox/js/login.js"></script>
+
+		<!-- Fixed Header -->
+
+		<link rel="stylesheet" href="resources/assets/header-fixed.css">
+
+		<link href='http://fonts.googleapis.com/css?family=Cookie'
+		rel='stylesheet' type='text/css'>
+
+		<!-- Fixed Header sonu -->
+
+		<link href="resources/css/searchbox.css" rel="stylesheet"
+		type="text/css" />
+
+		<!-- Smart Menus plugin -->
+
+		<!-- jQuery import -->
+		<script src="resources/plugins/smartmenus/libs/jquery/jquery.js"
+		type="text/javascript"></script>
+
+		<script>
+			var smartmenus = jQuery.noConflict();
+		</script>
+
+		<!-- SmartMenus jQuery plugin -->
+		<script src="resources/plugins/smartmenus/jquery.smartmenus.js"
+		type="text/javascript"></script>
+
+		<!-- SmartMenus core CSS (required) -->
+		<link href="resources/plugins/smartmenus/css/sm-core-css.css"
+		rel="stylesheet" type="text/css" />
+		<!-- "sm-blue" menu theme (optional, you can use your own CSS, too) -->
+		<link href="resources/plugins/smartmenus/css/sm-blue/sm-blue.css"
+		rel="stylesheet" type="text/css" />
+
+		<!-- SmartMenus jQuery init -->
+		<script>
+			smartmenus(document).ready(function() {
+				smartmenus('#main-menu').smartmenus();
+			});
+		</script>
+
+		<!-- end of plugins  -->
+
+		<style>
+			.kullanicialert .alert {
+				color: black;
+			}
+
+			body {
+				padding: 50px;
+			}
+
+			@media screen and (max-width: 992px) {
+				.termsconditions {
+					margin-left: 5%;
+					margin-right: 5%;
+				}
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+		<!-- Include all compiled plugins (below), or include individual files
+		as needed -->
+		<script src="resources/js/bootstrap.min.js"></script>
+
+		<div class="container-fluid">
+
+			<div class="row" style="margin-bottom: 10px;">
+
+				<!-- Login Starts Here -->
+				<%= render "loginContainer" %>
+				<!-- Login Ends Here -->
+
+			</div>
+
+			<div class="row">
+
+				<%= render "headerfixed" %>
+
+			</div>
+
+			<!-- You need this element to prevent the content of the page from jumping up -->
+			<div class="header-fixed-placeholder"></div>
+
+			<div class="row">
+
+				<%= render "smartmenus" %>
+
+			</div>
+
+			<div class="row">
+
+				<div class="well">
+
+					<div class="row">
+
+						<form id="kayitformu" action="register" method="POST"
+						onsubmit="return vsubmit();">
+
+							<div class="kayitpaneli container-page">
+								<div class="col-md-6 col-lg-6 ">
+									<h3 class="dark-grey">Kayıt Ol</h3>
+
+									<div class="row">
+
+										<div class="form-group col-lg-6 col-md-6">
+											<label>Ad</label>
+											<input maxlength="20"
+											onkeyup="namevalidator()" type="text" name="name"
+											class="form-control" id="name">
+										</div>
+
+										<div class="form-group col-lg-6 col-md-6">
+											<label>Soyad</label>
+											<input maxlength="20"
+											onkeyup="surnamevalidator()" type="text" name="surname"
+											class="form-control" id="surname">
+										</div>
+
+									</div>
+
+									<div class="row adsoyadhata">
+
+										<div class="col-lg-6 col-md-6 namekarakter">
+
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group  namekarakterhatasi label label-danger">
+												Lütfen
+												sadece harf giriniz.
+											</div>
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group  nameboskalamaz label label-danger">
+												İsim
+												kısmı boş kalamaz.
+											</div>
+
+										</div>
+
+										<div class="col-lg-6 col-md-6 surnamekarakter">
+
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group  surnamekarakterhatasi label label-danger">
+												Lütfen
+												sadece harf giriniz.
+											</div>
+
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group  surnameboskalamaz label label-danger">
+												Soyad
+												kısmı boş kalamaz.
+											</div>
+
+										</div>
+
+									</div>
+
+									<div class="row">
+
+										<div id="" class="form-group col-lg-12 col-md-12">
+											<label>Kullanıcı Adı</label>&nbsp;&nbsp;
+											<input maxlength="15"
+											onkeyup="usernamevalidation()" type="text" name="username"
+											class="form-control" id="username">
+										</div>
+
+									</div>
+
+									<div class="usernamecheck">
+
+										<div class="row col-lg-12 col-md-12 kullanicialert">
+
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group  usernameerror label label-danger ">
+												Kullanıcı
+												adı kullanılıyor! Başka bir kullanıcı adı deneyin.
+											</div>
+
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group  usernamevalid label label-success">
+												Bu
+												kullanıcı adını alabilirsiniz.
+											</div>
+
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group uctenkucukhata label label-danger">
+												Kullanıcı
+												adı 3 karakterden küçük olamaz.
+											</div>
+
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group  karakterhatasi label label-danger">
+												Lütfen
+												sadece harfleri(a-z),rakamları ve "." "-" "_" karakterlerini
+												giriniz.
+											</div>
+
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group  usernameboskalamaz label label-danger">
+												Kullanıcı
+												adı boş kalamaz!!
+											</div>
+
+										</div>
+
+									</div>
+
+									<div class="row">
+
+										<div class="form-group col-lg-6 col-md-6">
+											<label>Şifre</label>
+											<input onkeyup="passwordcheck()"
+											maxlength="20" type="password" name="password"
+											class="form-control" id="password">
+										</div>
+
+										<div class="form-group col-lg-6 col-md-6">
+											<label>Şifreyi tekrar et</label>
+											<input
+											onkeyup="passwordrepeatcheck()" maxlength="20"
+											type="password" name="password2" class="form-control"
+											id="password2">
+
+										</div>
+
+									</div>
+
+									<div class="row passcheck">
+
+										<div class="col-lg-6 col-md-6 passkarakter">
+
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group  passkarakterhatasi label label-danger">
+												Şifrenizde büyük harf,küçük harf ve sayı
+												<br>
+												kullanmak
+												zorundasınız.
+											</div>
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group  passboskalamaz label label-danger">
+												Şifre
+												kısmı boş kalamaz.
+											</div>
+
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group altidankucukhata label label-danger">
+												Şifre
+												6 karakterden az olamaz.
+											</div>
+
+										</div>
+
+										<div class="col-lg-6 col-md-6 passkarakterrepeat">
+
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group  passkarakterhatasirepeat label label-danger">
+												Şifreniz
+												eşleşmiyor
+											</div>
+
+										</div>
+
+									</div>
+
+									<div class="row">
+
+										<div class="form-group col-lg-6 col-md-6">
+											<label>Eposta Adresi</label>
+											<input onkeyup="emailcheck()"
+											maxlength="40" type="text" name="email" class="form-control"
+											id="email">
+										</div>
+
+										<div class="form-group col-lg-6 col-md-6">
+											<label>Eposta Adresini tekrarla</label>
+											<input onkeyup="emailrepeatcheck()" maxlength="40"
+											type="text" name="email2" class="form-control" id="email2">
+										</div>
+
+									</div>
+
+									<div class="row emailcheck">
+
+										<div class="col-lg-6 col-md-6 emailkarakter">
+
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group  emailkarakterhatasi label label-danger">
+												Geçersiz E-mail
+											</div>
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group  emailboskalamaz label label-danger">
+												E-mail
+												kısmı boş kalamaz.
+											</div>
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group  emailerror label label-danger ">
+												E-mail
+												kullanılıyor! Başka bir E-mail deneyin.
+											</div>
+
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group  emailvalid label label-success">
+												Bu
+												E-mail adresini kullanabilirsiniz.
+											</div>
+
+										</div>
+
+										<div class="col-lg-6 col-md-6 emailkarakterrepeat">
+
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group  emailkarakterhatasirepeat label label-danger">
+												E-mail
+												eşleşmiyor
+											</div>
+
+										</div>
+
+									</div>
+
+									<div class="row">
+
+										<div class="form-group col-lg-2 col-md-2">
+											<label>Telefon</label>
+											<input type="text" onkeyup="phonecheck()" placeholder="123" maxlength="3"
+											name="phone" class="form-control" id="phone">
+										</div>
+
+										<div class="form-group col-lg-4 col-md-4">
+											<label>Telefon</label>
+											<input type="text" onkeyup="phonecheck()" placeholder="1234567" maxlength="7"
+											name="phone2" class="form-control" id="phone2">
+										</div>
+
+										<div class="form-group col-lg-6 col-md-6">
+											<label>Cinsiyet</label>
+											<select class="form-control"
+											name="gender">
+												<option value="male">Erkek</option>
+												<option value="female">Kadın</option>
+												<option value="other">Diğer</option>
+
+											</select>
+
+										</div>
+
+										<div class="col-lg-6 col-md-6 phonekarakter">
+
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group  phonekarakterhatasi label label-danger">
+												Hatalı veya eksik telefon numarası
+											</div>
+
+										</div>
+
+									</div>
+
+									<div class="col-sm-6">
+										<input type="checkbox" class="checkbox" name="bulletin" />
+										Bültenimize kayıt
+										olmak ister misiniz?
+									</div>
+								</div>
+
+								<div class="visible-sm visible-xs">
+
+									<br>
+									<br>
+									<br>
+									<br>
+
+								</div>
+
+								<div style="" class=" col-lg-6 col-md-6 ">
+
+									<div style="overflow: auto; height: 400px;"
+									class="termsconditions row">
+
+										<h3 class="dark-grey">Terms and Conditions</h3>
+										<p>
+											By clicking on "Register" you agree to The Company's'
+											Terms and Conditions
+										</p>
+										<p>
+											While rare, prices are subject to change based on
+											exchange rate fluctuations - should such a fluctuation happen,
+											we may request an additional payment. You have the option to
+											request a full refund or to pay the new price. (Paragraph
+											13.5.8)
+										</p>
+										<p>
+											Should there be an error in the description or pricing
+											of a product, we will provide you with a full refund
+											(Paragraph 13.5.6)
+										</p>
+										<p>
+											Acceptance of an order by us is dependent on our
+											suppliers ability to provide the product. (Paragraph 13.5.6)
+										</p>
+
+										<p>
+											While rare, prices are subject to change based on
+											exchange rate fluctuations - should such a fluctuation happen,
+											we may request an additional payment. You have the option to
+											request a full refund or to pay the new price. (Paragraph
+											13.5.8)
+										</p>
+										<p>
+											Should there be an error in the description or pricing
+											of a product, we will provide you with a full refund
+											(Paragraph 13.5.6)
+										</p>
+										<p>
+											Acceptance of an order by us is dependent on our
+											suppliers ability to provide the product. (Paragraph 13.5.6)
+										</p>
+
+										<p>
+											Acceptance of an order by us is dependent on our
+											suppliers ability to provide the product. (Paragraph 13.5.6)
+										</p>
+
+										<p>
+											Acceptance of an order by us is dependent on our
+											suppliers ability to provide the product. (Paragraph 13.5.6)
+										</p>
+
+										<p>
+											Acceptance of an order by us is dependent on our
+											suppliers ability to provide the product. (Paragraph 13.5.6)
+										</p>
+
+									</div>
+									<br>
+
+									<div class="row">
+
+										<button style="margin-left: 20px;" type="submit"
+										class="hidden-lg hidden-md col-lg-2  btn btn-primary">
+											Kayıt
+											Ol
+										</button>
+										<button type="submit"
+										class="hidden-sm hidden-xs col-lg-2 col-md-2 btn btn-primary">
+											Kayıt
+											Ol
+										</button>
+										<br class="visible-xs">
+										<br class="visible-xs">
+
+										<button style="margin-left: 20px;" type="submit"
+										class="hidden-lg hidden-md btn btn-primary">
+											Zaten üye
+											misiniz?
+										</button>
+
+										<button style="margin-left: 20px;" type="submit"
+										class="col-lg-3 col-md-4 visible-lg visible-md btn btn-primary">
+											Zaten
+											üye misiniz?
+										</button>
+
+									</div>
+
+								</div>
+
+							</div>
+							
+							<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+						</form>
+
+						<!-- user name validation -->
+
+						<script>
+							function usernamevalidation() {
+
+								var form = document.getElementById("kayitformu");
+
+								var username = form.elements[2].value;
+								var usernameRegexp = new RegExp("^[a-z0-9._-]{4,15}$");
+
+								var check = usernameRegexp.test(username);
+
+								if (username == "") {
+
+									$(".usernameerror").hide();
+									$(".usernamevalid").hide();
+									$(".uctenkucukhata").hide();
+									$(".karakterhatasi").hide();
+									$(".usernameboskalamaz").show();
+
+								} else if (username.length < 4) {
+
+									$(".usernameerror").hide();
+									$(".usernamevalid").hide();
+									$(".karakterhatasi").hide();
+									$(".usernameboskalamaz").hide();
+									$(".uctenkucukhata").show();
+
+								} else if (!check) {
+
+									$(".usernameerror").hide();
+									$(".usernamevalid").hide();
+									$(".uctenkucukhata").hide();
+									$(".usernameboskalamaz").hide();
+									$(".karakterhatasi").show();
+
+								} else {
+
+									$.ajax({
+										url : 'checkusername',
+										data : {
+											authenticity_token: window._token,
+											username : username
+										},
+										error : function() {
+											alert('error');
+										},
+										dataType : 'json',
+										success : function(data) {
+
+											$(".usernameerror").hide();
+											$(".usernamevalid").hide();
+											$(".uctenkucukhata").hide();
+											$(".karakterhatasi").hide();
+											$(".usernameboskalamaz").hide();
+
+											if (!data.check) {
+
+												$(".usernameerror").show();
+
+											} else {
+
+												$(".usernamevalid").show();
+
+											}
+
+										},
+										type : 'POST'
+									});
+
+								}
+
+							}
+
+							function namevalidator() {
+
+								var form = document.getElementById("kayitformu");
+
+								var name = form.elements[0].value;
+
+								var nameRegexp = new RegExp("^[a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}$");
+
+								var check = nameRegexp.test(name);
+
+								if (name == "") {
+
+									$(".namekarakterhatasi").hide();
+									$(".nameboskalamaz").show();
+
+								} else if (!check) {
+
+									$(".nameboskalamaz").hide();
+
+									$(".namekarakterhatasi").show();
+
+								} else {
+
+									$(".namekarakterhatasi").hide();
+									$(".nameboskalamaz").hide();
+
+								}
+
+							}
+
+							function surnamevalidator() {
+
+								var form = document.getElementById("kayitformu");
+
+								var surname = form.elements[1].value;
+
+								var surnameRegexp = new RegExp("^([a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]*([ '-][a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc])*){1,20}$");
+
+								var check = surnameRegexp.test(surname);
+
+								if (surname == "") {
+
+									$(".surnamekarakterhatasi").hide();
+									$(".surnameboskalamaz").show();
+
+								} else if (!check) {
+
+									$(".surnameboskalamaz").hide();
+
+									$(".surnamekarakterhatasi").show();
+
+								} else {
+
+									$(".surnamekarakterhatasi").hide();
+									$(".surnameboskalamaz").hide();
+
+								}
+
+							}
+
+							function passwordcheck() {
+
+								var form = document.getElementById("kayitformu");
+
+								var password = form.elements[3].value;
+
+								var passRegexp = new RegExp("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})");
+
+								var check = passRegexp.test(password);
+
+								if (password == "") {
+
+									$(".passkarakterhatasi").hide();
+
+									$(".altidankucukhata").hide();
+
+									$(".passboskalamaz").show();
+
+								} else if (password.length < 6) {
+
+									$(".passkarakterhatasi").hide();
+									$(".passboskalamaz").hide();
+
+									$(".altidankucukhata").show();
+
+								} else if (!check) {
+
+									$(".passboskalamaz").hide();
+
+									$(".altidankucukhata").hide();
+
+									$(".passkarakterhatasi").show();
+
+								} else {
+
+									$(".passkarakterhatasi").hide();
+									$(".passboskalamaz").hide();
+
+									$(".altidankucukhata").hide();
+
+								}
+
+								passwordrepeatcheck();
+
+							}
+
+							function passwordrepeatcheck() {
+
+								var form = document.getElementById("kayitformu");
+
+								var password = form.elements[3].value;
+
+								var password2 = form.elements[4].value;
+
+								var check = password == password2;
+
+								if (!check) {
+
+									$(".passkarakterhatasirepeat").show();
+
+								} else {
+
+									$(".passkarakterhatasirepeat").hide();
+
+								}
+
+							}
+
+							function emailcheck() {
+
+								var form = document.getElementById("kayitformu");
+
+								var email = form.elements[5].value;
+
+								var emailRegexp = new RegExp("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+								var check = emailRegexp.test(email);
+
+								if (email == "") {
+
+									$(".emailerror").hide();
+									$(".emailvalid").hide();
+									$(".emailkarakterhatasi").hide();
+									$(".emailboskalamaz").show();
+
+								} else if (!check) {
+
+									$(".emailerror").hide();
+									$(".emailvalid").hide();
+									$(".emailboskalamaz").hide();
+									$(".emailkarakterhatasi").show();
+
+								} else {
+
+									$.ajax({
+										url : 'checkemail',
+										data : {
+											authenticity_token: window._token,
+											email : email
+										},
+										error : function() {
+											alert('error');
+										},
+										dataType : 'json',
+										success : function(data) {
+
+											if (!data.check) {
+
+												$(".emailboskalamaz").hide();
+												$(".emailkarakterhatasi").hide();
+												$(".emailvalid").hide();
+												$(".emailerror").show();
+
+											} else {
+
+												$(".emailboskalamaz").hide();
+												$(".emailkarakterhatasi").hide();
+												$(".emailerror").hide();
+												$(".emailvalid").show();
+
+											}
+
+										},
+										type : 'POST'
+									});
+
+								}
+
+								emailrepeatcheck();
+
+							}
+
+							function emailrepeatcheck() {
+
+								var form = document.getElementById("kayitformu");
+
+								var email = form.elements[5].value.toLowerCase();
+
+								var email2 = form.elements[6].value.toLowerCase();
+
+								var check = email == email2;
+
+								if (!check) {
+
+									$(".emailkarakterhatasirepeat").show();
+
+								} else {
+
+									$(".emailkarakterhatasirepeat").hide();
+
+								}
+
+							}
+
+							function phonecheck() {
+
+								var form = document.getElementById("kayitformu");
+
+								var phone = form.elements[7].value;
+
+								var phone2 = form.elements[8].value;
+
+								var phoneRegexp = new RegExp("\\d{3}-\\d{7}");
+
+								var check = phoneRegexp.test(phone + "-" + phone2);
+
+								if (phone == "" || phone2 == "" || !check) {
+
+									$(".phonekarakterhatasi").show();
+
+								} else {
+
+									$(".phonekarakterhatasi").hide();
+
+								}
+
+							}
+						</script>
+
+						<!--  regexp kodu -->
+
+						<script>
+							function vsubmit() {
+
+								var usernameRegexp = new RegExp("^[a-z0-9._-]{4,15}$");
+
+								var passRegexp = new RegExp("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})");
+
+								var emailRegexp = new RegExp("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+								var nameRegexp = new RegExp("^[a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}$");
+
+								var surnameRegexp = new RegExp("^([a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]*([ '-][a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc])*){1,20}$");
+
+								var phoneRegexp = new RegExp("\\d{3}-\\d{7}");
+
+								var form = document.getElementById("kayitformu");
+
+								var username = form.elements[2].value;
+
+								var password = form.elements[3].value;
+
+								var password2 = form.elements[4].value;
+
+								var name = form.elements[0].value;
+
+								var surname = form.elements[1].value;
+
+								var email = form.elements[5].value;
+
+								var email2 = form.elements[6].value;
+
+								var phone = form.elements[7].value;
+
+								var phone2 = form.elements[8].value;
+
+								var usernameCheck = usernameRegexp.test(username);
+
+								var passwordCheck = password == password2 && passRegexp.test(password);
+
+								var nameCheck = nameRegexp.test(name);
+
+								var surnameCheck = surnameRegexp.test(surname);
+
+								var phoneCheck = phoneRegexp.test(phone + "-" + phone2);
+
+								var emailCheck = email.toLowerCase() == email2.toLowerCase() && emailRegexp.test(email);
+
+								if (usernameCheck && passwordCheck && nameCheck && surnameCheck && phoneCheck && emailCheck) {
+
+									return true;
+
+								} else {
+
+									return false;
+
+								}
+
+							}
+						</script>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<footer
+			style="clear: both; float: bottom; background-color: #E1E1E3; padding: 30px;">
+
+				<div class="row">
+
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+						<p>
+							<b> Hizmetlerimiz</b>
+						</p>
+						<ul>
+
+							<li>
+								<a href="#">İkinci El İlan Alım &amp; Satım</a>
+							</li>
+							<li>
+								<a href="#">Ev Arkadaşı Arama &amp; Bulma</a>
+							</li>
+							<li>
+								<a href="#">Ders Notu Alım &amp; Satım</a>
+							</li>
+							<li>
+								<a href="#">Özel Ders Alma &amp; Verme</a>
+							</li>
+
+						</ul>
+
+					</div>
+
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+						<p>
+							<b>Kurumsal</b>
+						</p>
+						<ul>
+
+							<li>
+								<a href="#">Hakkımızda</a>
+							</li>
+							<li>
+								<a href="#">Duyurular</a>
+							</li>
+							<li>
+								<a href="#">Risksiz Alışveriş Sistemi</a>
+							</li>
+							<li>
+								<a href="#">İletişim</a>
+							</li>
+
+						</ul>
+
+					</div>
+
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+						<p>
+							<b> Yardım</b>
+						</p>
+						<ul>
+
+							<li>
+								<a href="#">Nasıl İlan Ekleyebilirim?</a>
+							</li>
+							<li>
+								<a href="#">Nasıl Ürün Satın Alırım?</a>
+							</li>
+							<li>
+								<a href="#">Kullanım Koşulları</a>
+							</li>
+							<li>
+								<a href="#">Daha Fazla Yardım</a>
+							</li>
+
+						</ul>
+
+					</div>
+
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+						<p>
+							<b>Reklam Verme</b>
+						</p>
+						<ul>
+
+							<li>
+								<a href="#">Reklam Verme Koşulları</a>
+							</li>
+							<li>
+								<a href="#">Reklam Özellikleri</a>
+							</li>
+							<li>
+								<a href="#">İletişim</a>
+							</li>
+
+						</ul>
+
+					</div>
+
+				</div>
+
+			</footer>
+
+			<div>
+
+				<p style="float: right; margin-right: 20px; margin-top: 5px;">
+					©2015 ODTÜ İLAN&nbsp;&nbsp;&nbsp;&nbsp;<a
+					href="http://www.odtuilan.com">odtuilan.com</a>
+				</p>
+
+			</div>
+
+		</div>
+
+		<!-- pluginler -->
+
+		<!--  fixed header -->
+
+		<%= render "headerfixedjs" %>
+
+	</body>
+
+</html>

@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: localhost
+  username: postgres
+  password: postgres
+
+development:
+  <<: *default
+  database: odtuilan_development
+
+test:
+  <<: *default
+  database: odtuilan_test
+
+production:
+  <<: *default
+  database: odtuilan_production

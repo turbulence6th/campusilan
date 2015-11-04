@@ -1,0 +1,2705 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Odtü İlan</title>
+		<%= csrf_meta_tags %>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+
+		<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+		<!--plugins: -->
+
+		<!-- dropdown login box -->
+
+		<link rel="stylesheet"
+		href="resources/plugins/dropdownloginbox/css/style.css" />
+
+		<script src="resources/plugins/dropdownloginbox/js/login.js"></script>
+
+		<!-- Fixed Header -->
+
+		<link rel="stylesheet" href="resources/assets/header-fixed.css">
+
+		<link href='http://fonts.googleapis.com/css?family=Cookie'
+		rel='stylesheet' type='text/css'>
+
+		<!-- Fixed Header sonu -->
+
+		<link href="resources/css/searchbox.css" rel="stylesheet"
+		type="text/css" />
+
+		<script src="resources/js/modernizer.js"></script>
+
+		<!-- Smart Menus plugin -->
+
+		<!-- jQuery import -->
+		<script src="resources/plugins/smartmenus/libs/jquery/jquery.js"
+		type="text/javascript"></script>
+
+		<script>
+			var smartmenus = jQuery.noConflict();
+		</script>
+
+		<!-- SmartMenus jQuery plugin -->
+		<script src="resources/plugins/smartmenus/jquery.smartmenus.js"
+		type="text/javascript"></script>
+
+		<!-- SmartMenus core CSS (required) -->
+		<link href="resources/plugins/smartmenus/css/sm-core-css.css"
+		rel="stylesheet" type="text/css" />
+		<!-- "sm-blue" menu theme (optional, you can use your own CSS, too) -->
+		<link href="resources/plugins/smartmenus/css/sm-blue/sm-blue.css"
+		rel="stylesheet" type="text/css" />
+
+		<!-- SmartMenus jQuery init -->
+		<script>
+			smartmenus(document).ready(function() {
+				smartmenus('#main-menu').smartmenus();
+			});
+		</script>
+
+		<!-- JCarousel Plugin -->
+
+		<!-- Example assets -->
+
+		<link rel="stylesheet" type="text/css"
+		href="resources/plugins/jcarousel-0.3.3/examples/responsive/jcarousel.responsive.css">
+
+		<script type="text/javascript"
+		src="resources/plugins/jcarousel-0.3.3/dist/jquery.jcarousel.min.js"></script>
+
+		<script type="text/javascript"
+		src="resources/plugins/jcarousel-0.3.3/examples/responsive/jcarousel.responsive.js"></script>
+
+		<!-- Parallax Content Slider -->
+
+		<link rel="stylesheet" type="text/css"
+		href="resources/plugins/ParallaxContentSlider/css/style.css" />
+
+		<noscript>
+			<link rel="stylesheet" type="text/css"
+			href="resources/plugins/ParallaxContentSlider/css/nojs.css" />
+		</noscript>
+
+		<!-- Item Slider -->
+
+		<link rel="stylesheet" type="text/css"
+		href="resources/plugins/ItemSlider/css/style.css" />
+
+		<!-- end of plugins  -->
+
+		<style>
+			.dropdown-submenu {
+				position: relative;
+			}
+
+			.dropdown-submenu .dropdown-menu {
+				top: 0;
+				left: 100%;
+				margin-top: -1px;
+			}
+
+			@media screen and (min-width: 1200px) {
+				body {
+					padding: 50px;
+				}
+			}
+
+			@media screen and (max-width: 992px) {
+				body {
+					padding: 0px;
+				}
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+		<!-- Include all compiled plugins (below), or include individual files
+		as needed -->
+		<script src="resources/js/bootstrap.min.js"></script>
+
+		<div class="container-fluid">
+
+			<div class="row" style="margin-bottom: 10px;">
+
+				<!-- Login Starts Here -->
+				<%= render "loginContainer" %>
+				<!-- Login Ends Here -->
+
+			</div>
+
+			<div class="row">
+
+				<%= render "headerfixed" %>
+
+			</div>
+
+			<!-- You need this element to prevent the content of the page from jumping up -->
+			<div class="header-fixed-placeholder"></div>
+
+			<div class="row">
+
+				<%= render "smartmenus" %>
+
+			</div>
+
+			<!-- Geniş ekranda gözüken div -->
+
+			<div class="row hidden-md hidden-sm hidden-xs">
+
+				<aside style="float: left; width: 250px; line-height: 20%;"
+				class="col-lg-3 col-md-3 col-sm-3 hidden-xs ">
+
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Kullanıcı Paneli</h3>
+						</div>
+						<div class="panel-body">
+							<a href="#">Profilim </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">İlan Ver </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Satışlarım </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Alışlarım </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Favorilerim </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Mesajlarım </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Tekliflerim </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">İncelediğim İlanlar </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Hesap Ayarları </a>
+						</div>
+
+						<div class="panel-heading">
+							<h3 class="panel-title">Fırsatlar Paneli</h3>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Acil İlanlar </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Günün Fırsatları </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">En Son İlanlar </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">En Popüler Olanlar </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Fiyatı Düşenler </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">En Güvenilir Satıcılar</a>
+
+						</div>
+
+						<div class="panel-body">
+							<a href="#">En Yakında Olan Satıcılar</a>
+
+						</div>
+
+					</div>
+
+				</aside>
+
+				<div class="col-lg-6 col-md-9 col-sm-6">
+
+					<div class="row">
+
+						<div id="myCarousel" class="carousel slide">
+							<!-- Carousel indicators -->
+							<ol class="carousel-indicators">
+								<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+								<li data-target="#myCarousel" data-slide-to="1"></li>
+								<li data-target="#myCarousel" data-slide-to="2"></li>
+							</ol>
+
+							<!-- Carousel items -->
+							<div class="carousel-inner">
+								<div class="item active">
+									<img src="resources/images/cat-demo.jpg" alt="First slide">
+									<div class="carousel-caption">
+										This Caption 1
+									</div>
+								</div>
+								<div class="item">
+									<img src="resources/images/cat-demo.jpg" alt="Second slide">
+									<div class="carousel-caption">
+										This Caption 2
+									</div>
+								</div>
+								<div class="item">
+									<img src="resources/images/cat-demo.jpg" alt="Third slide">
+									<div class="carousel-caption">
+										This Caption 3
+									</div>
+								</div>
+							</div>
+							<!-- Carousel nav -->
+							<a class="carousel-control left" href="#myCarousel"
+							data-slide="prev">&lsaquo;</a><a class="carousel-control right"
+							href="#myCarousel" data-slide="next">&rsaquo;</a>
+						</div>
+
+					</div>
+
+					<div class="row">
+
+						<div style="margin: 10px; padding-left: 10px; padding-right: 10px;">
+
+							<div class="panel panel-danger">
+
+								<div class="panel-heading">
+									<h3 style="text-align: center;" class="panel-title">Acil
+									İlanlar!!</h3>
+								</div>
+
+								<div class="panel-body">
+
+									<div class="jcarousel-wrapper" style="margin-bottom: 80px;">
+										<div class="jcarousel">
+											<ul>
+												<li><img
+													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img1.jpg"
+													alt="Image 1">
+												</li>
+												<li><img
+													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img2.jpg"
+													alt="Image 2">
+												</li>
+												<li><img
+													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img3.jpg"
+													alt="Image 3">
+												</li>
+												<li><img
+													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img4.jpg"
+													alt="Image 4">
+												</li>
+												<li><img
+													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img5.jpg"
+													alt="Image 5">
+												</li>
+												<li><img
+													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img6.jpg"
+													alt="Image 6">
+												</li>
+											</ul>
+										</div>
+
+										<a href="#" class="jcarousel-control-prev">&lsaquo;</a><a
+										href="#" class="jcarousel-control-next">&rsaquo;</a>
+
+										<p class="jcarousel-pagination hidden-xs"></p>
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="row">
+
+						<div style="margin: 10px; padding-left: 10px; padding-right: 10px;">
+
+							<div class="panel panel-success">
+
+								<div class="panel-heading">
+									<h3 style="text-align: center;" class="panel-title">Duyurular</h3>
+								</div>
+
+								<div class="panel-body">
+									Duyurular buraya gelecek...
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div style="margin-left: 20px;"
+				class="col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm">
+
+					<div class="row">
+
+						<div class="panel panel-info">
+
+							<div class="panel-heading">
+								<h3 style="text-align: center;" class="panel-title">Günün
+								Fırsatları</h3>
+							</div>
+
+							<div class="panel-body">
+
+								<div class="row">
+									<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
+
+										<div class="thumbnail">
+											<a href="#"> <img src="resources/images/cat-demo.jpg"
+											alt="cat demo photo"> </img> </a>
+
+										</div>
+
+										<div class="caption">
+
+											<h3>Thumbnail label</h3>
+											<p>
+												Some sample text.
+											</p>
+
+										</div>
+
+									</div>
+
+									<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
+
+										<div class="thumbnail">
+											<a href="#"> <img src="resources/images/cat-demo.jpg"
+											alt="cat demo photo"> </img> </a>
+
+										</div>
+
+										<div class="caption">
+
+											<h3>Thumbnail label</h3>
+											<p>
+												Some sample text.
+											</p>
+
+										</div>
+
+									</div>
+
+									<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
+
+										<div class="thumbnail">
+											<a href="#"> <img src="resources/images/cat-demo.jpg"
+											alt="cat demo photo"> </img> </a>
+
+										</div>
+
+										<div class="caption">
+
+											<h3>Thumbnail label</h3>
+											<p>
+												Some sample text.
+											</p>
+
+										</div>
+
+									</div>
+
+									<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
+
+										<div class="thumbnail">
+											<a href="#"> <img src="resources/images/cat-demo.jpg"
+											alt="cat demo photo"> </img> </a>
+
+										</div>
+
+										<div class="caption">
+
+											<h3>Thumbnail label</h3>
+											<p>
+												Some sample text.
+											</p>
+
+										</div>
+
+									</div>
+
+									<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
+
+										<div class="thumbnail">
+											<a href="#"> <img src="resources/images/cat-demo.jpg"
+											alt="cat demo photo"> </img> </a>
+
+										</div>
+
+										<div class="caption">
+
+											<h3>Thumbnail label</h3>
+											<p>
+												Some sample text.
+											</p>
+
+										</div>
+
+									</div>
+
+									<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
+
+										<div class="thumbnail">
+											<a href="#"> <img src="resources/images/cat-demo.jpg"
+											alt="cat demo photo"> </img> </a>
+
+										</div>
+
+										<div class="caption">
+
+											<h3>Thumbnail label</h3>
+											<p>
+												Some sample text.
+											</p>
+
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="row">
+
+						<div style="margin: 10px; padding-left: 10px; padding-right: 10px;">
+
+							<div class="panel panel-info">
+
+								<div class="panel-heading">
+									<h3 style="text-align: center;" class="panel-title">Ekstra
+									Alan</h3>
+								</div>
+
+								<div class="panel-body">
+
+									Kafana göre bir şey ekle...
+									<br>
+									....
+									<br>
+									....
+									<br>
+									....
+									<br>
+									....
+									<br>
+									....
+									<br>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<!-- Dar ekranlarda gözüken div -->
+
+			<div class="row hidden-lg">
+
+				<aside style="float: left; line-height: 20%; width: 25%;"
+				class="col-md-3 col-sm-3 hidden-xs hidden-sm">
+
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Kullanıcı Paneli</h3>
+						</div>
+						<div class="panel-body">
+							<a href="#">Profilim </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">İlan Ver </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Satışlarım </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Alışlarım </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Favorilerim </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Mesajlarım </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Tekliflerim </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">İncelediğim İlanlar </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Hesap Ayarları </a>
+						</div>
+
+						<div class="panel-heading">
+							<h3 class="panel-title">Fırsatlar Paneli</h3>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Acil İlanlar </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Günün Fırsatları </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">En Son İlanlar </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">En Popüler Olanlar </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Fiyatı Düşenler </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">En Güvenilir Satıcılar</a>
+
+						</div>
+
+						<div class="panel-body">
+							<a href="#">En Yakında Olan Satıcılar</a>
+
+						</div>
+
+					</div>
+
+				</aside>
+
+				<aside style="float: left; line-height: 20%; width: 30%;"
+				class="col-md-3 col-sm-3 hidden-xs hidden-lg hidden-md">
+
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Kullanıcı Paneli</h3>
+						</div>
+						<div class="panel-body">
+							<a href="#">Profilim </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">İlan Ver </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Satışlarım </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Alışlarım </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Favorilerim </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Mesajlarım </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Tekliflerim </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">İncelediğim İlanlar </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Hesap Ayarları </a>
+						</div>
+
+						<div class="panel-heading">
+							<h3 class="panel-title">Fırsatlar Paneli</h3>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Acil İlanlar </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Günün Fırsatları </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">En Son İlanlar </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">En Popüler Olanlar </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">Fiyatı Düşenler </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="#">En Güvenilir Satıcılar</a>
+
+						</div>
+
+						<div class="panel-body">
+							<a href="#">En Yakında Olan Satıcılar</a>
+
+						</div>
+
+					</div>
+
+				</aside>
+
+				<div class="col-md-8 col-sm-8">
+
+					<div class="row">
+
+						<div id="myCarousel2" class="carousel slide">
+							<!-- Carousel indicators -->
+							<ol class="carousel-indicators">
+								<li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+								<li data-target="#myCarousel2" data-slide-to="1"></li>
+								<li data-target="#myCarousel2" data-slide-to="2"></li>
+							</ol>
+
+							<!-- Carousel items -->
+							<div class="carousel-inner">
+								<div class="item active">
+									<img src="resources/images/cat-demo.jpg" alt="First slide">
+									<div class="carousel-caption">
+										This Caption 1
+									</div>
+								</div>
+								<div class="item">
+									<img src="resources/images/cat-demo.jpg" alt="Second slide">
+									<div class="carousel-caption">
+										This Caption 2
+									</div>
+								</div>
+								<div class="item">
+									<img src="resources/images/cat-demo.jpg" alt="Third slide">
+									<div class="carousel-caption">
+										This Caption 3
+									</div>
+								</div>
+							</div>
+							<!-- Carousel nav -->
+							<a class="carousel-control left" href="#myCarousel2"
+							data-slide="prev">&lsaquo;</a><a class="carousel-control right"
+							href="#myCarousel2" data-slide="next">&rsaquo;</a>
+						</div>
+
+					</div>
+
+					<div style="margin-left:20px; margin-top:40px;"  class="hidden-md hidden-sm row">
+
+						<button style="margin-right:10px;"   type="button" class="col-xs-5 btn btn-info">
+							Üye Bilgileri
+						</button>
+
+						<button type="button" class="col-xs-5  btn btn-info">
+							Fırsatlar
+						</button>
+
+					</div>
+
+					<div style="margin-top:40px;" class="row">
+
+						<div style=" ">
+
+							<div class="panel panel-danger">
+
+								<div class="panel-heading">
+									<h3 style="text-align: center;" class="panel-title">Acil İlanlar!!</h3>
+								</div>
+
+								<div class="panel-body">
+
+									<div class="jcarousel-wrapper" style="margin-bottom: 80px;">
+										<div class="jcarousel">
+											<ul>
+												<li><img
+													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img1.jpg"
+													alt="Image 1">
+												</li>
+												<li><img
+													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img2.jpg"
+													alt="Image 2">
+												</li>
+												<li><img
+													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img3.jpg"
+													alt="Image 3">
+												</li>
+												<li><img
+													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img4.jpg"
+													alt="Image 4">
+												</li>
+												<li><img
+													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img5.jpg"
+													alt="Image 5">
+												</li>
+												<li><img
+													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img6.jpg"
+													alt="Image 6">
+												</li>
+											</ul>
+										</div>
+
+										<a href="#" class="jcarousel-control-prev">&lsaquo;</a><a
+										href="#" class="jcarousel-control-next">&rsaquo;</a>
+
+										<p class="jcarousel-pagination hidden-xs"></p>
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="row hidden-lg">
+
+				<div class="col-md-6 col-sm-6 col-xs-6">
+
+					<div style="padding-left: 10px; padding-right: 10px;">
+
+						<div class="panel panel-success">
+
+							<div class="panel-heading">
+								<h3 style="text-align: center;" class="panel-title">Duyurular</h3>
+							</div>
+
+							<div class="panel-body">
+
+								Duyurular buraya gelecek...
+								<br>
+								...
+								<br>
+								...
+								<br>
+								...
+								<br>
+								...
+								<br>
+								...
+								<br>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="col-md-6 col-sm-6 col-xs-6"
+				style="padding-left: 10px; padding-right: 10px;">
+
+					<div class="panel panel-info">
+
+						<div class="panel-heading">
+							<h3 style="text-align: center;" class="panel-title">Ekstra
+							Alan</h3>
+						</div>
+
+						<div class="panel-body">
+
+							Kafana göre bir şey ekle...
+							<br>
+							....
+							<br>
+							....
+							<br>
+							....
+							<br>
+							....
+							<br>
+							....
+							<br>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="row hidden-lg"
+			style="padding-left: 20px; padding-right: 20px;">
+
+				<div class="panel panel-info">
+
+					<div class="panel-heading">
+						<h3 style="text-align: center;" class="panel-title">Günün
+						Fırsatları</h3>
+					</div>
+
+					<div class="panel-body">
+
+						<div class="row">
+							<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
+
+								<div class="thumbnail">
+									<a href="#"> <img src="resources/images/cat-demo.jpg"
+									alt="cat demo photo"> </img> </a>
+
+								</div>
+
+								<div class="caption">
+
+									<h3>Thumbnail label</h3>
+									<p>
+										Some sample text.
+									</p>
+
+								</div>
+
+							</div>
+
+							<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
+
+								<div class="thumbnail">
+									<a href="#"> <img src="resources/images/cat-demo.jpg"
+									alt="cat demo photo"> </img> </a>
+
+								</div>
+
+								<div class="caption">
+
+									<h3>Thumbnail label</h3>
+									<p>
+										Some sample text.
+									</p>
+
+								</div>
+
+							</div>
+
+							<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
+
+								<div class="thumbnail">
+									<a href="#"> <img src="resources/images/cat-demo.jpg"
+									alt="cat demo photo"> </img> </a>
+
+								</div>
+
+								<div class="caption">
+
+									<h3>Thumbnail label</h3>
+									<p>
+										Some sample text.
+									</p>
+
+								</div>
+
+							</div>
+
+							<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
+
+								<div class="thumbnail">
+									<a href="#"> <img src="resources/images/cat-demo.jpg"
+									alt="cat demo photo"> </img> </a>
+
+								</div>
+
+								<div class="caption">
+
+									<h3>Thumbnail label</h3>
+									<p>
+										Some sample text.
+									</p>
+
+								</div>
+
+							</div>
+
+							<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
+
+								<div class="thumbnail">
+									<a href="#"> <img src="resources/images/cat-demo.jpg"
+									alt="cat demo photo"> </img> </a>
+
+								</div>
+
+								<div class="caption">
+
+									<h3>Thumbnail label</h3>
+									<p>
+										Some sample text.
+									</p>
+
+								</div>
+
+							</div>
+
+							<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
+
+								<div class="thumbnail">
+									<a href="#"> <img src="resources/images/cat-demo.jpg"
+									alt="cat demo photo"> </img> </a>
+
+								</div>
+
+								<div class="caption">
+
+									<h3>Thumbnail label</h3>
+									<p>
+										Some sample text.
+									</p>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<div class="hidden-xs" style="margin-bottom: 0px; margin-top: 25px;">
+
+					<div class="panel panel-info">
+
+						<div class="panel-heading">
+							<h3 style="text-align: center;" class="panel-title">En Son
+							İlanlar</h3>
+						</div>
+
+						<div class="panel-body">
+
+							<div id="mi-slider" class="mi-slider"
+							style="margin-top: 20px; clear: both;">
+								<ul>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/1.jpg" alt="img01"> <h4>Boots</h4> </a>
+									</li>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/2.jpg" alt="img02"> <h4>Oxfords</h4> </a>
+									</li>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/3.jpg" alt="img03"> <h4>Loafers</h4> </a>
+									</li>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/4.jpg" alt="img04"> <h4>Sneakers</h4> </a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/5.jpg" alt="img05"> <h4>Belts</h4> </a>
+									</li>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/6.jpg" alt="img06"> <h4>Hats &amp; Caps</h4> </a>
+									</li>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/7.jpg" alt="img07"> <h4>Sunglasses</h4> </a>
+									</li>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/8.jpg" alt="img08"> <h4>Scarves</h4> </a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/9.jpg" alt="img09"> <h4>Casual</h4> </a>
+									</li>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/10.jpg" alt="img10"> <h4>Luxury</h4> </a>
+									</li>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/11.jpg" alt="img11"> <h4>Sport</h4> </a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/12.jpg" alt="img12"> <h4>Carry-Ons</h4> </a>
+									</li>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/13.jpg" alt="img13"> <h4>Duffel Bags</h4> </a>
+									</li>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/14.jpg" alt="img14"> <h4>Laptop Bags</h4> </a>
+									</li>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/15.jpg" alt="img15"> <h4>Briefcases</h4> </a>
+									</li>
+								</ul>
+								<nav>
+									<a href="#">İKİNCİ EL</a><a href="#">EV ARKADAŞI</a><a
+									href="#">EV İLANI</a><a href="#">ÖZEL DERS</a>
+
+								</nav>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<div class="alert alert-danger">
+
+					Ekstra alan...Kafana göre bir şey ekle...
+					<br>
+					....
+					<br>
+					....
+					<br>
+					....
+					<br>
+					....
+					<br>
+					....
+					<br>
+
+				</div>
+
+			</div>
+
+			<div class="row" style="margin-top: 30px; margin-bottom: 30px;">
+
+				<div
+				style="border: 1px solid black; margin-left:10px;margin-right:10px; margin-bottom: 0px; background-color: #E6F3FF; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px;">
+
+					<div class="row" style="padding-left: 20px; padding-right: 20px;">
+
+						<h2 style="text-align: center; margin-bottom: 50px;"><u>En Popüler İlanlar</u></h2>
+
+						<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+							<div class="thumbnail">
+								<a href="#"> <img src="resources/images/cat-demo.jpg"
+								alt="cat demo photo"> </img> </a>
+
+							</div>
+
+							<div class="caption">
+
+								<h3>Thumbnail label</h3>
+								<p>
+									Some sample text.
+								</p>
+
+							</div>
+
+						</div>
+
+						<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+							<div class="thumbnail">
+								<a href="#"> <img src="resources/images/cat-demo.jpg"
+								alt="cat demo photo"> </img> </a>
+
+							</div>
+
+							<div class="caption">
+
+								<h3>Thumbnail label</h3>
+								<p>
+									Some sample text.
+								</p>
+
+							</div>
+
+						</div>
+
+						<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+							<div class="thumbnail">
+								<a href="#"> <img src="resources/images/cat-demo.jpg"
+								alt="cat demo photo"> </img> </a>
+
+							</div>
+
+							<div class="caption">
+
+								<h3>Thumbnail label</h3>
+								<p>
+									Some sample text.
+								</p>
+
+							</div>
+
+						</div>
+
+						<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+							<div class="thumbnail">
+								<a href="#"> <img src="resources/images/cat-demo.jpg"
+								alt="cat demo photo"> </img> </a>
+
+							</div>
+
+							<div class="caption">
+
+								<h3>Thumbnail label</h3>
+								<p>
+									Some sample text.
+								</p>
+
+							</div>
+
+						</div>
+
+						<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+							<div class="thumbnail">
+								<a href="#"> <img src="resources/images/cat-demo.jpg"
+								alt="cat demo photo"> </img> </a>
+
+							</div>
+
+							<div class="caption">
+
+								<h3>Thumbnail label</h3>
+								<p>
+									Some sample text.
+								</p>
+
+							</div>
+
+						</div>
+
+						<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+							<div class="thumbnail">
+								<a href="#"> <img src="resources/images/cat-demo.jpg"
+								alt="cat demo photo"> </img> </a>
+
+							</div>
+
+							<div class="caption">
+
+								<h3>Thumbnail label</h3>
+								<p>
+									Some sample text.
+								</p>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="row" style="margin-top: 30px; margin-bottom: 30px;">
+
+				<div
+				style="border: 1px solid black; margin-left:10px;margin-right:10px; margin-bottom: 0px; padding-left: 10px; padding-right: 10px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; background: #F0FFE2">
+
+					<h2 style="text-align: center; margin-bottom: 50px;"><u>Ev İlanları Ve Ders Notları</u></h2>
+
+					<div class="jcarousel-wrapper" style="margin-bottom: 80px;">
+						<div class="jcarousel">
+							<ul>
+								<li><img
+									src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img1.jpg"
+									alt="Image 1">
+								</li>
+								<li><img
+									src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img2.jpg"
+									alt="Image 2">
+								</li>
+								<li><img
+									src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img3.jpg"
+									alt="Image 3">
+								</li>
+								<li><img
+									src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img4.jpg"
+									alt="Image 4">
+								</li>
+								<li><img
+									src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img5.jpg"
+									alt="Image 5">
+								</li>
+								<li><img
+									src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img6.jpg"
+									alt="Image 6">
+								</li>
+							</ul>
+						</div>
+
+						<a href="#" class="jcarousel-control-prev">&lsaquo;</a><a href="#"
+						class="jcarousel-control-next">&rsaquo;</a>
+
+						<p class="jcarousel-pagination hidden-xs"></p>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<div
+				style="margin-bottom: 20px; padding-left: 10px; padding-right: 10px; padding-bottom: 30px;">
+
+					<div class="panel panel-success">
+
+						<div class="panel-heading">
+							<h3 style="text-align: center;" class="panel-title">Kategoriye
+							Göre En Güvenilir veya En Yakında olan satıcıları bul!!</h3>
+						</div>
+
+						<div class="panel-body">
+
+							<ul id="myTab" class="nav nav-tabs">
+
+								<li class="dropdown">
+									<a href="#" id="myTabDrop1"
+									class="dropdown-toggle" data-toggle="dropdown">İkinci El
+									ilan <b class="caret"></b> </a>
+									<ul class="dropdown-menu" role="menu"
+									aria-labelledby="myTabDrop1">
+										<li>
+											<a href="#enguvenilirsaticilar" tabindex="-1"
+											data-toggle="tab">En Güvenilir Satıcılar</a>
+										</li>
+										<li>
+											<a href="#enyakindaolansaticilar" tabindex="-1"
+											data-toggle="tab">En Yakında Olan Satıcılar</a>
+										</li>
+									</ul>
+								</li>
+
+								<li class="dropdown">
+									<a href="#" id="myTabDrop1"
+									class="dropdown-toggle" data-toggle="dropdown">Ev Arkadaşı <b
+									class="caret"></b> </a>
+									<ul class="dropdown-menu" role="menu"
+									aria-labelledby="myTabDrop1">
+										<li>
+											<a href="#enguvenilirevarkadaslari" tabindex="-1"
+											data-toggle="tab">En Güvenilir Olanlar</a>
+										</li>
+										<li>
+											<a href="#enyakindaolanevarkadaslari" tabindex="-1"
+											data-toggle="tab">En Yakında Olanlar</a>
+										</li>
+									</ul>
+								</li>
+
+								<li class="dropdown">
+									<a href="#" id="myTabDrop1"
+									class="dropdown-toggle" data-toggle="dropdown">Ders Notu <b
+									class="caret"></b> </a>
+									<ul class="dropdown-menu" role="menu"
+									aria-labelledby="myTabDrop1">
+										<li>
+											<a href="#enguvenilirsaticilar-dersnotu" tabindex="-1"
+											data-toggle="tab">En Güvenilir Satıcılar</a>
+										</li>
+										<li>
+											<a href="#enyakindaolansaticilar-dersnotu"
+											tabindex="-1" data-toggle="tab">En Yakında Olan Satıcılar</a>
+										</li>
+									</ul>
+								<li class="dropdown">
+									<a href="#" id="myTabDrop4"
+									class="dropdown-toggle" data-toggle="dropdown">Özel Ders <b
+									class="caret"></b> </a>
+									<ul class="dropdown-menu" role="menu"
+									aria-labelledby="myTabDrop1">
+										<li>
+											<a href="#enguvenilirozelders" tabindex="-1"
+											data-toggle="tab">En Güvenilir Olanlar</a>
+										</li>
+										<li>
+											<a href="#enyakindaolanozelders" tabindex="-1"
+											data-toggle="tab">En Yakında Olanlar</a>
+										</li>
+									</ul>
+								</li>
+
+							</ul>
+
+							<div id="myTabContent" class="tab-content"
+							style="margin-top: 20px;">
+
+								<div class="tab-pane fade in active" id="home">
+
+									<h2 style="text-align: center; margin-bottom: 30px;"><u>En Güvenilir İkinci El İlan Satıcıları</u></h2>
+
+									<div class="row">
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="tab-pane fade" id="enguvenilirsaticilar">
+
+									<h2 style="text-align: center; margin-bottom: 30px;">En
+									Güvenilir İkinci El İlan Satıcıları</h2>
+
+									<div class="row">
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="tab-pane fade" id="enyakindaolansaticilar">
+
+									<h2 style="text-align: center; margin-bottom: 30px;">En
+									Yakında Olan İkinci El İlan Satıcıları</h2>
+
+									<div class="row">
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="tab-pane fade" id="enguvenilirevarkadaslari">
+
+									<h2 style="text-align: center; margin-bottom: 30px;">En
+									Güvenilir Ev Arkadaşları</h2>
+
+									<div class="row">
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="tab-pane fade" id="enyakindaolanevarkadaslari">
+
+									<h2 style="text-align: center; margin-bottom: 30px;">En
+									Yakında Olan Ev Arkadaşları</h2>
+
+									<div class="row">
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="tab-pane fade" id="enguvenilirsaticilar-dersnotu">
+
+									<h2 style="text-align: center; margin-bottom: 30px;">En
+									Güvenilir Ders Notu Satıcıları</h2>
+
+									<div class="row">
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="tab-pane fade" id="enyakindaolansaticilar-dersnotu">
+
+									<h2 style="text-align: center; margin-bottom: 30px;">En
+									Yakındaki Ders Notu Satıcıları</h2>
+
+									<div class="row">
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="tab-pane fade" id="enguvenilirozelders">
+
+									<h2 style="text-align: center; margin-bottom: 30px;">En
+									Güvenilir Özel Ders Verenler</h2>
+
+									<div class="row">
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="tab-pane fade" id="enyakindaolanozelders">
+
+									<h2 style="text-align: center; margin-bottom: 30px;">En
+									Yakındaki Özel Ders Verenler</h2>
+
+									<div class="row">
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h3>Thumbnail label</h3>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<footer
+			style="clear: both; float: bottom; background-color: #E1E1E3; padding: 30px;">
+
+				<div class="row">
+
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+						<p>
+							<b> Hizmetlerimiz</b>
+						</p>
+						<ul>
+
+							<li>
+								<a href="#">İkinci El İlan Alım &amp; Satım</a>
+							</li>
+							<li>
+								<a href="#">Ev Arkadaşı Arama &amp; Bulma</a>
+							</li>
+							<li>
+								<a href="#">Ders Notu Alım &amp; Satım</a>
+							</li>
+							<li>
+								<a href="#">Özel Ders Alma &amp; Verme</a>
+							</li>
+
+						</ul>
+
+					</div>
+
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+						<p>
+							<b>Kurumsal</b>
+						</p>
+						<ul>
+
+							<li>
+								<a href="#">Hakkımızda</a>
+							</li>
+							<li>
+								<a href="#">Duyurular</a>
+							</li>
+							<li>
+								<a href="#">Risksiz Alışveriş Sistemi</a>
+							</li>
+							<li>
+								<a href="#">İletişim</a>
+							</li>
+
+						</ul>
+
+					</div>
+
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+						<p>
+							<b> Yardım</b>
+						</p>
+						<ul>
+
+							<li>
+								<a href="#">Nasıl İlan Ekleyebilirim?</a>
+							</li>
+							<li>
+								<a href="#">Nasıl Ürün Satın Alırım?</a>
+							</li>
+							<li>
+								<a href="#">Kullanım Koşulları</a>
+							</li>
+							<li>
+								<a href="#">Daha Fazla Yardım</a>
+							</li>
+
+						</ul>
+
+					</div>
+
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+						<p>
+							<b>Reklam Verme</b>
+						</p>
+						<ul>
+
+							<li>
+								<a href="#">Reklam Verme Koşulları</a>
+							</li>
+							<li>
+								<a href="#">Reklam Özellikleri</a>
+							</li>
+							<li>
+								<a href="#">İletişim</a>
+							</li>
+
+						</ul>
+
+					</div>
+
+				</div>
+
+			</footer>
+
+			<div>
+
+				<p style="float: right; margin-right: 20px; margin-top: 5px;">
+					©2015 ODTÜ İLAN&nbsp;&nbsp;&nbsp;&nbsp;<a
+					href="http://www.odtuilan.com">odtuilan.com</a>
+				</p>
+
+			</div>
+
+			<!-- plugin script inportları: -->
+
+			<!-- JCarousel Plugin -->
+
+			<script>
+				//multilevel dropdown
+
+				$(document).ready(function() {
+					$('.dropdown-submenu a.test').on("click", function(e) {
+						$(this).next('ul').toggle();
+						e.stopPropagation();
+						e.preventDefault();
+					});
+				});
+			</script>
+
+			<!-- Item Slider plugin -->
+
+			<script
+			src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+			<script>
+				var $itemslider = jQuery.noConflict();
+			</script>
+
+			<script src="resources/plugins/ItemSlider/js/jquery.catslider.js"></script>
+
+			<script>
+				$itemslider(function() {
+
+					$itemslider('#mi-slider').catslider();
+
+				});
+			</script>
+
+			<!-- Parallax Content Slider -->
+
+			<script type="text/javascript"
+			src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+			<script type="text/javascript"
+			src="resources/plugins/ParallaxContentSlider/js/jquery.cslider.js"></script>
+
+			<script>
+				var $parallax = jQuery.noConflict();
+			</script>
+
+			<script type="text/javascript">
+				$parallax(function() {
+
+					$parallax('#da-slider').cslider();
+
+				});
+			</script>
+
+			<!-- responsive header -->
+
+			<%= render "headerfixedjs" %>
+
+			<!-- Dropdown login box -->
+	</body>
+
+</html>
