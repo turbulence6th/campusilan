@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   post 'checkusername' => 'user#checkusername', defaults: {format: :json}
   post 'checkemail' => 'user#checkemail', defaults: {format: :json}
   post 'register' => 'user#registerPost'
+  post 'login' => 'user#loginPost'
   
   #, defaults: {format: :json}
 end

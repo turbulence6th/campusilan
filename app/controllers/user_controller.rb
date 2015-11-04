@@ -100,4 +100,12 @@ class UserController < ApplicationController
     
   end
   
+  def loginPost
+    user = User.find_by_username(params[:username]).try(:authenticate, params[:password])
+    if (user!=nil && user!=false)
+      session[:user_id] = user.id
+    end
+    redirect_to "/"
+  end
+  
 end
