@@ -6,5 +6,8 @@ class CreateFavouriteAdverts < ActiveRecord::Migration
       t.references :advert, index: true
       
     end
+    
+    execute "ALTER TABLE favourite_adverts ADD PRIMARY KEY (user_id, advert_id);"
+    
   end
 end

@@ -18,5 +18,4 @@ Rails.application.routes.draw do
   post 'register' => 'user#registerPost'
   post 'login' => 'user#loginPost'
   
-  #, defaults: {format: :json}
 end

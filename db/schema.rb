@@ -17,22 +17,32 @@ ActiveRecord::Schema.define(version: 20151103191148) do
   enable_extension "plpgsql"
 
   create_table "adverts", force: :cascade do |t|
+    t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "adverts", ["user_id"], name: "index_adverts_on_user_id", using: :btree
+
   create_table "favourite_adverts", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "advert_id"
+    t.integer "user_id",   null: false
+    t.integer "advert_id", null: false
   end
 
   add_index "favourite_adverts", ["advert_id"], name: "index_favourite_adverts_on_advert_id", using: :btree
   add_index "favourite_adverts", ["user_id"], name: "index_favourite_adverts_on_user_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
+    t.integer  "from_id",    null: false
+    t.integer  "to_id",      null: false
+    t.string   "topic",      null: false
+    t.text     "text",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "messages", ["from_id"], name: "index_messages_on_from_id", using: :btree
+  add_index "messages", ["to_id"], name: "index_messages_on_to_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false
@@ -52,11 +62,12 @@ ActiveRecord::Schema.define(version: 20151103191148) do
   add_index "users", ["username", "email"], name: "index_users_on_username_and_email", unique: true, using: :btree
 
   create_table "viewed_adverts", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "advert_id"
+    t.integer "user_id",   null: false
+    t.integer "advert_id", null: false
   end
 
   add_index "viewed_adverts", ["advert_id"], name: "index_viewed_adverts_on_advert_id", using: :btree
   add_index "viewed_adverts", ["user_id"], name: "index_viewed_adverts_on_user_id", using: :btree
 
+  add_foreign_key "adverts", "users", on_delete: :cascade
 end

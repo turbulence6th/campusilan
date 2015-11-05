@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'rack-attack'
+
 gem 'rename' 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

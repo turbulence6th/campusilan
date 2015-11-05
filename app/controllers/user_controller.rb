@@ -90,6 +90,10 @@ class UserController < ApplicationController
        check = false
     end
     
+    if (email != email2 || password != password2)
+        check = false
+    end
+    
     if(check)
       user = User.new(:name => name, :surname => surname, :username => username, :password => password, :password_confirmation => password2,
       :email => email, :gender => gender, :phone => phone, :bulletin => bulletin, :role => 'member', :verified => false)
