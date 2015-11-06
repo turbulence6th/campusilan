@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'turkish_support'
+
 gem 'rack-attack'
 
 gem 'rename' 
