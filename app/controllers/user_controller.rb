@@ -32,8 +32,8 @@ class UserController < ApplicationController
   
   def registerPost
     
-    name = params[:name].downcase if params[:name] != nil
-    surname = params[:surname].downcase if params[:surname] != nil
+    name = params[:name]
+    surname = params[:surname]
     username = params[:username]
     password = params[:password]
     password2 = params[:password2]
