@@ -34,13 +34,22 @@ class UserTest < ActiveSupport::TestCase
   
   test "password invalid" do
     @user.password = "789456123"
+    @user.password_confirmation = "789456123"
     assert @user.invalid?
   end
   
   test "email invalid" do
     @user.email = "oguz@asd"
+    @user.email_confirmation = "oguz@asd"
     assert @user.invalid?
   end
+  
+  test " long email invalid" do
+    @user.email = "ogussssssssssssssssssssssssssssssssssz@metu.edu.tr"
+    @user.email_confirmation = "ogussssssssssssssssssssssssssssssssssz@metu.edu.tr"
+    assert @user.invalid?
+  end
+
   
   test "bulletin empty" do
     @user.bulletin = nil

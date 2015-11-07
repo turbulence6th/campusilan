@@ -32,13 +32,13 @@ class UserController < ApplicationController
   
   def registerPost
     
-    name = params[:name].downcase
-    surname = params[:surname].downcase
+    name = params[:name].downcase if params[:name] != nil
+    surname = params[:surname].downcase if params[:surname] != nil
     username = params[:username]
     password = params[:password]
     password2 = params[:password2]
-    email = params[:email].downcase
-    email2 = params[:email2].downcase
+    email = params[:email].downcase if params[:email] != nil
+    email2 = params[:email2].downcase if params[:email2] != nil
     gender = params[:gender]
     phone = params[:phone] + '-' + params[:phone2]
     bulletin = params[:bulletin]
