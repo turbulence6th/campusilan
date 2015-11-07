@@ -22,5 +22,26 @@ class UserControllerTest < ActionController::TestCase
     body = JSON.parse(response.body)
     assert_equal false, body['check']
   end
+  
+  test "check valid email" do
+    post :checkemail,  :email=> 'email@metu.edu.tr' , :format => "json"
+    assert_response :success
+    body = JSON.parse(response.body)
+    assert_equal true, body['check']
+  end
+  
+  test "check invalid email" do
+    post :checkemail,  :email => 'email+@metu.edu.tr' , :format => "json"
+    assert_response :success
+    body = JSON.parse(response.body)
+    assert_equal false, body['check']
+  end
+  
+  test "check used email" do
+    post :checkemail,  :email => 'oguz.tanrikulu@metu.edu.tr' , :format => "json"
+    assert_response :success
+    body = JSON.parse(response.body)
+    assert_equal false, body['check']
+  end
 
 end

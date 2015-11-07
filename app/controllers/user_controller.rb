@@ -11,45 +11,21 @@ class UserController < ApplicationController
   def checkusername
     
     username = params[:username]
-    user = User.find_by_username(username)
-    
-    if (username =~ /^[a-z0-9._-]{3,15}$/ && user==nil)
       
-      respond_to do |format|
-        msg = { :check => true }
-        format.json  { render :json => msg }
-      end
-      
-    else
-      
-      respond_to do |format|
-        msg = { :check => false }
-        format.json  { render :json => msg }
-      end
-        
+    respond_to do |format|
+      msg = { :check => !User.create(:username => username).errors[:username].any? }
+      format.json  { render :json => msg }
     end
- 
+      
   end
   
   def checkemail
     
-    email = params[:email].downcase
-    user = User.find_by_email(email)
-    
-    if (email =~ /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i && user==nil)
+    email = params[:email]
       
-      respond_to do |format|
-        msg = { :check => true }
-        format.json  { render :json => msg }
-      end
-    
-    else
-      
-      respond_to do |format|
-        msg = { :check => false }
-        format.json  { render :json => msg }
-      end
-        
+    respond_to do |format|
+      msg = { :check => !User.create(:email => email).errors[:email].any? }
+      format.json  { render :json => msg }
     end
     
   end
@@ -67,17 +43,10 @@ class UserController < ApplicationController
     phone = params[:phone] + '-' + params[:phone2]
     bulletin = params[:bulletin]
     
-    check = true
-    
-    if (email != email2 || password != password2)
-        check = false
-    end
-    
-    if(check)
-      user = User.new(:name => name, :surname => surname, :username => username, :password => password,
-      :email => email, :gender => gender, :phone => phone, :bulletin => bulletin, :role => 'member', :verified => false)
-      user.save
-    end
+    user = User.new(:name => name, :surname => surname, :username => username, :password => password, 
+    :password_confirmation => password2, :email => email, :email_confirmation => email2, 
+    :gender => gender, :phone => phone, :bulletin => bulletin, :role => 'member', :verified => false)
+    user.save
     
     redirect_to "/"
     

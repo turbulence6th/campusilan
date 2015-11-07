@@ -3,8 +3,9 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   
   setup do
-    @user = User.new(:name => "name", :surname => "surname", :username => "username", :password => "789456123Oo", :email => "email@metu.edu.tr",
-      :gender => "male", :phone => "111-1111111", :bulletin => false, :role => 'member', :verified => false)
+    @user = User.new(:name => "name", :surname => "surname", :username => "username", :password => "oguzTanrikulu123", 
+    :password_confirmation => "oguzTanrikulu123", :email => "email@metu.edu.tr", :email_confirmation => "email@metu.edu.tr", 
+    :gender => "male", :phone => "111-1111111", :bulletin => false, :role => 'member', :verified => false)
   end
   
   test "isValid" do
@@ -63,5 +64,14 @@ class UserTest < ActiveSupport::TestCase
     assert user2.invalid?
   end
   
+  test "unmatched password" do
+    @user.password_confirmation = "black"
+    assert @user.invalid?
+  end
+  
+  test "unmatched email" do
+    @user.email_confirmation = "black@sad"
+    assert @user.invalid?
+  end
   
 end

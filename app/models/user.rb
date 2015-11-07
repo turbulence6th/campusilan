@@ -1,10 +1,14 @@
 class User < ActiveRecord::Base
   
-  validates :name, :surname, :username, :password, :email, :phone, :role, :gender, :presence => true
+  validates :name, :surname, :username, :password, :password_confirmation, :email, :email_confirmation, :phone, :role, :gender, :presence => true
   
   validates :username, :email, :uniqueness => true
   
   validates :verified, :bulletin, :inclusion => { :in => [true, false] }
+  
+  validates :password, :confirmation => true
+  
+  validates :email, :confirmation => true
   
   validates :name, :format => {
     :with => /\A[a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}\z/
@@ -35,7 +39,7 @@ class User < ActiveRecord::Base
   enum :gender => [ :male, :female, :other ]
   enum :role => [ :admin, :member ]
   
-  has_many :adverts, :dependent => :delete_all
+  has_many :adverts
   
   has_many :viewed_adverts
   has_many :adverts, through: :viewed_adverts
