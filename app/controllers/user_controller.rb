@@ -67,6 +67,9 @@ class UserController < ApplicationController
 
   def member
     @user = User.find_by_id(session[:user_id])
+    if @user==nil
+      redirect_to "/"
+    end
   end
 
   def login
@@ -80,5 +83,11 @@ class UserController < ApplicationController
     reset_session
     redirect_to "/"
   end
+  
+  
+
+  
+  
+  
 
 end
