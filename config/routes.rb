@@ -6,16 +6,18 @@ Rails.application.routes.draw do
   get 'iletisim' => 'index#contact'
   get 'kullanimkosullari' => 'index#terms'
   get 'reklam' => 'index#advert'
-  get 'uye' => 'index#member'
+  get 'uye' => 'user#member'
   get 'yardim' => 'index#help'
   get 'ilanver' => 'index#ilanver'
   get 'satis-alis' => 'index#satis-alis'
   get 'mesajlarim' => 'index#mesajlarim'
+  get 'girisyap' => 'user#login'
   
   get 'kayitol' => 'user#register'
   post 'checkusername' => 'user#checkusername', defaults: {format: :json}
   post 'checkemail' => 'user#checkemail', defaults: {format: :json}
   post 'register' => 'user#registerPost'
   post 'login' => 'user#loginPost'
+  get 'logout' => 'user#logout'
   
 end

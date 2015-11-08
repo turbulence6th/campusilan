@@ -258,6 +258,28 @@
 											class="form-control" id="password">
 										</div>
 
+										<div class="col-lg-6 col-md-6">
+											<div style="display: none;"
+											class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group altidankucukhata label label-danger">
+												Şifre
+												6 karakterden az olamaz.
+											</div>
+
+											<div style="display: none;"
+											class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  passkarakterhatasi label label-danger">
+												Şifrenizde büyük harf,küçük harf ve sayı
+												<br>
+												kullanmak
+												zorundasınız.
+											</div>
+											<div style="display: none;"
+											class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  passboskalamaz label label-danger">
+												Şifre
+												kısmı boş kalamaz.
+											</div>
+
+										</div>
+
 										<div class="form-group col-lg-6 col-md-6">
 											<label>Şifreyi tekrar et</label>
 											<input
@@ -266,6 +288,22 @@
 											id="password2">
 
 										</div>
+										
+										
+										
+										<div class="col-lg-6 col-md-6 passkarakterrepeat">
+
+											<div style="display: none;"
+											class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  passkarakterhatasirepeat label label-danger">
+												Şifreniz eşleşmiyor
+
+												
+
+											</div>
+
+										</div>
+										
+										
 
 									</div>
 
@@ -274,20 +312,20 @@
 										<div class="col-lg-6 col-md-6 passkarakter">
 
 											<div style="display: none;"
-											class="col-lg-12 col-md-12 form-group  passkarakterhatasi label label-danger">
+											class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  passkarakterhatasi label label-danger">
 												Şifrenizde büyük harf,küçük harf ve sayı
 												<br>
 												kullanmak
 												zorundasınız.
 											</div>
 											<div style="display: none;"
-											class="col-lg-12 col-md-12 form-group  passboskalamaz label label-danger">
+											class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  passboskalamaz label label-danger">
 												Şifre
 												kısmı boş kalamaz.
 											</div>
 
 											<div style="display: none;"
-											class="col-lg-12 col-md-12 form-group altidankucukhata label label-danger">
+											class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group altidankucukhata label label-danger">
 												Şifre
 												6 karakterden az olamaz.
 											</div>
@@ -297,9 +335,11 @@
 										<div class="col-lg-6 col-md-6 passkarakterrepeat">
 
 											<div style="display: none;"
-											class="col-lg-12 col-md-12 form-group  passkarakterhatasirepeat label label-danger">
-												Şifreniz
-												eşleşmiyor
+											class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group  passkarakterhatasirepeat label label-danger">
+												Şifreniz eşleşmiyor
+
+												
+
 											</div>
 
 										</div>
@@ -315,6 +355,15 @@
 											id="email">
 										</div>
 
+										<div class="col-lg-6 col-md-6">
+
+											<div style="display: none;"
+											class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  emailkarakterhatasi label label-danger">
+												Geçersiz E-mail
+											</div>
+
+										</div>
+
 										<div class="form-group col-lg-6 col-md-6">
 											<label>Eposta Adresini tekrarla</label>
 											<input onkeyup="emailrepeatcheck()" maxlength="40"
@@ -328,7 +377,7 @@
 										<div class="col-lg-6 col-md-6 emailkarakter">
 
 											<div style="display: none;"
-											class="col-lg-12 col-md-12 form-group  emailkarakterhatasi label label-danger">
+											class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  emailkarakterhatasi label label-danger">
 												Geçersiz E-mail
 											</div>
 											<div style="display: none;"
@@ -371,10 +420,20 @@
 										</div>
 
 										<div class="form-group col-lg-4 col-md-4">
-											<label>Telefon</label>
+											<label>Telefon(devamı)</label>
 											<input type="text" onkeyup="phonecheck()" placeholder="1234567" maxlength="7"
 											name="phone2" class="form-control" id="phone2">
 										</div>
+
+										<div class="col-lg-12 col-md-12 hidden-lg hidden-md phonekarakter">
+
+											<div style="display: none;"
+											class="col-lg-12 col-md-12 form-group  phonekarakterhatasi label label-danger">
+												Hatalı veya eksik telefon numarası
+											</div>
+
+										</div>
+										<br class="phonekarakterhatasi visible-xs visible-sm">
 
 										<div class="form-group col-lg-6 col-md-6">
 											<label>Cinsiyet</label>
@@ -388,7 +447,7 @@
 
 										</div>
 
-										<div class="col-lg-6 col-md-6 phonekarakter">
+										<div class="col-lg-6 col-md-6 hidden-xs hidden-sm phonekarakter">
 
 											<div style="display: none;"
 											class="col-lg-12 col-md-12 form-group  phonekarakterhatasi label label-danger">
@@ -492,13 +551,13 @@
 										<br class="visible-xs">
 										<br class="visible-xs">
 
-										<button style="margin-left: 20px;" type="submit"
+										<button onclick="loginyonlendir()" style="margin-left: 20px;" type="submit"
 										class="hidden-lg hidden-md btn btn-primary">
 											Zaten üye
 											misiniz?
 										</button>
 
-										<button style="margin-left: 20px;" type="submit"
+										<button onclick="loginyonlendir()" style="margin-left: 20px;" type="submit"
 										class="col-lg-3 col-md-4 visible-lg visible-md btn btn-primary">
 											Zaten
 											üye misiniz?
@@ -509,9 +568,18 @@
 								</div>
 
 							</div>
-							
+
 							<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 						</form>
+
+						<script>
+							function loginyonlendir() {
+
+								window.location = "/girisyap";
+
+							}
+
+						</script>
 
 						<!-- user name validation -->
 
@@ -554,7 +622,7 @@
 									$.ajax({
 										url : 'checkusername',
 										data : {
-											authenticity_token: window._token,
+											authenticity_token : window._token,
 											username : username
 										},
 										error : function() {
@@ -744,7 +812,7 @@
 									$.ajax({
 										url : 'checkemail',
 										data : {
-											authenticity_token: window._token,
+											authenticity_token : window._token,
 											email : email
 										},
 										error : function() {

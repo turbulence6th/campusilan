@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<title>Odtü İlan</title>
+		<meta charset="utf-8">
+
+		<META http-equiv=content-type content=text/html;charset=iso-8859-9>
+		<META http-equiv=content-type content=text/html;charset=windows-1254>
+		<META http-equiv=content-type content=text/html;charset=x-mac-turkish>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+
+		<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
+		queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page
+		via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/
+		html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/
+		respond.min.js"></script>
+		<![endif]-->
+
+		<!--plugins: -->
+
+		<!-- dropdown login box -->
+
+		<link rel="stylesheet"
+		href="resources/plugins/dropdownloginbox/css/style.css" />
+
+		<script src="resources/plugins/dropdownloginbox/js/login.js"></script>
+
+		<!-- Fixed Header -->
+
+		<link rel="stylesheet" href="resources/assets/header-fixed.css">
+
+		<link href='http://fonts.googleapis.com/css?family=Cookie'
+		rel='stylesheet' type='text/css'>
+
+		<!-- Fixed Header sonu -->
+
+		<link href="resources/css/searchbox.css" rel="stylesheet"
+		type="text/css" />
+
+		<!-- Smart Menus plugin -->
+
+		<!-- jQuery import -->
+		<script src="resources/plugins/smartmenus/libs/jquery/jquery.js"
+		type="text/javascript"></script>
+
+		<script>
+			var smartmenus = jQuery.noConflict();
+		</script>
+
+		<!-- SmartMenus jQuery plugin -->
+		<script src="resources/plugins/smartmenus/jquery.smartmenus.js"
+		type="text/javascript"></script>
+
+		<!-- SmartMenus core CSS (required) -->
+		<link href="resources/plugins/smartmenus/css/sm-core-css.css"
+		rel="stylesheet" type="text/css" />
+		<!-- "sm-blue" menu theme (optional, you can use your own CSS, too) -->
+		<link href="resources/plugins/smartmenus/css/sm-blue/sm-blue.css"
+		rel="stylesheet" type="text/css" />
+
+		<!-- SmartMenus jQuery init -->
+		<script>
+			smartmenus(document).ready(function() {
+				smartmenus('#main-menu').smartmenus();
+			});
+		</script>
+
+		<!-- end of plugins  -->
+
+		<style>
+			@media screen and (min-width: 768px) {
+				body {
+					padding: 50px;
+				}
+
+			}
+
+		</style>
+
+	</head>
+
+	<body>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+		<!-- Include all compiled plugins (below), or include individual files
+		as needed -->
+		<script src="resources/js/bootstrap.min.js"></script>
+
+		<div class="container-fluid">
+
+			<div class="row">
+
+				<%= render "headerfixed" %>
+
+			</div>
+
+			<!-- You need this element to prevent the content of the page from jumping up -->
+			<div class="header-fixed-placeholder"></div>
+
+			<div class="row">
+
+				<%= render "smartmenus" %>
+
+			</div>
+
+			<div  class="well">
+
+				<%if params[:hataligiris]!=nil%>
+					<div class="row">
+	
+						<div style="margin-left:20px;"class="col-lg-4 col-md-5 hidden-sm hidden-xs alert alert-danger">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							<strong>Hata!</strong> Kullanıcı adınızı veya şifrenizi yanlış girdiniz
+						</div>
+						
+						<div style=""class="hidden-lg hidden-md col-sm-12 col-xs-12 alert alert-danger">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							<strong>Hata!</strong> Kullanıcı adınızı veya şifrenizi yanlış girdiniz
+						</div>
+	
+					</div>
+				<%end%>
+
+				<div class="row">
+
+					<div id="loginbox" style="margin-top: 20px; margin-left: 20px;"
+					class="mainbox col-lg-4 col-md-5  col-sm-10 ">
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<div class="panel-title">
+									Sign In
+								</div>
+								<div
+								style="float: right; font-size: 80%; position: relative; top: -10px">
+									<a href="#">Forgot password?</a>
+								</div>
+							</div>
+
+							<div style="padding-top: 30px" class="panel-body">
+
+								<div style="display: none" id="login-alert"
+								class="alert alert-danger col-sm-12"></div>
+
+								<form  action="login" method="POST" id="loginform" class="form-horizontal" role="form">
+
+									<div style="z-index:1;margin-bottom: 25px" class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-user"></i></span>
+										<input
+										id="login-username" type="text" class="form-control"
+										name="username" value="" placeholder="Kullanıcı Adı">
+									</div>
+
+									<div style="z-index:1;margin-bottom: 25px" class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-lock"></i></span>
+										<input
+										id="login-password" type="password" class="form-control"
+										name="password" placeholder="Şifre">
+									</div>
+
+									<div class="input-group">
+										<div class="checkbox">
+											<label>
+												<input id="login-remember" type="checkbox"
+												name="remember" value="1">
+												Beni Hatırla </label>
+										</div>
+									</div>
+
+									<div style="margin-top: 10px" class="form-group">
+										<!-- Button -->
+
+										<div class="col-sm-12 col-xs-12 controls">
+
+											<input style="width:100%;" id="btn-login" class="visible-xs btn btn-success" type="submit" value="Login" />
+
+											<input  id="btn-login" class="hidden-xs btn btn-success" type="submit" value="Login" />
+
+											<br class="visible-xs">
+											<br class="visible-xs">
+
+											<a style="width:100%;" id="btn-fblogin" href="#" class="visible-xs btn btn-primary">Facebook İle Bağlan</a>
+											<br class="visible-xs">
+											<a  id="btn-fblogin" href="#" class="hidden-xs btn btn-primary">Facebook İle Bağlan
+											<br class="visible-xs">
+											<br class="visible-xs">
+											<a style="width:100%;" id="register" href="/kayitol"
+											class="visible-xs btn btn-primary">Kayıt Ol</a> <a id="register" href="/kayitol"
+											style="float: right;" class="hidden-xs btn btn-primary">Kayıt Ol</a>
+										</div>
+									</div>
+
+									<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden" >
+
+								</form>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="hidden-xs col-lg-7 col-md-6 col-sm-10 ">
+
+						<div style="margin-left:20px; margin-top: 35px;height:400px; background-repeat: no-repeat;
+						background-size:100% 70%; background-image:url('/resources/images/cat-demo.jpg') " >
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<footer
+			style="clear: both; float: bottom; background-color: #E1E1E3; padding: 30px;">
+
+				<div class="row">
+
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+						<p>
+							<b> Hizmetlerimiz</b>
+						</p>
+						<ul>
+
+							<li>
+								<a href="#">İkinci El İlan Alım &amp; Satım</a>
+							</li>
+							<li>
+								<a href="#">Ev Arkadaşı Arama &amp; Bulma</a>
+							</li>
+							<li>
+								<a href="#">Ders Notu Alım &amp; Satım</a>
+							</li>
+							<li>
+								<a href="#">Özel Ders Alma &amp; Verme</a>
+							</li>
+
+						</ul>
+
+					</div>
+
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+						<p>
+							<b>Kurumsal</b>
+						</p>
+						<ul>
+
+							<li>
+								<a href="#">Hakkımızda</a>
+							</li>
+							<li>
+								<a href="#">Duyurular</a>
+							</li>
+							<li>
+								<a href="#">Risksiz Alışveriş Sistemi</a>
+							</li>
+							<li>
+								<a href="#">İletişim</a>
+							</li>
+
+						</ul>
+
+					</div>
+
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+						<p>
+							<b> Yardım</b>
+						</p>
+						<ul>
+
+							<li>
+								<a href="#">Nasıl İlan Ekleyebilirim?</a>
+							</li>
+							<li>
+								<a href="#">Nasıl Ürün Satın Alırım?</a>
+							</li>
+							<li>
+								<a href="#">Kullanım Koşulları</a>
+							</li>
+							<li>
+								<a href="#">Daha Fazla Yardım</a>
+							</li>
+
+						</ul>
+
+					</div>
+
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+						<p>
+							<b>Reklam Verme</b>
+						</p>
+						<ul>
+
+							<li>
+								<a href="#">Reklam Verme Koşulları</a>
+							</li>
+							<li>
+								<a href="#">Reklam Özellikleri</a>
+							</li>
+							<li>
+								<a href="#">İletişim</a>
+							</li>
+
+						</ul>
+
+					</div>
+
+				</div>
+
+			</footer>
+
+			<div>
+
+				<p style="float: right; margin-right: 20px; margin-top: 5px;">
+					©2015 ODTÜ İLAN&nbsp;&nbsp;&nbsp;&nbsp;<a
+					href="http://www.odtuilan.com">odtuilan.com</a>
+				</p>
+
+			</div>
+
+		</div>
+
+		<!-- pluginler -->
+
+		<!--  fixed header -->
+
+		<%= render "headerfixedjs" %>
+
+	</body>
+
+</html>
