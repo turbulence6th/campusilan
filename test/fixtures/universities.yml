@@ -5,12 +5,4 @@
 # below each fixture, per the syntax in the comments below
 #
 one: 
- username: "turbulence6th"
- name: "oguz"
- surname: "tanrikulu"
- email: "oguz.tanrikulu@metu.edu.tr"
- phone: "538-3595977"
- role: "admin"
- gender: "male"
- verified: true
- bulletin: true
+  name: ORTA DOĞU TEKNİK ÜNİVERSİTESİ

@@ -89,19 +89,25 @@
 		<!-- Hesap Ayarları formu -->
 
 		<link rel="stylesheet" href="resources/assets/form-basic.css">
-		
-		
-		
+
 		<!-- Tekliflerim kısmı-->
-		
-		
+
 		<link rel="stylesheet" href="resources/css/teklifler.css">
-		
-		
 
 		<!-- end of plugins  -->
 
 		<style>
+		
+			#cssmenu {
+				
+				width: 100%;
+				
+				
+			}
+			
+		
+		
+		
 			@media screen and (min-width: 1200px) {
 				body {
 					padding: 50px;
@@ -179,106 +185,7 @@
 
 						<div class="row">
 
-							<div id='cssmenu' style="width: 100%; margin-bottom: 20px;">
-								<ul>
-									<li class='has-sub active'>
-										<a href='#'><span>Kullanıcı
-											Paneli</span></a>
-										<ul>
-											<li>
-												<a  id="profilim" href='#'><span>Profilim</span></a>
-											</li>
-											<li>
-												<a  id="ilanver" href='#'><span>İlan Ver</span></a>
-											</li>
-											<li class='last'>
-												<a  id="satislarim" href='#'><span>Satışlarım</span></a>
-											</li>
-											<li class='last'>
-												<a  id="alislarim" href='#'><span>Alışlarım</span></a>
-											</li>
-											<li class='last'>
-												<a  id="favorilerid" href='#'><span>Favorilerim</span></a>
-											</li>
-											<li class='last'>
-												<a  id="mesajlarim" href='#'><span>Mesajlarım</span></a>
-											</li>
-											<li class='last'>
-												<a  id="tekliflerim" href='#'><span>Tekliflerim</span></a>
-											</li>
-											<li class='last'>
-												<a  id="inceledigimilanlar" href='#'><span>İncelediğim
-													İlanlar</span></a>
-											</li>
-											<li class='last'>
-												<a  id="hesapayarlariid" href='#'><span>Hesap
-													Ayarları</span></a>
-											</li>
-										</ul>
-									</li>
-									<li class='has-sub'>
-										<a href='#'><span>Kategoriler</span></a>
-										<ul>
-											<li>
-												<a href='#'><span>İkinci El İlan</span></a>
-											</li>
-											<li>
-												<a href='#'><span>Ev Arkadaşı</span></a>
-											</li>
-											<li class='last'>
-												<a href='#'><span>Ders
-													Notları</span></a>
-											</li>
-											<li class='last'>
-												<a href='#'><span>Özel Ders</span></a>
-											</li>
-											<li class='last'>
-												<a href='#'><span>Ev İlanları</span></a>
-											</li>
-										</ul>
-									</li>
-									<li class='has-sub'>
-										<a href='#'><span>Fırsatlar
-											Paneli</span></a>
-										<ul>
-											<li>
-												<a href='#'><span>Acil İlanlar</span></a>
-											</li>
-											<li class='last'>
-												<a href='#'><span>Günün
-													Fırsatları</span></a>
-											</li>
-											<li class='last'>
-												<a href='#'><span>En Son
-													İlanlar</span></a>
-											</li>
-											<li class='last'>
-												<a href='#'><span>En Popüler
-													İlanlar</span></a>
-											</li>
-											<li class='last'>
-												<a href='#'><span>Fiyatı
-													Düşenler</span></a>
-											</li>
-											<li class='last'>
-												<a href='#'><span>En
-													Güvenilir Satıcılar</span></a>
-											</li>
-											<li class='last'>
-												<a href='#'><span>En Yakında
-													Olan Satıcılar</span></a>
-											</li>
-										</ul>
-									</li>
-									<li class='last'>
-										<a href='#'><span>Yardım</span></a>
-									</li>
-									<li class='last'>
-										<a href='#'><span>İletişim</span></a>
-									</li>
-
-								</ul>
-							</div>
+							<%= render "kullanicipaneli"   %>
 
 						</div>
 
@@ -458,32 +365,54 @@
 														<div class=" col-md-9 col-lg-9 ">
 															<table class="table table-user-information">
 																<tbody>
+
+																	<% if @user.university!=nil %>
+
 																	<tr>
 																		<td>Üniversite:</td>
-																		<td>Orta Doğu Teknik Üniversitesi</td>
+																		<td><%= @user.university.name %></td>
 																	</tr>
+
+																	<% end %>
+
 																	<tr>
 																		<td>Ne zaman katıldı?:</td>
 																		<td><%= @user.created_at %></td>
 																	</tr>
+
+																	<% if @user.birthday!=nil %>
+
 																	<tr>
-																		<td>Doğum Tarihi</td>
-																		<td>14 Ağustos 1991</td>
+																		<td>Doğum Tarihi:</td>
+																		<td><%= @user.birthday%></td>
 																	</tr>
+
+																	<% end %>
 
 																	<tr>
 																	<tr>
 																		<td>Cinsiyet</td>
-																		<td><%= @user.gender %></td>
+																		<td><% if @user.gender=="male" %>
+																				Erkek
+																			<% elsif @user.gender=="female" %>
+																				Kadın
+																			<% elsif @user.gender=="other" %>
+																				Diğer
+																			<% end %></td>
 																	</tr>
+																	
+																	<% if @user.address!=nil %>
+																	
 																	<tr>
 																		<td>Açık adres</td>
-																		<td>Orta Doğu Teknik Üniversitesi Öğrenci Konukevi
-																		2(Ebi1) Çankaya,Ankara</td>
+																		<td><%= @user.address %></td>
 																	</tr>
+																	
+																	<% end %>
+																	
 																	<tr>
 																		<td>E-posta</td>
-																		<td><a href="mailto:info@support.com">-</a></td>
+																		<td><%= @user.email %></td>
 																	</tr>
 																	<td>Telefon Numarası</td>
 																	<td><%= @user.phone %></td>
@@ -500,520 +429,508 @@
 													</div>
 												</div>
 												<div class="panel-footer">
-													<a data-original-title="Broadcast Message"
+													<a data-original-title="Mesajlarım"
 													data-toggle="tooltip" type="button"
 													class="btn btn-sm btn-primary"><i
 													class="glyphicon glyphicon-envelope"></i></a><span
 													class="pull-right"> <a href="edit.html"
-														data-original-title="Edit this user" data-toggle="tooltip"
+														data-original-title="Profili Düzenle" data-toggle="tooltip"
 														type="button" class="btn btn-sm btn-warning"><i
 														class="glyphicon glyphicon-edit"></i></a> <a
-														data-original-title="Remove this user"
+														data-original-title="Hesabımı Sil"
 														data-toggle="tooltip" type="button"
 														class="btn btn-sm btn-danger"><i
 														class="glyphicon glyphicon-remove"></i></a> </span>
 												</div>
 
 											</div>
-											
-											
-											
-											
+
 											<!--  Favorilerim kısmı -->
 
-					<div style="display:none; margin: 10px; "
-					class="panelortak favoriler panel panel-info">
+											<div style="display:none; margin: 10px; "
+											class="panelortak favoriler panel panel-info">
 
-						<div class="panel-heading">
-							<h3 class="panel-title">Favorilerim</h3>
-						</div>
+												<div class="panel-heading">
+													<h3 class="panel-title">Favorilerim</h3>
+												</div>
 
-						<div class="panel-body">
+												<div class="panel-body">
 
-							<div class="row">
+													<div class="row">
 
-								<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+														<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
 
-									<div class="thumbnail">
-										<a href="#"> <img src="resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
+															<div class="thumbnail">
+																<a href="#"> <img src="resources/images/cat-demo.jpg"
+																alt="cat demo photo"> </img> </a>
 
-									</div>
+															</div>
 
-									<div class="caption">
+															<div class="caption">
 
-										<h4>Thumbnail label</h4>
-										<p>
-											Some sample text.
-										</p>
+																<h4>Thumbnail label</h4>
+																<p>
+																	Some sample text.
+																</p>
 
-									</div>
+															</div>
 
-								</div>
+														</div>
 
-								<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+														<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
 
-									<div class="thumbnail">
-										<a href="#"> <img src="resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
+															<div class="thumbnail">
+																<a href="#"> <img src="resources/images/cat-demo.jpg"
+																alt="cat demo photo"> </img> </a>
 
-									</div>
+															</div>
 
-									<div class="caption">
+															<div class="caption">
 
-										<h4>Thumbnail label</h4>
-										<p>
-											Some sample text.
-										</p>
+																<h4>Thumbnail label</h4>
+																<p>
+																	Some sample text.
+																</p>
 
-									</div>
+															</div>
 
-								</div>
+														</div>
 
-								<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+														<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
 
-									<div class="thumbnail">
-										<a href="#"> <img src="resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
+															<div class="thumbnail">
+																<a href="#"> <img src="resources/images/cat-demo.jpg"
+																alt="cat demo photo"> </img> </a>
 
-									</div>
+															</div>
 
-									<div class="caption">
+															<div class="caption">
 
-										<h4>Thumbnail label</h4>
-										<p>
-											Some sample text.
-										</p>
+																<h4>Thumbnail label</h4>
+																<p>
+																	Some sample text.
+																</p>
 
-									</div>
+															</div>
 
-								</div>
+														</div>
 
-							</div>
+													</div>
 
-							<div class="row">
+													<div class="row">
 
-								<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+														<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
 
-									<div class="thumbnail">
-										<a href="#"> <img src="resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
+															<div class="thumbnail">
+																<a href="#"> <img src="resources/images/cat-demo.jpg"
+																alt="cat demo photo"> </img> </a>
 
-									</div>
+															</div>
 
-									<div class="caption">
+															<div class="caption">
 
-										<h4>Thumbnail label</h4>
-										<p>
-											Some sample text.
-										</p>
+																<h4>Thumbnail label</h4>
+																<p>
+																	Some sample text.
+																</p>
 
-									</div>
+															</div>
 
-								</div>
+														</div>
 
-								<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+														<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
 
-									<div class="thumbnail">
-										<a href="#"> <img src="resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
+															<div class="thumbnail">
+																<a href="#"> <img src="resources/images/cat-demo.jpg"
+																alt="cat demo photo"> </img> </a>
 
-									</div>
+															</div>
 
-									<div class="caption">
+															<div class="caption">
 
-										<h4>Thumbnail label</h4>
-										<p>
-											Some sample text.
-										</p>
+																<h4>Thumbnail label</h4>
+																<p>
+																	Some sample text.
+																</p>
 
-									</div>
+															</div>
 
-								</div>
+														</div>
 
-								<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+														<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
 
-									<div class="thumbnail">
-										<a href="#"> <img src="resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
+															<div class="thumbnail">
+																<a href="#"> <img src="resources/images/cat-demo.jpg"
+																alt="cat demo photo"> </img> </a>
 
-									</div>
+															</div>
 
-									<div class="caption">
+															<div class="caption">
 
-										<h4>Thumbnail label</h4>
-										<p>
-											Some sample text.
-										</p>
+																<h4>Thumbnail label</h4>
+																<p>
+																	Some sample text.
+																</p>
 
-									</div>
+															</div>
 
-								</div>
+														</div>
 
-							</div>
+													</div>
 
-							<div class="row">
+													<div class="row">
 
-								<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+														<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
 
-									<div class="thumbnail">
-										<a href="#"> <img src="resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
+															<div class="thumbnail">
+																<a href="#"> <img src="resources/images/cat-demo.jpg"
+																alt="cat demo photo"> </img> </a>
 
-									</div>
+															</div>
 
-									<div class="caption">
+															<div class="caption">
 
-										<h4>Thumbnail label</h4>
-										<p>
-											Some sample text.
-										</p>
+																<h4>Thumbnail label</h4>
+																<p>
+																	Some sample text.
+																</p>
 
-									</div>
+															</div>
 
-								</div>
+														</div>
 
-								<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h4>Thumbnail label</h4>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-								<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h4>Thumbnail label</h4>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-							</div>
-						</div>
-
-					</div>
-
-					<!-- Tekliflerim kısmı -->
-
-					<div style="height:500px;" class="panelortak tekliflerim method">
-						<div class="row margin-0 list-header hidden-sm hidden-xs">
-							<div class="col-md-3">
-								<div class="header">
-									Property
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="header">
-									Type
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="header">
-									Required
-								</div>
-							</div>
-							<div class="col-md-5">
-								<div class="header">
-									Description
-								</div>
-							</div>
-						</div>
-
-						<div class="row margin-0">
-							<div class="col-md-3">
-								<div class="cell">
-									<div class="propertyname">
-										CurrencyCode <span class="mobile-isrequired">[Required]</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="cell">
-									<div class="type">
-										<code>
-											String
-										</code>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="cell">
-									<div class="isrequired">
-										Yes
-									</div>
-								</div>
-							</div>
-							<div class="col-md-5">
-								<div class="cell">
-									<div class="description">
-										The standard ISO 4217 3-letter
-										currency code
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row margin-0">
-							<div class="col-md-3">
-								<div class="cell">
-									<div class="propertyname">
-										PriceType <span class="mobile-isrequired">[Required]</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="cell">
-									<div class="type">
-										<code>
-											Int32
-										</code>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="cell">
-									<div class="isrequired">
-										Yes
-									</div>
-								</div>
-							</div>
-							<div class="col-md-5">
-								<div class="cell">
-									<div class="description">
-										The type of price
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row margin-0">
-							<div class="col-md-3">
-								<div class="cell">
-									<div class="propertyname">
-										WarehouseID <span class="mobile-isrequired">[Required]</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="cell">
-									<div class="type">
-										<code>
-											Int32
-										</code>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="cell">
-									<div class="isrequired">
-										Yes
-									</div>
-								</div>
-							</div>
-							<div class="col-md-5">
-								<div class="cell">
-									<div class="description">
-										The unique identifier for the
-										warehouse
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row margin-0">
-							<div class="col-md-3">
-								<div class="cell">
-									<div class="propertyname">
-										ItemCodes
-									</div>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="cell">
-									<div class="type">
-										<code>
-											String[]
-										</code>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="cell">
-									<div class="isrequired">
-										<span class="text-muted">No</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-5">
-								<div class="cell">
-									<div class="description"></div>
-								</div>
-							</div>
-						</div>
-						<div class="row margin-0">
-							<div class="col-md-3">
-								<div class="cell">
-									<div class="propertyname">
-										LanguageID <a class="lookuplink" href="javascript:;"> <i
-										class="glyphicon glyphicon-search"></i> </a>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="cell">
-									<div class="type">
-										<code>
-											Int32?
-										</code>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="cell">
-									<div class="isrequired">
-										<span class="text-muted">No</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-5">
-								<div class="cell">
-									<div class="description">
-										The customer's preferred language
-										ID (ex. 0 (English), 1 (Spanish), etc.)
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!--  Hesap Ayarları -->
-
-					<div style="" class="panelortak hesapayarlari panel-body">
-						<form id="signupform" class="form-horizontal" role="form">
-
-							<div id="signupalert" style="display: none"
-							class="alert alert-danger">
-								<p>
-									Error:
-								</p>
-								<span></span>
-							</div>
-
-							<div class="form-group">
-								<label for="email" class="col-md-3 control-label">E-posta</label>
-								<div class="col-md-9">
-									<input type="text" class="form-control" name="email"
-									placeholder="Email Address">
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label for="firstname" class="col-md-3 control-label">Ad</label>
-								<div class="col-md-9">
-									<input type="text" class="form-control" name="firstname"
-									placeholder="First Name">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="lastname" class="col-md-3 control-label">Soyad</label>
-								<div class="col-md-9">
-									<input type="text" class="form-control" name="lastname"
-									placeholder="Last Name">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="password" class="col-md-3 control-label">Şifre</label>
-								<div class="col-md-9">
-									<input type="password" class="form-control" name="passwd"
-									placeholder="Password">
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label for="password" class="col-md-3 control-label">Şifreyi
-									tekrarla</label>
-								<div class="col-md-9">
-									<input type="password" class="form-control" name="passwd"
-									placeholder="Password">
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label for="icode" class="col-md-3 control-label">Cep
-									Telefonu</label>
-								<div class="col-md-9">
-									<input type="text" class="form-control" name="icode"
-									placeholder="">
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label for="icode" class="col-md-3 control-label">Cinsiyet</label>
-
-								<div class="col-md-9">
-									<select class="form-control " name="gender">
-										<option value="0">Erkek</option>
-										<option value="1">Kadın</option>
-										<option value="2">Diğer</option>
-
-									</select>
-
-								</div>
-							</div>
-
-							<div style="border-top: 1px solid #999; border-bottom: 1px solid #999; padding-top: 20px; padding-bottom: 20px;" class="form-group">
-
-								<div class="col-md-offset-3 col-md-9">
-									<button id="btn-fbsignup" type="button" class="btn btn-primary">
-										<i class="icon-facebook"></i>   Facebook hesabını bağla
-									</button>
-								</div>
-
-							</div>
-
-							<div style="padding-top: 20px" class="form-group">
-
-								<div style="float: right; margin-right: 20px;">
-									<button id="btn-fbsignup" type="submit" class="btn btn-danger">
-										Kaydet
-									</button>
-								</div>
-
-							</div>
-
-						</form>
-
-					</div>
-					
-					
-											
-											
-											
-											
-											
-											
-											
-											
+														<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+
+															<div class="thumbnail">
+																<a href="#"> <img src="resources/images/cat-demo.jpg"
+																alt="cat demo photo"> </img> </a>
+
+															</div>
+
+															<div class="caption">
+
+																<h4>Thumbnail label</h4>
+																<p>
+																	Some sample text.
+																</p>
+
+															</div>
+
+														</div>
+
+														<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+
+															<div class="thumbnail">
+																<a href="#"> <img src="resources/images/cat-demo.jpg"
+																alt="cat demo photo"> </img> </a>
+
+															</div>
+
+															<div class="caption">
+
+																<h4>Thumbnail label</h4>
+																<p>
+																	Some sample text.
+																</p>
+
+															</div>
+
+														</div>
+
+													</div>
+												</div>
+
+											</div>
+
+											<!-- Tekliflerim kısmı -->
+
+											<div style="height:500px;" class="panelortak tekliflerim method">
+												<div class="row margin-0 list-header hidden-sm hidden-xs">
+													<div class="col-md-3">
+														<div class="header">
+															Property
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="header">
+															Type
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="header">
+															Required
+														</div>
+													</div>
+													<div class="col-md-5">
+														<div class="header">
+															Description
+														</div>
+													</div>
+												</div>
+
+												<div class="row margin-0">
+													<div class="col-md-3">
+														<div class="cell">
+															<div class="propertyname">
+																CurrencyCode <span class="mobile-isrequired">[Required]</span>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="cell">
+															<div class="type">
+																<code>
+																	String
+																</code>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="cell">
+															<div class="isrequired">
+																Yes
+															</div>
+														</div>
+													</div>
+													<div class="col-md-5">
+														<div class="cell">
+															<div class="description">
+																The standard ISO 4217 3-letter
+																currency code
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row margin-0">
+													<div class="col-md-3">
+														<div class="cell">
+															<div class="propertyname">
+																PriceType <span class="mobile-isrequired">[Required]</span>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="cell">
+															<div class="type">
+																<code>
+																	Int32
+																</code>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="cell">
+															<div class="isrequired">
+																Yes
+															</div>
+														</div>
+													</div>
+													<div class="col-md-5">
+														<div class="cell">
+															<div class="description">
+																The type of price
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row margin-0">
+													<div class="col-md-3">
+														<div class="cell">
+															<div class="propertyname">
+																WarehouseID <span class="mobile-isrequired">[Required]</span>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="cell">
+															<div class="type">
+																<code>
+																	Int32
+																</code>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="cell">
+															<div class="isrequired">
+																Yes
+															</div>
+														</div>
+													</div>
+													<div class="col-md-5">
+														<div class="cell">
+															<div class="description">
+																The unique identifier for the
+																warehouse
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row margin-0">
+													<div class="col-md-3">
+														<div class="cell">
+															<div class="propertyname">
+																ItemCodes
+															</div>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="cell">
+															<div class="type">
+																<code>
+																	String[]
+																</code>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="cell">
+															<div class="isrequired">
+																<span class="text-muted">No</span>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-5">
+														<div class="cell">
+															<div class="description"></div>
+														</div>
+													</div>
+												</div>
+												<div class="row margin-0">
+													<div class="col-md-3">
+														<div class="cell">
+															<div class="propertyname">
+																LanguageID <a class="lookuplink" href="javascript:;"> <i
+																class="glyphicon glyphicon-search"></i> </a>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="cell">
+															<div class="type">
+																<code>
+																	Int32?
+																</code>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="cell">
+															<div class="isrequired">
+																<span class="text-muted">No</span>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-5">
+														<div class="cell">
+															<div class="description">
+																The customer's preferred language
+																ID (ex. 0 (English), 1 (Spanish), etc.)
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<!--  Hesap Ayarları -->
+
+											<div style="" class="panelortak hesapayarlari panel-body">
+												<form id="signupform" class="form-horizontal" role="form">
+
+													<div id="signupalert" style="display: none"
+													class="alert alert-danger">
+														<p>
+															Error:
+														</p>
+														<span></span>
+													</div>
+
+													<div class="form-group">
+														<label for="email" class="col-md-3 control-label">E-posta</label>
+														<div class="col-md-9">
+															<input type="text" class="form-control" name="email"
+															placeholder="Email Address">
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label for="firstname" class="col-md-3 control-label">Ad</label>
+														<div class="col-md-9">
+															<input type="text" class="form-control" name="firstname"
+															placeholder="First Name">
+														</div>
+													</div>
+													<div class="form-group">
+														<label for="lastname" class="col-md-3 control-label">Soyad</label>
+														<div class="col-md-9">
+															<input type="text" class="form-control" name="lastname"
+															placeholder="Last Name">
+														</div>
+													</div>
+													<div class="form-group">
+														<label for="password" class="col-md-3 control-label">Şifre</label>
+														<div class="col-md-9">
+															<input type="password" class="form-control" name="passwd"
+															placeholder="Password">
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label for="password" class="col-md-3 control-label">Şifreyi
+															tekrarla</label>
+														<div class="col-md-9">
+															<input type="password" class="form-control" name="passwd"
+															placeholder="Password">
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label for="icode" class="col-md-3 control-label">Cep
+															Telefonu</label>
+														<div class="col-md-9">
+															<input type="text" class="form-control" name="icode"
+															placeholder="">
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label for="icode" class="col-md-3 control-label">Cinsiyet</label>
+
+														<div class="col-md-9">
+															<select class="form-control " name="gender">
+																<option value="0">Erkek</option>
+																<option value="1">Kadın</option>
+																<option value="2">Diğer</option>
+
+															</select>
+
+														</div>
+													</div>
+
+													<div style="border-top: 1px solid #999; border-bottom: 1px solid #999; padding-top: 20px; padding-bottom: 20px;" class="form-group">
+
+														<div class="col-md-offset-3 col-md-9">
+															<button id="btn-fbsignup" type="button" class="btn btn-primary">
+																<i class="icon-facebook"></i>   Facebook hesabını bağla
+															</button>
+														</div>
+
+													</div>
+
+													<div style="padding-top: 20px" class="form-group">
+
+														<div style="float: right; margin-right: 20px;">
+															<button id="btn-fbsignup" type="submit" class="btn btn-danger">
+																Kaydet
+															</button>
+														</div>
+
+													</div>
+
+												</form>
+
+											</div>
+
 										</div>
 
 									</div>
@@ -1321,66 +1238,6 @@
 						</div>
 
 					</div>
-
-					<!-- Kullanıcı paneli js kısmı -->
-
-					<script>
-						$(function() {
-							
-							$(".hesapayarlari").hide();
-							$(".favoriler").hide();
-							$(".tekliflerim").hide();
-							
-
-							$("#hesapayarlariid").click(function() {
-
-								$(".panelortak").hide();
-
-								$(".hesapayarlari").show();
-
-							})
-							
-							
-							$("#profilim").click(function() {
-								
-								$(".panelortak").hide();
-								
-								$(".kullanicibilgileri").show();
-								
-								
-								
-								
-							})
-							
-							
-							$("#favorilerid").click(function(){
-								
-								
-								$(".panelortak").hide();
-								$(".favoriler").show();
-								
-								
-								
-								
-							})
-							
-							$("#tekliflerim").click(function(){
-								
-								
-								$(".panelortak").hide();
-								$(".tekliflerim").show();
-								
-								
-								
-								
-								
-							})
-							
-							
-							
-						})
-
-					</script>
 
 					
 
@@ -1821,5 +1678,4 @@
 
 	</body>
 
-	</ht
-	ml>
+</html>

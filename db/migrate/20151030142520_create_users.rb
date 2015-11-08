@@ -13,6 +13,10 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean :verified
       t.boolean :bulletin
       
+      t.date :birthday
+      t.text :address
+      t.references :university
+      
       t.timestamps :null => false
     end
     

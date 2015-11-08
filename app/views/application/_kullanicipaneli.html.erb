@@ -1,0 +1,150 @@
+<div id='cssmenu' style=" margin-bottom: 20px;">
+								<ul>
+									
+									<% if @user!=nil %>
+									<li class='has-sub active'>
+										<a href='#'><span>Kullanıcı
+											Paneli</span></a>
+										<ul>
+											<li>
+												<a  id="profilim" href='#'><span>Profilim</span></a>
+											</li>
+											<li>
+												<a  id="ilanver" href='#'><span>İlan Ver</span></a>
+											</li>
+											<li class='last'>
+												<a  id="satislarim" href='#'><span>Satışlarım</span></a>
+											</li>
+											<li class='last'>
+												<a  id="alislarim" href='#'><span>Alışlarım</span></a>
+											</li>
+											<li class='last'>
+												<a  id="favorilerid" href='#'><span>Favorilerim</span></a>
+											</li>
+											<li class='last'>
+												<a  id="mesajlarim" href='#'><span>Mesajlarım</span></a>
+											</li>
+											<li class='last'>
+												<a  id="tekliflerim" href='#'><span>Tekliflerim</span></a>
+											</li>
+											<li class='last'>
+												<a  id="inceledigimilanlar" href='#'><span>İncelediğim
+													İlanlar</span></a>
+											</li>
+											<li class='last'>
+												<a  id="hesapayarlariid" href='#'><span>Hesap
+													Ayarları</span></a>
+											</li>
+										</ul>
+									</li>
+									<%end %>
+									
+									<li class='has-sub'>
+										<a href='#'><span>Kategoriler</span></a>
+										<ul>
+											<li>
+												<a href='#'><span>İkinci El İlan</span></a>
+											</li>
+											<li>
+												<a href='#'><span>Ev Arkadaşı</span></a>
+											</li>
+											<li class='last'>
+												<a href='#'><span>Ders
+													Notları</span></a>
+											</li>
+											<li class='last'>
+												<a href='#'><span>Özel Ders</span></a>
+											</li>
+											<li class='last'>
+												<a href='#'><span>Ev İlanları</span></a>
+											</li>
+										</ul>
+									</li>
+									<li class='has-sub'>
+										<a href=''><span>Fırsatlar
+											Paneli</span></a>
+										<ul>
+											<li>
+												<a href='/firsatlar'><span>Acil İlanlar</span></a>
+											</li>
+											<li class='last'>
+												<a href='/firsatlar'><span>Günün
+													Fırsatları</span></a>
+											</li>
+											<li class='last'>
+												<a href='/firsatlar'><span>En Son
+													İlanlar</span></a>
+											</li>
+											<li class='last'>
+												<a href='/firsatlar'><span>En Popüler
+													İlanlar</span></a>
+											</li>
+											<li class='last'>
+												<a href='/firsatlar'><span>Fiyatı
+													Düşenler</span></a>
+											</li>	
+											<li class='last'>
+												<a href='/saticilar'><span>En
+													Güvenilir Satıcılar</span></a>
+											</li>
+											<li class='last'>
+												<a href='/saticilar'><span>En Yakında
+													Olan Satıcılar</span></a>
+											</li>
+										</ul>
+									</li>
+									<li class='last'>
+										<a href='/yardim'><span>Yardım</span></a>
+									</li>
+									<li class='last'>
+										<a href='/iletisim'><span>İletişim</span></a>
+									</li>
+
+								</ul>
+							</div>
+							
+
+
+
+
+<!-- Kullanıcı paneli js kısmı -->
+
+					<script>
+						$(function() {
+
+							$(".hesapayarlari").hide();
+							$(".favoriler").hide();
+							$(".tekliflerim").hide();
+
+							$("#hesapayarlariid").click(function() {
+
+								$(".panelortak").hide();
+
+								$(".hesapayarlari").show();
+
+							})
+
+							$("#profilim").click(function() {
+
+								$(".panelortak").hide();
+
+								$(".kullanicibilgileri").show();
+
+							})
+
+							$("#favorilerid").click(function() {
+
+								$(".panelortak").hide();
+								$(".favoriler").show();
+
+							})
+
+							$("#tekliflerim").click(function() {
+
+								$(".panelortak").hide();
+								$(".tekliflerim").show();
+
+							})
+						})
+
+					</script>

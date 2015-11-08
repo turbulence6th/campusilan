@@ -1,18 +1,20 @@
 class User < ActiveRecord::Base
   
-  validates :name, :surname, :username, :password, :password_confirmation, :email, :email_confirmation, :phone, :role, :gender, :presence => true
+  validates :name, :surname, :username, :password_confirmation, :email_confirmation, :phone, :role, :gender, :presence => true, :on => :create
   
   validates :username, :email, :uniqueness => true
   
   validates :verified, :bulletin, :inclusion => { :in => [true, false] }
   
-  validates :password, :confirmation => true
-  
-  validates :email, :confirmation => true
+  validates :password,:email, :confirmation => true, :on => :create
   
   validates :email, :length => {
     :minimum => 2,
     :maximum => 40
+  }
+  
+  validates :address, :length => {
+    :maximum => 500
   }
   
   validates :name, :format => {
@@ -54,5 +56,7 @@ class User < ActiveRecord::Base
   
   has_many :froms, :class_name => 'Message', :foreign_key => 'id'
   has_many :tos, :class_name => 'Message', :foreign_key => 'id'
+  
+  belongs_to :university
   
 end
