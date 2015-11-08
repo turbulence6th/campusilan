@@ -1,0 +1,172 @@
+
+
+<% if @user!=nil %>
+
+
+<!--  sadece xsmall larda gözükecek -->
+
+					<div style="padding-left: 50px; margin-top: 50px;"
+					class="row visible-xs">
+
+						<div class="row">
+
+							<button type="button" class="col-xs-3 col-sm-2 btn btn-success">
+								<span style="font-size: 10px;">Profilim</span>
+							</button>
+
+							<button style="margin-left: 10px;" type="button"
+							class="col-xs-3  col-sm-2 btn btn-primary">
+								<span style="font-size: 10px;">İlan Ver</span>
+							</button>
+
+							<button style="margin-left: 10px;" type="button"
+							class="col-xs-3 col-sm-2 btn btn-info">
+								<span style="font-size: 10px;">Satışlarım</span>
+							</button>
+
+						</div>
+
+						<div style="margin-top: 10px;" class="row">
+
+							<button type="button" class="col-xs-3 col-sm-2 btn btn-danger">
+								<span style="font-size: 10px;">Alışlarım</span>
+							</button>
+
+							<button style="margin-left: 10px;" type="button"
+							class="col-xs-3 col-sm-2 btn btn-success">
+								<span style="font-size: 10px;">Favorilerim</span>
+							</button>
+
+							<button style="margin-left: 10px;" type="button"
+							class="col-xs-3 col-sm-2 btn btn-warning">
+								<span style="font-size: 10px;">Mesajlarım</span>
+							</button>
+
+						</div>
+
+						<div style="margin-top: 10px;" class="row">
+
+							<button type="button" class="col-xs-3 col-sm-2 btn btn-primary">
+								<span style="font-size: 10px;">Tekliflerim</span>
+							</button>
+
+							<button style="margin-left: 10px;" type="button"
+							class="col-xs-3 col-sm-2 btn btn-danger">
+								<span style="font-size: 6px;">İncelediğim İlanlar</span>
+							</button>
+
+							<button style="margin-left: 10px;" type="button"
+							class="col-xs-3 col-sm-2 btn btn-info">
+								<span style="font-size: 8px;">Hesap Ayarları</span>
+							</button>
+
+						</div>
+
+						<div style="margin-top: 10px;" class="row">
+
+							<button type="button"
+							class="col-xs-3 col-sm-2 btn btn-info">
+								<span style="font-size: 8px;">Fırsatlar Paneli</span>
+							</button>
+
+							<button style="margin-left:10px;" type="button" class="col-xs-3 col-sm-2 btn btn-primary">
+								<span style=" font-size: 10px;">Kategoriler</span>
+							</button>
+						</div>
+
+					</div>
+
+					<!--  sadece small cihazlarda gözükecek -->
+
+					<div style="padding-left: 50px; margin-top: 50px;"
+					class="row visible-sm visible-md">
+
+						<div class="row">
+
+							<button type="button" class=" col-sm-2 btn btn-success">
+								Profilim
+							</button>
+
+							<button style="margin-left: 10px;" type="button"
+							class=" col-sm-2 btn btn-primary">
+								İlan Ver
+							</button>
+
+							<button style="margin-left: 10px;" type="button"
+							class=" col-sm-2 btn btn-info">
+								Satışlarım
+							</button>
+
+							<button style="margin-left: 10px;" type="button"
+							class="col-sm-2 btn btn-danger">
+								Alışlarım
+							</button>
+
+							<button style="margin-left: 10px;" type="button"
+							class=" col-sm-2 btn btn-success">
+								Favorilerim
+							</button>
+
+						</div>
+
+						<div style="margin-top: 20px;" class="row">
+
+							<button style="" type="button" class=" col-sm-2 btn btn-warning">
+								Mesajlarım
+							</button>
+
+							<button style="margin-left: 10px;" type="button"
+							class=" col-sm-2 btn btn-danger">
+								Tekliflerim
+							</button>
+
+							<button style="margin-left: 10px;" type="button"
+							class=" col-sm-2 btn btn-success">
+								<span style="font-size: 10px;">İncelediğim İlanlar</span>
+							</button>
+
+							<button style="margin-left: 10px;" type="button"
+							class=" col-sm-2 btn btn-info">
+								Hesap Ayarları
+							</button>
+
+							<button style="margin-left: 10px;" type="button"
+							class="col-xs-3 col-sm-2 btn btn-info">
+								<span style="">Fırsatlar Paneli</span>
+							</button>
+
+						</div>
+
+						<div style="margin-top: 20px;" class="row">
+
+							<button type="button" class="col-xs-3 col-sm-2 btn btn-primary">
+								<span style="">Kategoriler</span>
+							</button>
+
+						</div>
+
+					</div>
+
+		
+	
+	
+	<%else %>
+	
+	
+	<div style="padding-left: 50px; margin-top: 50px;"
+					class="row visible-sm visible-md">
+
+						<div class="row">
+							
+							<button style="margin-left: 10px;" type="button"
+							class="col-xs-3 col-sm-2 btn btn-info">
+								<span style="">Fırsatlar Paneli</span>
+							</button>
+							
+							<button type="button" class="col-xs-3 col-sm-2 btn btn-primary">
+								<span style="">Kategoriler</span>
+							</button>
+						</div>
+</div>
+
+	<%end%>	

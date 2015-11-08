@@ -1,150 +1,174 @@
-<div id='cssmenu' style=" margin-bottom: 20px;">
-								<ul>
-									
-									<% if @user!=nil %>
-									<li class='has-sub active'>
-										<a href='#'><span>Kullanıcı
-											Paneli</span></a>
-										<ul>
-											<li>
-												<a  id="profilim" href='#'><span>Profilim</span></a>
-											</li>
-											<li>
-												<a  id="ilanver" href='#'><span>İlan Ver</span></a>
-											</li>
-											<li class='last'>
-												<a  id="satislarim" href='#'><span>Satışlarım</span></a>
-											</li>
-											<li class='last'>
-												<a  id="alislarim" href='#'><span>Alışlarım</span></a>
-											</li>
-											<li class='last'>
-												<a  id="favorilerid" href='#'><span>Favorilerim</span></a>
-											</li>
-											<li class='last'>
-												<a  id="mesajlarim" href='#'><span>Mesajlarım</span></a>
-											</li>
-											<li class='last'>
-												<a  id="tekliflerim" href='#'><span>Tekliflerim</span></a>
-											</li>
-											<li class='last'>
-												<a  id="inceledigimilanlar" href='#'><span>İncelediğim
-													İlanlar</span></a>
-											</li>
-											<li class='last'>
-												<a  id="hesapayarlariid" href='#'><span>Hesap
-													Ayarları</span></a>
-											</li>
-										</ul>
-									</li>
-									<%end %>
-									
-									<li class='has-sub'>
-										<a href='#'><span>Kategoriler</span></a>
-										<ul>
-											<li>
-												<a href='#'><span>İkinci El İlan</span></a>
-											</li>
-											<li>
-												<a href='#'><span>Ev Arkadaşı</span></a>
-											</li>
-											<li class='last'>
-												<a href='#'><span>Ders
-													Notları</span></a>
-											</li>
-											<li class='last'>
-												<a href='#'><span>Özel Ders</span></a>
-											</li>
-											<li class='last'>
-												<a href='#'><span>Ev İlanları</span></a>
-											</li>
-										</ul>
-									</li>
-									<li class='has-sub'>
-										<a href=''><span>Fırsatlar
-											Paneli</span></a>
-										<ul>
-											<li>
-												<a href='/firsatlar'><span>Acil İlanlar</span></a>
-											</li>
-											<li class='last'>
-												<a href='/firsatlar'><span>Günün
-													Fırsatları</span></a>
-											</li>
-											<li class='last'>
-												<a href='/firsatlar'><span>En Son
-													İlanlar</span></a>
-											</li>
-											<li class='last'>
-												<a href='/firsatlar'><span>En Popüler
-													İlanlar</span></a>
-											</li>
-											<li class='last'>
-												<a href='/firsatlar'><span>Fiyatı
-													Düşenler</span></a>
-											</li>	
-											<li class='last'>
-												<a href='/saticilar'><span>En
-													Güvenilir Satıcılar</span></a>
-											</li>
-											<li class='last'>
-												<a href='/saticilar'><span>En Yakında
-													Olan Satıcılar</span></a>
-											</li>
-										</ul>
-									</li>
-									<li class='last'>
-										<a href='/yardim'><span>Yardım</span></a>
-									</li>
-									<li class='last'>
-										<a href='/iletisim'><span>İletişim</span></a>
-									</li>
+<div id='cssmenu'  style=" margin-bottom: 20px;">
+	<ul>
 
-								</ul>
-							</div>
-							
+		<% if @user!=nil %>
+		<li class='has-sub active'>
+			<a href='#'><span>Kullanıcı
+				Paneli</span></a>
+			<ul>
+				<li>
+					<a  class="panellinkler" id="profilim" href='/uye?profilim=1'><span>Profilim</span></a>
+				</li>
+				<li>
+					<a class="panellinkler" id="ilanver" href='/uye?ilanver=1'><span>İlan Ver</span></a>
+				</li>
+				<li class='last'>
+					<a class="panellinkler" id="satislarim" href='/satis-alis'><span>Satışlarım</span></a>
+				</li>
+				<li class='last'>
+					<a class="panellinkler" id="alislarim" href='/uye?alislarim=1'><span>Alışlarım</span></a>
+				</li>
+				<li class='last'>
+					<a class="panellinkler" id="favorilerid" href='/uye?favorilerim=1'><span>Favorilerim</span></a>
+				</li>
+				<li class='last'>
+					<a class="panellinkler" id="mesajlarim" href='/uye?mesajlarim=1'><span>Mesajlarım</span></a>
+				</li>
+				<li class='last'>
+					<a class="panellinkler" id="tekliflerim" href='/uye?tekliflerim=1'><span>Tekliflerim</span></a>
+				</li>
+				<li class='last'>
+					<a class="panellinkler" id="inceledigimilanlar" href='/uye?inceledigimilanlar=1'><span>İncelediğim
+						İlanlar</span></a>
+				</li>
+				<li class='last'>
+					<a class="panellinkler" id="hesapayarlariid" href='/uye?hesapayarlari=1'><span>Hesap
+						Ayarları</span></a>
+				</li>
+			</ul>
+		</li>
+		<%end %>
 
+		<li class='has-sub'>
+			<a href='#'><span>Kategoriler</span></a>
+			<ul>
+				<li>
+					<a href='/kategoriler?ikincielilan=1'><span>İkinci El İlan</span></a>
+				</li>
+				<li>
+					<a href='/kategoriler?evarkadaslari=1'><span>Ev Arkadaşı</span></a>
+				</li>
+				<li class='last'>
+					<a href='/kategoriler'><span>Ders
+						Notları</span></a>
+				</li>
+				<li class='last'>
+					<a href='/kategoriler'><span>Özel Ders</span></a>
+				</li>
+				<li class='last'>
+					<a href='/kategoriler'><span>Ev İlanları</span></a>
+				</li>
+			</ul>
+		</li>
+		<li class='has-sub'>
+			<a href=''><span>Fırsatlar
+				Paneli</span></a>
+			<ul>
+				<li>
+					<a href='/firsatlar?acililanlar=1'><span>Acil İlanlar</span></a>
+				</li>
+				<li class='last'>
+					<a href='/firsatlar?gununfirsatlari=1'><span>Günün
+						Fırsatları</span></a>
+				</li>
+				<li class='last'>
+					<a href='/firsatlar?ensonilanlar=1'><span>En Son
+						İlanlar</span></a>
+				</li>
+				<li class='last'>
+					<a href='/firsatlar?enpopulerilanlar=1'><span>En Popüler
+						İlanlar</span></a>
+				</li>
+				<li class='last'>
+					<a href='/firsatlar?fiyatidusenler=1'><span>Fiyatı
+						Düşenler</span></a>
+				</li>
+				<li class='last'>
+					<a href='/saticilar?enguvenilirsaticilar=1'><span>En
+						Güvenilir Satıcılar</span></a>
+				</li>
+				<li class='last'>
+					<a href='/saticilar?enyakindaolansaticilar=1'><span>En Yakında
+						Olan Satıcılar</span></a>
+				</li>
+			</ul>
+		</li>
+		<li class='last'>
+			<a href='/yardim'><span>Yardım</span></a>
+		</li>
+		<li class='last'>
+			<a href='/iletisim'><span>İletişim</span></a>
+		</li>
 
-
+	</ul>
+</div>
 
 <!-- Kullanıcı paneli js kısmı -->
+<% if request.env['PATH_INFO']=="/uye" %>
+<script>
+	$(function() {
 
-					<script>
-						$(function() {
+		$(".hesapayarlari").hide();
+		$(".favoriler").hide();
+		$(".tekliflerim").hide();
+		$(".profilim").hide();
+		$(".inceledigimilanlar").hide();
+		
+		
+		
+		
+		
 
-							$(".hesapayarlari").hide();
-							$(".favoriler").hide();
-							$(".tekliflerim").hide();
+		$("#hesapayarlariid").click(function() {
 
-							$("#hesapayarlariid").click(function() {
+			$(".panelortak").hide();
 
-								$(".panelortak").hide();
+			$(".hesapayarlari").show();
 
-								$(".hesapayarlari").show();
+		})
 
-							})
+		$("#profilim").click(function() {
 
-							$("#profilim").click(function() {
+			$(".panelortak").hide();
 
-								$(".panelortak").hide();
+			$(".profilim").show();
 
-								$(".kullanicibilgileri").show();
+		})
 
-							})
+		$("#favorilerid").click(function() {
 
-							$("#favorilerid").click(function() {
+			$(".panelortak").hide();
+			$(".favoriler").show();
 
-								$(".panelortak").hide();
-								$(".favoriler").show();
+		})
 
-							})
+		$("#tekliflerim").click(function() {
 
-							$("#tekliflerim").click(function() {
+			$(".panelortak").hide();
+			$(".tekliflerim").show();
 
-								$(".panelortak").hide();
-								$(".tekliflerim").show();
+		})
+		
+		$("<%= @sekme %>").show();
+		
+	})
 
-							})
-						})
+	$(".panellinkler").click(function(event) {
 
-					</script>
+		// This will prevent the default action of the anchor
+		event.preventDefault();
+
+		// Failing the above, you could use this, however the above is recommended
+		return false;
+
+	});
+	
+	
+	
+	
+	
+	
+	
+
+</script>
+<% end %>

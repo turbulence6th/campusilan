@@ -70,6 +70,62 @@ class UserController < ApplicationController
     if @user==nil
       redirect_to "/"
     end
+    
+    if params[:profilim]!=nil
+      
+      
+        @sekme=".profilim"
+    elsif params[:ilanver]!=nil
+      
+        @sekme=".ilanver"  
+        
+        
+     elsif params[:satislarim]!=nil
+      
+        @sekme=".satislarim"   
+        
+        
+        
+     elsif params[:alislarim]!=nil
+      
+        @sekme=".alislarim" 
+        
+        
+        
+     elsif params[:favorilerim]!=nil
+      
+        @sekme=".favoriler"     
+        
+        
+        
+     elsif params[:mesajlarim]!=nil
+      
+        @sekme=".mesajlarim"  
+        
+     elsif params[:tekliflerim]!=nil
+      
+        @sekme=".tekliflerim"   
+         
+     elsif params[:inceledigimilanlar]!=nil
+      
+        @sekme=".inceledigimilanlar" 
+        
+        
+        
+     elsif params[:hesapayarlari]!=nil
+      
+        @sekme=".hesapayarlari"   
+      
+      
+      else
+        
+         @sekme=".profilim"
+      
+      
+      
+      
+    end
+    
   end
 
   def login
