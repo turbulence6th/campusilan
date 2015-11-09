@@ -3,7 +3,6 @@ class UserController < ApplicationController
   using TurkishSupport
 
   layout false
-  
   def register
     user = User.find_by_id(session[:user_id])
     if user!=nil
@@ -44,7 +43,7 @@ class UserController < ApplicationController
     email2 = params[:email2].downcase if params[:email2] != nil
     gender = params[:gender]
     phone = params[:phone] + '-' + params[:phone2]
-    bulletin = params[:bulletin]
+    bulletin = !!params[:bulletin]
 
     user = User.new(:name => name, :surname => surname, :username => username, :password => password,
     :password_confirmation => password2, :email => email, :email_confirmation => email2,
@@ -70,62 +69,48 @@ class UserController < ApplicationController
     if @user==nil
       redirect_to "/"
     end
-    
+
     if params[:profilim]!=nil
-      
-      
-        @sekme=".profilim"
+
+      @sekme=".profilim"
     elsif params[:ilanver]!=nil
-      
-        @sekme=".ilanver"  
-        
-        
-     elsif params[:satislarim]!=nil
-      
-        @sekme=".satislarim"   
-        
-        
-        
-     elsif params[:alislarim]!=nil
-      
-        @sekme=".alislarim" 
-        
-        
-        
-     elsif params[:favorilerim]!=nil
-      
-        @sekme=".favoriler"     
-        
-        
-        
-     elsif params[:mesajlarim]!=nil
-      
-        @sekme=".mesajlarim"  
-        
-     elsif params[:tekliflerim]!=nil
-      
-        @sekme=".tekliflerim"   
-         
-     elsif params[:inceledigimilanlar]!=nil
-      
-        @sekme=".inceledigimilanlar" 
-        
-        
-        
-     elsif params[:hesapayarlari]!=nil
-      
-        @sekme=".hesapayarlari"   
-      
-      
-      else
-        
-         @sekme=".profilim"
-      
-      
-      
-      
+
+      @sekme=".ilanver"
+
+    elsif params[:satislarim]!=nil
+
+      @sekme=".satislarim"
+
+    elsif params[:alislarim]!=nil
+
+      @sekme=".alislarim"
+
+    elsif params[:favorilerim]!=nil
+
+      @sekme=".favoriler"
+
+    elsif params[:mesajlarim]!=nil
+
+      @sekme=".mesajlarim"
+
+    elsif params[:tekliflerim]!=nil
+
+      @sekme=".tekliflerim"
+
+    elsif params[:inceledigimilanlar]!=nil
+
+      @sekme=".inceledigimilanlar"
+
+    elsif params[:hesapayarlari]!=nil
+
+      @sekme=".hesapayarlari"
+
+    else
+
+      @sekme=".profilim"
+
     end
-    
+
   end
 
   def login
@@ -134,16 +119,10 @@ class UserController < ApplicationController
       redirect_to "/"
     end
   end
-  
+
   def logout
     reset_session
     redirect_to "/"
   end
-  
-  
-
-  
-  
-  
 
 end

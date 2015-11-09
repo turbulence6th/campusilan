@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
   
-  validates :name, :surname, :username, :password_confirmation, :email_confirmation, :phone, :role, :gender, :presence => true, :on => :create
+  validates :name, :surname, :username, :password_confirmation, :email_confirmation, :phone, :role, :gender, :presence => true
   
   validates :username, :email, :uniqueness => true
   
   validates :verified, :bulletin, :inclusion => { :in => [true, false] }
   
-  validates :password,:email, :confirmation => true, :on => :create
+  validates :password,:email, :confirmation => true
   
   validates :email, :length => {
     :minimum => 2,
