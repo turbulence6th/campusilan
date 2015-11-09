@@ -97,17 +97,11 @@
 		<!-- end of plugins  -->
 
 		<style>
-		
 			#cssmenu {
-				
+
 				width: 100%;
-				
-				
 			}
-			
-		
-		
-		
+
 			@media screen and (min-width: 1200px) {
 				body {
 					padding: 50px;
@@ -393,23 +387,23 @@
 																	<tr>
 																		<td>Cinsiyet</td>
 																		<td><% if @user.gender=="male" %>
-																				Erkek
-																			<% elsif @user.gender=="female" %>
-																				Kadın
-																			<% elsif @user.gender=="other" %>
-																				Diğer
-																			<% end %></td>
+																		Erkek
+																		<% elsif @user.gender=="female" %>
+																		Kadın
+																		<% elsif @user.gender=="other" %>
+																		Diğer
+																		<% end %></td>
 																	</tr>
-																	
+
 																	<% if @user.address!=nil %>
-																	
+
 																	<tr>
 																		<td>Açık adres</td>
 																		<td><%= @user.address %></td>
 																	</tr>
-																	
+
 																	<% end %>
-																	
+
 																	<tr>
 																		<td>E-posta</td>
 																		<td><%= @user.email %></td>
@@ -1239,20 +1233,14 @@
 
 					</div>
 
-					
-
 				</div>
 
 			</div>
 
 		</div>
 
-		
-		
 		<%= render "kullanicipaneli2"%>
-		
 
-		
 		<div class="row" style="padding: 20px;">
 
 			<div style="">
@@ -1394,119 +1382,10 @@
 
 		<div class="row">
 
-			<footer
-			style="clear: both; float: bottom; background-color: #E1E1E3; padding: 30px;">
-
-				<div class="row">
-
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-
-						<p>
-							<b> Hizmetlerimiz</b>
-						</p>
-						<ul>
-
-							<li>
-								<a href="#">İkinci El İlan Alım &amp; Satım</a>
-							</li>
-							<li>
-								<a href="#">Ev Arkadaşı Arama &amp; Bulma</a>
-							</li>
-							<li>
-								<a href="#">Ders Notu Alım &amp; Satım</a>
-							</li>
-							<li>
-								<a href="#">Özel Ders Alma &amp; Verme</a>
-							</li>
-
-						</ul>
-
-					</div>
-
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-
-						<p>
-							<b>Kurumsal</b>
-						</p>
-						<ul>
-
-							<li>
-								<a href="#">Hakkımızda</a>
-							</li>
-							<li>
-								<a href="#">Duyurular</a>
-							</li>
-							<li>
-								<a href="#">Risksiz Alışveriş Sistemi</a>
-							</li>
-							<li>
-								<a href="#">İletişim</a>
-							</li>
-
-						</ul>
-
-					</div>
-
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-
-						<p>
-							<b> Yardım</b>
-						</p>
-						<ul>
-
-							<li>
-								<a href="#">Nasıl İlan Ekleyebilirim?</a>
-							</li>
-							<li>
-								<a href="#">Nasıl Ürün Satın Alırım?</a>
-							</li>
-							<li>
-								<a href="#">Kullanım Koşulları</a>
-							</li>
-							<li>
-								<a href="#">Daha Fazla Yardım</a>
-							</li>
-
-						</ul>
-
-					</div>
-
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-
-						<p>
-							<b>Reklam Verme</b>
-						</p>
-						<ul>
-
-							<li>
-								<a href="#">Reklam Verme Koşulları</a>
-							</li>
-							<li>
-								<a href="#">Reklam Özellikleri</a>
-							</li>
-							<li>
-								<a href="#">İletişim</a>
-							</li>
-
-						</ul>
-
-					</div>
-
-				</div>
-
-			</footer>
-
-			<div>
-
-				<p style="float: right; margin-right: 20px; margin-top: 5px;">
-					©2015 ODTÜ İLAN&nbsp;&nbsp;&nbsp;&nbsp;<a
-					href="http://www.odtuilan.com">odtuilan.com</a>
-				</p>
-
-			</div>
+			<%= render "footer" %>
 
 		</div>
-
+  
 		</div>
 
 		<!-- plugins -->

@@ -119,19 +119,19 @@
 			<div  class="well">
 
 				<%if params[:hataligiris]!=nil%>
-					<div class="row">
-	
-						<div style="margin-left:20px;"class="col-lg-4 col-md-5 hidden-sm hidden-xs alert alert-danger">
-							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-							<strong>Hata!</strong> Kullanıcı adınızı veya şifrenizi yanlış girdiniz
-						</div>
-						
-						<div style=""class="hidden-lg hidden-md col-sm-12 col-xs-12 alert alert-danger">
-							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-							<strong>Hata!</strong> Kullanıcı adınızı veya şifrenizi yanlış girdiniz
-						</div>
-	
+				<div class="row">
+
+					<div style="margin-left:20px;"class="col-lg-4 col-md-5 hidden-sm hidden-xs alert alert-danger">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<strong>Hata!</strong> Kullanıcı adınızı veya şifrenizi yanlış girdiniz
 					</div>
+
+					<div style=""class="hidden-lg hidden-md col-sm-12 col-xs-12 alert alert-danger">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<strong>Hata!</strong> Kullanıcı adınızı veya şifrenizi yanlış girdiniz
+					</div>
+
+				</div>
 				<%end%>
 
 				<div class="row">
@@ -225,116 +225,7 @@
 
 			</div>
 
-			<footer
-			style="clear: both; float: bottom; background-color: #E1E1E3; padding: 30px;">
-
-				<div class="row">
-
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-
-						<p>
-							<b> Hizmetlerimiz</b>
-						</p>
-						<ul>
-
-							<li>
-								<a href="#">İkinci El İlan Alım &amp; Satım</a>
-							</li>
-							<li>
-								<a href="#">Ev Arkadaşı Arama &amp; Bulma</a>
-							</li>
-							<li>
-								<a href="#">Ders Notu Alım &amp; Satım</a>
-							</li>
-							<li>
-								<a href="#">Özel Ders Alma &amp; Verme</a>
-							</li>
-
-						</ul>
-
-					</div>
-
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-
-						<p>
-							<b>Kurumsal</b>
-						</p>
-						<ul>
-
-							<li>
-								<a href="#">Hakkımızda</a>
-							</li>
-							<li>
-								<a href="#">Duyurular</a>
-							</li>
-							<li>
-								<a href="#">Risksiz Alışveriş Sistemi</a>
-							</li>
-							<li>
-								<a href="#">İletişim</a>
-							</li>
-
-						</ul>
-
-					</div>
-
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-
-						<p>
-							<b> Yardım</b>
-						</p>
-						<ul>
-
-							<li>
-								<a href="#">Nasıl İlan Ekleyebilirim?</a>
-							</li>
-							<li>
-								<a href="#">Nasıl Ürün Satın Alırım?</a>
-							</li>
-							<li>
-								<a href="#">Kullanım Koşulları</a>
-							</li>
-							<li>
-								<a href="#">Daha Fazla Yardım</a>
-							</li>
-
-						</ul>
-
-					</div>
-
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-
-						<p>
-							<b>Reklam Verme</b>
-						</p>
-						<ul>
-
-							<li>
-								<a href="#">Reklam Verme Koşulları</a>
-							</li>
-							<li>
-								<a href="#">Reklam Özellikleri</a>
-							</li>
-							<li>
-								<a href="#">İletişim</a>
-							</li>
-
-						</ul>
-
-					</div>
-
-				</div>
-
-			</footer>
-
-			<div>
-
-				<p style="float: right; margin-right: 20px; margin-top: 5px;">
-					©2015 ODTÜ İLAN&nbsp;&nbsp;&nbsp;&nbsp;<a
-					href="http://www.odtuilan.com">odtuilan.com</a>
-				</p>
-
-			</div>
+			<%= render "footer" %>
 
 		</div>
 
