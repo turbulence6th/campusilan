@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   post 'login' => 'user#loginPost'
   get 'logout' => 'user#logout'
   
+  
 end

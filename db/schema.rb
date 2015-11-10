@@ -11,17 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151108084334) do
+ActiveRecord::Schema.define(version: 20151109221320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "adverts", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "advertable_id"
+    t.string   "advertable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
+  add_index "adverts", ["advertable_type", "advertable_id"], name: "index_adverts_on_advertable_type_and_advertable_id", using: :btree
   add_index "adverts", ["user_id"], name: "index_adverts_on_user_id", using: :btree
 
   create_table "favourite_adverts", force: :cascade do |t|
@@ -31,6 +34,25 @@ ActiveRecord::Schema.define(version: 20151108084334) do
 
   add_index "favourite_adverts", ["advert_id"], name: "index_favourite_adverts_on_advert_id", using: :btree
   add_index "favourite_adverts", ["user_id"], name: "index_favourite_adverts_on_user_id", using: :btree
+
+  create_table "homemates", force: :cascade do |t|
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.string   "imagefile_file_name"
+    t.string   "imagefile_content_type"
+    t.integer  "imagefile_file_size"
+    t.datetime "imagefile_updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "images", ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id", using: :btree
+
+  create_table "lessonnotes", force: :cascade do |t|
+  end
 
   create_table "messages", force: :cascade do |t|
     t.integer  "from_id"
@@ -43,6 +65,12 @@ ActiveRecord::Schema.define(version: 20151108084334) do
 
   add_index "messages", ["from_id"], name: "index_messages_on_from_id", using: :btree
   add_index "messages", ["to_id"], name: "index_messages_on_to_id", using: :btree
+
+  create_table "privatelessons", force: :cascade do |t|
+  end
+
+  create_table "secondhands", force: :cascade do |t|
+  end
 
   create_table "universities", force: :cascade do |t|
     t.string "name"
@@ -70,6 +98,11 @@ ActiveRecord::Schema.define(version: 20151108084334) do
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
+
+  create_table "viewed_advert_counts", force: :cascade do |t|
+    t.integer "advert_id"
+    t.string  "ip"
+  end
 
   create_table "viewed_adverts", force: :cascade do |t|
     t.integer "user_id"

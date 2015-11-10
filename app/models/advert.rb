@@ -7,4 +7,7 @@ class Advert < ActiveRecord::Base
   
   has_many :favourite_adverts
   has_many :users, through: :favourite_adverts
+  
+  belongs_to :advertable, :polymorphic => true
+  
 end

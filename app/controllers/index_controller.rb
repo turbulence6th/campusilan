@@ -1,5 +1,5 @@
 class IndexController < ApplicationController
-
+  
   layout false
   def index
 
@@ -34,29 +34,22 @@ class IndexController < ApplicationController
       @title="En Popüler İlanlar"
 
       @ilanlar=[]
-      
-      
-      elsif params[:fiyatidusenler]!=nil
-      
-      
+
+    elsif params[:fiyatidusenler]!=nil
+
       @title="Fiyatı Düşenler"
-      
-      @ilanlar=[]   
-      
-      
-      else
-        
-        @title="Acil İlanlar"
-      
+
       @ilanlar=[]
-      
-      
-      
-      
-      
+
+    else
+
+      @title="Acil İlanlar"
+
+      @ilanlar=[]
 
     end
 
   end
+  
 
 end
