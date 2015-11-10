@@ -11,25 +11,19 @@ class UserController < ApplicationController
   end
 
   def checkusername
-
     username = params[:username]
-
     respond_to do |format|
       msg = { :check => !User.create(:username => username).errors[:username].any? }
       format.json  { render :json => msg }
     end
-
   end
 
   def checkemail
-
     email = params[:email]
-
     respond_to do |format|
       msg = { :check => !User.create(:email => email).errors[:email].any? }
       format.json  { render :json => msg }
     end
-
   end
 
   def registerPost
@@ -66,6 +60,7 @@ class UserController < ApplicationController
 
   def member
     @user = User.find_by_id(session[:user_id])
+    
     if @user==nil
       redirect_to "/"
     end
@@ -124,5 +119,6 @@ class UserController < ApplicationController
     reset_session
     redirect_to "/"
   end
+  
 
 end

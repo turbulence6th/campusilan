@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   
-  validates :name, :surname, :username, :password_confirmation, :email_confirmation, :phone, :role, :gender, :presence => true
+  validates :name, :surname, :username,  :phone, :role, :gender, :presence => true
+  
+  validates :password_confirmation, :email_confirmation, :presence => true
   
   validates :username, :email, :uniqueness => true
   
@@ -58,5 +60,7 @@ class User < ActiveRecord::Base
   has_many :tos, :class_name => 'Message', :foreign_key => 'id'
   
   belongs_to :university
+  
+  has_one :image, :as => :imageable
   
 end
