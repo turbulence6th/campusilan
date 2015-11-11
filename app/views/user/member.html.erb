@@ -371,14 +371,17 @@
 
 																	<tr>
 																		<td>Ne zaman katıldı?:</td>
-																		<td><%= current_user.created_at %></td>
+																		<td><% created_at = current_user.created_at %>
+																			<%= created_at.day %>-<%= created_at.month %>-<%= created_at.year %> </td>
 																	</tr>
 
 																	<% if current_user.birthday!=nil %>
 
 																	<tr>
 																		<td>Doğum Tarihi:</td>
-																		<td><%= current_user.birthday%></td>
+																		<td><% birthday = current_user.birthday %>
+																			<%= birthday.day %>-<%= birthday.month %>-<%= birthday.year %> 
+																		</td>
 																	</tr>
 
 																	<% end %>
