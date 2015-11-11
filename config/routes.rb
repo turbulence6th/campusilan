@@ -19,6 +19,20 @@ Rails.application.routes.draw do
   post 'register' => 'user#registerPost'
   post 'login' => 'user#loginPost'
   get 'logout' => 'user#logout'
+  get 'ikinciel/:advert_name' => 'advert#ikinciel'
+  get 'dersnotu/:advert_name' => 'advert#dersnotu'
+  get 'evarkadasi/:advert_name' => 'advert#evarkadasi'
+  get 'ozelders/:advert_name' => 'advert#ozelders'
+  get 'kategoriler/:kategori' => 'advert#kategoriler'
+  get 'kategoriler' => 'advert#kategoriler'
+  
+  
+  
+  
+  
+  
+  
+  
   
   
 end
