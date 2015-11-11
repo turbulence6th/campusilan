@@ -4,6 +4,8 @@ class IndexController < ApplicationController
   
   def index
     
+    puts User.find(1).valid?
+    
   end
   
   helper_method :current_user
