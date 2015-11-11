@@ -372,7 +372,7 @@
 																	<tr>
 																		<td>Ne zaman katıldı?:</td>
 																		<td><% created_at = current_user.created_at %>
-																			<%= created_at.day %>-<%= created_at.month %>-<%= created_at.year %> </td>
+																			<%= created_at.day %> <%= months[created_at.month] %> <%= created_at.year %> </td>
 																	</tr>
 
 																	<% if current_user.birthday!=nil %>
@@ -380,7 +380,7 @@
 																	<tr>
 																		<td>Doğum Tarihi:</td>
 																		<td><% birthday = current_user.birthday %>
-																			<%= birthday.day %>-<%= birthday.month %>-<%= birthday.year %> 
+																			<%= birthday.day %> <%= months[birthday.month] %> <%= birthday.year %> 
 																		</td>
 																	</tr>
 
@@ -389,13 +389,7 @@
 																	<tr>
 																	<tr>
 																		<td>Cinsiyet</td>
-																		<td><% if current_user.gender=="male" %>
-																		Erkek
-																		<% elsif current_user.gender=="female" %>
-																		Kadın
-																		<% elsif current_user.gender=="other" %>
-																		Diğer
-																		<% end %></td>
+																		<td><%= gender[current_user.gender] %></td>
 																	</tr>
 
 																	<% if current_user.address!=nil %>

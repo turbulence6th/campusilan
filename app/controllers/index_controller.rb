@@ -1,16 +1,13 @@
 class IndexController < ApplicationController
 
   layout false
+
+  helper_method :current_user
   def index
-    
 
   end
 
-  helper_method :current_user
-
   def firsatlar
-    
-    
 
     if params[:acililanlar]!=nil
 
@@ -48,8 +45,8 @@ class IndexController < ApplicationController
 
       @ilanlar=[]
 
-     elsif params[:enyakindakisaticilar]!=nil
-       
+    elsif params[:enyakindakisaticilar]!=nil
+
       @enyakindakisaticilar=true
 
       @title="En Yakında Olan Satıcılar"
