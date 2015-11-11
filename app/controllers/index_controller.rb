@@ -49,7 +49,7 @@ class IndexController < ApplicationController
 
      elsif params[:enyakindakisaticilar]!=nil
        
-      @enyakindakisaticilar="yep"
+      @enyakindakisaticilar=true
 
       @title="En Yakında Olan Satıcılar"
 
