@@ -1,16 +1,16 @@
 class IndexController < ApplicationController
-  
+
   layout false
-  
   def index
     
-    puts User.find(1).valid?
-    
+
   end
-  
+
   helper_method :current_user
 
   def firsatlar
+    
+    
 
     if params[:acililanlar]!=nil
 
@@ -42,6 +42,20 @@ class IndexController < ApplicationController
 
       @ilanlar=[]
 
+    elsif params[:enguvenilirsaticilar]!=nil
+
+      @title="En Güvenilir Satıcılar"
+
+      @ilanlar=[]
+
+     elsif params[:enyakindakisaticilar]!=nil
+       
+      @enyakindakisaticilar="yep"
+
+      @title="En Yakında Olan Satıcılar"
+
+      @ilanlar=[]
+
     else
 
       @title="Acil İlanlar"
@@ -51,6 +65,5 @@ class IndexController < ApplicationController
     end
 
   end
-  
 
 end
