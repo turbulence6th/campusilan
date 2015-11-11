@@ -5,11 +5,11 @@ class AdvertController < ApplicationController
   helper_method :current_user
   
   def ikinciel
-    @user = User.find_by_id(session[:user_id])
+    
   end
 
   def dersnotu
-    @user = User.find_by_id(session[:user_id])
+   
   end
 
   def evarkadasi
@@ -21,7 +21,7 @@ class AdvertController < ApplicationController
   end
 
   def kategoriler
-    @user = User.find_by_id(session[:user_id])
+   
     
     kategori=params[:kategori]
     
