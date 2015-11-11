@@ -334,7 +334,7 @@
 
 											<div class="panelortak profilim panel panel-info">
 												<div class="panel-heading">
-													<h3 class="panel-title"><%= @user.name+" "+ @user.surname %> </h3>
+													<h3 class="panel-title"><%= current_user.name+" "+ current_user.surname %> </h3>
 												</div>
 												<div class="panel-body">
 													<div class="row">
@@ -360,25 +360,25 @@
 															<table class="table table-user-information">
 																<tbody>
 
-																	<% if @user.university!=nil %>
+																	<% if current_user.university!=nil %>
 
 																	<tr>
 																		<td>Üniversite:</td>
-																		<td><%= @user.university.name %></td>
+																		<td><%= current_user.university.name %></td>
 																	</tr>
 
 																	<% end %>
 
 																	<tr>
 																		<td>Ne zaman katıldı?:</td>
-																		<td><%= @user.created_at %></td>
+																		<td><%= current_user.created_at %></td>
 																	</tr>
 
-																	<% if @user.birthday!=nil %>
+																	<% if current_user.birthday!=nil %>
 
 																	<tr>
 																		<td>Doğum Tarihi:</td>
-																		<td><%= @user.birthday%></td>
+																		<td><%= current_user.birthday%></td>
 																	</tr>
 
 																	<% end %>
@@ -386,30 +386,30 @@
 																	<tr>
 																	<tr>
 																		<td>Cinsiyet</td>
-																		<td><% if @user.gender=="male" %>
+																		<td><% if current_user.gender=="male" %>
 																		Erkek
-																		<% elsif @user.gender=="female" %>
+																		<% elsif current_user.gender=="female" %>
 																		Kadın
-																		<% elsif @user.gender=="other" %>
+																		<% elsif current_user.gender=="other" %>
 																		Diğer
 																		<% end %></td>
 																	</tr>
 
-																	<% if @user.address!=nil %>
+																	<% if current_user.address!=nil %>
 
 																	<tr>
 																		<td>Açık adres</td>
-																		<td><%= @user.address %></td>
+																		<td><%= current_user.address %></td>
 																	</tr>
 
 																	<% end %>
 
 																	<tr>
 																		<td>E-posta</td>
-																		<td><%= @user.email %></td>
+																		<td><%= current_user.email %></td>
 																	</tr>
 																	<td>Telefon Numarası</td>
-																	<td><%= @user.phone %></td>
+																	<td><%= current_user.phone %></td>
 
 																	</tr>
 

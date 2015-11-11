@@ -3,9 +3,11 @@ class UserController < ApplicationController
   using TurkishSupport
 
   layout false
+  
+  helper_method :current_user
+  
   def register
-    user = User.find_by_id(session[:user_id])
-    if user!=nil
+    if current_user!=nil
       redirect_to "/"
     end
   end
@@ -59,9 +61,8 @@ class UserController < ApplicationController
   end
 
   def member
-    @user = User.find_by_id(session[:user_id])
     
-    if @user==nil
+    if current_user==nil
       redirect_to "/"
     end
 
@@ -109,8 +110,7 @@ class UserController < ApplicationController
   end
 
   def login
-    user = User.find_by_id(session[:user_id])
-    if user!=nil
+    if current_user!=nil
       redirect_to "/"
     end
   end

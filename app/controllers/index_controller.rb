@@ -1,15 +1,14 @@
 class IndexController < ApplicationController
   
   layout false
+  
   def index
-
-    @user = User.find_by_id(session[:user_id])
-
+    
   end
+  
+  helper_method :current_user
 
   def firsatlar
-
-    @user=User.find_by_id(session[:user_id])
 
     if params[:acililanlar]!=nil
 

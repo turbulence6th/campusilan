@@ -1,4 +1,4 @@
-<% if @user==nil %>
+<% if current_user==nil %>
 
 <div id="loginContainer">
 	<a href="#" id="loginButton"><span>Giriş Yap &amp; Kaydol</span><em></em></a>
@@ -50,7 +50,7 @@
 <% else %>
 
 <p style="float:right;">
-	Hoşgeldin; <%= @user.username %>
+	Hoşgeldin; <%= current_user.username %>
 </p>
 <br>
 

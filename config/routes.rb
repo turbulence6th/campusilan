@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'ozelders/:advert_name' => 'advert#ozelders'
   get 'kategoriler/:kategori' => 'advert#kategoriler'
   get 'kategoriler' => 'advert#kategoriler'
+ 
   
   
   
