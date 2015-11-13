@@ -4,7 +4,7 @@
 
 	<head>
 
-		<title>Odtü İlan</title>
+		<title>Campus İlan</title>
 		<%= csrf_meta_tags %>
 		<%= javascript_tag "window._token = '#{form_authenticity_token}';" %>
 		<meta charset="utf-8">
@@ -107,14 +107,13 @@
 					padding: 50px;
 				}
 				.ustpaneller {
-					padding-left: 15px;
-					padding-right: 15px;
+
 				}
 			}
 
 			@media screen and (max-width: 1200px) and (min-width: 768px) {
 				body {
-					padding: 20px;
+					padding: 50px;
 				}
 			}
 		</style>
@@ -143,16 +142,9 @@
 						<ul class="respondmenuul">
 
 							<li class="respondmenuli">
-								<a href="#" class="current">Babasayfa</a>
-							</li>
-							<li class="respondmenuli">
-								<a href="#">Hakkımızda</a>
-							</li>
-							<li class="respondmenuli">
-								<a href="#">İletişim</a>
-							</li>
-							<li class="respondmenuli">
-								<a href="#">Yardım</a>
+								<span>Hoşgeldin <%= current_user.username %> ;</span>&nbsp;&nbsp;
+								<br>
+								<a href="#">Çıkış Yap</a>
 							</li>
 
 						</ul>
@@ -163,9 +155,7 @@
 
 			</div>
 
-			<div class="row" style="margin-top: 100px;">
-
-				<h4 style="margin-left: 5px;">Hoşgeldin...</h4>
+			<div class="row" style="margin-top: 75px;">
 
 				<%= render "smartmenus" %>
 
@@ -173,7 +163,7 @@
 
 			<div class="hidden-sm hidden-xs row" style="padding-bottom: 20px;">
 
-				<div class="row ustpaneller" style="margin-top: 30px;">
+				<div class="row ustpaneller" style="padding:20px;margin-top: 30px;">
 
 					<aside class="col-lg-3 col-md-3 col-sm-3 hidden-xs ">
 
@@ -329,8 +319,7 @@
 
 									<div class="row">
 
-										<div
-										class=" uyepaneli col-xs-12 col-sm-12 col-md-12 col-lg-12  toppad">
+										<div class=" uyepaneli col-xs-12 col-sm-12 col-md-12 col-lg-12  toppad">
 
 											<div class="panelortak profilim panel panel-info">
 												<div class="panel-heading">
@@ -372,7 +361,7 @@
 																	<tr>
 																		<td>Ne zaman katıldı?:</td>
 																		<td><% created_at = current_user.created_at %>
-																			<%= created_at.day %> <%= months[created_at.month] %> <%= created_at.year %> </td>
+																		<%= created_at.day %> <%= months[created_at.month] %> <%= created_at.year %> </td>
 																	</tr>
 
 																	<% if current_user.birthday!=nil %>
@@ -380,8 +369,7 @@
 																	<tr>
 																		<td>Doğum Tarihi:</td>
 																		<td><% birthday = current_user.birthday %>
-																			<%= birthday.day %> <%= months[birthday.month] %> <%= birthday.year %> 
-																		</td>
+																		<%= birthday.day %> <%= months[birthday.month] %> <%= birthday.year %> </td>
 																	</tr>
 
 																	<% end %>
@@ -954,7 +942,7 @@
 
 													<div class="caption">
 
-														<h4>Thumbnail label</h4>
+														<b>Thumbnail label</b>
 														<p>
 															Some sample text.
 														</p>
@@ -973,7 +961,7 @@
 
 													<div class="caption">
 
-														<h4>Thumbnail label</h4>
+														<b>Thumbnail label</b>
 														<p>
 															Some sample text.
 														</p>
@@ -992,7 +980,7 @@
 
 													<div class="caption">
 
-														<h4>Thumbnail label</h4>
+														<b>Thumbnail label</b>
 														<p>
 															Some sample text.
 														</p>
@@ -1028,7 +1016,7 @@
 
 														<div class="caption">
 
-															<h4>Thumbnail label</h4>
+															<b>Thumbnail label</b>
 															<p>
 																Some sample text.
 															</p>
@@ -1047,7 +1035,7 @@
 
 														<div class="caption">
 
-															<h4>Thumbnail label</h4>
+															<b>Thumbnail label</b>
 															<p>
 																Some sample text.
 															</p>
@@ -1066,7 +1054,7 @@
 
 														<div class="caption">
 
-															<h4>Thumbnail label</h4>
+															<b>Thumbnail label</b>
 															<p>
 																Some sample text.
 															</p>
@@ -1238,6 +1226,602 @@
 
 		<%= render "kullanicipaneli2"%>
 
+		<div style="padding:20px;" class="visible-xs visible-sm visible-md row">
+
+			<div class=" uyepaneli col-xs-12 col-sm-12 col-md-12 col-lg-12 toppad">
+
+				<div class="panelortak profilim panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title"><%= current_user.name+" "+ current_user.surname %> </h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-3 col-lg-3 " align="center">
+								<img alt="User Pic"
+								src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png"
+								class="img-circle img-responsive">
+							</div>
+
+							<!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+							<dl>
+							<dt>DEPARTMENT:</dt>
+							<dd>Administrator</dd>
+							<dt>HIRE DATE</dt>
+							<dd>11/12/2013</dd>
+							<dt>DATE OF BIRTH</dt>
+							<dd>11/12/2013</dd>
+							<dt>GENDER</dt>
+							<dd>Male</dd>
+							</dl>
+							</div>-->
+							<div class=" col-md-9 col-lg-9 ">
+								<table class="table table-user-information">
+									<tbody>
+
+										<% if current_user.university!=nil %>
+
+										<tr>
+											<td>Üniversite:</td>
+											<td><%= current_user.university.name %></td>
+										</tr>
+
+										<% end %>
+
+										<tr>
+											<td>Ne zaman katıldı?:</td>
+											<td><% created_at = current_user.created_at %>
+											<%= created_at.day %> <%= months[created_at.month] %> <%= created_at.year %> </td>
+										</tr>
+
+										<% if current_user.birthday!=nil %>
+
+										<tr>
+											<td>Doğum Tarihi:</td>
+											<td><% birthday = current_user.birthday %>
+											<%= birthday.day %> <%= months[birthday.month] %> <%= birthday.year %> </td>
+										</tr>
+
+										<% end %>
+
+										<tr>
+										<tr>
+											<td>Cinsiyet</td>
+											<td><%= gender[current_user.gender] %></td>
+										</tr>
+
+										<% if current_user.address!=nil %>
+
+										<tr>
+											<td>Açık adres</td>
+											<td><%= current_user.address %></td>
+										</tr>
+
+										<% end %>
+
+										<tr>
+											<td>E-posta</td>
+											<td><%= current_user.email %></td>
+										</tr>
+										<td>Telefon Numarası</td>
+										<td><%= current_user.phone %></td>
+
+										</tr>
+
+									</tbody>
+								</table>
+
+								<a href="#" class="col-lg-5 btn btn-primary">İlan Ver</a>
+								<a href="#" style="margin-left: 20px;"
+								class="col-lg-5 btn btn-primary">Önceki İlanlarım</a>
+							</div>
+						</div>
+					</div>
+					<div class="panel-footer">
+						<a data-original-title="Mesajlarım"
+						data-toggle="tooltip" type="button"
+						class="btn btn-sm btn-primary"><i
+						class="glyphicon glyphicon-envelope"></i></a><span
+						class="pull-right"> <a href="edit.html"
+							data-original-title="Profili Düzenle" data-toggle="tooltip"
+							type="button" class="btn btn-sm btn-warning"><i
+							class="glyphicon glyphicon-edit"></i></a> <a
+							data-original-title="Hesabımı Sil"
+							data-toggle="tooltip" type="button"
+							class="btn btn-sm btn-danger"><i
+							class="glyphicon glyphicon-remove"></i></a> </span>
+					</div>
+
+				</div>
+
+				<!--  Favorilerim kısmı -->
+
+				<div style="display:none; margin: 10px; " class="panelortak favoriler panel panel-info" >
+
+					<div class="panel-heading">
+						<h3 class="panel-title">Favorilerim</h3>
+					</div>
+
+					<div class="panel-body">
+
+						<div class="row">
+
+							<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+
+								<div class="thumbnail">
+									<a href="#"> <img src="resources/images/cat-demo.jpg"
+									alt="cat demo photo"> </img> </a>
+
+								</div>
+
+								<div class="caption">
+
+									<h4>Thumbnail label</h4>
+									<p>
+										Some sample text.
+									</p>
+
+								</div>
+
+							</div>
+
+							<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+
+								<div class="thumbnail">
+									<a href="#"> <img src="resources/images/cat-demo.jpg"
+									alt="cat demo photo"> </img> </a>
+
+								</div>
+
+								<div class="caption">
+
+									<h4>Thumbnail label</h4>
+									<p>
+										Some sample text.
+									</p>
+
+								</div>
+
+							</div>
+
+							<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+
+								<div class="thumbnail">
+									<a href="#"> <img src="resources/images/cat-demo.jpg"
+									alt="cat demo photo"> </img> </a>
+
+								</div>
+
+								<div class="caption">
+
+									<h4>Thumbnail label</h4>
+									<p>
+										Some sample text.
+									</p>
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="row">
+
+							<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+
+								<div class="thumbnail">
+									<a href="#"> <img src="resources/images/cat-demo.jpg"
+									alt="cat demo photo"> </img> </a>
+
+								</div>
+
+								<div class="caption">
+
+									<h4>Thumbnail label</h4>
+									<p>
+										Some sample text.
+									</p>
+
+								</div>
+
+							</div>
+
+							<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+
+								<div class="thumbnail">
+									<a href="#"> <img src="resources/images/cat-demo.jpg"
+									alt="cat demo photo"> </img> </a>
+
+								</div>
+
+								<div class="caption">
+
+									<h4>Thumbnail label</h4>
+									<p>
+										Some sample text.
+									</p>
+
+								</div>
+
+							</div>
+
+							<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+
+								<div class="thumbnail">
+									<a href="#"> <img src="resources/images/cat-demo.jpg"
+									alt="cat demo photo"> </img> </a>
+
+								</div>
+
+								<div class="caption">
+
+									<h4>Thumbnail label</h4>
+									<p>
+										Some sample text.
+									</p>
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="row">
+
+							<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+
+								<div class="thumbnail">
+									<a href="#"> <img src="resources/images/cat-demo.jpg"
+									alt="cat demo photo"> </img> </a>
+
+								</div>
+
+								<div class="caption">
+
+									<h4>Thumbnail label</h4>
+									<p>
+										Some sample text.
+									</p>
+
+								</div>
+
+							</div>
+
+							<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+
+								<div class="thumbnail">
+									<a href="#"> <img src="resources/images/cat-demo.jpg"
+									alt="cat demo photo"> </img> </a>
+
+								</div>
+
+								<div class="caption">
+
+									<h4>Thumbnail label</h4>
+									<p>
+										Some sample text.
+									</p>
+
+								</div>
+
+							</div>
+
+							<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+
+								<div class="thumbnail">
+									<a href="#"> <img src="resources/images/cat-demo.jpg"
+									alt="cat demo photo"> </img> </a>
+
+								</div>
+
+								<div class="caption">
+
+									<h4>Thumbnail label</h4>
+									<p>
+										Some sample text.
+									</p>
+
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+				<!-- Tekliflerim kısmı -->
+
+				<div style="height:500px;" class="panelortak tekliflerim method">
+					<div class="row margin-0 list-header hidden-sm hidden-xs">
+						<div class="col-md-3">
+							<div class="header">
+								Property
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="header">
+								Type
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="header">
+								Required
+							</div>
+						</div>
+						<div class="col-md-5">
+							<div class="header">
+								Description
+							</div>
+						</div>
+					</div>
+
+					<div class="row margin-0">
+						<div class="col-md-3">
+							<div class="cell">
+								<div class="propertyname">
+									CurrencyCode <span class="mobile-isrequired">[Required]</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="cell">
+								<div class="type">
+									<code>
+										String
+									</code>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="cell">
+								<div class="isrequired">
+									Yes
+								</div>
+							</div>
+						</div>
+						<div class="col-md-5">
+							<div class="cell">
+								<div class="description">
+									The standard ISO 4217 3-letter
+									currency code
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row margin-0">
+						<div class="col-md-3">
+							<div class="cell">
+								<div class="propertyname">
+									PriceType <span class="mobile-isrequired">[Required]</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="cell">
+								<div class="type">
+									<code>
+										Int32
+									</code>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="cell">
+								<div class="isrequired">
+									Yes
+								</div>
+							</div>
+						</div>
+						<div class="col-md-5">
+							<div class="cell">
+								<div class="description">
+									The type of price
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row margin-0">
+						<div class="col-md-3">
+							<div class="cell">
+								<div class="propertyname">
+									WarehouseID <span class="mobile-isrequired">[Required]</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="cell">
+								<div class="type">
+									<code>
+										Int32
+									</code>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="cell">
+								<div class="isrequired">
+									Yes
+								</div>
+							</div>
+						</div>
+						<div class="col-md-5">
+							<div class="cell">
+								<div class="description">
+									The unique identifier for the
+									warehouse
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row margin-0">
+						<div class="col-md-3">
+							<div class="cell">
+								<div class="propertyname">
+									ItemCodes
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="cell">
+								<div class="type">
+									<code>
+										String[]
+									</code>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="cell">
+								<div class="isrequired">
+									<span class="text-muted">No</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-5">
+							<div class="cell">
+								<div class="description"></div>
+							</div>
+						</div>
+					</div>
+					<div class="row margin-0">
+						<div class="col-md-3">
+							<div class="cell">
+								<div class="propertyname">
+									LanguageID <a class="lookuplink" href="javascript:;"> <i
+									class="glyphicon glyphicon-search"></i> </a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="cell">
+								<div class="type">
+									<code>
+										Int32?
+									</code>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="cell">
+								<div class="isrequired">
+									<span class="text-muted">No</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-5">
+							<div class="cell">
+								<div class="description">
+									The customer's preferred language
+									ID (ex. 0 (English), 1 (Spanish), etc.)
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--  Hesap Ayarları -->
+
+				<div style="" class="panelortak hesapayarlari panel-body">
+					<form id="signupform" class="form-horizontal" role="form">
+
+						<div id="signupalert" style="display: none"
+						class="alert alert-danger">
+							<p>
+								Error:
+							</p>
+							<span></span>
+						</div>
+
+						<div class="form-group">
+							<label for="email" class="col-md-3 control-label">E-posta</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="email"
+								placeholder="Email Address">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="firstname" class="col-md-3 control-label">Ad</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="firstname"
+								placeholder="First Name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="lastname" class="col-md-3 control-label">Soyad</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="lastname"
+								placeholder="Last Name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="password" class="col-md-3 control-label">Şifre</label>
+							<div class="col-md-9">
+								<input type="password" class="form-control" name="passwd"
+								placeholder="Password">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="password" class="col-md-3 control-label">Şifreyi
+								tekrarla</label>
+							<div class="col-md-9">
+								<input type="password" class="form-control" name="passwd"
+								placeholder="Password">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="icode" class="col-md-3 control-label">Cep
+								Telefonu</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="icode"
+								placeholder="">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="icode" class="col-md-3 control-label">Cinsiyet</label>
+
+							<div class="col-md-9">
+								<select class="form-control " name="gender">
+									<option value="0">Erkek</option>
+									<option value="1">Kadın</option>
+									<option value="2">Diğer</option>
+
+								</select>
+
+							</div>
+						</div>
+
+						<div style="border-top: 1px solid #999; border-bottom: 1px solid #999; padding-top: 20px; padding-bottom: 20px;" class="form-group">
+
+							<div class="col-md-offset-3 col-md-9">
+								<button id="btn-fbsignup" type="button" class="btn btn-primary">
+									<i class="icon-facebook"></i>   Facebook hesabını bağla
+								</button>
+							</div>
+
+						</div>
+
+						<div style="padding-top: 20px" class="form-group">
+
+							<div style="float: right; margin-right: 20px;">
+								<button id="btn-fbsignup" type="submit" class="btn btn-danger">
+									Kaydet
+								</button>
+							</div>
+
+						</div>
+
+					</form>
+
+				</div>
+
+			</div>
+
+		</div>
+
 		<div class="row" style="padding: 20px;">
 
 			<div style="">
@@ -1382,7 +1966,7 @@
 			<%= render "footer" %>
 
 		</div>
-  
+
 		</div>
 
 		<!-- plugins -->
