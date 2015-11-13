@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   
   validates :password, :format => {
     :with => /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})/
-  }
+  }, :if => :password_digest_changed?
   
   validates :phone, :format => {
     :with => /\d{3}-\d{7}/
