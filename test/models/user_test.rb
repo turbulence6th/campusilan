@@ -87,6 +87,8 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     user = User.find_by_username("username")
     user.name = "nameyeni"
+    user.password = "Yenipass123"
+    user.password_confirmation = "Yenipass123"
     assert user.valid?
   end
   

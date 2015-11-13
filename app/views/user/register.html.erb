@@ -139,8 +139,6 @@
 
 					<div class="row">
 
-						<!-- <form id="kayitformu" action="register" method="POST"
-						onsubmit="return vsubmit();"> -->
 						<%= form_for @user, :url => 'register' , :method => :post , :html => {
 						:onsubmit => 'return vsubmit();',
 						:id => 'kayitformu'
@@ -154,9 +152,6 @@
 
 									<div class="form-group col-lg-6 col-md-6 ">
 										<label>Ad</label>
-										<!-- <input maxlength="20"
-										onkeyup="namevalidator()" type="text" name="name"
-										class="form-control" id="name"> -->
 										<%= t.text_field :name, :class => 'form-control', :onkeyup => 'namevalidator()', :maxlength => 20 %>
 									</div>
 
@@ -172,9 +167,6 @@
 
 									<div class="form-group col-lg-6 col-md-6">
 										<label>Soyad</label>
-										<!-- <input maxlength="20"
-										onkeyup="surnamevalidator()" type="text" name="surname"
-										class="form-control" id="surname"> -->
 										<%= t.text_field :surname, :class => 'form-control', :onkeyup => 'surnamevalidator()', :maxlength => 20 %>
 									</div>
 
@@ -765,7 +757,8 @@
 											}
 
 										},
-										type : 'POST'
+										type : 'POST',
+										async: false
 									});
 
 								}
@@ -979,7 +972,8 @@
 											}
 
 										},
-										type : 'POST'
+										type : 'POST',
+										async: false
 									});
 
 								}
@@ -1058,7 +1052,7 @@
 
 								var surnameCheck = surnamevalidator();
 
-								var phoneCheck = phoneCheck();
+								var phoneCheck = phonecheck();
 
 								var emailCheck = emailcheck();
 

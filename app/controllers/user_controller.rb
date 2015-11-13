@@ -32,8 +32,8 @@ class UserController < ApplicationController
 
   def registerPost
 
-   @user = User.new(params.require(:user).permit(:name , :surname,:username,:password,:password_confirmation,:email,:email_confirmation,
-   :phone1,:phone2,:bulletin,:gender))
+   @user = User.new(params.require(:user).permit(:name, :surname, :username, :password, :password_confirmation, :email, :email_confirmation,
+   :phone1, :phone2, :bulletin, :gender))
    
    @user.phone = @user.phone1 + '-' + @user.phone2
    @user.role = 'member'

@@ -45,58 +45,58 @@ class UserControllerTest < ActionController::TestCase
   end
   
   test "register user" do
-    post :registerPost, :username => "username", :password => "oguzTanrikulu123", :password2 => "oguzTanrikulu123",
-      :email => "email@metu.edu.tr", :email2 => "email@metu.edu.tr", :name => "name", :surname => "surname",
-      :phone => "123", :phone2 => "5678900", :gender => "male", :bulletin => true
+    post :registerPost, :user => { :username => "username", :password => "oguzTanrikulu123", :password_confirmation => "oguzTanrikulu123",
+      :email => "email@metu.edu.tr", :email_confirmation => "email@metu.edu.tr", :name => "name", :surname => "surname",
+      :phone1 => "123", :phone2 => "5678900", :gender => "male", :bulletin => true }
     user = User.find_by_username("username")
     assert_equal true, user!=nil
   end
   
   test "register user bulletin nil" do
-    post :registerPost, :username => "username", :password => "oguzTanrikulu123", :password2 => "oguzTanrikulu123",
-      :email => "email@metu.edu.tr", :email2 => "email@metu.edu.tr", :name => "name", :surname => "surname",
-      :phone => "123", :phone2 => "5678900", :gender => "male"
+    post :registerPost, :user => { :username => "username", :password => "oguzTanrikulu123", :password_confirmation => "oguzTanrikulu123",
+      :email => "email@metu.edu.tr", :email_confirmation => "email@metu.edu.tr", :name => "name", :surname => "surname",
+      :phone1 => "123", :phone2 => "5678900", :gender => "male" }
     user = User.find_by_username("username")
-    assert_equal true, user!=nil
+    assert_equal nil, user
   end
   
   
   test "empty username" do
-    post :registerPost, :password => "oguzTanrikulu123", :password2 => "oguzTanrikulu123",
-      :email => "email@metu.edu.tr", :email2 => "email@metu.edu.tr", :name => "name", :surname => "surname",
-      :phone => "123", :phone2 => "5678900", :gender => "male", :bulletin => true
+    post :registerPost, :user => { :password => "oguzTanrikulu123", :password_confirmation => "oguzTanrikulu123",
+      :email => "email@metu.edu.tr", :email_confirmation => "email@metu.edu.tr", :name => "name", :surname => "surname",
+      :phone1 => "123", :phone2 => "5678900", :gender => "male", :bulletin => true }
     user = User.find_by_username("username")
     assert_equal user, nil
   end
   
   test "empty password" do
-    post :registerPost, :username => "username", :password2 => "oguzTanrikulu123",
-      :email => "email@metu.edu.tr", :email2 => "email@metu.edu.tr", :name => "name", :surname => "surname",
-      :phone => "123", :phone2 => "5678900", :gender => "male", :bulletin => true
+    post :registerPost, :user => { :username => "username", :password_confirmation => "oguzTanrikulu123",
+      :email => "email@metu.edu.tr", :email_confirmation => "email@metu.edu.tr", :name => "name", :surname => "surname",
+      :phone1 => "123", :phone2 => "5678900", :gender => "male", :bulletin => true }
     user = User.find_by_username("username")
     assert_equal user, nil
   end
   
   test "empty password2" do
-    post :registerPost, :username => "username", :password => "oguzTanrikulu123",
-      :email => "email@metu.edu.tr", :email2 => "email@metu.edu.tr", :name => "name", :surname => "surname",
-      :phone => "123", :phone2 => "5678900", :gender => "male", :bulletin => true
+    post :registerPost, :user => { :username => "username", :password => "oguzTanrikulu123",
+      :email => "email@metu.edu.tr", :email_confirmation => "email@metu.edu.tr", :name => "name", :surname => "surname",
+      :phone1 => "123", :phone2 => "5678900", :gender => "male", :bulletin => true }
     user = User.find_by_username("username")
     assert_equal user, nil
   end
   
   test "empty email" do
-    post :registerPost, :username => "username", :password => "oguzTanrikulu123", :password2 => "oguzTanrikulu123",
-      :email2 => "email@metu.edu.tr", :name => "name", :surname => "surname",
-      :phone => "123", :phone2 => "5678900", :gender => "male", :bulletin => true
+    post :registerPost, :user => { :username => "username", :password => "oguzTanrikulu123", :password_confirmation => "oguzTanrikulu123",
+      :email_confirmation => "email@metu.edu.tr", :name => "name", :surname => "surname",
+      :phone1 => "123", :phone2 => "5678900", :gender => "male", :bulletin => true }
     user = User.find_by_username("username")
     assert_equal user, nil
   end
   
   test "empty email2" do
-    post :registerPost, :username => "username", :password => "oguzTanrikulu123", :password2 => "oguzTanrikulu123",
+    post :registerPost, :user => { :username => "username", :password => "oguzTanrikulu123", :password_confirmation => "oguzTanrikulu123",
       :email => "email@metu.edu.tr", :name => "name", :surname => "surname",
-      :phone => "123", :phone2 => "5678900", :gender => "male", :bulletin => true
+      :phone1 => "123", :phone2 => "5678900", :gender => "male", :bulletin => true }
     user = User.find_by_username("username")
     assert_equal user, nil
   end

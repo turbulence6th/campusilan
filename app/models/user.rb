@@ -1,16 +1,16 @@
 class User < ActiveRecord::Base
   
-  attr_accessor :phone1, :phone2
-  
   validates :name, :surname, :username,  :phone, :role, :gender, :presence => true
   
-  validates :password_confirmation, :email_confirmation, :presence => true, :on => :create
+  validates :password_confirmation, :presence => true, :if => :password_digest_changed?
+  
+  validates :email_confirmation, :presence => true, :if => :email_changed?
   
   validates :username, :email, :uniqueness => true
   
   validates :verified, :bulletin, :inclusion => { :in => [true, false] }
   
-  validates :password,:email, :confirmation => true
+  validates :password, :email, :confirmation => true
   
   validates :email, :length => {
     :minimum => 2,
@@ -39,13 +39,15 @@ class User < ActiveRecord::Base
   
   validates :password, :format => {
     :with => /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})/
-  }, :on => :create
+  }
   
   validates :phone, :format => {
     :with => /\d{3}-\d{7}/
   }
   
   has_secure_password
+  
+  attr_accessor :phone1, :phone2
   
   enum :gender => [ :male, :female, :other ]
   enum :role => [ :admin, :member ]
