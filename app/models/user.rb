@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   
+  attr_accessor :phone1, :phone2
+  
   validates :name, :surname, :username,  :phone, :role, :gender, :presence => true
   
   validates :password_confirmation, :email_confirmation, :presence => true

@@ -10,6 +10,8 @@ class UserController < ApplicationController
     if current_user!=nil
       redirect_to "/"
     end
+    
+    @user=User.new
   end
 
   def checkusername
@@ -30,21 +32,13 @@ class UserController < ApplicationController
 
   def registerPost
 
-    name = params[:name]
-    surname = params[:surname]
-    username = params[:username]
-    password = params[:password]
-    password2 = params[:password2]
-    email = params[:email].downcase if params[:email] != nil
-    email2 = params[:email2].downcase if params[:email2] != nil
-    gender = params[:gender]
-    phone = params[:phone] + '-' + params[:phone2]
-    bulletin = !!params[:bulletin]
-
-    user = User.new(:name => name, :surname => surname, :username => username, :password => password,
-    :password_confirmation => password2, :email => email, :email_confirmation => email2,
-    :gender => gender, :phone => phone, :bulletin => bulletin, :role => 'member', :verified => false)
-    user.save
+   @user = User.new(params.require(:user).permit(:name , :surname,:username,:password,:password_confirmation,:email,:email_confirmation,
+   :phone1,:phone2,:bulletin,:gender))
+   
+   @user.phone = @user.phone1 + '-' + @user.phone2
+   @user.role = 'member'
+   @user.verified = false
+   @user.save
 
     redirect_to "/"
 
