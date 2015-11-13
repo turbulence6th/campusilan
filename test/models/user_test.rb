@@ -83,13 +83,11 @@ class UserTest < ActiveSupport::TestCase
     assert @user.invalid?
   end
   
-  /test "update" do
+  test "update" do
     @user.save
     user = User.find_by_username("username")
-   
-    user.update(:name => "kel")
-    user = User.find_by_username("username")
-    assert_equal "kel", user.name
-  end /
+    user.name = "nameyeni"
+    assert user.valid?
+  end
   
 end

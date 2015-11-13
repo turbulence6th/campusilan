@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   
   validates :name, :surname, :username,  :phone, :role, :gender, :presence => true
   
-  validates :password_confirmation, :email_confirmation, :presence => true
+  validates :password_confirmation, :email_confirmation, :presence => true, :on => :create
   
   validates :username, :email, :uniqueness => true
   
@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   
   validates :password, :format => {
     :with => /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})/
-  }
+  }, :on => :create
   
   validates :phone, :format => {
     :with => /\d{3}-\d{7}/
