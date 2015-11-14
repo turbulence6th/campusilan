@@ -46,7 +46,7 @@ class UserControllerTest < ActionController::TestCase
   
   test "register user" do
     post :registerPost, :user => { :username => "username", :password => "oguzTanrikulu123", :password_confirmation => "oguzTanrikulu123",
-      :email => "email@metu.edu.tr", :email_confirmation => "email@metu.edu.tr", :name => "name", :surname => "surname",
+      :email => "email@metu.edu.tr", :email_confirmation => "Email@metu.edu.tr", :name => "name", :surname => "surname",
       :phone1 => "123", :phone2 => "5678900", :gender => "male", :bulletin => true }
     user = User.find_by_username("username")
     assert_equal true, user!=nil

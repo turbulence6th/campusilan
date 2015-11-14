@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
   
   validates :email_confirmation, :presence => true, :if => :email_changed?
   
-  validates :username, :email, :uniqueness => true
+  validates :username, :uniqueness => true
+  
+  validates :email, :uniqueness => { :case_sensitive => false }
   
   validates :verified, :bulletin, :inclusion => { :in => [true, false] }
   

@@ -3,14 +3,13 @@ class UserController < ApplicationController
   using TurkishSupport
 
   layout false
-  
+
   helper_method :current_user
-  
   def register
     if current_user!=nil
       redirect_to "/"
     end
-    
+
     @user=User.new
   end
 
@@ -32,13 +31,17 @@ class UserController < ApplicationController
 
   def registerPost
 
-   @user = User.new(params.require(:user).permit(:name, :surname, :username, :password, :password_confirmation, :email, :email_confirmation,
+    @user = User.new(params.require(:user).permit(:name, :surname, :username, :password, :password_confirmation, :email, :email_confirmation,
    :phone1, :phone2, :bulletin, :gender))
-   
-   @user.phone = @user.phone1 + '-' + @user.phone2
-   @user.role = 'member'
-   @user.verified = false
-   @user.save
+
+    @user.phone = @user.phone1 + '-' + @user.phone2
+    @user.role = 'member'
+    @user.verified = false
+    
+    @user.email = @user.email.downcase if @user.email
+    @user.email_confirmation = @user.email_confirmation.downcase if @user.email_confirmation
+    
+    @user.save
 
     redirect_to "/"
 
@@ -55,50 +58,31 @@ class UserController < ApplicationController
   end
 
   def member
-    
+
     if current_user==nil
       redirect_to "/"
     end
 
     if params[:profilim]!=nil
-
       @sekme=".profilim"
     elsif params[:ilanver]!=nil
-
       @sekme=".ilanver"
-
     elsif params[:satislarim]!=nil
-
       @sekme=".satislarim"
-
     elsif params[:alislarim]!=nil
-
       @sekme=".alislarim"
-
     elsif params[:favorilerim]!=nil
-
       @sekme=".favoriler"
-
     elsif params[:mesajlarim]!=nil
-
       @sekme=".mesajlarim"
-
     elsif params[:tekliflerim]!=nil
-
       @sekme=".tekliflerim"
-
     elsif params[:inceledigimilanlar]!=nil
-
       @sekme=".inceledigimilanlar"
-
     elsif params[:hesapayarlari]!=nil
-
       @sekme=".hesapayarlari"
-
     else
-
       @sekme=".profilim"
-
     end
 
   end
@@ -113,6 +97,5 @@ class UserController < ApplicationController
     reset_session
     redirect_to "/"
   end
-  
 
 end
