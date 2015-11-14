@@ -8,12 +8,12 @@ default: &default
 
 development:
   <<: *default
-  database: odtuilan_development
+  database: campusilan_development
 
 test:
   <<: *default
-  database: odtuilan_test
+  database: campusilan_test
 
 production:
   <<: *default
-  database: odtuilan_production
+  database: campusilan_production

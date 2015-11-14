@@ -23,8 +23,9 @@ class UserController < ApplicationController
 
   def checkemail
     email = params[:email]
+    uni = University.find_by_email(email.downcase.partition('@').last) if email
     respond_to do |format|
-      msg = { :check => !User.create(:email => email).errors[:email].any? }
+      msg = { :check => !User.create(:email => email).errors[:email].any?, :unicheck => uni!=nil }
       format.json  { render :json => msg }
     end
   end
@@ -41,7 +42,8 @@ class UserController < ApplicationController
     @user.email = @user.email.downcase if @user.email
     @user.email_confirmation = @user.email_confirmation.downcase if @user.email_confirmation
     
-    @user.save
+    @user.university = University.find_by_email(@user.email.partition('@').last) if @user.email
+    @user.save if @user.university
 
     redirect_to "/"
 
