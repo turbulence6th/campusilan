@@ -5,10 +5,13 @@ Rails.application.routes.draw do
   get 'iletisim' => 'index#iletisim'
   get 'kullanimkosullari' => 'index#kullanimkosullari'
   get 'reklam' => 'index#reklam'
-  get 'uye' => 'user#member'
+  
   get 'yardim' => 'index#yardim'
   get 'ilanver' => 'index#ilanver'
-  get 'satis-alis' => 'index#satis-alis'
+  get 'satis-alis' => 'index#satis_alis'
+  get 'satis-alis/:satislarim' => 'index#satis_alis'
+  get 'satis-alis/:alislarim' => 'index#satis_alis'
+  
   get 'mesajlarim' => 'index#mesajlarim'
   get 'girisyap' => 'user#login'
   
@@ -27,7 +30,7 @@ Rails.application.routes.draw do
   get 'kategoriler' => 'advert#kategoriler'
   get 'kategoriler/ikincielilan/:subkategori' => 'advert#kategoriler'  
   get 'firsatlar' => 'advert#firsatlar'
-
+  get 'uye/:username' => 'user#member'
   
   
  
