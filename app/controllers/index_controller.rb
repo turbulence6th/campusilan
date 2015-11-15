@@ -4,7 +4,7 @@ class IndexController < ApplicationController
 
   helper_method :current_user
   def index
-      puts session[:key]
+     
 
   end
 
