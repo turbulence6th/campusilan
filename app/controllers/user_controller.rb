@@ -53,6 +53,7 @@ class UserController < ApplicationController
     user = User.find_by_username(params[:username]).try(:authenticate, params[:password])
     if (user!=nil && user!=false)
       session[:user_id] = user.id
+      
       redirect_to "/"
     else
       redirect_to "/girisyap?hataligiris=1"
