@@ -54,13 +54,11 @@
 		<!-- end of plugins  -->
 
 		<style>
-		
-		
-		
-		
 			body {
-				padding: 50px;
-			
+				padding-left: 50px;
+				padding-right: 50px;
+				padding-top:30px;
+				background-color: #F0F7F7;
 			}
 
 			.nav-pills > li > a:hover {
@@ -100,42 +98,36 @@
 
 			<div class="row headernav" style="margin-top: 5px;">
 
-				
+				<div class="headernav"
+				style="background: #E6F3FF; border: 1px solid black; margin-top: 10px; padding: 7px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px;">
 
-					<div class="headernav"
-					style="background: #E6F3FF; border: 1px solid black; margin-top: 10px; padding: 7px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px;">
+					<ul class="nav nav-pills">
+						<li>
+							<a href="/firsatlar?acililanlar=1">Acil İlanlar</a>
+						</li>
+						<li>
+							<a href="/firsatlar?gununfirsatlari=1">Günün Fırsatları</a>
+						</li>
+						<li>
+							<a href="/firsatlar?enpopulerilanlar=1">En Popüler İlanlar</a>
+						</li>
+						<li>
+							<a href="/firsatlar?ensonilanlar=1">En Son İlanlar</a>
+						</li>
+						<li>
+							<a href="/firsatlar?fiyatidusenler=1">Fiyatı Düşenler</a>
+						</li>
+						<li>
+							<a href="/saticilar?enguvenilirsaticilar=1">En Güvenilir Satıcılar</a>
+						</li>
 
-						<ul class="nav nav-pills">
-							<li>
-								<a href="/firsatlar?acililanlar=1">Acil İlanlar</a>
-							</li>
-							<li>
-								<a href="/firsatlar?gununfirsatlari=1">Günün Fırsatları</a>
-							</li>
-							<li>
-								<a href="/firsatlar?enpopulerilanlar=1">En Popüler İlanlar</a>
-							</li>
-							<li>
-								<a href="/firsatlar?ensonilanlar=1">En Son İlanlar</a>
-							</li>
-							<li>
-								<a href="/firsatlar?fiyatidusenler=1">Fiyatı Düşenler</a>
-							</li>
-							<li>
-								<a href="/saticilar?enguvenilirsaticilar=1">En Güvenilir Satıcılar</a>
-							</li>
-							
-							
-							
-							<li>
-								<a href="/saticilar?enyakindaolansaticilar=1">En Yakında Olan Satıcılar</a>
-							</li>
+						<li>
+							<a href="/saticilar?enyakindaolansaticilar=1">En Yakında Olan Satıcılar</a>
+						</li>
 
-						</ul>
+					</ul>
 
-					</div>
-
-			
+				</div>
 
 			</div>
 
@@ -173,11 +165,8 @@
 
 					</div>
 
-
-					
-
 					<%= render "kullanicipaneli2" %>
-					
+
 					<br class="visible-sm visible-xs visible-md">
 					<br class="visible-sm visible-xs visible-md">
 
@@ -186,12 +175,12 @@
 
 						<div style="">
 
-							<div class="panel panel-info">
+							<div class="panel panel-success">
 
 								<div class="panel-heading">
 									<h3 style="text-align: center;" class="panel-title"><%= @title %></h3>
 								</div>
-								
+
 								<% if @enyakindakisaticilar!=true %>
 
 								<div class="panel-body">
@@ -425,20 +414,18 @@
 									</div>
 
 								</div>
-								
+
 								<% else%>
-								
-								
+
 								<div class="panel-body">
-									
-									Bu Hizmet Çok Yakında Sizlerle Olacak...<br><br>
+
+									Bu Hizmet Çok Yakında Sizlerle Olacak...
+									<br>
+									<br>
 									Anlayışınız için teşekkür ederiz.
-									
-								</div>	
-								
-								
-								
-								
+
+								</div>
+
 								<% end %>
 
 							</div>

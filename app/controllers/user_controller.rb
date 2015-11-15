@@ -60,11 +60,7 @@ class UserController < ApplicationController
   end
 
   def member
-
-    if current_user==nil
-      redirect_to "/"
-    end
-
+   
     if params[:profilim]!=nil
       @sekme=".profilim"
     elsif params[:ilanver]!=nil
@@ -78,13 +74,21 @@ class UserController < ApplicationController
     elsif params[:mesajlarim]!=nil
       @sekme=".mesajlarim"
     elsif params[:tekliflerim]!=nil
-      @sekme=".tekliflerim"
+      @sekme=".tekliflerim"    
     elsif params[:inceledigimilanlar]!=nil
       @sekme=".inceledigimilanlar"
     elsif params[:hesapayarlari]!=nil
-      @sekme=".hesapayarlari"
+      @sekme=".hesapayarlari"   
     else
       @sekme=".profilim"
+    end
+    
+    @other_user=User.find_by_username(params[:username])
+    
+    if @other_user == nil 
+      raise ActionController::RoutingError.new('Not Found') 
+    elsif  current_user != @other_user
+        render 'member2'  
     end
 
   end
@@ -99,5 +103,8 @@ class UserController < ApplicationController
     reset_session
     redirect_to "/"
   end
+  
+  
+ 
 
 end
