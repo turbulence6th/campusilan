@@ -1,10 +1,8 @@
 class Verification < ApplicationMailer
-
-  default :from => "e194239@metu.edu.tr"
-  
-  def verify
+  def verify(to)
     @greeting = "Hi"
 
-    mail to: "turbulence6th@gmail.com"
+    mail :to => to, :subject => 'Kayıt'
+    #Verification.verify('turbulence6th@gmail.com').deliver
   end
 end
