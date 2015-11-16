@@ -81,15 +81,14 @@
 
 		<style>
 			body {
-			background-color:#F0F7F7;
-			
-		}
-		
+				background-color: #F0F7F7;
+			}
+
 			@media screen and (min-width: 1200px) {
 				body {
 					padding-left: 50px;
-				padding-right: 50px;
-				padding-top:30px;
+					padding-right: 50px;
+					padding-top: 30px;
 				}
 			}
 
@@ -166,59 +165,52 @@
 								<div style="display: none" id="login-alert"
 								class="alert alert-danger col-sm-12"></div>
 
-								<form  action="login" method="POST" id="loginform" class="form-horizontal" role="form">
+								<%= form_tag '/login', :id => 'loginform', :class => 'form-horizontal', :role => 'form' do  %>
 
-									<div style="z-index:1;margin-bottom: 25px" class="input-group">
-										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-user"></i></span>
-										<input
-										id="login-username" type="text" class="form-control"
-										name="username" value="" placeholder="Kullanıcı Adı">
+								<div style="z-index:1;margin-bottom: 25px" class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-user"></i></span>
+									<%= text_field_tag :username, nil, :class => 'form-control', :placeholder => 'Kullanıcı Adı', :id => 'login-username'%>
+								</div>
+
+								<div style="z-index:1;margin-bottom: 25px" class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-lock"></i></span>
+									<%= password_field_tag :password, nil, :class => 'form-control', :placeholder => 'Şifre',
+									:id => 'login-password', :type => 'password'%>
+								</div>
+
+								<div class="input-group">
+									<div class="checkbox">
+										<label for="checkbox"> <%= check_box_tag :remember, 1, false, :id => 'login-remember', :type => 'checkbox' %>
+											Beni hatırla </label>
 									</div>
+								</div>
 
-									<div style="z-index:1;margin-bottom: 25px" class="input-group">
-										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-lock"></i></span>
-										<input
-										id="login-password" type="password" class="form-control"
-										name="password" placeholder="Şifre">
+								<div style="margin-top: 10px" class="form-group">
+									<!-- Button -->
+
+									<div class="col-sm-12 col-xs-12 controls">
+
+										<input style="width:100%;" id="btn-login" class="visible-xs btn btn-success" type="submit" value="Login" />
+
+										<input  id="btn-login" class="hidden-xs btn btn-success" type="submit" value="Login" />
+
+										<br class="visible-xs">
+										<br class="visible-xs">
+
+										<a style="width:100%;" id="btn-fblogin" href="#" class="visible-xs btn btn-primary">Facebook İle Bağlan</a>
+										<br class="visible-xs">
+										<a  id="btn-fblogin" href="#" class="hidden-xs btn btn-primary">Facebook İle Bağlan
+										<br class="visible-xs">
+										<br class="visible-xs">
+										<a style="width:100%;" id="register" href="/kayitol"
+										class="visible-xs btn btn-primary">Kayıt Ol</a> <a id="register" href="/kayitol"
+										style="float: right;" class="hidden-xs btn btn-primary">Kayıt Ol</a>
 									</div>
+								</div>
 
-									<div class="input-group">
-										<div class="checkbox">
-											<label>
-												<input id="login-remember" type="checkbox"
-												name="remember" value="1">
-												Beni Hatırla </label>
-										</div>
-									</div>
-
-									<div style="margin-top: 10px" class="form-group">
-										<!-- Button -->
-
-										<div class="col-sm-12 col-xs-12 controls">
-
-											<input style="width:100%;" id="btn-login" class="visible-xs btn btn-success" type="submit" value="Login" />
-
-											<input  id="btn-login" class="hidden-xs btn btn-success" type="submit" value="Login" />
-
-											<br class="visible-xs">
-											<br class="visible-xs">
-
-											<a style="width:100%;" id="btn-fblogin" href="#" class="visible-xs btn btn-primary">Facebook İle Bağlan</a>
-											<br class="visible-xs">
-											<a  id="btn-fblogin" href="#" class="hidden-xs btn btn-primary">Facebook İle Bağlan
-											<br class="visible-xs">
-											<br class="visible-xs">
-											<a style="width:100%;" id="register" href="/kayitol"
-											class="visible-xs btn btn-primary">Kayıt Ol</a> <a id="register" href="/kayitol"
-											style="float: right;" class="hidden-xs btn btn-primary">Kayıt Ol</a>
-										</div>
-									</div>
-
-									<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden" >
-
-								</form>
+								<% end %>
 
 							</div>
 						</div>
