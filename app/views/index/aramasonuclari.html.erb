@@ -89,17 +89,23 @@
 		<!-- end of plugins  -->
 
 		<style>
-			body {
-				padding-left: 50px;
-				padding-right: 50px;
-				padding-top: 30px;
-				padding-bottom:30px;
-				background-color:#F0F7F7;
+			@media screen and (min-width: 1200px) {
+				body {
+					padding-left: 50px;
+					padding-right: 50px;
+					padding-top: 30px;
+				}
 			}
-			
-			.smartmenus li{
-				
-				z-index:3;
+
+			@media screen and (max-width: 1200px) {
+				body {
+					padding: 10px;
+				}
+			}
+
+			.smartmenus li {
+
+				z-index: 3;
 			}
 		</style>
 
@@ -162,7 +168,7 @@
 		</div>
 
 		</form>
-		
+
 		<br>
 
 		<form action="">
@@ -250,90 +256,76 @@
 		</div>
 
 		<div class="panel-body">
-		0-50 TL
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;0-50 TL<br>
 		</div>
 		<div class="panel-body">
-		50-100 TL
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;50-100 TL<br>
 		</div>
 		<div class="panel-body">
-		100-250 TL
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;100-250 TL<br>
 		</div>
 		<div class="panel-body">
-		250-500 TL
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;250-500 TL<br>
 		</div>
 		<div class="panel-body">
-		500-1000 TL
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;500-1000 TL<br>
 		</div>
-		</div>
-
-		<div class="panel panel-danger">
-		<div class="panel-heading">
-		<h3 class="panel-title">Panel title</h3>
-		</div>
-
-		<div class="panel-body">
-		This is a Basic panel
 		</div>
 
 		</form>
 
 		</div>
 
-		</div>
-
 		<div class="col-lg-9 col-md-9">
 
 		<div style="margin-top: 10px;" id="products" class="row list-group">
-		<div class="item  col-xs-4 col-lg-4">
+		<div class="item  col-sm-6 col-xs-6 col-lg-4">
 		<div class="thumbnail">
 		<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
 		<div class="caption">
 		<h4 class="group inner list-group-item-heading">
 		Product title</h4>
 		<p class="group inner list-group-item-text">
-		Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-		sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+		Deneme deneme deneme</p>
 		<div style="margin-top:25px;" class="row">
 		<div class="col-xs-12 col-md-6">
 		<p class="lead">
 		$21.000</p>
 		</div>
 		<div class="col-xs-12 col-md-6">
-		<a class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
+		<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
 		</div>
 		</div>
 		</div>
 		</div>
 		</div>
-		<div class="item  col-xs-4 col-lg-4">
+		<div class="item  col-sm-6 col-xs-6 col-lg-4">
 		<div class="thumbnail">
 		<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
 		<div class="caption">
 		<h4 class="group inner list-group-item-heading">
 		Product title</h4>
 		<p class="group inner list-group-item-text">
-		Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-		sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+		Deneme deneme deneme</p>
 		<div style="margin-top:25px;" class="row">
 		<div class="col-xs-12 col-md-6">
 		<p class="lead">
 		$21.000</p>
 		</div>
 		<div class="col-xs-12 col-md-6">
-		<a class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
+		<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
 		</div>
 		</div>
 		</div>
 		</div>
 		</div>
-		<div class="item  col-xs-4 col-lg-4">
+		<div class="item  col-sm-6 col-xs-6 col-lg-4">
 		<div class="thumbnail">
 		<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
 		<div class="caption">
 		<h4 class="group inner list-group-item-heading"> Product title</h4>
 		<p class="group inner list-group-item-text">
-		Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-		sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+		Deneme deneme deneme
 		</p>
 		<div style="margin-top:25px;" class="row">
 		<div class="col-xs-12 col-md-6">
@@ -342,20 +334,19 @@
 		</p>
 		</div>
 		<div class="col-xs-12 col-md-6">
-		<a class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
+		<a style="float:right;"class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
 		</div>
 		</div>
 		</div>
 		</div>
 		</div>
-		<div class="item  col-xs-4 col-lg-4">
+		<div class="item  col-sm-6 col-xs-6 col-lg-4">
 		<div class="thumbnail">
 		<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
 		<div class="caption">
 		<h4 class="group inner list-group-item-heading"> Product title</h4>
 		<p class="group inner list-group-item-text">
-		Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-		sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+		Deneme deneme deneme
 		</p>
 		<div style="margin-top:25px;" class="row">
 		<div class="col-xs-12 col-md-6">
@@ -364,20 +355,40 @@
 		</p>
 		</div>
 		<div class="col-xs-12 col-md-6">
-		<a class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
+		<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
 		</div>
 		</div>
 		</div>
 		</div>
 		</div>
-		<div class="item  col-xs-4 col-lg-4">
+		<div class="item  col-sm-6 col-xs-6 col-lg-4">
+		<div class="thumbnail">
+		<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+		<div class="caption">
+		<h4 class="group inner list-group-item-heading"> Product title</h4>
+		<p class="group inner list-group-item-text">
+		Deneme deneme deneme
+		</p>
+		<div style="margin-top:25px;" class="row">
+		<div class="col-xs-12 col-md-6">
+		<p class="lead">
+		$21.000
+		</p>
+		</div>
+		<div class="col-xs-12 col-md-6">
+			<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		<div class="item  col-sm-6 col-xs-6 col-lg-4">
 			<div class="thumbnail">
 				<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
 				<div class="caption">
 					<h4 class="group inner list-group-item-heading"> Product title</h4>
 					<p class="group inner list-group-item-text">
-						Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-						sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+						Deneme deneme deneme
 					</p>
 					<div style="margin-top:25px;" class="row">
 						<div class="col-xs-12 col-md-6">
@@ -386,29 +397,7 @@
 							</p>
 						</div>
 						<div class="col-xs-12 col-md-6">
-							<a class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="item  col-xs-4 col-lg-4">
-			<div class="thumbnail">
-				<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-				<div class="caption">
-					<h4 class="group inner list-group-item-heading"> Product title</h4>
-					<p class="group inner list-group-item-text">
-						Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-						sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-					</p>
-					<div style="margin-top:25px;" class="row">
-						<div class="col-xs-12 col-md-6">
-							<p class="lead">
-								$21.000
-							</p>
-						</div>
-						<div class="col-xs-12 col-md-6">
-							<a class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
+							<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
 						</div>
 					</div>
 				</div>

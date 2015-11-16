@@ -102,7 +102,7 @@
 </div>
 
 <!-- Kullanıcı paneli js kısmı -->
-<% if request.env['PATH_INFO']=="/uye/" + current_user.username %>
+<% if current_user!= nil && request.env['PATH_INFO']=="/uye/" + current_user.username %>
 <script>
 	$(function() {
 		$(".degiskenpanel").hide();

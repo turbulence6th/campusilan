@@ -65,10 +65,18 @@
 		
 		
 		
-			body {
-				padding: 50px;
-				background-color:#F0F7F7;
-				
+			@media screen and (min-width: 1200px) {
+				body {
+					padding-left: 50px;
+				padding-right: 50px;
+				padding-top:30px;
+				}
+			}
+
+			@media screen and (max-width: 1200px) {
+				body {
+					padding: 10px;
+				}
 			}
 
 			.nav-pills > li > a:hover {
