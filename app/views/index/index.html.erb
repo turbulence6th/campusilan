@@ -92,14 +92,20 @@
 		<!-- end of plugins  -->
 
 		<style>
-		
-		
-		body {
+			.ustkisim  {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: -ms-flexbox;
+				display: flex;
+			}
+
 			
-			background-color:#F0F7F7;
-		}
-		
-		
+
+			body {
+
+				background-color: #F0F7F7;
+			}
+
 			.dropdown-submenu {
 				position: relative;
 			}
@@ -113,8 +119,8 @@
 			@media screen and (min-width: 1200px) {
 				body {
 					padding-left: 50px;
-				padding-right: 50px;
-				padding-top:30px;
+					padding-right: 50px;
+					padding-top: 30px;
 				}
 			}
 
@@ -162,9 +168,9 @@
 
 			<!-- Geniş ekranda gözüken div -->
 
-			<div class="row hidden-md hidden-sm hidden-xs">
+			<div class="ustkisim row hidden-md hidden-sm hidden-xs">
 
-				<aside style="float: left; width: 250px; line-height: 20%;"
+				<aside style="float: left;  line-height: 20%;"
 				class="col-lg-3 col-md-3 col-sm-3 hidden-xs ">
 
 					<div class="panel panel-primary">
@@ -216,8 +222,6 @@
 						<div class="panel-body">
 							<a href="/kategoriler/ozelders">Özel Ders </a>
 						</div>
-
-						
 
 						<div class="panel-heading">
 							<h3 class="panel-title">Fırsatlar Paneli</h3>
@@ -371,34 +375,14 @@
 
 					</div>
 
-					<div class="row">
-
-						<div style="margin: 10px; padding-left: 10px; padding-right: 10px;">
-
-							<div class="panel panel-success">
-
-								<div class="panel-heading">
-									<h3 style="text-align: center;" class="panel-title">Duyurular</h3>
-								</div>
-
-								<div class="panel-body">
-									Duyurular buraya gelecek...
-								</div>
-
-							</div>
-
-						</div>
-
-					</div>
-
 				</div>
 
-				<div style="margin-left: 20px;"
+				<div style=""
 				class="col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm">
 
-					<div class="row">
+					
 
-						<div class="panel panel-info">
+						<div style="height:775px;" class="panel panel-info">
 
 							<div class="panel-heading">
 								<h3 style="text-align: center;" class="panel-title">Günün
@@ -528,35 +512,69 @@
 
 						</div>
 
+					
+
+				</div>
+
+			</div>
+
+			<div class="row visible-lg">
+				<div class="col-lg-6">
+
+					<div style="height:250px; padding-left: 10px; padding-right: 10px;">
+
+						<div class="panel panel-success">
+
+							<div class="panel-heading">
+								<h3 style="text-align: center;" class="panel-title">Duyurular</h3>
+							</div>
+
+							<div class="panel-body">
+								Duyurular buraya gelecek
+								<br>
+								....
+								<br>
+								....
+								<br>
+								....
+								<br>
+								....
+								<br>
+								....
+								<br>
+							</div>
+
+						</div>
+
 					</div>
 
-					<div class="row">
+				</div>
 
-						<div style="margin: 10px; padding-left: 10px; padding-right: 10px;">
+				<div class="col-lg-6">
 
-							<div class="panel panel-info">
+					<div style="height:250px;padding-left: 10px; padding-right: 10px;">
 
-								<div class="panel-heading">
-									<h3 style="text-align: center;" class="panel-title">Ekstra
-									Alan</h3>
-								</div>
+						<div class="panel panel-info">
 
-								<div class="panel-body">
+							<div class="panel-heading">
+								<h3 style="text-align: center;" class="panel-title">Ekstra
+								Alan</h3>
+							</div>
 
-									Kafana göre bir şey ekle...
-									<br>
-									....
-									<br>
-									....
-									<br>
-									....
-									<br>
-									....
-									<br>
-									....
-									<br>
+							<div class="panel-body">
 
-								</div>
+								Kafana göre bir şey ekle...
+								<br>
+								....
+								<br>
+								....
+								<br>
+								....
+								<br>
+								....
+								<br>
+								....
+								<br>
 
 							</div>
 
@@ -624,8 +642,6 @@
 							<a href="/kategoriler/ozelders">Özel Ders </a>
 						</div>
 
-						
-
 						<div class="panel-heading">
 							<h3 class="panel-title">Fırsatlar Paneli</h3>
 						</div>
@@ -685,7 +701,6 @@
 				<aside style="float: left; line-height: 20%; width: 30%;"
 				class="col-md-3 col-sm-3 hidden-xs hidden-lg hidden-md">
 
-					
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<h3 class="panel-title">Kategoriler</h3>
@@ -734,8 +749,6 @@
 						<div class="panel-body">
 							<a href="/kategoriler/ozelders">Özel Ders </a>
 						</div>
-
-						
 
 						<div class="panel-heading">
 							<h3 class="panel-title">Fırsatlar Paneli</h3>
@@ -788,9 +801,6 @@
 						</div>
 
 					</div>
-					
-					
-					
 
 				</aside>
 
@@ -798,43 +808,41 @@
 
 					<div class="row">
 
-						
+						<div id="myCarousel2" class="carousel slide">
+							<!-- Carousel indicators -->
+							<ol class="carousel-indicators">
+								<li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+								<li data-target="#myCarousel2" data-slide-to="1"></li>
+								<li data-target="#myCarousel2" data-slide-to="2"></li>
+							</ol>
 
-							<div id="myCarousel2" class="carousel slide">
-								<!-- Carousel indicators -->
-								<ol class="carousel-indicators">
-									<li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
-									<li data-target="#myCarousel2" data-slide-to="1"></li>
-									<li data-target="#myCarousel2" data-slide-to="2"></li>
-								</ol>
-
-								<!-- Carousel items -->
-								<div class="carousel-inner">
-									<div class="item active">
-										<img src="resources/images/cat-demo.jpg" alt="First slide">
-										<div class="carousel-caption">
-											This Caption 1
-										</div>
-									</div>
-									<div class="item">
-										<img src="resources/images/cat-demo.jpg" alt="Second slide">
-										<div class="carousel-caption">
-											This Caption 2
-										</div>
-									</div>
-									<div class="item">
-										<img src="resources/images/cat-demo.jpg" alt="Third slide">
-										<div class="carousel-caption">
-											This Caption 3
-										</div>
+							<!-- Carousel items -->
+							<div class="carousel-inner">
+								<div class="item active">
+									<img src="resources/images/cat-demo.jpg" alt="First slide">
+									<div class="carousel-caption">
+										This Caption 1
 									</div>
 								</div>
-								<!-- Carousel nav -->
-								<a class="carousel-control left" href="#myCarousel2"
-								data-slide="prev">&lsaquo;</a><a class="carousel-control right"
-								href="#myCarousel2" data-slide="next">&rsaquo;</a>
+								<div class="item">
+									<img src="resources/images/cat-demo.jpg" alt="Second slide">
+									<div class="carousel-caption">
+										This Caption 2
+									</div>
+								</div>
+								<div class="item">
+									<img src="resources/images/cat-demo.jpg" alt="Third slide">
+									<div class="carousel-caption">
+										This Caption 3
+									</div>
+								</div>
 							</div>
-						
+							<!-- Carousel nav -->
+							<a class="carousel-control left" href="#myCarousel2"
+							data-slide="prev">&lsaquo;</a><a class="carousel-control right"
+							href="#myCarousel2" data-slide="next">&rsaquo;</a>
+						</div>
+
 					</div>
 
 					<div style="margin-left:20px; margin-top:40px;"  class="hidden-md hidden-sm row">
@@ -843,18 +851,16 @@
 						<button href="/uye" style="margin-right:10px;"   type="button" class="col-xs-3 btn btn-info">
 							Üye Bilgileri
 						</button>
-						
+
 						<% end %>
-						
+
 						<button href="/kategoriler" style="margin-right:10px;" type="button" class="col-xs-4  btn btn-info">
 							Kategoriler
-						</button> 
+						</button>
 
 						<button type="button" class="col-xs-4  btn btn-info">
 							Fırsatlar
-						</button>  
-						
-						
+						</button>
 
 					</div>
 
@@ -1123,7 +1129,7 @@
 
 			<div class="row">
 
-				<div class="hidden-xs" style="margin-bottom: 0px; margin-top: 25px;">
+				<div class="hidden-xs" style="margin-bottom: 0px; margin-top: -25px;">
 
 					<div class="panel panel-info">
 
