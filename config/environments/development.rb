@@ -49,5 +49,7 @@ Rails.application.configure do
     :authentication       => "plain",
     :enable_starttls_auto => true
   }
+  
+  Paperclip.options[:command_path] = "/usr/local/bin/"
 
 end

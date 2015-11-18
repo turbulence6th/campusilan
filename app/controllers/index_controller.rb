@@ -11,7 +11,19 @@ class IndexController < ApplicationController
   def satis_alis
       
     
-   end 
+  end
+  
+  def insert_image
+    @image = Image.new
+  end 
+  
+  def insert_image_post
+    @image = Image.new(params.require(:image).permit(:imagefile))
+    current_user.image = @image if @image.save
+    
+    
+    redirect_to '/insert_image'
+  end 
 
  
 

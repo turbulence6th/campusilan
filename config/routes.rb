@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   get 'firsatlar' => 'advert#firsatlar'
   get 'uye/:username' => 'user#member'
   
+  get 'insert_image' => 'index#insert_image'
+  post 'insert_image' => 'index#insert_image_post'
   
  
   
