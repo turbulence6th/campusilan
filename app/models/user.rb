@@ -69,4 +69,6 @@ class User < ActiveRecord::Base
   
   has_one :image, :as => :imageable
   
+  before_create :addImage
+  
 end

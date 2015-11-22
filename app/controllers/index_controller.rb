@@ -4,13 +4,11 @@ class IndexController < ApplicationController
 
   helper_method :current_user
   def index
-
-
+    
   end
   
   def satis_alis
       
-    
   end
   
   def insert_image
@@ -19,12 +17,8 @@ class IndexController < ApplicationController
   
   def insert_image_post
     @image = Image.new(params.require(:image).permit(:imagefile))
-    current_user.image = @image if @image.save
-    
-    
+    current_user.image = @image
     redirect_to '/insert_image'
   end 
-
- 
 
 end
