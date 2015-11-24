@@ -1,55 +1,24 @@
 class IndexController < ApplicationController
-  
+
   layout false
+
+  helper_method :current_user
   def index
-
-    @user = User.find_by_id(session[:user_id])
-
-  end
-
-  def firsatlar
-
-    @user=User.find_by_id(session[:user_id])
-
-    if params[:acililanlar]!=nil
-
-      @title="Acil İlanlar"
-
-      @ilanlar=[]
-
-    elsif params[:gununfirsatlari]!=nil
-
-      @title="Günün Fırsatları"
-
-      @ilanlar=[]
-
-    elsif params[:ensonilanlar]!=nil
-
-      @title="En Son İlanlar"
-
-      @ilanlar=[]
-
-    elsif params[:enpopulerilanlar]!=nil
-
-      @title="En Popüler İlanlar"
-
-      @ilanlar=[]
-
-    elsif params[:fiyatidusenler]!=nil
-
-      @title="Fiyatı Düşenler"
-
-      @ilanlar=[]
-
-    else
-
-      @title="Acil İlanlar"
-
-      @ilanlar=[]
-
-    end
-
+    
   end
   
+  def satis_alis
+      
+  end
+  
+  def insert_image
+    @image = Image.new
+  end 
+  
+  def insert_image_post
+    @image = Image.new(params.require(:image).permit(:imagefile))
+    current_user.image = @image
+    redirect_to '/insert_image'
+  end 
 
 end

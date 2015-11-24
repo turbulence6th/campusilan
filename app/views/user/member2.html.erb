@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<title>Campus İlan</title>
+		<%= csrf_meta_tags %>
+		<%= javascript_tag "window._token = '#{form_authenticity_token}';" %>
+		<meta charset="utf-8">
+
+		<META http-equiv=content-type content=text/html;charset=iso-8859-9>
+		<META http-equiv=content-type content=text/html;charset=windows-1254>
+		<META http-equiv=content-type content=text/html;charset=x-mac-turkish>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Bootstrap -->
+		<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+
+		<!--  jquery & jquery ui import -->
+
+		<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+		<link rel="stylesheet"
+		href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+		<script
+		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
+		queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page
+		via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/
+		html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/
+		respond.min.js"></script>
+		<![endif]-->
+
+		<!--plugins: -->
+
+		<!-- Respond Menu -->
+
+		<link rel="stylesheet"
+		href="/resources/plugins/Respond-Menu/css/styles.css">
+		<!--[if IE]> <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+		<link href="/resources/css/searchbox.css" rel="stylesheet"
+		type="text/css" />
+
+		<!-- Smart Menus plugin -->
+
+		<!-- jQuery import -->
+		<script src="/resources/plugins/smartmenus/libs/jquery/jquery.js"
+		type="text/javascript"></script>
+
+		<script>
+			var smartmenus = jQuery.noConflict();
+		</script>
+
+		<!-- SmartMenus jQuery plugin -->
+		<script src="/resources/plugins/smartmenus/jquery.smartmenus.js"
+		type="text/javascript"></script>
+
+		<!-- SmartMenus core CSS (required) -->
+		<link href="/resources/plugins/smartmenus/css/sm-core-css.css"
+		rel="stylesheet" type="text/css" />
+		<!-- "sm-blue" menu theme (optional, you can use your own CSS, too) -->
+		<link href="/resources/plugins/smartmenus/css/sm-blue/sm-blue.css"
+		rel="stylesheet" type="text/css" />
+
+		<!-- SmartMenus jQuery init -->
+		<script>
+			smartmenus(document).ready(function() {
+				smartmenus('#main-menu').smartmenus();
+			});
+		</script>
+
+		<!-- Cssmenu-3 -->
+
+		<link rel="stylesheet" href="/resources/plugins/cssmenu-3/styles.css">
+		<script src="/resources/plugins/cssmenu-3/script.js"></script>
+
+		<!-- user panel -->
+
+		<link rel="stylesheet" href="/resources/css/userpanel.css">
+
+		<!-- Hesap Ayarları formu -->
+
+		<link rel="stylesheet" href="/resources/assets/form-basic.css">
+
+		<!-- Tekliflerim kısmı-->
+
+		<link rel="stylesheet" href="/resources/css/teklifler.css">
+
+		<!-- end of plugins  -->
+
+		<style>
+			#cssmenu {
+
+				width: 100%;
+			}
+
+			@media screen and (min-width: 1200px) {
+				body {
+					padding-left: 50px;
+				padding-right: 50px;
+				padding-top:30px;
+				}
+			}
+
+			@media screen and (max-width: 1200px) {
+				body {
+					padding: 10px;
+				}
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class="container-fluid">
+
+			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+			<!-- Include all compiled plugins (below), or include individual files
+			as needed -->
+			<script src="/resources/js/bootstrap.min.js"></script>
+
+			<div class="row">
+				<header>
+
+					<a href="#" id="logo"></a>
+
+					<nav class="respondmenunav">
+
+						<a class="hidden-xs hidden-sm" href="#" id="menu-icon"></a>
+
+						<ul class="respondmenuul">
+
+							<li style="margin-top:-15px;" class="respondmenuli">
+								<p style="float:right;">
+									Hoşgeldin; <%= current_user.username %>
+								</p>
+								<br>
+
+								<p  style="clear: both;float:right;">
+									<a href="/uye/<%= current_user.username %>"> Profilim </a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/logout"> Çıkış Yap </a>
+
+								</p>
+
+							</li>
+
+						</ul>
+
+					</nav>
+
+				</header>
+
+			</div>
+
+			<div class="row" style="margin-top: 75px;">
+
+				<%= render "smartmenus" %>
+
+			</div>
+
+			<div class="visible-lg row" style="padding-bottom: 20px;">
+
+				<div class="row ustpaneller" style="padding:20px;">
+
+					<aside class="col-lg-3 col-md-3 col-sm-3 hidden-xs ">
+
+						<div class="row">
+
+							<%= render "kullanicipaneli"   %>
+
+						</div>
+
+						<div class="row">
+
+							<div class="panel panel-danger">
+
+								<div class="panel-heading">
+									<h3 style="text-align: center;" class="panel-title">Popüler
+									İlanlar</h3>
+								</div>
+
+								<div class="panel-body">
+
+									<div class="row">
+										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="/resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h4>Thumbnail label</h4>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="/resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h4>Thumbnail label</h4>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="/resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h4>Thumbnail label</h4>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="/resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h4>Thumbnail label</h4>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="row">
+
+							<div class="panel panel-danger">
+
+								<div class="panel-heading">
+									<h3 style="text-align: center;" class="panel-title">Günün Fırsatları</h3>
+								</div>
+
+								<div class="panel-body">
+
+									<div class="row">
+										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="/resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h4>Thumbnail label</h4>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="/resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h4>Thumbnail label</h4>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="/resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h4>Thumbnail label</h4>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
+
+											<div class="thumbnail">
+												<a href="#"> <img src="/resources/images/cat-demo.jpg"
+												alt="cat demo photo"> </img> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h4>Thumbnail label</h4>
+												<p>
+													Some sample text.
+												</p>
+
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</aside>
+
+					<div class="col-lg-9 col-md-9 col-sm-9">
+
+						<div class="row">
+
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+								<div style="margin-top:0px;" class=" uyepaneli col-xs-12 col-sm-12 col-md-12 col-lg-12  toppad">
+
+									<div class="panelortak profilim panel panel-info">
+										<div class="panel-heading">
+											<h3 class="panel-title"><%= @other_user.name+" "+ @other_user.surname %> </h3>
+										</div>
+										<div class="panel-body">
+											<div class="row">
+												<div class="col-md-3 col-lg-3 " align="center">
+													<img alt="User Pic"
+													src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png"
+													class="img-circle img-responsive">
+												</div>
+
+												<!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+												<dl>
+												<dt>DEPARTMENT:</dt>
+												<dd>Administrator</dd>
+												<dt>HIRE DATE</dt>
+												<dd>11/12/2013</dd>
+												<dt>DATE OF BIRTH</dt>
+												<dd>11/12/2013</dd>
+												<dt>GENDER</dt>
+												<dd>Male</dd>
+												</dl>
+												</div>-->
+												<div class=" col-md-9 col-lg-9 ">
+													<table class="table table-user-information">
+														<tbody>
+
+															<% if @other_user.university!=nil %>
+
+															<tr>
+																<td>Üniversite:</td>
+																<td><%= @other_user.university.name %></td>
+															</tr>
+
+															<% end %>
+
+															<tr>
+																<td>Ne zaman katıldı?:</td>
+																<td><% created_at = @other_user.created_at %>
+																<%= created_at.day %> <%= months[created_at.month] %> <%= created_at.year %> </td>
+															</tr>
+
+															<% if @other_user.birthday!=nil %>
+
+															<tr>
+																<td>Doğum Tarihi:</td>
+																<td><% birthday = @other_user.birthday %>
+																<%= birthday.day %> <%= months[birthday.month] %> <%= birthday.year %> </td>
+															</tr>
+
+															<% end %>
+
+															<tr>
+															<tr>
+																<td>Cinsiyet</td>
+																<td><%= gender[@other_user.gender] %></td>
+															</tr>
+
+															<% if @other_user.address!=nil %>
+
+															<tr>
+																<td>Açık adres</td>
+																<td><%= @other_user.address %></td>
+															</tr>
+
+															<% end %>
+
+															<tr>
+																<td>E-posta</td>
+																<td><%= @other_user.email %></td>
+															</tr>
+															<td>Telefon Numarası</td>
+															<td><%= @other_user.phone %></td>
+
+															</tr>
+
+														</tbody>
+													</table>
+
+													<a href="#" class="col-lg-5 btn btn-primary">İlan Ver</a>
+													<a href="#" style="margin-left: 20px;"
+													class="col-lg-5 btn btn-primary">Önceki İlanlarım</a>
+												</div>
+											</div>
+										</div>
+										<div class="panel-footer">
+											<a data-original-title="Mesajlarım"
+											data-toggle="tooltip" type="button"
+											class="btn btn-sm btn-primary"><i
+											class="glyphicon glyphicon-envelope"></i></a><span
+											class="pull-right"> <a href="edit.html"
+												data-original-title="Profili Düzenle" data-toggle="tooltip"
+												type="button" class="btn btn-sm btn-warning"><i
+												class="glyphicon glyphicon-edit"></i></a> <a
+												data-original-title="Hesabımı Sil"
+												data-toggle="tooltip" type="button"
+												class="btn btn-sm btn-danger"><i
+												class="glyphicon glyphicon-remove"></i></a> </span>
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="row">
+
+							<div
+							style="margin: 10px; padding-left: 10px; padding-right: 10px;">
+
+								<div class="panel panel-warning">
+
+									<div class="panel-heading">
+										<h3 style="text-align: center;" class="panel-title">Bu Kullanıcının Son Alışları</h3>
+									</div>
+
+									<div class="panel-body">
+
+										<div class="row">
+											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
+
+												<div class="thumbnail">
+													<a href="#"> <img src="/resources/images/cat-demo.jpg"
+													alt="cat demo photo"> </img> </a>
+
+												</div>
+
+												<div class="caption">
+
+													<h3>Thumbnail label</h3>
+													<p>
+														Some sample text.
+													</p>
+
+												</div>
+
+											</div>
+
+											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
+
+												<div class="thumbnail">
+													<a href="#"> <img src="/resources/images/cat-demo.jpg"
+													alt="cat demo photo"> </img> </a>
+
+												</div>
+
+												<div class="caption">
+
+													<h3>Thumbnail label</h3>
+													<p>
+														Some sample text.
+													</p>
+
+												</div>
+
+											</div>
+
+											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
+
+												<div class="thumbnail">
+													<a href="#"> <img src="/resources/images/cat-demo.jpg"
+													alt="cat demo photo"> </img> </a>
+
+												</div>
+
+												<div class="caption">
+
+													<h3>Thumbnail label</h3>
+													<p>
+														Some sample text.
+													</p>
+
+												</div>
+
+											</div>
+
+											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
+
+												<div class="thumbnail">
+													<a href="#"> <img src="/resources/images/cat-demo.jpg"
+													alt="cat demo photo"> </img> </a>
+
+												</div>
+
+												<div class="caption">
+
+													<h3>Thumbnail label</h3>
+													<p>
+														Some sample text.
+													</p>
+
+												</div>
+
+											</div>
+
+											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
+
+												<div class="thumbnail">
+													<a href="#"> <img src="/resources/images/cat-demo.jpg"
+													alt="cat demo photo"> </img> </a>
+
+												</div>
+
+												<div class="caption">
+
+													<h3>Thumbnail label</h3>
+													<p>
+														Some sample text.
+													</p>
+
+												</div>
+
+											</div>
+
+											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
+
+												<div class="thumbnail">
+													<a href="#"> <img src="/resources/images/cat-demo.jpg"
+													alt="cat demo photo"> </img> </a>
+
+												</div>
+
+												<div class="caption">
+
+													<h3>Thumbnail label</h3>
+													<p>
+														Some sample text.
+													</p>
+
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="row">
+
+								<div
+								style="margin: 25px; padding-left: 10px; padding-right: 10px;">
+
+									<div class="panel panel-warning">
+
+										<div class="panel-heading">
+											<h3 style="text-align: center;" class="panel-title">Bu Kullanıcının Son Satışları</h3>
+										</div>
+
+										<div class="panel-body">
+
+											<div class="row">
+												<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
+
+													<div class="thumbnail">
+														<a href="#"> <img src="/resources/images/cat-demo.jpg"
+														alt="cat demo photo"> </img> </a>
+
+													</div>
+
+													<div class="caption">
+
+														<h3>Thumbnail label</h3>
+														<p>
+															Some sample text.
+														</p>
+
+													</div>
+
+												</div>
+
+												<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
+
+													<div class="thumbnail">
+														<a href="#"> <img src="/resources/images/cat-demo.jpg"
+														alt="cat demo photo"> </img> </a>
+
+													</div>
+
+													<div class="caption">
+
+														<h3>Thumbnail label</h3>
+														<p>
+															Some sample text.
+														</p>
+
+													</div>
+
+												</div>
+
+												<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
+
+													<div class="thumbnail">
+														<a href="#"> <img src="/resources/images/cat-demo.jpg"
+														alt="cat demo photo"> </img> </a>
+
+													</div>
+
+													<div class="caption">
+
+														<h3>Thumbnail label</h3>
+														<p>
+															Some sample text.
+														</p>
+
+													</div>
+
+												</div>
+
+												<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
+
+													<div class="thumbnail">
+														<a href="#"> <img src="/resources/images/cat-demo.jpg"
+														alt="cat demo photo"> </img> </a>
+
+													</div>
+
+													<div class="caption">
+
+														<h3>Thumbnail label</h3>
+														<p>
+															Some sample text.
+														</p>
+
+													</div>
+
+												</div>
+
+												<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
+
+													<div class="thumbnail">
+														<a href="#"> <img src="/resources/images/cat-demo.jpg"
+														alt="cat demo photo"> </img> </a>
+
+													</div>
+
+													<div class="caption">
+
+														<h3>Thumbnail label</h3>
+														<p>
+															Some sample text.
+														</p>
+
+													</div>
+
+												</div>
+
+												<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
+
+													<div class="thumbnail">
+														<a href="#"> <img src="/resources/images/cat-demo.jpg"
+														alt="cat demo photo"> </img> </a>
+
+													</div>
+
+													<div class="caption">
+
+														<h3>Thumbnail label</h3>
+														<p>
+															Some sample text.
+														</p>
+
+													</div>
+
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<%= render "kullanicipaneli2"%>
+
+			<div style="padding:20px;" class="visible-xs visible-sm visible-md row">
+
+				<div class=" uyepaneli col-xs-12 col-sm-12 col-md-12 col-lg-12 toppad">
+
+					<div class="panelortak profilim panel panel-info">
+						<div class="panel-heading">
+							<h3 class="panel-title"><%= @other_user.name+" "+ @other_user.surname %> </h3>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-3 col-lg-3 " align="center">
+									<img alt="User Pic"
+									src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png"
+									class="img-circle img-responsive">
+								</div>
+
+								<!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+								<dl>
+								<dt>DEPARTMENT:</dt>
+								<dd>Administrator</dd>
+								<dt>HIRE DATE</dt>
+								<dd>11/12/2013</dd>
+								<dt>DATE OF BIRTH</dt>
+								<dd>11/12/2013</dd>
+								<dt>GENDER</dt>
+								<dd>Male</dd>
+								</dl>
+								</div>-->
+								<div class=" col-md-9 col-lg-9 ">
+									<table class="table table-user-information">
+										<tbody>
+
+											<% if @other_user.university!=nil %>
+
+											<tr>
+												<td>Üniversite:</td>
+												<td><%= @other_user.university.name %></td>
+											</tr>
+
+											<% end %>
+
+											<tr>
+												<td>Ne zaman katıldı?:</td>
+												<td><% created_at = @other_user.created_at %>
+												<%= created_at.day %> <%= months[created_at.month] %> <%= created_at.year %> </td>
+											</tr>
+
+											<% if @other_user.birthday!=nil %>
+
+											<tr>
+												<td>Doğum Tarihi:</td>
+												<td><% birthday = @other_user.birthday %>
+												<%= birthday.day %> <%= months[birthday.month] %> <%= birthday.year %> </td>
+											</tr>
+
+											<% end %>
+
+											<tr>
+											<tr>
+												<td>Cinsiyet</td>
+												<td><%= gender[@other_user.gender] %></td>
+											</tr>
+
+											<% if @other_user.address!=nil %>
+
+											<tr>
+												<td>Açık adres</td>
+												<td><%= @other_user.address %></td>
+											</tr>
+
+											<% end %>
+
+											<tr>
+												<td>E-posta</td>
+												<td><%= @other_user.email %></td>
+											</tr>
+											<td>Telefon Numarası</td>
+											<td><%= @other_user.phone %></td>
+
+											</tr>
+
+										</tbody>
+									</table>
+
+									<a href="#" class="col-lg-5 btn btn-primary">İlan Ver</a>
+									<a href="#" style="margin-left: 20px;"
+									class="col-lg-5 btn btn-primary">Önceki İlanlarım</a>
+								</div>
+							</div>
+						</div>
+						<div class="panel-footer">
+							<a data-original-title="Mesajlarım"
+							data-toggle="tooltip" type="button"
+							class="btn btn-sm btn-primary"><i
+							class="glyphicon glyphicon-envelope"></i></a><span
+							class="pull-right"> <a href="edit.html"
+								data-original-title="Profili Düzenle" data-toggle="tooltip"
+								type="button" class="btn btn-sm btn-warning"><i
+								class="glyphicon glyphicon-edit"></i></a> <a
+								data-original-title="Hesabımı Sil"
+								data-toggle="tooltip" type="button"
+								class="btn btn-sm btn-danger"><i
+								class="glyphicon glyphicon-remove"></i></a> </span>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="hidden-lg hidden-row" style="padding: 20px;">
+
+				<div style="">
+
+					<div class="panel panel-warning">
+
+						<div class="panel-heading">
+							<h3 style="text-align: center;" class="panel-title">Bu Kullanıcının Son Alışları</h3>
+						</div>
+
+						<div class="row">
+
+							<div class="panel-body">
+
+								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+									<div class="thumbnail">
+										<a href="#"> <img src="/resources/images/cat-demo.jpg"
+										alt="cat demo photo"> </img> </a>
+
+									</div>
+
+									<div class="caption">
+
+										<h3>Thumbnail label</h3>
+										<p>
+											Some sample text.
+										</p>
+
+									</div>
+
+								</div>
+
+								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+									<div class="thumbnail">
+										<a href="#"> <img src="/resources/images/cat-demo.jpg"
+										alt="cat demo photo"> </img> </a>
+
+									</div>
+
+									<div class="caption">
+
+										<h3>Thumbnail label</h3>
+										<p>
+											Some sample text.
+										</p>
+
+									</div>
+
+								</div>
+
+								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+									<div class="thumbnail">
+										<a href="#"> <img src="/resources/images/cat-demo.jpg"
+										alt="cat demo photo"> </img> </a>
+
+									</div>
+
+									<div class="caption">
+
+										<h3>Thumbnail label</h3>
+										<p>
+											Some sample text.
+										</p>
+
+									</div>
+
+								</div>
+
+								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+									<div class="thumbnail">
+										<a href="#"> <img src="/resources/images/cat-demo.jpg"
+										alt="cat demo photo"> </img> </a>
+
+									</div>
+
+									<div class="caption">
+
+										<h3>Thumbnail label</h3>
+										<p>
+											Some sample text.
+										</p>
+
+									</div>
+
+								</div>
+
+								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+									<div class="thumbnail">
+										<a href="#"> <img src="/resources/images/cat-demo.jpg"
+										alt="cat demo photo"> </img> </a>
+
+									</div>
+
+									<div class="caption">
+
+										<h3>Thumbnail label</h3>
+										<p>
+											Some sample text.
+										</p>
+
+									</div>
+
+								</div>
+
+								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+									<div class="thumbnail">
+										<a href="#"> <img src="/resources/images/cat-demo.jpg"
+										alt="cat demo photo"> </img> </a>
+
+									</div>
+
+									<div class="caption">
+
+										<h3>Thumbnail label</h3>
+										<p>
+											Some sample text.
+										</p>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="hidden-lg hidden-row" style="padding: 20px;">
+
+				<div style="">
+
+					<div class="panel panel-warning">
+
+						<div class="panel-heading">
+							<h3 style="text-align: center;" class="panel-title">Bu Kullanıcının Son Satışları</h3>
+						</div>
+
+						<div class="row">
+
+							<div class="panel-body">
+
+								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+									<div class="thumbnail">
+										<a href="#"> <img src="/resources/images/cat-demo.jpg"
+										alt="cat demo photo"> </img> </a>
+
+									</div>
+
+									<div class="caption">
+
+										<h3>Thumbnail label</h3>
+										<p>
+											Some sample text.
+										</p>
+
+									</div>
+
+								</div>
+
+								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+									<div class="thumbnail">
+										<a href="#"> <img src="/resources/images/cat-demo.jpg"
+										alt="cat demo photo"> </img> </a>
+
+									</div>
+
+									<div class="caption">
+
+										<h3>Thumbnail label</h3>
+										<p>
+											Some sample text.
+										</p>
+
+									</div>
+
+								</div>
+
+								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+									<div class="thumbnail">
+										<a href="#"> <img src="/resources/images/cat-demo.jpg"
+										alt="cat demo photo"> </img> </a>
+
+									</div>
+
+									<div class="caption">
+
+										<h3>Thumbnail label</h3>
+										<p>
+											Some sample text.
+										</p>
+
+									</div>
+
+								</div>
+
+								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+									<div class="thumbnail">
+										<a href="#"> <img src="/resources/images/cat-demo.jpg"
+										alt="cat demo photo"> </img> </a>
+
+									</div>
+
+									<div class="caption">
+
+										<h3>Thumbnail label</h3>
+										<p>
+											Some sample text.
+										</p>
+
+									</div>
+
+								</div>
+
+								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+									<div class="thumbnail">
+										<a href="#"> <img src="/resources/images/cat-demo.jpg"
+										alt="cat demo photo"> </img> </a>
+
+									</div>
+
+									<div class="caption">
+
+										<h3>Thumbnail label</h3>
+										<p>
+											Some sample text.
+										</p>
+
+									</div>
+
+								</div>
+
+								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+									<div class="thumbnail">
+										<a href="#"> <img src="/resources/images/cat-demo.jpg"
+										alt="cat demo photo"> </img> </a>
+
+									</div>
+
+									<div class="caption">
+
+										<h3>Thumbnail label</h3>
+										<p>
+											Some sample text.
+										</p>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="row" style="padding: 20px;">
+
+				<div style="">
+
+					<div class="panel panel-success">
+
+						<div class="panel-heading">
+							<h3 style="text-align: center;" class="panel-title">Bu Kullanıcının Arkadaş Listesi</h3>
+						</div>
+
+						<div class="row">
+
+							<div class="panel-body">
+
+								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+									<div class="thumbnail">
+										<a href="#"> <img src="/resources/images/cat-demo.jpg"
+										alt="cat demo photo"> </img> </a>
+
+									</div>
+
+									<div class="caption">
+
+										<h3>Thumbnail label</h3>
+										<p>
+											Some sample text.
+										</p>
+
+									</div>
+
+								</div>
+
+								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+									<div class="thumbnail">
+										<a href="#"> <img src="/resources/images/cat-demo.jpg"
+										alt="cat demo photo"> </img> </a>
+
+									</div>
+
+									<div class="caption">
+
+										<h3>Thumbnail label</h3>
+										<p>
+											Some sample text.
+										</p>
+
+									</div>
+
+								</div>
+
+								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+									<div class="thumbnail">
+										<a href="#"> <img src="/resources/images/cat-demo.jpg"
+										alt="cat demo photo"> </img> </a>
+
+									</div>
+
+									<div class="caption">
+
+										<h3>Thumbnail label</h3>
+										<p>
+											Some sample text.
+										</p>
+
+									</div>
+
+								</div>
+
+								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+									<div class="thumbnail">
+										<a href="#"> <img src="/resources/images/cat-demo.jpg"
+										alt="cat demo photo"> </img> </a>
+
+									</div>
+
+									<div class="caption">
+
+										<h3>Thumbnail label</h3>
+										<p>
+											Some sample text.
+										</p>
+
+									</div>
+
+								</div>
+
+								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+									<div class="thumbnail">
+										<a href="#"> <img src="/resources/images/cat-demo.jpg"
+										alt="cat demo photo"> </img> </a>
+
+									</div>
+
+									<div class="caption">
+
+										<h3>Thumbnail label</h3>
+										<p>
+											Some sample text.
+										</p>
+
+									</div>
+
+								</div>
+
+								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+
+									<div class="thumbnail">
+										<a href="#"> <img src="/resources/images/cat-demo.jpg"
+										alt="cat demo photo"> </img> </a>
+
+									</div>
+
+									<div class="caption">
+
+										<h3>Thumbnail label</h3>
+										<p>
+											Some sample text.
+										</p>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<%= render "footer" %>
+
+			</div>
+
+		</div>
+
+		<!-- plugins -->
+
+		<!--  user panelinin js kodları -->
+
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+		<script
+		src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+		<script>
+			var $uyepaneljs = jQuery.noConflict();
+		</script>
+
+		<script type="text/javascript">
+			$uyepaneljs(function() {
+				var panels = $uyepaneljs('.user-infos');
+				var panelsButton = $uyepaneljs('.dropdown-user');
+				panels.hide();
+
+				//Click dropdown
+				panelsButton.click(function() {
+					//get data-for attribute
+					var dataFor = $uyepaneljs(this).attr('data-for');
+					var idFor = $uyepaneljs(dataFor);
+
+					//current button
+					var currentButton = $(this);
+					idFor.slideToggle(400, function() {
+						//Completed slidetoggle
+						if (idFor.is(':visible')) {
+							currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
+						} else {
+							currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
+						}
+					})
+				});
+
+				$uyepaneljs('[data-toggle="tooltip"]').tooltip();
+
+				$uyepaneljs('button').click(function(e) {
+					e.preventDefault();
+					alert("This is a demo.\n :-)");
+				});
+			});
+		</script>
+
+	</body>
+
+</html>

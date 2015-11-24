@@ -4,7 +4,7 @@
 
 	<head>
 
-		<title>Odtü İlan</title>
+		<title>Campus İlan</title>
 		<%= csrf_meta_tags %>
 		<%= javascript_tag "window._token = '#{form_authenticity_token}';" %>
 		<meta charset="utf-8">
@@ -85,15 +85,23 @@
 			.kullanicialert .alert {
 				color: black;
 			}
-
+			
 			body {
-				padding: 50px;
+			background-color:#F0F7F7;
+			
+		}
+
+			@media screen and (min-width: 1200px) {
+				body {
+					padding-left: 50px;
+				padding-right: 50px;
+				padding-top:30px;
+				}
 			}
 
-			@media screen and (max-width: 992px) {
-				.termsconditions {
-					margin-left: 5%;
-					margin-right: 5%;
+			@media screen and (max-width: 1200px) {
+				body {
+					padding: 10px;
 				}
 			}
 		</style>
@@ -139,513 +147,561 @@
 
 					<div class="row">
 
-						<form id="kayitformu" action="register" method="POST"
-						onsubmit="return vsubmit();">
+						<%= form_for @user, :url => 'register' , :method => :post , :html => {
+						:onsubmit => 'return vsubmit();',
+						:id => 'kayitformu'
+						} do |t| %>
 
-							<div class="kayitpaneli container-page">
-								<div class="col-md-6 col-lg-6 ">
-									<h3 class="dark-grey">Kayıt Ol</h3>
+						<div class="kayitpaneli container-page">
+							<div class="col-md-6 col-lg-6 ">
+								<h3 class="dark-grey">Kayıt Ol</h3>
 
-									<div class="row">
+								<div class="row">
 
-										<div class="form-group col-lg-6 col-md-6 ">
-											<label>Ad</label>
-											<input maxlength="20"
-											onkeyup="namevalidator()" type="text" name="name"
-											class="form-control" id="name">
+									<div class="form-group col-lg-6 col-md-6 ">
+										<label>Ad</label>
+										<%= t.text_field :name, :class => 'form-control', :onkeyup => 'namevalidator()', :maxlength => 20 %>
+									</div>
+
+									<div class="col-lg-6 col-md-6">
+
+										<div style="display: none;"
+										class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  namekarakterhatasi label label-danger">
+											Lütfen
+											sadece harf giriniz.
 										</div>
-
-										<div class="col-lg-6 col-md-6">
-
-											<div style="display: none;"
-											class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  namekarakterhatasi label label-danger">
-												Lütfen
-												sadece harf giriniz.
-											</div>
-
-										</div>
-
-										<div class="form-group col-lg-6 col-md-6">
-											<label>Soyad</label>
-											<input maxlength="20"
-											onkeyup="surnamevalidator()" type="text" name="surname"
-											class="form-control" id="surname">
+										<div style="display: none;"
+										class="ol-sm-12 col-xs-12 hidden-lg hidden-md form-group  nameboskalamaz label label-danger">
+											İsim
+											kısmı boş kalamaz.
 										</div>
 
 									</div>
 
-									<div class="row adsoyadhata">
-
-										<div class="col-lg-6 col-md-6 namekarakter">
-
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group  namekarakterhatasi label label-danger">
-												Lütfen
-												sadece harf giriniz.
-											</div>
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 form-group  nameboskalamaz label label-danger">
-												İsim
-												kısmı boş kalamaz.
-											</div>
-
-										</div>
-
-										<div class="col-lg-6 col-md-6 surnamekarakter">
-
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group  surnamekarakterhatasi label label-danger">
-												Lütfen
-												sadece harf giriniz.
-											</div>
-
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 form-group  surnameboskalamaz label label-danger">
-												Soyad
-												kısmı boş kalamaz.
-											</div>
-
-										</div>
-
+									<div class="form-group col-lg-6 col-md-6">
+										<label>Soyad</label>
+										<%= t.text_field :surname, :class => 'form-control', :onkeyup => 'surnamevalidator()', :maxlength => 20 %>
 									</div>
-
-									<div class="row">
-
-										<div id="" class="form-group col-lg-12 col-md-12">
-											<label>Kullanıcı Adı</label>&nbsp;&nbsp;
-											<input maxlength="15"
-											onkeyup="usernamevalidation()" type="text" name="username"
-											class="form-control" id="username">
-										</div>
-
-									</div>
-
-									<div class="row">
-										<div class="col-lg-6 col-md-6">
-
-											<div style="display: none;"
-											class="col-xs-12 col-sm-12 hidden-lg hidden-md form-group  usernameerror label label-danger ">
-												Kullanıcı
-												adı kullanılıyor! Başka bir kullanıcı adı deneyin.
-											</div>
-
-											<div style="display: none;"
-											class="col-xs-12 col-sm-12 hidden-lg hidden-md form-group  usernamevalid label label-success">
-												Bu
-												kullanıcı adını alabilirsiniz.
-											</div>
-
-											<div style="display: none;"
-											class="col-xs-12 col-sm-12 hidden-lg hidden-md form-group uctenkucukhata label label-danger">
-												Kullanıcı
-												adı 3 karakterden küçük olamaz.
-											</div>
-
-											<div style="display: none;"
-											class="col-xs-12 col-sm-12 hidden-lg hidden-md form-group  karakterhatasi label label-danger">
-												Lütfen
-												sadece harfleri(a-z),rakamları ve "." "-" "_" karakterlerini
-												giriniz.
-											</div>
-
-											<div style="display: none;"
-											class="col-xs-12 col-sm-12 hidden-lg hidden-md form-group  usernameboskalamaz label label-danger">
-												Kullanıcı
-												adı boş kalamaz!!
-											</div>
-
-										</div>
-
-									</div>
-
-									<div class="usernamecheck">
-
-										<div class="row col-lg-12 col-md-12 kullanicialert">
-
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group  usernameerror label label-danger ">
-												Kullanıcı
-												adı kullanılıyor! Başka bir kullanıcı adı deneyin.
-											</div>
-
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group  usernamevalid label label-success">
-												Bu
-												kullanıcı adını alabilirsiniz.
-											</div>
-
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group uctenkucukhata label label-danger">
-												Kullanıcı
-												adı 3 karakterden küçük olamaz.
-											</div>
-
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group  karakterhatasi label label-danger">
-												Lütfen
-												sadece harfleri(a-z),rakamları ve "." "-" "_" karakterlerini
-												giriniz.
-											</div>
-
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group  usernameboskalamaz label label-danger">
-												Kullanıcı
-												adı boş kalamaz!!
-											</div>
-
-										</div>
-
-									</div>
-
-									<div class="row">
-
-										<div class="form-group col-lg-6 col-md-6">
-											<label>Şifre</label>
-											<input onkeyup="passwordcheck()"
-											maxlength="20" type="password" name="password"
-											class="form-control" id="password">
-										</div>
-
-										<div class="col-lg-6 col-md-6">
-											<div style="display: none;"
-											class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group altidankucukhata label label-danger">
-												Şifre
-												6 karakterden az olamaz.
-											</div>
-
-											<div style="display: none;"
-											class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  passkarakterhatasi label label-danger">
-												Şifrenizde büyük harf,küçük harf ve
-												<br>
-												sayı kullanmak
-												zorundasınız.
-											</div>
-											<div style="display: none;"
-											class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  passboskalamaz label label-danger">
-												Şifre
-												kısmı boş kalamaz.
-											</div>
-
-										</div>
-
-										<div class="form-group col-lg-6 col-md-6">
-											<label>Şifreyi tekrar et</label>
-											<input
-											onkeyup="passwordrepeatcheck()" maxlength="20"
-											type="password" name="password2" class="form-control"
-											id="password2">
-
-										</div>
-
-										<div class="col-lg-6 col-md-6 passkarakterrepeat">
-
-											<div style="display: none;"
-											class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  passkarakterhatasirepeat label label-danger">
-												Şifreniz eşleşmiyor
-
-											</div>
-
-										</div>
-
-									</div>
-
-									<div class="row passcheck">
-
-										<div class="col-lg-6 col-md-6 passkarakter">
-
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  passkarakterhatasi label label-danger">
-												Şifrenizde büyük harf,küçük harf ve
-												<br>
-												sayı kullanmak
-												zorundasınız.
-											</div>
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  passboskalamaz label label-danger">
-												Şifre
-												kısmı boş kalamaz.
-											</div>
-
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group altidankucukhata label label-danger">
-												Şifre
-												6 karakterden az olamaz.
-											</div>
-
-										</div>
-
-										<div class="col-lg-6 col-md-6 passkarakterrepeat">
-
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group  passkarakterhatasirepeat label label-danger">
-												Şifreniz eşleşmiyor
-
-											</div>
-
-										</div>
-
-									</div>
-
-									<div class="row">
-
-										<div class="form-group col-lg-6 col-md-6">
-											<label>Eposta Adresi</label>
-											<input onkeyup="emailcheck()"
-											maxlength="40" type="text" name="email" class="form-control"
-											id="email">
-										</div>
-
-										<div class="col-lg-6 col-md-6">
-
-											<div style="display: none;"
-											class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  emailkarakterhatasi label label-danger">
-												Geçersiz E-mail
-											</div>
-
-											<div style="display: none;"
-											class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  emailboskalamaz label label-danger">
-												E-mail
-												kısmı boş kalamaz.
-											</div>
-											<div style="display: none;"
-											class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  emailerror label label-danger ">
-												E-mail
-												kullanılıyor! Başka bir E-mail deneyin.
-											</div>
-
-											<div style="display: none;"
-											class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  emailvalid label label-success">
-												Bu
-												E-mail adresini kullanabilirsiniz.
-											</div>
-
-										</div>
-
-										<div class="form-group col-lg-6 col-md-6">
-											<label>Eposta Adresini tekrarla</label>
-											<input onkeyup="emailrepeatcheck()" maxlength="40"
-											type="text" name="email2" class="form-control" id="email2">
-										</div>
-										
-										
-	
-
-									</div>
-									
-									
-									
-									
-									
-									
-									
-
-									<div class="row emailcheck">
-
-										<div class="col-lg-6 col-md-6 emailkarakter">
-
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  emailkarakterhatasi label label-danger">
-												Geçersiz E-mail
-											</div>
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  emailboskalamaz label label-danger">
-												E-mail
-												kısmı boş kalamaz.
-											</div>
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  emailerror label label-danger ">
-												E-mail
-												kullanılıyor! Başka bir E-mail deneyin.
-											</div>
-
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  emailvalid label label-success">
-												Bu
-												E-mail adresini kullanabilirsiniz.
-											</div>
-
-										</div>
-
-										<div class="col-lg-6 col-md-6 emailkarakterrepeat">
-
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group  emailkarakterhatasirepeat label label-danger">
-												E-mail
-												eşleşmiyor
-											</div>
-
-										</div>
-
-									</div>
-
-									<div class="row">
-
-										<div class="form-group col-lg-2  ">
-											<label>Telefon</label>
-											<input type="text" onkeyup="phonecheck()" placeholder="123" maxlength="3"
-											name="phone" class="form-control" id="phone">
-										</div>
-
-										<div class="form-group col-lg-4  ">
-											<label><br></label>
-											
-											<input type="text" onkeyup="phonecheck()" placeholder="1234567" maxlength="7"
-											name="phone2" class="form-control" id="phone2">
-										</div>
-
-										<div class="col-lg-12 col-md-12 hidden-lg hidden-md phonekarakter">
-
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group  phonekarakterhatasi label label-danger">
-												Hatalı veya eksik telefon numarası
-											</div>
-
-										</div>
-										<br class="phonekarakterhatasi visible-xs visible-sm">
-
-										<div class="form-group col-lg-6 col-md-6">
-											<label>Cinsiyet</label>
-											<select class="form-control"
-											name="gender">
-												<option value="male">Erkek</option>
-												<option value="female">Kadın</option>
-												<option value="other">Diğer</option>
-
-											</select>
-
-										</div>
-
-										<div class="col-lg-6 col-md-6 hidden-xs hidden-sm phonekarakter">
-
-											<div style="display: none;"
-											class="col-lg-12 col-md-12 form-group  phonekarakterhatasi label label-danger">
-												Hatalı veya eksik telefon numarası
-											</div>
-
-										</div>
-
-									</div>
-
-									<div class="col-sm-6">
-										<input type="checkbox" class="checkbox" name="bulletin" />
-										Bültenimize kayıt
-										olmak ister misiniz?
-									</div>
-								</div>
-
-								<div class="visible-sm visible-xs">
-
-									<br>
-									<br>
-									<br>
-									<br>
 
 								</div>
 
-								<div style="" class=" col-lg-6 col-md-6 ">
+								<div class="row adsoyadhata">
 
-									<div style="overflow: auto; height: 400px;"
-									class="termsconditions row">
+									<div class="col-lg-6 col-md-6 namekarakter">
 
-										<h3 class="dark-grey">CAMPUS İLAN ÜYELİK SÖZLEŞMESİ</h3>
-
-1. Taraflar<br>
-
-a) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesinin faaliyetlerini yürüten ……………………………İstanbul adresinde mukim …………. A.Ş. (Bundan böyle ………. olarak anılacaktır).<br>
-
-b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine üye olan internet kullanıcısı (“Üye”)<br><br>
-
-2. Sözleşmenin Konusu<br>
-
-İşbu Sözleşme’nin konusu …………’nın sahip olduğu internet sitesi <a href="http://www.campusilan.com/">www.campusilan.com</a> ‘dan üyenin faydalanma şartlarının belirlenmesidir.<br><br>
-
-3. Tarafların Hak ve Yükümlülükleri<br>
-
-3.1. Üye, <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine üye olurken verdiği kişisel ve diğer sair bilgilerin kanunlar önünde doğru olduğunu, ……….’nın bu bilgilerin gerçeğe aykırılığı nedeniyle uğrayacağı tüm zararları aynen ve derhal tazmin edeceğini beyan ve taahhüt eder.<br>
-
-3.2. Üye, ………. tarafından kendisine verilmiş olan şifreyi başka kişi ya da kuruluşlara veremez, üyenin sözkonusu şifreyi kullanma hakkı bizzat kendisine aittir. Bu sebeple doğabilecek tüm sorumluluk ile üçüncü kişiler veya yetkili merciler tarafından …………’ya karşı ileri sürülebilecek tüm iddia ve taleplere karşı, …………’nın sözkonusu izinsiz kullanımdan kaynaklanan her türlü tazminat ve sair talep hakkı saklıdır.<br>
-
-3.3. Üye <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesini kullanırken yasal mevzuat hükümlerine riayet etmeyi ve bunları ihlal etmemeyi baştan kabul ve taahhüt eder. Aksi takdirde, doğacak tüm hukuki ve cezai yükümlülükler tamamen ve münhasıran üyeyi bağlayacaktır.<br>
-
-3.4. Üye, <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesini hiçbir şekilde kamu düzenini bozucu, genel ahlaka aykırı, başkalarını rahatsız ve taciz edici şekilde, yasalara aykırı bir amaç için, başkalarının fikri ve telif haklarına tecavüz edecek şekilde kullanamaz. Ayrıca, üye başkalarının hizmetleri kullanmasını önleyici veya zorlaştırıcı faaliyet (spam, virus, truva atı, vb.) ve işlemlerde bulunamaz.<br>
-
-3.5. <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesinde üyeler tarafından beyan edilen, yazılan, kullanılan fikir ve düşünceler, tamamen üyelerin kendi kişisel görüşleridir ve görüş sahibini bağlar. Bu görüş ve düşüncelerin …………’yla hiçbir ilgi ve bağlantısı yoktur. …………’nın üyenin beyan edeceği fikir ve görüşler nedeniyle üçüncü kişilerin uğrayabileceği zararlardan ve üçüncü kişilerin beyan edeceği fikir ve görüşler nedeniyle üyenin uğrayabileceği zararlardan dolayı herhangi bir sorumluluğu bulunmamaktadır.<br>
-
-3.6. …………, üye verilerinin yetkisiz kişilerce okunmasından ve üye yazılım ve verilerine gelebilecek zararlardan dolayı sorumlu olmayacaktır. Üye, www…………..com internet sitesinin kullanılmasından dolayı uğrayabileceği herhangi bir zarar yüzünden …………dan tazminat talep etmemeyi peşinen kabul etmiştir.<br>
-
-3.7. Üye, diğer internet kullanıcılarının yazılımlarına ve verilerine izinsiz olarak ulaşmamayı veya bunları kullanmamayı kabul etmiştir. Aksi takdirde, bundan doğacak hukuki ve cezai sorumluluklar tamamen üyeye aittir.<br>
-
-3.8. İşbu üyelik sözleşmesi içerisinde sayılan maddelerden bir ya da birkaçını ihlal eden üye işbu ihlal nedeniyle cezai ve hukuki olarak şahsen sorumlu olup, …………’yı bu ihlallerin hukuki ve cezai sonuçlarından ari tutacaktır. Ayrıca; işbu ihlal nedeniyle, olayın hukuk alanına intikal ettirilmesi halinde, …………’nın üyeye karşı üyelik sözleşmesine uyulmamasından dolayı tazminat talebinde bulunma hakkı saklıdır.<br>
-3.9. …………’nın her zaman tek taraflı olarak gerektiğinde üyenin üyeliğini silme, müşteriye ait dosya, belge ve bilgileri silme hakkı vardır. Üye işbu tasarrufu önceden kabul eder. Bu durumda, …………’nın hiçbir sorumluluğu yoktur.<br>
-
-3.10. <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesi yazılım ve tasarımı ………… mülkiyetinde olup, bunlara ilişkin telif hakkı ve/veya diğer fikri mülkiyet hakları ilgili kanunlarca korunmakta olup, bunlar üye tarafından izinsiz kullanılamaz, iktisap edilemez ve değiştirilemez. Bu web sitesinde adı geçen başkaca şirketler ve ürünleri sahiplerinin ticari markalarıdır ve ayrıca fikri mülkiyet hakları kapsamında korunmaktadır.<br>
-
-3.11. ………… tarafından <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesinin iyileştirilmesi, geliştirilmesine yönelik olarak ve/veya yasal mevzuat çerçevesinde siteye erişmek için kullanılan İnternet servis sağlayıcısının adı ve Internet Protokol (IP) adresi, Siteye erişilen tarih ve saat, sitede bulunulan sırada erişilen sayfalar ve siteye doğrudan bağlanılmasını sağlayan Web sitesinin Internet adresi gibi birtakım bilgiler toplanabilir.<br>
-
- 
-
-3.12. …………, üyenin kişisel bilgilerini yasal bir zorunluluk olarak istendiğinde veya (a) yasal gereklere uygun hareket etmek veya …………ya tebliğ edilen yasal işlemlere uymak; (b) …………ve …………web sitesi ailesinin haklarını ve mülkiyetini korumak ve savunmak için gerekli olduğuna iyi niyetle kanaat getirdiği hallerde açıklayabilir.<br>
-
-3.13. …………web sitesinin virus ve benzeri amaçlı yazılımlardan arındırılmış olması için mevcut imkanlar dahilinde tedbir alınmıştır. Bunun yanında nihai güvenliğin sağlanması için kullanıcının, kendi virus koruma sistemini tedarik etmesi ve gerekli korunmayı sağlaması gerekmektedir. Bu bağlamda üye ………… web sitesi’ne girmesiyle, kendi yazılım ve işletim sistemlerinde oluşabilecek tüm hata ve bunların doğrudan yada dolaylı sonuçlarından kendisinin sorumlu olduğunu kabul etmiş sayılır.<br>
-
-3.14. …………, sitenin içeriğini dilediği zaman değiştirme, kullanıcılara sağlanan herhangi bir hizmeti değiştirme yada sona erdirme veya ………… web sitesi’nde kayıtlı kullanıcı bilgi ve verilerini silme hakkını saklı tutar.<br>
-
-3.15. …………, üyelik sözleşmesinin koşullarını hiçbir şekil ve surette ön ihbara ve/veya ihtara gerek kalmaksızın her zaman değiştirebilir, güncelleyebilir veya iptal edebilir. Değiştirilen, güncellenen yada yürürlükten kaldırılan her hüküm , yayın tarihinde tüm üyeler bakımından hüküm ifade edecektir.<br>
-
-3.16. Taraflar, …………’ya ait tüm bilgisayar kayıtlarının tek ve gerçek münhasır delil olarak, HUMK madde 287′ye uygun şekilde esas alınacağını ve söz konusu kayıtların bir delil sözleşmesi teşkil ettiği hususunu kabul ve beyan eder.<br>
-
-3.17. …………, iş bu üyelik sözleşmesi uyarınca, üyelerinin kendisinde kayıtlı elektronik posta adreslerine bilgilendirme mailleri ve cep telefonlarına bilgilendirme SMS’leri gönderme yetkisine sahip olmakla beraber, üye işbu üyelik sözleşmesini onaylamasıyla beraber bilgilendirme maillerinin elektronik posta adresine ve bilgilendirme SMS’lerinin cep telefonuna gönderilmesini kabul etmiş sayılacaktır.<br><br>
-
-4. Sözleşmenin Feshi<br>
-
-İşbu sözleşme üyenin üyeliğini iptal etmesi veya ………… tarafından üyeliğinin iptal edilmesine kadar yürürlükte kalacaktır. ………… üyenin üyelik sözleşmesinin herhangi bir hükmünü ihlal etmesi durumunda üyenin üyeliğini iptal ederek sözleşmeyi tek taraflı olarak feshedebilecektir.<br><br>
-
-5. İhtilaflerin Halli<br>
-
-İşbu sözleşmeye ilişkin ihtilaflerde İstanbul Mahkemeleri ve İcra Daireleri yetkilidir.<br><br>
-
-6. Yürürlük<br>
-
-Üyenin, üyelik kaydı yapması üyenin üyelik sözleşmesinde yer alan tüm maddeleri okuduğu ve üyelik sözleşmesinde yer alan maddeleri kabul ettiği anlamına gelir. İşbu Sözleşme üyenin üye olması anında akdedilmiş ve karşılıklı olarak yürürlülüğe girmiştir.<br>
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group  namekarakterhatasi label label-danger">
+											Lütfen
+											sadece harf giriniz.
+										</div>
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group  nameboskalamaz label label-danger">
+											İsim
+											kısmı boş kalamaz.
+										</div>
+										
 
 									</div>
+
+									<div class="col-lg-6 col-md-6 surnamekarakter">
+
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group  surnamekarakterhatasi label label-danger">
+											Lütfen
+											sadece harf giriniz.
+										</div>
+
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group  surnameboskalamaz label label-danger">
+											Soyad
+											kısmı boş kalamaz.
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="row">
+
+									<div id="" class="form-group col-lg-12 col-md-12">
+										<label>Kullanıcı Adı</label>&nbsp;&nbsp;
+
+										<%= t.text_field :username, :class => 'form-control', :onkeyup => 'usernamevalidation()', :maxlength => 15 %>
+
+									</div>
+
+								</div>
+
+								<div class="row">
+									<div class="col-lg-6 col-md-6">
+
+										<div style="display: none;"
+										class="col-xs-12 col-sm-12 hidden-lg hidden-md form-group  usernameerror label label-danger ">
+											Kullanıcı
+											adı kullanılıyor! Başka bir kullanıcı adı deneyin.
+										</div>
+
+										<div style="display: none;"
+										class="col-xs-12 col-sm-12 hidden-lg hidden-md form-group  usernamevalid label label-success">
+											Bu
+											kullanıcı adını alabilirsiniz.
+										</div>
+
+										<div style="display: none;"
+										class="col-xs-12 col-sm-12 hidden-lg hidden-md form-group uctenkucukhata label label-danger">
+											Kullanıcı
+											adı 3 karakterden küçük olamaz.
+										</div>
+
+										<div style="display: none;"
+										class="col-xs-12 col-sm-12 hidden-lg hidden-md form-group  karakterhatasi label label-danger">
+											Lütfen
+											sadece harfleri(a-z),rakamları ve "." "-" "_" karakterlerini
+											giriniz.
+										</div>
+
+										<div style="display: none;"
+										class="col-xs-12 col-sm-12 hidden-lg hidden-md form-group  usernameboskalamaz label label-danger">
+											Kullanıcı
+											adı boş kalamaz!!
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="usernamecheck">
+
+									<div class="row col-lg-12 col-md-12 kullanicialert">
+
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group  usernameerror label label-danger ">
+											Kullanıcı
+											adı kullanılıyor! Başka bir kullanıcı adı deneyin.
+										</div>
+
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group  usernamevalid label label-success">
+											Bu
+											kullanıcı adını alabilirsiniz.
+										</div>
+
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group uctenkucukhata label label-danger">
+											Kullanıcı
+											adı 3 karakterden küçük olamaz.
+										</div>
+
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group  karakterhatasi label label-danger">
+											Lütfen
+											sadece harfleri(a-z),rakamları ve "." "-" "_" karakterlerini
+											giriniz.
+										</div>
+
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group  usernameboskalamaz label label-danger">
+											Kullanıcı
+											adı boş kalamaz!!
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="row">
+
+									<div class="form-group col-lg-6 col-md-6">
+										<label>Şifre</label>
+
+										<%= t.password_field :password, :class => 'form-control', :onkeyup => 'passwordcheck()', :maxlength => 20 %>
+
+									</div>
+
+									<div class="col-lg-6 col-md-6">
+										<div style="display: none;"
+										class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group altidankucukhata label label-danger">
+											Şifre
+											6 karakterden az olamaz.
+										</div>
+
+										<div style="display: none;"
+										class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  passkarakterhatasi label label-danger">
+											Şifrenizde büyük harf,küçük harf ve
+											<br>
+											sayı kullanmak
+											zorundasınız.
+										</div>
+										<div style="display: none;"
+										class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  passboskalamaz label label-danger">
+											Şifre
+											kısmı boş kalamaz.
+										</div>
+
+									</div>
+
+									<div class="form-group col-lg-6 col-md-6">
+										<label>Şifreyi tekrar et</label>
+										<%= t.password_field :password_confirmation, :class => 'form-control', :onkeyup => 'passwordrepeatcheck()', :maxlength => 20 %>
+
+									</div>
+
+									<div class="col-lg-6 col-md-6 passkarakterrepeat">
+
+										<div style="display: none;"
+										class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  passkarakterhatasirepeat label label-danger">
+											Şifreniz eşleşmiyor
+
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="row passcheck">
+
+									<div class="col-lg-6 col-md-6 passkarakter">
+
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  passkarakterhatasi label label-danger">
+											Şifrenizde büyük harf,küçük harf ve
+											<br>
+											sayı kullanmak
+											zorundasınız.
+										</div>
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  passboskalamaz label label-danger">
+											Şifre
+											kısmı boş kalamaz.
+										</div>
+
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group altidankucukhata label label-danger">
+											Şifre
+											6 karakterden az olamaz.
+										</div>
+
+									</div>
+
+									<div class="col-lg-6 col-md-6 passkarakterrepeat">
+
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group  passkarakterhatasirepeat label label-danger">
+											Şifreniz eşleşmiyor
+
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="row">
+
+									<div class="form-group col-lg-6 col-md-6">
+										<label>Eposta Adresi</label>
+
+										<%= t.text_field :email, :class => 'form-control', :onkeyup => 'emailcheck()', :maxlength => 40 %>
+
+									</div>
+
+									<div class="col-lg-6 col-md-6">
+
+										<div style="display: none;"
+										class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  emailkarakterhatasi label label-danger">
+											Geçersiz E-mail
+										</div>
+
+										<div style="display: none;"
+										class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  emailboskalamaz label label-danger">
+											E-mail
+											kısmı boş kalamaz.
+										</div>
+										<div style="display: none;"
+										class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  emailerror label label-danger ">
+											E-mail
+											kullanılıyor! Başka bir E-mail deneyin.
+										</div>
+
+										<div style="display: none;"
+										class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  emailvalid label label-success">
+											Bu
+											E-mail adresini kullanabilirsiniz.
+										</div>
+										
+										<div style="display: none;"
+										class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  uniemailerror label label-danger ">
+											Lütfen üniversite E-mail adresinizi giriniz.
+										</div>
+
+									</div>
+
+									<div class="form-group col-lg-6 col-md-6">
+										<label>Eposta Adresini tekrarla</label>
+
+										<%= t.text_field :email_confirmation, :class => 'form-control', :onkeyup => 'emailrepeatcheck()', :maxlength => 40 %>
+
+									</div>
+
+								</div>
+
+								<div class="row emailcheck">
+
+									<div class="col-lg-6 col-md-6 emailkarakter">
+
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  emailkarakterhatasi label label-danger">
+											Geçersiz E-mail
+										</div>
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  emailboskalamaz label label-danger">
+											E-mail
+											kısmı boş kalamaz.
+										</div>
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  emailerror label label-danger ">
+											E-mail
+											kullanılıyor! Başka bir E-mail deneyin.
+										</div>
+
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  emailvalid label label-success">
+											Bu
+											E-mail adresini kullanabilirsiniz.
+										</div>
+										
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  uniemailerror label label-danger ">
+											Lütfen üniversite E-mail adresinizi giriniz.
+										</div>
+										
+										
+
+									</div>
+
+									<div class="col-lg-6 col-md-6 emailkarakterrepeat">
+
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group  emailkarakterhatasirepeat label label-danger">
+											E-mail
+											eşleşmiyor
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="row">
+
+									<div class="form-group col-lg-2  ">
+										<label>Telefon</label>
+										
+										<%= t.text_field :phone1, :class => 'form-control', :placeholder => '123' , :onkeyup => 'phonecheck()', :maxlength => 3 %>
+
+										
+									</div>
+
+									<div class="form-group col-lg-4  ">
+										<label>
+											<br>
+										</label>
+
+										
+										
+										<%= t.text_field :phone2, :class => 'form-control', :onkeyup => 'phonecheck()', :placeholder => '1234567' ,:maxlength => 7 %>
+										
+										
+									</div>
+
+									<div class="col-lg-12 col-md-12 hidden-lg hidden-md phonekarakter">
+
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group  phonekarakterhatasi label label-danger">
+											Hatalı veya eksik telefon numarası
+										</div>
+
+									</div>
+									<br class="phonekarakterhatasi visible-xs visible-sm">
+
+									<div class="form-group col-lg-6 col-md-6">
+										<label>Cinsiyet</label>
+										
+										
+										
+										<%= t.select :gender, [['Erkek', 'male'], ['Kadın', 'female'], ['Diğer','other']],{}, { :class => 'form-control' }  %>
+										
+
+									</div>
+
+									<div class="col-lg-6 col-md-6 hidden-xs hidden-sm phonekarakter">
+
+										<div style="display: none;"
+										class="col-lg-12 col-md-12 form-group  phonekarakterhatasi label label-danger">
+											Hatalı veya eksik telefon numarası
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="col-sm-6">
+									
+									
+									<%=  t.check_box :bulletin  %>
+									
+									
+									<br>
+									
+									Bültenimize kayıt olmak ister misiniz?
+								</div>
+							</div>
+
+							<div class="visible-sm visible-xs">
+
+								<br>
+								<br>
+								<br>
+								<br>
+
+							</div>
+
+							<div style="" class=" col-lg-6 col-md-6 ">
+
+								<div style="overflow: auto; height: 400px;"
+								class="termsconditions row">
+
+									<h3 class="dark-grey">CAMPUS İLAN ÜYELİK SÖZLEŞMESİ</h3>
+
+									1. Taraflar
 									<br>
 
-									<div class="row">
+									a) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesinin faaliyetlerini yürüten ……………………………İstanbul adresinde mukim …………. A.Ş. (Bundan böyle ………. olarak anılacaktır).
+									<br>
 
-										<button style="margin-left: 20px;" type="submit"
-										class="hidden-lg hidden-md col-lg-2  btn btn-primary">
-											Kayıt
-											Ol
-										</button>
-										<button type="submit"
-										class="hidden-sm hidden-xs col-lg-2 col-md-2 btn btn-primary">
-											Kayıt
-											Ol
-										</button>
-										<br class="visible-xs">
-										<br class="visible-xs">
+									b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine üye olan internet kullanıcısı (“Üye”)
+									<br>
+									<br>
 
-										<button onclick="loginyonlendir()" style="margin-left: 20px;" type="submit"
-										class="hidden-lg hidden-md btn btn-primary">
-											Zaten üye
-											misiniz?
-										</button>
+									2. Sözleşmenin Konusu
+									<br>
 
-										<button onclick="loginyonlendir()" style="margin-left: 20px;" type="submit"
-										class="col-lg-3 col-md-4 visible-lg visible-md btn btn-primary">
-											Zaten
-											üye misiniz?
-										</button>
+									İşbu Sözleşme’nin konusu …………’nın sahip olduğu internet sitesi <a href="http://www.campusilan.com/">www.campusilan.com</a> ‘dan üyenin faydalanma şartlarının belirlenmesidir.
+									<br>
+									<br>
 
-									</div>
+									3. Tarafların Hak ve Yükümlülükleri
+									<br>
+
+									3.1. Üye, <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine üye olurken verdiği kişisel ve diğer sair bilgilerin kanunlar önünde doğru olduğunu, ……….’nın bu bilgilerin gerçeğe aykırılığı nedeniyle uğrayacağı tüm zararları aynen ve derhal tazmin edeceğini beyan ve taahhüt eder.
+									<br>
+
+									3.2. Üye, ………. tarafından kendisine verilmiş olan şifreyi başka kişi ya da kuruluşlara veremez, üyenin sözkonusu şifreyi kullanma hakkı bizzat kendisine aittir. Bu sebeple doğabilecek tüm sorumluluk ile üçüncü kişiler veya yetkili merciler tarafından …………’ya karşı ileri sürülebilecek tüm iddia ve taleplere karşı, …………’nın sözkonusu izinsiz kullanımdan kaynaklanan her türlü tazminat ve sair talep hakkı saklıdır.
+									<br>
+
+									3.3. Üye <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesini kullanırken yasal mevzuat hükümlerine riayet etmeyi ve bunları ihlal etmemeyi baştan kabul ve taahhüt eder. Aksi takdirde, doğacak tüm hukuki ve cezai yükümlülükler tamamen ve münhasıran üyeyi bağlayacaktır.
+									<br>
+
+									3.4. Üye, <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesini hiçbir şekilde kamu düzenini bozucu, genel ahlaka aykırı, başkalarını rahatsız ve taciz edici şekilde, yasalara aykırı bir amaç için, başkalarının fikri ve telif haklarına tecavüz edecek şekilde kullanamaz. Ayrıca, üye başkalarının hizmetleri kullanmasını önleyici veya zorlaştırıcı faaliyet (spam, virus, truva atı, vb.) ve işlemlerde bulunamaz.
+									<br>
+
+									3.5. <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesinde üyeler tarafından beyan edilen, yazılan, kullanılan fikir ve düşünceler, tamamen üyelerin kendi kişisel görüşleridir ve görüş sahibini bağlar. Bu görüş ve düşüncelerin …………’yla hiçbir ilgi ve bağlantısı yoktur. …………’nın üyenin beyan edeceği fikir ve görüşler nedeniyle üçüncü kişilerin uğrayabileceği zararlardan ve üçüncü kişilerin beyan edeceği fikir ve görüşler nedeniyle üyenin uğrayabileceği zararlardan dolayı herhangi bir sorumluluğu bulunmamaktadır.
+									<br>
+
+									3.6. …………, üye verilerinin yetkisiz kişilerce okunmasından ve üye yazılım ve verilerine gelebilecek zararlardan dolayı sorumlu olmayacaktır. Üye, www…………..com internet sitesinin kullanılmasından dolayı uğrayabileceği herhangi bir zarar yüzünden …………dan tazminat talep etmemeyi peşinen kabul etmiştir.
+									<br>
+
+									3.7. Üye, diğer internet kullanıcılarının yazılımlarına ve verilerine izinsiz olarak ulaşmamayı veya bunları kullanmamayı kabul etmiştir. Aksi takdirde, bundan doğacak hukuki ve cezai sorumluluklar tamamen üyeye aittir.
+									<br>
+
+									3.8. İşbu üyelik sözleşmesi içerisinde sayılan maddelerden bir ya da birkaçını ihlal eden üye işbu ihlal nedeniyle cezai ve hukuki olarak şahsen sorumlu olup, …………’yı bu ihlallerin hukuki ve cezai sonuçlarından ari tutacaktır. Ayrıca; işbu ihlal nedeniyle, olayın hukuk alanına intikal ettirilmesi halinde, …………’nın üyeye karşı üyelik sözleşmesine uyulmamasından dolayı tazminat talebinde bulunma hakkı saklıdır.
+									<br>
+									3.9. …………’nın her zaman tek taraflı olarak gerektiğinde üyenin üyeliğini silme, müşteriye ait dosya, belge ve bilgileri silme hakkı vardır. Üye işbu tasarrufu önceden kabul eder. Bu durumda, …………’nın hiçbir sorumluluğu yoktur.
+									<br>
+
+									3.10. <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesi yazılım ve tasarımı ………… mülkiyetinde olup, bunlara ilişkin telif hakkı ve/veya diğer fikri mülkiyet hakları ilgili kanunlarca korunmakta olup, bunlar üye tarafından izinsiz kullanılamaz, iktisap edilemez ve değiştirilemez. Bu web sitesinde adı geçen başkaca şirketler ve ürünleri sahiplerinin ticari markalarıdır ve ayrıca fikri mülkiyet hakları kapsamında korunmaktadır.
+									<br>
+
+									3.11. ………… tarafından <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesinin iyileştirilmesi, geliştirilmesine yönelik olarak ve/veya yasal mevzuat çerçevesinde siteye erişmek için kullanılan İnternet servis sağlayıcısının adı ve Internet Protokol (IP) adresi, Siteye erişilen tarih ve saat, sitede bulunulan sırada erişilen sayfalar ve siteye doğrudan bağlanılmasını sağlayan Web sitesinin Internet adresi gibi birtakım bilgiler toplanabilir.
+									<br>
+
+									3.12. …………, üyenin kişisel bilgilerini yasal bir zorunluluk olarak istendiğinde veya (a) yasal gereklere uygun hareket etmek veya …………ya tebliğ edilen yasal işlemlere uymak; (b) …………ve …………web sitesi ailesinin haklarını ve mülkiyetini korumak ve savunmak için gerekli olduğuna iyi niyetle kanaat getirdiği hallerde açıklayabilir.
+									<br>
+
+									3.13. …………web sitesinin virus ve benzeri amaçlı yazılımlardan arındırılmış olması için mevcut imkanlar dahilinde tedbir alınmıştır. Bunun yanında nihai güvenliğin sağlanması için kullanıcının, kendi virus koruma sistemini tedarik etmesi ve gerekli korunmayı sağlaması gerekmektedir. Bu bağlamda üye ………… web sitesi’ne girmesiyle, kendi yazılım ve işletim sistemlerinde oluşabilecek tüm hata ve bunların doğrudan yada dolaylı sonuçlarından kendisinin sorumlu olduğunu kabul etmiş sayılır.
+									<br>
+
+									3.14. …………, sitenin içeriğini dilediği zaman değiştirme, kullanıcılara sağlanan herhangi bir hizmeti değiştirme yada sona erdirme veya ………… web sitesi’nde kayıtlı kullanıcı bilgi ve verilerini silme hakkını saklı tutar.
+									<br>
+
+									3.15. …………, üyelik sözleşmesinin koşullarını hiçbir şekil ve surette ön ihbara ve/veya ihtara gerek kalmaksızın her zaman değiştirebilir, güncelleyebilir veya iptal edebilir. Değiştirilen, güncellenen yada yürürlükten kaldırılan her hüküm , yayın tarihinde tüm üyeler bakımından hüküm ifade edecektir.
+									<br>
+
+									3.16. Taraflar, …………’ya ait tüm bilgisayar kayıtlarının tek ve gerçek münhasır delil olarak, HUMK madde 287′ye uygun şekilde esas alınacağını ve söz konusu kayıtların bir delil sözleşmesi teşkil ettiği hususunu kabul ve beyan eder.
+									<br>
+
+									3.17. …………, iş bu üyelik sözleşmesi uyarınca, üyelerinin kendisinde kayıtlı elektronik posta adreslerine bilgilendirme mailleri ve cep telefonlarına bilgilendirme SMS’leri gönderme yetkisine sahip olmakla beraber, üye işbu üyelik sözleşmesini onaylamasıyla beraber bilgilendirme maillerinin elektronik posta adresine ve bilgilendirme SMS’lerinin cep telefonuna gönderilmesini kabul etmiş sayılacaktır.
+									<br>
+									<br>
+
+									4. Sözleşmenin Feshi
+									<br>
+
+									İşbu sözleşme üyenin üyeliğini iptal etmesi veya ………… tarafından üyeliğinin iptal edilmesine kadar yürürlükte kalacaktır. ………… üyenin üyelik sözleşmesinin herhangi bir hükmünü ihlal etmesi durumunda üyenin üyeliğini iptal ederek sözleşmeyi tek taraflı olarak feshedebilecektir.
+									<br>
+									<br>
+
+									5. İhtilaflerin Halli
+									<br>
+
+									İşbu sözleşmeye ilişkin ihtilaflerde İstanbul Mahkemeleri ve İcra Daireleri yetkilidir.
+									<br>
+									<br>
+
+									6. Yürürlük
+									<br>
+
+									Üyenin, üyelik kaydı yapması üyenin üyelik sözleşmesinde yer alan tüm maddeleri okuduğu ve üyelik sözleşmesinde yer alan maddeleri kabul ettiği anlamına gelir. İşbu Sözleşme üyenin üye olması anında akdedilmiş ve karşılıklı olarak yürürlülüğe girmiştir.
+									<br>
+
+								</div>
+								<br>
+
+								<div class="row">
+
+									
+									
+									<%= t.submit 'Kayıt Ol' , :class => 'hidden-lg hidden-md col-lg-2  btn btn-primary' , :style => 'margin-left: 20px;' %>
+									
+									
+									
+									
+									
+									
+									<%= t.submit 'Kayıt Ol' , :class => 'hidden-sm hidden-xs col-lg-2 col-md-2 btn btn-primary'  %>
+									
+									
+									<br class="visible-xs">
+									<br class="visible-xs">
+
+									<button onclick="loginyonlendir()" style="margin-left: 20px;" type="submit"
+									class="hidden-lg hidden-md btn btn-primary">
+										Zaten üye
+										misiniz?
+									</button>
+
+									<button onclick="loginyonlendir()" style="margin-left: 20px;" type="submit"
+									class="col-lg-3 col-md-4 visible-lg visible-md btn btn-primary">
+										Zaten
+										üye misiniz?
+									</button>
 
 								</div>
 
 							</div>
 
-							<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-						</form>
+						</div>
+
+						
+						<% end %>
 
 						<script>
 							function loginyonlendir() {
@@ -661,12 +717,15 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 						<script>
 							function usernamevalidation() {
 
+								
 								var form = document.getElementById("kayitformu");
 
-								var username = form.elements[2].value;
+								var username = form.elements['user_username'].value;
 								var usernameRegexp = new RegExp("^[a-z0-9._-]{4,15}$");
 
 								var check = usernameRegexp.test(username);
+								
+								var result = false;
 
 								if (username == "") {
 
@@ -719,14 +778,18 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 											} else {
 
 												$(".usernamevalid").show();
+												result = true;
 
 											}
 
 										},
-										type : 'POST'
+										type : 'POST',
+										async: false
 									});
 
 								}
+								
+								return result;
 
 							}
 
@@ -734,11 +797,13 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 
 								var form = document.getElementById("kayitformu");
 
-								var name = form.elements[0].value;
+								var name = form.elements['user_name'].value;
 
 								var nameRegexp = new RegExp("^[a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}$");
 
 								var check = nameRegexp.test(name);
+								
+								var result = false;
 
 								if (name == "") {
 
@@ -755,8 +820,11 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 
 									$(".namekarakterhatasi").hide();
 									$(".nameboskalamaz").hide();
+									result = true;
 
 								}
+								
+								return result;
 
 							}
 
@@ -764,11 +832,13 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 
 								var form = document.getElementById("kayitformu");
 
-								var surname = form.elements[1].value;
+								var surname = form.elements['user_surname'].value;
 
 								var surnameRegexp = new RegExp("^([a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]*([ '-][a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc])*){1,20}$");
 
 								var check = surnameRegexp.test(surname);
+								
+								var result = false;
 
 								if (surname == "") {
 
@@ -785,8 +855,11 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 
 									$(".surnamekarakterhatasi").hide();
 									$(".surnameboskalamaz").hide();
+									result = true;
 
 								}
+								
+								return result;
 
 							}
 
@@ -794,11 +867,13 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 
 								var form = document.getElementById("kayitformu");
 
-								var password = form.elements[3].value;
+								var password = form.elements['user_password'].value;
 
 								var passRegexp = new RegExp("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})");
 
 								var check = passRegexp.test(password);
+								
+								var result = false;
 
 								if (password == "") {
 
@@ -829,10 +904,11 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 									$(".passboskalamaz").hide();
 
 									$(".altidankucukhata").hide();
+									result = true;
 
 								}
 
-								passwordrepeatcheck();
+								return result && passwordrepeatcheck();
 
 							}
 
@@ -840,11 +916,13 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 
 								var form = document.getElementById("kayitformu");
 
-								var password = form.elements[3].value;
+								var password = form.elements['user_password'].value;
 
-								var password2 = form.elements[4].value;
+								var password2 = form.elements['user_password_confirmation'].value;
 
 								var check = password == password2;
+								
+								var result = false;
 
 								if (!check) {
 
@@ -853,8 +931,11 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 								} else {
 
 									$(".passkarakterhatasirepeat").hide();
+									result = true;
 
 								}
+								
+								return result;
 
 							}
 
@@ -862,11 +943,13 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 
 								var form = document.getElementById("kayitformu");
 
-								var email = form.elements[5].value;
+								var email = form.elements['user_email'].value;
 
 								var emailRegexp = new RegExp("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 
 								var check = emailRegexp.test(email);
+								
+								var result = false;
 
 								if (email == "") {
 
@@ -874,6 +957,7 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 									$(".emailvalid").hide();
 									$(".emailkarakterhatasi").hide();
 									$(".emailboskalamaz").show();
+									$(".uniemailerror").hide();
 
 								} else if (!check) {
 
@@ -881,6 +965,7 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 									$(".emailvalid").hide();
 									$(".emailboskalamaz").hide();
 									$(".emailkarakterhatasi").show();
+									$(".uniemailerror").hide();
 
 								} else {
 
@@ -902,23 +987,40 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 												$(".emailkarakterhatasi").hide();
 												$(".emailvalid").hide();
 												$(".emailerror").show();
+												$(".uniemailerror").hide();
 
-											} else {
+											}
+											
+											else if(!data.unicheck){
+												
+												$(".emailboskalamaz").hide();
+												$(".emailkarakterhatasi").hide();
+												$(".emailvalid").hide();
+												$(".emailerror").hide();
+												$(".uniemailerror").show();
+												
+											}
+											
+											 else {
 
 												$(".emailboskalamaz").hide();
 												$(".emailkarakterhatasi").hide();
 												$(".emailerror").hide();
 												$(".emailvalid").show();
+												$(".uniemailerror").hide();
+												
+												result = true;
 
 											}
 
 										},
-										type : 'POST'
+										type : 'POST',
+										async: false
 									});
 
 								}
 
-								emailrepeatcheck();
+								return result && emailrepeatcheck();
 
 							}
 
@@ -926,11 +1028,13 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 
 								var form = document.getElementById("kayitformu");
 
-								var email = form.elements[5].value.toLowerCase();
+								var email = form.elements['user_email'].value.toLowerCase();
 
-								var email2 = form.elements[6].value.toLowerCase();
+								var email2 = form.elements['user_email_confirmation'].value.toLowerCase();
 
 								var check = email == email2;
+								
+								var result = false;
 
 								if (!check) {
 
@@ -939,8 +1043,11 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 								} else {
 
 									$(".emailkarakterhatasirepeat").hide();
+									result = true;
 
 								}
+								
+								return result;
 
 							}
 
@@ -948,13 +1055,15 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 
 								var form = document.getElementById("kayitformu");
 
-								var phone = form.elements[7].value;
+								var phone = form.elements['user_phone1'].value;
 
-								var phone2 = form.elements[8].value;
+								var phone2 = form.elements['user_phone2'].value;
 
 								var phoneRegexp = new RegExp("\\d{3}-\\d{7}");
 
 								var check = phoneRegexp.test(phone + "-" + phone2);
+								
+								var result = false;
 
 								if (phone == "" || phone2 == "" || !check) {
 
@@ -963,8 +1072,11 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 								} else {
 
 									$(".phonekarakterhatasi").hide();
+									result = true;
 
 								}
+								
+								return result;
 
 							}
 						</script>
@@ -974,49 +1086,17 @@ b) <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine
 						<script>
 							function vsubmit() {
 
-								var usernameRegexp = new RegExp("^[a-z0-9._-]{4,15}$");
+								var usernameCheck = usernamevalidation();
 
-								var passRegexp = new RegExp("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})");
+								var passwordCheck = passwordcheck();
 
-								var emailRegexp = new RegExp("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+								var nameCheck = namevalidator();
 
-								var nameRegexp = new RegExp("^[a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}$");
+								var surnameCheck = surnamevalidator();
 
-								var surnameRegexp = new RegExp("^([a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]*([ '-][a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc])*){1,20}$");
+								var phoneCheck = phonecheck();
 
-								var phoneRegexp = new RegExp("\\d{3}-\\d{7}");
-
-								var form = document.getElementById("kayitformu");
-
-								var username = form.elements[2].value;
-
-								var password = form.elements[3].value;
-
-								var password2 = form.elements[4].value;
-
-								var name = form.elements[0].value;
-
-								var surname = form.elements[1].value;
-
-								var email = form.elements[5].value;
-
-								var email2 = form.elements[6].value;
-
-								var phone = form.elements[7].value;
-
-								var phone2 = form.elements[8].value;
-
-								var usernameCheck = usernameRegexp.test(username);
-
-								var passwordCheck = password == password2 && passRegexp.test(password);
-
-								var nameCheck = nameRegexp.test(name);
-
-								var surnameCheck = surnameRegexp.test(surname);
-
-								var phoneCheck = phoneRegexp.test(phone + "-" + phone2);
-
-								var emailCheck = email.toLowerCase() == email2.toLowerCase() && emailRegexp.test(email);
+								var emailCheck = emailcheck();
 
 								if (usernameCheck && passwordCheck && nameCheck && surnameCheck && phoneCheck && emailCheck) {
 

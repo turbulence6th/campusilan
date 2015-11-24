@@ -2,14 +2,16 @@ Rails.application.routes.draw do
   get '/' => 'index#index'
   get 'aramasonuclari' => 'index#aramasonuclari'
   get 'hakkimizda' => 'index#hakkimizda'
-  get 'firsatlar' => 'index#firsatlar'
   get 'iletisim' => 'index#iletisim'
   get 'kullanimkosullari' => 'index#kullanimkosullari'
   get 'reklam' => 'index#reklam'
-  get 'uye' => 'user#member'
+  
   get 'yardim' => 'index#yardim'
   get 'ilanver' => 'index#ilanver'
-  get 'satis-alis' => 'index#satis-alis'
+  get 'satis-alis' => 'index#satis_alis'
+  get 'satis-alis/:satislarim' => 'index#satis_alis'
+  get 'satis-alis/:alislarim' => 'index#satis_alis'
+  
   get 'mesajlarim' => 'index#mesajlarim'
   get 'girisyap' => 'user#login'
   
@@ -19,6 +21,29 @@ Rails.application.routes.draw do
   post 'register' => 'user#registerPost'
   post 'login' => 'user#loginPost'
   get 'logout' => 'user#logout'
+  
+  get 'ikinciel/:advert_name' => 'advert#ikinciel'
+  get 'dersnotu/:advert_name' => 'advert#dersnotu'
+  get 'evarkadasi/:advert_name' => 'advert#evarkadasi'
+  get 'ozelders/:advert_name' => 'advert#ozelders'
+  get 'kategoriler/:kategori' => 'advert#kategoriler'
+  get 'kategoriler' => 'advert#kategoriler'
+  get 'kategoriler/ikincielilan/:subkategori' => 'advert#kategoriler'  
+  get 'firsatlar' => 'advert#firsatlar'
+  get 'uye/:username' => 'user#member'
+  
+  get 'insert_image' => 'index#insert_image'
+  post 'insert_image' => 'index#insert_image_post'
+  
+ 
+  
+  
+  
+  
+  
+  
+  
+  
   
   
 end

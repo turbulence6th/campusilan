@@ -3,11 +3,14 @@ class UserController < ApplicationController
   using TurkishSupport
 
   layout false
+
+  helper_method :current_user
   def register
-    user = User.find_by_id(session[:user_id])
-    if user!=nil
+    if current_user!=nil
       redirect_to "/"
     end
+
+    @user=User.new
   end
 
   def checkusername
@@ -20,29 +23,27 @@ class UserController < ApplicationController
 
   def checkemail
     email = params[:email]
+    uni = University.find_by_email(email.downcase.partition('@').last) if email
     respond_to do |format|
-      msg = { :check => !User.create(:email => email).errors[:email].any? }
+      msg = { :check => !User.create(:email => email).errors[:email].any?, :unicheck => uni!=nil }
       format.json  { render :json => msg }
     end
   end
 
   def registerPost
 
-    name = params[:name]
-    surname = params[:surname]
-    username = params[:username]
-    password = params[:password]
-    password2 = params[:password2]
-    email = params[:email].downcase if params[:email] != nil
-    email2 = params[:email2].downcase if params[:email2] != nil
-    gender = params[:gender]
-    phone = params[:phone] + '-' + params[:phone2]
-    bulletin = !!params[:bulletin]
+    @user = User.new(params.require(:user).permit(:name, :surname, :username, :password, :password_confirmation, :email, :email_confirmation,
+   :phone1, :phone2, :bulletin, :gender))
 
-    user = User.new(:name => name, :surname => surname, :username => username, :password => password,
-    :password_confirmation => password2, :email => email, :email_confirmation => email2,
-    :gender => gender, :phone => phone, :bulletin => bulletin, :role => 'member', :verified => false)
-    user.save
+    @user.phone = @user.phone1 + '-' + @user.phone2
+    @user.role = 'member'
+    @user.verified = false
+    
+    @user.email = @user.email.downcase if @user.email
+    @user.email_confirmation = @user.email_confirmation.downcase if @user.email_confirmation
+    
+    @user.university = University.find_by_email(@user.email.partition('@').last) if @user.email
+    @user.save if @user.university
 
     redirect_to "/"
 
@@ -59,58 +60,41 @@ class UserController < ApplicationController
   end
 
   def member
-    @user = User.find_by_id(session[:user_id])
-    
-    if @user==nil
-      redirect_to "/"
-    end
-
+   
     if params[:profilim]!=nil
-
       @sekme=".profilim"
     elsif params[:ilanver]!=nil
-
       @sekme=".ilanver"
-
     elsif params[:satislarim]!=nil
-
       @sekme=".satislarim"
-
     elsif params[:alislarim]!=nil
-
       @sekme=".alislarim"
-
     elsif params[:favorilerim]!=nil
-
       @sekme=".favoriler"
-
     elsif params[:mesajlarim]!=nil
-
       @sekme=".mesajlarim"
-
     elsif params[:tekliflerim]!=nil
-
-      @sekme=".tekliflerim"
-
+      @sekme=".tekliflerim"    
     elsif params[:inceledigimilanlar]!=nil
-
       @sekme=".inceledigimilanlar"
-
     elsif params[:hesapayarlari]!=nil
-
-      @sekme=".hesapayarlari"
-
+      @sekme=".hesapayarlari"   
     else
-
       @sekme=".profilim"
-
+    end
+    
+    @other_user=User.find_by_username(params[:username])
+    
+    if @other_user == nil 
+      raise ActionController::RoutingError.new('Not Found') 
+    elsif  current_user != @other_user
+        render 'member2'  
     end
 
   end
 
   def login
-    user = User.find_by_id(session[:user_id])
-    if user!=nil
+    if current_user!=nil
       redirect_to "/"
     end
   end
@@ -120,5 +104,7 @@ class UserController < ApplicationController
     redirect_to "/"
   end
   
+  
+ 
 
 end

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem "paperclip", "~> 4.1.1"
+gem "paperclip", "~> 4.3"
 
 gem 'turkish_support'
 

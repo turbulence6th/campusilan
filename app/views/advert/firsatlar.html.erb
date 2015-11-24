@@ -4,7 +4,7 @@
 
 	<head>
 
-		<title>Odtü İlan</title>
+		<title>Campus İlan</title>
 		<meta charset="utf-8">
 
 		<META http-equiv=content-type content=text/html;charset=iso-8859-9>
@@ -13,7 +13,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- Bootstrap -->
 
-		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 
 		<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -33,13 +33,13 @@
 
 		<!-- dropdown login box -->
 
-		<link rel="stylesheet" href="resources/plugins/dropdownloginbox/css/style.css" />
+		<link rel="stylesheet" href="/resources/plugins/dropdownloginbox/css/style.css" />
 
-		<script src="resources/plugins/dropdownloginbox/js/login.js"></script>
+		<script src="/resources/plugins/dropdownloginbox/js/login.js"></script>
 
 		<!-- Fixed Header -->
 
-		<link rel="stylesheet" href="resources/assets/header-fixed.css">
+		<link rel="stylesheet" href="/resources/assets/header-fixed.css">
 
 		<link href='http://fonts.googleapis.com/css?family=Cookie'
 		rel='stylesheet' type='text/css'>
@@ -48,14 +48,29 @@
 
 		<!-- Cssmenu-3 -->
 
-		<link rel="stylesheet" href="resources/plugins/cssmenu-3/styles.css">
-		<script src="resources/plugins/cssmenu-3/script.js"></script>
+		<link rel="stylesheet" href="/resources/plugins/cssmenu-3/styles.css">
+		<script src="/resources/plugins/cssmenu-3/script.js"></script>
 
 		<!-- end of plugins  -->
 
 		<style>
-			body {
-				padding: 50px;
+		
+		body {
+			background-color:#F0F7F7;
+			
+		}
+			@media screen and (min-width: 1200px) {
+				body {
+					padding-left: 50px;
+				padding-right: 50px;
+				padding-top:30px;
+				}
+			}
+
+			@media screen and (max-width: 1200px) {
+				body {
+					padding: 10px;
+				}
 			}
 
 			.nav-pills > li > a:hover {
@@ -75,7 +90,7 @@
 
 			<!-- Include all compiled plugins (below), or include individual files
 			as needed -->
-			<script src="resources/js/bootstrap.min.js"></script>
+			<script src="/resources/js/bootstrap.min.js"></script>
 
 			<div class="row" style="margin-bottom: 10px;">
 
@@ -93,42 +108,36 @@
 
 			</div>
 
-			<div class="row" style="margin-top: 5px;">
+			<div class="row headernav" style="margin-top: 5px;">
 
-				<div>
+				<div class="headernav"
+				style="background: #E6F3FF; border: 1px solid black; margin-top: 10px; padding: 7px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px;">
 
-					<div class="row headernav"
-					style="background: #E6F3FF; border: 1px solid black; margin-top: 10px; padding: 7px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px;">
+					<ul class="nav nav-pills">
+						<li>
+							<a href="/firsatlar?acililanlar=1">Acil İlanlar</a>
+						</li>
+						<li>
+							<a href="/firsatlar?gununfirsatlari=1">Günün Fırsatları</a>
+						</li>
+						<li>
+							<a href="/firsatlar?enpopulerilanlar=1">En Popüler İlanlar</a>
+						</li>
+						<li>
+							<a href="/firsatlar?ensonilanlar=1">En Son İlanlar</a>
+						</li>
+						<li>
+							<a href="/firsatlar?fiyatidusenler=1">Fiyatı Düşenler</a>
+						</li>
+						<li>
+							<a href="/saticilar?enguvenilirsaticilar=1">En Güvenilir Satıcılar</a>
+						</li>
 
-						<ul class="nav nav-pills">
-							<li>
-								<a href="/firsatlar?acililanlar=1">Acil İlanlar</a>
-							</li>
-							<li>
-								<a href="/firsatlar?gununfirsatlari=1">Günün Fırsatları</a>
-							</li>
-							<li>
-								<a href="/firsatlar?enpopulerilanlar=1">En Popüler İlanlar</a>
-							</li>
-							<li>
-								<a href="/firsatlar?ensonilanlar=1">En Son İlanlar</a>
-							</li>
-							<li>
-								<a href="/firsatlar?fiyatidusenler=1">Fiyatı Düşenler</a>
-							</li>
-							<li>
-								<a href="/saticilar?enguvenilirsaticilar=1">En Güvenilir Satıcılar</a>
-							</li>
-							
-							
-							
-							<li>
-								<a href="/saticilar?enyakindaolansaticilar=1">En Yakında Olan Satıcılar</a>
-							</li>
+						<li>
+							<a href="/saticilar?enyakindaolansaticilar=1">En Yakında Olan Satıcılar</a>
+						</li>
 
-						</ul>
-
-					</div>
+					</ul>
 
 				</div>
 
@@ -168,11 +177,8 @@
 
 					</div>
 
-
-					
-
 					<%= render "kullanicipaneli2" %>
-					
+
 					<br class="visible-sm visible-xs visible-md">
 					<br class="visible-sm visible-xs visible-md">
 
@@ -181,18 +187,20 @@
 
 						<div style="">
 
-							<div class="panel panel-info">
+							<div class="panel panel-success">
 
 								<div class="panel-heading">
 									<h3 style="text-align: center;" class="panel-title"><%= @title %></h3>
 								</div>
+
+								<% if @enyakindakisaticilar!=true %>
 
 								<div class="panel-body">
 
 									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
-											<a href="#"> <img src="resources/images/cat-demo.jpg"
+											<a href="#"> <img src="/resources/images/cat-demo.jpg"
 											alt="cat demo photo"> </img> </a>
 
 										</div>
@@ -211,7 +219,7 @@
 									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
-											<a href="#"> <img src="resources/images/cat-demo.jpg"
+											<a href="#"> <img src="/resources/images/cat-demo.jpg"
 											alt="cat demo photo"> </img> </a>
 
 										</div>
@@ -230,7 +238,7 @@
 									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
-											<a href="#"> <img src="resources/images/cat-demo.jpg"
+											<a href="#"> <img src="/resources/images/cat-demo.jpg"
 											alt="cat demo photo"> </img> </a>
 
 										</div>
@@ -249,7 +257,7 @@
 									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
-											<a href="#"> <img src="resources/images/cat-demo.jpg"
+											<a href="#"> <img src="/resources/images/cat-demo.jpg"
 											alt="cat demo photo"> </img> </a>
 
 										</div>
@@ -268,7 +276,7 @@
 									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
-											<a href="#"> <img src="resources/images/cat-demo.jpg"
+											<a href="#"> <img src="/resources/images/cat-demo.jpg"
 											alt="cat demo photo"> </img> </a>
 
 										</div>
@@ -287,7 +295,7 @@
 									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
-											<a href="#"> <img src="resources/images/cat-demo.jpg"
+											<a href="#"> <img src="/resources/images/cat-demo.jpg"
 											alt="cat demo photo"> </img> </a>
 
 										</div>
@@ -306,7 +314,7 @@
 									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
-											<a href="#"> <img src="resources/images/cat-demo.jpg"
+											<a href="#"> <img src="/resources/images/cat-demo.jpg"
 											alt="cat demo photo"> </img> </a>
 
 										</div>
@@ -325,7 +333,7 @@
 									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
-											<a href="#"> <img src="resources/images/cat-demo.jpg"
+											<a href="#"> <img src="/resources/images/cat-demo.jpg"
 											alt="cat demo photo"> </img> </a>
 
 										</div>
@@ -344,7 +352,7 @@
 									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
-											<a href="#"> <img src="resources/images/cat-demo.jpg"
+											<a href="#"> <img src="/resources/images/cat-demo.jpg"
 											alt="cat demo photo"> </img> </a>
 
 										</div>
@@ -363,7 +371,7 @@
 									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
-											<a href="#"> <img src="resources/images/cat-demo.jpg"
+											<a href="#"> <img src="/resources/images/cat-demo.jpg"
 											alt="cat demo photo"> </img> </a>
 
 										</div>
@@ -382,7 +390,7 @@
 									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
-											<a href="#"> <img src="resources/images/cat-demo.jpg"
+											<a href="#"> <img src="/resources/images/cat-demo.jpg"
 											alt="cat demo photo"> </img> </a>
 
 										</div>
@@ -401,7 +409,7 @@
 									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
-											<a href="#"> <img src="resources/images/cat-demo.jpg"
+											<a href="#"> <img src="/resources/images/cat-demo.jpg"
 											alt="cat demo photo"> </img> </a>
 
 										</div>
@@ -418,6 +426,19 @@
 									</div>
 
 								</div>
+
+								<% else%>
+
+								<div class="panel-body">
+
+									Bu Hizmet Çok Yakında Sizlerle Olacak...
+									<br>
+									<br>
+									Anlayışınız için teşekkür ederiz.
+
+								</div>
+
+								<% end %>
 
 							</div>
 

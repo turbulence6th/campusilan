@@ -6,7 +6,6 @@ class CreateImages < ActiveRecord::Migration
       
       t.attachment :imagefile
       
-      t.timestamps null: false
     end
   end
 end

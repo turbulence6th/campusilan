@@ -2,13 +2,17 @@ class User < ActiveRecord::Base
   
   validates :name, :surname, :username,  :phone, :role, :gender, :presence => true
   
-  validates :password_confirmation, :email_confirmation, :presence => true
+  validates :password_confirmation, :presence => true, :if => :password_digest_changed?
   
-  validates :username, :email, :uniqueness => true
+  validates :email_confirmation, :presence => true, :if => :email_changed?
+  
+  validates :username, :uniqueness => true
+  
+  validates :email, :uniqueness => { :case_sensitive => false }
   
   validates :verified, :bulletin, :inclusion => { :in => [true, false] }
   
-  validates :password,:email, :confirmation => true
+  validates :password, :email, :confirmation => true
   
   validates :email, :length => {
     :minimum => 2,
@@ -37,13 +41,15 @@ class User < ActiveRecord::Base
   
   validates :password, :format => {
     :with => /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})/
-  }
+  }, :if => :password_digest_changed?
   
   validates :phone, :format => {
     :with => /\d{3}-\d{7}/
   }
   
   has_secure_password
+  
+  attr_accessor :phone1, :phone2
   
   enum :gender => [ :male, :female, :other ]
   enum :role => [ :admin, :member ]
@@ -62,5 +68,7 @@ class User < ActiveRecord::Base
   belongs_to :university
   
   has_one :image, :as => :imageable
+  
+  before_create :addImage
   
 end

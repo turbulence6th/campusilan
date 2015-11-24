@@ -4,7 +4,7 @@
 
 	<head>
 
-		<title>Odtü İlan</title>
+		<title>Campus İlan</title>
 		<meta charset="utf-8">
 
 		<META http-equiv=content-type content=text/html;charset=iso-8859-9>
@@ -80,8 +80,23 @@
 		<!-- end of plugins  -->
 
 		<style>
-			body {
-				padding: 50px;
+		
+		body {
+			background-color:#F0F7F7;
+			
+		}
+			@media screen and (min-width: 1200px) {
+				body {
+					padding-left: 50px;
+				padding-right: 50px;
+				padding-top:30px;
+				}
+			}
+
+			@media screen and (max-width: 1200px) {
+				body {
+					padding: 10px;
+				}
 			}
 		</style>
 
@@ -124,11 +139,11 @@
 
 			<div class="row">
 
-				<div style="height: 500px;" class="well">
+				<div style="" class="well">
 
 					<div class="row">
 
-						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+						<div class="col-lg-3 col-md-3 visible-lg visible-md ">
 
 							<div class="panel panel-primary">
 
@@ -170,15 +185,59 @@
 
 						</div>
 
-						<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+						
+							<div style="margin-bottom:30px;margin-left:10px;margin-right:10px;" class="hidden-lg hidden-md panel panel-primary">
+
+								<div class="panel-heading">
+									<h3 class="panel-title">En Sık Sorulanlar</h3>
+								</div>
+
+								<div class="panel-body">
+									<a href="#">-Nasıl Üye Olurum? </a>
+								</div>
+
+								<div class="panel-body">
+									<a href="#">-Nasıl İlan Ekleyebilirim? </a>
+								</div>
+
+								<div class="panel-body">
+									<a href="#">-Nasıl Ürün Satın Alırım? </a>
+								</div>
+
+								<div class="panel-body">
+									<a href="#">-Ürün Satın Alırken Komisyon Ücreti Veriyor
+									muyuz? </a>
+								</div>
+
+								<div class="panel-body">
+									<a href="#">-Siteniz ne kadar güvenli? </a>
+								</div>
+
+								<div class="panel-body">
+									<a href="#">-Sitenizi diğer benzer sitelerden farklı kılan
+									nedir? </a>
+								</div>
+
+								<div class="panel-body">
+									<a href="#">-Kullanım Koşulları Neler? </a>
+								</div>
+
+							</div>
+
+						
+
+						<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 
 							<div
 							style="height: 425px; border: 1px solid black; padding-left: 20px; padding-right: 20px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px;">
 
-								<h2 style="text-align: center">Size Nasıl Yardımcı
+								<h2 class="visible-md visible-lg" style="text-align: center">Size Nasıl Yardımcı
 								Olabiliriz?</h2>
+								
+								<h4 class="visible-xs visible-sm" style="">Size Nasıl Yardımcı
+								Olabiliriz?</h4>
 
-								Buraya Ajax ile hazırlanmış Yardım Bilgileri Gelecek...
+								deneme deneme deneme
 
 							</div>
 
@@ -188,19 +247,15 @@
 
 				</div>
 
+				<%= render "footer" %>
+
 			</div>
 
-		</div>
+			<!-- pluginler -->
 
-		<%= render "footer" %>
+			<!--  fixed header -->
 
-		</div>
-
-		<!-- pluginler -->
-
-		<!--  fixed header -->
-
-		<%= render "headerfixedjs" %>
+			<%= render "headerfixedjs" %>
 
 	</body>
 

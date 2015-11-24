@@ -1,38 +1,38 @@
 <div id='cssmenu'  style=" margin-bottom: 20px;">
 	<ul>
 
-		<% if @user!=nil %>
+		<% if current_user!=nil %>
 		<li class='has-sub'>
 			<a href='#'><span>Kullanıcı
 				Paneli</span></a>
 			<ul>
 				<li>
-					<a  class="panellinkler" id="profilim" href='/uye?profilim=1'><span>Profilim</span></a>
+					<a  class="panellinkler" id="profilim" href='/uye/<%= current_user.username%>?profilim=1'><span>Profilim</span></a>
 				</li>
 				<li>
-					<a class="panellinkler" id="ilanver" href='/uye?ilanver=1'><span>İlan Ver</span></a>
+					<a class="panellinkler" id="ilanver" href='/uye/<%= current_user.username%>?ilanver=1'><span>İlan Ver</span></a>
 				</li>
 				<li class='last'>
-					<a class="panellinkler" id="satislarim" href='/satis-alis'><span>Satışlarım</span></a>
+					<a class="panellinkler" id="satislarim" href='/satis-alis/satislarim'><span>Satışlarım</span></a>
 				</li>
 				<li class='last'>
-					<a class="panellinkler" id="alislarim" href='/uye?alislarim=1'><span>Alışlarım</span></a>
+					<a class="panellinkler" id="alislarim" href='/satis-alis/alislarim'><span>Alışlarım</span></a>
 				</li>
 				<li class='last'>
-					<a class="panellinkler" id="favorilerid" href='/uye?favorilerim=1'><span>Favorilerim</span></a>
+					<a class="panellinkler" id="favorilerid" href='/uye/<%= current_user.username%>?favorilerim=1'><span>Favorilerim</span></a>
 				</li>
 				<li class='last'>
-					<a class="panellinkler" id="mesajlarim" href='/uye?mesajlarim=1'><span>Mesajlarım</span></a>
+					<a class="panellinkler" id="mesajlarim" href='/uye/<%= current_user.username%>?mesajlarim=1'><span>Mesajlarım</span></a>
 				</li>
 				<li class='last'>
-					<a class="panellinkler" id="tekliflerim" href='/uye?tekliflerim=1'><span>Tekliflerim</span></a>
+					<a class="panellinkler" id="tekliflerim" href='/uye/<%= current_user.username%>?tekliflerim=1'><span>Tekliflerim</span></a>
 				</li>
 				<li class='last'>
-					<a class="panellinkler" id="inceledigimilanlar" href='/uye?inceledigimilanlar=1'><span>İncelediğim
+					<a class="panellinkler" id="inceledigimilanlar" href='/uye/<%= current_user.username%>?inceledigimilanlar=1'><span>İncelediğim
 						İlanlar</span></a>
 				</li>
 				<li class='last'>
-					<a class="panellinkler" id="hesapayarlariid" href='/uye?hesapayarlari=1'><span>Hesap
+					<a class="panellinkler" id="hesapayarlariid" href='/uye/<%= current_user.username%>?hesapayarlari=1'><span>Hesap
 						Ayarları</span></a>
 				</li>
 			</ul>
@@ -43,21 +43,19 @@
 			<a href='#'><span>Kategoriler</span></a>
 			<ul>
 				<li>
-					<a href='/kategoriler?ikincielilan=1'><span>İkinci El İlan</span></a>
+					<a href='/kategoriler/ikincielilan'><span>İkinci El İlan</span></a>
 				</li>
 				<li>
-					<a href='/kategoriler?evarkadaslari=1'><span>Ev Arkadaşı</span></a>
+					<a href='/kategoriler/evarkadasi'><span>Ev Arkadaşı</span></a>
 				</li>
 				<li class='last'>
-					<a href='/kategoriler'><span>Ders
+					<a href='/kategoriler/dersnotu'><span>Ders
 						Notları</span></a>
 				</li>
 				<li class='last'>
-					<a href='/kategoriler'><span>Özel Ders</span></a>
+					<a href='/kategoriler/ozelders'><span>Özel Ders</span></a>
 				</li>
-				<li class='last'>
-					<a href='/kategoriler'><span>Ev İlanları</span></a>
-				</li>
+				
 			</ul>
 		</li>
 		<li class='has-sub'>
@@ -84,11 +82,11 @@
 						Düşenler</span></a>
 				</li>
 				<li class='last'>
-					<a href='/saticilar?enguvenilirsaticilar=1'><span>En
+					<a href='/firsatlar?enguvenilirsaticilar=1'><span>En
 						Güvenilir Satıcılar</span></a>
 				</li>
 				<li class='last'>
-					<a href='/saticilar?enyakindaolansaticilar=1'><span>En Yakında
+					<a href='/firsatlar?enyakindakisaticilar=1'><span>En Yakında
 						Olan Satıcılar</span></a>
 				</li>
 			</ul>
@@ -104,10 +102,10 @@
 </div>
 
 <!-- Kullanıcı paneli js kısmı -->
-<% if request.env['PATH_INFO']=="/uye" %>
+<% if current_user!= nil && request.env['PATH_INFO']=="/uye/" + current_user.username %>
 <script>
 	$(function() {
-
+		$(".degiskenpanel").hide();
 		$(".hesapayarlari").hide();
 		$(".favoriler").hide();
 		$(".tekliflerim").hide();
@@ -122,6 +120,7 @@
 		$("#hesapayarlariid").click(function() {
 
 			$(".panelortak").hide();
+			$(".degiskenpanel").show();
 
 			$(".hesapayarlari").show();
 
@@ -129,27 +128,39 @@
 
 		$("#profilim").click(function() {
 
+			
 			$(".panelortak").hide();
 
 			$(".profilim").show();
+			
+			$(".degiskenpanel").hide();
 
 		})
 
 		$("#favorilerid").click(function() {
 
+			
 			$(".panelortak").hide();
 			$(".favoriler").show();
+			$(".degiskenpanel").hide();
 
 		})
 
 		$("#tekliflerim").click(function() {
 
+			$(".degiskenpanel").show();
 			$(".panelortak").hide();
 			$(".tekliflerim").show();
 
 		})
 		
-		$("<%= @sekme %>").show();
+		$("<%= @sekme %>").show(); 
+		
+		<% if @sekme==".tekliflerim" || @sekme==".hesapayarlari" %>
+		
+		$(".degiskenpanel").show();
+		
+		<% end %>
 		
 	})
 

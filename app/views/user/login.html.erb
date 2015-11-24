@@ -4,7 +4,7 @@
 
 	<head>
 
-		<title>Odtü İlan</title>
+		<title>Campus İlan</title>
 		<meta charset="utf-8">
 
 		<META http-equiv=content-type content=text/html;charset=iso-8859-9>
@@ -80,11 +80,22 @@
 		<!-- end of plugins  -->
 
 		<style>
-			@media screen and (min-width: 768px) {
-				body {
-					padding: 50px;
-				}
+			body {
+				background-color: #F0F7F7;
+			}
 
+			@media screen and (min-width: 1200px) {
+				body {
+					padding-left: 50px;
+					padding-right: 50px;
+					padding-top: 30px;
+				}
+			}
+
+			@media screen and (max-width: 1200px) {
+				body {
+					padding: 10px;
+				}
 			}
 
 		</style>
@@ -100,6 +111,14 @@
 		<script src="resources/js/bootstrap.min.js"></script>
 
 		<div class="container-fluid">
+			
+			<div class="row" style="margin-bottom: 10px;">
+
+				<!-- Login Starts Here -->
+				<%= render "loginContainer" %>
+				<!-- Login Ends Here -->
+
+			</div>
 
 			<div class="row">
 
@@ -136,15 +155,13 @@
 
 				<div class="row">
 
-					<div id="loginbox" style="margin-top: 20px; margin-left: 20px;"
-					class="mainbox col-lg-4 col-md-5  col-sm-10 ">
+					<div class="mainbox col-lg-4 col-md-4" id="loginbox" style="margin-top: 20px;">
 						<div class="panel panel-info">
-							<div class="panel-heading">
+							<div class="panel panel-heading">
 								<div class="panel-title">
 									Sign In
 								</div>
-								<div
-								style="float: right; font-size: 80%; position: relative; top: -10px">
+								<div style="float: right; font-size: 80%; position: relative; top: -10px">
 									<a href="#">Forgot password?</a>
 								</div>
 							</div>
@@ -154,70 +171,61 @@
 								<div style="display: none" id="login-alert"
 								class="alert alert-danger col-sm-12"></div>
 
-								<form  action="login" method="POST" id="loginform" class="form-horizontal" role="form">
+								<%= form_tag '/login', :id => 'loginform', :class => 'form-horizontal', :role => 'form' do  %>
 
-									<div style="z-index:1;margin-bottom: 25px" class="input-group">
-										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-user"></i></span>
-										<input
-										id="login-username" type="text" class="form-control"
-										name="username" value="" placeholder="Kullanıcı Adı">
+								<div style="z-index:1;margin-bottom: 25px" class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-user"></i></span>
+									<%= text_field_tag :username, nil, :class => 'form-control', :placeholder => 'Kullanıcı Adı', :id => 'login-username'%>
+								</div>
+
+								<div style="z-index:1;margin-bottom: 25px" class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-lock"></i></span>
+									<%= password_field_tag :password, nil, :class => 'form-control', :placeholder => 'Şifre',
+									:id => 'login-password', :type => 'password'%>
+								</div>
+
+								<div class="input-group">
+									<div class="checkbox">
+										<label for="checkbox"> <%= check_box_tag :remember, 1, false, :id => 'login-remember', :type => 'checkbox' %>
+											Beni hatırla </label>
 									</div>
+								</div>
 
-									<div style="z-index:1;margin-bottom: 25px" class="input-group">
-										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-lock"></i></span>
-										<input
-										id="login-password" type="password" class="form-control"
-										name="password" placeholder="Şifre">
+								<div style="margin-top: 10px" class="form-group">
+									<!-- Button -->
+
+									<div class="col-sm-12 col-xs-12 controls">
+
+										<input style="width:100%;" id="btn-login" class="visible-xs btn btn-success" type="submit" value="Login" />
+
+										<input  id="btn-login" class="hidden-xs btn btn-success" type="submit" value="Login" />
+
+										<br class="visible-xs">
+										<br class="visible-xs">
+
+										<a style="width:100%;" id="btn-fblogin" href="#" class="visible-xs btn btn-primary">Facebook İle Bağlan</a>
+										<br class="visible-xs">
+										<a  id="btn-fblogin" href="#" class="hidden-xs btn btn-primary">Facebook İle Bağlan
+										<br class="visible-xs">
+										<br class="visible-xs">
+										<a style="width:100%;" id="register" href="/kayitol"
+										class="visible-xs btn btn-primary">Kayıt Ol</a> <a id="register" href="/kayitol"
+										style="float: right;" class="hidden-xs btn btn-primary">Kayıt Ol</a>
 									</div>
+								</div>
 
-									<div class="input-group">
-										<div class="checkbox">
-											<label>
-												<input id="login-remember" type="checkbox"
-												name="remember" value="1">
-												Beni Hatırla </label>
-										</div>
-									</div>
-
-									<div style="margin-top: 10px" class="form-group">
-										<!-- Button -->
-
-										<div class="col-sm-12 col-xs-12 controls">
-
-											<input style="width:100%;" id="btn-login" class="visible-xs btn btn-success" type="submit" value="Login" />
-
-											<input  id="btn-login" class="hidden-xs btn btn-success" type="submit" value="Login" />
-
-											<br class="visible-xs">
-											<br class="visible-xs">
-
-											<a style="width:100%;" id="btn-fblogin" href="#" class="visible-xs btn btn-primary">Facebook İle Bağlan</a>
-											<br class="visible-xs">
-											<a  id="btn-fblogin" href="#" class="hidden-xs btn btn-primary">Facebook İle Bağlan
-											<br class="visible-xs">
-											<br class="visible-xs">
-											<a style="width:100%;" id="register" href="/kayitol"
-											class="visible-xs btn btn-primary">Kayıt Ol</a> <a id="register" href="/kayitol"
-											style="float: right;" class="hidden-xs btn btn-primary">Kayıt Ol</a>
-										</div>
-									</div>
-
-									<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden" >
-
-								</form>
+								<% end %>
 
 							</div>
 						</div>
+
 					</div>
 
-					<div class="hidden-xs col-lg-7 col-md-6 col-sm-10 ">
+					<div class="col-lg-8 col-md-8">
 
-						<div style="margin-left:20px; margin-top: 35px;height:400px; background-repeat: no-repeat;
-						background-size:100% 70%; background-image:url('/resources/images/cat-demo.jpg') " >
-
-						</div>
+						<img  src="/resources/images/cat-demo.jpg">
 
 					</div>
 

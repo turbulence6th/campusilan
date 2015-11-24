@@ -1,0 +1,15 @@
+<html>
+	<body>
+
+		<%= form_for @image, url: 'insert_image', html: { multipart: true } do |form| %>
+		<%= form.file_field :imagefile %>
+		<%= form.submit %>
+		<% end %>
+
+		<% if current_user.image %>
+			<%= image_tag current_user.image.imagefile(:small) %><br />
+			<%= image_tag current_user.image.imagefile(:medium) %><br />
+			<%= image_tag current_user.image.imagefile(:original) %>
+		<% end %>
+	</body>
+</html>

@@ -1,61 +1,50 @@
-<% if @user==nil %>
+<% if current_user==nil %>
 
 <div id="loginContainer">
 	<a href="#" id="loginButton"><span>Giriş Yap &amp; Kaydol</span><em></em></a>
 	<div style="clear: both"></div>
 	<div id="loginBox">
-		<form id="loginForm" action="login" method="post">
-			<fieldset id="body">
-				<fieldset>
-					<label for="username">Kullanıcı Adı</label>
-					<input type="text"
-					name="username" />
-				</fieldset>
-				<fieldset>
-					<label for="password">Şifre</label>
-					<input type="password"
-					name="password" />
-				</fieldset>
-				<input type="submit" id="login" value="Giriş Yap" />
-				<input type="button" id="login" onclick="yonlendir()" value="Kayıt Ol" />
-				<label
-				for="checkbox">
-					<input type="checkbox" id="checkbox" />
-					Beni
-					hatırla </label>
+
+		<%= form_tag '/login', :id => 'loginForm' do  %>
+		<fieldset id="body">
+			<fieldset>
+				<label for="username">Kullanıcı Adı</label>
+				<%= text_field_tag :username %>
 			</fieldset>
-			<span><a href="#">Şifreni mi unuttun?</a></span>
-			<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-		</form>
-		
-		
+			<fieldset>
+				<label for="password">Şifre</label>
+				<%= password_field_tag :password %>
+			</fieldset>
+			<%= submit_tag "Giriş Yap", :id => 'login' %>
+			<input type="button" id="login" onclick="yonlendir()" value="Kayıt Ol" />
+			<label for="checkbox">
+				<%= check_box_tag :remember, 1, false, :id => 'checkbox' %>
+				Beni hatırla </label>
+		</fieldset>
+		<span><a href="#">Şifreni mi unuttun?</a></span>
+		<% end %>
+
 		<script>
-		
-		function yonlendir() {
-			
-			
-			window.location="/kayitol";
-			
-			
-			
-		}
-		
+			function yonlendir() {
+
+				window.location = "/kayitol";
+
+			}
+
 		</script>
-		
-		
-		
+
 	</div>
 </div>
 
 <% else %>
 
 <p style="float:right;">
-	Hoşgeldin; <%= @user.username %>
+	Hoşgeldin; <%= current_user.username %>
 </p>
 <br>
 
 <p  style="clear: both;float:right;">
-	<a href="/uye"> Profilim </a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/logout"> Çıkış Yap </a>
+	<a href="/uye/<%= current_user.username %>"> Profilim </a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/logout"> Çıkış Yap </a>
 </p>
 
 <%end%>

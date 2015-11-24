@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Odtü İlan</title>
+		<title>Campus İlan</title>
 		<%= csrf_meta_tags %>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- Bootstrap -->
@@ -92,14 +92,20 @@
 		<!-- end of plugins  -->
 
 		<style>
-		
-		
-		body {
+			.ustkisim  {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: -ms-flexbox;
+				display: flex;
+			}
+
 			
-			background-color:#F0F7F7;
-		}
-		
-		
+
+			body {
+
+				background-color: #F0F7F7;
+			}
+
 			.dropdown-submenu {
 				position: relative;
 			}
@@ -112,13 +118,15 @@
 
 			@media screen and (min-width: 1200px) {
 				body {
-					padding: 50px;
+					padding-left: 50px;
+					padding-right: 50px;
+					padding-top: 30px;
 				}
 			}
 
-			@media screen and (max-width: 992px) {
+			@media screen and (max-width: 1200px) {
 				body {
-					padding: 0px;
+					padding: 10px;
 				}
 			}
 		</style>
@@ -160,9 +168,9 @@
 
 			<!-- Geniş ekranda gözüken div -->
 
-			<div class="row hidden-md hidden-sm hidden-xs">
+			<div class="ustkisim row hidden-md hidden-sm hidden-xs">
 
-				<aside style="float: left; width: 250px; line-height: 20%;"
+				<aside style="float: left;  line-height: 20%;"
 				class="col-lg-3 col-md-3 col-sm-3 hidden-xs ">
 
 					<div class="panel panel-primary">
@@ -172,51 +180,47 @@
 						</div>
 
 						<div class="panel-body">
-							<a  href="#">İkinci El İlan </a>
+							<a  href="/kategoriler/ikincielilan">İkinci El İlan </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Beyaz Eşya </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/beyazesya">-Beyaz Eşya </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Ev Dekorasyonu </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/evdekorasyonu">-Ev Dekorasyonu </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Müzik Aletleri </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/muzikaletleri">-Müzik Aletleri </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Elektronik </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/elektronik">-Elektronik </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Kırtasiye </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/kirtasiye">-Kırtasiye </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Mutfak Eşyaları </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/mutfakesyalari">-Mutfak Eşyaları </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Diğer </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/diger">-Diğer </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Ev Arkadaşı </a>
+							<a href="/kategoriler/evarkadasi">Ev Arkadaşı </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Ders Notları </a>
+							<a href="/kategoriler/dersnotu">Ders Notları </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Özel Ders </a>
-						</div>
-
-						<div class="panel-body">
-							<a href="#">Ev İlanı </a>
+							<a href="/kategoriler/ozelders">Özel Ders </a>
 						</div>
 
 						<div class="panel-heading">
@@ -224,32 +228,32 @@
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Acil İlanlar </a>
+							<a href="/firsatlar/?acililanlar=1">Acil İlanlar </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Günün Fırsatları </a>
+							<a href="/firsatlar/?gununfirsatlari=1">Günün Fırsatları </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">En Son İlanlar </a>
+							<a href="/firsatlar/?ensonilanlar=1">En Son İlanlar </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">En Popüler Olanlar </a>
+							<a href="/firsatlar/?enpopulerilanlar=1">En Popüler Olanlar </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Fiyatı Düşenler </a>
+							<a href="/firsatlar/?fiyatidusenler=1">Fiyatı Düşenler </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">En Güvenilir Satıcılar</a>
+							<a href="/firsatlar/?enguvenilirsaticilar=1">En Güvenilir Satıcılar</a>
 
 						</div>
 
 						<div class="panel-body">
-							<a href="#">En Yakında Olan Satıcılar</a>
+							<a href="/firsatlar/?enyakindakisaticilar=1">En Yakında Olan Satıcılar</a>
 
 						</div>
 
@@ -258,15 +262,15 @@
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Yardım </a>
+							<a href="/yardim">Yardım </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Kullanıcı Sözleşmesi</a>
+							<a href="/kullanimkosullari">Kullanıcı Sözleşmesi</a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">İletişim</a>
+							<a href="/iletisim">İletişim</a>
 						</div>
 
 					</div>
@@ -371,34 +375,14 @@
 
 					</div>
 
-					<div class="row">
-
-						<div style="margin: 10px; padding-left: 10px; padding-right: 10px;">
-
-							<div class="panel panel-success">
-
-								<div class="panel-heading">
-									<h3 style="text-align: center;" class="panel-title">Duyurular</h3>
-								</div>
-
-								<div class="panel-body">
-									Duyurular buraya gelecek...
-								</div>
-
-							</div>
-
-						</div>
-
-					</div>
-
 				</div>
 
-				<div style="margin-left: 20px;"
+				<div style=""
 				class="col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm">
 
-					<div class="row">
+					
 
-						<div class="panel panel-info">
+						<div style="height:775px;" class="panel panel-info">
 
 							<div class="panel-heading">
 								<h3 style="text-align: center;" class="panel-title">Günün
@@ -528,35 +512,69 @@
 
 						</div>
 
+					
+
+				</div>
+
+			</div>
+
+			<div class="row visible-lg">
+				<div class="col-lg-6">
+
+					<div style="height:250px; padding-left: 10px; padding-right: 10px;">
+
+						<div class="panel panel-success">
+
+							<div class="panel-heading">
+								<h3 style="text-align: center;" class="panel-title">Duyurular</h3>
+							</div>
+
+							<div class="panel-body">
+								Duyurular buraya gelecek
+								<br>
+								....
+								<br>
+								....
+								<br>
+								....
+								<br>
+								....
+								<br>
+								....
+								<br>
+							</div>
+
+						</div>
+
 					</div>
 
-					<div class="row">
+				</div>
 
-						<div style="margin: 10px; padding-left: 10px; padding-right: 10px;">
+				<div class="col-lg-6">
 
-							<div class="panel panel-info">
+					<div style="height:250px;padding-left: 10px; padding-right: 10px;">
 
-								<div class="panel-heading">
-									<h3 style="text-align: center;" class="panel-title">Ekstra
-									Alan</h3>
-								</div>
+						<div class="panel panel-info">
 
-								<div class="panel-body">
+							<div class="panel-heading">
+								<h3 style="text-align: center;" class="panel-title">Ekstra
+								Alan</h3>
+							</div>
 
-									Kafana göre bir şey ekle...
-									<br>
-									....
-									<br>
-									....
-									<br>
-									....
-									<br>
-									....
-									<br>
-									....
-									<br>
+							<div class="panel-body">
 
-								</div>
+								Kafana göre bir şey ekle...
+								<br>
+								....
+								<br>
+								....
+								<br>
+								....
+								<br>
+								....
+								<br>
+								....
+								<br>
 
 							</div>
 
@@ -568,7 +586,7 @@
 
 			</div>
 
-			<!-- Dar ekranlarda gözüken div -->
+			<!-- Dar ekranlarda(medium) gözüken div -->
 
 			<div class="row hidden-lg">
 
@@ -581,51 +599,47 @@
 						</div>
 
 						<div class="panel-body">
-							<a  href="#">İkinci El İlan </a>
+							<a  href="/kategoriler/ikincielilan">İkinci El İlan </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Beyaz Eşya </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/beyazesya">-Beyaz Eşya </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Ev Dekorasyonu </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/evdekorasyonu">-Ev Dekorasyonu </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Müzik Aletleri </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/beyazesya">-Müzik Aletleri </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Elektronik </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/elektronik">-Elektronik </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Kırtasiye </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/kirtasiye">-Kırtasiye </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Mutfak Eşyaları </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/mutfakesyalari">-Mutfak Eşyaları </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Diğer </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/diger">-Diğer </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Ev Arkadaşı </a>
+							<a href="/kategoriler/evarkadasi">Ev Arkadaşı </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Ders Notları </a>
+							<a href="/kategoriler/dersnotu">Ders Notları </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Özel Ders </a>
-						</div>
-
-						<div class="panel-body">
-							<a href="#">Ev İlanı </a>
+							<a href="/kategoriler/ozelders">Özel Ders </a>
 						</div>
 
 						<div class="panel-heading">
@@ -633,32 +647,32 @@
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Acil İlanlar </a>
+							<a href="/firsatlar?acililanlar=1">Acil İlanlar </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Günün Fırsatları </a>
+							<a href="/firsatlar?gununfirsatlari=1">Günün Fırsatları </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">En Son İlanlar </a>
+							<a href="/firsatlar?ensonilanlar=1">En Son İlanlar </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">En Popüler Olanlar </a>
+							<a href="/firsatlar?enpopulerilanlar=1">En Popüler Olanlar </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Fiyatı Düşenler </a>
+							<a href="/firsatlar?fiyatidusenler=1">Fiyatı Düşenler </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">En Güvenilir Satıcılar</a>
+							<a href="/firsatlar/?enguvenilirsaticilar=1">En Güvenilir Satıcılar</a>
 
 						</div>
 
 						<div class="panel-body">
-							<a href="#">En Yakında Olan Satıcılar</a>
+							<a href="/firsatlar/?enyakindakisaticilar=1">En Yakında Olan Satıcılar</a>
 
 						</div>
 
@@ -667,20 +681,22 @@
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Yardım </a>
+							<a href="/yardim">Yardım </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Kullanıcı Sözleşmesi</a>
+							<a href="/kullanimkosullari">Kullanıcı Sözleşmesi</a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">İletişim</a>
+							<a href="/iletisim">İletişim</a>
 						</div>
 
 					</div>
 
 				</aside>
+
+				<!-- Small ekranlar -->
 
 				<aside style="float: left; line-height: 20%; width: 30%;"
 				class="col-md-3 col-sm-3 hidden-xs hidden-lg hidden-md">
@@ -691,51 +707,47 @@
 						</div>
 
 						<div class="panel-body">
-							<a  href="#">İkinci El İlan </a>
+							<a  href="/kategoriler/ikincielilan">İkinci El İlan </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Beyaz Eşya </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/beyazesya">-Beyaz Eşya </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Ev Dekorasyonu </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/evdekorasyonu">-Ev Dekorasyonu </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Müzik Aletleri </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/beyazesya">-Müzik Aletleri </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Elektronik </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/elektronik">-Elektronik </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Kırtasiye </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/kirtasiye">-Kırtasiye </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Mutfak Eşyaları </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/mutfakesyalari">-Mutfak Eşyaları </a>
 						</div>
 
 						<div class="panel-body">
-							<a style="margin-left:10px;" href="#">-Diğer </a>
+							<a style="margin-left:10px;" href="/kategoriler/ikincielilan/diger">-Diğer </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Ev Arkadaşı </a>
+							<a href="/kategoriler/evarkadasi">Ev Arkadaşı </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Ders Notları </a>
+							<a href="/kategoriler/dersnotu">Ders Notları </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Özel Ders </a>
-						</div>
-
-						<div class="panel-body">
-							<a href="#">Ev İlanı </a>
+							<a href="/kategoriler/ozelders">Özel Ders </a>
 						</div>
 
 						<div class="panel-heading">
@@ -743,33 +755,49 @@
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Acil İlanlar </a>
+							<a href="/firsatlar?acililanlar=1">Acil İlanlar </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Günün Fırsatları </a>
+							<a href="/firsatlar?gununfirsatlari=1">Günün Fırsatları </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">En Son İlanlar </a>
+							<a href="/firsatlar?ensonilanlar=1">En Son İlanlar </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">En Popüler Olanlar </a>
+							<a href="/firsatlar?enpopulerilanlar=1">En Popüler Olanlar </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">Fiyatı Düşenler </a>
+							<a href="/firsatlar?fiyatidusenler=1">Fiyatı Düşenler </a>
 						</div>
 
 						<div class="panel-body">
-							<a href="#">En Güvenilir Satıcılar</a>
+							<a href="/firsatlar/?enguvenilirsaticilar=1">En Güvenilir Satıcılar</a>
 
 						</div>
 
 						<div class="panel-body">
-							<a href="#">En Yakında Olan Satıcılar</a>
+							<a href="/firsatlar/?enyakindakisaticilar=1">En Yakında Olan Satıcılar</a>
 
+						</div>
+
+						<div class="panel-heading">
+							<h3 class="panel-title">Diğer</h3>
+						</div>
+
+						<div class="panel-body">
+							<a href="/yardim">Yardım </a>
+						</div>
+
+						<div class="panel-body">
+							<a href="/kullanimkosullari">Kullanıcı Sözleşmesi</a>
+						</div>
+
+						<div class="panel-body">
+							<a href="/iletisim">İletişim</a>
 						</div>
 
 					</div>
@@ -780,54 +808,59 @@
 
 					<div class="row">
 
-						
+						<div id="myCarousel2" class="carousel slide">
+							<!-- Carousel indicators -->
+							<ol class="carousel-indicators">
+								<li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+								<li data-target="#myCarousel2" data-slide-to="1"></li>
+								<li data-target="#myCarousel2" data-slide-to="2"></li>
+							</ol>
 
-							<div id="myCarousel2" class="carousel slide">
-								<!-- Carousel indicators -->
-								<ol class="carousel-indicators">
-									<li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
-									<li data-target="#myCarousel2" data-slide-to="1"></li>
-									<li data-target="#myCarousel2" data-slide-to="2"></li>
-								</ol>
-
-								<!-- Carousel items -->
-								<div class="carousel-inner">
-									<div class="item active">
-										<img src="resources/images/cat-demo.jpg" alt="First slide">
-										<div class="carousel-caption">
-											This Caption 1
-										</div>
-									</div>
-									<div class="item">
-										<img src="resources/images/cat-demo.jpg" alt="Second slide">
-										<div class="carousel-caption">
-											This Caption 2
-										</div>
-									</div>
-									<div class="item">
-										<img src="resources/images/cat-demo.jpg" alt="Third slide">
-										<div class="carousel-caption">
-											This Caption 3
-										</div>
+							<!-- Carousel items -->
+							<div class="carousel-inner">
+								<div class="item active">
+									<img src="resources/images/cat-demo.jpg" alt="First slide">
+									<div class="carousel-caption">
+										This Caption 1
 									</div>
 								</div>
-								<!-- Carousel nav -->
-								<a class="carousel-control left" href="#myCarousel2"
-								data-slide="prev">&lsaquo;</a><a class="carousel-control right"
-								href="#myCarousel2" data-slide="next">&rsaquo;</a>
+								<div class="item">
+									<img src="resources/images/cat-demo.jpg" alt="Second slide">
+									<div class="carousel-caption">
+										This Caption 2
+									</div>
+								</div>
+								<div class="item">
+									<img src="resources/images/cat-demo.jpg" alt="Third slide">
+									<div class="carousel-caption">
+										This Caption 3
+									</div>
+								</div>
 							</div>
-						
+							<!-- Carousel nav -->
+							<a class="carousel-control left" href="#myCarousel2"
+							data-slide="prev">&lsaquo;</a><a class="carousel-control right"
+							href="#myCarousel2" data-slide="next">&rsaquo;</a>
+						</div>
+
 					</div>
 
 					<div style="margin-left:20px; margin-top:40px;"  class="hidden-md hidden-sm row">
 
-						<button style="margin-right:10px;"   type="button" class="col-xs-5 btn btn-info">
+						<% if current_user!=nil %>
+						<button href="/uye" style="margin-right:10px;"   type="button" class="col-xs-3 btn btn-info">
 							Üye Bilgileri
 						</button>
 
-						<button type="button" class="col-xs-5  btn btn-info">
+						<% end %>
+
+						<button href="/kategoriler" style="margin-right:10px;" type="button" class="col-xs-4  btn btn-info">
+							Kategoriler
+						</button>
+
+						<button type="button" class="col-xs-4  btn btn-info">
 							Fırsatlar
-						</button>  
+						</button>
 
 					</div>
 
@@ -1096,7 +1129,7 @@
 
 			<div class="row">
 
-				<div class="hidden-xs" style="margin-bottom: 0px; margin-top: 25px;">
+				<div class="hidden-xs" style="margin-bottom: 0px; margin-top: -25px;">
 
 					<div class="panel panel-info">
 
