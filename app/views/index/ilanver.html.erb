@@ -1,142 +1,99 @@
-
-
 <!DOCTYPE html>
 
 <html>
 
+	<head>
 
+		<title>Campus İlan</title>
+		<%= csrf_meta_tags %>
+		<%= javascript_tag "window._token = '#{form_authenticity_token}';" %>
+		<meta charset="utf-8">
 
-<head>
+		<META http-equiv=content-type content=text/html;charset=iso-8859-9>
+		<META http-equiv=content-type content=text/html;charset=windows-1254>
+		<META http-equiv=content-type content=text/html;charset=x-mac-turkish>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
+		<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-<title>Campus İlan</title>
-<meta charset="utf-8">
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
+		queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page
+		via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/
+		html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/
+		respond.min.js"></script>
+		<![endif]-->
 
-<META http-equiv=content-type content=text/html;charset=iso-8859-9>
-<META http-equiv=content-type content=text/html;charset=windows-1254>
-<META http-equiv=content-type content=text/html;charset=x-mac-turkish>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Bootstrap -->
-<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+		<!--plugins: -->
 
+		<!-- dropdown login box -->
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<link rel="stylesheet"
+		href="resources/plugins/dropdownloginbox/css/style.css" />
 
+		<script src="resources/plugins/dropdownloginbox/js/login.js"></script>
 
+		<!-- Fixed Header -->
 
+		<link rel="stylesheet" href="resources/assets/header-fixed.css">
 
+		<link href='http://fonts.googleapis.com/css?family=Cookie'
+		rel='stylesheet' type='text/css'>
 
+		<!-- Fixed Header sonu -->
 
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media 
-         queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page 
-         via file:// -->
-<!--[if lt IE 9]>
-         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/
-            html5shiv.js"></script>
-         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/
-            respond.min.js"></script>
-      <![endif]-->
+		<link href="resources/css/searchbox.css" rel="stylesheet"
+		type="text/css" />
 
+		<!-- Smart Menus plugin -->
 
-<!--plugins: -->
+		<!-- jQuery import -->
+		<script src="resources/plugins/smartmenus/libs/jquery/jquery.js"
+		type="text/javascript"></script>
 
+		<script>
+			var smartmenus = jQuery.noConflict();
+		</script>
 
-<!-- dropdown login box -->
+		<!-- SmartMenus jQuery plugin -->
+		<script src="resources/plugins/smartmenus/jquery.smartmenus.js"
+		type="text/javascript"></script>
 
+		<!-- SmartMenus core CSS (required) -->
+		<link href="resources/plugins/smartmenus/css/sm-core-css.css"
+		rel="stylesheet" type="text/css" />
+		<!-- "sm-blue" menu theme (optional, you can use your own CSS, too) -->
+		<link href="resources/plugins/smartmenus/css/sm-blue/sm-blue.css"
+		rel="stylesheet" type="text/css" />
 
+		<!-- SmartMenus jQuery init -->
+		<script>
+			smartmenus(document).ready(function() {
+				smartmenus('#main-menu').smartmenus();
+			});
+		</script>
 
-<link rel="stylesheet"
-	href="resources/plugins/dropdownloginbox/css/style.css" />
+		<!-- İlan ver Formu -->
 
-<script src="resources/plugins/dropdownloginbox/js/login.js"></script>
+		<link rel="stylesheet" href="resources/assets/form-basic.css">
 
+		<!-- end of plugins  -->
 
-
-
-<!-- Fixed Header -->
-
-<link rel="stylesheet" href="resources/assets/header-fixed.css">
-
-
-<link href='http://fonts.googleapis.com/css?family=Cookie'
-	rel='stylesheet' type='text/css'>
-
-
-<!-- Fixed Header sonu -->
-
-
-
-
-
-
-
-
-<link href="resources/css/searchbox.css" rel="stylesheet"
-	type="text/css" />
-
-
-<!-- Smart Menus plugin -->
-
-
-<!-- jQuery import -->
-<script src="resources/plugins/smartmenus/libs/jquery/jquery.js"
-	type="text/javascript"></script>
-
-<script>
-	var smartmenus = jQuery.noConflict();
-</script>
-
-<!-- SmartMenus jQuery plugin -->
-<script src="resources/plugins/smartmenus/jquery.smartmenus.js"
-	type="text/javascript"></script>
-
-
-
-<!-- SmartMenus core CSS (required) -->
-<link href="resources/plugins/smartmenus/css/sm-core-css.css"
-	rel="stylesheet" type="text/css" />
-<!-- "sm-blue" menu theme (optional, you can use your own CSS, too) -->
-<link href="resources/plugins/smartmenus/css/sm-blue/sm-blue.css"
-	rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-<!-- SmartMenus jQuery init -->
-<script>
-	smartmenus(document).ready(function() {
-		smartmenus('#main-menu').smartmenus();
-	});
-</script>
-
-
-
-
-<!-- İlan ver Formu -->
-
-<link rel="stylesheet" href="resources/assets/form-basic.css">
-
-
-
-<!-- end of plugins  -->
-
-
-
-<style>
-
-body {
-			background-color:#F0F7F7;
-			
-		}
-@media screen and (min-width: 1200px) {
+		<style>
+			body {
+				background-color: #F0F7F7;
+			}
+			@media screen and (min-width: 1200px) {
 				body {
 					padding-left: 50px;
-				padding-right: 50px;
-				padding-top:30px;
+					padding-right: 50px;
+					padding-top: 30px;
 				}
 			}
 
@@ -146,94 +103,51 @@ body {
 				}
 			}
 
+			.sagsutun {
 
-.sagsutun {
+				text-align: left;
+			}
 
-	text-align:left;
+		</style>
 
-}
+	</head>
 
+	<body>
 
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
+		<!-- Include all compiled plugins (below), or include individual files
+		as needed -->
+		<script src="resources/js/bootstrap.min.js"></script>
 
-</style>
+		<div class="container-fluid">
 
+			<div class="row" style="margin-bottom: 10px;">
 
+				<!-- Login Starts Here -->
 
+				<tags:loginContainer />
 
+				<!-- Login Ends Here -->
 
-</head>
+			</div>
 
+			<div class="row">
 
+				<%= render "headerfixed" %>
 
+			</div>
 
-<body>
+			<!-- You need this element to prevent the content of the page from jumping up -->
+			<div class="header-fixed-placeholder"></div>
 
+			<div class="row">
 
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+				<%= render "smartmenus" %>
 
-
-	<!-- Include all compiled plugins (below), or include individual files 
-            as needed -->
-	<script src="resources/js/bootstrap.min.js"></script>
-
-
-
-
-
-	<div class="container-fluid">
-
-		<div class="row" style="margin-bottom: 10px;">
-
-			<!-- Login Starts Here -->
-
-			<tags:loginContainer />
-
-			<!-- Login Ends Here -->
-
-
-
-		</div>
-
-
-		<div class="row">
-
-			<%= render "headerfixed" %>
-
-
-		</div>
-
-
-
-
-
-		<!-- You need this element to prevent the content of the page from jumping up -->
-		<div class="header-fixed-placeholder"></div>
-
-
-
-
-
-		<div class="row">
-
-			<%= render "smartmenus" %>
-
-
-		</div>
-
-
-
-
-
-
-		
-
-
-
+			</div>
 
 			<form class="form-basic" method="post" action="#">
-
-
 
 				<div class="form-title-row">
 					<h1>İlan Ver</h1>
@@ -244,122 +158,104 @@ body {
 					<div class="col-lg-6">
 
 						<div class="form-row">
-							<label> <span>İlan Adı</span> <input type="text"
+							<label> <span>İlan Adı</span>
+								<input type="text"
 								name="name">
 							</label>
 						</div>
 
 						<div class="form-row">
-							<label> <span>İlan Kategorisi</span> <select
+							<label> <span>İlan Kategorisi</span>
+								<select
 								name="dropdown">
-									<option>Option One</option>
-									<option>Option Two</option>
-									<option>Option Three</option>
-									<option>Option Four</option>
-							</select>
-							</label>
+									<option>İkinci El İlan</option>
+									<option>Ev Arkadaşı</option>
+									<option>Ders Notları</option>
+									<option>Özel Ders</option>
+								</select> </label>
 						</div>
 
 						<div class="form-row">
-							<label> <span>Fiyat</span> <input type="email"
+							<label> <span>Fiyat</span>
+								<input type="email"
 								name="email">
 							</label>
 						</div>
 
-
-
 						<div class="form-row">
-							<label> <span>Açıklama</span> <textarea name="textarea"></textarea>
-							</label>
+							<label> <span>Ürün rengi</span> 								<textarea name="textarea"></textarea> </label>
 						</div>
 
 						<div class="form-row">
-							<label> <span>Şehir</span> <select name="dropdown">
-									<option>Option One</option>
-									<option>Option Two</option>
-									<option>Option Three</option>
-									<option>Option Four</option>
-							</select>
-							</label>
+							<label> <span>Marka</span> 								<textarea name="textarea"></textarea> </label>
 						</div>
 
 						<div class="form-row">
-							<label> <span>Üniversite</span> <select name="dropdown">
-									<option>Option One</option>
-									<option>Option Two</option>
-									<option>Option Three</option>
-									<option>Option Four</option>
-							</select>
-							</label>
+							<label> <span>Kullanım Durumu</span> 								<textarea name="textarea"></textarea> </label>
 						</div>
 
+						<div class="form-row">
+							<label> <span>Garanti Durumu</span> 								<textarea name="textarea"></textarea> </label>
+						</div>
 
+						<div class="form-row">
+							<label> <span>Açıklama</span> 								<textarea name="textarea"></textarea> </label>
+						</div>
 
+						<link href="/resources/plugins/dropzone/dropzone.css"
+		rel="stylesheet" type="text/css" />
+						<script src='/resources/plugins/dropzone/dropzone.js'></script>
+						
+						
 
-
-
+				
 
 						<div class="form-row">
 							<label> <span>Kullanım Koşullarını okudum ve kabul
-									ediyorum.</span> <input type="checkbox" name="checkbox" checked>
+									ediyorum.</span>
+								<input type="checkbox" name="checkbox" checked>
 							</label>
 						</div>
 
 						<div class="form-row">
-							<button type="submit">İlan Ver</button>
+							<button type="submit">
+								İlan Ver
+							</button>
 						</div>
-
 
 					</div>
 
-
 					<div class="sagsutun col-lg-6">
-					
-					
-					-Kullanım Koşulları için <a href="#">buraya</a> tıklayınız.<br><br><br>
-					
-					-İlanınız onaylandıktan sonra yayınlanacaktır.<br><br><br>
-					
-					-Sitemizin işleyişi ile ilgili bilgi mi almak istiyorsunuz? <a href="#">Buraya</a> tıklayın.<br>
-					 Ya da yardıma mı ihtiyacınız var? O zaman <a href="#">buraya</a> tıklayın.
-					
-					
-					
-					
+
+						-Kullanım Koşulları için <a href="#">buraya</a> tıklayınız.
+						<br>
+						<br>
+						<br>
+
+						-İlanınız onaylandıktan sonra yayınlanacaktır.
+						<br>
+						<br>
+						<br>
+
+						-Sitemizin işleyişi ile ilgili bilgi mi almak istiyorsunuz? <a href="#">Buraya</a> tıklayın.
+						<br>
+						Ya da yardıma mı ihtiyacınız var? O zaman <a href="#">buraya</a> tıklayın.
+
 					</div>
 			</form>
 
+		</div>
 
-
-
+		<%= render "footer" %>
 
 		</div>
 
+		<!-- pluginler -->
 
+		<!--  fixed header -->
 
-	
+		<%= render "headerfixedjs" %>
 
-
-
-
-
-
-	<%= render "footer" %>
-
-
-
-
-	</div>
-
-
-
-	<!-- pluginler -->
-
-
-	<!--  fixed header -->
-
-	<%= render "headerfixedjs" %>
-
-</body>
+	</body>
 
 </html>
