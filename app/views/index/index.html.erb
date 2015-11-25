@@ -126,7 +126,11 @@
 
 			@media screen and (max-width: 1200px) {
 				body {
-					padding: 10px;
+					
+					padding-left: 10px;
+					padding-top:10px;
+					padding-bottom:10px;
+					
 				}
 			}
 		</style>
@@ -845,24 +849,50 @@
 
 					</div>
 
-					<div style="margin-left:20px; margin-top:40px;"  class="hidden-md hidden-sm row">
+					<% if current_user!=nil %>
+					<div style=" margin-top:40px;"  class="hidden-md hidden-sm row">
 
-						<% if current_user!=nil %>
-						<button href="/uye" style="margin-right:10px;"   type="button" class="col-xs-3 btn btn-info">
-							Üye Bilgileri
+						
+						<button href="/uye" style="margin-left:15px;margin-right:5px;"   type="button" class="col-xs-3 btn btn-md btn-info">
+							<span style="font-size:10px;">Üye Bilgileri</span>
 						</button>
 
-						<% end %>
+						
 
-						<button href="/kategoriler" style="margin-right:10px;" type="button" class="col-xs-4  btn btn-info">
-							Kategoriler
+						<button href="/kategoriler" style="margin-right:5px;" type="button" class="col-xs-3  btn btn-md btn-info">
+							<span style="font-size:10px;">Kategoriler</span>
 						</button>
 
-						<button type="button" class="col-xs-4  btn btn-info">
-							Fırsatlar
+						<button type="button" class="col-xs-4  btn btn-md btn-danger">
+							<span style="font-size:12px;">Fırsatlar</span>
 						</button>
 
 					</div>
+					
+					
+					<% else %>
+					
+					<div style=" margin-top:40px;"  class="hidden-md hidden-sm row">
+
+						
+						
+
+						
+
+						<button href="/kategoriler" style="margin-left:40px;margin-right:20px;" type="button" class="col-xs-4  btn btn-lg btn-info">
+							<span style="font-size:12px;">Kategoriler</span>
+						</button>
+
+						<button type="button" class="col-xs-4  btn btn-lg btn-danger">
+							<span style="font-size:12px;">Fırsatlar</span>
+						</button>
+
+					</div>
+					
+					
+					
+					<% end %>
+					
 
 					<div style="margin-top:40px;" class="row">
 
@@ -959,8 +989,7 @@
 
 				</div>
 
-				<div class="col-md-6 col-sm-6 col-xs-6"
-				style="padding-left: 10px; padding-right: 10px;">
+				<div class="col-md-6 col-sm-6 col-xs-6" style="padding-left: 10px; padding-right: 10px;">
 
 					<div class="panel panel-info">
 
@@ -983,6 +1012,7 @@
 							<br>
 							....
 							<br>
+							...
 
 						</div>
 
@@ -1143,22 +1173,13 @@
 							<div id="mi-slider" class="mi-slider"
 							style="margin-top: 20px; clear: both;">
 								<ul>
+									<% @ensonikinciel.each do |adv| %>
 									<li>
 										<a href="#"> <img
-										src="resources/plugins/ItemSlider/images/1.jpg" alt="img01"> <h4>Boots</h4> </a>
+										src="resources/plugins/ItemSlider/images/1.jpg" alt="img01"> <h4><%= adv.name %></h4> </a>
 									</li>
-									<li>
-										<a href="#"> <img
-										src="resources/plugins/ItemSlider/images/2.jpg" alt="img02"> <h4>Oxfords</h4> </a>
-									</li>
-									<li>
-										<a href="#"> <img
-										src="resources/plugins/ItemSlider/images/3.jpg" alt="img03"> <h4>Loafers</h4> </a>
-									</li>
-									<li>
-										<a href="#"> <img
-										src="resources/plugins/ItemSlider/images/4.jpg" alt="img04"> <h4>Sneakers</h4> </a>
-									</li>
+									
+									<% end %>
 								</ul>
 								<ul>
 									<li>
@@ -1294,138 +1315,54 @@
 				<div class="row" style="margin-top: 30px; margin-bottom: 30px;">
 
 					<div
-					style="border: 1px solid black; margin-left:10px;margin-right:10px; margin-bottom: 0px; background-color: #E6F3FF; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px;">
+					style="border: 1px solid black; margin-left:25px;margin-right:25px; margin-bottom: 0px; padding-left: 10px; padding-right: 10px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; background: #E6F3FF">
 
-						<div class="row" style="padding-left: 20px; padding-right: 20px;">
+						<h2 style="text-align: center; margin-bottom: 50px;"><u>En Popüler İlanlar</u></h2>
 
-							<h2 style="text-align: center; margin-bottom: 50px;"><u>En Popüler İlanlar</u></h2>
-
-							<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h3>Thumbnail label</h3>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
+						<div class="jcarousel-wrapper" style="margin-bottom: 80px;">
+							<div class="jcarousel">
+								<ul>
+									<li><img
+										src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img1.jpg"
+										alt="Image 1">
+									</li>
+									<li><img
+										src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img2.jpg"
+										alt="Image 2">
+									</li>
+									<li><img
+										src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img3.jpg"
+										alt="Image 3">
+									</li>
+									<li><img
+										src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img4.jpg"
+										alt="Image 4">
+									</li>
+									<li><img
+										src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img5.jpg"
+										alt="Image 5">
+									</li>
+									<li><img
+										src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img6.jpg"
+										alt="Image 6">
+									</li>
+								</ul>
 							</div>
 
-							<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+							<a href="#" class="jcarousel-control-prev">&lsaquo;</a><a href="#"
+							class="jcarousel-control-next">&rsaquo;</a>
 
-								<div class="thumbnail">
-									<a href="#"> <img src="resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h3>Thumbnail label</h3>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
-							<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h3>Thumbnail label</h3>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
-							<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h3>Thumbnail label</h3>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
-							<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h3>Thumbnail label</h3>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
-							<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h3>Thumbnail label</h3>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
+							<p class="jcarousel-pagination hidden-xs"></p>
 						</div>
 
 					</div>
 
-				</div>
 
 				<div class="row" style="margin-top: 30px; margin-bottom: 30px;">
 
-					<div
-					style="border: 1px solid black; margin-left:10px;margin-right:10px; margin-bottom: 0px; padding-left: 10px; padding-right: 10px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; background: #F0FFE2">
+					<div style="border: 1px solid black; margin-left:40px;margin-right:40px; margin-bottom: 0px; padding-left: 10px; padding-right: 10px;background: #F0FFE2; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px;">
 
-						<h2 style="text-align: center; margin-bottom: 50px;"><u>Ev İlanları Ve Ders Notları</u></h2>
+						<h2 style="text-align: center; margin-bottom: 50px;"><u>Campus İlan Özel Seçimi</u></h2>
 
 						<div class="jcarousel-wrapper" style="margin-bottom: 80px;">
 							<div class="jcarousel">
@@ -1470,7 +1407,7 @@
 				<div class="row">
 
 					<div
-					style="margin-bottom: 20px; padding-left: 10px; padding-right: 10px; padding-bottom: 30px;">
+					style="margin-left:20px;margin-right:20px;margin-bottom: 20px; padding-left: 10px; padding-right: 10px; padding-bottom: 30px;">
 
 						<div class="panel panel-success">
 

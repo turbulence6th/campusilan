@@ -5,6 +5,8 @@ class IndexController < ApplicationController
   helper_method :current_user
   def index
     
+    @ensonikinciel = Advert.where(advertable_type: 'Secondhand').last(4)
+    
   end
   
   def satis_alis
