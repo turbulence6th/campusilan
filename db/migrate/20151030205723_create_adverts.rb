@@ -5,6 +5,11 @@ class CreateAdverts < ActiveRecord::Migration
       t.references :user, :index => true
       t.references :advertable, :polymorphic => true, :index => true
       
+      t.string :name
+      t.integer :price
+      t.text :explication
+      t.boolean :active
+      
       t.timestamps null: false
       
     end
