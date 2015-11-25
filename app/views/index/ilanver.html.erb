@@ -153,7 +153,7 @@
 
 			
 			<%= form_for @advert, :url => 'ilanver' , :method => :post , :html => {
-						:class => 'form-basic ikinciel'
+						:class => 'form-basic ikinciel' , :id => 'ikincielform', :onsubmit =>"return ikincielverify();"
 						} do |t| %>
 			<div class="form-title-row">
 				<h1>İlan Ver</h1>
@@ -245,7 +245,9 @@
 					</div>
 
 					<div class="form-row">
-						<%= t.submit 'İlan Ver' %>
+						<%= content_tag :button,:type => :submit do %>
+						İlan Ver
+						<% end %>
 					</div>
 
 				</div>
@@ -508,6 +510,30 @@
 
 				</div>
 			</form>
+			
+			<script>
+				function ilanadiverify(){
+					
+					var form=document.getElementById("ikincielform");
+					
+					var ilanadi=form.elements['advert_name'].value;
+					var ilanadiRegexp= new RegExp("^[a-zA-Z0-9 ]{5-20}$");
+					var check= ilanadiRegexp.test(ilanadi);
+					var resut=false;
+					
+					if(ilanadi== "") {
+						$(".ilanadierror").hide();
+						$(".ilanadivalid").hide();
+						$(".bestenkucukhata").hide();
+						$(".ilanadierror").hide();
+						
+					}
+					
+				}
+				
+				
+			</script>
+			
 
 			<script>
 				function changeform(value) {
