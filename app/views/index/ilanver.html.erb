@@ -83,6 +83,10 @@
 
 		<link rel="stylesheet" href="resources/assets/form-basic.css">
 
+		<link href="/resources/plugins/dropzone/dropzone.css"
+		rel="stylesheet" type="text/css" />
+		<script src='/resources/plugins/dropzone/dropzone.js'></script>
+
 		<!-- end of plugins  -->
 
 		<style>
@@ -147,7 +151,7 @@
 
 			</div>
 
-			<form class="form-basic" method="post" action="#">
+			<form class="form-basic ikinciel" method="post" action="#">
 
 				<div class="form-title-row">
 					<h1>İlan Ver</h1>
@@ -158,21 +162,21 @@
 					<div class="col-lg-6">
 
 						<div class="form-row">
+							<label> <span>İlan Kategorisi</span>
+								<select onChange="changeform(this.value)"
+								name="dropdown">
+									<option selected value="ikinciel">İkinci El İlan</option>
+									<option value="evarkadasi">Ev Arkadaşı</option>
+									<option value="dersnotlari">Ders Notları</option>
+									<option value="ozelders">Özel Ders</option>
+								</select> </label>
+						</div>
+
+						<div class="form-row">
 							<label> <span>İlan Adı</span>
 								<input type="text"
 								name="name">
 							</label>
-						</div>
-
-						<div class="form-row">
-							<label> <span>İlan Kategorisi</span>
-								<select
-								name="dropdown">
-									<option>İkinci El İlan</option>
-									<option>Ev Arkadaşı</option>
-									<option>Ders Notları</option>
-									<option>Özel Ders</option>
-								</select> </label>
 						</div>
 
 						<div class="form-row">
@@ -183,7 +187,16 @@
 						</div>
 
 						<div class="form-row">
-							<label> <span>Ürün rengi</span> 								<textarea name="textarea"></textarea> </label>
+							<label> <span>Ürün rengi</span>
+								<select>
+									<option value="">Siyah</option>
+									<option value="">Beyaz</option>
+									<option value="">Kırmızı</option>
+									<option value="">Mavi</option>
+									<option value="">Sarı</option>
+									<option value="">Yeşil</option>
+
+								</select> </label>
 						</div>
 
 						<div class="form-row">
@@ -191,29 +204,39 @@
 						</div>
 
 						<div class="form-row">
-							<label> <span>Kullanım Durumu</span> 								<textarea name="textarea"></textarea> </label>
+							<label> <span>Kullanım Durumu</span>
+								<select>
+
+									<option value="Sıfır">Sıfır</option>
+									<option value="İkinci El">İkinci El</option>
+
+								</select> </label>
 						</div>
 
 						<div class="form-row">
-							<label> <span>Garanti Durumu</span> 								<textarea name="textarea"></textarea> </label>
+							<label> <span>Garanti Durumu</span>
+								<select>
+
+									<option value="Sıfır">Var</option>
+									<option value="İkinci El">Yok</option>
+
+								</select> </label>
 						</div>
 
 						<div class="form-row">
 							<label> <span>Açıklama</span> 								<textarea name="textarea"></textarea> </label>
 						</div>
-
-						<link href="/resources/plugins/dropzone/dropzone.css"
-		rel="stylesheet" type="text/css" />
-						<script src='/resources/plugins/dropzone/dropzone.js'></script>
 						
 						
-
-				
+						<form action="/upload-target" class="dropzone"></form>
+						
+						
+						
 
 						<div class="form-row">
 							<label> <span>Kullanım Koşullarını okudum ve kabul
 									ediyorum.</span>
-								<input type="checkbox" name="checkbox" checked>
+								<input type="checkbox" name="checkbox" >
 							</label>
 						</div>
 
@@ -242,7 +265,288 @@
 						Ya da yardıma mı ihtiyacınız var? O zaman <a href="#">buraya</a> tıklayın.
 
 					</div>
+
+				</div>
 			</form>
+
+			<form style="display:none;" class="form-basic evarkadasi" method="post" action="#">
+
+				<div class="form-title-row">
+					<h1>İlan Ver</h1>
+				</div>
+
+				<div class="row">
+
+					<div class="col-lg-6">
+
+						
+						<div class="form-row">
+							<label> <span>İlan Kategorisi</span>
+								<select onChange="changeform(this.value)"
+								name="dropdown">
+									<option value="ikinciel">İkinci El İlan</option>
+									<option selected value="evarkadasi">Ev Arkadaşı</option>
+									<option value="dersnotlari">Ders Notları</option>
+									<option value="ozelders">Özel Ders</option>
+								</select> </label>
+						</div>
+						
+
+						<div class="form-row">
+							<label> <span>İlan Adı</span>
+								<input type="text"
+								name="name">
+							</label>
+						</div>
+
+						<div class="form-row">
+							<label> <span>Fiyat</span>
+								<input type="email"
+								name="email">
+							</label>
+						</div>
+
+						
+
+
+
+						<div class="form-row">
+							<label> <span>Açıklama</span> 								<textarea name="textarea"></textarea> </label>
+						</div>
+
+						<link href="/resources/plugins/dropzone/dropzone.css"
+						rel="stylesheet" type="text/css" />
+						<script src='/resources/plugins/dropzone/dropzone.js'></script>
+
+						<div class="form-row">
+							<label> <span>Kullanım Koşullarını okudum ve kabul
+									ediyorum.</span>
+								<input type="checkbox" name="checkbox" >
+							</label>
+						</div>
+
+						<div class="form-row">
+							<button type="submit">
+								İlan Ver
+							</button>
+						</div>
+
+					</div>
+
+					<div class="sagsutun col-lg-6">
+
+						-Kullanım Koşulları için <a href="#">buraya</a> tıklayınız.
+						<br>
+						<br>
+						<br>
+
+						-İlanınız onaylandıktan sonra yayınlanacaktır.
+						<br>
+						<br>
+						<br>
+
+						-Sitemizin işleyişi ile ilgili bilgi mi almak istiyorsunuz? <a href="#">Buraya</a> tıklayın.
+						<br>
+						Ya da yardıma mı ihtiyacınız var? O zaman <a href="#">buraya</a> tıklayın.
+
+					</div>
+
+				</div>
+			</form>
+
+			<form style="display:none;" class="form-basic dersnotlari" method="post" action="#">
+
+				<div class="form-title-row">
+					<h1>İlan Ver</h1>
+				</div>
+
+				<div class="row">
+
+					<div class="col-lg-6">
+
+						<div class="form-row">
+							<label> <span>İlan Kategorisi</span>
+								<select onChange="changeform(this.value)"
+								name="dropdown">
+									<option value="ikinciel">İkinci El İlan</option>
+									<option value="evarkadasi">Ev Arkadaşı</option>
+									<option selected value="dersnotlari">Ders Notları</option>
+									<option value="ozelders">Özel Ders</option>
+								</select> </label>
+						</div>
+
+						<div class="form-row">
+							<label> <span>İlan Adı</span>
+								<input type="text"
+								name="name">
+							</label>
+						</div>
+
+						<div class="form-row">
+							<label> <span>Fiyat</span>
+								<input type="email"
+								name="email">
+							</label>
+						</div>
+
+						
+
+						<div class="form-row">
+							<label> <span>Açıklama</span> 								<textarea name="textarea"></textarea> </label>
+						</div>
+
+						<link href="/resources/plugins/dropzone/dropzone.css"
+						rel="stylesheet" type="text/css" />
+						<script src='/resources/plugins/dropzone/dropzone.js'></script>
+
+						<div class="form-row">
+							<label> <span>Kullanım Koşullarını okudum ve kabul
+									ediyorum.</span>
+								<input type="checkbox" name="checkbox" >
+							</label>
+						</div>
+
+						<div class="form-row">
+							<button type="submit">
+								İlan Ver
+							</button>
+						</div>
+
+					</div>
+
+					<div class="sagsutun col-lg-6">
+
+						-Kullanım Koşulları için <a href="#">buraya</a> tıklayınız.
+						<br>
+						<br>
+						<br>
+
+						-İlanınız onaylandıktan sonra yayınlanacaktır.
+						<br>
+						<br>
+						<br>
+
+						-Sitemizin işleyişi ile ilgili bilgi mi almak istiyorsunuz? <a href="#">Buraya</a> tıklayın.
+						<br>
+						Ya da yardıma mı ihtiyacınız var? O zaman <a href="#">buraya</a> tıklayın.
+
+					</div>
+
+				</div>
+			</form>
+
+			<form style="display:none;" class="form-basic ozelders" method="post" action="#">
+
+				<div class="form-title-row">
+					<h1>İlan Ver</h1>
+				</div>
+
+				<div class="row">
+
+					<div class="col-lg-6">
+
+						<div class="form-row">
+							<label> <span>İlan Kategorisi</span>
+								<select onChange="changeform(this.value)"
+								name="dropdown">
+									<option value="ikinciel">İkinci El İlan</option>
+									<option value="evarkadasi">Ev Arkadaşı</option>
+									<option value="dersnotlari">Ders Notları</option>
+									<option selected value="ozelders">Özel Ders</option>
+								</select> </label>
+						</div>
+
+						<div class="form-row">
+							<label> <span>İlan Adı</span>
+								<input type="text"
+								name="name">
+							</label>
+						</div>
+
+						<div class="form-row">
+							<label> <span>Fiyat</span>
+								<input type="email"
+								name="email">
+							</label>
+						</div>
+
+						
+
+						<div class="form-row">
+							<label> <span>Açıklama</span> 								<textarea name="textarea"></textarea> </label>
+						</div>
+
+						<link href="/resources/plugins/dropzone/dropzone.css"
+						rel="stylesheet" type="text/css" />
+						<script src='/resources/plugins/dropzone/dropzone.js'></script>
+
+						<div class="form-row">
+							<label> <span>Kullanım Koşullarını okudum ve kabul
+									ediyorum.</span>
+								<input type="checkbox" name="checkbox" >
+							</label>
+						</div>
+
+						<div class="form-row">
+							<button type="submit">
+								İlan Ver
+							</button>
+						</div>
+
+					</div>
+
+					<div class="sagsutun col-lg-6">
+
+						-Kullanım Koşulları için <a href="#">buraya</a> tıklayınız.
+						<br>
+						<br>
+						<br>
+
+						-İlanınız onaylandıktan sonra yayınlanacaktır.
+						<br>
+						<br>
+						<br>
+
+						-Sitemizin işleyişi ile ilgili bilgi mi almak istiyorsunuz? <a href="#">Buraya</a> tıklayın.
+						<br>
+						Ya da yardıma mı ihtiyacınız var? O zaman <a href="#">buraya</a> tıklayın.
+
+					</div>
+
+				</div>
+			</form>
+
+			<script>
+				function changeform(value) {
+
+					if (value == "ikinciel") {
+						$(".form-basic").hide();
+
+						$(".ikinciel").show();
+
+					} else if (value == "evarkadasi") {
+
+						$(".form-basic").hide();
+
+						$(".evarkadasi").show();
+
+					} else if (value == "dersnotlari") {
+
+						$(".form-basic").hide();
+
+						$(".dersnotlari").show();
+
+					} else if (value == "ozelders") {
+
+						$(".form-basic").hide();
+
+						$(".ozelders").show();
+
+					}
+
+				}
+
+			</script>
 
 		</div>
 
