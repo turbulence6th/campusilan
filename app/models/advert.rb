@@ -2,7 +2,7 @@ class Advert < ActiveRecord::Base
   
   validates :name, :price, :explication, :user, :advertable, :presence => true
   
-  validates :active => { :in => [true, false] }
+  validates :active, :inclusion => { :in => [true, false] }
   
   belongs_to :user
   

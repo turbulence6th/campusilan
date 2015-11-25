@@ -241,6 +241,9 @@
 							<h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h1>
 							<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
 							<div class="star-on">
+								<br><br>
+								<h3>Kullanıcı Güven Oyu</h3>
+								<br>
 								<ul>
 									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
 									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
@@ -249,33 +252,18 @@
 									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
 								</ul>
 								<div class="review">
-									<a href="#"> 3 reviews </a>/
-									<a href="#">  Write a review</a>
+									
+									<a href="#"> 3 Yorum </a>
+									
 								</div>
 							<div class="clearfix"> </div>
 							</div>
+							<br>
 							
-								<label  class="add-to item_price">$32.8</label>
+								<h3  class="add-to item_price">Fiyat: $32.8</h3>
 							
-							<div class="available">
-								<h6>Available Options :</h6>
-								<ul>
-									
-								<li>Size:<select>
-									<option>Large</option>
-									<option>Medium</option>
-									<option>small</option>
-									<option>Large</option>
-									<option>small</option>
-								</select></li>
-								<li>Cost:
-										<select>
-										<option>U.S.Dollar</option>
-										<option>Euro</option>
-									</select></li>
-							</ul>
-						</div>
-								<a href="#" class="cart item_add">More details</a>
+							
+								
 						</div>
 					</div>
 			<div class="clearfix"> </div>
@@ -298,7 +286,7 @@
 						<h3><a href="single.html">Jeans</a></h3>
 						<div class="price">
 								<h5 class="item_price">$300</h5>
-								<a href="#" class="item_add">Add To Cart</a>
+								<a href="#" class="item_add">İncele</a>
 								<div class="clearfix"> </div>
 						</div>
 					</div>
@@ -311,7 +299,7 @@
 						<h3><a href="single.html">Tops</a></h3>
 						<div class="price">
 								<h5 class="item_price">$300</h5>
-								<a href="#" class="item_add">Add To Cart</a>
+								<a href="#" class="item_add">İncele</a>
 								<div class="clearfix"> </div>
 						</div>
 						
@@ -325,7 +313,7 @@
 						<h3><a href="single.html">Tops</a></h3>
 						<div class="price">
 								<h5 class="item_price">$300</h5>
-								<a href="#" class="item_add">Add To Cart</a>
+								<a href="#" class="item_add">İncele</a>
 								<div class="clearfix"> </div>
 						</div>
 						
@@ -338,75 +326,19 @@
 <!----->
 <div class="col-md-3 product-bottom">
 			<!--categories-->
-				<div class=" rsidebar span_1_of_left">
-						<h3 class="cate">Kategoriler</h3>
-							 <ul class="menu-drop">
-							<li class="item1"><a href="#">İkinci El İlan </a>
-								<ul class="cute">
-									<li class="subitem1"><a href="single.html">Beyaz Eşya </a></li>
-									<li class="subitem2"><a href="single.html">Ev Dekorasyonu </a></li>
-									<li class="subitem3"><a href="single.html">Müzik Aletleri </a></li>
-									<li class="subitem3"><a href="single.html">Elektronik </a></li>
-									<li class="subitem3"><a href="single.html">Kırtasiye </a></li>
-									<li class="subitem3"><a href="single.html">Mutfak Eşyaları </a></li>
-									<li class="subitem3"><a href="single.html">Diğer </a></li>
-								</ul>
-							</li>
-							<li class="item2"><a href="#">Ev Arkadaşı </a>
-								<ul class="cute">
-									<li class="subitem1"><a href="single.html">Cute Kittens </a></li>
-									<li class="subitem2"><a href="single.html">Strange Stuff </a></li>
-									<li class="subitem3"><a href="single.html">Automatic Fails </a></li>
-								</ul>
-							</li>
-							<li class="item3"><a href="#">Ders Notları</a>
-								<ul class="cute">
-									<li class="subitem1"><a href="single.html">Cute Kittens </a></li>
-									<li class="subitem2"><a href="single.html">Strange Stuff </a></li>
-									<li class="subitem3"><a href="single.html">Automatic Fails</a></li>
-								</ul>
-							</li>
-							<li class="item4"><a href="#">Özel Ders</a>
-								<ul class="cute">
-									<li class="subitem1"><a href="single.html">Cute Kittens </a></li>
-									<li class="subitem2"><a href="single.html">Strange Stuff </a></li>
-									<li class="subitem3"><a href="single.html">Automatic Fails</a></li>
-								</ul>
-							</li>
-									
-							<li class="item4"><a href="#">Shoes</a>
-								<ul class="cute">
-									<li class="subitem1"><a href="single.html">Cute Kittens </a></li>
-									<li class="subitem2"><a href="single.html">Strange Stuff </a></li>
-									<li class="subitem3"><a href="single.html">Automatic Fails </a></li>
-								</ul>
-							</li>
-						</ul>
-					</div>
+				
+				<%= render 'ilankategoriler'%>
+				
 				<!--initiate accordion-->
-						<script type="text/javascript">
-							$(function() {
-							    var menu_ul = $('.menu-drop > li > ul'),
-							           menu_a  = $('.menu-drop > li > a');
-							    menu_ul.hide();
-							    menu_a.click(function(e) {
-							        e.preventDefault();
-							        if(!$(this).hasClass('active')) {
-							            menu_a.removeClass('active');
-							            menu_ul.filter(':visible').slideUp('normal');
-							            $(this).addClass('active').next().stop(true,true).slideDown('normal');
-							        } else {
-							            $(this).removeClass('active');
-							            $(this).next().stop(true,true).slideUp('normal');
-							        }
-							    });
-							
-							});
-						</script>
+				
+						
+						
 <!--//menu-->
 <!--seller-->
+
+				<br>
 				<div class="product-bottom">
-						<h3 class="cate">Best Sellers</h3>
+						<h3 class="cate">Bu ürüne bakanlar bunlara da baktı</h3>
 					<div class="product-go">
 						<div class=" fashion-grid">
 							<a href="single.html"><img class="img-responsive " src="/resources/plugins/producttemplate/images/pr.jpg" alt=""></a>	
@@ -452,7 +384,7 @@
 <!--//seller-->
 <!--tag-->
 				<div class="tag">	
-						<h3 class="cate">Tags</h3>
+						<h3 class="cate">Etiketler</h3>
 					<div class="tags">
 						<ul>
 							<li><a href="#">design</a></li>

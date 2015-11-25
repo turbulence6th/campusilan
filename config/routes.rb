@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   
   get 'yardim' => 'index#yardim'
   get 'ilanver' => 'index#ilanver'
+  post 'ilanver' => 'index#ilanverPost'
   get 'satis-alis' => 'index#satis_alis'
   get 'satis-alis/:satislarim' => 'index#satis_alis'
   get 'satis-alis/:alislarim' => 'index#satis_alis'

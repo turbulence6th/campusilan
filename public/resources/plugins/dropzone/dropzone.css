@@ -170,7 +170,7 @@
     -ms-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1); } }
-.dropzone, .dropzone * {
+, .dropzone * {
   box-sizing: border-box; }
 
 .dropzone {

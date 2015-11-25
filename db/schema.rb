@@ -20,6 +20,10 @@ ActiveRecord::Schema.define(version: 20151109221320) do
     t.integer  "user_id"
     t.integer  "advertable_id"
     t.string   "advertable_type"
+    t.string   "name"
+    t.integer  "price"
+    t.text     "explication"
+    t.boolean  "active"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -50,6 +54,7 @@ ActiveRecord::Schema.define(version: 20151109221320) do
   add_index "images", ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id", using: :btree
 
   create_table "lessonnotes", force: :cascade do |t|
+    t.integer "category"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -68,6 +73,11 @@ ActiveRecord::Schema.define(version: 20151109221320) do
   end
 
   create_table "secondhands", force: :cascade do |t|
+    t.integer "category"
+    t.integer "color"
+    t.string  "brand"
+    t.boolean "usage"
+    t.boolean "warranty"
   end
 
   create_table "universities", force: :cascade do |t|

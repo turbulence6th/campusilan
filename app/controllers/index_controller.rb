@@ -20,5 +20,23 @@ class IndexController < ApplicationController
     current_user.image = @image
     redirect_to '/insert_image'
   end 
+  
+  def ilanver
+    
+    @secondhand = Secondhand.new
+    @advert = Advert.new(:advertable => @secondhand) 
+  end
+  
+  def ilanverPost
+    @secondhand = Secondhand.new(params.require(:advert).require(:advertable).permit(
+      :category, :color, :brand, :usage, :warranty))
+    @advert = Advert.new(params.require(:advert).permit(:name, :price, :explication))
+    @advert.advertable = @secondhand
+    @advert.user = current_user
+    @advert.active = true
+    @advert.save
+    
+    redirect_to "/"
+  end
 
 end
