@@ -151,15 +151,12 @@
 
 			</div>
 
-			
 			<%= form_for @advert, :url => 'ilanver' , :method => :post , :html => {
-						:class => 'form-basic ikinciel' , :id => 'ikincielform', :onsubmit =>"return ikincielverify();"
-						} do |t| %>
+			:class => 'form-basic ikinciel' , :id => 'ikincielform', :onsubmit =>"return ikincielverify();"
+			} do |t| %>
 			<div class="form-title-row">
 				<h1>İlan Ver</h1>
 			</div>
-			
-			
 
 			<div class="row">
 
@@ -175,64 +172,48 @@
 								<option value="ozelders">Özel Ders</option>
 							</select> </label>
 					</div>
-					
+
 					<%= t.fields_for :advertable do |field| %>
-		    
 
 					<div class="form-row">
-						<label> <span>Alt Kategori</span>
-							<%= field.select :category, [['Beyaz Eşya', 'beyazesya'], ['Ev Dekorasyon',
-								'evdekorasyon'], ['Müzik Aletleri', 'muzikaletleri'], ['Kırtasiye', 'kirtasiye'],
-								['Mutfak Eşyaları', 'mutfakesyalari'], ['Diğer', 'diger']],{}, {}  %>
-						 </label>
+						<label> <span>Alt Kategori</span> <%= field.select :category, [['Beyaz Eşya', 'beyazesya'], ['Ev Dekorasyon',
+                'evdekorasyon'], ['Müzik Aletleri', 'muzikaletleri'], ['Kırtasiye', 'kirtasiye'],
+              ['Mutfak Eşyaları', 'mutfakesyalari'], ['Diğer', 'diger']],{}, {}  %> </label>
 					</div>
-					
+
 					<% end %>
 
 					<div class="form-row">
-						<label> <span>İlan Adı</span>
-							<%= t.text_field :name %>
-						</label>
+						<label> <span>İlan Adı</span> <%= t.text_field :name %> </label>
 					</div>
 
 					<div class="form-row">
-						<label> <span>Fiyat</span>
-							<%= t.text_field :price %>
-						</label>
+						<label> <span>Fiyat</span> <%= t.text_field :price %> </label>
 					</div>
-					
+
 					<%= t.fields_for :advertable do |field| %>
-		    
 
 					<div class="form-row">
-						<label> <span>Ürün rengi</span>
-							<%= field.select :color, [['Siyah', 'siyah'], ['Beyaz', 'beyaz'], ['Kırmızı','kirmizi'],
-								['Mavi', 'mavi'], ['Sarı', 'sari'], ['Yeşil', 'yesil']],{}, {}  %>
-						 </label>
+						<label> <span>Ürün rengi</span> <%= field.select :color, [['Siyah', 'siyah'], ['Beyaz', 'beyaz'], ['Kırmızı','kirmizi'],
+              ['Mavi', 'mavi'], ['Sarı', 'sari'], ['Yeşil', 'yesil']],{}, {}  %> </label>
 					</div>
 
 					<div class="form-row">
-						<label> <span>Marka</span> 			
-							<%= field.text_field :brand %>				
-						</label>
+						<label> <span>Marka</span> <%= field.text_field :brand %> </label>
 					</div>
 
 					<div class="form-row">
-						<label> <span>Kullanım Durumu</span>
-							<%= field.select :usage, [['Sıfır', 'true'], ['İkinci El', 'false']],{}, {}  %> </label>
+						<label> <span>Kullanım Durumu</span> <%= field.select :usage, [['Sıfır', 'true'], ['İkinci El', 'false']],{}, {}  %> </label>
 					</div>
 
 					<div class="form-row">
-						<label> <span>Garanti Durumu</span>
-							<%= field.select :warranty, [['Var', 'true'], ['Yok', 'false']],{}, {}  %>  </label>
+						<label> <span>Garanti Durumu</span> <%= field.select :warranty, [['Var', 'true'], ['Yok', 'false']],{}, {}  %> </label>
 					</div>
-					
-					
+
 					<% end %>
 
 					<div class="form-row">
-						<label> <span>Açıklama</span> 
-							<%= t.text_area :explication %> </label>
+						<label> <span>Açıklama</span> <%= t.text_area :explication %> </label>
 					</div>
 
 					<form action="/upload-target" class="dropzone"></form>
@@ -474,7 +455,6 @@
 						rel="stylesheet" type="text/css" />
 						<script src='/resources/plugins/dropzone/dropzone.js'></script>
 
-						
 						<div class="form-row">
 							<label> <span>Kullanım Koşullarını okudum ve kabul
 									ediyorum.</span>
@@ -510,32 +490,12 @@
 
 				</div>
 			</form>
-			
-			<script>
-				function ilanadiverify(){
-					
-					var form=document.getElementById("ikincielform");
-					
-					var ilanadi=form.elements['advert_name'].value;
-					var ilanadiRegexp= new RegExp("^[a-zA-Z0-9 ]{5-20}$");
-					var check= ilanadiRegexp.test(ilanadi);
-					var resut=false;
-					
-					if(ilanadi== "") {
-						$(".ilanadierror").hide();
-						$(".ilanadivalid").hide();
-						$(".bestenkucukhata").hide();
-						$(".ilanadierror").hide();
-						
-					}
-					
-				}
-				
-				
-			</script>
+
 			
 
 			<script>
+				
+
 				function changeform(value) {
 
 					if (value == "ikinciel") {
