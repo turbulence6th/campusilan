@@ -7,6 +7,7 @@ class AdvertController < ApplicationController
   def ilanver
     
     @advert = Advert.new 
+    
   end
   
   def secondhandPost
@@ -16,9 +17,16 @@ class AdvertController < ApplicationController
     @advert.advertable = @secondhand
     @advert.user = current_user
     @advert.active = true
-    @advert.save
     
-    redirect_to "/"
+    if params[:images]
+      params[:images].each do |image|   
+        @image = Image.new(:imagefile => image)
+        @advert.images << @image
+      end
+    end   
+ 
+    @advert.save
+  
   end
 
   def kategoriler

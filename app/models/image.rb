@@ -9,11 +9,4 @@ class Image < ActiveRecord::Base
 
   validates :imagefile, :attachment_presence => true
   
-  after_save :delete_me
-  
-  private
-  def delete_me
-    self.destroy if !self.imageable
-  end
-
 end

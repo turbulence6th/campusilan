@@ -14,6 +14,10 @@ class Advert < ActiveRecord::Base
     :maximum => 1000
   }
   
+  validates :images, :length => {
+     :maximum => 5
+  }
+  
   belongs_to :user
   
   has_many :viewed_adverts
@@ -24,6 +28,6 @@ class Advert < ActiveRecord::Base
   
   belongs_to :advertable, :polymorphic => true
   
-  has_many :image, :as => :imageable
+  has_many :images, :as => :imageable
   
 end
