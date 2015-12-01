@@ -58,8 +58,19 @@ class UserController < ApplicationController
       redirect_to "/girisyap?hataligiris=1"
     end
   end
+  
+  def updateUser
+    attr = params.require(:user).permit(:name, :surname, :phone1, :phone2, :bulletin, :gender, :address, :birthday)
+    attr.merge! :phone => attr[:phone1] + '-' + attr[:phone2]
+    puts attr
+    current_user.update_attributes(attr)
+    redirect_to '/uye/' + current_user.username + '?hesapayarlari=1'
+  end
 
   def member
+    
+    current_user.phone1 = current_user.phone.split('-')[0]
+    current_user.phone2 = current_user.phone.split('-')[1]
    
     if params[:profilim]!=nil
       @sekme=".profilim"
