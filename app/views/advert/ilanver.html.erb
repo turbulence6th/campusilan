@@ -151,8 +151,11 @@
 
 			</div>
 
+			<link href="/resources/plugins/dropzone/dropzone.css"
+						rel="stylesheet" type="text/css" />
+						<script src='/resources/plugins/dropzone/dropzone.js'></script>
 			
-			<%= form_for @advert, :url => 'ilanver' , :method => :post , :html => {
+			<%= form_for @advert, :url => 'secondhand' , :method => :post , :html => {
 						:class => 'form-basic ikinciel' , :id => 'ikincielform', :onsubmit =>"return ikincielverify();"
 						} do |t| %>
 			<div class="form-title-row">
@@ -234,13 +237,12 @@
 						<label> <span>Açıklama</span> 
 							<%= t.text_area :explication %> </label>
 					</div>
-
-					<form action="/upload-target" class="dropzone"></form>
+			
 
 					<div class="form-row">
 						<label> <span>Kullanım Koşullarını okudum ve kabul
 								ediyorum.</span>
-							<input type="checkbox" name="checkbox" >
+							<input type="checkbox" id="checkbox" >
 						</label>
 					</div>
 
@@ -249,6 +251,8 @@
 						İlan Ver
 						<% end %>
 					</div>
+					
+					
 
 				</div>
 

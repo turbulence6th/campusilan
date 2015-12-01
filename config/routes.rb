@@ -7,8 +7,11 @@ Rails.application.routes.draw do
   get 'reklam' => 'index#reklam'
   
   get 'yardim' => 'index#yardim'
-  get 'ilanver' => 'index#ilanver'
-  post 'ilanver' => 'index#ilanverPost'
+  get 'ilanver' => 'advert#ilanver'
+  post 'secondhand' => 'advert#secondhandPost'
+  post 'homemate' => 'advert#homematePost'
+  post 'lecturenote' => 'advert#lecturenotePost'
+  post 'privatelesson' => 'advert#privatelessonPost'
   get 'satis-alis' => 'index#satis_alis'
   get 'satis-alis/:satislarim' => 'index#satis_alis'
   get 'satis-alis/:alislarim' => 'index#satis_alis'

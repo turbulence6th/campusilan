@@ -3,20 +3,22 @@ class AdvertController < ApplicationController
   layout false
 
   helper_method :current_user
-  def ikinciel
-
+  
+  def ilanver
+    
+    @advert = Advert.new 
   end
-
-  def dersnotu
-
-  end
-
-  def evarkadasi
-
-  end
-
-  def ozelders
-
+  
+  def secondhandPost
+    @secondhand = Secondhand.new(params.require(:advert).require(:advertable).permit(
+      :category, :color, :brand, :usage, :warranty))
+    @advert = Advert.new(params.require(:advert).permit(:name, :price, :explication))
+    @advert.advertable = @secondhand
+    @advert.user = current_user
+    @advert.active = true
+    @advert.save
+    
+    redirect_to "/"
   end
 
   def kategoriler
