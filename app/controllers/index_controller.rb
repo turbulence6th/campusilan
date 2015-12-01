@@ -19,6 +19,10 @@ class IndexController < ApplicationController
     redirect_to '/insert_image'
   end 
   
+  def satis_alis
+    
+  end
+  
   
 
 end

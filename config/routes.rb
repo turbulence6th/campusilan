@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post 'register' => 'user#registerPost'
   post 'login' => 'user#loginPost'
   get 'logout' => 'user#logout'
+  post 'updateUser' => 'user#updateUser'
   
   get 'ikinciel/:advert_name' => 'advert#ikinciel'
   get 'dersnotu/:advert_name' => 'advert#dersnotu'

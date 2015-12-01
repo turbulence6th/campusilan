@@ -70,21 +70,27 @@ class AdvertController < ApplicationController
   def firsatlar
     if params[:acililanlar]!=nil
       @title="Acil İlanlar"
+      @active = 0
       @ilanlar=[]
     elsif params[:gununfirsatlari]!=nil
       @title="Günün Fırsatları"
+      @active = 1
       @ilanlar=[]
     elsif params[:ensonilanlar]!=nil
       @title="En Son İlanlar"
+      @active = 2
       @ilanlar=[]
     elsif params[:enpopulerilanlar]!=nil
       @title="En Popüler İlanlar"
+      @active = 3
       @ilanlar=[]
     elsif params[:fiyatidusenler]!=nil
       @title="Fiyatı Düşenler"
+      @active = 4
       @ilanlar=[]
     elsif params[:enguvenilirsaticilar]!=nil
       @title="En Güvenilir Satıcılar"
+      @active = 5
       @ilanlar=[]
     elsif params[:enyakindakisaticilar]!=nil
       @enyakindakisaticilar=true
@@ -92,6 +98,7 @@ class AdvertController < ApplicationController
       @ilanlar=[]
     else
       @title="Acil İlanlar"
+      @active = 0
       @ilanlar=[]
     end
   end
