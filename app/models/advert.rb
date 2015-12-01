@@ -15,7 +15,8 @@ class Advert < ActiveRecord::Base
   }
   
   validates :images, :length => {
-     :maximum => 5
+    :minimum => 1,
+    :maximum => 5
   }
   
   belongs_to :user

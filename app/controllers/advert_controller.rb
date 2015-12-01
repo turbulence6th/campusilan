@@ -4,6 +4,10 @@ class AdvertController < ApplicationController
 
   helper_method :current_user
   
+  def ikinciel
+    
+  end
+  
   def ilanver
     
     @advert = Advert.new 
