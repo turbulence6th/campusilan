@@ -79,13 +79,19 @@
 			});
 		</script>
 
-		<!-- İlan ver Formu -->
+		<!-- Image Upload Plugin-->
 
-		<link rel="stylesheet" href="resources/assets/form-basic.css">
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-		<link href="/resources/plugins/dropzone/dropzone.css"
-		rel="stylesheet" type="text/css" />
-		<script src='/resources/plugins/dropzone/dropzone.js'></script>
+		<script>
+			var imageupload = jQuery.noConflict();
+		</script>
+
+		<link href="/resources/plugins/imageupload/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+		<link href="/resources/plugins/imageupload/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+
+		<script type="text/javascript" src="/resources/plugins/imageupload/js/jquery.filer.js?v=1.0.5"></script>
+		<script type="text/javascript" src="/resources/plugins/imageupload/js/custom.js?v=1.0.5"></script>
 
 		<!-- end of plugins  -->
 
@@ -151,387 +157,374 @@
 
 			</div>
 
-			<%= form_for @advert, :url => 'ilanver' , :method => :post , :html => {
-			:class => 'form-basic ikinciel' , :id => 'ikincielform', :onsubmit =>"return ikincielverify();"
-			} do |t| %>
-			<div class="form-title-row">
-				<h1>İlan Ver</h1>
-			</div>
-
-			<div class="row">
+			<div class="row well">
 
 				<div class="col-lg-6">
 
-					<div class="form-row">
-						<label> <span>İlan Kategorisi</span>
-							<select onChange="changeform(this.value)"
+					<h2 class="row" style="text-align:center;"> İlan Ver</h2>
+					<br>
+
+					<div class="row form-group">
+						<label class="col-sm-2"> İlan Kategorisi </label>
+						<div class="col-sm-10">
+							<select class="form-control" onChange="changeform(this.value)"
 							name="dropdown">
 								<option selected value="ikinciel">İkinci El İlan</option>
 								<option value="evarkadasi">Ev Arkadaşı</option>
 								<option value="dersnotlari">Ders Notları</option>
 								<option value="ozelders">Özel Ders</option>
-							</select> </label>
+							</select>
+						</div>
 					</div>
+
+					<%= form_for @advert, :url => 'secondhand' , :method => :post , :html => {
+					:class => 'form-basic ikinciel' , :id => 'ikincielform'
+					} do |t| %>
 
 					<%= t.fields_for :advertable do |field| %>
 
-					<div class="form-row">
-						<label> <span>Alt Kategori</span> <%= field.select :category, [['Beyaz Eşya', 'beyazesya'], ['Ev Dekorasyon',
-                'evdekorasyon'], ['Müzik Aletleri', 'muzikaletleri'], ['Kırtasiye', 'kirtasiye'],
-              ['Mutfak Eşyaları', 'mutfakesyalari'], ['Diğer', 'diger']],{}, {}  %> </label>
+					<div class="row form-group">
+						<label class="control-label col-sm-2"> Alt Kategori</label>
+
+						<div class="col-sm-10">
+							<%= field.select :category, [['Beyaz Eşya', 'beyazesya'], ['Ev Dekorasyon',
+                  'evdekorasyon'], ['Müzik Aletleri', 'muzikaletleri'], ['Kırtasiye', 'kirtasiye'],
+                ['Mutfak Eşyaları', 'mutfakesyalari'], ['Diğer', 'diger']],{}, {:class => " form-control"}  %>
+
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<label for = "firstname" class = "col-sm-2 control-label">İlan Adı</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_field :name, class:"form-control" %>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<label for = "lastname" class = "col-sm-2 control-label">Fiyat</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_field :price, class:"form-control" %>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<label for = "lastname" class = "col-sm-2 control-label">Ürün Rengi</label>
+
+						<div class = "col-sm-10">
+							<%= field.select :color, [['Siyah', 'siyah'], ['Beyaz', 'beyaz'], ['Kırmızı','kirmizi'],
+							['Mavi', 'mavi'], ['Sarı', 'sari'], ['Yeşil', 'yesil']],{}, {class: "form-control"}  %>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<label for = "lastname" class = "col-sm-2 control-label">Marka</label>
+
+						<div class = "col-sm-10">
+							<%= field.text_field :brand ,class:"form-control"%>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<label for = "lastname" class = "col-sm-2 control-label">Kullanım Durumu</label>
+
+						<div class = "col-sm-10">
+							<%= field.select :usage, [['Sıfır', 'true'], ['İkinci El', 'false']],{}, {class:"form-control"}  %>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<label for = "lastname" class = "col-sm-2 control-label">Garanti Durumu</label>
+
+						<div class = "col-sm-10">
+							<%= field.select :warranty, [['Var', 'true'], ['Yok', 'false']],{}, {class:"form-control"}  %>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<label for = "firstname" class = "col-sm-2 control-label">Açıklama</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_area :explication, class:"form-control" %>
+						</div>
+					</div>
+
+					<div class="row">
+						<input type="file" name="files[]" id="file_image" multiple="multiple">
+
+					</div>
+					<script>
+						imageupload('#file_image').filer({
+    changeInput: '<div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-folder"></i></div><div class="jFiler-input-text"><h3>Click on this box</h3> <span style="display:inline-block; margin: 15px 0">or</span></div><a class="jFiler-input-choose-btn blue">Browse Files</a></div></div>',
+    showThumbs: true,
+    theme: "dragdropbox",
+    templates: {
+        box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
+        item: '<li class="jFiler-item">\
+                    <div class="jFiler-item-container">\
+                        <div class="jFiler-item-inner">\
+                            <div class="jFiler-item-thumb">\
+                                <div class="jFiler-item-status"></div>\
+                                <div class="jFiler-item-info">\
+                                    <span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
+                                    <span class="jFiler-item-others">{{fi-size2}}</span>\
+                                </div>\
+                                {{fi-image}}\
+                            </div>\
+                            <div class="jFiler-item-assets jFiler-row">\
+                                <ul class="list-inline pull-left">\
+                                    <li>{{fi-progressBar}}</li>\
+                                </ul>\
+                                <ul class="list-inline pull-right">\
+                                    <li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
+                                </ul>\
+                            </div>\
+                        </div>\
+                    </div>\
+                </li>',
+        itemAppend: '<li class="jFiler-item">\
+                        <div class="jFiler-item-container">\
+                            <div class="jFiler-item-inner">\
+                                <div class="jFiler-item-thumb">\
+                                    <div class="jFiler-item-status"></div>\
+                                    <div class="jFiler-item-info">\
+                                        <span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
+                                        <span class="jFiler-item-others">{{fi-size2}}</span>\
+                                    </div>\
+                                    {{fi-image}}\
+                                </div>\
+                                <div class="jFiler-item-assets jFiler-row">\
+                                    <ul class="list-inline pull-left">\
+                                        <li><span class="jFiler-item-others">{{fi-icon}}</span></li>\
+                                    </ul>\
+                                    <ul class="list-inline pull-right">\
+                                        <li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
+                                    </ul>\
+                                </div>\
+                            </div>\
+                        </div>\
+                    </li>',
+        itemAppendToEnd: false,
+        removeConfirmation: true,
+        _selectors: {
+            list: '.jFiler-items-list',
+            item: '.jFiler-item',
+            remove: '.jFiler-item-trash-action'
+        }
+    }
+});
+					</script>
+
+					<div class = "row form-group">
+						<div class = "col-sm-offset-2 col-sm-10">
+							<div class = "checkbox">
+								<label>
+									<input type = "checkbox">
+									Kullanım koşullarını kabul ediyorum</label>
+							</div>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<div class = "col-sm-offset-2 col-sm-10">
+							<%= t.submit 'İlan Ver',class:"btn btn-default" %>
+						</div>
 					</div>
 
 					<% end %>
+					<% end %>
 
-					<div class="form-row">
-						<label> <span>İlan Adı</span> <%= t.text_field :name %> </label>
-					</div>
-
-					<div class="form-row">
-						<label> <span>Fiyat</span> <%= t.text_field :price %> </label>
-					</div>
+					<%= form_for @advert, :url => 'lecturenote' , :method => :post , :html => {
+					:class => 'form-basic ikinciel' , :id => 'dersnotuform',
+					:style => 'display:none;'
+					} do |t| %>
 
 					<%= t.fields_for :advertable do |field| %>
 
-					<div class="form-row">
-						<label> <span>Ürün rengi</span> <%= field.select :color, [['Siyah', 'siyah'], ['Beyaz', 'beyaz'], ['Kırmızı','kirmizi'],
-              ['Mavi', 'mavi'], ['Sarı', 'sari'], ['Yeşil', 'yesil']],{}, {}  %> </label>
+					<div class = "row form-group">
+						<label for = "firstname" class = "col-sm-2 control-label">İlan Adı</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_field :name, class:"form-control" %>
+						</div>
 					</div>
 
-					<div class="form-row">
-						<label> <span>Marka</span> <%= field.text_field :brand %> </label>
+					<div class = "row form-group">
+						<label for = "firstname" class = "col-sm-2 control-label">Fiyat</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_field :price, class:"form-control" %>
+						</div>
 					</div>
 
-					<div class="form-row">
-						<label> <span>Kullanım Durumu</span> <%= field.select :usage, [['Sıfır', 'true'], ['İkinci El', 'false']],{}, {}  %> </label>
+					<div class = "row form-group">
+						<label for = "firstname" class = "col-sm-2 control-label">Açıklama</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_field :explication, class:"form-control" %>
+						</div>
 					</div>
 
-					<div class="form-row">
-						<label> <span>Garanti Durumu</span> <%= field.select :warranty, [['Var', 'true'], ['Yok', 'false']],{}, {}  %> </label>
+					<div class = "row form-group">
+						<div class = "col-sm-offset-2 col-sm-10">
+							<div class = "checkbox">
+								<label>
+									<input type = "checkbox">
+									Kullanım koşullarını kabul ediyorum</label>
+							</div>
+						</div>
 					</div>
 
+					<div class = "row form-group">
+						<div class = "col-sm-offset-2 col-sm-10">
+							<%= t.submit 'İlan Ver',class:"btn btn-default" %>
+						</div>
+					</div>
+					<% end %>
 					<% end %>
 
-					<div class="form-row">
-						<label> <span>Açıklama</span> <%= t.text_area :explication %> </label>
+					<%= form_for @advert, :url => 'homemate' , :method => :post , :html => {
+					:class => 'form-basic ikinciel' , :id => 'evarkadasiform',
+					:style => 'display:none;'
+					} do |t| %>
+
+					<%= t.fields_for :advertable do |field| %>
+
+					<div class = "row form-group">
+						<label for = "firstname" class = "col-sm-2 control-label">İlan Adı</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_field :name, class:"form-control" %>
+						</div>
 					</div>
 
-					<form action="/upload-target" class="dropzone"></form>
+					<div class = "row form-group">
+						<label for = "firstname" class = "col-sm-2 control-label">Fiyat</label>
 
-					<div class="form-row">
-						<label> <span>Kullanım Koşullarını okudum ve kabul
-								ediyorum.</span>
-							<input type="checkbox" name="checkbox" >
-						</label>
+						<div class = "col-sm-10">
+							<%= t.text_field :price, class:"form-control" %>
+						</div>
 					</div>
 
-					<div class="form-row">
-						<%= content_tag :button,:type => :submit do %>
-						İlan Ver
-						<% end %>
+					<div class = "row form-group">
+						<label for = "firstname" class = "col-sm-2 control-label">Açıklama</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_field :explication, class:"form-control" %>
+						</div>
 					</div>
+
+					<div class = "row form-group">
+						<div class = "col-sm-offset-2 col-sm-10">
+							<div class = "checkbox">
+								<label>
+									<input type = "checkbox">
+									Kullanım koşullarını kabul ediyorum</label>
+							</div>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<div class = "col-sm-offset-2 col-sm-10">
+							<%= t.submit 'İlan Ver',class:"btn btn-default" %>
+						</div>
+					</div>
+					<% end %>
+					<% end %>
+
+					<%= form_for @advert, :url => 'privatelesson' , :method => :post , :html => {
+					:class => 'form-basic ikinciel' , :id => 'ozeldersform',
+					:style => 'display:none;'
+					} do |t| %>
+
+					<%= t.fields_for :advertable do |field| %>
+
+					<div class = "row form-group">
+						<label for = "firstname" class = "col-sm-2 control-label">İlan Adı</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_field :name, class:"form-control" %>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<label for = "firstname" class = "col-sm-2 control-label">Fiyat</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_field :price, class:"form-control" %>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<label for = "firstname" class = "col-sm-2 control-label">Açıklama</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_field :explication, class:"form-control" %>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<div class = "col-sm-offset-2 col-sm-10">
+							<div class = "checkbox">
+								<label>
+									<input type = "checkbox">
+									Kullanım koşullarını kabul ediyorum</label>
+							</div>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<div class = "col-sm-offset-2 col-sm-10">
+							<%= t.submit 'İlan Ver',class:"btn btn-default" %>
+						</div>
+					</div>
+					<% end %>
+					<% end %>
 
 				</div>
 
-				<div class="sagsutun col-lg-6">
-
+				<div style="padding-left:50px; margin-top:85px;"class="sagsutun col-lg-6">
 					-Kullanım Koşulları için <a href="#">buraya</a> tıklayınız.
 					<br>
 					<br>
 					<br>
-
 					-İlanınız onaylandıktan sonra yayınlanacaktır.
 					<br>
 					<br>
 					<br>
-
 					-Sitemizin işleyişi ile ilgili bilgi mi almak istiyorsunuz? <a href="#">Buraya</a> tıklayın.
 					<br>
 					Ya da yardıma mı ihtiyacınız var? O zaman <a href="#">buraya</a> tıklayın.
-
 				</div>
 
 			</div>
-			<% end %>
-
-			<form style="display:none;" class="form-basic evarkadasi" method="post" action="#">
-
-				<div class="form-title-row">
-					<h1>İlan Ver</h1>
-				</div>
-
-				<div class="row">
-
-					<div class="col-lg-6">
-
-						<div class="form-row">
-							<label> <span>İlan Kategorisi</span>
-								<select onChange="changeform(this.value)"
-								name="dropdown">
-									<option value="ikinciel">İkinci El İlan</option>
-									<option selected value="evarkadasi">Ev Arkadaşı</option>
-									<option value="dersnotlari">Ders Notları</option>
-									<option value="ozelders">Özel Ders</option>
-								</select> </label>
-						</div>
-
-						<div class="form-row">
-							<label> <span>İlan Adı</span>
-								<input type="text"
-								name="name">
-							</label>
-						</div>
-
-						<div class="form-row">
-							<label> <span>Fiyat</span>
-								<input type="email"
-								name="email">
-							</label>
-						</div>
-
-						<div class="form-row">
-							<label> <span>Açıklama</span> 								<textarea name="textarea"></textarea> </label>
-						</div>
-
-						<link href="/resources/plugins/dropzone/dropzone.css"
-						rel="stylesheet" type="text/css" />
-						<script src='/resources/plugins/dropzone/dropzone.js'></script>
-
-						<div class="form-row">
-							<label> <span>Kullanım Koşullarını okudum ve kabul
-									ediyorum.</span>
-								<input type="checkbox" name="checkbox" >
-							</label>
-						</div>
-
-						<div class="form-row">
-							<button type="submit">
-								İlan Ver
-							</button>
-						</div>
-
-					</div>
-
-					<div class="sagsutun col-lg-6">
-
-						-Kullanım Koşulları için <a href="#">buraya</a> tıklayınız.
-						<br>
-						<br>
-						<br>
-
-						-İlanınız onaylandıktan sonra yayınlanacaktır.
-						<br>
-						<br>
-						<br>
-
-						-Sitemizin işleyişi ile ilgili bilgi mi almak istiyorsunuz? <a href="#">Buraya</a> tıklayın.
-						<br>
-						Ya da yardıma mı ihtiyacınız var? O zaman <a href="#">buraya</a> tıklayın.
-
-					</div>
-
-				</div>
-			</form>
-
-			<form style="display:none;" class="form-basic dersnotlari" method="post" action="#">
-
-				<div class="form-title-row">
-					<h1>İlan Ver</h1>
-				</div>
-
-				<div class="row">
-
-					<div class="col-lg-6">
-
-						<div class="form-row">
-							<label> <span>İlan Kategorisi</span>
-								<select onChange="changeform(this.value)"
-								name="dropdown">
-									<option value="ikinciel">İkinci El İlan</option>
-									<option value="evarkadasi">Ev Arkadaşı</option>
-									<option selected value="dersnotlari">Ders Notları</option>
-									<option value="ozelders">Özel Ders</option>
-								</select> </label>
-						</div>
-
-						<div class="form-row">
-							<label> <span>İlan Adı</span>
-								<input type="text"
-								name="name">
-							</label>
-						</div>
-
-						<div class="form-row">
-							<label> <span>Fiyat</span>
-								<input type="email"
-								name="email">
-							</label>
-						</div>
-
-						<div class="form-row">
-							<label> <span>Açıklama</span> 								<textarea name="textarea"></textarea> </label>
-						</div>
-
-						<link href="/resources/plugins/dropzone/dropzone.css"
-						rel="stylesheet" type="text/css" />
-						<script src='/resources/plugins/dropzone/dropzone.js'></script>
-
-						<div class="form-row">
-							<label> <span>Kullanım Koşullarını okudum ve kabul
-									ediyorum.</span>
-								<input type="checkbox" name="checkbox" >
-							</label>
-						</div>
-
-						<div class="form-row">
-							<button type="submit">
-								İlan Ver
-							</button>
-						</div>
-
-					</div>
-
-					<div class="sagsutun col-lg-6">
-
-						-Kullanım Koşulları için <a href="#">buraya</a> tıklayınız.
-						<br>
-						<br>
-						<br>
-
-						-İlanınız onaylandıktan sonra yayınlanacaktır.
-						<br>
-						<br>
-						<br>
-
-						-Sitemizin işleyişi ile ilgili bilgi mi almak istiyorsunuz? <a href="#">Buraya</a> tıklayın.
-						<br>
-						Ya da yardıma mı ihtiyacınız var? O zaman <a href="#">buraya</a> tıklayın.
-
-					</div>
-
-				</div>
-			</form>
-
-			<form style="display:none;" class="form-basic ozelders" method="post" action="#">
-
-				<div class="form-title-row">
-					<h1>İlan Ver</h1>
-				</div>
-
-				<div class="row">
-
-					<div class="col-lg-6">
-
-						<div class="form-row">
-							<label> <span>İlan Kategorisi</span>
-								<select onChange="changeform(this.value)"
-								name="dropdown">
-									<option value="ikinciel">İkinci El İlan</option>
-									<option value="evarkadasi">Ev Arkadaşı</option>
-									<option value="dersnotlari">Ders Notları</option>
-									<option selected value="ozelders">Özel Ders</option>
-								</select> </label>
-						</div>
-
-						<div class="form-row">
-							<label> <span>İlan Adı</span>
-								<input type="text"
-								name="name">
-							</label>
-						</div>
-
-						<div class="form-row">
-							<label> <span>Fiyat</span>
-								<input type="email"
-								name="email">
-							</label>
-						</div>
-
-						<div class="form-row">
-							<label> <span>Açıklama</span> 								<textarea name="textarea"></textarea> </label>
-						</div>
-
-						<link href="/resources/plugins/dropzone/dropzone.css"
-						rel="stylesheet" type="text/css" />
-						<script src='/resources/plugins/dropzone/dropzone.js'></script>
-
-						<div class="form-row">
-							<label> <span>Kullanım Koşullarını okudum ve kabul
-									ediyorum.</span>
-								<input type="checkbox" name="checkbox" >
-							</label>
-						</div>
-
-						<div class="form-row">
-							<button type="submit">
-								İlan Ver
-							</button>
-						</div>
-
-					</div>
-
-					<div class="sagsutun col-lg-6">
-
-						-Kullanım Koşulları için <a href="#">buraya</a> tıklayınız.
-						<br>
-						<br>
-						<br>
-
-						-İlanınız onaylandıktan sonra yayınlanacaktır.
-						<br>
-						<br>
-						<br>
-
-						-Sitemizin işleyişi ile ilgili bilgi mi almak istiyorsunuz? <a href="#">Buraya</a> tıklayın.
-						<br>
-						Ya da yardıma mı ihtiyacınız var? O zaman <a href="#">buraya</a> tıklayın.
-
-					</div>
-
-				</div>
-			</form>
-
-			
-
-			<script>
-				
-
-				function changeform(value) {
-
-					if (value == "ikinciel") {
-						$(".form-basic").hide();
-
-						$(".ikinciel").show();
-
-					} else if (value == "evarkadasi") {
-
-						$(".form-basic").hide();
-
-						$(".evarkadasi").show();
-
-					} else if (value == "dersnotlari") {
-
-						$(".form-basic").hide();
-
-						$(".dersnotlari").show();
-
-					} else if (value == "ozelders") {
-
-						$(".form-basic").hide();
-
-						$(".ozelders").show();
-
-					}
-
-				}
-
-			</script>
 
 		</div>
 
 		<%= render "footer" %>
 
 		</div>
+
+		<script>
+			function changeform(value) {
+				if (value == "ikinciel") {
+					$(".form-basic").hide();
+					$("#ikincielform").show();
+				} else if (value == "evarkadasi") {
+					$(".form-basic").hide();
+					$("#evarkadasiform").show();
+				} else if (value == "dersnotlari") {
+					$(".form-basic").hide();
+					$("#dersnotuform").show();
+				} else if (value == "ozelders") {
+					$(".form-basic").hide();
+					$("#ozeldersform").show();
+				}
+			}
+
+		</script>
 
 		<!-- pluginler -->
 
