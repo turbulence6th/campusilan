@@ -6,6 +6,52 @@ class AdvertController < ApplicationController
   
   def ikinciel
     
+    advert_name = params[:advert_name]
+    id = advert_name.split('-')[-1]
+    @advert = Advert.where(:id => id, :advertable_type => 'Secondhand')[0]
+    
+    if !@advert
+      redirect_to '/404'
+      return
+    end
+    
+    name = @advert.name
+    link = name.parameterize + '-' + id
+    if link != advert_name
+        redirect_to '/ikinciel/' + link
+    end
+    
+    if current_user
+      ViewedAdvert.create(:user => current_user, :advert => @advert)
+    end
+    
+    ViewedAdvertCount.create(:ip => request.remote_ip, :advert => @advert)
+    
+    @advertable = @advert.advertable
+    @advert_user = @advert.user
+    @images = @advert.images
+    
+  end
+  
+  def dersnotu
+    advert_name = params[:advert_name]
+    id = advert_name.split('-')[-1]
+    @advert = Advert.where(:id => id, :advertable_type => 'Lecturenote')[0]
+    
+    if !@advert
+      redirect_to '/404'
+    end
+    
+    name = @advert.name
+    link = name.parameterize + '-' + id
+    if link != advert_name
+        redirect_to '/dersnotu/' + link
+    end
+    
+    
+    
+    
+    
   end
   
   def ilanver
