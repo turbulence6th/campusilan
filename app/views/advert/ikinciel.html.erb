@@ -160,7 +160,7 @@
 										<li data-thumb="<%= image_path image.imagefile(:original) %>">
 											<div class="thumb-image">
 												
-												<%= image_tag image.imagefile(:original), 'data-imagezoom' => 'true', :class => 'img-responsive' %>
+												<%= image_tag image.imagefile(:original), 'data-imagezoom' => 'true', :class => 'img-responsive', :style => 'width:600px;;height:800px; '%>
 											</div>
 										</li>
 										
@@ -462,7 +462,7 @@
 			$(document).ready(function() {
 				$('.popup-with-zoom-anim').magnificPopup({
 					type : 'inline',
-					fixedContentPos : false,
+					fixedContentPos : true,
 					fixedBgPos : true,
 					overflowY : 'auto',
 					closeBtnInside : true,
