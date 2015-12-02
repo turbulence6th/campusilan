@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'ruby', '2.2.3'
+gem 'rails_12factor'
+
 gem "paperclip", "~> 4.3"
 
 gem 'turkish_support'
