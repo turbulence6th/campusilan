@@ -76,7 +76,7 @@ class AdvertController < ApplicationController
     end   
  
     @advert.save
-  
+    redirect_to "/"
   end
 
   def kategoriler

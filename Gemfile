@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'ruby', '2.2.3'
+
 
 
 gem "paperclip", "~> 4.3"
@@ -55,8 +55,5 @@ group :development do
   gem 'spring'
 end
 
-group :production do
-  
- gem 'rails_12factor'
-end
+
 
