@@ -3,17 +3,23 @@ default: &default
   encoding: unicode
   pool: 5
   host: localhost
-  username: postgres
-  password: postgres
+  
 
 development:
   <<: *default
+  username: postgres
+  password: postgres
   database: campusilan_development
+  
 
 test:
   <<: *default
+  username: postgres
+  password: postgres
   database: campusilan_test
 
 production:
   <<: *default
+  username: rails
+  password: jZMJHIVhRH
   database: campusilan_production
