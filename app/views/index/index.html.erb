@@ -1145,7 +1145,8 @@
 								<ul>
 									<% @ensonikinciel.each do |adv| %>
 									<li>
-										<a href="#"> <%= image_tag adv.images[0].imagefile(:small) if adv.images[0] %><br /> <h4><%= adv.name %></h4> </a>
+										<a href="/ikinciel/<%= adv.name.parameterize + '-' + adv.id.to_s %>"> 
+										<%= image_tag adv.images[0].imagefile(:small) %><br /> <h4><%= adv.name %></h4> </a>
 									</li>
 
 									<% end %>
