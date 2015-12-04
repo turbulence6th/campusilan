@@ -56,6 +56,10 @@ class AdvertController < ApplicationController
   
   def ilanver
     
+    if !current_user
+      redirect_to "/girisyap"
+    end
+    
     @advert = Advert.new 
     
   end
