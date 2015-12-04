@@ -40,11 +40,7 @@
 
 		<!--plugins: -->
 
-		<!-- Respond Menu -->
-
-		<link rel="stylesheet"
-		href="/resources/plugins/Respond-Menu/css/styles.css">
-		<!--[if IE]> <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+		
 
 		<link href="/resources/css/searchbox.css" rel="stylesheet"
 		type="text/css" />
@@ -118,6 +114,15 @@
 			});
 
 		</script>
+		
+		<!-- Fixed Header -->
+
+		<link rel="stylesheet" href="/resources/assets/header-fixed.css">
+
+		<link href='http://fonts.googleapis.com/css?family=Cookie'
+		rel='stylesheet' type='text/css'>
+
+		<!-- Fixed Header sonu -->
 
 		<!-- end of plugins  -->
 
@@ -154,32 +159,24 @@
 			as needed -->
 			<script src="/resources/js/bootstrap.min.js"></script>
 
-			<div class="row">
-				<header>
+			<div class="row" style="margin-bottom: 10px;">
 
-					<a href="#" id="logo"></a>
-
-					<nav class="respondmenunav">
-
-						<a class="hidden-xs hidden-sm" href="#" id="menu-icon"></a>
-
-						<ul class="respondmenuul">
-
-							<li class="respondmenuli">
-								<span>Hoşgeldin <%= current_user.username %> ;</span>&nbsp;&nbsp;
-								<br>
-								<a style="margin-right:15px;float:right;" href="#">Çıkış Yap</a>
-							</li>
-
-						</ul>
-
-					</nav>
-
-				</header>
+				<!-- Login Starts Here -->
+				<%= render "loginContainer" %>
+				<!-- Login Ends Here -->
 
 			</div>
+			
+			<div class="row">
 
-			<div class="row" style="margin-top: 75px;">
+				<%= render "headerfixed" %>
+
+			</div>
+			
+			<!-- You need this element to prevent the content of the page from jumping up -->
+			<div class="header-fixed-placeholder"></div>
+
+			<div class="row" style="">
 
 				<%= render "smartmenus" %>
 
@@ -187,7 +184,7 @@
 
 			<div class="visible-lg row" style="padding-bottom: 20px;">
 
-				<div class="row ustpaneller" style="padding:20px;margin-top: 30px;">
+				<div class="row ustpaneller" style="padding:20px;">
 
 					<aside class="col-lg-3 col-md-3 col-sm-3 hidden-xs ">
 
