@@ -69,8 +69,7 @@ class UserController < ApplicationController
 
   def member
     
-    current_user.phone1 = current_user.phone.split('-')[0]
-    current_user.phone2 = current_user.phone.split('-')[1]
+    
    
     if params[:profilim]!=nil
       @sekme=".profilim"
@@ -99,7 +98,10 @@ class UserController < ApplicationController
     if @other_user == nil 
       raise ActionController::RoutingError.new('Not Found') 
     elsif  current_user != @other_user
-        render 'member2'  
+      render 'member2'
+    else
+      current_user.phone1 = current_user.phone.split('-')[0]
+      current_user.phone2 = current_user.phone.split('-')[1]
     end
 
   end

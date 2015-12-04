@@ -39,6 +39,22 @@
 		<![endif]-->
 
 		<!--plugins: -->
+		
+		<!-- dropdown login box -->
+
+		<link rel="stylesheet"
+		href="/resources/plugins/dropdownloginbox/css/style.css" />
+
+		<script src="/resources/plugins/dropdownloginbox/js/login.js"></script>
+		
+		<!-- Fixed Header -->
+
+		<link rel="stylesheet" href="/resources/assets/header-fixed.css">
+
+		<link href='http://fonts.googleapis.com/css?family=Cookie'
+		rel='stylesheet' type='text/css'>
+
+		<!-- Fixed Header sonu -->
 
 		<!-- Respond Menu -->
 
@@ -121,51 +137,39 @@
 
 	<body>
 
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+		<!-- Include all compiled plugins (below), or include individual files
+		as needed -->
+		<script src="/resources/js/bootstrap.min.js"></script>
+
 		<div class="container-fluid">
 
-			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+			<div class="row" style="margin-bottom: 10px;">
 
-			<!-- Include all compiled plugins (below), or include individual files
-			as needed -->
-			<script src="/resources/js/bootstrap.min.js"></script>
+				<!-- Login Starts Here -->
 
-			<div class="row">
-				<header>
+				<%= render "loginContainer" %>
 
-					<a href="#" id="logo"></a>
-
-					<nav class="respondmenunav">
-
-						<a class="hidden-xs hidden-sm" href="#" id="menu-icon"></a>
-
-						<ul class="respondmenuul">
-
-							<li style="margin-top:-15px;" class="respondmenuli">
-								<p style="float:right;">
-									Hoşgeldin; <%= current_user.username %>
-								</p>
-								<br>
-
-								<p  style="clear: both;float:right;">
-									<a href="/uye/<%= current_user.username %>"> Profilim </a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/logout"> Çıkış Yap </a>
-
-								</p>
-
-							</li>
-
-						</ul>
-
-					</nav>
-
-				</header>
+				<!-- Login Ends Here -->
 
 			</div>
 
-			<div class="row" style="margin-top: 75px;">
+			<div class="row">
+
+				<%= render "headerfixed" %>
+
+			</div>
+
+			<!-- You need this element to prevent the content of the page from jumping up -->
+			<div class="header-fixed-placeholder"></div>
+
+			<div class="row">
 
 				<%= render "smartmenus" %>
 
 			</div>
+			
 
 			<div class="visible-lg row" style="padding-bottom: 20px;">
 

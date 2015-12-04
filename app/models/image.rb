@@ -5,7 +5,7 @@ class Image < ActiveRecord::Base
   has_attached_file :imagefile, :styles => { :small => "280x320!", :medium => "480x640!", :original => '768x1024!' },
     :url => "/image/:hash.:extension", :hash_secret => ":id"
 
-  validates_attachment :imagefile, content_type: { content_type: /\Aimage\/.*\Z/ }, :size => { :in => 0..2.megabytes }
+  validates_attachment :imagefile, content_type: { content_type: ['image/jpeg', 'image/png'] }, :size => { :in => 0..2.megabytes }
 
   validates :imagefile, :attachment_presence => true
   
