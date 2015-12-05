@@ -450,234 +450,28 @@
 								</div>
 
 								<div class="panel-body">
+									
+									<% @adverts.each do |advert| %>
+									
+										<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
-									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-
-										<div class="thumbnail">
-											<a href="#"> <img src="/resources/images/cat-demo.jpg"
-											alt="cat demo photo"> </img> </a>
-
+											<div class="thumbnail">
+												<a href="/ikinciel/<%= advert.name.parameterize + '-' + advert.id.to_s %>">  <%= image_tag advert.images[0].imagefile(:small) %> </a>
+	
+											</div>
+	
+											<div class="caption">
+	
+												<h3><%= advert.name %></h3>
+												<p>
+													<%= advert.explication[0...5] %>
+												</p>
+	
+											</div>
+	
 										</div>
-
-										<div class="caption">
-
-											<h3>Thumbnail label</h3>
-											<p>
-												Some sample text.
-											</p>
-
-										</div>
-
-									</div>
-
-									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-
-										<div class="thumbnail">
-											<a href="#"> <img src="/resources/images/cat-demo.jpg"
-											alt="cat demo photo"> </img> </a>
-
-										</div>
-
-										<div class="caption">
-
-											<h3>Thumbnail label</h3>
-											<p>
-												Some sample text.
-											</p>
-
-										</div>
-
-									</div>
-
-									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-
-										<div class="thumbnail">
-											<a href="#"> <img src="/resources/images/cat-demo.jpg"
-											alt="cat demo photo"> </img> </a>
-
-										</div>
-
-										<div class="caption">
-
-											<h3>Thumbnail label</h3>
-											<p>
-												Some sample text.
-											</p>
-
-										</div>
-
-									</div>
-
-									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-
-										<div class="thumbnail">
-											<a href="#"> <img src="/resources/images/cat-demo.jpg"
-											alt="cat demo photo"> </img> </a>
-
-										</div>
-
-										<div class="caption">
-
-											<h3>Thumbnail label</h3>
-											<p>
-												Some sample text.
-											</p>
-
-										</div>
-
-									</div>
-
-									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-
-										<div class="thumbnail">
-											<a href="#"> <img src="/resources/images/cat-demo.jpg"
-											alt="cat demo photo"> </img> </a>
-
-										</div>
-
-										<div class="caption">
-
-											<h3>Thumbnail label</h3>
-											<p>
-												Some sample text.
-											</p>
-
-										</div>
-
-									</div>
-
-									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-
-										<div class="thumbnail">
-											<a href="#"> <img src="/resources/images/cat-demo.jpg"
-											alt="cat demo photo"> </img> </a>
-
-										</div>
-
-										<div class="caption">
-
-											<h3>Thumbnail label</h3>
-											<p>
-												Some sample text.
-											</p>
-
-										</div>
-
-									</div>
-
-									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-
-										<div class="thumbnail">
-											<a href="#"> <img src="/resources/images/cat-demo.jpg"
-											alt="cat demo photo"> </img> </a>
-
-										</div>
-
-										<div class="caption">
-
-											<h3>Thumbnail label</h3>
-											<p>
-												Some sample text.
-											</p>
-
-										</div>
-
-									</div>
-
-									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-
-										<div class="thumbnail">
-											<a href="#"> <img src="/resources/images/cat-demo.jpg"
-											alt="cat demo photo"> </img> </a>
-
-										</div>
-
-										<div class="caption">
-
-											<h3>Thumbnail label</h3>
-											<p>
-												Some sample text.
-											</p>
-
-										</div>
-
-									</div>
-
-									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-
-										<div class="thumbnail">
-											<a href="#"> <img src="/resources/images/cat-demo.jpg"
-											alt="cat demo photo"> </img> </a>
-
-										</div>
-
-										<div class="caption">
-
-											<h3>Thumbnail label</h3>
-											<p>
-												Some sample text.
-											</p>
-
-										</div>
-
-									</div>
-
-									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-
-										<div class="thumbnail">
-											<a href="#"> <img src="/resources/images/cat-demo.jpg"
-											alt="cat demo photo"> </img> </a>
-
-										</div>
-
-										<div class="caption">
-
-											<h3>Thumbnail label</h3>
-											<p>
-												Some sample text.
-											</p>
-
-										</div>
-
-									</div>
-
-									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-
-										<div class="thumbnail">
-											<a href="#"> <img src="/resources/images/cat-demo.jpg"
-											alt="cat demo photo"> </img> </a>
-
-										</div>
-
-										<div class="caption">
-
-											<h3>Thumbnail label</h3>
-											<p>
-												Some sample text.
-											</p>
-
-										</div>
-
-									</div>
-
-									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-
-										<div class="thumbnail">
-											<a href="#"> <img src="/resources/images/cat-demo.jpg"
-											alt="cat demo photo"> </img> </a>
-
-										</div>
-
-										<div class="caption">
-
-											<h3>Thumbnail label</h3>
-											<p>
-												Some sample text.
-											</p>
-
-										</div>
-
-									</div>
+										
+									<% end %>
 
 								</div>
 

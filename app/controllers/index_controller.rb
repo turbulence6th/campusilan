@@ -6,6 +6,9 @@ class IndexController < ApplicationController
   def index
     
     @ensonikinciel = Advert.where(advertable_type: 'Secondhand').last(4).reverse
+    @ensonevarkadasi = Advert.where(advertable_type: 'Homemate').last(4).reverse
+    @ensondersnotu = Advert.where(advertable_type: 'Lessonnote').last(4).reverse
+    @ensonozelders = Advert.where(advertable_type: 'Privatelesson').last(4).reverse
     
   end
   

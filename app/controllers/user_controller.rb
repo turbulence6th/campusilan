@@ -53,7 +53,7 @@ class UserController < ApplicationController
     user = User.find_by_username(params[:username]).try(:authenticate, params[:password])
     if (user!=nil && user!=false)
       session[:user_id] = user.id
-      redirect_to "/"
+      redirect_to URI(request.referer).path
     else
       redirect_to "/girisyap?hataligiris=1"
     end
@@ -114,7 +114,7 @@ class UserController < ApplicationController
 
   def logout
     reset_session
-    redirect_to "/"
+    redirect_to URI(request.referer).path
   end
   
   

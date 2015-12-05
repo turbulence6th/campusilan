@@ -11,8 +11,7 @@ class AdvertController < ApplicationController
     @advert = Advert.where(:id => id, :advertable_type => 'Secondhand')[0]
     
     if !@advert
-      redirect_to '/404'
-      return
+      raise ActionController::RoutingError.new('Not Found')
     end
     
     name = @advert.name
@@ -39,7 +38,7 @@ class AdvertController < ApplicationController
     @advert = Advert.where(:id => id, :advertable_type => 'Lecturenote')[0]
     
     if !@advert
-      redirect_to '/404'
+      raise ActionController::RoutingError.new('Not Found')
     end
     
     name = @advert.name
@@ -87,14 +86,19 @@ class AdvertController < ApplicationController
     kategori=params[:kategori]
     if kategori=="ikincielilan"
       @title="İkinci El İlanlar"
+      @adverts = Advert.where(:advertable_type => 'Secondhand')
     elsif kategori=="dersnotu"
       @title="Ders Notları"
+      @adverts = Advert.where(:advertable_type => 'Lessonnote')
     elsif kategori=="evarkadasi"
       @title="Ev Arkadaşı İlanları"
+      @adverts = Advert.where(:advertable_type => 'Homemate')
     elsif kategori=="ozelders"
       @title="Özel Ders İlanları"
+      @adverts = Advert.where(:advertable_type => 'Privatelesson')
     elsif kategori==nil
       @title="İkinci El İlanlar"
+      @adverts = Advert.where(:advertable_type => 'Secondhand')
     else
       redirect_to "/kategoriler"
     end
@@ -102,18 +106,25 @@ class AdvertController < ApplicationController
     subkategori=params[:subkategori]
     if subkategori=="beyazesya"
       @title="Beyaz Eşya"
+      @adverts = @adverts.select {|adv| adv.advertable.category=='beyazesya'}
     elsif subkategori=="evdekorasyonu"
       @title="Ev Dekorasyonu"
+      @adverts = @adverts.select {|adv| adv.advertable.category=='evdekorasyonu'}
     elsif subkategori=="muzikaletleri"
       @title="Müzik Aletleri"
+      @adverts = @adverts.select {|adv| adv.advertable.category=='muzikaletleri'}
     elsif subkategori=="elektronik"
       @title="Elektronik"
+      @adverts = @adverts.select {|adv| adv.advertable.category=='elektronik'}
     elsif subkategori=="kirtasiye"
       @title="Kırtasiye"
+      @adverts = @adverts.select {|adv| adv.advertable.category=='kirtasiye'}
     elsif subkategori=="mutfakesyalari"
       @title="Mutfak Eşyaları"
+      @adverts = @adverts.select {|adv| adv.advertable.category=='mutfakesyalari'}
     elsif subkategori=="diger"
       @title="Diğer"
+      @adverts = @adverts.select {|adv| adv.advertable.category=='diger'}
     end
   end
 
