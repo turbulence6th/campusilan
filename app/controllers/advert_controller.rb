@@ -86,19 +86,19 @@ class AdvertController < ApplicationController
     kategori=params[:kategori]
     if kategori=="ikincielilan"
       @title="İkinci El İlanlar"
-      @adverts = Advert.where(:advertable_type => 'Secondhand')
+      @adverts = Advert.where(:advertable_type => 'Secondhand').reverse
     elsif kategori=="dersnotu"
       @title="Ders Notları"
-      @adverts = Advert.where(:advertable_type => 'Lessonnote')
+      @adverts = Advert.where(:advertable_type => 'Lessonnote').reverse
     elsif kategori=="evarkadasi"
       @title="Ev Arkadaşı İlanları"
-      @adverts = Advert.where(:advertable_type => 'Homemate')
+      @adverts = Advert.where(:advertable_type => 'Homemate').reverse
     elsif kategori=="ozelders"
       @title="Özel Ders İlanları"
-      @adverts = Advert.where(:advertable_type => 'Privatelesson')
+      @adverts = Advert.where(:advertable_type => 'Privatelesson').reverse
     elsif kategori==nil
       @title="İkinci El İlanlar"
-      @adverts = Advert.where(:advertable_type => 'Secondhand')
+      @adverts = Advert.where(:advertable_type => 'Secondhand').reverse
     else
       redirect_to "/kategoriler"
     end
@@ -132,35 +132,42 @@ class AdvertController < ApplicationController
     if params[:acililanlar]!=nil
       @title="Acil İlanlar"
       @active = 0
-      @ilanlar=[]
+      @adverts = Advert.where(:urgent => true).order('created_at DESC')
     elsif params[:gununfirsatlari]!=nil
       @title="Günün Fırsatları"
       @active = 1
-      @ilanlar=[]
+      @adverts = []
     elsif params[:ensonilanlar]!=nil
       @title="En Son İlanlar"
       @active = 2
-      @ilanlar=[]
+      @adverts = Advert.order('created_at DESC')
     elsif params[:enpopulerilanlar]!=nil
       @title="En Popüler İlanlar"
       @active = 3
-      @ilanlar=[]
+      @adverts = []
+    
+      popularList = ViewedAdvertCount.group(:advert_id).count
+      
+      popularList.each do |id, count|
+        @adverts << Advert.find(id)
+      end
     elsif params[:fiyatidusenler]!=nil
       @title="Fiyatı Düşenler"
       @active = 4
-      @ilanlar=[]
+      @adverts = []
     elsif params[:enguvenilirsaticilar]!=nil
       @title="En Güvenilir Satıcılar"
       @active = 5
-      @ilanlar=[]
+      @adverts = []
     elsif params[:enyakindakisaticilar]!=nil
       @enyakindakisaticilar=true
       @title="En Yakında Olan Satıcılar"
-      @ilanlar=[]
+      @active = 6
+      @adverts = []
     else
       @title="Acil İlanlar"
       @active = 0
-      @ilanlar=[]
+      @adverts = []
     end
   end
 

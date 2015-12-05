@@ -326,30 +326,15 @@
 									<div class="jcarousel-wrapper" style="margin-bottom: 80px;">
 										<div class="jcarousel">
 											<ul>
-												<li><img
-													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img1.jpg"
-													alt="Image 1">
-												</li>
-												<li><img
-													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img2.jpg"
-													alt="Image 2">
-												</li>
-												<li><img
-													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img3.jpg"
-													alt="Image 3">
-												</li>
-												<li><img
-													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img4.jpg"
-													alt="Image 4">
-												</li>
-												<li><img
-													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img5.jpg"
-													alt="Image 5">
-												</li>
-												<li><img
-													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img6.jpg"
-													alt="Image 6">
-												</li>
+												
+												<% @acililanlar.each do |advert| %>
+													
+													<li><a href="/ikinciel/<%= advert.name.parameterize + '-' + advert.id.to_s %>"> 
+															<%= image_tag advert.images[0].imagefile(:small) %><br /></a>
+													</li>
+													
+												<% end %>
+												
 											</ul>
 										</div>
 
@@ -1143,19 +1128,27 @@
 							<div id="mi-slider" class="mi-slider"
 							style="margin-top: 20px; clear: both;">
 								<ul>
-									<% @ensonikinciel.each do |adv| %>
+									<% @ensonikinciel.each do |advert| %>
 									<li>
-										<a href="/ikinciel/<%= adv.name.parameterize + '-' + adv.id.to_s %>"> 
-										<%= image_tag adv.images[0].imagefile(:small) %><br /> <h4><%= adv.name %></h4> </a>
+										<a href="/ikinciel/<%= advert.name.parameterize + '-' + advert.id.to_s %>"> 
+										<%= image_tag advert.images[0].imagefile(:small) %><br /> <h4><% if advert.name.length > 17 %>
+														<%= advert.name[0..14] %>..
+													<% else %>
+														<%= advert.name %>
+													<% end %></h4> </a>
 									</li>
 
 									<% end %>
 								</ul>
 								<ul>
-									<% @ensonevarkadasi.each do |adv| %>
+									<% @ensonevarkadasi.each do |advert| %>
 									<li>
-										<a href="/evarkadasi/<%= adv.name.parameterize + '-' + adv.id.to_s %>"> 
-										<%= image_tag adv.images[0].imagefile(:small) %><br /> <h4><%= adv.name %></h4> </a>
+										<a href="/ikinciel/<%= advert.name.parameterize + '-' + advert.id.to_s %>"> 
+										<%= image_tag advert.images[0].imagefile(:small) %><br /> <h4><% if advert.name.length > 17 %>
+														<%= advert.name[0..14] %>..
+													<% else %>
+														<%= advert.name %>
+													<% end %></h4> </a>
 									</li>
 
 									<% end %>
@@ -1163,8 +1156,12 @@
 								<ul>
 									<% @ensondersnotu.each do |adv| %>
 									<li>
-										<a href="/dersnotu/<%= adv.name.parameterize + '-' + adv.id.to_s %>"> 
-										<%= image_tag adv.images[0].imagefile(:small) %><br /> <h4><%= adv.name %></h4> </a>
+										<a href="/ikinciel/<%= advert.name.parameterize + '-' + advert.id.to_s %>"> 
+										<%= image_tag advert.images[0].imagefile(:small) %><br /> <h4><% if advert.name.length > 17 %>
+														<%= advert.name[0..14] %>..
+													<% else %>
+														<%= advert.name %>
+													<% end %></h4> </a>
 									</li>
 
 									<% end %>
@@ -1172,8 +1169,12 @@
 								<ul>
 									<% @ensonozelders.each do |adv| %>
 									<li>
-										<a href="/ozelders/<%= adv.name.parameterize + '-' + adv.id.to_s %>"> 
-										<%= image_tag adv.images[0].imagefile(:small) %><br /> <h4><%= adv.name %></h4> </a>
+										<a href="/ikinciel/<%= advert.name.parameterize + '-' + advert.id.to_s %>"> 
+										<%= image_tag advert.images[0].imagefile(:small) %><br /> <h4><% if advert.name.length > 17 %>
+														<%= advert.name[0..14] %>..
+													<% else %>
+														<%= advert.name %>
+													<% end %></h4> </a>
 									</li>
 
 									<% end %>

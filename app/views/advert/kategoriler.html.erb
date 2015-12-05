@@ -461,11 +461,15 @@
 											</div>
 	
 											<div class="caption">
-	
-												<h3><%= advert.name %></h3>
-												<p>
-													<%= advert.explication[0...5] %>
-												</p>
+												
+												
+												
+												<h5><% if advert.name.length > 12 %>
+														<%= advert.name[0..9] %>..
+													<% else %>
+														<%= advert.name %>
+													<% end %>
+												</h5>
 	
 											</div>
 	

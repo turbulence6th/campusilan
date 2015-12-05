@@ -69,6 +69,13 @@ class UserController < ApplicationController
 
   def member
     
+    @mostpopular = []
+    
+    popularList = ViewedAdvertCount.group(:advert_id).count.first(6)
+    
+    popularList.each do |id, count|
+      @mostpopular << Advert.find(id)
+    end
     
    
     if params[:profilim]!=nil
@@ -102,6 +109,15 @@ class UserController < ApplicationController
     else
       current_user.phone1 = current_user.phone.split('-')[0]
       current_user.phone2 = current_user.phone.split('-')[1]
+      
+      @favouriteadverts = []
+      
+      fovouritelist = FavouriteAdvert.where(:user_id => current_user.id).select(:advert_id)
+      
+      fovouritelist.each do |fav|
+        @favouriteadverts << Advert.find(fav.advert_id)
+      end
+      
     end
 
   end

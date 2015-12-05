@@ -10,6 +10,8 @@ class IndexController < ApplicationController
     @ensondersnotu = Advert.where(advertable_type: 'Lessonnote').last(4).reverse
     @ensonozelders = Advert.where(advertable_type: 'Privatelesson').last(4).reverse
     
+    @acililanlar = Advert.where(:urgent => true).order('created_at DESC').last(7)
+    
   end
   
   def insert_image

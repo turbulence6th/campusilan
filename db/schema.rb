@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20151109221320) do
     t.integer  "price"
     t.text     "explication"
     t.boolean  "active"
+    t.boolean  "urgent"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
