@@ -40,7 +40,23 @@ Rails.application.routes.draw do
   get 'insert_image' => 'index#insert_image'
   post 'insert_image' => 'index#insert_image_post'
   
-  get 'administrator' => 'index#administrator'
+  get 'administrator' => 'admin#index'
+  
+  get 'administrator/:blankpage' => 'admin#blank_page'
+  
+  get 'administrator/:bootstrapelements' => 'admin#bootstrap_elements'
+  
+  get 'administrator/:bootstrapgrid' => 'admin#bootstrap_grid'
+  
+  get 'administrator/:charts' => 'admin#charts'
+  
+  get 'administrator/:forms' => 'admin#forms'
+  
+  get 'administrator/:indexrtl' => 'admin#index_rtl'
+  
+  get 'administrator/:tables' => 'admin#tables'
+  
+  
   
  
   
