@@ -326,15 +326,30 @@
 									<div class="jcarousel-wrapper" style="margin-bottom: 80px;">
 										<div class="jcarousel">
 											<ul>
-												
-												<% @acililanlar.each do |advert| %>
-													
-													<li><a href="/ikinciel/<%= advert.name.parameterize + '-' + advert.id.to_s %>"> 
-															<%= image_tag advert.images[0].imagefile(:small) %><br /></a>
-													</li>
-													
-												<% end %>
-												
+												<li><img
+													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img1.jpg"
+													alt="Image 1">
+												</li>
+												<li><img
+													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img2.jpg"
+													alt="Image 2">
+												</li>
+												<li><img
+													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img3.jpg"
+													alt="Image 3">
+												</li>
+												<li><img
+													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img4.jpg"
+													alt="Image 4">
+												</li>
+												<li><img
+													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img5.jpg"
+													alt="Image 5">
+												</li>
+												<li><img
+													src="resources/plugins/jcarousel-0.3.3/examples/_shared/img/img6.jpg"
+													alt="Image 6">
+												</li>
 											</ul>
 										</div>
 
@@ -1128,60 +1143,67 @@
 							<div id="mi-slider" class="mi-slider"
 							style="margin-top: 20px; clear: both;">
 								<ul>
-									<% @ensonikinciel.each do |advert| %>
+									<% @ensonikinciel.each do |adv| %>
 									<li>
-										<a href="/ikinciel/<%= advert.name.parameterize + '-' + advert.id.to_s %>"> 
-										<%= image_tag advert.images[0].imagefile(:small) %><br /> <h4><% if advert.name.length > 17 %>
-														<%= advert.name[0..14] %>..
-													<% else %>
-														<%= advert.name %>
-													<% end %></h4> </a>
+										<a href="/ikinciel/<%= adv.name.parameterize + '-' + adv.id.to_s %>"> 
+										<%= image_tag adv.images[0].imagefile(:small) %><br /> <h4><%= adv.name %></h4> </a>
 									</li>
 
 									<% end %>
 								</ul>
 								<ul>
-									<% @ensonevarkadasi.each do |advert| %>
 									<li>
-										<a href="/ikinciel/<%= advert.name.parameterize + '-' + advert.id.to_s %>"> 
-										<%= image_tag advert.images[0].imagefile(:small) %><br /> <h4><% if advert.name.length > 17 %>
-														<%= advert.name[0..14] %>..
-													<% else %>
-														<%= advert.name %>
-													<% end %></h4> </a>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/5.jpg" alt="img05"> <h4>Belts</h4> </a>
 									</li>
-
-									<% end %>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/6.jpg" alt="img06"> <h4>Hats &amp; Caps</h4> </a>
+									</li>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/7.jpg" alt="img07"> <h4>Sunglasses</h4> </a>
+									</li>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/8.jpg" alt="img08"> <h4>Scarves</h4> </a>
+									</li>
 								</ul>
 								<ul>
-									<% @ensondersnotu.each do |adv| %>
 									<li>
-										<a href="/ikinciel/<%= advert.name.parameterize + '-' + advert.id.to_s %>"> 
-										<%= image_tag advert.images[0].imagefile(:small) %><br /> <h4><% if advert.name.length > 17 %>
-														<%= advert.name[0..14] %>..
-													<% else %>
-														<%= advert.name %>
-													<% end %></h4> </a>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/9.jpg" alt="img09"> <h4>Casual</h4> </a>
 									</li>
-
-									<% end %>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/10.jpg" alt="img10"> <h4>Luxury</h4> </a>
+									</li>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/11.jpg" alt="img11"> <h4>Sport</h4> </a>
+									</li>
 								</ul>
 								<ul>
-									<% @ensonozelders.each do |adv| %>
 									<li>
-										<a href="/ikinciel/<%= advert.name.parameterize + '-' + advert.id.to_s %>"> 
-										<%= image_tag advert.images[0].imagefile(:small) %><br /> <h4><% if advert.name.length > 17 %>
-														<%= advert.name[0..14] %>..
-													<% else %>
-														<%= advert.name %>
-													<% end %></h4> </a>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/12.jpg" alt="img12"> <h4>Carry-Ons</h4> </a>
 									</li>
-
-									<% end %>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/13.jpg" alt="img13"> <h4>Duffel Bags</h4> </a>
+									</li>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/14.jpg" alt="img14"> <h4>Laptop Bags</h4> </a>
+									</li>
+									<li>
+										<a href="#"> <img
+										src="resources/plugins/ItemSlider/images/15.jpg" alt="img15"> <h4>Briefcases</h4> </a>
+									</li>
 								</ul>
 								<nav>
 									<a href="#">İKİNCİ EL</a><a href="#">EV ARKADAŞI</a><a
-									href="#">DERS NOTU</a><a href="#">ÖZEL DERS</a>
+									href="#">EV İLANI</a><a href="#">ÖZEL DERS</a>
 
 								</nav>
 							</div>

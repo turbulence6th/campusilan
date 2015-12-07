@@ -40,6 +40,8 @@ Rails.application.routes.draw do
   get 'insert_image' => 'index#insert_image'
   post 'insert_image' => 'index#insert_image_post'
   
+  get 'administrator' => 'index#administrator'
+  
  
   
   
