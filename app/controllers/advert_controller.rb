@@ -8,7 +8,7 @@ class AdvertController < ApplicationController
     
     advert_name = params[:advert_name]
     id = advert_name.split('-')[-1]
-    @advert = Advert.where(:id => id, :advertable_type => 'Secondhand')[0]
+    @advert = Advert.where(:id => id, :advertable_type => 'Secondhand').first
     
     if !@advert
       raise ActionController::RoutingError.new('Not Found')
@@ -21,10 +21,10 @@ class AdvertController < ApplicationController
     end
     
     if current_user
-      ViewedAdvert.create(:user => current_user, :advert => @advert)
+      @advert.viewed_adverts << ViewedAdvert.new(:user => current_user)
     end
     
-    ViewedAdvertCount.create(:ip => request.remote_ip, :advert => @advert)
+    @advert.viewed_advert_counts << ViewedAdvertCount.new(:ip => request.remote_ip)
     
     @advertable = @advert.advertable
     @advert_user = @advert.user
