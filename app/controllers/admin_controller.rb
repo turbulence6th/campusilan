@@ -1,5 +1,13 @@
 class AdminController < ApplicationController
   
+  before_filter :authenticate
+
+  def authenticate
+    if !current_user || current_user.role != 'admin'
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end
+  
   def index
     
   end
@@ -30,6 +38,9 @@ class AdminController < ApplicationController
   end
   
   def tables  
+    
+    @sonilanlar = Advert.order('created_at DESC').limit(7)
+    @sonuyeler = User.order('created_at DESC').limit(7)
     
   end  
     

@@ -44,6 +44,11 @@
 <br>
 
 <p  style="clear: both;float:right;">
+	
+	<% if current_user && current_user.role=='admin' %>
+		<a href="/administrator"> Admin Paneli </a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<% end %>
+	
 	<a href="/uye/<%= current_user.username %>"> Profilim </a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/logout"> Çıkış Yap </a>
 </p>
 
