@@ -39,6 +39,9 @@ class AdminController < ApplicationController
   
   def tables  
     
+    @sonilanlar = Advert.order('created_at DESC').limit(7)
+    @sonuyeler = User.order('created_at DESC').limit(7)
+    
   end  
     
           
