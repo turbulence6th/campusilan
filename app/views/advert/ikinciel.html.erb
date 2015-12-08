@@ -157,8 +157,6 @@
 					<div class="container-fluid">
 						<div class="col-md-9">
 							<div class="hidden-xs hidden-sm col-md-6 grid">
-								
-								
 
 								<div class="row easyzoom easyzoom--overlay easyzoom--with-thumbnails">
 									<a href="/resources/plugins/productview/example-images/3_zoom_1.jpg"> <img class="img-responsive" src="/resources/plugins/productview/example-images/3_standard_1.jpg" alt=""  /> </a>
@@ -184,11 +182,8 @@
 								</div>
 
 							</div>
-							
-							
+
 							<div class="visible-xs col-md-6 grid">
-								
-								
 
 								<div class="row  easyzoom easyzoom--overlay easyzoom--with-thumbnails">
 									<a href="/resources/plugins/productview/example-images/3_zoom_1.jpg"> <img class="img-responsive" src="/resources/plugins/productview/example-images/3_standard_1.jpg" alt=""  /> </a>
@@ -205,10 +200,9 @@
 
 										<a class="col-xs-6 " href="/resources/plugins/productview/example-images/3_zoom_2.jpg" data-standard="/resources/plugins/productview/example-images/3_standard_2.jpg"> <img width="100" height="100" src="/resources/plugins/productview/example-images/3_thumbnail_2.jpg" alt="" /> </a>
 
-									
 									</div>
 									<div style="margin-top:20px; " class="row">
-										
+
 										<a class="col-lg-6 " href="/resources/plugins/productview/example-images/3_zoom_3.jpg" data-standard="/resources/plugins/productview/example-images/3_standard_3.jpg"> <img width="100" height="100" src="/resources/plugins/productview/example-images/3_thumbnail_3.jpg" alt="" /> </a>
 
 										<a class="col-xs-6" href="/resources/plugins/productview/example-images/3_zoom_4.jpg" data-standard="/resources/plugins/productview/example-images/3_standard_4.jpg"> <img width="100" height="100" src="/resources/plugins/productview/example-images/3_thumbnail_4.jpg" alt="" /> </a>
@@ -216,12 +210,8 @@
 								</div>
 
 							</div>
-							
-							
-							
+
 							<div class="visible-sm col-md-6 grid">
-								
-								
 
 								<div class="row  easyzoom easyzoom--overlay easyzoom--with-thumbnails">
 									<a href="/resources/plugins/productview/example-images/3_zoom_1.jpg"> <img class="img-responsive" src="/resources/plugins/productview/example-images/3_standard_1.jpg" alt=""  /> </a>
@@ -242,18 +232,16 @@
 
 										<a class="col-sm-3" href="/resources/plugins/productview/example-images/3_zoom_4.jpg" data-standard="/resources/plugins/productview/example-images/3_standard_4.jpg"> <img width="100" height="100" src="/resources/plugins/productview/example-images/3_thumbnail_4.jpg" alt="" /> </a>
 									</div>
-									
+
 								</div>
 
 							</div>
-							
+
 							<br class="visible-sm ">
-							
-							
-							
+
 							<div class="col-md-6 single-top-in">
 								<div class="single-para simpleCart_shelfItem">
-									
+
 									<br class="visible-xs ">
 									<h1><%= @advert.name %></h1>
 									<p>
@@ -428,7 +416,7 @@
 
 							<!--//seller-->
 							<!--tag-->
-							<div class="tag">
+							<!-- <div class="tag">
 								<h3 class="cate">Etiketler</h3>
 								<div class="tags">
 									<ul>
@@ -471,7 +459,7 @@
 										<div class="clearfix"></div>
 									</ul>
 								</div>
-							</div>
+							</div> --> 
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -554,37 +542,39 @@
 		</script>
 
 		<script src="/resources/plugins/productview/dist/easyzoom.js"></script>
+		
+		
 		<script>
-			// Instantiate EasyZoom instances
-			var $easyzoom = productview('.easyzoom').easyZoom();
+		// Instantiate EasyZoom instances
+		var $easyzoom = productview('.easyzoom').easyZoom();
 
-			// Setup thumbnails example
-			var api1 = $easyzoom.filter('.easyzoom--with-thumbnails').data('easyZoom');
+		// Setup thumbnails example
+		var api1 = $easyzoom.filter('.easyzoom--with-thumbnails').data('easyZoom');
 
-			$('.thumbnails').on('click', 'a', function(e) {
-				var $this = productview(this);
+		$('.thumbnails').on('click', 'a', function(e) {
+			var $this = productview(this);
 
-				e.preventDefault();
+			e.preventDefault();
 
-				// Use EasyZoom's `swap` method
-				api1.swap($this.data('standard'), $this.attr('href'));
-			});
+			// Use EasyZoom's `swap` method
+			api1.swap($this.data('standard'), $this.attr('href'));
+		});
 
-			// Setup toggles example
-			var api2 = $easyzoom.filter('.easyzoom--with-toggle').data('easyZoom');
+		// Setup toggles example
+		var api2 = $easyzoom.filter('.easyzoom--with-toggle').data('easyZoom');
 
-			$('.toggle').on('click', function() {
-				var $this = productview(this);
+		$('.toggle').on('click', function() {
+			var $this = productview(this);
 
-				if ($this.data("active") === true) {
-					$this.text("Switch on").data("active", false);
-					api2.teardown();
-				} else {
-					$this.text("Switch off").data("active", true);
-					api2._init();
-				}
-			});
-		</script>
+			if ($this.data("active") === true) {
+				$this.text("Switch on").data("active", false);
+				api2.teardown();
+			} else {
+				$this.text("Switch off").data("active", true);
+				api2._init();
+			}
+		});
+	</script>
 
 	</body>
 

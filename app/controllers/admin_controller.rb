@@ -1,5 +1,13 @@
 class AdminController < ApplicationController
   
+  before_filter :authenticate
+
+  def authenticate
+    if !current_user || current_user.role != 'admin'
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end
+  
   def index
     
   end

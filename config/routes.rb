@@ -46,8 +46,6 @@ Rails.application.routes.draw do
   
   get 'administrator/bootstrapelements' => 'admin#bootstrap_elements'
   
-  get 'administrator/bootstrapgrid' => 'admin#bootstrap_grid'
-  
   get 'administrator/charts' => 'admin#charts'
   
   get 'administrator/forms' => 'admin#forms'
@@ -57,16 +55,5 @@ Rails.application.routes.draw do
   get 'administrator/tables' => 'admin#tables'
   
   
-  
- 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
 end
