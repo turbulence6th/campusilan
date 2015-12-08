@@ -42,19 +42,19 @@ Rails.application.routes.draw do
   
   get 'administrator' => 'admin#index'
   
-  get 'administrator/:blankpage' => 'admin#blank_page'
+  get 'administrator/blankpage' => 'admin#blank_page'
   
-  get 'administrator/:bootstrapelements' => 'admin#bootstrap_elements'
+  get 'administrator/bootstrapelements' => 'admin#bootstrap_elements'
   
-  get 'administrator/:bootstrapgrid' => 'admin#bootstrap_grid'
+  get 'administrator/bootstrapgrid' => 'admin#bootstrap_grid'
   
-  get 'administrator/:charts' => 'admin#charts'
+  get 'administrator/charts' => 'admin#charts'
   
-  get 'administrator/:forms' => 'admin#forms'
+  get 'administrator/forms' => 'admin#forms'
   
-  get 'administrator/:indexrtl' => 'admin#index_rtl'
+  get 'administrator/indexrtl' => 'admin#index_rtl'
   
-  get 'administrator/:tables' => 'admin#tables'
+  get 'administrator/tables' => 'admin#tables'
   
   
   

@@ -72,7 +72,7 @@ class AdvertController < ApplicationController
     @advert.active = true
     
     if params[:images]
-      params[:images].each do |image|   
+      params[:images].reverse.each do |image|   
         @image = Image.new(:imagefile => image)
         @advert.images << @image
       end
