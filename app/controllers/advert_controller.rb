@@ -122,6 +122,9 @@ class AdvertController < ApplicationController
     elsif subkategori=="mutfakesyalari"
       @title="Mutfak Eşyaları"
       @adverts = @adverts.select {|adv| adv.advertable.category=='mutfakesyalari'}
+    elsif subkategori=="vasita"
+      @title="Vasıta"
+      @adverts = @adverts.select {|adv| adv.advertable.category=='vasita'}  
     elsif subkategori=="diger"
       @title="Diğer"
       @adverts = @adverts.select {|adv| adv.advertable.category=='diger'}
