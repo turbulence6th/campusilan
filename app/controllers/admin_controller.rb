@@ -12,9 +12,7 @@ class AdminController < ApplicationController
     
   end
   
-  def blank_page
-    
-  end 
+  
   
   def bootstrap_elements
     
@@ -43,6 +41,25 @@ class AdminController < ApplicationController
     @sonuyeler = User.order('created_at DESC').limit(7)
     
   end  
+  
+  def ilanlar
+    
+    @sonilanlar = Advert.order('created_at DESC').limit(7)
+    @sonuyeler = User.order('created_at DESC').limit(7)
+    
+  end  
+  
+  def yorumlar
+    
+  end
+  
+  def uyeler
+    
+    @sonilanlar = Advert.order('created_at DESC').limit(7)
+    @sonuyeler = User.order('created_at DESC').limit(7)
+    
+    
+  end
     
           
   

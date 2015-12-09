@@ -42,7 +42,12 @@ Rails.application.routes.draw do
   
   get 'administrator' => 'admin#index'
   
-  get 'administrator/blankpage' => 'admin#blank_page'
+  get 'administrator/ilanlar' => 'admin#ilanlar'
+  
+  get 'administrator/uyeler' => 'admin#uyeler'
+    
+  get 'administrator/yorumlar' => 'admin#yorumlar'
+  
   
   get 'administrator/bootstrapelements' => 'admin#bootstrap_elements'
   
