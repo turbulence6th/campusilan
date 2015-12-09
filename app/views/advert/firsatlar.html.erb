@@ -292,7 +292,7 @@
 										<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 											<div class="thumbnail">
-												<a href="/ikinciel/<%= advert.name.parameterize + '-' + advert.id.to_s %>">  <%= image_tag advert.images[0].imagefile(:small) %> </a>
+												<a href="/ikinciel/<%= advert.name.parameterize + '-' + advert.id.to_s %>">  <%= image_tag advert.images[0].imagefile(:small), :title => advert.name  %> </a>
 	
 											</div>
 	
@@ -300,8 +300,8 @@
 												
 												
 												
-												<h5><% if advert.name.length > 12 %>
-														<%= advert.name[0..9] %>..
+												<h5><% if advert.name.length > 30 %>
+														<%= advert.name[0..30] %>..
 													<% else %>
 														<%= advert.name %>
 													<% end %>
