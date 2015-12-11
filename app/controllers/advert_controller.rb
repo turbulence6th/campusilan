@@ -71,6 +71,7 @@ class AdvertController < ApplicationController
     @advert.user = current_user
     @advert.active = true
     @advert.urgent = false
+    @advert.opportunity = false
     
     if params[:images]
       params[:images].reverse.each do |image|   
