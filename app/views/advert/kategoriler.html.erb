@@ -456,7 +456,13 @@
 										<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 											<div class="thumbnail">
-												<a href="/ikinciel/<%= advert.name.parameterize + '-' + advert.id.to_s %>">  <%= image_tag advert.images[0].imagefile(:small) %> </a>
+												<a href="/ikinciel/<%= advert.name.parameterize + '-' + advert.id.to_s %>"> 
+													<% if advert.images == [] %>
+														<%= image_tag Image.new.imagefile %> 
+													<% else %>
+														<%= image_tag advert.images[0].imagefile(:small) %> 
+													<% end %>
+												</a>
 	
 											</div>
 	
