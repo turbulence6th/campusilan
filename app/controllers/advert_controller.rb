@@ -86,6 +86,50 @@ class AdvertController < ApplicationController
     
 
   end
+  
+  def ilanguncellePost 
+    
+      
+    
+  end
+  
+  def deleteimage 
+    
+    advert = Advert.find(params[:advert])
+    image = Image.find(params[:image])
+    
+    if !current_user || (advert.user!=current_user && current_user.role!='admin')
+      
+      respond_to do |format|
+        msg = {:check => false} 
+        format.json { render :json => msg}
+       
+      end
+     elsif advert.images.include? image
+       
+       image.destroy
+       
+       respond_to do |format|
+          msg = {:check => true} 
+          format.json { render :json => msg}
+       
+        end
+       
+     else
+       
+        respond_to do |format|
+          msg = {:check => false} 
+          format.json { render :json => msg}
+       
+        end
+       
+        
+       
+    end
+    
+    
+    
+  end
 
   def secondhandPost
     @secondhand = Secondhand.new(params.require(:advert).require(:advertable).permit(

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'yardim' => 'index#yardim'
   get 'ilanver' => 'advert#ilanver'
   get 'ilanguncelle/:advert_name' => 'advert#ilanguncelle'
+  post 'deleteimage' => 'advert#deleteimage', defaults: {format: :json}
   post 'secondhand' => 'advert#secondhandPost'
   post 'homemate' => 'advert#homematePost'
   post 'lecturenote' => 'advert#lecturenotePost'

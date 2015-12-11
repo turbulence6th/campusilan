@@ -274,314 +274,365 @@
 					<div style="display:none;"class = 'ikincielAlert ikincielImageAlert col-xs-12 label label-danger form-group'>
 						Lütfen En Az Bir Resim Ekleyiniz
 					</div>
-
 					
+					
+
 					<% @images.each do |image|%>
 					
-					<%= image_tag image.imagefile(:small),:class =>"" %>
-					
+					<div class="image-<%= image.id %>">
+
+					<%= image_tag image.imagefile(:small) %>
+
+
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					
-					<span style="font-size:20px;"class="glyphicon glyphicon-trash"></span>
-					<br><br>
 					
-						
+
+					<a  style="cursor: pointer;" onclick="resimsil(<%= @advert.id %>,<%= image.id %>);" ><span style="font-size:20px;"class="glyphicon glyphicon-trash"></span></a>
+					<br>
+					<br>
 					
+					</div>
+
 					<% end %>
 
-					
-
-				<div class = "row form-group">
-					<div class = "col-sm-offset-2 col-sm-10">
-						<div class = "checkbox">
-							<label>
-								<input type = "checkbox" id="kullanim" value="true">
-								Kullanım koşullarını kabul ediyorum</label>
+					<div class = "row form-group">
+						<div class = "col-sm-offset-2 col-sm-10">
+							<div class = "checkbox">
+								<label>
+									<input type = "checkbox" id="kullanim" value="true">
+									Kullanım koşullarını kabul ediyorum</label>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class = "row form-group">
-					<div class = "col-sm-offset-2 col-sm-10">
-						<%= t.submit 'İlan Ver',class:"btn btn-default" %>
-					</div>
-				</div>
-
-				<% end %>
-				<% end %>
-
-				<script>
-					function ikincielilanadiVerify() {
-						var form = document.getElementById("ikincielform");
-						var advertname = form.elements['advert_name'].value;
-						var result = false;
-
-						if (!/\S/.test(advertname)) {
-							$('.ikincielNameAlert').show();
-						} else {
-							$('.ikincielNameAlert').hide();
-							result = true;
-						}
-						return result;
-
-					}
-
-					function ikincielfiyatVerify() {
-						var form = document.getElementById("ikincielform");
-						var price = form.elements['advert_price'].value;
-						var result = false;
-
-						var priceRegexp = new RegExp('^[0-9]*$');
-						var check = priceRegexp.test(price);
-
-						if (!check) {
-							$('.ikincielPriceAlert').show();
-						} else {
-							$('.ikincielPriceAlert').hide();
-							result = true;
-						}
-						return result;
-					}
-
-					function ikincielmarkaVerify() {
-						var form = document.getElementById("ikincielform");
-						var brand = form.elements['advert_advertable_brand'].value;
-						var result = false;
-
-						if (!/\S/.test(brand)) {
-							$('.ikincielBrandAlert').show();
-						} else {
-							$('.ikincielBrandAlert').hide();
-							result = true;
-						}
-						return result;
-					}
-
-					function ikincielaciklamaVerify() {
-						var form = document.getElementById("ikincielform");
-						var explication = form.elements['advert_explication'].value;
-						var result = false;
-
-						if (!/\S/.test(explication)) {
-							$('.ikincielExplicationAlert').show();
-						} else {
-							$('.ikincielExplicationAlert').hide();
-							result = true;
-						}
-						return result;
-					}
-
-					function ikincielresimVerify() {
-						var form = document.getElementById("ikincielform");
-						var image = form.elements['images_'];
-						var result = false;
-
-						if (image.length == undefined) {
-							$('.ikincielImageAlert').show();
-						} else {
-							$('.ikincielImageAlert').hide();
-							result = true;
-						}
-						return result;
-					}
-
-					function ikincielsubmit() {
-
-						var ilanadi = ikincielilanadiVerify();
-						var fiyat = ikincielfiyatVerify();
-						var marka = ikincielmarkaVerify();
-						var aciklama = ikincielaciklamaVerify();
-						var resim = ikincielresimVerify();
-
-						var kullanim = $("#ikincielform #kullanim").is(":checked");
-
-						return ilanadi && fiyat && marka && aciklama && resim && kullanim;
-
-					}
-				</script>
-
-				<%= form_for @advert, :url => 'lecturenote' , :method => :post , :html => {
-				:class => 'form-basic ikinciel' , :id => 'dersnotuform',
-				:style => 'display:none;'
-				} do |t| %>
-
-				<%= t.fields_for :advertable do |field| %>
-
-				<div class = "row form-group">
-					<label class = "col-sm-2 control-label">İlan Adı</label>
-
-					<div class = "col-sm-10">
-						<%= t.text_field :name, class:"form-control" %>
-					</div>
-				</div>
-
-				<div class = "row form-group">
-					<label class = "col-sm-2 control-label">Fiyat</label>
-
-					<div class = "col-sm-10">
-						<%= t.text_field :price, class:"form-control" %>
-					</div>
-				</div>
-
-				<div class = "row form-group">
-					<label class = "col-sm-2 control-label">Açıklama</label>
-
-					<div class = "col-sm-10">
-						<%= t.text_field :explication, class:"form-control" %>
-					</div>
-				</div>
-
-				<div class="row">
-					<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image'%>
-				</div>
-
-				<div class = "row form-group">
-					<div class = "col-sm-offset-2 col-sm-10">
-						<div class = "checkbox">
-							<label>
-								<input type = "checkbox">
-								Kullanım koşullarını kabul ediyorum</label>
+					<div class = "row form-group">
+						<div class = "col-sm-offset-2 col-sm-10">
+							<%= t.submit 'İlan Ver',class:"btn btn-default" %>
 						</div>
 					</div>
-				</div>
 
-				<div class = "row form-group">
-					<div class = "col-sm-offset-2 col-sm-10">
-						<%= t.submit 'İlan Ver',class:"btn btn-default" %>
-					</div>
-				</div>
-				<% end %>
-				<% end %>
+					<% end %>
+					<% end %>
 
-				<%= form_for @advert, :url => 'homemate' , :method => :post , :html => {
-				:class => 'form-basic ikinciel' , :id => 'evarkadasiform',
-				:style => 'display:none;'
-				} do |t| %>
+					<script>
+						function ikincielilanadiVerify() {
+							var form = document.getElementById("ikincielform");
+							var advertname = form.elements['advert_name'].value;
+							var result = false;
 
-				<%= t.fields_for :advertable do |field| %>
+							if (!/\S/.test(advertname)) {
+								$('.ikincielNameAlert').show();
+							} else {
+								$('.ikincielNameAlert').hide();
+								result = true;
+							}
+							return result;
 
-				<div class = "row form-group">
-					<label class = "col-sm-2 control-label">İlan Adı</label>
+						}
 
-					<div class = "col-sm-10">
-						<%= t.text_field :name, class:"form-control" %>
-					</div>
-				</div>
+						function ikincielfiyatVerify() {
+							var form = document.getElementById("ikincielform");
+							var price = form.elements['advert_price'].value;
+							var result = false;
 
-				<div class = "row form-group">
-					<label class = "col-sm-2 control-label">Fiyat</label>
+							var priceRegexp = new RegExp('^[0-9]*$');
+							var check = priceRegexp.test(price);
 
-					<div class = "col-sm-10">
-						<%= t.text_field :price, class:"form-control" %>
-					</div>
-				</div>
+							if (!check) {
+								$('.ikincielPriceAlert').show();
+							} else {
+								$('.ikincielPriceAlert').hide();
+								result = true;
+							}
+							return result;
+						}
 
-				<div class = "row form-group">
-					<label class = "col-sm-2 control-label">Açıklama</label>
+						function ikincielmarkaVerify() {
+							var form = document.getElementById("ikincielform");
+							var brand = form.elements['advert_advertable_brand'].value;
+							var result = false;
 
-					<div class = "col-sm-10">
-						<%= t.text_field :explication, class:"form-control" %>
-					</div>
-				</div>
+							if (!/\S/.test(brand)) {
+								$('.ikincielBrandAlert').show();
+							} else {
+								$('.ikincielBrandAlert').hide();
+								result = true;
+							}
+							return result;
+						}
 
-				<div class="row">
-					<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image'%>
-				</div>
+						function ikincielaciklamaVerify() {
+							var form = document.getElementById("ikincielform");
+							var explication = form.elements['advert_explication'].value;
+							var result = false;
 
-				<div class = "row form-group">
-					<div class = "col-sm-offset-2 col-sm-10">
-						<div class = "checkbox">
-							<label>
-								<input type = "checkbox">
-								Kullanım koşullarını kabul ediyorum</label>
+							if (!/\S/.test(explication)) {
+								$('.ikincielExplicationAlert').show();
+							} else {
+								$('.ikincielExplicationAlert').hide();
+								result = true;
+							}
+							return result;
+						}
+
+						function ikincielresimVerify() {
+							var form = document.getElementById("ikincielform");
+							var image = form.elements['images_'];
+							var result = false;
+
+							if (image.length == undefined) {
+								$('.ikincielImageAlert').show();
+							} else {
+								$('.ikincielImageAlert').hide();
+								result = true;
+							}
+							return result;
+						}
+
+						function ikincielsubmit() {
+
+							var ilanadi = ikincielilanadiVerify();
+							var fiyat = ikincielfiyatVerify();
+							var marka = ikincielmarkaVerify();
+							var aciklama = ikincielaciklamaVerify();
+							var resim = ikincielresimVerify();
+
+							var kullanim = $("#ikincielform #kullanim").is(":checked");
+
+							return ilanadi && fiyat && marka && aciklama && resim && kullanim;
+
+						}
+					</script>
+
+					<%= form_for @advert, :url => 'lecturenote' , :method => :post , :html => {
+					:class => 'form-basic ikinciel' , :id => 'dersnotuform',
+					:style => 'display:none;'
+					} do |t| %>
+
+					<%= t.fields_for :advertable do |field| %>
+
+					<div class = "row form-group">
+						<label class = "col-sm-2 control-label">İlan Adı</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_field :name, class:"form-control" %>
 						</div>
 					</div>
-				</div>
 
-				<div class = "row form-group">
-					<div class = "col-sm-offset-2 col-sm-10">
-						<%= t.submit 'İlan Ver',class:"btn btn-default" %>
-					</div>
-				</div>
-				<% end %>
-				<% end %>
+					<div class = "row form-group">
+						<label class = "col-sm-2 control-label">Fiyat</label>
 
-				<%= form_for @advert, :url => 'privatelesson' , :method => :post , :html => {
-				:class => 'form-basic ikinciel' , :id => 'ozeldersform',
-				:style => 'display:none;'
-				} do |t| %>
-
-				<%= t.fields_for :advertable do |field| %>
-
-				<div class = "row form-group">
-					<label class = "col-sm-2 control-label">İlan Adı</label>
-
-					<div class = "col-sm-10">
-						<%= t.text_field :name, class:"form-control" %>
-					</div>
-				</div>
-
-				<div class = "row form-group">
-					<label class = "col-sm-2 control-label">Fiyat</label>
-
-					<div class = "col-sm-10">
-						<%= t.text_field :price, class:"form-control" %>
-					</div>
-				</div>
-
-				<div class = "row form-group">
-					<label class = "col-sm-2 control-label">Açıklama</label>
-
-					<div class = "col-sm-10">
-						<%= t.text_field :explication, class:"form-control" %>
-					</div>
-				</div>
-
-				<div class="row">
-					<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image'%>
-				</div>
-
-				<div class = "row form-group">
-					<div class = "col-sm-offset-2 col-sm-10">
-						<div class = "checkbox">
-							<label>
-								<input type = "checkbox">
-								Kullanım koşullarını kabul ediyorum</label>
+						<div class = "col-sm-10">
+							<%= t.text_field :price, class:"form-control" %>
 						</div>
 					</div>
+
+					<div class = "row form-group">
+						<label class = "col-sm-2 control-label">Açıklama</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_field :explication, class:"form-control" %>
+						</div>
+					</div>
+
+					<div class="row">
+						<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image'%>
+					</div>
+
+					<div class = "row form-group">
+						<div class = "col-sm-offset-2 col-sm-10">
+							<div class = "checkbox">
+								<label>
+									<input type = "checkbox">
+									Kullanım koşullarını kabul ediyorum</label>
+							</div>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<div class = "col-sm-offset-2 col-sm-10">
+							<%= t.submit 'İlan Ver',class:"btn btn-default" %>
+						</div>
+					</div>
+					<% end %>
+					<% end %>
+
+					<%= form_for @advert, :url => 'homemate' , :method => :post , :html => {
+					:class => 'form-basic ikinciel' , :id => 'evarkadasiform',
+					:style => 'display:none;'
+					} do |t| %>
+
+					<%= t.fields_for :advertable do |field| %>
+
+					<div class = "row form-group">
+						<label class = "col-sm-2 control-label">İlan Adı</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_field :name, class:"form-control" %>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<label class = "col-sm-2 control-label">Fiyat</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_field :price, class:"form-control" %>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<label class = "col-sm-2 control-label">Açıklama</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_field :explication, class:"form-control" %>
+						</div>
+					</div>
+
+					<div class="row">
+						<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image'%>
+					</div>
+
+					<div class = "row form-group">
+						<div class = "col-sm-offset-2 col-sm-10">
+							<div class = "checkbox">
+								<label>
+									<input type = "checkbox">
+									Kullanım koşullarını kabul ediyorum</label>
+							</div>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<div class = "col-sm-offset-2 col-sm-10">
+							<%= t.submit 'İlan Ver',class:"btn btn-default" %>
+						</div>
+					</div>
+					<% end %>
+					<% end %>
+
+					<%= form_for @advert, :url => 'privatelesson' , :method => :post , :html => {
+					:class => 'form-basic ikinciel' , :id => 'ozeldersform',
+					:style => 'display:none;'
+					} do |t| %>
+
+					<%= t.fields_for :advertable do |field| %>
+
+					<div class = "row form-group">
+						<label class = "col-sm-2 control-label">İlan Adı</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_field :name, class:"form-control" %>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<label class = "col-sm-2 control-label">Fiyat</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_field :price, class:"form-control" %>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<label class = "col-sm-2 control-label">Açıklama</label>
+
+						<div class = "col-sm-10">
+							<%= t.text_field :explication, class:"form-control" %>
+						</div>
+					</div>
+
+					<div class="row">
+						<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image'%>
+					</div>
+
+					<div class = "row form-group">
+						<div class = "col-sm-offset-2 col-sm-10">
+							<div class = "checkbox">
+								<label>
+									<input type = "checkbox">
+									Kullanım koşullarını kabul ediyorum</label>
+							</div>
+						</div>
+					</div>
+
+					<div class = "row form-group">
+						<div class = "col-sm-offset-2 col-sm-10">
+							<%= t.submit 'İlan Ver',class:"btn btn-default" %>
+						</div>
+					</div>
+					<% end %>
+					<% end %>
+
 				</div>
 
-				<div class = "row form-group">
-					<div class = "col-sm-offset-2 col-sm-10">
-						<%= t.submit 'İlan Ver',class:"btn btn-default" %>
-					</div>
+				<div style="padding-left:50px; margin-top:85px;"class="sagsutun col-lg-6">
+					-Kullanım Koşulları için <a href="#">buraya</a> tıklayınız.
+					<br>
+					<br>
+					<br>
+					-İlanınız onaylandıktan sonra yayınlanacaktır.
+					<br>
+					<br>
+					<br>
+					-Sitemizin işleyişi ile ilgili bilgi mi almak istiyorsunuz? <a href="#">Buraya</a> tıklayın.
+					<br>
+					Ya da yardıma mı ihtiyacınız var? O zaman <a href="#">buraya</a> tıklayın.
 				</div>
-				<% end %>
-				<% end %>
 
 			</div>
-
-			<div style="padding-left:50px; margin-top:85px;"class="sagsutun col-lg-6">
-				-Kullanım Koşulları için <a href="#">buraya</a> tıklayınız.
-				<br>
-				<br>
-				<br>
-				-İlanınız onaylandıktan sonra yayınlanacaktır.
-				<br>
-				<br>
-				<br>
-				-Sitemizin işleyişi ile ilgili bilgi mi almak istiyorsunuz? <a href="#">Buraya</a> tıklayın.
-				<br>
-				Ya da yardıma mı ihtiyacınız var? O zaman <a href="#">buraya</a> tıklayın.
-			</div>
-
-		</div>
 
 		</div>
 
 		<%= render "footer" %>
 
 		</div>
+		<!-- Resim Silme-->
+		<script>
+			function resimsil(k,l) {
+				$.ajax({
+					
+					url: '/deleteimage',
+					data: {
+						authenticity_token : window._token,
+						advert : k,
+						image : l
+						
+						
+					},
+					
+					error : function () {
+						alert('error');
+						
+					},
+					
+					dataType: 'json',
+					success: function(data) {
+						
+						if (data.check) {
+							$(".image-"+l).hide();
+							
+							
+						}
+						
+						
+					},
+					type : 'POST'
+					
+		
+					
+				}
+					
+					
+					
+					
+				)
+				
+				
+			}
+			
+			
+		</script>
 
 		<script>
 			function changeform(value) {

@@ -37,4 +37,6 @@ class Advert < ActiveRecord::Base
   
   has_many :viewed_advert_counts
   
+  
+  
 end
