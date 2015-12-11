@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   
   get 'yardim' => 'index#yardim'
   get 'ilanver' => 'advert#ilanver'
+  get 'ilanguncelle/:advert_name' => 'advert#ilanguncelle'
   post 'secondhand' => 'advert#secondhandPost'
   post 'homemate' => 'advert#homematePost'
   post 'lecturenote' => 'advert#lecturenotePost'
@@ -58,6 +59,8 @@ Rails.application.routes.draw do
   get 'administrator/indexrtl' => 'admin#index_rtl'
   
   get 'administrator/tables' => 'admin#tables'
+  
+  
   
   
 

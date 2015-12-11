@@ -3,66 +3,90 @@ class AdvertController < ApplicationController
   layout false
 
   helper_method :current_user
-  
   def ikinciel
-    
+
     advert_name = params[:advert_name]
     id = advert_name.split('-')[-1]
     @advert = Advert.where(:id => id, :advertable_type => 'Secondhand').first
-    
+
     if !@advert
       raise ActionController::RoutingError.new('Not Found')
     end
-    
+
     name = @advert.name
     link = name.parameterize + '-' + id
     if link != advert_name
-        redirect_to '/ikinciel/' + link
+      redirect_to '/ikinciel/' + link
     end
-    
+
     if current_user
       @advert.viewed_adverts << ViewedAdvert.new(:user => current_user)
     end
-    
+
     @advert.viewed_advert_counts << ViewedAdvertCount.new(:ip => request.remote_ip)
-    
+
     @advertable = @advert.advertable
     @advert_user = @advert.user
     @images = @advert.images
-    
+
   end
-  
+
   def dersnotu
     advert_name = params[:advert_name]
     id = advert_name.split('-')[-1]
     @advert = Advert.where(:id => id, :advertable_type => 'Lecturenote')[0]
-    
+
     if !@advert
       raise ActionController::RoutingError.new('Not Found')
     end
-    
+
     name = @advert.name
     link = name.parameterize + '-' + id
     if link != advert_name
-        redirect_to '/dersnotu/' + link
+      redirect_to '/dersnotu/' + link
     end
-    
-    
-    
-    
-    
+
   end
-  
+
   def ilanver
-    
+
     if !current_user
       redirect_to "/girisyap"
     end
-    
-    @advert = Advert.new 
-    
+
+    @advert = Advert.new
+
   end
-  
+
+  def ilanguncelle
+
+    advert_name = params[:advert_name]
+    id = advert_name.split('-')[-1]
+    @advert = Advert.where(:id => id, :advertable_type => 'Secondhand').first
+
+    if !@advert
+      
+      raise ActionController::RoutingError.new('Not Found')
+      
+    elsif !current_user || (@advert.user!=current_user && current_user.role!='admin')
+      
+      raise ActionController::RoutingError.new('Not Found')
+       
+    end
+
+    name = @advert.name
+    link = name.parameterize + '-' + id
+    if link != advert_name
+      redirect_to '/ilanguncelle/' + link
+      
+      
+    end
+    
+    @images = @advert.images
+    
+
+  end
+
   def secondhandPost
     @secondhand = Secondhand.new(params.require(:advert).require(:advertable).permit(
       :category, :color, :brand, :usage, :warranty))
@@ -71,14 +95,14 @@ class AdvertController < ApplicationController
     @advert.user = current_user
     @advert.active = true
     @advert.urgent = false
-    
+
     if params[:images]
-      params[:images].reverse.each do |image|   
+      params[:images].reverse.each do |image|
         @image = Image.new(:imagefile => image)
         @advert.images << @image
       end
-    end   
- 
+    end
+
     @advert.save
     redirect_to "/"
   end
@@ -125,7 +149,7 @@ class AdvertController < ApplicationController
       @adverts = @adverts.select {|adv| adv.advertable.category=='mutfakesyalari'}
     elsif subkategori=="vasita"
       @title="Vasıta"
-      @adverts = @adverts.select {|adv| adv.advertable.category=='vasita'}  
+      @adverts = @adverts.select {|adv| adv.advertable.category=='vasita'}
     elsif subkategori=="diger"
       @title="Diğer"
       @adverts = @adverts.select {|adv| adv.advertable.category=='diger'}
@@ -149,9 +173,9 @@ class AdvertController < ApplicationController
       @title="En Popüler İlanlar"
       @active = 3
       @adverts = []
-    
+
       popularList = ViewedAdvertCount.group(:advert_id).count
-      
+
       popularList.each do |id, count|
         @adverts << Advert.find(id)
       end
