@@ -157,10 +157,18 @@
 					<div class="container-fluid">
 						<div class="col-md-9">
 							<div class="hidden-xs hidden-sm col-md-6 grid">
+								
+								<% if @images == [] %>
+									<div>
+										<a> <%= image_tag Image.new.imagefile, :class =>"img-responsive", :style => "width:400px;height:400px;"%> </a>
+									</div>
+								<% else %>
+									<div class="row easyzoom easyzoom--overlay easyzoom--with-thumbnails">
+										<a href="<%= image_path @images[0].imagefile(:original) %>"> <%= image_tag @images[0].imagefile(:original), :class =>"img-responsive", :style => "width:400px;height:400px;"%> </a>
+									</div>
+								<% end %>
 
-								<div class="row easyzoom easyzoom--overlay easyzoom--with-thumbnails">
-									<a href="<%= image_path @images[0].imagefile(:original) %>"> <%= image_tag @images[0].imagefile(:original), :class =>"img-responsive", :style => "width:400px;height:400px;"%> </a>
-								</div>
+								
 
 								<br>
 								<br>
