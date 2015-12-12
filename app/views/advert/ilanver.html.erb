@@ -175,7 +175,8 @@
 
 					<%= form_for @advert, :url => 'secondhand' , :method => :post , :html => {
 					:class => 'form-basic ikinciel' , :id => 'ikincielform',
-					:multipart => true
+					:multipart => true,
+					:onsubmit => 'return ikincielsubmit();',
 					} do |t| %>
 
 					<%= t.fields_for :advertable do |field| %>
@@ -185,8 +186,8 @@
 
 						<div class="col-sm-10">
 							<%= field.select :category, [['Beyaz Eşya', 'beyazesya'], ['Ev Dekorasyon',
-                  'evdekorasyon'], ['Müzik Aletleri', 'muzikaletleri'], ['Kırtasiye', 'kirtasiye'],
-                ['Mutfak Eşyaları', 'mutfakesyalari'], ['Diğer', 'diger']],{}, {:class => " form-control"}  %>
+                  'evdekorasyon'], ['Müzik Aletleri', 'muzikaletleri'], ['Elektronik', 'elektronik'], ['Kırtasiye', 'kirtasiye'],
+                ['Mutfak Eşyaları', 'mutfakesyalari'], ['Vasıta', 'vasita'], ['Diğer', 'diger']],{}, {:class => " form-control"}  %>
 
 						</div>
 					</div>
@@ -195,11 +196,11 @@
 						<label class = "col-sm-2 control-label">İlan Adı</label>
 
 						<div class = "col-sm-10">
-							<%= t.text_field :name, class:"form-control", :maxlength => 60 %>
+							<%= t.text_field :name, class:"form-control", :maxlength => 60, :onkeyup => 'ikincielilanadiVerify()' %>
 						</div>
 					</div>
-					
-					<div style="display:none;" class = 'col-xs-12 label label-danger form-group'>
+
+					<div style="display:none;" class = 'ikincielAlert ikincielNameAlert col-xs-12 label label-danger form-group'>
 						Lüften İlan Adı Giriniz
 					</div>
 
@@ -207,15 +208,13 @@
 						<label class = "col-sm-2 control-label">Fiyat</label>
 
 						<div class = "col-sm-10">
-							<%= t.text_field :price, class:"form-control", :maxlength => 7 %>
+							<%= t.text_field :price, class:"form-control", :maxlength => 7, :onkeyup => 'ikincielfiyatVerify()' %>
 						</div>
 					</div>
-					
-					
-					<div style="display:none;"class = 'col-xs-12 label label-danger form-group'>
+
+					<div style="display:none;"class = 'ikincielAlert ikincielPriceAlert col-xs-12 label label-danger form-group'>
 						Geçersiz Fiyat Değeri
 					</div>
-				
 
 					<div class = "row form-group">
 						<label class = "col-sm-2 control-label">Ürün Rengi</label>
@@ -230,11 +229,11 @@
 						<label class = "col-sm-2 control-label">Marka</label>
 
 						<div class = "col-sm-10">
-							<%= field.text_field :brand ,class:"form-control"%>
+							<%= field.text_field :brand ,class:"form-control", :onkeyup => 'ikincielmarkaVerify()'%>
 						</div>
 					</div>
-					
-					<div style="display:none;"class = 'col-xs-12 label label-danger form-group'>
+
+					<div style="display:none;"class = 'ikincielAlert ikincielBrandAlert col-xs-12 label label-danger form-group'>
 						Lütfen Marka Giriniz
 					</div>
 
@@ -258,31 +257,29 @@
 						<label class = "col-sm-2 control-label">Açıklama</label>
 
 						<div class = "col-sm-10">
-							<%= t.text_area :explication, class:"form-control" %>
+							<%= t.text_area :explication, class:"form-control", :onkeyup => 'ikincielaciklamaVerify()'%>
 						</div>
 					</div>
-					
-					<div style="display:none;"class = 'col-xs-12 label label-danger form-group'>
+
+					<div style="display:none;"class = 'ikincielAlert ikincielExplicationAlert col-xs-12 label label-danger form-group'>
 						Lütfen Açıklama Giriniz
 					</div>
-					
+
 					<br>
 
 					<div class="row">
-						<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image'%>
+						<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image' %>
 					</div>
-					
-					<div style="display:none;"class = 'col-xs-12 label label-danger form-group'>
+
+					<div style="display:none;"class = 'ikincielAlert ikincielImageAlert col-xs-12 label label-danger form-group'>
 						Lütfen En Az Bir Resim Ekleyiniz
 					</div>
-					
-					
 
 					<div class = "row form-group">
 						<div class = "col-sm-offset-2 col-sm-10">
 							<div class = "checkbox">
 								<label>
-									<input type = "checkbox">
+									<input type = "checkbox" id="kullanim" value="true">
 									Kullanım koşullarını kabul ediyorum</label>
 							</div>
 						</div>
@@ -296,6 +293,109 @@
 
 					<% end %>
 					<% end %>
+					
+					<script>
+					
+						
+						function ikincielilanadiVerify(){
+							var form = document.getElementById("ikincielform");
+							var advertname = form.elements['advert_name'].value;
+							var result = false;
+							
+							if(!/\S/.test(advertname)){
+								$('.ikincielNameAlert').show();
+							}
+							
+							else {
+								$('.ikincielNameAlert').hide();
+								result = true;
+							}
+							return result;
+							
+						}
+						
+						function ikincielfiyatVerify(){
+							var form = document.getElementById("ikincielform");
+							var price = form.elements['advert_price'].value;
+							var result = false;
+							
+							var priceRegexp = new RegExp('^[0-9]*$');
+							var check = priceRegexp.test(price);
+							
+							if(!check){
+								$('.ikincielPriceAlert').show();
+							}
+							
+							else {
+								$('.ikincielPriceAlert').hide();
+								result = true;
+							}
+							return result;
+						}
+						
+						function ikincielmarkaVerify(){
+							var form = document.getElementById("ikincielform");
+							var brand = form.elements['advert_advertable_brand'].value;
+							var result = false;
+							
+							if(!/\S/.test(brand)){
+								$('.ikincielBrandAlert').show();
+							}
+							
+							else {
+								$('.ikincielBrandAlert').hide();
+								result = true;
+							}
+							return result;
+						}
+						
+						function ikincielaciklamaVerify(){
+							var form = document.getElementById("ikincielform");
+							var explication = form.elements['advert_explication'].value;
+							var result = false;
+							
+							if(!/\S/.test(explication)){
+								$('.ikincielExplicationAlert').show();
+							}
+							
+							else {
+								$('.ikincielExplicationAlert').hide();
+								result = true;
+							}
+							return result;
+						}
+						
+						function ikincielresimVerify(){
+							var form = document.getElementById("ikincielform");
+							var image = form.elements['images_'];
+							var result = false;
+							
+							if(image.length == undefined){
+								$('.ikincielImageAlert').show();
+							}
+							
+							else {
+								$('.ikincielImageAlert').hide();
+								result = true;
+							}
+							return result;
+						}
+						
+					
+						function ikincielsubmit(){
+							
+							var ilanadi = ikincielilanadiVerify();
+							var fiyat = ikincielfiyatVerify();
+							var marka = ikincielmarkaVerify();
+							var aciklama = ikincielaciklamaVerify();
+							var resim = ikincielresimVerify();
+							
+							var kullanim = $("#ikincielform #kullanim").is(":checked");
+							
+							return ilanadi && fiyat && marka && aciklama && resim && kullanim;
+							
+						}
+					</script>
 
 					<%= form_for @advert, :url => 'lecturenote' , :method => :post , :html => {
 					:class => 'form-basic ikinciel' , :id => 'dersnotuform',
@@ -327,7 +427,7 @@
 							<%= t.text_field :explication, class:"form-control" %>
 						</div>
 					</div>
-					
+
 					<div class="row">
 						<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image'%>
 					</div>
@@ -380,7 +480,7 @@
 							<%= t.text_field :explication, class:"form-control" %>
 						</div>
 					</div>
-					
+
 					<div class="row">
 						<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image'%>
 					</div>
@@ -433,7 +533,7 @@
 							<%= t.text_field :explication, class:"form-control" %>
 						</div>
 					</div>
-					
+
 					<div class="row">
 						<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image'%>
 					</div>
@@ -497,104 +597,104 @@
 				}
 			}
 		</script>
-		
+
 		<script>
-						imageupload(".file_image").filer({
-        limit: 5,
-        maxSize: 2,
-        extensions: ['jpg', 'jpeg', 'png'],
-        changeInput: '<div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i></div><div class="jFiler-input-text"><h3>Drag&Drop files here</h3> <span style="display:inline-block; margin: 15px 0">or</span></div><a class="jFiler-input-choose-btn blue">Browse Files</a></div></div>',
-        showThumbs: true,
-        theme: "dragdropbox",
-        templates: {
-            box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
-            item: '<li class="jFiler-item">\
-                        <div class="jFiler-item-container">\
-                            <div class="jFiler-item-inner">\
-                                <div class="jFiler-item-thumb">\
-                                    <div class="jFiler-item-status"></div>\
-                                    <div class="jFiler-item-info">\
-                                        <span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
-                                        <span class="jFiler-item-others">{{fi-size2}}</span>\
-                                    </div>\
-                                    {{fi-image}}\
-                                </div>\
-                                <div class="jFiler-item-assets jFiler-row">\
-                                    <ul class="list-inline pull-left">\
-                                        <li>{{fi-progressBar}}</li>\
-                                    </ul>\
-                                    <ul class="list-inline pull-right">\
-                                        <li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
-                                    </ul>\
-                                </div>\
-                            </div>\
-                        </div>\
-                    </li>',
-            itemAppend: '<li class="jFiler-item">\
-                            <div class="jFiler-item-container">\
-                                <div class="jFiler-item-inner">\
-                                    <div class="jFiler-item-thumb">\
-                                        <div class="jFiler-item-status"></div>\
-                                        <div class="jFiler-item-info">\
-                                            <span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
-                                            <span class="jFiler-item-others">{{fi-size2}}</span>\
-                                        </div>\
-                                        {{fi-image}}\
-                                    </div>\
-                                    <div class="jFiler-item-assets jFiler-row">\
-                                        <ul class="list-inline pull-left">\
-                                            <li><span class="jFiler-item-others">{{fi-icon}}</span></li>\
-                                        </ul>\
-                                        <ul class="list-inline pull-right">\
-                                            <li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
-                                        </ul>\
-                                    </div>\
-                                </div>\
-                            </div>\
-                        </li>',
-            progressBar: '<div class="bar"></div>',
-            itemAppendToEnd: false,
-            removeConfirmation: true,
-            _selectors: {
-                list: '.jFiler-items-list',
-                item: '.jFiler-item',
-                progressBar: '.bar',
-                remove: '.jFiler-item-trash-action'
-            }
-        },
-        dragDrop: {
-            dragEnter: null,
-            dragLeave: null,
-            drop: null,
-        },
-        files: null,
-        addMore: true,
-        clipBoardPaste: true,
-        excludeName: null,
-        beforeRender: null,
-        afterRender: null,
-        beforeShow: null,
-        beforeSelect: null,
-        onSelect: null,
-        afterShow: null,
-        
-        onEmpty: null,
-        options: null,
-        captions: {
-            button: "Choose Files",
-            feedback: "Choose files To Upload",
-            feedback2: "files were chosen",
-            drop: "Drop file here to Upload",
-            removeConfirmation: "Are you sure you want to remove this file?",
-            errors: {
-                filesLimit: "Only {{fi-limit}} files are allowed to be uploaded.",
-                filesType: "Only Images are allowed to be uploaded.",
-                filesSize: "{{fi-name}} is too large! Please upload file up to {{fi-maxSize}} MB.",
-                filesSizeAll: "Files you've choosed are too large! Please upload files up to {{fi-maxSize}} MB."
-            }
-        }
-    });
-					</script>
+imageupload(".file_image").filer({
+limit: 5,
+maxSize: 2,
+extensions: ['jpg', 'jpeg', 'png'],
+changeInput: '<div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i></div><div class="jFiler-input-text"><h3>Drag&Drop files here</h3> <span style="display:inline-block; margin: 15px 0">or</span></div><a class="jFiler-input-choose-btn blue">Browse Files</a></div></div>',
+showThumbs: true,
+theme: "dragdropbox",
+templates: {
+box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
+item: '<li class="jFiler-item">\
+<div class="jFiler-item-container">\
+<div class="jFiler-item-inner">\
+<div class="jFiler-item-thumb">\
+<div class="jFiler-item-status"></div>\
+<div class="jFiler-item-info">\
+<span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
+<span class="jFiler-item-others">{{fi-size2}}</span>\
+</div>\
+{{fi-image}}\
+</div>\
+<div class="jFiler-item-assets jFiler-row">\
+<ul class="list-inline pull-left">\
+<li>{{fi-progressBar}}</li>\
+</ul>\
+<ul class="list-inline pull-right">\
+<li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
+</ul>\
+</div>\
+</div>\
+</div>\
+</li>',
+itemAppend: '<li class="jFiler-item">\
+<div class="jFiler-item-container">\
+<div class="jFiler-item-inner">\
+<div class="jFiler-item-thumb">\
+<div class="jFiler-item-status"></div>\
+<div class="jFiler-item-info">\
+<span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
+<span class="jFiler-item-others">{{fi-size2}}</span>\
+</div>\
+{{fi-image}}\
+</div>\
+<div class="jFiler-item-assets jFiler-row">\
+<ul class="list-inline pull-left">\
+<li><span class="jFiler-item-others">{{fi-icon}}</span></li>\
+</ul>\
+<ul class="list-inline pull-right">\
+<li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
+</ul>\
+</div>\
+</div>\
+</div>\
+</li>',
+progressBar: '<div class="bar"></div>',
+itemAppendToEnd: false,
+removeConfirmation: true,
+_selectors: {
+list: '.jFiler-items-list',
+item: '.jFiler-item',
+progressBar: '.bar',
+remove: '.jFiler-item-trash-action'
+}
+},
+dragDrop: {
+dragEnter: null,
+dragLeave: null,
+drop: null,
+},
+files: null,
+addMore: true,
+clipBoardPaste: true,
+excludeName: null,
+beforeRender: null,
+afterRender: null,
+beforeShow: null,
+beforeSelect: null,
+onSelect: null,
+afterShow: null,
+
+onEmpty: null,
+options: null,
+captions: {
+button: "Choose Files",
+feedback: "Choose files To Upload",
+feedback2: "files were chosen",
+drop: "Drop file here to Upload",
+removeConfirmation: "Are you sure you want to remove this file?",
+errors: {
+filesLimit: "Only {{fi-limit}} files are allowed to be uploaded.",
+filesType: "Only Images are allowed to be uploaded.",
+filesSize: "{{fi-name}} is too large! Please upload file up to {{fi-maxSize}} MB.",
+filesSizeAll: "Files you've choosed are too large! Please upload files up to {{fi-maxSize}} MB."
+}
+}
+});
+		</script>
 
 		<!-- pluginler -->
 

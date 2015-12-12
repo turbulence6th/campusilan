@@ -9,6 +9,8 @@ class CreateAdverts < ActiveRecord::Migration
       t.integer :price
       t.text :explication
       t.boolean :active
+      t.boolean :urgent
+      t.boolean :opportunity
       
       t.timestamps null: false
       

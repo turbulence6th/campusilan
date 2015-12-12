@@ -89,11 +89,9 @@
 		<!-- end of plugins  -->
 
 		<style>
-		
-		body {
-			background-color:#F0F7F7;
-			
-		}
+			body {
+				background-color: #F0F7F7;
+			}
 			@media screen and (min-width: 1200px) {
 				body {
 					padding-left: 50px;
@@ -206,8 +204,21 @@
 		</div>
 
 		<div class="panel-body">
-		This is a Basic panel
+		<input style="padding:7px;border:solid 1px #000000;
+		-moz-border-radius-topleft: 13px;
+		-moz-border-radius-topright:12px;
+		-moz-border-radius-bottomleft:11px;
+		-moz-border-radius-bottomright:12px;
+		-webkit-border-top-left-radius:13px;
+		-webkit-border-top-right-radius:12px;
+		-webkit-border-bottom-left-radius:11px;
+		-webkit-border-bottom-right-radius:12px;
+		border-top-left-radius:13px;
+		border-top-right-radius:12px;
+		border-bottom-left-radius:11px;
+		border-bottom-right-radius:12px;" type="text" name="vehicle" placeholder="Markayı Giriniz..."  value="">&nbsp;<br>
 		</div>
+
 		</div>
 
 		<div class="panel panel-danger">
@@ -216,7 +227,14 @@
 		</div>
 
 		<div class="panel-body">
-		This is a Basic panel
+		<select>
+		<option value="volvo">Siyah</option>
+		<option value="saab">Beyaz</option>
+		<option value="mercedes">Kırmızı</option>
+		<option value="audi">Mavi</option>
+		<option value="audi">Sarı</option>
+		<option value="audi">Yeşil</option>
+		</select>
 		</div>
 		</div>
 
@@ -275,6 +293,10 @@
 		<div class="panel-body">
 		<input type="checkbox" name="vehicle" value="Bike">&nbsp;500 - 1000 TL<br>
 		</div>
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;1000 TL üstü<br>
+		</div>
+
 		</div>
 
 		</form>
@@ -418,8 +440,8 @@
 
 		</div>
 		<div class="row">
-		<%= render "footer" %>
-		
+			<%= render "footer" %>
+
 		</div>
 
 		</div>

@@ -2,7 +2,7 @@ class Advert < ActiveRecord::Base
   
   validates :name, :price, :explication, :user, :advertable, :presence => true
   
-  validates :active, :inclusion => { :in => [true, false] }
+  validates :active, :urgent, :opportunity, :inclusion => { :in => [true, false] }
   
   validates :name, :format => {
     :with => /\A[ -~\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,60}\z/
@@ -34,5 +34,9 @@ class Advert < ActiveRecord::Base
   belongs_to :advertable, :polymorphic => true
   
   has_many :images, :as => :imageable
+  
+  has_many :viewed_advert_counts
+  
+  
   
 end

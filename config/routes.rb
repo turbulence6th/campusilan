@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   
   get 'yardim' => 'index#yardim'
   get 'ilanver' => 'advert#ilanver'
+  get 'ilanguncelle/:advert_name' => 'advert#ilanguncelle'
+  post 'deleteimage' => 'advert#deleteimage', defaults: {format: :json}
   post 'secondhand' => 'advert#secondhandPost'
   post 'homemate' => 'advert#homematePost'
   post 'lecturenote' => 'advert#lecturenotePost'
@@ -40,15 +42,27 @@ Rails.application.routes.draw do
   get 'insert_image' => 'index#insert_image'
   post 'insert_image' => 'index#insert_image_post'
   
- 
+  get 'administrator' => 'admin#index'
+  
+  get 'administrator/ilanlar' => 'admin#ilanlar'
+  
+  get 'administrator/uyeler' => 'admin#uyeler'
+    
+  get 'administrator/yorumlar' => 'admin#yorumlar'
+  
+  
+  get 'administrator/bootstrapelements' => 'admin#bootstrap_elements'
+  
+  get 'administrator/charts' => 'admin#charts'
+  
+  get 'administrator/forms' => 'admin#forms'
+  
+  get 'administrator/indexrtl' => 'admin#index_rtl'
+  
+  get 'administrator/tables' => 'admin#tables'
   
   
   
   
-  
-  
-  
-  
-  
-  
+
 end

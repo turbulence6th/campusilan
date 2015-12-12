@@ -6,6 +6,23 @@ class IndexController < ApplicationController
   def index
     
     @ensonikinciel = Advert.where(advertable_type: 'Secondhand').last(4).reverse
+    @ensonevarkadasi = Advert.where(advertable_type: 'Homemate').last(4).reverse
+    @ensondersnotu = Advert.where(advertable_type: 'Lessonnote').last(4).reverse
+    @ensonozelders = Advert.where(advertable_type: 'Privatelesson').last(4).reverse
+    
+    @ensonilanlar = Advert.all.last(4).reverse
+    
+    @acililanlar = Advert.where(:urgent => true).order('created_at DESC').last(7)
+    
+    @gununilanlari = Advert.where(:opportunity => true).order('created_at DESC').last(6)
+    
+    @mostpopular = []
+    
+    popularList = ViewedAdvertCount.group(:advert_id).count.first(6)
+    
+    popularList.each do |id, count|
+      @mostpopular << Advert.find(id)
+    end
     
   end
   
@@ -20,6 +37,10 @@ class IndexController < ApplicationController
   end 
   
   def satis_alis
+    
+  end
+  
+  def administrator
     
   end
   
