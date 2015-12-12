@@ -9,8 +9,6 @@ class UserController < ApplicationController
     if current_user!=nil
       redirect_to "/"
     end
-
-    @user=User.new
   end
 
   def checkusername
