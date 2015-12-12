@@ -34,7 +34,7 @@ config.assets.digest = true
 # config.force_ssl = true
 # Use the lowest log level to ensure availability of diagnostic information
 # when problems arise.
-config.log_level = :info
+config.log_level = :debug
 RAILS_DEFAULT_LOGGER = Logger.new('log/production.log')
 # Prepend all log lines with the following tags.
 # config.log_tags = [ :subdomain, :uuid ]
