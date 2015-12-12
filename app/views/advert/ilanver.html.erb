@@ -173,10 +173,10 @@
 						</div>
 					</div>
 
-					<%= form_for @advert, :url => 'secondhand' , :method => :post , :html => {
+					<%= form_for :advert, :url => 'secondhand' , :method => :post , :html => {
 					:class => 'form-basic ikinciel' , :id => 'ikincielform',
 					:multipart => true,
-					:onsubmit => 'return ikincielsubmit();',
+					:onsubmit => 'return ikincielsubmit();'
 					} do |t| %>
 
 					<%= t.fields_for :advertable do |field| %>
@@ -271,10 +271,6 @@
 						<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image' %>
 					</div>
 
-					<div style="display:none;"class = 'ikincielAlert ikincielImageAlert col-xs-12 label label-danger form-group'>
-						Lütfen En Az Bir Resim Ekleyiniz
-					</div>
-
 					<div class = "row form-group">
 						<div class = "col-sm-offset-2 col-sm-10">
 							<div class = "checkbox">
@@ -319,7 +315,7 @@
 							var price = form.elements['advert_price'].value;
 							var result = false;
 							
-							var priceRegexp = new RegExp('^[0-9]*$');
+							var priceRegexp = new RegExp('^[0-9]+$');
 							var check = priceRegexp.test(price);
 							
 							if(!check){
@@ -365,39 +361,22 @@
 							return result;
 						}
 						
-						function ikincielresimVerify(){
-							var form = document.getElementById("ikincielform");
-							var image = form.elements['images_'];
-							var result = false;
-							
-							if(image.length == undefined){
-								$('.ikincielImageAlert').show();
-							}
-							
-							else {
-								$('.ikincielImageAlert').hide();
-								result = true;
-							}
-							return result;
-						}
-						
-					
 						function ikincielsubmit(){
 							
 							var ilanadi = ikincielilanadiVerify();
 							var fiyat = ikincielfiyatVerify();
 							var marka = ikincielmarkaVerify();
 							var aciklama = ikincielaciklamaVerify();
-							var resim = ikincielresimVerify();
+							
 							
 							var kullanim = $("#ikincielform #kullanim").is(":checked");
 							
-							return ilanadi && fiyat && marka && aciklama && resim && kullanim;
+							return ilanadi && fiyat && marka && aciklama && kullanim;
 							
 						}
 					</script>
 
-					<%= form_for @advert, :url => 'lecturenote' , :method => :post , :html => {
+					<%= form_for :advert, :url => 'lecturenote' , :method => :post , :html => {
 					:class => 'form-basic ikinciel' , :id => 'dersnotuform',
 					:style => 'display:none;'
 					} do |t| %>
@@ -436,7 +415,7 @@
 						<div class = "col-sm-offset-2 col-sm-10">
 							<div class = "checkbox">
 								<label>
-									<input type = "checkbox">
+									<input type = "checkbox" id="kullanim" value="true">
 									Kullanım koşullarını kabul ediyorum</label>
 							</div>
 						</div>
@@ -450,9 +429,11 @@
 					<% end %>
 					<% end %>
 
-					<%= form_for @advert, :url => 'homemate' , :method => :post , :html => {
+					<%= form_for :advert, :url => 'homemate' , :method => :post , :html => {
 					:class => 'form-basic ikinciel' , :id => 'evarkadasiform',
-					:style => 'display:none;'
+					:style => 'display:none;',
+					:multipart => true,
+					:onsubmit => 'return evarkadasisubmit();'
 					} do |t| %>
 
 					<%= t.fields_for :advertable do |field| %>
@@ -461,15 +442,55 @@
 						<label class = "col-sm-2 control-label">İlan Adı</label>
 
 						<div class = "col-sm-10">
-							<%= t.text_field :name, class:"form-control" %>
+							<%= t.text_field :name, class:"form-control", :onkeyup => 'evarkadasiilanadiVerify()' %>
 						</div>
+					</div>
+					
+					<div style="display:none;" class = 'evarkadasiAlert evarkadasiNameAlert col-xs-12 label label-danger form-group'>
+						Lüften İlan Adı Giriniz
 					</div>
 
 					<div class = "row form-group">
 						<label class = "col-sm-2 control-label">Aylık Kira</label>
 
 						<div class = "col-sm-10">
-							<%= t.text_field :price, class:"form-control" %>
+							<%= t.text_field :price, class:"form-control", :onkeyup => 'evarkadasifiyatVerify()' %>
+						</div>
+					</div>
+					
+					<div style="display:none;" class = 'evarkadasiAlert evarkadasiPriceAlert col-xs-12 label label-danger form-group'>
+						Geçersiz Fiyat Değeri
+					</div>
+					
+					<div class = "row form-group">
+						<label class = "col-sm-2 control-label">Semt</label>
+
+						<div class = "col-sm-10">
+							<%= field.text_field :state, class:"form-control", :onkeyup => 'evarkadasisemtVerify()' %>
+						</div>
+					</div>
+					
+					<div style="display:none;" class = 'evarkadasiAlert evarkadasiStateAlert col-xs-12 label label-danger form-group'>
+						Geçersiz Semt Adı
+					</div>
+					
+					<div class = "row form-group">
+						<label class = "col-sm-2 control-label">Şehir</label>
+
+						<div class = "col-sm-10">
+							<%= field.text_field :city, class:"form-control", :onkeyup => 'evarkadasisehirVerify()' %>
+						</div>
+					</div>
+					
+					<div style="display:none;" class = 'evarkadasiAlert evarkadasiCityAlert col-xs-12 label label-danger form-group'>
+						Geçersiz Şehir Adı
+					</div>
+					
+					<div class = "row form-group">
+						<label class = "col-sm-2 control-label">Aranan</label>
+
+						<div class = "col-sm-10">
+							<%= field.select :demand, [['Erkek', 'male'], ['Kadın', 'female'], ['Hepsi', 'both']],{}, {class:"form-control"}  %>
 						</div>
 					</div>
 
@@ -477,9 +498,15 @@
 						<label class = "col-sm-2 control-label">Açıklama</label>
 
 						<div class = "col-sm-10">
-							<%= t.text_field :explication, class:"form-control" %>
+							<%= t.text_area :explication, class:"form-control", :onkeyup => 'evarkadasiaciklamaVerify()' %>
 						</div>
 					</div>
+					
+					<div style="display:none;" class = 'evarkadasiAlert evarkadasiExplicationAlert col-xs-12 label label-danger form-group'>
+						Lüften Açıklama Giriniz
+					</div>
+					
+					<br/>
 
 					<div class="row">
 						<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image'%>
@@ -489,7 +516,7 @@
 						<div class = "col-sm-offset-2 col-sm-10">
 							<div class = "checkbox">
 								<label>
-									<input type = "checkbox">
+									<input type = "checkbox" id="kullanim" value="true">
 									Kullanım koşullarını kabul ediyorum</label>
 							</div>
 						</div>
@@ -502,8 +529,112 @@
 					</div>
 					<% end %>
 					<% end %>
+					
+					<script>
+					
+						
+						function evarkadasiilanadiVerify(){
+							var form = document.getElementById("evarkadasiform");
+							var advertname = form.elements['advert_name'].value;
+							var result = false;
+							
+							if(!/\S/.test(advertname)){
+								$('.evarkadasiNameAlert').show();
+							}
+							
+							else {
+								$('.evarkadasiNameAlert').hide();
+								result = true;
+							}
+							return result;
+							
+						}
+						
+						function evarkadasifiyatVerify(){
+							var form = document.getElementById("evarkadasiform");
+							var price = form.elements['advert_price'].value;
+							var result = false;
+							
+							var priceRegexp = new RegExp('^[0-9]+$');
+							var check = priceRegexp.test(price);
+							
+							if(!check){
+								$('.evarkadasiPriceAlert').show();
+							}
+							
+							else {
+								$('.evarkadasiPriceAlert').hide();
+								result = true;
+							}
+							return result;
+						}
+						
+						function evarkadasisemtVerify(){
+							var form = document.getElementById("evarkadasiform");
+							var state = form.elements['advert_advertable_state'].value;
+							var result = false;
+							
+							if(!/^[a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}$/.test(state)){
+								$('.evarkadasiStateAlert').show();
+							}
+							
+							else {
+								$('.evarkadasiStateAlert').hide();
+								result = true;
+							}
+							return result;
+							
+						}
+						
+						function evarkadasisehirVerify(){
+							var form = document.getElementById("evarkadasiform");
+							var city = form.elements['advert_advertable_city'].value;
+							var result = false;
+							
+							if(!/^[a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}$/.test(city)){
+								$('.evarkadasiCityAlert').show();
+							}
+							
+							else {
+								$('.evarkadasiCityAlert').hide();
+								result = true;
+							}
+							return result;
+							
+						}
+						
+						function evarkadasiaciklamaVerify(){
+							var form = document.getElementById("evarkadasiform");
+							var explication = form.elements['advert_explication'].value;
+							var result = false;
+							
+							if(!/\S/.test(explication)){
+								$('.evarkadasiExplicationAlert').show();
+							}
+							
+							else {
+								$('.evarkadasiExplicationAlert').hide();
+								result = true;
+							}
+							return result;
+						}
+					
+						function evarkadasisubmit(){
+							
+							var ilanadi = evarkadasiilanadiVerify();
+							var fiyat = evarkadasifiyatVerify();
+							var semt = evarkadasisemtVerify();
+							var sehir = evarkadasisehirVerify();
+							var aciklama = evarkadasiaciklamaVerify();
+							
+							var kullanim = $("#evarkadasiform #kullanim").is(":checked");
+							
+							return ilanadi && fiyat && semt && sehir && aciklama && kullanim;
+							
+						}
+					</script>
 
-					<%= form_for @advert, :url => 'privatelesson' , :method => :post , :html => {
+					<%= form_for :advert, :url => 'privatelesson' , :method => :post , :html => {
 					:class => 'form-basic ikinciel' , :id => 'ozeldersform',
 					:style => 'display:none;'
 					} do |t| %>

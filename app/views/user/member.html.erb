@@ -210,10 +210,11 @@
 									<div class="row">
 										
 										<% @mostpopular.each do |advert| %>
+										
 											<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
 		
 													<div class="thumbnail">
-														<a title='<%= advert.name %>' href="/ikinciel/<%= advert.name.parameterize + '-' + advert.id.to_s %>">  
+														<a title='<%= advert.name %>' href="<%= advert.href %>">  
 															<% if advert.images == [] %>
 																<%= image_tag Image.new.imagefile %> 
 															<% else %>

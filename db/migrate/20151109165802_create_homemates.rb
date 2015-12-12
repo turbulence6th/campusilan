@@ -4,7 +4,6 @@ class CreateHomemates < ActiveRecord::Migration
 
       t.string :state
       t.string :city
-      t.string :zipcode
       t.integer :demand
      
     end
