@@ -36,6 +36,22 @@ class Advert < ActiveRecord::Base
   
   has_many :viewed_advert_counts
   
+  def href
+    
+    if self.advertable_type=='Secondhand'
+      path = '/ikinciel/'
+    elsif self.advertable_type=='Lessonnote'
+      path = '/dersnotu/'
+    elsif self.advertable_type=='Homemate'
+      path = '/evarkadasi/'
+    elsif self.advertable_type=='Privatelesson'
+      path = '/ozelders/'
+    end
+    
+    path + self.name.parameterize + '-' + self.id.to_s
+    
+  end
+  
   
   
 end

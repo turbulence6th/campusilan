@@ -331,21 +331,11 @@
 												<ul>
 													<% @acililanlar.each do |advert| %>
 
-													<% if advert.advertable_type=='Secondhand' %>
-													<% path = '/ikinciel/' %>
-													<% elsif advert.advertable_type=='Lessonnote' %>
-													<% path = '/dersnotu/' %>
-													<% elsif advert.advertable_type=='Homemate' %>
-													<% path = '/evarkadasi/' %>
-													<% elsif advert.advertable_type=='Privatelesson' %>
-													<% path = '/ozelders/' %>
-													<% end %>
-
 													<li>
 														<% if advert.images != [] %>
-														<a href="<%= path + advert.name.parameterize + '-' + advert.id.to_s  %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+														<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
 														<% else %>
-														<%= image_tag Image.new.imagefile %>
+														<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name%> </a>
 														<% end %>
 
 													</li>
@@ -387,23 +377,13 @@
 
 									<% @gununilanlari.each do |advert| %>
 
-									<% if advert.advertable_type=='Secondhand' %>
-									<% path = '/ikinciel/' %>
-									<% elsif advert.advertable_type=='Lessonnote' %>
-									<% path = '/dersnotu/' %>
-									<% elsif advert.advertable_type=='Homemate' %>
-									<% path = '/evarkadasi/' %>
-									<% elsif advert.advertable_type=='Privatelesson' %>
-									<% path = '/ozelders/' %>
-									<% end %>
-
 									<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
 
 										<div class="thumbnail">
 											<% if advert.images != [] %>
-											<a href="<%= path + advert.name.parameterize + '-' + advert.id.to_s  %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+											<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
 											<% else %>
-											<%= image_tag Image.new.imagefile %>
+											<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name %></a>
 											<% end %>
 
 										</div>
@@ -813,21 +793,11 @@
 										<ul>
 											<% @acililanlar.each do |advert| %>
 
-											<% if advert.advertable_type=='Secondhand' %>
-											<% path = '/ikinciel/' %>
-											<% elsif advert.advertable_type=='Lessonnote' %>
-											<% path = '/dersnotu/' %>
-											<% elsif advert.advertable_type=='Homemate' %>
-											<% path = '/evarkadasi/' %>
-											<% elsif advert.advertable_type=='Privatelesson' %>
-											<% path = '/ozelders/' %>
-											<% end %>
-
 											<li>
 												<% if advert.images != [] %>
-												<a href="<%= path + advert.name.parameterize + '-' + advert.id.to_s  %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+												<a href="<%= advert.href + '-' + advert.id.to_s  %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
 												<% else %>
-												<%= image_tag Image.new.imagefile %>
+												<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name %></a>
 												<% end %>
 
 											</li>
@@ -934,23 +904,13 @@
 
 							<% @gununilanlari.each do |advert| %>
 
-							<% if advert.advertable_type=='Secondhand' %>
-							<% path = '/ikinciel/' %>
-							<% elsif advert.advertable_type=='Lessonnote' %>
-							<% path = '/dersnotu/' %>
-							<% elsif advert.advertable_type=='Homemate' %>
-							<% path = '/evarkadasi/' %>
-							<% elsif advert.advertable_type=='Privatelesson' %>
-							<% path = '/ozelders/' %>
-							<% end %>
-
 							<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
 
 								<div class="thumbnail">
 									<% if advert.images != [] %>
-									<a href="<%= path + advert.name.parameterize + '-' + advert.id.to_s  %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+									<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
 									<% else %>
-									<%= image_tag Image.new.imagefile %>
+									<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name%></a>
 									<% end %>
 
 								</div>
@@ -997,36 +957,28 @@
 							<div id="mi-slider" class="mi-slider"
 							style="margin-top: 20px; clear: both;">
 								<ul>
-									<% @ensonikinciel.each do |adv| %>
+									<% @ensonikinciel.each do |advert| %>
 									<li>
-										<a href="/ikinciel/<%= adv.name.parameterize + '-' + adv.id.to_s %>"> <% if adv.images == [] %>
-										<%= image_tag Image.new.imagefile %>
-										<br />
-										<h4><%= adv.name %></h4> <% else %>
-										<%= image_tag adv.images[0].imagefile(:small) %>
-										<br />
-										<h4><%= adv.name %></h4> <% end %>
+										<% if advert.images != [] %>
+										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %><h4><%= advert.name %></h4></a>
+										<% else %>
+										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name%><h4><%= advert.name %></h4></a>
+										<% end %>
 									</li>
 
 									<% end %>
 								</ul>
 								<ul>
+									<% @ensonevarkadasi.each do |advert| %>
 									<li>
-										<a href="#"> <img
-										src="resources/plugins/ItemSlider/images/5.jpg" alt="img05"> <h4>Belts</h4> </a>
+										<% if advert.images != [] %>
+										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %><h4><%= advert.name %></h4> </a>
+										<% else %>
+										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name%><h4><%= advert.name %></h4></a>
+										<% end %>
 									</li>
-									<li>
-										<a href="#"> <img
-										src="resources/plugins/ItemSlider/images/6.jpg" alt="img06"> <h4>Hats &amp; Caps</h4> </a>
-									</li>
-									<li>
-										<a href="#"> <img
-										src="resources/plugins/ItemSlider/images/7.jpg" alt="img07"> <h4>Sunglasses</h4> </a>
-									</li>
-									<li>
-										<a href="#"> <img
-										src="resources/plugins/ItemSlider/images/8.jpg" alt="img08"> <h4>Scarves</h4> </a>
-									</li>
+
+									<% end %>
 								</ul>
 								<ul>
 									<li>
@@ -1108,22 +1060,12 @@
 
 								<% @mostpopular.each do |advert| %>
 
-								<% if advert.advertable_type=='Secondhand' %>
-								<% path = '/ikinciel/' %>
-								<% elsif advert.advertable_type=='Lessonnote' %>
-								<% path = '/dersnotu/' %>
-								<% elsif advert.advertable_type=='Homemate' %>
-								<% path = '/evarkadasi/' %>
-								<% elsif advert.advertable_type=='Privatelesson' %>
-								<% path = '/ozelders/' %>
-								<% end %>
-
 								<li>
 
 									<% if advert.images != [] %>
-									<a href="<%= path + advert.name.parameterize + '-' + advert.id.to_s  %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+									<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
 									<% else %>
-									<%= image_tag Image.new.imagefile %>
+									<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile, :title => advert.name %></a>
 									<% end %>
 
 								</li>
@@ -1156,9 +1098,9 @@
 
 								<li>
 									<% if advert.images != [] %>
-									<%= image_tag advert.images[0].imagefile(:small),:title => advert.name %>
+									<a href="<%= advert.href + '-' + advert.id.to_s  %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
 									<% else %>
-									<%= image_tag Image.new.imagefile %>
+									<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name %></a>
 									<% end %>
 								</li>
 
@@ -1186,24 +1128,14 @@
 						<div class="jcarousel">
 							<ul>
 
-								<<% @mostpopular.each do |advert| %>
-
-								<% if advert.advertable_type=='Secondhand' %>
-								<% path = '/ikinciel/' %>
-								<% elsif advert.advertable_type=='Lessonnote' %>
-								<% path = '/dersnotu/' %>
-								<% elsif advert.advertable_type=='Homemate' %>
-								<% path = '/evarkadasi/' %>
-								<% elsif advert.advertable_type=='Privatelesson' %>
-								<% path = '/ozelders/' %>
-								<% end %>
+								<% @mostpopular.each do |advert| %>
 
 								<li>
 
 									<% if advert.images != [] %>
-									<a href="<%= path + advert.name.parameterize + '-' + advert.id.to_s  %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+									<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
 									<% else %>
-									<%= image_tag Image.new.imagefile %>
+									<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name %></a>
 									<% end %>
 
 								</li>

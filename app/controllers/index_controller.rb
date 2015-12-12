@@ -14,7 +14,7 @@ class IndexController < ApplicationController
     
     @acililanlar = Advert.where(:urgent => true).order('created_at DESC').last(7)
     
-    @gununilanlari = Advert.where(:opportunity => true).order('created_at DESC').last(6)
+    @gununilanlari = Advert.where(:opportunity => true).order('created_at DESC').last(8)
     
     @mostpopular = []
     
