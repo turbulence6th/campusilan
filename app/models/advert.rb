@@ -19,7 +19,6 @@ class Advert < ActiveRecord::Base
   }
   
   validates :images, :length => {
-    :minimum => 1,
     :maximum => 5
   }
   

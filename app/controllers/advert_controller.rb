@@ -79,6 +79,8 @@ class AdvertController < ApplicationController
     if link != advert_name
       redirect_to '/ilanguncelle/' + link
       
+    
+      
       
     end
     
@@ -89,6 +91,29 @@ class AdvertController < ApplicationController
   
   def ilanguncellePost 
     
+    if params[:advert_type] == 'secondhand'
+      
+      secondhandParam = params.require(:advert).require(:secondhand).permit(
+        :category, :color, :brand, :usage, :warranty)
+      advertParam = params.require(:advert).permit(:name, :price, :explication)
+      id = params.require(:advert).permit(:id)[:id]
+      
+      advert = Advert.find(id)
+      if !current_user || (advert.user!=current_user && current_user.role!='admin')
+        raise ActionController::RoutingError.new('Not Found')
+      else
+        advert.update_attributes(advertParam)
+        advert.advertable.update_attributes(secondhandParam)
+        if params[:images]
+          params[:images].reverse.each do |image|
+            image = Image.new(:imagefile => image)
+            advert.images << image
+          end
+        end
+        redirect_to URI(request.referer).path
+      end
+      
+    end
       
     
   end
@@ -150,6 +175,10 @@ class AdvertController < ApplicationController
 
     @advert.save
     redirect_to "/"
+  end
+  
+  def homematePost
+    
   end
 
   def kategoriler
