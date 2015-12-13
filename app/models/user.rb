@@ -54,19 +54,19 @@ class User < ActiveRecord::Base
   enum :gender => [ :male, :female, :other ]
   enum :role => [ :admin, :member ]
   
-  has_many :adverts
+  has_many :adverts, :dependent => :destroy
   
-  has_many :viewed_adverts
+  has_many :viewed_adverts, :dependent => :destroy
   has_many :adverts, through: :viewed_adverts
   
-  has_many :favourite_adverts
+  has_many :favourite_adverts, :dependent => :destroy
   has_many :adverts, through: :favourite_adverts
   
-  has_many :froms, :class_name => 'Message', :foreign_key => 'id'
-  has_many :tos, :class_name => 'Message', :foreign_key => 'id'
+  has_many :froms, :class_name => 'Message', :foreign_key => 'id', :dependent => :destroy
+  has_many :tos, :class_name => 'Message', :foreign_key => 'id', :dependent => :destroy
   
   belongs_to :university
   
-  has_one :image, :as => :imageable
+  has_one :image, :as => :imageable, :dependent => :destroy
   
 end

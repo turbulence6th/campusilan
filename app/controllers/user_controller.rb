@@ -78,6 +78,8 @@ class UserController < ApplicationController
       @mostpopular << Advert.find(id)
     end
     
+    @gununilanlari = Advert.where(:opportunity => true).order('created_at DESC').last(6)
+    
    
     if params[:profilim]!=nil
       @sekme=".profilim"
