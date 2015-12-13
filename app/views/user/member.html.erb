@@ -210,10 +210,11 @@
 									<div class="row">
 										
 										<% @mostpopular.each do |advert| %>
+										
 											<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
 		
 													<div class="thumbnail">
-														<a title='<%= advert.name %>' href="/ikinciel/<%= advert.name.parameterize + '-' + advert.id.to_s %>">  
+														<a title='<%= advert.name %>' href="<%= advert.href %>">  
 															<% if advert.images == [] %>
 																<%= image_tag Image.new.imagefile %> 
 															<% else %>
@@ -271,18 +272,6 @@
 												<% end%>
 											</div>
 
-											<!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-											<dl>
-											<dt>DEPARTMENT:</dt>
-											<dd>Administrator</dd>
-											<dt>HIRE DATE</dt>
-											<dd>11/12/2013</dd>
-											<dt>DATE OF BIRTH</dt>
-											<dd>11/12/2013</dd>
-											<dt>GENDER</dt>
-											<dd>Male</dd>
-											</dl>
-											</div>-->
 											<div class=" col-md-9 col-lg-9 ">
 												<table class="table table-user-information">
 													<tbody>
@@ -888,120 +877,36 @@
 									<div class="panel-body">
 
 										<div class="row">
+											
+											<% @gununilanlari.each do |advert| %>
+										
 											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
-
-												<div class="thumbnail">
-													<a href="#"> <img src="/resources/images/cat-demo.jpg"
-													alt="cat demo photo"> </img> </a>
-
+		
+													<div class="thumbnail">
+														<a title='<%= advert.name %>' href="<%= advert.href %>">  
+															<% if advert.images == [] %>
+																<%= image_tag Image.new.imagefile %> 
+															<% else %>
+																<%= image_tag advert.images[0].imagefile(:small) %> 
+															<% end %>
+														</a>
+		
+													</div>
+		
+													<div class="caption">
+		
+														<h5><% if advert.name.length > 14 %>
+																<%= advert.name[0..11] %>..
+															<% else %>
+																<%= advert.name %>
+															<% end %>
+														</h5>
+		
+													</div>
+		
 												</div>
-
-												<div class="caption">
-
-													<h3>Thumbnail label</h3>
-													<p>
-														Some sample text.
-													</p>
-
-												</div>
-
-											</div>
-
-											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
-
-												<div class="thumbnail">
-													<a href="#"> <img src="/resources/images/cat-demo.jpg"
-													alt="cat demo photo"> </img> </a>
-
-												</div>
-
-												<div class="caption">
-
-													<h3>Thumbnail label</h3>
-													<p>
-														Some sample text.
-													</p>
-
-												</div>
-
-											</div>
-
-											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
-
-												<div class="thumbnail">
-													<a href="#"> <img src="/resources/images/cat-demo.jpg"
-													alt="cat demo photo"> </img> </a>
-
-												</div>
-
-												<div class="caption">
-
-													<h3>Thumbnail label</h3>
-													<p>
-														Some sample text.
-													</p>
-
-												</div>
-
-											</div>
-
-											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
-
-												<div class="thumbnail">
-													<a href="#"> <img src="/resources/images/cat-demo.jpg"
-													alt="cat demo photo"> </img> </a>
-
-												</div>
-
-												<div class="caption">
-
-													<h3>Thumbnail label</h3>
-													<p>
-														Some sample text.
-													</p>
-
-												</div>
-
-											</div>
-
-											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
-
-												<div class="thumbnail">
-													<a href="#"> <img src="/resources/images/cat-demo.jpg"
-													alt="cat demo photo"> </img> </a>
-
-												</div>
-
-												<div class="caption">
-
-													<h3>Thumbnail label</h3>
-													<p>
-														Some sample text.
-													</p>
-
-												</div>
-
-											</div>
-
-											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
-
-												<div class="thumbnail">
-													<a href="#"> <img src="/resources/images/cat-demo.jpg"
-													alt="cat demo photo"> </img> </a>
-
-												</div>
-
-												<div class="caption">
-
-													<h3>Thumbnail label</h3>
-													<p>
-														Some sample text.
-													</p>
-
-												</div>
-
-											</div>
-
+										<% end %>
+											
 										</div>
 
 									</div>

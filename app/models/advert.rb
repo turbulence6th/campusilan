@@ -19,23 +19,38 @@ class Advert < ActiveRecord::Base
   }
   
   validates :images, :length => {
-    :minimum => 1,
     :maximum => 5
   }
   
   belongs_to :user
   
-  has_many :viewed_adverts
+  has_many :viewed_adverts, :dependent => :destroy
   has_many :users, through: :viewed_adverts
   
-  has_many :favourite_adverts
+  has_many :favourite_adverts, :dependent => :destroy
   has_many :users, through: :favourite_adverts
   
-  belongs_to :advertable, :polymorphic => true
+  belongs_to :advertable, :polymorphic => true, :dependent => :destroy
   
-  has_many :images, :as => :imageable
+  has_many :images, :as => :imageable, :dependent => :destroy
   
-  has_many :viewed_advert_counts
+  has_many :viewed_advert_counts, :dependent => :destroy
+  
+  def href
+    
+    if self.advertable_type=='Secondhand'
+      path = '/ikinciel/'
+    elsif self.advertable_type=='Lessonnote'
+      path = '/dersnotu/'
+    elsif self.advertable_type=='Homemate'
+      path = '/evarkadasi/'
+    elsif self.advertable_type=='Privatelesson'
+      path = '/ozelders/'
+    end
+    
+    path + self.name.parameterize + '-' + self.id.to_s
+    
+  end
   
   
   

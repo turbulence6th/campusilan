@@ -17,7 +17,7 @@ class AdvertControllerTest < ActionController::TestCase
     post :secondhandPost, :advert => {:name => 'Satılık Gardrop', :price => 1200, :explication => 'Kullanılmamış garantili dolap',
       :advertable => { :category => 'beyazesya', :color => 'beyaz', :brand => 'Handy Mate', :usage => true, :warranty => true }}, :images => images
     advert = Advert.find_by_name('Satılık Gardrop')
-    assert_equal true, advert!=nil
+    assert advert
   end
   
 end

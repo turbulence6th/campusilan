@@ -13,9 +13,7 @@ class AdvertController < ApplicationController
       raise ActionController::RoutingError.new('Not Found')
     end
 
-    name = @advert.name
-    link = name.parameterize + '-' + id
-    if link != advert_name
+    if @advert.href != '/ikinciel/' + advert_name
       redirect_to '/ikinciel/' + link
     end
 
@@ -31,20 +29,28 @@ class AdvertController < ApplicationController
 
   end
 
-  def dersnotu
+  def evarkadasi
     advert_name = params[:advert_name]
     id = advert_name.split('-')[-1]
-    @advert = Advert.where(:id => id, :advertable_type => 'Lecturenote')[0]
+    @advert = Advert.where(:id => id, :advertable_type => 'Homemate')[0]
 
     if !@advert
       raise ActionController::RoutingError.new('Not Found')
     end
 
-    name = @advert.name
-    link = name.parameterize + '-' + id
-    if link != advert_name
-      redirect_to '/dersnotu/' + link
+    if @advert.href != '/evarkadasi/' + advert_name
+      redirect_to '/evarkadasi/' + link
     end
+    
+    if current_user
+      @advert.viewed_adverts << ViewedAdvert.new(:user => current_user)
+    end
+
+    @advert.viewed_advert_counts << ViewedAdvertCount.new(:ip => request.remote_ip)
+
+    @advertable = @advert.advertable
+    @advert_user = @advert.user
+    @images = @advert.images
 
   end
 
@@ -54,15 +60,13 @@ class AdvertController < ApplicationController
       redirect_to "/girisyap"
     end
 
-    @advert = Advert.new
-
   end
 
   def ilanguncelle
 
     advert_name = params[:advert_name]
     id = advert_name.split('-')[-1]
-    @advert = Advert.where(:id => id, :advertable_type => 'Secondhand').first
+    @advert = Advert.where(:id => id).first
 
     if !@advert
       
@@ -78,8 +82,6 @@ class AdvertController < ApplicationController
     link = name.parameterize + '-' + id
     if link != advert_name
       redirect_to '/ilanguncelle/' + link
-      
-      
     end
     
     @images = @advert.images
@@ -89,6 +91,51 @@ class AdvertController < ApplicationController
   
   def ilanguncellePost 
     
+    if params[:advert_type] == 'secondhand'
+      
+      secondhandParam = params.require(:advert).require(:secondhand).permit(
+        :category, :color, :brand, :usage, :warranty)
+      advertParam = params.require(:advert).permit(:name, :price, :explication)
+      id = params.require(:advert).permit(:id)[:id]
+      
+      advert = Advert.find(id)
+      if !current_user || (advert.user!=current_user && current_user.role!='admin') || advert.advertable_type!='Secondhand'
+        raise ActionController::RoutingError.new('Not Found')
+      else
+        advert.update_attributes(advertParam)
+        advert.advertable.update_attributes(secondhandParam)
+        if params[:images]
+          params[:images].reverse.each do |image|
+            image = Image.new(:imagefile => image)
+            advert.images << image
+          end
+        end
+        redirect_to URI(request.referer).path
+      end
+      
+    elsif params[:advert_type] == 'homemate'
+      
+      homemateParam = params.require(:advert).require(:homemate).permit(
+        :state, :city, :demand)
+      advertParam = params.require(:advert).permit(:name, :price, :explication)
+      id = params.require(:advert).permit(:id)[:id]
+      
+      advert = Advert.find(id)
+      if !current_user || (advert.user!=current_user && current_user.role!='admin') || advert.advertable_type!='Homemate'
+        raise ActionController::RoutingError.new('Not Found')
+      else
+        advert.update_attributes(advertParam)
+        advert.advertable.update_attributes(homemateParam)
+        if params[:images]
+          params[:images].reverse.each do |image|
+            image = Image.new(:imagefile => image)
+            advert.images << image
+          end
+        end
+        redirect_to URI(request.referer).path
+      end
+      
+    end
       
     
   end
@@ -150,6 +197,29 @@ class AdvertController < ApplicationController
 
     @advert.save
     redirect_to "/"
+  end
+  
+  def homematePost
+    
+    @homemate = Homemate.new(params.require(:advert).require(:advertable).permit(
+      :state, :city, :demand))
+    @advert = Advert.new(params.require(:advert).permit(:name, :price, :explication))
+    @advert.advertable = @homemate
+    @advert.user = current_user
+    @advert.active = true
+    @advert.urgent = false
+    @advert.opportunity = false
+
+    if params[:images]
+      params[:images].reverse.each do |image|
+        @image = Image.new(:imagefile => image)
+        @advert.images << @image
+      end
+    end
+
+    @advert.save
+    redirect_to "/"
+    
   end
 
   def kategoriler

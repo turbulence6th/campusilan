@@ -147,7 +147,7 @@
 
 					<div class="row">
 
-						<%= form_for @user, :url => 'register' , :method => :post , :html => {
+						<%= form_for :user, :url => 'register' , :method => :post , :html => {
 						:onsubmit => 'return vsubmit();',
 						:id => 'kayitformu'
 						} do |t| %>

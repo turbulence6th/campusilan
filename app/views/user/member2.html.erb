@@ -193,81 +193,34 @@
 								<div class="panel-body">
 
 									<div class="row">
-										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="/resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h4>Thumbnail label</h4>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="/resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h4>Thumbnail label</h4>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="/resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h4>Thumbnail label</h4>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="/resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h4>Thumbnail label</h4>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
+										<% @mostpopular.each do |advert| %>
+										
+											<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
+		
+													<div class="thumbnail">
+														<a title='<%= advert.name %>' href="<%= advert.href %>">  
+															<% if advert.images == [] %>
+																<%= image_tag Image.new.imagefile %> 
+															<% else %>
+																<%= image_tag advert.images[0].imagefile(:small) %> 
+															<% end %>
+														</a>
+		
+													</div>
+		
+													<div class="caption">
+		
+														<h5><% if advert.name.length > 14 %>
+																<%= advert.name[0..11] %>..
+															<% else %>
+																<%= advert.name %>
+															<% end %>
+														</h5>
+		
+													</div>
+		
+												</div>
+										<% end %>
 
 									</div>
 
@@ -288,81 +241,36 @@
 								<div class="panel-body">
 
 									<div class="row">
-										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="/resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h4>Thumbnail label</h4>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="/resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h4>Thumbnail label</h4>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="/resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h4>Thumbnail label</h4>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="/resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h4>Thumbnail label</h4>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
+										
+										<% @gununilanlari.each do |advert| %>
+										
+											<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
+		
+													<div class="thumbnail">
+														<a title='<%= advert.name %>' href="<%= advert.href %>">  
+															<% if advert.images == [] %>
+																<%= image_tag Image.new.imagefile %> 
+															<% else %>
+																<%= image_tag advert.images[0].imagefile(:small) %> 
+															<% end %>
+														</a>
+		
+													</div>
+		
+													<div class="caption">
+		
+														<h5><% if advert.name.length > 14 %>
+																<%= advert.name[0..11] %>..
+															<% else %>
+																<%= advert.name %>
+															<% end %>
+														</h5>
+		
+													</div>
+		
+												</div>
+										<% end %>
+										
 
 									</div>
 
@@ -394,18 +302,6 @@
 													class="img-circle img-responsive">
 												</div>
 
-												<!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-												<dl>
-												<dt>DEPARTMENT:</dt>
-												<dd>Administrator</dd>
-												<dt>HIRE DATE</dt>
-												<dd>11/12/2013</dd>
-												<dt>DATE OF BIRTH</dt>
-												<dd>11/12/2013</dd>
-												<dt>GENDER</dt>
-												<dd>Male</dd>
-												</dl>
-												</div>-->
 												<div class=" col-md-9 col-lg-9 ">
 													<table class="table table-user-information">
 														<tbody>
@@ -462,26 +358,10 @@
 														</tbody>
 													</table>
 
-													<a href="#" class="col-lg-5 btn btn-primary">İlan Ver</a>
-													<a href="#" style="margin-left: 20px;"
-													class="col-lg-5 btn btn-primary">Önceki İlanlarım</a>
 												</div>
 											</div>
 										</div>
-										<div class="panel-footer">
-											<a data-original-title="Mesajlarım"
-											data-toggle="tooltip" type="button"
-											class="btn btn-sm btn-primary"><i
-											class="glyphicon glyphicon-envelope"></i></a><span
-											class="pull-right"> <a href="edit.html"
-												data-original-title="Profili Düzenle" data-toggle="tooltip"
-												type="button" class="btn btn-sm btn-warning"><i
-												class="glyphicon glyphicon-edit"></i></a> <a
-												data-original-title="Hesabımı Sil"
-												data-toggle="tooltip" type="button"
-												class="btn btn-sm btn-danger"><i
-												class="glyphicon glyphicon-remove"></i></a> </span>
-										</div>
+									
 
 									</div>
 

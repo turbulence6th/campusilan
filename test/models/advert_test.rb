@@ -6,7 +6,7 @@ class AdvertTest < ActiveSupport::TestCase
     @user = User.new
     @advertable = Secondhand.new
     @advert = Advert.new(:name => 'Satılık Buzdolabı..-_*+""', :price => 1200, :explication => 'Kullanılmamış Buz dolabı satıyorum',
-      :user => @user, :advertable => @advertable, :active => true)
+      :user => @user, :advertable => @advertable, :active => true, :urgent => false, :opportunity => false)
     test_image = 'test/images' + '/image.jpg'
     imagefile = Rack::Test::UploadedFile.new(test_image, "image/jpeg")
     image = Image.new(:imagefile => imagefile)
