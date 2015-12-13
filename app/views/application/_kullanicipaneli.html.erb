@@ -22,7 +22,7 @@
 					<a class="panellinkler" id="favorilerid" href='/uye/<%= current_user.username%>?favorilerim=1'><span>Favorilerim</span></a>
 				</li>
 				<li class='last'>
-					<a class="panellinkler" id="mesajlarim" href='/uye/<%= current_user.username%>?mesajlarim=1'><span>Mesajlarım</span></a>
+					<a  id="mesajlarim" href='/mesajlarim'><span>Mesajlarım</span></a>
 				</li>
 				<li class='last'>
 					<a class="panellinkler" id="tekliflerim" href='/uye/<%= current_user.username%>?tekliflerim=1'><span>Tekliflerim</span></a>
@@ -125,6 +125,28 @@
 			$(".hesapayarlari").show();
 
 		})
+		
+		$("#inceledigimilanlar").click(function(){
+			
+			
+			$(".panelortak").hide();
+			$(".degiskenpanel").hide();
+
+			$(".hesapayarlari").hide();
+			
+			$(".inceledigimilanlar").show();
+			
+			$(".profilim").hide();
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		)
 
 		$("#profilim").click(function() {
 
