@@ -121,6 +121,17 @@ class UserController < ApplicationController
         @favouriteadverts << Advert.find(fav.advert_id)
       end
       
+      
+       @viewedadverts = []
+      
+      viewedlist = ViewedAdvert.where(:user_id => current_user.id).select(:advert_id)
+      
+      viewedlist.each do |viewed|
+        @viewedadverts << Advert.find(viewed.advert_id)
+      end
+      
+      
+      
     end
 
   end
