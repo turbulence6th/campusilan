@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get 'satis-alis/:alislarim' => 'index#satis_alis'
   
   get 'mesajlarim' => 'index#mesajlarim'
+  post 'mesajcevapla' => 'index#mesajcevapPost'
+  post 'mesajgonder' => 'index#mesajPost'
   get 'girisyap' => 'user#login'
   
   get 'kayitol' => 'user#register'

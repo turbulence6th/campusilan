@@ -44,6 +44,27 @@ class IndexController < ApplicationController
     
   end
   
+  def mesajcevapPost
+    
+   mesajcevapparams = params.require(:mesaj).permit(:topic,:text)
+   username= params.require(:mesaj).permit(:username)
+  
+   userid = User.find_by_username(username).id
+   
+   yenimesaj = Message.new(mesajcevapparams,from_id:current_user,to_id:userid)
+   
+   yenimesaj.save
+   
+   
+   
+   
+   
+   
+    
+  end
+    
+    
+  
   
 
 end
