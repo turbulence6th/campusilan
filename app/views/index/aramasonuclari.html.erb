@@ -106,10 +106,6 @@
 				}
 			}
 
-			.smartmenus li {
-
-				z-index: 3;
-			}
 		</style>
 
 		</head>
@@ -174,29 +170,27 @@
 
 		<br>
 
-		<form action="">
-
 		<div class="panel panel-danger">
 		<div class="panel-heading">
 		<h3 class="panel-title">Kategori</h3>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;İkinci El İlan<br>
+		<select  name="vehicle" onChange="changeform(this.value)" value="Bike">
+
+		<option selected value="ikinciel">İkinci El İlan</option>
+		<option value="evarkadasi">Ev Arkadaşı</option>
+		<option value="dersnotlari">Ders Notları</option>
+		<option value="ozelders">Özel Ders</option>
+
+		</select>
 		</div>
-		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Ev Arkadaşı<br>
+
 		</div>
-		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Ders Notları<br>
-		</div>
-		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Özel Ders<br>
-		</div>
-		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Ev İlanları<br>
-		</div>
-		</div>
+		
+
+
+		<form action="">
 
 		<div class="panel panel-danger">
 		<div class="panel-heading">
@@ -302,6 +296,34 @@
 		</form>
 
 		</div>
+		
+		<!-- Arama Paneli-->
+		
+		<script>
+			
+			function changeform(value) {
+				if (value == "ikinciel") {
+					$(".form-basic").hide();
+					$("#ikincielform").show();
+				} else if (value == "evarkadasi") {
+					$(".form-basic").hide();
+					$("#evarkadasiform").show();
+				} else if (value == "dersnotlari") {
+					$(".form-basic").hide();
+					$("#dersnotuform").show();
+				} else if (value == "ozelders") {
+					$(".form-basic").hide();
+					$("#ozeldersform").show();
+				}
+			}
+			
+			
+		</script>
+		
+		
+		
+		
+		
 
 		<div class="col-lg-9 col-md-9">
 
@@ -403,32 +425,32 @@
 		</p>
 		</div>
 		<div class="col-xs-12 col-md-6">
-			<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
+		<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
 		</div>
 		</div>
 		</div>
 		</div>
 		</div>
 		<div class="item  col-sm-6 col-xs-6 col-lg-4">
-			<div class="thumbnail">
-				<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-				<div class="caption">
-					<h4 class="group inner list-group-item-heading"> Product title</h4>
-					<p class="group inner list-group-item-text">
-						Deneme deneme deneme
-					</p>
-					<div style="margin-top:25px;" class="row">
-						<div class="col-xs-12 col-md-6">
-							<p class="lead">
-								$21.000
-							</p>
-						</div>
-						<div class="col-xs-12 col-md-6">
-							<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
-						</div>
-					</div>
-				</div>
+		<div class="thumbnail">
+		<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+		<div class="caption">
+		<h4 class="group inner list-group-item-heading"> Product title</h4>
+		<p class="group inner list-group-item-text">
+		Deneme deneme deneme
+		</p>
+		<div style="margin-top:25px;" class="row">
+			<div class="col-xs-12 col-md-6">
+				<p class="lead">
+					$21.000
+				</p>
 			</div>
+			<div class="col-xs-12 col-md-6">
+				<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
+			</div>
+		</div>
+		</div>
+		</div>
 		</div>
 		</div>
 
