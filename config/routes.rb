@@ -21,8 +21,8 @@ Rails.application.routes.draw do
   get 'satis-alis/:alislarim' => 'index#satis_alis'
   
   get 'mesajlarim' => 'index#mesajlarim'
-  post 'mesajcevapla' => 'index#mesajcevapPost'
-  post 'mesajgonder' => 'index#mesajPost'
+  
+  post 'mesajgonder' => 'index#mesajPost', defaults: {format: :json}
   get 'girisyap' => 'user#login'
   
   get 'kayitol' => 'user#register'
@@ -42,10 +42,7 @@ Rails.application.routes.draw do
   get 'kategoriler/ikincielilan/:subkategori' => 'advert#kategoriler'  
   get 'firsatlar' => 'advert#firsatlar'
   get 'uye/:username' => 'user#member'
-  
-  get 'insert_image' => 'index#insert_image'
-  post 'insert_image' => 'index#insert_image_post'
-  
+
   
   
   

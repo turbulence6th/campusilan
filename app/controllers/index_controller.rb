@@ -44,42 +44,42 @@ class IndexController < ApplicationController
     
   end
   
-  def mesajcevapPost
-    
-   mesajcevapparams = params.require(:mesaj).permit(:topic,:text)
-   username= params.require(:mesaj).permit(:username)[:username]
   
-   user = User.find_by_username(username)
-   mesajcevapparams.merge!(from: current_user)
-   mesajcevapparams.merge!(to: user)
-   
-   yenimesaj = Message.new(mesajcevapparams)
-   
-   yenimesaj.save
-
-  end
   
   def mesajPost
     
     
-    mesajcevapparams = params.require(:mesaj).permit(:topic,:text)
-   username= params.require(:mesaj).permit(:username)[:username]
+    username = params[:username]
+    
+   topic = params[:topic]
+   
+   text = params[:text]
    
    user = User.find_by_username(username)
-   mesajcevapparams.merge!(from: current_user)
-   mesajcevapparams.merge!(to: user)
    
-   yenimesaj = Message.new(mesajcevapparams)
    
-   yenimesaj.save
+   yenimesaj = Message.new(:from => current_user, :to => user,:topic => topic,:text => text)
    
-   respond_to do |mesaj|
+   if yenimesaj.save
+   
+   respond_to do |format|
      
-     
-     
+      msg = { :check => true}
      format.json  { render :json => msg }
      
      
+   end
+   
+   else 
+     
+     respond_to do |format|
+     
+      msg = { :check => false}
+     format.json  { render :json => msg }
+     
+     
+   end
+   
    end
     
     

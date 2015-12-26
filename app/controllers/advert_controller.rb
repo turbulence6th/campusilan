@@ -199,6 +199,30 @@ class AdvertController < ApplicationController
     redirect_to "/"
   end
   
+  def privatelessonPost
+    
+    @privatelesson = Privatelesson.new(params.require(:advert).require(:advertable).permit(:state,:city,:kind,:lecture,:location))
+    @advert = Advert.new(params.require(:advert).permit(:name, :price, :explication))
+    
+    @advert.advertable = @privatelesson
+    @advert.user = current_user
+    @advert.active = true
+    @advert.urgent = false
+    @advert.opportunity = false
+    
+    if params[:images]
+      params[:images].reverse.each do |image|
+        @image = Image.new(:imagefile => image)
+        @advert.images << @image
+      end
+    end
+
+    @advert.save
+    redirect_to "/"
+    
+    
+  end
+  
   def homematePost
     
     @homemate = Homemate.new(params.require(:advert).require(:advertable).permit(
@@ -227,9 +251,6 @@ class AdvertController < ApplicationController
     if kategori=="ikincielilan"
       @title="İkinci El İlanlar"
       @adverts = Advert.where(:advertable_type => 'Secondhand').reverse
-    elsif kategori=="dersnotu"
-      @title="Ders Notları"
-      @adverts = Advert.where(:advertable_type => 'Lessonnote').reverse
     elsif kategori=="evarkadasi"
       @title="Ev Arkadaşı İlanları"
       @adverts = Advert.where(:advertable_type => 'Homemate').reverse
@@ -287,7 +308,7 @@ class AdvertController < ApplicationController
     elsif params[:gununfirsatlari]!=nil
       @title="Günün Fırsatları"
       @active = 1
-      @adverts = []
+      @adverts = Advert.where(:opportunity => true).order('created_at DESC')
     elsif params[:ensonilanlar]!=nil
       @title="En Son İlanlar"
       @active = 2

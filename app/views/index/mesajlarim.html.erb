@@ -214,7 +214,8 @@
 										</thead>
 										<tbody>
 
-											<% current_user.tos.each do |mesaj| %>
+											<% messages = current_user.tos.paginate(:page => params[:page], :per_page => 10)  %>
+											<% messages.each do |mesaj| %>
 
 											<tr>
 
@@ -269,25 +270,17 @@ $(".<%= mesaj.from.username %>
 
 									<div class="clearfix"></div>
 									<ul class="pagination ">
-										<li class="disabled">
+										<li>
 											<a href="#"><span
 											class="glyphicon glyphicon-chevron-left"></span></a>
 										</li>
-										<li class="active">
-											<a href="#">1</a>
+										<% messages.each_with_index do |mesaj, index| %>
+										<% puts params[:page] %>
+										<% puts index.to_s %>
+										<li  <%= "class='active'" if index.to_s==params[:page] %>>
+											<a href="#"><%= index+1 %></a>
 										</li>
-										<li>
-											<a href="#">2</a>
-										</li>
-										<li>
-											<a href="#">3</a>
-										</li>
-										<li>
-											<a href="#">4</a>
-										</li>
-										<li>
-											<a href="#">5</a>
-										</li>
+										<% end %>
 										<li>
 											<a href="#"><span
 											class="glyphicon glyphicon-chevron-right"></span></a>
@@ -345,7 +338,7 @@ $(".<%= mesaj.from.username %>
 
 						<% end %>
 
-						<%= form_for :mesaj, :url => 'mesajgonder', :method => :post do |m| %>
+						<%= form_for :mesaj, :url => 'mesajgonder',:html => {id: 'mesajgonderformu'} do |m| %>
 
 						<div class="modal fade" id="mesajgonder" tabindex="-1" role="dialog"
 						aria-labelledby="edit" aria-hidden="true">
@@ -356,7 +349,15 @@ $(".<%= mesaj.from.username %>
 										aria-hidden="true">
 											<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 										</button>
+
 										<h4 class="modal-title custom_align" id="Heading">Mesaj Gönder</h4>
+
+										<br>
+
+										<span style="display:none;color:red"  id="basarisiz">Mesaj Gönderme Başarısız</span>
+
+										<span style="display:none;color:green"  id="basarili">Mesaj Başarıyla Gönderildi</span>
+
 									</div>
 									<div class="modal-body">
 										<div class="form-group">
@@ -364,7 +365,7 @@ $(".<%= mesaj.from.username %>
 										</div>
 										<div class="form-group">
 
-											<%= m.text_field :topic,type: "text",placeholder: "Konu",class: "form-control" %>
+											<%= m.text_field :topic,type: "text",placeholder: "Konu",class: "form-control konu" %>
 										</div>
 										<div class="form-group">
 											<%= m.text_area :text,rows: "2",class:"form-control",placeholder: "Mesaj İçeriği" %>
@@ -372,7 +373,7 @@ $(".<%= mesaj.from.username %>
 										</div>
 									</div>
 									<div class="modal-footer ">
-										<button onclick="mesajgonder()" type="button" class="btn btn-warning btn-lg"
+										<button onclick="mesajgonder()" type="button" class="gonderbutonu btn btn-warning btn-lg"
 										style="width: 100%;">
 											<span class="glyphicon glyphicon-ok-sign"></span> Gönder
 										</button>
@@ -422,6 +423,31 @@ $(".<%= mesaj.from.username %>
 
 						<% end %>
 
+						<div class="modal fade" id="warning" tabindex="-1" role="dialog"
+						aria-labelledby="edit" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">
+											<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+										</button>
+										<h4 class="modal-title custom_align" id="Heading">Mesaj Gönderimi</h4>
+									</div>
+									<div class="modal-body">
+
+										<div class="alert alert-danger">
+											<span class="glyphicon glyphicon-warning-sign"></span> Mesaj Gönderimi:
+										</div>
+
+									</div>
+
+								</div>
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal-dialog -->
+						</div>
+
 					</div>
 
 				</div>
@@ -438,31 +464,90 @@ $(".<%= mesaj.from.username %>
 
 		<!-- Mesaj ajaxlar-->
 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+		<script src="resources/js/bootstrap.min.js"></script>
+
+		<script>
+			var $modaljquery = jQuery.noConflict();
+
+		</script>
+
 		<script>
 			function mesajgonder() {
 
-				
+				$modaljquery('#warning').modal({
+					show : false
+				})
+
+				var form = document.getElementById("mesajgonderformu");
+				var username = form.elements['mesaj_username'].value;
+
+				var topic = form.elements['mesaj_topic'].value;
+
+				var text = form.elements['mesaj_text'].value;
 
 				$.ajax({
 
-				
-				url: 'mesajgonder',
-				data : {
-				authenticity_token : window._token,
-				username : username
-				topic : topic
-				text :text
-			}, error : function() {
-				alert('error');
-			}, dataType : 'json',
-			success : success,
-			dataType : 'json',
-			type : 'POST',
-			async: false
+					url : 'mesajgonder',
+					data : {
+						authenticity_token : window._token,
+						username : username,
+						topic : topic,
+						text : text
+					},
+					error : function() {
 
-			})
+					},
+					dataType : 'json',
+					success : function(data) {
+
+						if (!data.check) {
+
+							$("#basarisiz").show();
+
+						} else {
+							
+							$("#basarili").show();
+							
+							$(".kullaniciadi").attr('disabled','disabled');
+							$(".konu").attr('disabled','disabled');
+							$("textarea#mesaj_text").attr('disabled','disabled');
+							
+							$(".gonderbutonu").attr('disabled','disabled');
+							
+							
+
+						}
+
+						$modaljquery("#mesajgonder").on('hidden.bs.modal', function() {
+
+							$(".kullaniciadi").val("");
+							$(".konu").val("");
+							$("textarea#mesaj_text").val("");
+							
+							$("#basarisiz").hide();
+							
+							$("#basarili").hide();
+							
+							$(".kullaniciadi").removeAttr('disabled');
+							$(".konu").removeAttr('disabled');
+							$("textarea#mesaj_text").removeAttr('disabled');
+							
+							$(".gonderbutonu").removeAttr('disabled');
+							
+							
+
+						});
+
+					},
+					dataType : 'json',
+					type : 'POST',
+
+				})
 
 			}
+
 		</script>
 
 		<!-- pluginler -->
