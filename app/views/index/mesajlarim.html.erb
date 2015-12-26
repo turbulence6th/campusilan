@@ -11,6 +11,7 @@
 		<META http-equiv=content-type content=text/html;charset=windows-1254>
 		<META http-equiv=content-type content=text/html;charset=x-mac-turkish>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<%= javascript_tag "window._token = '#{form_authenticity_token}';" %>
 		<!-- Bootstrap -->
 
 		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
@@ -371,13 +372,10 @@ $(".<%= mesaj.from.username %>
 										</div>
 									</div>
 									<div class="modal-footer ">
-
-										<%= m.submit('Cevap Ver',class:"btn btn-warning btn-lg",style: "width: 100%;",:onclick => 'return mesajgonder();' ) do %>
-
-										<!--  <span class="glyphicon glyphicon-ok-sign"></span> -->
-
-										<% end %>
-
+										<button onclick="mesajgonder()" type="button" class="btn btn-warning btn-lg"
+										style="width: 100%;">
+											<span class="glyphicon glyphicon-ok-sign"></span> Gönder
+										</button>
 									</div>
 								</div>
 								<!-- /.modal-content -->
@@ -443,11 +441,11 @@ $(".<%= mesaj.from.username %>
 		<script>
 			function mesajgonder() {
 
-				preventDefault();
+				
 
 				$.ajax({
 
-				type: "PUT",
+				
 				url: 'mesajgonder',
 				data : {
 				authenticity_token : window._token,
