@@ -1,6 +1,12 @@
 source 'https://rubygems.org'
 
+gem 'activeadmin'
 
+# Plus integrations with:
+gem 'devise'
+gem 'cancan' # or cancancan
+gem 'draper'
+gem 'pundit'
 
 
 gem "paperclip", "~> 4.3"

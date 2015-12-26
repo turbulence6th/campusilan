@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   get '/' => 'index#index'
   get 'aramasonuclari' => 'index#aramasonuclari'
   get 'hakkimizda' => 'index#hakkimizda'
@@ -45,24 +46,6 @@ Rails.application.routes.draw do
   get 'insert_image' => 'index#insert_image'
   post 'insert_image' => 'index#insert_image_post'
   
-  get 'administrator' => 'admin#index'
-  
-  get 'administrator/ilanlar' => 'admin#ilanlar'
-  
-  get 'administrator/uyeler' => 'admin#uyeler'
-    
-  get 'administrator/yorumlar' => 'admin#yorumlar'
-  
-  
-  get 'administrator/bootstrapelements' => 'admin#bootstrap_elements'
-  
-  get 'administrator/charts' => 'admin#charts'
-  
-  get 'administrator/forms' => 'admin#forms'
-  
-  get 'administrator/indexrtl' => 'admin#index_rtl'
-  
-  get 'administrator/tables' => 'admin#tables'
   
   
   
