@@ -155,7 +155,7 @@
 
 		<form role = "form">
 
-		<div class = "input-group">
+		<div  style="z-index: 1;" class = "input-group">
 		<input placeholder="Arama Yap..."type = "text" class = "form-control">
 
 		<span class = "input-group-btn">
@@ -192,7 +192,7 @@
 
 		<form action="">
 
-		<div class="panel panel-danger">
+		<div class=" marka panel panel-danger">
 		<div class="panel-heading">
 		<h3 class="panel-title">Marka</h3>
 		</div>
@@ -215,7 +215,7 @@
 
 		</div>
 
-		<div class="panel panel-danger">
+		<div class="renk panel panel-danger">
 		<div class="panel-heading">
 		<h3 class="panel-title">Renk</h3>
 		</div>
@@ -303,17 +303,17 @@
 			
 			function changeform(value) {
 				if (value == "ikinciel") {
-					$(".form-basic").hide();
-					$("#ikincielform").show();
+					$(".renk").show();
+					$(".marka").show();
 				} else if (value == "evarkadasi") {
-					$(".form-basic").hide();
-					$("#evarkadasiform").show();
+					$(".renk").hide();
+					$(".marka").hide();
 				} else if (value == "dersnotlari") {
-					$(".form-basic").hide();
-					$("#dersnotuform").show();
+					$(".renk").hide();
+					$(".marka").hide();
 				} else if (value == "ozelders") {
-					$(".form-basic").hide();
-					$("#ozeldersform").show();
+					$(".renk").hide();
+					$(".marka").hide();
 				}
 			}
 			
