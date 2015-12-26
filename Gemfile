@@ -8,6 +8,7 @@ gem 'cancan' # or cancancan
 gem 'draper'
 gem 'pundit'
 
+gem 'will_paginate', '~> 3.0.6'
 
 gem "paperclip", "~> 4.3"
 

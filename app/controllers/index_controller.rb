@@ -46,6 +46,10 @@ class IndexController < ApplicationController
   
   def mesajcevapPost
     
+    if !current_user
+      redirect_to "/girisyap"
+    end
+    
    mesajcevapparams = params.require(:mesaj).permit(:topic,:text)
    username= params.require(:mesaj).permit(:username)[:username]
   

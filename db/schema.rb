@@ -73,6 +73,10 @@ ActiveRecord::Schema.define(version: 20151225225240) do
 
   add_index "images", ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id", using: :btree
 
+  create_table "lessonnotes", force: :cascade do |t|
+    t.integer "category"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.integer  "from_id"
     t.integer  "to_id"

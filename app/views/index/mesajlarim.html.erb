@@ -213,7 +213,8 @@
 										</thead>
 										<tbody>
 											
-											<% current_user.tos.each do |mesaj| %>
+											<% messages = current_user.tos.paginate(:page => params[:page], :per_page => 10)  %>
+											<% messages.each do |mesaj| %>
 
 											<tr>
 												
@@ -261,8 +262,6 @@
 											<% end %>
 											
 											
-											
-											
 
 										</tbody>
 
@@ -270,25 +269,17 @@
 
 									<div class="clearfix"></div>
 									<ul class="pagination ">
-										<li class="disabled">
+										<li>
 											<a href="#"><span
 											class="glyphicon glyphicon-chevron-left"></span></a>
 										</li>
-										<li class="active">
-											<a href="#">1</a>
-										</li>
-										<li>
-											<a href="#">2</a>
-										</li>
-										<li>
-											<a href="#">3</a>
-										</li>
-										<li>
-											<a href="#">4</a>
-										</li>
-										<li>
-											<a href="#">5</a>
-										</li>
+										<% messages.each_with_index do |mesaj, index| %>
+											<% puts params[:page] %>
+											<% puts index.to_s %>
+											<li  <%= "class='active'" if index.to_s==params[:page] %>>
+												<a href="#"><%= index+1 %></a>
+											</li>
+										<% end %>
 										<li>
 											<a href="#"><span
 											class="glyphicon glyphicon-chevron-right"></span></a>
@@ -300,6 +291,8 @@
 							</div>
 
 						</div>
+						
+						
 						
 						<%= form_for :mesaj, :url => 'mesajcevapla', :method => :post do |m| %>
 

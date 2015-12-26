@@ -167,7 +167,6 @@
 							name="dropdown">
 								<option selected value="ikinciel">İkinci El İlan</option>
 								<option value="evarkadasi">Ev Arkadaşı</option>
-								<option value="dersnotlari">Ders Notları</option>
 								<option value="ozelders">Özel Ders</option>
 							</select>
 						</div>
@@ -376,58 +375,6 @@
 						}
 					</script>
 
-					<%= form_for :advert, :url => 'lecturenote' , :method => :post , :html => {
-					:class => 'form-basic ikinciel' , :id => 'dersnotuform',
-					:style => 'display:none;'
-					} do |t| %>
-
-					<%= t.fields_for :advertable do |field| %>
-
-					<div class = "row form-group">
-						<label class = "col-sm-2 control-label">İlan Adı</label>
-
-						<div class = "col-sm-10">
-							<%= t.text_field :name, class:"form-control" %>
-						</div>
-					</div>
-
-					<div class = "row form-group">
-						<label class = "col-sm-2 control-label">Fiyat</label>
-
-						<div class = "col-sm-10">
-							<%= t.text_field :price, class:"form-control" %>
-						</div>
-					</div>
-
-					<div class = "row form-group">
-						<label class = "col-sm-2 control-label">Açıklama</label>
-
-						<div class = "col-sm-10">
-							<%= t.text_field :explication, class:"form-control" %>
-						</div>
-					</div>
-
-					<div class="row">
-						<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image'%>
-					</div>
-
-					<div class = "row form-group">
-						<div class = "col-sm-offset-2 col-sm-10">
-							<div class = "checkbox">
-								<label>
-									<input type = "checkbox" id="kullanim" value="true">
-									Kullanım koşullarını kabul ediyorum</label>
-							</div>
-						</div>
-					</div>
-
-					<div class = "row form-group">
-						<div class = "col-sm-offset-2 col-sm-10">
-							<%= t.submit 'İlan Ver',class:"btn btn-default" %>
-						</div>
-					</div>
-					<% end %>
-					<% end %>
 
 					<%= form_for :advert, :url => 'homemate' , :method => :post , :html => {
 					:class => 'form-basic ikinciel' , :id => 'evarkadasiform',
@@ -719,9 +666,6 @@
 				} else if (value == "evarkadasi") {
 					$(".form-basic").hide();
 					$("#evarkadasiform").show();
-				} else if (value == "dersnotlari") {
-					$(".form-basic").hide();
-					$("#dersnotuform").show();
 				} else if (value == "ozelders") {
 					$(".form-basic").hide();
 					$("#ozeldersform").show();
