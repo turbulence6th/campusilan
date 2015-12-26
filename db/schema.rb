@@ -57,9 +57,6 @@ ActiveRecord::Schema.define(version: 20151225225240) do
   add_index "favourite_adverts", ["user_id"], name: "index_favourite_adverts_on_user_id", using: :btree
 
   create_table "homemates", force: :cascade do |t|
-    t.string  "state"
-    t.string  "city"
-    t.integer "demand"
   end
 
   create_table "images", force: :cascade do |t|

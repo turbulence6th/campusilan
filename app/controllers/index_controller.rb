@@ -56,12 +56,39 @@ class IndexController < ApplicationController
    yenimesaj = Message.new(mesajcevapparams)
    
    yenimesaj.save
+
+  end
+  
+  def mesajPost
+    
+    
+    mesajcevapparams = params.require(:mesaj).permit(:topic,:text)
+   username= params.require(:mesaj).permit(:username)[:username]
    
+   user = User.find_by_username(username)
+   mesajcevapparams.merge!(from: current_user)
+   mesajcevapparams.merge!(to: user)
    
+   yenimesaj = Message.new(mesajcevapparams)
    
+   yenimesaj.save
    
-   
-   
+   respond_to do |mesaj|
+     
+     
+     
+     format.json  { render :json => msg }
+     
+     
+   end
+    
+    
+    
+  end
+  
+  def mesajSil
+    
+    
     
   end
     

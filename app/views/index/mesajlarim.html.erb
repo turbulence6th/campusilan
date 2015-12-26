@@ -212,11 +212,10 @@
 
 										</thead>
 										<tbody>
-											
+
 											<% current_user.tos.each do |mesaj| %>
 
 											<tr>
-												
 
 												<td>
 												<input type="checkbox" class="checkthis" />
@@ -245,24 +244,23 @@
 												</p></td>
 
 												<script>
-													$(".<%= mesaj.from.username %>").click(function() {
-														
-														$(".cevaplapaneli .ickisim").attr("placeholder", "<%= mesaj.from.username %>");
-														
-														$(".cevaplapaneli .ickisim").val("<%= mesaj.from.username %>");
-														
-														
-													});
+$(".<%= mesaj.from.username %>
+	").click(function() {
+
+	$(".cevaplapaneli .ickisim").attr("placeholder", "
+<%= mesaj.from.username %>
+	");
+
+	$(".cevaplapaneli .ickisim").val("
+<%= mesaj.from.username %>
+	");
+
+	});
 												</script>
 
-												
 											</tr>
-											
+
 											<% end %>
-											
-											
-											
-											
 
 										</tbody>
 
@@ -300,7 +298,7 @@
 							</div>
 
 						</div>
-						
+
 						<%= form_for :mesaj, :url => 'mesajcevapla', :method => :post do |m| %>
 
 						<div class="cevaplapaneli modal fade" id="edit" tabindex="-1" role="dialog"
@@ -317,37 +315,36 @@
 									<div class="modal-body">
 										<div class="form-group">
 											<%= m.text_field :username,type: "text",placeholder:"Kullanıcı Adı",class:"form-control kullaniciadi ickisim",readonly: true %>
-											
+
 										</div>
 										<div class="form-group">
-											
+
 											<%= m.text_field :topic,type: "text",placeholder: "Konu",class: "form-control" %>
 
-											
 										</div>
 										<div class="form-group">
-											<%= m.text_area :text,rows: "2",class:"form-control",placeholder: "Mesaj İçeriği" %>																																										
-
+											<%= m.text_area :text,rows: "2",class:"form-control",placeholder: "Mesaj İçeriği" %>
 
 										</div>
 									</div>
 									<div class="modal-footer ">
-										
+
 										<%= m.submit('Cevap Ver',class:"btn btn-warning btn-lg",style: "width: 100%;") do %>
-										
+
 										<!--  <span class="glyphicon glyphicon-ok-sign"></span> -->
-										
+
 										<% end %>
-										
-										
+
 									</div>
 								</div>
 								<!-- /.modal-content -->
 							</div>
 							<!-- /.modal-dialog -->
 						</div>
-						
+
 						<% end %>
+
+						<%= form_for :mesaj, :url => 'mesajgonder', :method => :post do |m| %>
 
 						<div class="modal fade" id="mesajgonder" tabindex="-1" role="dialog"
 						aria-labelledby="edit" aria-hidden="true">
@@ -362,34 +359,35 @@
 									</div>
 									<div class="modal-body">
 										<div class="form-group">
-											<input class="form-control " type="text" placeholder="Kullanıcı Adı">
+											<%= m.text_field :username,type: "text",placeholder:"Kullanıcı Adı",class:"form-control kullaniciadi" %>
 										</div>
 										<div class="form-group">
 
-											<input class="form-control " type="text" placeholder="Konu">
+											<%= m.text_field :topic,type: "text",placeholder: "Konu",class: "form-control" %>
 										</div>
 										<div class="form-group">
-											<textarea rows="2" class="form-control"
-											placeholder="Mesaj İçeriği..."></textarea>																																												
-
-
-
-
-
+											<%= m.text_area :text,rows: "2",class:"form-control",placeholder: "Mesaj İçeriği" %>
 
 										</div>
 									</div>
 									<div class="modal-footer ">
-										<button type="button" class="btn btn-warning btn-lg"
-										style="width: 100%;">
-											<span class="glyphicon glyphicon-ok-sign"></span> Gönder
-										</button>
+
+										<%= m.submit('Cevap Ver',class:"btn btn-warning btn-lg",style: "width: 100%;",:onclick => 'return mesajgonder();' ) do %>
+
+										<!--  <span class="glyphicon glyphicon-ok-sign"></span> -->
+
+										<% end %>
+
 									</div>
 								</div>
 								<!-- /.modal-content -->
 							</div>
 							<!-- /.modal-dialog -->
 						</div>
+
+						<% end %>
+
+						<%= form_for :mesaj, :url => 'mesajgonder', :method => :post do |m| %>
 
 						<div class="modal fade" id="delete" tabindex="-1" role="dialog"
 						aria-labelledby="edit" aria-hidden="true">
@@ -424,6 +422,8 @@
 							<!-- /.modal-dialog -->
 						</div>
 
+						<% end %>
+
 					</div>
 
 				</div>
@@ -437,6 +437,35 @@
 			</div>
 
 		</div>
+
+		<!-- Mesaj ajaxlar-->
+
+		<script>
+			function mesajgonder() {
+
+				preventDefault();
+
+				$.ajax({
+
+				type: "PUT",
+				url: 'mesajgonder',
+				data : {
+				authenticity_token : window._token,
+				username : username
+				topic : topic
+				text :text
+			}, error : function() {
+				alert('error');
+			}, dataType : 'json',
+			success : success,
+			dataType : 'json',
+			type : 'POST',
+			async: false
+
+			})
+
+			}
+		</script>
 
 		<!-- pluginler -->
 
@@ -459,7 +488,7 @@
 						});
 					}
 				});
-				
+
 			});
 		</script>
 	</body>

@@ -30,10 +30,12 @@
 
 		<!-- Arama Kutucuğu-->
 
-		<link href="resources/css/searchbox.css" rel="stylesheet"
+		<link href="/resources/css/searchbox.css" rel="stylesheet"
 		type="text/css" />
 
-		<script src="resources/js/modernizer.js"></script>
+		<script src="/resources/js/modernizer.js"></script>
+		
+		
 
 		<!-- Smart Menus plugin -->
 
@@ -399,13 +401,13 @@
 
 										<div class="caption">
 
-											<% if advert.name.length <= 15 %>
+											<% if advert.name.length <= 25 %>
 
 											<h5><%= advert.name %></h5>
 
 											<% else %>
 
-											<h5><%= advert.name[0..15] + "..." %></h5>
+											<h5><%= advert.name[0..25] + "..." %></h5>
 
 											<% end %>
 
@@ -1988,13 +1990,21 @@
 			<!-- plugin script importları: -->
 
 			<!-- JCarousel Plugin -->
+			
+			<script>
+				
+				
+				var $jcarousel = jQuery.noConflict();
+			
+				
+			</script>
 
 			<script>
 				//multilevel dropdown
 
-				$(document).ready(function() {
-					$('.dropdown-submenu a.test').on("click", function(e) {
-						$(this).next('ul').toggle();
+				$jcarousel(document).ready(function() {
+					$jcarousel('.dropdown-submenu a.test').on("click", function(e) {
+						$jcarousel(this).next('ul').toggle();
 						e.stopPropagation();
 						e.preventDefault();
 					});
@@ -2010,7 +2020,7 @@
 				var $itemslider = jQuery.noConflict();
 			</script>
 
-			<script src="resources/plugins/ItemSlider/js/jquery.catslider.js"></script>
+			<script src="/resources/plugins/ItemSlider/js/jquery.catslider.js"></script>
 
 			<script>
 				$itemslider(function() {
