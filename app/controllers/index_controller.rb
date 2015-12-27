@@ -49,7 +49,7 @@ class IndexController < ApplicationController
   def mesajPost
     
     
-    username = params[:username]
+   username = params[:username]
     
    topic = params[:topic]
    
@@ -87,6 +87,17 @@ class IndexController < ApplicationController
   end
   
   def mesajSil
+    
+    
+    
+  end
+  
+  def aramasonuclari
+    
+    
+  end
+  
+  def aramasonuclariPost
     
     
     
