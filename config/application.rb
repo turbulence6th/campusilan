@@ -24,5 +24,6 @@ module Campusilan
     config.active_record.raise_in_transactional_callbacks = true
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
+    config.exceptions_app = self.routes
   end
 end

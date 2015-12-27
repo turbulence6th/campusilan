@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post 'deleteimage' => 'advert#deleteimage', defaults: {format: :json}
   post 'secondhand' => 'advert#secondhandPost'
   post 'homemate' => 'advert#homematePost'
+
   post 'privatelesson' => 'advert#privatelessonPost'
   get 'satis-alis' => 'index#satis_alis'
   get 'satis-alis/:satislarim' => 'index#satis_alis'
@@ -41,7 +42,10 @@ Rails.application.routes.draw do
   get 'firsatlar' => 'advert#firsatlar'
   get 'uye/:username' => 'user#member'
 
-  
+  get "/404" => "error#not_found"
+  get "/422" => "error#unacceptable"
+  get "/500" => "error#internal_error"
+
   
   
   

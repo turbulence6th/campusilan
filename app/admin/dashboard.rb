@@ -17,16 +17,6 @@ ActiveAdmin.register_page "Dashboard" do
            end
          end
        end
-
-       column do
-         panel "Recent Users" do
-           ul do
-             User.last(5).map do |user|
-               li link_to(user.username, "/admin/users/" + user.id.to_s)
-             end
-           end
-         end
-       end
        
        column do
          panel "Most Popular Adverts" do
@@ -45,6 +35,16 @@ ActiveAdmin.register_page "Dashboard" do
          end
        end
        
+       column do
+         panel "Recent Users" do
+           ul do
+             User.last(5).map do |user|
+               li link_to(user.username, "/admin/users/" + user.id.to_s)
+             end
+           end
+         end
+       end
+       
      end
-  end # content
+  end
 end
