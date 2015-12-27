@@ -40,8 +40,6 @@
 
 		<!--plugins: -->
 
-		
-
 		<link href="/resources/css/searchbox.css" rel="stylesheet"
 		type="text/css" />
 
@@ -93,7 +91,7 @@
 		<!-- Calendar plugin -->
 
 		<link rel="stylesheet" href="/resources/plugins/calendarplugin/public/css/default.css">
-		
+
 		<script>
 			var calendar = jQuery.noConflict();
 		</script>
@@ -114,7 +112,7 @@
 			});
 
 		</script>
-		
+
 		<!-- Fixed Header -->
 
 		<link rel="stylesheet" href="/resources/assets/header-fixed.css">
@@ -166,13 +164,13 @@
 				<!-- Login Ends Here -->
 
 			</div>
-			
+
 			<div class="row">
 
 				<%= render "headerfixed" %>
 
 			</div>
-			
+
 			<!-- You need this element to prevent the content of the page from jumping up -->
 			<div class="header-fixed-placeholder"></div>
 
@@ -202,40 +200,35 @@
 									<h3 style="text-align: center;" class="panel-title">Popüler
 									İlanlar</h3>
 								</div>
-								
-								
 
 								<div class="panel-body">
 
 									<div class="row">
-										
+
 										<% @mostpopular.each do |advert| %>
-										
-											<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
-		
-													<div class="thumbnail">
-														<a title='<%= advert.name %>' href="<%= advert.href %>">  
-															<% if advert.images == [] %>
-																<%= image_tag Image.new.imagefile %> 
-															<% else %>
-																<%= image_tag advert.images[0].imagefile(:small) %> 
-															<% end %>
-														</a>
-		
-													</div>
-		
-													<div class="caption">
-		
-														<h5><% if advert.name.length > 14 %>
-																<%= advert.name[0..11] %>..
-															<% else %>
-																<%= advert.name %>
-															<% end %>
-														</h5>
-		
-													</div>
-		
-												</div>
+
+										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
+
+											<div class="thumbnail">
+												<a title='<%= advert.name %>' href="<%= advert.href %>"> <% if advert.images == [] %>
+												<%= image_tag Image.new.imagefile %>
+												<% else %>
+												<%= image_tag advert.images[0].imagefile(:small) %>
+												<% end %> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<h5><% if advert.name.length > 14 %>
+												<%= advert.name[0..11] %>..
+												<% else %>
+												<%= advert.name %>
+												<% end %> </h5>
+
+											</div>
+
+										</div>
 										<% end %>
 
 									</div>
@@ -362,40 +355,37 @@
 									<div class="panel-body">
 
 										<div class="row">
-											
-											<% @favouriteadverts.each do |advert| %>
-											
-												
-											
-												<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
 
-													<div class="thumbnail">
-														<a title='<%= advert.name %>' href="<%= advert.href %>">  <%= image_tag advert.images[0].imagefile(:small) %> </a>
-			
-													</div>
-	
-													<div class="caption">
-												
-												
-												
-														<h5><% if advert.name.length > 12 %>
-																<%= advert.name[0..9] %>..
-															<% else %>
-																<%= advert.name %>
-															<% end %>
-														</h5>
-			
-													</div>
-	
+											<% @favouriteadverts.each do |advert| %>
+
+											<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+
+												<div class="thumbnail">
+													<a title="<%= advert.name %>" href="<%= advert.href %>"> <% if advert.images == [] %>
+													<%= image_tag Image.new.imagefile %>
+													<% else %>
+													<%= image_tag advert.images[0].imagefile(:small) %>
+													<% end %> </a>
 												</div>
+
+												<div class="caption">
+
+													<h5><% if advert.name.length > 12 %>
+													<%= advert.name[0..9] %>..
+													<% else %>
+													<%= advert.name %>
+													<% end %> </h5>
+
+												</div>
+
+											</div>
 											<% end %>
 
 										</div>
 									</div>
 
 								</div>
-								
-								
+
 								<!--  İncelediğim İlanlar kısmı -->
 
 								<div style="display:none; margin-bottom: 10px; margin-left: 10px; margin-right: 10px; " class="panelortak inceledigimilanlar panel panel-info">
@@ -407,40 +397,36 @@
 									<div class="panel-body">
 
 										<div class="row">
-											
-											<% @viewedadverts.each do |advert| %>
-											
-												
-											
-												<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
 
-													<div class="thumbnail">
-														<a title='<%= advert.name %>' href="<%= advert.href %>">  <%= image_tag advert.images[0].imagefile(:small) %> </a>
-			
-													</div>
-	
-													<div class="caption">
-												
-												
-												
-														<h5><% if advert.name.length > 12 %>
-																<%= advert.name[0..9] %>..
-															<% else %>
-																<%= advert.name %>
-															<% end %>
-														</h5>
-			
-													</div>
-	
+											<% @viewedadverts.each do |advert| %>
+
+											<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+
+												<div class="thumbnail">
+													<a title="<%= advert.name %>" href="<%= advert.href %>"> <% if advert.images == [] %>
+													<%= image_tag Image.new.imagefile %>
+													<% else %>
+													<%= image_tag advert.images[0].imagefile(:small) %>
+													<% end %> </a>
 												</div>
+
+												<div class="caption">
+
+													<h5><% if advert.name.length > 12 %>
+													<%= advert.name[0..9] %>..
+													<% else %>
+													<%= advert.name %>
+													<% end %> </h5>
+
+												</div>
+
+											</div>
 											<% end %>
 
 										</div>
 									</div>
 
 								</div>
-								
-								
 
 								<div class="degiskenpanel well">
 
@@ -641,96 +627,89 @@
 											<!--  Hesap Ayarları -->
 
 											<div style="" class="panelortak hesapayarlari panel-body">
-												
+
 												<%= form_for current_user, :url => '/updateUser', :method => :post, :html => {
-													:class => 'form-horizontal',
-													:id => 'signupform',
-													:role => 'form'
+												:class => 'form-horizontal',
+												:id => 'signupform',
+												:role => 'form'
 												} do |t| %>
-													<div id="signupalert" style="display: none"
-													class="alert alert-danger">
-														<p>
-															Error:
-														</p>
-														<span></span>
+												<div id="signupalert" style="display: none"
+												class="alert alert-danger">
+													<p>
+														Error:
+													</p>
+													<span></span>
+												</div>
+
+												<div class="form-group">
+													<label for="firstname" class="col-md-3 control-label">Ad</label>
+													<div class="col-md-9">
+														<%= t.text_field :name, :class => 'form-control' %>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="lastname" class="col-md-3 control-label">Soyad</label>
+													<div class="col-md-9">
+														<%= t.text_field :surname, :class => 'form-control' %>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="password" class="col-md-3 control-label">Adres</label>
+													<div class="col-md-9">
+														<%= t.text_area :address, :class => 'form-control' %>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label for="icode" class="col-md-3 control-label">Cep
+														Telefonu</label>
+													<div class="col-md-2">
+
+														<%= t.text_field :phone1, :class => 'form-control', :maxlength => 3 %>
 													</div>
 
-													<div class="form-group">
-														<label for="firstname" class="col-md-3 control-label">Ad</label>
-														<div class="col-md-9">
-															<%= t.text_field :name, :class => 'form-control' %>
-														</div>
+													<div class="col-md-7">
+														<%= t.text_field :phone2, :class => 'form-control', :maxlength => 7 %>
 													</div>
-													<div class="form-group">
-														<label for="lastname" class="col-md-3 control-label">Soyad</label>
-														<div class="col-md-9">
-															<%= t.text_field :surname, :class => 'form-control' %>
-														</div>
-													</div>
-													<div class="form-group">
-														<label for="password" class="col-md-3 control-label">Adres</label>
-														<div class="col-md-9">
-															<%= t.text_area :address, :class => 'form-control' %>
-														</div>
-													</div>
+												</div>
 
-													
-													
-													<div class="form-group">
-														<label for="icode" class="col-md-3 control-label">Cep
-															Telefonu</label>
-														<div class="col-md-2">
-															
-															<%= t.text_field :phone1, :class => 'form-control', :maxlength => 3 %>
-														</div>
-														
-														<div class="col-md-7">
-															<%= t.text_field :phone2, :class => 'form-control', :maxlength => 7 %>
-														</div>
-													</div>
+												<div class="form-group">
+													<label for="icode" class="col-md-3 control-label">Doğum Tarihi</label>
 
-													<div class="form-group">
-														<label for="icode" class="col-md-3 control-label">Doğum Tarihi</label>
+													<div class="col-md-9">
 
-														<div class="col-md-9">
+														<div class = "input-group">
 
-															<div class = "input-group">
+															<%= t.text_field :birthday, :class =>'datepicker form-control', :placeholder => "Buraya tıklayınız" %>
 
-																
-																<%= t.text_field :birthday, :class =>'datepicker form-control', :placeholder => "Buraya tıklayınız" %>
-																
-															</div>
-
-														</div>
-													</div>
-
-													<div class="form-group">
-														<label for="icode" class="col-md-3 control-label">Cinsiyet</label>
-
-														<div class="col-md-9">
-															<%= t.select :gender, [['Erkek', 'male'], ['Kadın', 'female'], ['Diğer','other']],{}, { :class => 'form-control' }  %>
-
-														</div>
-													</div>
-													
-
-													
-
-													<div style="padding-top: 20px" class="row form-group">
-														
-														<div class="col-md-offset-4 col-md-5">
-															<button id="btn-fbsignup" type="button" class="btn btn-primary">
-																<i class="icon-facebook"></i>   Facebook hesabını bağla
-															</button>
-														</div>
-
-														<div class="col-md-3">
-															<%= t.submit 'Kaydet', :class => 'btn btn-danger' %>
 														</div>
 
 													</div>
+												</div>
+
+												<div class="form-group">
+													<label for="icode" class="col-md-3 control-label">Cinsiyet</label>
+
+													<div class="col-md-9">
+														<%= t.select :gender, [['Erkek', 'male'], ['Kadın', 'female'], ['Diğer','other']],{}, { :class => 'form-control' }  %>
+
+													</div>
+												</div>
+
+												<div style="padding-top: 20px" class="row form-group">
+
+													<div class="col-md-offset-4 col-md-5">
+														<button id="btn-fbsignup" type="button" class="btn btn-primary">
+															<i class="icon-facebook"></i>   Facebook hesabını bağla
+														</button>
+													</div>
+
+													<div class="col-md-3">
+														<%= t.submit 'Kaydet', :class => 'btn btn-danger' %>
+													</div>
+
+												</div>
 												<% end %>
-											
 
 											</div>
 
@@ -916,36 +895,33 @@
 									<div class="panel-body">
 
 										<div class="row">
-											
+
 											<% @gununilanlari.each do |advert| %>
-										
+
 											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
-		
-													<div class="thumbnail">
-														<a title='<%= advert.name %>' href="<%= advert.href %>">  
-															<% if advert.images == [] %>
-																<%= image_tag Image.new.imagefile %> 
-															<% else %>
-																<%= image_tag advert.images[0].imagefile(:small) %> 
-															<% end %>
-														</a>
-		
-													</div>
-		
-													<div class="caption">
-		
-														<h5><% if advert.name.length > 14 %>
-																<%= advert.name[0..11] %>..
-															<% else %>
-																<%= advert.name %>
-															<% end %>
-														</h5>
-		
-													</div>
-		
+
+												<div class="thumbnail">
+													<a title='<%= advert.name %>' href="<%= advert.href %>"> <% if advert.images == [] %>
+													<%= image_tag Image.new.imagefile %>
+													<% else %>
+													<%= image_tag advert.images[0].imagefile(:small) %>
+													<% end %> </a>
+
 												</div>
-										<% end %>
-											
+
+												<div class="caption">
+
+													<h5><% if advert.name.length > 14 %>
+													<%= advert.name[0..11] %>..
+													<% else %>
+													<%= advert.name %>
+													<% end %> </h5>
+
+												</div>
+
+											</div>
+											<% end %>
+
 										</div>
 
 									</div>
@@ -1746,8 +1722,6 @@
 				});
 			});
 		</script>
-
-		
 
 	</body>
 
