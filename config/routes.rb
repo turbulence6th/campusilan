@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   post 'deleteimage' => 'advert#deleteimage', defaults: {format: :json}
   post 'secondhand' => 'advert#secondhandPost'
   post 'homemate' => 'advert#homematePost'
-  post 'lecturenote' => 'advert#lecturenotePost'
+  
   post 'privatelesson' => 'advert#privatelessonPost'
   get 'satis-alis' => 'index#satis_alis'
   get 'satis-alis/:satislarim' => 'index#satis_alis'
