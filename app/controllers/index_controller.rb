@@ -97,12 +97,7 @@ class IndexController < ApplicationController
     
   end
   
-  def aramasonuclariPost
-    
-    
-    
-  end
-    
+ 
     
   
   
