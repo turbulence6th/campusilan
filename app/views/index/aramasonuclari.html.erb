@@ -166,7 +166,7 @@
 
 		</div>
 
-		</form>
+	
 
 		<br>
 
@@ -176,7 +176,7 @@
 		</div>
 
 		<div class="panel-body">
-		<select  name="vehicle" onChange="changeform(this.value)" value="Bike">
+		<select  name="vehicle" onChange="changeformcontent(this.value)" value="Bike">
 
 		<option selected value="ikinciel">İkinci El İlan</option>
 		<option value="evarkadasi">Ev Arkadaşı</option>
@@ -187,10 +187,189 @@
 		</div>
 
 		</div>
+
+		<div class="formicerigi" action="">
+
+		<div class=" marka panel panel-danger">
+		<div class="panel-heading">
+		<h3 class="panel-title">Marka</h3>
+		</div>
+
+		<div class="panel-body">
+		<input style="padding:7px;border:solid 1px #000000;
+		-moz-border-radius-topleft: 13px;
+		-moz-border-radius-topright:12px;
+		-moz-border-radius-bottomleft:11px;
+		-moz-border-radius-bottomright:12px;
+		-webkit-border-top-left-radius:13px;
+		-webkit-border-top-right-radius:12px;
+		-webkit-border-bottom-left-radius:11px;
+		-webkit-border-bottom-right-radius:12px;
+		border-top-left-radius:13px;
+		border-top-right-radius:12px;
+		border-bottom-left-radius:11px;
+		border-bottom-right-radius:12px;" type="text" name="vehicle" placeholder="Markayı Giriniz..."  value="">&nbsp;<br>
+		</div>
+
+		</div>
+
+		<div class="renk panel panel-danger">
+		<div class="panel-heading">
+		<h3 class="panel-title">Renk</h3>
+		</div>
+
+		<div class="panel-body">
+		<select>
+		<option value="volvo">Siyah</option>
+		<option value="saab">Beyaz</option>
+		<option value="mercedes">Kırmızı</option>
+		<option value="audi">Mavi</option>
+		<option value="audi">Sarı</option>
+		<option value="audi">Yeşil</option>
+		</select>
+		</div>
+		</div>
+
+		<div class="panel panel-danger">
+		<div class="panel-heading">
+		<h3 class="panel-title">Fırsatlardan seç</h3>
+		</div>
+
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Acil İlanlar<br>
+		</div>
+
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Günün Fırsatları<br>
+		</div>
+
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Popüler İlanlar<br>
+		</div>
+
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Son İlanlar<br>
+		</div>
+
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Fiyatı Düşenler<br>
+		</div>
+
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Güvenilir Satıcılardan<br>
+		</div>
+
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Yakında Olan Satıcılardan<br>
+		</div>
+
+		</div>
+
+		<div class="panel panel-danger">
+		<div class="panel-heading">
+		<h3 class="panel-title">Fiyat Aralığı</h3>
+		</div>
+
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;0 - 50 TL<br>
+		</div>
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;50 - 100 TL<br>
+		</div>
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;100 - 250 TL<br>
+		</div>
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;250 - 500 TL<br>
+		</div>
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;500 - 1000 TL<br>
+		</div>
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;1000 TL üstü<br>
+		</div>
+
+		</div>
 		
+		</div>
 
+		</form>
 
-		<form action="">
+		
+		
+		</div>
+
+		<div class="ikincieldisinda" style="display:none;">
+			
+
+		<div class="panel panel-danger">
+		<div class="panel-heading">
+		<h3 class="panel-title">Fırsatlardan seç</h3>
+		</div>
+
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Acil İlanlar<br>
+		</div>
+
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Günün Fırsatları<br>
+		</div>
+
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Popüler İlanlar<br>
+		</div>
+
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Son İlanlar<br>
+		</div>
+
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Fiyatı Düşenler<br>
+		</div>
+
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Güvenilir Satıcılardan<br>
+		</div>
+
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Yakında Olan Satıcılardan<br>
+		</div>
+
+		</div>
+
+		<div class="panel panel-danger">
+		<div class="panel-heading">
+		<h3 class="panel-title">Fiyat Aralığı</h3>
+		</div>
+
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;0 - 50 TL<br>
+		</div>
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;50 - 100 TL<br>
+		</div>
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;100 - 250 TL<br>
+		</div>
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;250 - 500 TL<br>
+		</div>
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;500 - 1000 TL<br>
+		</div>
+		<div class="panel-body">
+		<input type="checkbox" name="vehicle" value="Bike">&nbsp;1000 TL üstü<br>
+		</div>
+
+		</div>
+			
+
+		</div>
+		
+		
+		<div class="ikinciel" style="display:none">
+			
+			
 
 		<div class=" marka panel panel-danger">
 		<div class="panel-heading">
@@ -293,14 +472,43 @@
 
 		</div>
 
-		</form>
-
+		
+			
+			
+			
 		</div>
 		
-		<!-- Arama Paneli-->
 		
+		
+
+		<!-- Change Form Script-->
+
 		<script>
-			
+			function changeformcontent(value) {
+
+				if (value != "ikinciel") {
+					
+					
+
+					$(".formicerigi").html($(".ikincieldisinda").html());
+
+					
+
+				}
+				
+				else {
+					
+					$(".formicerigi").html($(".ikinciel").html());
+					
+				}
+
+			}
+
+		</script>
+
+		<!-- Arama Paneli-->
+
+		<script>
 			function changeform(value) {
 				if (value == "ikinciel") {
 					$(".renk").show();
@@ -316,14 +524,8 @@
 					$(".marka").hide();
 				}
 			}
-			
-			
+
 		</script>
-		
-		
-		
-		
-		
 
 		<div class="col-lg-9 col-md-9">
 
@@ -432,25 +634,25 @@
 		</div>
 		</div>
 		<div class="item  col-sm-6 col-xs-6 col-lg-4">
-		<div class="thumbnail">
-		<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-		<div class="caption">
-		<h4 class="group inner list-group-item-heading"> Product title</h4>
-		<p class="group inner list-group-item-text">
-		Deneme deneme deneme
-		</p>
-		<div style="margin-top:25px;" class="row">
-			<div class="col-xs-12 col-md-6">
-				<p class="lead">
-					$21.000
-				</p>
+			<div class="thumbnail">
+				<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+				<div class="caption">
+					<h4 class="group inner list-group-item-heading"> Product title</h4>
+					<p class="group inner list-group-item-text">
+						Deneme deneme deneme
+					</p>
+					<div style="margin-top:25px;" class="row">
+						<div class="col-xs-12 col-md-6">
+							<p class="lead">
+								$21.000
+							</p>
+						</div>
+						<div class="col-xs-12 col-md-6">
+							<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="col-xs-12 col-md-6">
-				<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
-			</div>
-		</div>
-		</div>
-		</div>
 		</div>
 		</div>
 
