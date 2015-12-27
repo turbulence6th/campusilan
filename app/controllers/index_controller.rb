@@ -46,4 +46,16 @@ class IndexController < ApplicationController
     end
   end
 
+  def mesajSil
+
+  end
+
+  def aramasonuclari
+
+  end
+
+  def aramasonuclariPost
+
+  end
+
 end
