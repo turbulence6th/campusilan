@@ -153,20 +153,20 @@
 
 		<div style="margin-top:10px;" class="col-lg-3 col-md-3">
 
-		<form role = "form">
+		<%= form_for :arama,:url => 'aramaformu' , :method => :post , :html => {
+
+		} do |t| %>
 
 		<div  style="z-index: 1;" class = "input-group">
 		<input placeholder="Arama Yap..."type = "text" class = "form-control">
 
 		<span class = "input-group-btn">
-		<button class = "btn btn-default" type = "button">
-		Ara
-		</button>
+		<%= t.submit 'Ara',class: "btn btn-default" %>
+		
+		
 		</span>
 
 		</div>
-
-	
 
 		<br>
 
@@ -176,7 +176,7 @@
 		</div>
 
 		<div class="panel-body">
-		<select  name="vehicle" onChange="changeformcontent(this.value)" value="Bike">
+		<select  name="" onChange="changeformcontent(this.value)" value="Bike">
 
 		<option selected value="ikinciel">İkinci El İlan</option>
 		<option value="evarkadasi">Ev Arkadaşı</option>
@@ -196,7 +196,7 @@
 		</div>
 
 		<div class="panel-body">
-		<input style="padding:7px;border:solid 1px #000000;
+		<%= t.text_field :marka	,style: "padding:7px;border:solid 1px #000000;
 		-moz-border-radius-topleft: 13px;
 		-moz-border-radius-topright:12px;
 		-moz-border-radius-bottomleft:11px;
@@ -208,7 +208,7 @@
 		border-top-left-radius:13px;
 		border-top-right-radius:12px;
 		border-bottom-left-radius:11px;
-		border-bottom-right-radius:12px;" type="text" name="vehicle" placeholder="Markayı Giriniz..."  value="">&nbsp;<br>
+		border-bottom-right-radius:12px;",type:"text",placeholder:"Markayı Giriniz...",value:"" %> &nbsp;<br>
 		</div>
 
 		</div>
@@ -219,14 +219,8 @@
 		</div>
 
 		<div class="panel-body">
-		<select>
-		<option value="volvo">Siyah</option>
-		<option value="saab">Beyaz</option>
-		<option value="mercedes">Kırmızı</option>
-		<option value="audi">Mavi</option>
-		<option value="audi">Sarı</option>
-		<option value="audi">Yeşil</option>
-		</select>
+		<%= t.select :kind, [['Siyah', 'siyah'], ['Beyaz', 'beyaz'], ['Kırmızı', 'kirmizi'],['Mavi','mavi'],['Sarı','sari'],['Yeşil','yesil']],{}, {class:"form-control"}  %>
+		
 		</div>
 		</div>
 
@@ -234,33 +228,35 @@
 		<div class="panel-heading">
 		<h3 class="panel-title">Fırsatlardan seç</h3>
 		</div>
+		
+		
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Acil İlanlar<br>
+		<%= t.check_box :acililan  %> &nbsp;Acil İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Günün Fırsatları<br>
+		<%= t.check_box :gununfirsatlari  %> &nbsp;Günün Fırsatları<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Popüler İlanlar<br>
+		<%= t.check_box :enpopuler  %> &nbsp;En Popüler İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Son İlanlar<br>
+		<%= t.check_box :ensonilanlar  %> &nbsp;En Son İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Fiyatı Düşenler<br>
+		<%= t.check_box :fiyatidusenler  %> &nbsp;Fiyatı Düşenler<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Güvenilir Satıcılardan<br>
+		<%= t.check_box :enguvenilir  %> &nbsp;En Güvenilir Satıcılardan<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Yakında Olan Satıcılardan<br>
+		<%= t.check_box :enyakindaki  %> &nbsp;En Yakında Olan Satıcılardan<br>
 		</div>
 
 		</div>
@@ -271,36 +267,39 @@
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;0 - 50 TL<br>
+		<%= t.check_box :sifir_elli  %> &nbsp;0 - 50 TL<br>
 		</div>
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;50 - 100 TL<br>
+		<%= t.check_box :elli_yuz  %> &nbsp;50 - 100 TL<br>
 		</div>
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;100 - 250 TL<br>
+		<%= t.check_box :yuz_ikiyuzelli  %> &nbsp;100 - 250 TL<br>
 		</div>
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;250 - 500 TL<br>
+		<%= t.check_box :ikiyuzelli_besyuz  %> &nbsp;250 - 500 TL<br>
 		</div>
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;500 - 1000 TL<br>
+		<%= t.check_box :besyuz_bin  %> &nbsp;500 - 1000 TL<br>
 		</div>
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;1000 TL üstü<br>
+		<%= t.check_box :binustu  %> &nbsp;1000 TL üstü<br>
 		</div>
 
 		</div>
-		
+
 		</div>
 
-		</form>
+		<% end %>
 
-		
-		
 		</div>
+		
+		
+		
+		<%= form_for :arama,:url => 'aramaformu' , :method => :post , :html => {
+
+		} do |t| %>
 
 		<div class="ikincieldisinda" style="display:none;">
-			
 
 		<div class="panel panel-danger">
 		<div class="panel-heading">
@@ -308,31 +307,31 @@
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Acil İlanlar<br>
+		<%= t.check_box :acililan  %> &nbsp;Acil İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Günün Fırsatları<br>
+		<%= t.check_box :gununfirsatlari  %> &nbsp;Günün Fırsatları<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Popüler İlanlar<br>
+		<%= t.check_box :enpopuler  %> &nbsp;En Popüler İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Son İlanlar<br>
+		<%= t.check_box :ensonilanlar  %> &nbsp;En Son İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Fiyatı Düşenler<br>
+		<%= t.check_box :fiyatidusenler  %> &nbsp;Fiyatı Düşenler<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Güvenilir Satıcılardan<br>
+		<%= t.check_box :enguvenilir  %> &nbsp;En Güvenilir Satıcılardan<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Yakında Olan Satıcılardan<br>
+		<%= t.check_box :enyakindaki  %> &nbsp;En Yakında Olan Satıcılardan<br>
 		</div>
 
 		</div>
@@ -343,41 +342,45 @@
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;0 - 50 TL<br>
+		<%= t.check_box :sifir_elli  %> &nbsp;0 - 50 TL<br>
 		</div>
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;50 - 100 TL<br>
+		<%= t.check_box :elli_yuz  %> &nbsp;50 - 100 TL<br>
 		</div>
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;100 - 250 TL<br>
+		<%= t.check_box :yuz_ikiyuzelli  %> &nbsp;100 - 250 TL<br>
 		</div>
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;250 - 500 TL<br>
+		<%= t.check_box :ikiyuzelli_besyuz  %> &nbsp;250 - 500 TL<br>
 		</div>
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;500 - 1000 TL<br>
+		<%= t.check_box :besyuz_bin  %> &nbsp;500 - 1000 TL<br>
 		</div>
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;1000 TL üstü<br>
+		<%= t.check_box :binustu  %> &nbsp;1000 TL üstü<br>
 		</div>
 
 		</div>
-			
 
 		</div>
 		
+		<% end %>
 		
+		
+		<%= form_for :arama,:url => 'aramaformu' , :method => :post , :html => {
+
+		} do |t| %>
+
 		<div class="ikinciel" style="display:none">
-			
-			
 
 		<div class=" marka panel panel-danger">
 		<div class="panel-heading">
 		<h3 class="panel-title">Marka</h3>
 		</div>
 
+		
 		<div class="panel-body">
-		<input style="padding:7px;border:solid 1px #000000;
+		<%= t.text_field :marka	,style: "padding:7px;border:solid 1px #000000;
 		-moz-border-radius-topleft: 13px;
 		-moz-border-radius-topright:12px;
 		-moz-border-radius-bottomleft:11px;
@@ -389,7 +392,7 @@
 		border-top-left-radius:13px;
 		border-top-right-radius:12px;
 		border-bottom-left-radius:11px;
-		border-bottom-right-radius:12px;" type="text" name="vehicle" placeholder="Markayı Giriniz..."  value="">&nbsp;<br>
+		border-bottom-right-radius:12px;",type:"text",placeholder:"Markayı Giriniz...",value:"" %> &nbsp;<br>
 		</div>
 
 		</div>
@@ -400,14 +403,8 @@
 		</div>
 
 		<div class="panel-body">
-		<select>
-		<option value="volvo">Siyah</option>
-		<option value="saab">Beyaz</option>
-		<option value="mercedes">Kırmızı</option>
-		<option value="audi">Mavi</option>
-		<option value="audi">Sarı</option>
-		<option value="audi">Yeşil</option>
-		</select>
+		<%= t.select :kind, [['Siyah', 'siyah'], ['Beyaz', 'beyaz'], ['Kırmızı', 'kirmizi'],['Mavi','mavi'],['Sarı','sari'],['Yeşil','yesil']],{}, {class:"form-control"}  %>
+		
 		</div>
 		</div>
 
@@ -417,31 +414,31 @@
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Acil İlanlar<br>
+		<%= t.check_box :acililan  %> &nbsp;Acil İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Günün Fırsatları<br>
+		<%= t.check_box :gununfirsatlari  %> &nbsp;Günün Fırsatları<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Popüler İlanlar<br>
+		<%= t.check_box :enpopuler  %> &nbsp;En Popüler İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Son İlanlar<br>
+		<%= t.check_box :ensonilanlar  %> &nbsp;En Son İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Fiyatı Düşenler<br>
+		<%= t.check_box :fiyatidusenler  %> &nbsp;Fiyatı Düşenler<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Güvenilir Satıcılardan<br>
+		<%= t.check_box :enguvenilir  %> &nbsp;En Güvenilir Satıcılardan<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Yakında Olan Satıcılardan<br>
+		<%= t.check_box :enyakindaki  %> &nbsp;En Yakında Olan Satıcılardan<br>
 		</div>
 
 		</div>
@@ -452,34 +449,29 @@
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;0 - 50 TL<br>
+		<%= t.check_box :sifir_elli  %> &nbsp;0 - 50 TL<br>
 		</div>
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;50 - 100 TL<br>
+		<%= t.check_box :elli_yuz  %> &nbsp;50 - 100 TL<br>
 		</div>
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;100 - 250 TL<br>
+		<%= t.check_box :yuz_ikiyuzelli  %> &nbsp;100 - 250 TL<br>
 		</div>
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;250 - 500 TL<br>
+		<%= t.check_box :ikiyuzelli_besyuz  %> &nbsp;250 - 500 TL<br>
 		</div>
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;500 - 1000 TL<br>
+		<%= t.check_box :besyuz_bin  %> &nbsp;500 - 1000 TL<br>
 		</div>
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;1000 TL üstü<br>
+		<%= t.check_box :binustu  %> &nbsp;1000 TL üstü<br>
 		</div>
 
 		</div>
 
-		
-			
-			
-			
 		</div>
 		
-		
-		
+		<% end %>
 
 		<!-- Change Form Script-->
 
@@ -487,19 +479,13 @@
 			function changeformcontent(value) {
 
 				if (value != "ikinciel") {
-					
-					
 
 					$(".formicerigi").html($(".ikincieldisinda").html());
 
-					
+				} else {
 
-				}
-				
-				else {
-					
 					$(".formicerigi").html($(".ikinciel").html());
-					
+
 				}
 
 			}
@@ -559,79 +545,80 @@
 		<p class="group inner list-group-item-text">
 		Deneme deneme deneme</p>
 		<div style="margin-top:25px;" class="row">
-		<div class="col-xs-12 col-md-6">
-		<p class="lead">
-		$21.000</p>
-		</div>
-		<div class="col-xs-12 col-md-6">
-		<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
-		</div>
-		</div>
-		</div>
-		</div>
-		</div>
-		<div class="item  col-sm-6 col-xs-6 col-lg-4">
-		<div class="thumbnail">
-		<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-		<div class="caption">
-		<h4 class="group inner list-group-item-heading"> Product title</h4>
-		<p class="group inner list-group-item-text">
-		Deneme deneme deneme
-		</p>
-		<div style="margin-top:25px;" class="row">
-		<div class="col-xs-12 col-md-6">
-		<p class="lead">
-		$21.000
-		</p>
-		</div>
-		<div class="col-xs-12 col-md-6">
-		<a style="float:right;"class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
-		</div>
+			<div class="col-xs-12 col-md-6">
+				<p class="lead">
+					$21.000
+				</p>
+			</div>
+			<div class="col-xs-12 col-md-6">
+				<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
+			</div>
 		</div>
 		</div>
 		</div>
 		</div>
 		<div class="item  col-sm-6 col-xs-6 col-lg-4">
-		<div class="thumbnail">
-		<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-		<div class="caption">
-		<h4 class="group inner list-group-item-heading"> Product title</h4>
-		<p class="group inner list-group-item-text">
-		Deneme deneme deneme
-		</p>
-		<div style="margin-top:25px;" class="row">
-		<div class="col-xs-12 col-md-6">
-		<p class="lead">
-		$21.000
-		</p>
-		</div>
-		<div class="col-xs-12 col-md-6">
-		<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
-		</div>
-		</div>
-		</div>
-		</div>
+			<div class="thumbnail">
+				<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+				<div class="caption">
+					<h4 class="group inner list-group-item-heading"> Product title</h4>
+					<p class="group inner list-group-item-text">
+						Deneme deneme deneme
+					</p>
+					<div style="margin-top:25px;" class="row">
+						<div class="col-xs-12 col-md-6">
+							<p class="lead">
+								$21.000
+							</p>
+						</div>
+						<div class="col-xs-12 col-md-6">
+							<a style="float:right;"class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="item  col-sm-6 col-xs-6 col-lg-4">
-		<div class="thumbnail">
-		<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-		<div class="caption">
-		<h4 class="group inner list-group-item-heading"> Product title</h4>
-		<p class="group inner list-group-item-text">
-		Deneme deneme deneme
-		</p>
-		<div style="margin-top:25px;" class="row">
-		<div class="col-xs-12 col-md-6">
-		<p class="lead">
-		$21.000
-		</p>
+			<div class="thumbnail">
+				<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+				<div class="caption">
+					<h4 class="group inner list-group-item-heading"> Product title</h4>
+					<p class="group inner list-group-item-text">
+						Deneme deneme deneme
+					</p>
+					<div style="margin-top:25px;" class="row">
+						<div class="col-xs-12 col-md-6">
+							<p class="lead">
+								$21.000
+							</p>
+						</div>
+						<div class="col-xs-12 col-md-6">
+							<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="col-xs-12 col-md-6">
-		<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
-		</div>
-		</div>
-		</div>
-		</div>
+		<div class="item  col-sm-6 col-xs-6 col-lg-4">
+			<div class="thumbnail">
+				<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+				<div class="caption">
+					<h4 class="group inner list-group-item-heading"> Product title</h4>
+					<p class="group inner list-group-item-text">
+						Deneme deneme deneme
+					</p>
+					<div style="margin-top:25px;" class="row">
+						<div class="col-xs-12 col-md-6">
+							<p class="lead">
+								$21.000
+							</p>
+						</div>
+						<div class="col-xs-12 col-md-6">
+							<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="item  col-sm-6 col-xs-6 col-lg-4">
 			<div class="thumbnail">
