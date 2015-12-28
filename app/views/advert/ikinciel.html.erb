@@ -6,6 +6,7 @@
 
 		<title>Campus İlan</title>
 		<meta charset="utf-8">
+		<%= javascript_tag "window._token = '#{form_authenticity_token}';" %>
 
 		<META http-equiv=content-type content=text/html;charset=iso-8859-9>
 		<META http-equiv=content-type content=text/html;charset=windows-1254>
@@ -262,6 +263,24 @@
 									<h1><%= @advert.name %></h1>
 
 									<br>
+									<% if current_user!= nil %>
+									<% fav = FavouriteAdvert.find_by(:advert => @advert, :user => current_user) %>
+									<button <%if  !fav %> style="display:none;" <% end %>  class="favorilereekle btn   btn-danger">Favorilere Ekle </button>
+									
+									<button <% if fav  %> style="display:none;" <% end %> class="favorilerdenkaldir btn     btn-danger">Favorilerden Kaldır </button>
+									
+									<% end %>
+									
+									<% if @advert.user == current_user || current_user!= nil && current_user.role == 'admin' %>
+									
+									<button onclick="window.location = '<%= @advert.href_guncelle %>' " class="btn  btn-danger">İlanı Düzenle </button>
+									
+									<% end %>
+									
+									
+									
+									<br><br>
+									
 									<div style="padding:10px; border:1px solid black;">
 										<div class="star-on">
 
@@ -498,6 +517,105 @@
 			<%= render "footer" %>
 
 		</div>
+		
+		
+		<!-- favorilere ekle/kaldır ajax -->
+		
+		<% if current_user!= nil %>
+		
+		<script>
+			
+			$(".favorilereekle").click(function() {
+				
+				
+				$.ajax({
+				
+					url : '/favorilereekle',
+					data : {
+						authenticity_token : window._token,
+						advertid : <%= @advert.id %>,
+						
+						
+					},
+					error : function() {
+			
+						alert("Lütfen bağlantınızı kontrol edin!!")
+					},
+					dataType : 'json',
+					success : function(data) {
+
+						if (!data.check) {
+
+						
+						} 
+						
+						else {
+							
+							$(".favorilerdenkaldir").show();
+							$(".favorilereekle").hide();
+							
+						}
+				
+					},
+				
+				type : 'POST'
+				
+			}) 
+			
+			}
+			
+		)
+		
+		
+		
+		$(".favorilerdenkaldir").click(function() {
+				
+				
+				$.ajax({
+				
+					url : '/favorilerdenkaldir',
+					data : {
+						authenticity_token : window._token,
+						advertid : <%= @advert.id %>,
+						
+						
+					},
+					error : function() {
+			
+						alert("Lütfen bağlantınızı kontrol edin!!")
+					},
+					dataType : 'json',
+					success : function(data) {
+
+						if (!data.check) {
+							alert("Başarısız");
+						
+						} 
+						
+						else {
+							
+							$(".favorilereekle").show();
+							$(".favorilerdenkaldir").hide();
+						}
+				
+					},
+				
+				type : 'POST'
+				
+			}) 
+			
+			}
+			
+		)
+		
+		
+		
+		
+			
+			
+		</script>
+		
+		<% end %>
 
 		<!-- Plugins-->
 

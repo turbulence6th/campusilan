@@ -399,5 +399,61 @@ class AdvertController < ApplicationController
       @adverts = []
     end
   end
+  
+  def favorilereekle
+    
+    advertid = params[:advertid]
+    
+    
+    if Advert.find(advertid).favourite_adverts << FavouriteAdvert.new(:user => current_user )
+      
+        respond_to do |format|
+        msg = { :check => true}
+        format.json  { render :json => msg }
+        
+        end
+      
+     else
+       
+       respond_to do |format|
+        msg = { :check => false}
+        format.json  { render :json => msg }
+      end
+       
+        
+    end
+    
+    
+    
+    
+  end
+  
+  def favorilerdenkaldir
+    
+    advertid = params[:advertid]
+    
+    a = Advert.find(advertid).favourite_adverts.find_by(:user => current_user)
+    if a
+        
+         a.destroy
+        respond_to do |format|
+        msg = { :check => true}
+        format.json  { render :json => msg }
+        
+        end
+      
+     else
+       
+       respond_to do |format|
+        msg = { :check => false}
+        format.json  { render :json => msg }
+      end
+       
+        
+    end
+    
+    
+    
+  end
 
 end

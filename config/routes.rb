@@ -16,6 +16,11 @@ Rails.application.routes.draw do
   post 'secondhand' => 'advert#secondhandPost'
   post 'homemate' => 'advert#homematePost'
 
+<<<<<<< HEAD
+=======
+  
+
+>>>>>>> 1bbecd26c37dbeb6319daba862424e6d7c9bf767
   post 'privatelesson' => 'advert#privatelessonPost'
   get 'satis-alis' => 'index#satis_alis'
   get 'satis-alis/:satislarim' => 'index#satis_alis'
@@ -35,6 +40,8 @@ Rails.application.routes.draw do
   post 'updateUser' => 'user#updateUser'
   
   get 'ikinciel/:advert_name' => 'advert#ikinciel'
+  post 'favorilereekle' => 'advert#favorilereekle', defaults: {format: :json}
+  post 'favorilerdenkaldir' => 'advert#favorilerdenkaldir', defaults: {format: :json}
   get 'evarkadasi/:advert_name' => 'advert#evarkadasi'
   get 'ozelders/:advert_name' => 'advert#ozelders'
   get 'kategoriler/:kategori' => 'advert#kategoriler'

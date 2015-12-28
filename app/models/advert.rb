@@ -50,6 +50,11 @@ class Advert < ActiveRecord::Base
     
   end
   
-  
+  def href_guncelle
+    
+
+    '/ilanguncelle/' + self.name.parameterize + '-' + self.id.to_s
+    
+  end
   
 end
