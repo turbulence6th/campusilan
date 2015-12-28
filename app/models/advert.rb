@@ -40,8 +40,6 @@ class Advert < ActiveRecord::Base
     
     if self.advertable_type=='Secondhand'
       path = '/ikinciel/'
-    elsif self.advertable_type=='Lessonnote'
-      path = '/dersnotu/'
     elsif self.advertable_type=='Homemate'
       path = '/evarkadasi/'
     elsif self.advertable_type=='Privatelesson'
@@ -52,6 +50,11 @@ class Advert < ActiveRecord::Base
     
   end
   
-  
+  def href_guncelle
+    
+
+    '/ilanguncelle/' + self.name.parameterize + '-' + self.id.to_s
+    
+  end
   
 end

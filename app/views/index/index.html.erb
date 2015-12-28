@@ -224,6 +224,34 @@
 							<div class="panel-body">
 								<a href="/kategoriler/ozelders">Özel Ders </a>
 							</div>
+							
+							<div class="panel-body">
+								<a style="margin-left:10px;" href="/kategoriler/ozelders/matematik">-Matematik </a>
+							</div>
+							
+							<div class="panel-body">
+								<a style="margin-left:10px;" href="/kategoriler/ozelders/fizik">-Fizik </a>
+							</div>
+							
+							<div class="panel-body">
+								<a style="margin-left:10px;" href="/kategoriler/ozelders/kimya">-Kimya </a>
+							</div>
+							
+							<div class="panel-body">
+								<a style="margin-left:10px;" href="/kategoriler/ozelders/biyoloji">-Biyoloji </a>
+							</div>
+							
+							<div class="panel-body">
+								<a style="margin-left:10px;" href="/kategoriler/ozelders/genelmuhendislik">-Genel Mühendislik </a>
+							</div>
+							
+							<div class="panel-body">
+								<a style="margin-left:10px;" href="/kategoriler/ozelders/genelegitimbilimleri">-Genel Eğitim Bilimleri </a>
+							</div>
+
+
+
+
 
 							<div class="panel-heading">
 								<h3 class="panel-title">Fırsatlar Paneli</h3>
@@ -989,22 +1017,16 @@
 								</ul>
 								
 								<ul>
+									<% @ensonozelders.each do |advert| %>
 									<li>
-										<a href="#"> <img
-										src="resources/plugins/ItemSlider/images/12.jpg" alt="img12"> <h4>Carry-Ons</h4> </a>
+										<% if advert.images != [] %>
+										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %><h4><%= advert.name %></h4> </a>
+										<% else %>
+										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name%><h4><%= advert.name %></h4></a>
+										<% end %>
 									</li>
-									<li>
-										<a href="#"> <img
-										src="resources/plugins/ItemSlider/images/13.jpg" alt="img13"> <h4>Duffel Bags</h4> </a>
-									</li>
-									<li>
-										<a href="#"> <img
-										src="resources/plugins/ItemSlider/images/14.jpg" alt="img14"> <h4>Laptop Bags</h4> </a>
-									</li>
-									<li>
-										<a href="#"> <img
-										src="resources/plugins/ItemSlider/images/15.jpg" alt="img15"> <h4>Briefcases</h4> </a>
-									</li>
+
+									<% end %>
 								</ul>
 								<nav>
 									<a href="#">İKİNCİ EL</a><a href="#">EV ARKADAŞI</a><a href="#">ÖZEL DERS</a>

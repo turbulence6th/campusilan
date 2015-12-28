@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   post 'deleteimage' => 'advert#deleteimage', defaults: {format: :json}
   post 'secondhand' => 'advert#secondhandPost'
   post 'homemate' => 'advert#homematePost'
+
   
+
   post 'privatelesson' => 'advert#privatelessonPost'
   get 'satis-alis' => 'index#satis_alis'
   get 'satis-alis/:satislarim' => 'index#satis_alis'
@@ -35,12 +37,13 @@ Rails.application.routes.draw do
   post 'updateUser' => 'user#updateUser'
   
   get 'ikinciel/:advert_name' => 'advert#ikinciel'
-  get 'dersnotu/:advert_name' => 'advert#dersnotu'
+  post 'favorilereekle' => 'advert#favorilereekle', defaults: {format: :json}
+  post 'favorilerdenkaldir' => 'advert#favorilerdenkaldir', defaults: {format: :json}
   get 'evarkadasi/:advert_name' => 'advert#evarkadasi'
   get 'ozelders/:advert_name' => 'advert#ozelders'
   get 'kategoriler/:kategori' => 'advert#kategoriler'
   get 'kategoriler' => 'advert#kategoriler'
-  get 'kategoriler/ikincielilan/:subkategori' => 'advert#kategoriler'  
+  get 'kategoriler/:kategori/:subkategori' => 'advert#kategoriler'  
   get 'firsatlar' => 'advert#firsatlar'
   get 'uye/:username' => 'user#member'
 

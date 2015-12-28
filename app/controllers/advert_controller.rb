@@ -53,6 +53,31 @@ class AdvertController < ApplicationController
     @images = @advert.images
 
   end
+  
+  def ozelders
+    advert_name = params[:advert_name]
+    id = advert_name.split('-')[-1]
+    @advert = Advert.where(:id => id, :advertable_type => 'Privatelesson')[0]
+
+    if !@advert
+      raise ActionController::RoutingError.new('Not Found')
+    end
+
+    if @advert.href != '/ozelders/' + advert_name
+      redirect_to '/ozelders/' + link
+    end
+    
+    if current_user
+      @advert.viewed_adverts << ViewedAdvert.new(:user => current_user)
+    end
+
+    @advert.viewed_advert_counts << ViewedAdvertCount.new(:ip => request.remote_ip)
+
+    @advertable = @advert.advertable
+    @advert_user = @advert.user
+    @images = @advert.images
+
+  end
 
   def ilanver
 
@@ -201,21 +226,24 @@ class AdvertController < ApplicationController
   
   def privatelessonPost
     
-    @privatelesson = Privatelesson.new(params.require(:advert).require(:advertable).permit(:state,:city,:kind,:lecture,:location))
+    @privatelesson = Privatelesson.new(params.require(:advert).require(:advertable).permit(:state, :city,
+      :kind, :lecture, :location))
     @advert = Advert.new(params.require(:advert).permit(:name, :price, :explication))
-    
     @advert.advertable = @privatelesson
     @advert.user = current_user
     @advert.active = true
     @advert.urgent = false
     @advert.opportunity = false
-    
+
     if params[:images]
       params[:images].reverse.each do |image|
         @image = Image.new(:imagefile => image)
         @advert.images << @image
       end
     end
+    
+    puts @advert.valid?
+    puts @privatelesson.valid?
 
     @advert.save
     redirect_to "/"
@@ -251,12 +279,74 @@ class AdvertController < ApplicationController
     if kategori=="ikincielilan"
       @title="İkinci El İlanlar"
       @adverts = Advert.where(:advertable_type => 'Secondhand').reverse
+      
+      
+      subkategori=params[:subkategori]
+      if subkategori=="beyazesya"
+        @title="Beyaz Eşya"
+        @adverts = @adverts.select {|adv| adv.advertable.category=='beyazesya'}
+      elsif subkategori=="evdekorasyonu"
+        @title="Ev Dekorasyonu"
+        @adverts = @adverts.select {|adv| adv.advertable.category=='evdekorasyonu'}
+      elsif subkategori=="muzikaletleri"
+        @title="Müzik Aletleri"
+        @adverts = @adverts.select {|adv| adv.advertable.category=='muzikaletleri'}
+      elsif subkategori=="elektronik"
+        @title="Elektronik"
+        @adverts = @adverts.select {|adv| adv.advertable.category=='elektronik'}
+      elsif subkategori=="kirtasiye"
+        @title="Kırtasiye"
+        @adverts = @adverts.select {|adv| adv.advertable.category=='kirtasiye'}
+      elsif subkategori=="mutfakesyalari"
+        @title="Mutfak Eşyaları"
+        @adverts = @adverts.select {|adv| adv.advertable.category=='mutfakesyalari'}
+      elsif subkategori=="vasita"
+        @title="Vasıta"
+        @adverts = @adverts.select {|adv| adv.advertable.category=='vasita'}
+      elsif subkategori=="giyim"
+        @title="Giyim"
+        @adverts = @adverts.select {|adv| adv.advertable.category=='giyim'}
+      elsif subkategori=="dersnotu"
+        @title="Ders Notları"
+        @adverts = @adverts.select {|adv| adv.advertable.category=='dersnotu'}    
+      elsif subkategori=="diger"
+        @title="Diğer"
+        @adverts = @adverts.select {|adv| adv.advertable.category=='diger'}
+      end
+      
+      
     elsif kategori=="evarkadasi"
       @title="Ev Arkadaşı İlanları"
       @adverts = Advert.where(:advertable_type => 'Homemate').reverse
+      
+      
     elsif kategori=="ozelders"
       @title="Özel Ders İlanları"
       @adverts = Advert.where(:advertable_type => 'Privatelesson').reverse
+      
+      
+      subkategori=params[:subkategori]
+      if subkategori=="matematik"
+        @title="Matematik"
+        @adverts = @adverts.select {|adv| adv.advertable.lecture=='matematik'}
+      elsif subkategori=="fizik"
+        @title="Fizik"
+        @adverts = @adverts.select {|adv| adv.advertable.lecture=='fizik'}
+      elsif subkategori=="kimya"
+        @title="Kimya"
+        @adverts = @adverts.select {|adv| adv.advertable.lecture=='kimya'}
+      elsif subkategori=="biyoloji"
+        @title="Biyoloji"
+        @adverts = @adverts.select {|adv| adv.advertable.lecture=='biyoloji'}
+      elsif subkategori=="genelmuhendislik"
+        @title="Genel Mühendislik"
+        @adverts = @adverts.select {|adv| adv.advertable.lecture=='genelmuhendislik'}
+      elsif subkategori=="genelegitimbilimleri"
+        @title="Genel Eğitim Bilimleri"
+        @adverts = @adverts.select {|adv| adv.advertable.lecture=='genelegitimbilimleri'} 
+      end
+      
+      
     elsif kategori==nil
       @title="İkinci El İlanlar"
       @adverts = Advert.where(:advertable_type => 'Secondhand').reverse
@@ -264,40 +354,7 @@ class AdvertController < ApplicationController
       redirect_to "/kategoriler"
     end
 
-    subkategori=params[:subkategori]
-    if subkategori=="beyazesya"
-      @title="Beyaz Eşya"
-      @adverts = @adverts.select {|adv| adv.advertable.category=='beyazesya'}
-    elsif subkategori=="evdekorasyonu"
-      @title="Ev Dekorasyonu"
-      @adverts = @adverts.select {|adv| adv.advertable.category=='evdekorasyonu'}
-    elsif subkategori=="muzikaletleri"
-      @title="Müzik Aletleri"
-      @adverts = @adverts.select {|adv| adv.advertable.category=='muzikaletleri'}
-    elsif subkategori=="elektronik"
-      @title="Elektronik"
-      @adverts = @adverts.select {|adv| adv.advertable.category=='elektronik'}
-    elsif subkategori=="kirtasiye"
-      @title="Kırtasiye"
-      @adverts = @adverts.select {|adv| adv.advertable.category=='kirtasiye'}
-    elsif subkategori=="mutfakesyalari"
-      @title="Mutfak Eşyaları"
-      @adverts = @adverts.select {|adv| adv.advertable.category=='mutfakesyalari'}
-    elsif subkategori=="vasita"
-      
-      @title="Vasıta"
-      @adverts = @adverts.select {|adv| adv.advertable.category=='vasita'}
-    elsif subkategori=="giyim"
-      @title="Giyim"
-      @adverts = @adverts.select {|adv| adv.advertable.category=='giyim'}
-    elsif subkategori=="dersnotu"
-      @title="Ders Notları"
-      @adverts = @adverts.select {|adv| adv.advertable.category=='dersnotu'}    
-    elsif subkategori=="diger"
-      @title="Diğer"
-      @adverts = @adverts.select {|adv| adv.advertable.category=='diger'}
-      
-    end
+    
   end
 
   def firsatlar
@@ -341,6 +398,62 @@ class AdvertController < ApplicationController
       @active = 0
       @adverts = []
     end
+  end
+  
+  def favorilereekle
+    
+    advertid = params[:advertid]
+    
+    
+    if Advert.find(advertid).favourite_adverts << FavouriteAdvert.new(:user => current_user )
+      
+        respond_to do |format|
+        msg = { :check => true}
+        format.json  { render :json => msg }
+        
+        end
+      
+     else
+       
+       respond_to do |format|
+        msg = { :check => false}
+        format.json  { render :json => msg }
+      end
+       
+        
+    end
+    
+    
+    
+    
+  end
+  
+  def favorilerdenkaldir
+    
+    advertid = params[:advertid]
+    
+    a = Advert.find(advertid).favourite_adverts.find_by(:user => current_user)
+    if a
+        
+         a.destroy
+        respond_to do |format|
+        msg = { :check => true}
+        format.json  { render :json => msg }
+        
+        end
+      
+     else
+       
+       respond_to do |format|
+        msg = { :check => false}
+        format.json  { render :json => msg }
+      end
+       
+        
+    end
+    
+    
+    
   end
 
 end

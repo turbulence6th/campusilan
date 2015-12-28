@@ -246,18 +246,12 @@
 												</p></td>
 
 												<script>
-$(".<%= mesaj.from.username %>
-	").click(function() {
+													$(".<%= mesaj.from.username %>").click(function() {
 
-	$(".cevaplapaneli .ickisim").attr("placeholder", "
-<%= mesaj.from.username %>
-	");
+															$(".cevaplapaneli .ickisim").attr("placeholder", "<%= mesaj.from.username %>");
 
-	$(".cevaplapaneli .ickisim").val("
-<%= mesaj.from.username %>
-	");
-
-	});
+															$(".cevaplapaneli .ickisim").val("<%= mesaj.from.username %>");
+													});
 												</script>
 
 											</tr>
@@ -267,29 +261,19 @@ $(".<%= mesaj.from.username %>
 										</tbody>
 
 									</table>
-
-									<div class="clearfix"></div>
-									<ul class="pagination ">
-										<li>
-											<a href="#"><span
-											class="glyphicon glyphicon-chevron-left"></span></a>
-										</li>
-										<% messages.each_with_index do |mesaj, index| %>
-										<% puts params[:page] %>
-										<% puts index.to_s %>
-										<li  <%= "class='active'" if index.to_s==params[:page] %>>
-											<a href="#"><%= index+1 %></a>
-										</li>
-										<% end %>
-										<li>
-											<a href="#"><span
-											class="glyphicon glyphicon-chevron-right"></span></a>
-										</li>
-									</ul>
-
-								</div>
-
+									
 							</div>
+							
+							<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
+									
+									<% if messages.count > 10 %>
+									
+									<div class="apple_pagination">
+									    <%= will_paginate messages, :container => false, 
+									    	:previous_label => 'Önceki', :next_label => 'Sonraki' %>
+									</div>
+									
+									<% end %>
 
 						</div>
 
@@ -508,15 +492,14 @@ $(".<%= mesaj.from.username %>
 
 						} else {
 							
+							$("#basarisiz").hide();
 							$("#basarili").show();
-							
-							$(".kullaniciadi").attr('disabled','disabled');
-							$(".konu").attr('disabled','disabled');
-							$("textarea#mesaj_text").attr('disabled','disabled');
-							
-							$(".gonderbutonu").attr('disabled','disabled');
-							
-							
+
+							$(".kullaniciadi").attr('disabled', 'disabled');
+							$(".konu").attr('disabled', 'disabled');
+							$("textarea#mesaj_text").attr('disabled', 'disabled');
+
+							$(".gonderbutonu").attr('disabled', 'disabled');
 
 						}
 
@@ -525,18 +508,16 @@ $(".<%= mesaj.from.username %>
 							$(".kullaniciadi").val("");
 							$(".konu").val("");
 							$("textarea#mesaj_text").val("");
-							
+
 							$("#basarisiz").hide();
-							
+
 							$("#basarili").hide();
-							
+
 							$(".kullaniciadi").removeAttr('disabled');
 							$(".konu").removeAttr('disabled');
 							$("textarea#mesaj_text").removeAttr('disabled');
-							
+
 							$(".gonderbutonu").removeAttr('disabled');
-							
-							
 
 						});
 

@@ -42,13 +42,18 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
+    :address              => "webmail.onurdemirtas.com",
     :port                 => 587,
-    :user_name            => 'campusilan@gmail.com',
+    :user_name            => 'iletisim@onurdemirtas.com',
     :password             => '1234Onur1234',
-    :authentication       => "plain",
-    :enable_starttls_auto => true
+    :domain => 'onurdemirtas.com',
+    :authentication       => "login",
+    :enable_starttls_auto => true,
+    :openssl_verify_mode  => 'none'
+    
   }
+  
+   config.action_mailer.raise_delivery_errors = true
   
   Paperclip.options[:command_path] = "/usr/local/bin/"
 
