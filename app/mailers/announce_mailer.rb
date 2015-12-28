@@ -1,0 +1,2 @@
+class AnnounceMailer < ApplicationMailer
+end
