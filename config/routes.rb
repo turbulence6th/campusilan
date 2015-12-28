@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   get '/' => 'index#index'
   get 'aramasonuclari' => 'index#aramasonuclari'
-  post 'aramaformu' => 'index#aramasonuclariPost'
+  
   get 'hakkimizda' => 'index#hakkimizda'
   get 'iletisim' => 'index#iletisim'
   get 'kullanimkosullari' => 'index#kullanimkosullari'

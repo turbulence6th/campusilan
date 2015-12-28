@@ -153,15 +153,16 @@
 
 		<div style="margin-top:10px;" class="col-lg-3 col-md-3">
 
-		<%= form_for :arama,:url => 'aramaformu' , :method => :post , :html => {
+		<%= form_tag 'aramasonuclari' , :method => :get , :html => {
 
-		} do |t| %>
+		} do  %>
 
 		<div  style="z-index: 1;" class = "input-group">
-		<input placeholder="Arama Yap..."type = "text" class = "form-control">
+		<%= text_field_tag :aramakismi,params[:aramakismi],class: "form-control",placeholder: "Arama Yap..."  %>	
+		
 
 		<span class = "input-group-btn">
-		<%= t.submit 'Ara',class: "btn btn-default" %>
+		<%= submit_tag 'Ara',name:nil,class: "btn btn-default" %>
 		
 		
 		</span>
@@ -196,7 +197,7 @@
 		</div>
 
 		<div class="panel-body">
-		<%= t.text_field :marka	,style: "padding:7px;border:solid 1px #000000;
+		<%= text_field_tag :marka,params[:marka]	,style: "padding:7px;border:solid 1px #000000;
 		-moz-border-radius-topleft: 13px;
 		-moz-border-radius-topright:12px;
 		-moz-border-radius-bottomleft:11px;
@@ -208,7 +209,7 @@
 		border-top-left-radius:13px;
 		border-top-right-radius:12px;
 		border-bottom-left-radius:11px;
-		border-bottom-right-radius:12px;",type:"text",placeholder:"Markayı Giriniz...",value:"" %> &nbsp;<br>
+		border-bottom-right-radius:12px;",type:"text",placeholder:"Markayı Giriniz..." %> &nbsp;<br>
 		</div>
 
 		</div>
@@ -219,7 +220,7 @@
 		</div>
 
 		<div class="panel-body">
-		<%= t.select :kind, [['Siyah', 'siyah'], ['Beyaz', 'beyaz'], ['Kırmızı', 'kirmizi'],['Mavi','mavi'],['Sarı','sari'],['Yeşil','yesil']],{}, {class:"form-control"}  %>
+		<%= select_tag :color, options_for_select([['Siyah', 'siyah'], ['Beyaz', 'beyaz'], ['Kırmızı', 'kirmizi'],['Mavi','mavi'],['Sarı','sari'],['Yeşil','yesil']],params[:color]), class:"form-control"  %>
 		
 		</div>
 		</div>
@@ -232,31 +233,31 @@
 		
 
 		<div class="panel-body">
-		<%= t.check_box :acililan  %> &nbsp;Acil İlanlar<br>
+		<%= check_box_tag :acililan,1,params[:acililan]  %> &nbsp;Acil İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :gununfirsatlari  %> &nbsp;Günün Fırsatları<br>
+		<%= check_box_tag :gununfirsatlari,1,params[:gununfirsatlari]  %> &nbsp;Günün Fırsatları<br>
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :enpopuler  %> &nbsp;En Popüler İlanlar<br>
+		<%= check_box_tag :enpopuler,1,params[:enpopuler]  %> &nbsp;En Popüler İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :ensonilanlar  %> &nbsp;En Son İlanlar<br>
+		<%= check_box_tag :ensonilanlar,1,params[:ensonilanlar]  %> &nbsp;En Son İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :fiyatidusenler  %> &nbsp;Fiyatı Düşenler<br>
+		<%= check_box_tag :fiyatidusenler,1,params[:fiyatidusenler]  %> &nbsp;Fiyatı Düşenler<br>
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :enguvenilir  %> &nbsp;En Güvenilir Satıcılardan<br>
+		<%= check_box_tag :enguvenilir,1,params[:enguvenilir]  %> &nbsp;En Güvenilir Satıcılardan<br>
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :enyakindaki  %> &nbsp;En Yakında Olan Satıcılardan<br>
+		<%= check_box_tag :enyakindaki,1,params[:enyakindaki]  %> &nbsp;En Yakında Olan Satıcılardan<br>
 		</div>
 
 		</div>
@@ -266,24 +267,15 @@
 		<h3 class="panel-title">Fiyat Aralığı</h3>
 		</div>
 
-		<div class="panel-body">
-		<%= t.check_box :sifir_elli  %> &nbsp;0 - 50 TL<br>
+		<div class=" panel-body">
+			
+		 <%= text_field_tag :taban,params[:taban]  %> &nbsp;ile <br><br>
+		
+		<%= text_field_tag :tavan,params[:tavan] %> &nbsp; arası
 		</div>
-		<div class="panel-body">
-		<%= t.check_box :elli_yuz  %> &nbsp;50 - 100 TL<br>
-		</div>
-		<div class="panel-body">
-		<%= t.check_box :yuz_ikiyuzelli  %> &nbsp;100 - 250 TL<br>
-		</div>
-		<div class="panel-body">
-		<%= t.check_box :ikiyuzelli_besyuz  %> &nbsp;250 - 500 TL<br>
-		</div>
-		<div class="panel-body">
-		<%= t.check_box :besyuz_bin  %> &nbsp;500 - 1000 TL<br>
-		</div>
-		<div class="panel-body">
-		<%= t.check_box :binustu  %> &nbsp;1000 TL üstü<br>
-		</div>
+		
+		
+		
 
 		</div>
 
@@ -295,7 +287,7 @@
 		
 		
 		
-		<%= form_for :arama,:url => 'aramaformu' , :method => :post , :html => {
+		<%= form_for :arama,:url => 'aramasonuclari' , :method => :get , :html => {
 
 		} do |t| %>
 
@@ -307,31 +299,31 @@
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :acililan  %> &nbsp;Acil İlanlar<br>
+		<%= check_box_tag :acililan,1,params[:acililan]  %> &nbsp;Acil İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :gununfirsatlari  %> &nbsp;Günün Fırsatları<br>
+		<%= check_box_tag :gununfirsatlari,1,params[:gununfirsatlari]  %> &nbsp;Günün Fırsatları<br>
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :enpopuler  %> &nbsp;En Popüler İlanlar<br>
+		<%= check_box_tag :enpopuler,1,params[:enpopuler]  %> &nbsp;En Popüler İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :ensonilanlar  %> &nbsp;En Son İlanlar<br>
+		<%= check_box_tag :ensonilanlar,1,params[:ensonilanlar]  %> &nbsp;En Son İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :fiyatidusenler  %> &nbsp;Fiyatı Düşenler<br>
+		<%= check_box_tag :fiyatidusenler,1,params[:fiyatidusenler]  %> &nbsp;Fiyatı Düşenler<br>
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :enguvenilir  %> &nbsp;En Güvenilir Satıcılardan<br>
+		<%= check_box_tag :enguvenilir,1,params[:enguvenilir]  %> &nbsp;En Güvenilir Satıcılardan<br>
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :enyakindaki  %> &nbsp;En Yakında Olan Satıcılardan<br>
+		<%= check_box_tag :enyakindaki,1,params[:enyakindaki]  %> &nbsp;En Yakında Olan Satıcılardan<br>
 		</div>
 
 		</div>
@@ -342,22 +334,22 @@
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :sifir_elli  %> &nbsp;0 - 50 TL<br>
+		<%= check_box_tag :sifir_elli  %> &nbsp;0 - 50 TL<br>
 		</div>
 		<div class="panel-body">
-		<%= t.check_box :elli_yuz  %> &nbsp;50 - 100 TL<br>
+		<%= check_box_tag :elli_yuz  %> &nbsp;50 - 100 TL<br>
 		</div>
 		<div class="panel-body">
-		<%= t.check_box :yuz_ikiyuzelli  %> &nbsp;100 - 250 TL<br>
+		<%= check_box_tag :yuz_ikiyuzelli  %> &nbsp;100 - 250 TL<br>
 		</div>
 		<div class="panel-body">
-		<%= t.check_box :ikiyuzelli_besyuz  %> &nbsp;250 - 500 TL<br>
+		<%= check_box_tag :ikiyuzelli_besyuz  %> &nbsp;250 - 500 TL<br>
 		</div>
 		<div class="panel-body">
-		<%= t.check_box :besyuz_bin  %> &nbsp;500 - 1000 TL<br>
+		<%= check_box_tag :besyuz_bin  %> &nbsp;500 - 1000 TL<br>
 		</div>
 		<div class="panel-body">
-		<%= t.check_box :binustu  %> &nbsp;1000 TL üstü<br>
+		<%= check_box_tag :binustu  %> &nbsp;1000 TL üstü<br>
 		</div>
 
 		</div>
@@ -367,7 +359,7 @@
 		<% end %>
 		
 		
-		<%= form_for :arama,:url => 'aramaformu' , :method => :post , :html => {
+		<%= form_for :arama,:url => 'aramasonuclari' , :method => :get , :html => {
 
 		} do |t| %>
 
@@ -380,7 +372,7 @@
 
 		
 		<div class="panel-body">
-		<%= t.text_field :marka	,style: "padding:7px;border:solid 1px #000000;
+		<%= text_field_tag :marka	,style: "padding:7px;border:solid 1px #000000;
 		-moz-border-radius-topleft: 13px;
 		-moz-border-radius-topright:12px;
 		-moz-border-radius-bottomleft:11px;
@@ -403,7 +395,7 @@
 		</div>
 
 		<div class="panel-body">
-		<%= t.select :kind, [['Siyah', 'siyah'], ['Beyaz', 'beyaz'], ['Kırmızı', 'kirmizi'],['Mavi','mavi'],['Sarı','sari'],['Yeşil','yesil']],{}, {class:"form-control"}  %>
+		<%= select_tag :kind, [['Siyah', 'siyah'], ['Beyaz', 'beyaz'], ['Kırmızı', 'kirmizi'],['Mavi','mavi'],['Sarı','sari'],['Yeşil','yesil']], {class:"form-control"}  %>
 		
 		</div>
 		</div>
@@ -414,31 +406,31 @@
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :acililan  %> &nbsp;Acil İlanlar<br>
+		<%= check_box_tag :acililan,1,params[:acililan]  %> &nbsp;Acil İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :gununfirsatlari  %> &nbsp;Günün Fırsatları<br>
+		<%= check_box_tag :gununfirsatlari,1,params[:gununfirsatlari]  %> &nbsp;Günün Fırsatları<br>
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :enpopuler  %> &nbsp;En Popüler İlanlar<br>
+		<%= check_box_tag :enpopuler,1,params[:enpopuler]  %> &nbsp;En Popüler İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :ensonilanlar  %> &nbsp;En Son İlanlar<br>
+		<%= check_box_tag :ensonilanlar,1,params[:ensonilanlar]  %> &nbsp;En Son İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :fiyatidusenler  %> &nbsp;Fiyatı Düşenler<br>
+		<%= check_box_tag :fiyatidusenler,1,params[:fiyatidusenler]  %> &nbsp;Fiyatı Düşenler<br>
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :enguvenilir  %> &nbsp;En Güvenilir Satıcılardan<br>
+		<%= check_box_tag :enguvenilir,1,params[:enguvenilir]  %> &nbsp;En Güvenilir Satıcılardan<br>
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :enyakindaki  %> &nbsp;En Yakında Olan Satıcılardan<br>
+		<%= check_box_tag :enyakindaki,1,params[:enyakindaki]  %> &nbsp;En Yakında Olan Satıcılardan<br>
 		</div>
 
 		</div>
@@ -449,22 +441,22 @@
 		</div>
 
 		<div class="panel-body">
-		<%= t.check_box :sifir_elli  %> &nbsp;0 - 50 TL<br>
+		<%= check_box_tag :sifir_elli  %> &nbsp;0 - 50 TL<br>
 		</div>
 		<div class="panel-body">
-		<%= t.check_box :elli_yuz  %> &nbsp;50 - 100 TL<br>
+		<%= check_box_tag :elli_yuz  %> &nbsp;50 - 100 TL<br>
 		</div>
 		<div class="panel-body">
-		<%= t.check_box :yuz_ikiyuzelli  %> &nbsp;100 - 250 TL<br>
+		<%= check_box_tag :yuz_ikiyuzelli  %> &nbsp;100 - 250 TL<br>
 		</div>
 		<div class="panel-body">
-		<%= t.check_box :ikiyuzelli_besyuz  %> &nbsp;250 - 500 TL<br>
+		<%= check_box_tag :ikiyuzelli_besyuz  %> &nbsp;250 - 500 TL<br>
 		</div>
 		<div class="panel-body">
-		<%= t.check_box :besyuz_bin  %> &nbsp;500 - 1000 TL<br>
+		<%= check_box_tag :besyuz_bin  %> &nbsp;500 - 1000 TL<br>
 		</div>
 		<div class="panel-body">
-		<%= t.check_box :binustu  %> &nbsp;1000 TL üstü<br>
+		<%= check_box_tag :binustu  %> &nbsp;1000 TL üstü<br>
 		</div>
 
 		</div>

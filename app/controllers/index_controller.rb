@@ -52,9 +52,7 @@ class IndexController < ApplicationController
 
   def aramasonuclari
 
-  end
-
-  def aramasonuclariPost
+  
 
   end
 

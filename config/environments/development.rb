@@ -38,15 +38,15 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
+    :address              => "form01.doruk.net.tr",
     :port                 => 587,
-    :user_name            => 'campusilan@gmail.com',
-    :password             => '1234Onur1234',
-    :authentication       => "plain",
+    :user_name            => 'iletisim@campusilan.com',
+    :password             => '1559o8663',
+    :authentication       => :plain,
     :enable_starttls_auto => true
   }
   

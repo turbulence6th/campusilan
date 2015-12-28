@@ -1,4 +1,6 @@
 class Verification < ApplicationMailer
+  
+  
   def verify(to)
     @greeting = "Hi"
 
