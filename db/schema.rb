@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20151225225240) do
     t.integer  "price"
     t.text     "explication"
     t.boolean  "active"
+    t.boolean  "verified"
     t.boolean  "urgent"
     t.boolean  "opportunity"
     t.datetime "created_at",      null: false
@@ -120,6 +121,7 @@ ActiveRecord::Schema.define(version: 20151225225240) do
     t.integer  "role"
     t.integer  "gender"
     t.boolean  "verified"
+    t.string   "confirm_token"
     t.boolean  "bulletin"
     t.date     "birthday"
     t.text     "address"

@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  
+  helper_method :topUniversities
    
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -26,6 +28,16 @@ class ApplicationController < ActionController::Base
     end
     
     true
+  end
+  
+  def topUniversities
+    sql = "SELECT universities.name, COUNT(*) " + 
+      "FROM adverts LEFT JOIN users ON adverts.user_id=users.id, universities " +
+      "WHERE users.university_id=universities.id "+
+      "GROUP BY universities.name "+
+      "ORDER BY COUNT(*) ASC"
+      
+    arr = ActiveRecord::Base.connection.execute(sql)
   end
   
  

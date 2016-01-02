@@ -1,5 +1,7 @@
 class Advert < ActiveRecord::Base
   
+  scope :available, -> { where(:verified => true, :active => true) }
+  
   validates :name, :price, :explication, :user, :advertable, :presence => true
   
   validates :active, :urgent, :opportunity, :inclusion => { :in => [true, false] }

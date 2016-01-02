@@ -7,7 +7,7 @@ class AdvertController < ApplicationController
 
     advert_name = params[:advert_name]
     id = advert_name.split('-')[-1]
-    @advert = Advert.where(:id => id, :advertable_type => 'Secondhand').first
+    @advert = Advert.find_by(:id => id, :advertable_type => 'Secondhand', :verified => true)
 
     if !@advert
       raise ActionController::RoutingError.new('Not Found')
@@ -32,7 +32,7 @@ class AdvertController < ApplicationController
   def evarkadasi
     advert_name = params[:advert_name]
     id = advert_name.split('-')[-1]
-    @advert = Advert.where(:id => id, :advertable_type => 'Homemate')[0]
+    @advert = Advert.find_by(:id => id, :advertable_type => 'Homemate', :verified => true)
 
     if !@advert
       raise ActionController::RoutingError.new('Not Found')
@@ -57,7 +57,7 @@ class AdvertController < ApplicationController
   def ozelders
     advert_name = params[:advert_name]
     id = advert_name.split('-')[-1]
-    @advert = Advert.where(:id => id, :advertable_type => 'Privatelesson')[0]
+    @advert = Advert.find_by(:id => id, :advertable_type => 'Privatelesson', :verified => true)
 
     if !@advert
       raise ActionController::RoutingError.new('Not Found')
@@ -91,7 +91,7 @@ class AdvertController < ApplicationController
 
     advert_name = params[:advert_name]
     id = advert_name.split('-')[-1]
-    @advert = Advert.where(:id => id).first
+    @advert = Advert.find_by(:id => id, :verified => true)
 
     if !@advert
       
@@ -210,6 +210,7 @@ class AdvertController < ApplicationController
     @advert.advertable = @secondhand
     @advert.user = current_user
     @advert.active = true
+    @advert.verified = false
     @advert.urgent = false
     @advert.opportunity = false
 
@@ -278,7 +279,7 @@ class AdvertController < ApplicationController
     kategori=params[:kategori]
     if kategori=="ikincielilan"
       @title="İkinci El İlanlar"
-      @adverts = Advert.where(:advertable_type => 'Secondhand').reverse
+      @adverts = Advert.available.where(:advertable_type => 'Secondhand').reverse
       
       
       subkategori=params[:subkategori]
@@ -317,12 +318,12 @@ class AdvertController < ApplicationController
       
     elsif kategori=="evarkadasi"
       @title="Ev Arkadaşı İlanları"
-      @adverts = Advert.where(:advertable_type => 'Homemate').reverse
+      @adverts = Advert.available.where(:advertable_type => 'Homemate').reverse
       
       
     elsif kategori=="ozelders"
       @title="Özel Ders İlanları"
-      @adverts = Advert.where(:advertable_type => 'Privatelesson').reverse
+      @adverts = Advert.available.where(:advertable_type => 'Privatelesson').reverse
       
       
       subkategori=params[:subkategori]
@@ -349,7 +350,7 @@ class AdvertController < ApplicationController
       
     elsif kategori==nil
       @title="İkinci El İlanlar"
-      @adverts = Advert.where(:advertable_type => 'Secondhand').reverse
+      @adverts = Advert.available.where(:advertable_type => 'Secondhand').reverse
     else
       redirect_to "/kategoriler"
     end
@@ -361,15 +362,15 @@ class AdvertController < ApplicationController
     if params[:acililanlar]!=nil
       @title="Acil İlanlar"
       @active = 0
-      @adverts = Advert.where(:urgent => true).order('created_at DESC')
+      @adverts = Advert.available.where(:urgent => true).order('created_at DESC')
     elsif params[:gununfirsatlari]!=nil
       @title="Günün Fırsatları"
       @active = 1
-      @adverts = Advert.where(:opportunity => true).order('created_at DESC')
+      @adverts = Advert.available.where(:opportunity => true).order('created_at DESC')
     elsif params[:ensonilanlar]!=nil
       @title="En Son İlanlar"
       @active = 2
-      @adverts = Advert.order('created_at DESC')
+      @adverts = Advert.available.order('created_at DESC')
     elsif params[:enpopulerilanlar]!=nil
       @title="En Popüler İlanlar"
       @active = 3
@@ -378,7 +379,7 @@ class AdvertController < ApplicationController
       popularList = ViewedAdvertCount.group(:advert_id).count
 
       popularList.each do |id, count|
-        @adverts << Advert.find(id)
+        @adverts << Advert.available.find(id)
       end
     elsif params[:fiyatidusenler]!=nil
       @title="Fiyatı Düşenler"
@@ -405,7 +406,7 @@ class AdvertController < ApplicationController
     advertid = params[:advertid]
     
     
-    if Advert.find(advertid).favourite_adverts << FavouriteAdvert.new(:user => current_user )
+    if Advert.available.find(advertid).favourite_adverts << FavouriteAdvert.new(:user => current_user )
       
         respond_to do |format|
         msg = { :check => true}
@@ -432,7 +433,7 @@ class AdvertController < ApplicationController
     
     advertid = params[:advertid]
     
-    a = Advert.find(advertid).favourite_adverts.find_by(:user => current_user)
+    a = Advert.available.find(advertid).favourite_adverts.find_by(:user => current_user)
     if a
         
          a.destroy

@@ -3,25 +3,29 @@ class IndexController < ApplicationController
   layout false
 
   helper_method :current_user
+  
   def index
 
-    @ensonikinciel = Advert.where(advertable_type: 'Secondhand').last(4).reverse
-    @ensonevarkadasi = Advert.where(advertable_type: 'Homemate').last(4).reverse
-    @ensonozelders = Advert.where(advertable_type: 'Privatelesson').last(4).reverse
+    @ensonikinciel = Advert.available.where(advertable_type: 'Secondhand').last(4).reverse
+    @ensonevarkadasi = Advert.available.where(advertable_type: 'Homemate').last(4).reverse
+    @ensonozelders = Advert.available.where(advertable_type: 'Privatelesson').last(4).reverse
 
-    @ensonilanlar = Advert.all.last(4).reverse
+    @ensonilanlar = Advert.available.all.last(4).reverse
 
-    @acililanlar = Advert.where(:urgent => true).order('created_at DESC').last(7)
+    @acililanlar = Advert.available.where(:urgent => true).order('created_at DESC').last(7)
 
-    @gununilanlari = Advert.where(:opportunity => true).order('created_at DESC').last(8)
+    @gununilanlari = Advert.available.where(:opportunity => true).order('created_at DESC').last(8)
 
     @mostpopular = []
 
     popularList = ViewedAdvertCount.group(:advert_id).count.first(6)
 
     popularList.each do |id, count|
-      @mostpopular << Advert.find(id)
+      adv = Advert.available.find_by(:id => id)
+      @mostpopular << adv if adv
     end
+    
+    
 
   end
 
