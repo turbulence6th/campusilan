@@ -455,5 +455,7 @@ class AdvertController < ApplicationController
     
     
   end
+  
+  
 
 end
