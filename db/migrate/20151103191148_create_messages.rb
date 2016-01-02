@@ -6,7 +6,11 @@ class CreateMessages < ActiveRecord::Migration
       t.references :to, :references => :user, :index => true
       t.string :topic
       t.text :text
+      t.boolean :fromdeleted
+      t.boolean :todeleted
+      
       t.timestamps null: false
+      
       
     end
   end

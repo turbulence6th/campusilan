@@ -67,6 +67,15 @@ class IndexController < ApplicationController
 
   def mesajSil
 
+    mesajid= params[:mesajid]
+    mesaj = Message.find(mesajid)
+    mesaj.fromdeleted = true;
+  
+     respond_to do |format|
+        msg = { :check => true}
+        format.json  { render :json => msg }
+      end
+
   end
 
   def aramasonuclari

@@ -14,6 +14,19 @@
 				</ul>
 				
 			</li>
+			<li><a href="/kategoriler">Üniversiteler</a>
+				
+				<ul>
+					<% Advert.group(:user_id).count.first(5) %>
+					<li><a href="/kategoriler/ikincielilan">İkinci El İlan</a></li>
+					
+					<li><a href="/kategoriler/evarkadasi">Ev Arkadaşı</a></li>
+					<li><a href="/kategoriler/ozelders">Özel Ders</a></li>
+					
+				</ul>
+				
+			</li>
+			
 			<li><a href="/aramasonuclari">Arama Formu</a></li>
 			<li><a href="/hakkimizda">Hakkımızda</a></li>
 			<li><a href="/iletisim">İletişim</a></li>
