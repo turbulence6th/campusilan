@@ -40,7 +40,9 @@ class UserController < ApplicationController
     @user.email = @user.email.downcase if @user.email
     @user.email_confirmation = @user.email_confirmation.downcase if @user.email_confirmation
     
-    @user.save if @user.university
+    @user.university = University.find_by_email(@user.email.partition('@').last) if @user.email
+    
+    @user.save
 
     redirect_to "/"
 
@@ -109,6 +111,10 @@ class UserController < ApplicationController
     elsif  current_user != @other_user
       render 'member2'
     else
+      
+      current_user.phone1 =  current_user.phone.split('-')[0]
+      current_user.phone2 =  current_user.phone.split('-')[1]
+      
       @favouriteadverts = []
       
       fovouritelist = FavouriteAdvert.where(:user_id => current_user.id).select(:advert_id)

@@ -25,25 +25,15 @@ class IndexController < ApplicationController
 
   end
 
- 
-  
   def mesajSil
-    
-    
-    
+
   end
-  
+
   def aramasonuclari
-    
-    
+
   end
-  
- 
-    
-  
-  
-def mesajPost
-  
+
+  def mesajPost
 
     username = params[:username]
     topic = params[:topic]
@@ -51,7 +41,7 @@ def mesajPost
     user = User.find_by_username(username)
     yenimesaj = Message.new(:from => current_user, :to => user,:topic => topic,:text => text)
 
-    if yenimesaj.save
+    if user!=current_user && yenimesaj.save
       respond_to do |format|
         msg = { :check => true}
         format.json  { render :json => msg }
@@ -75,5 +65,12 @@ def mesajPost
     
   end
 
+  def mesajSil
+
+  end
+
+  def aramasonuclari
+
+  end
 
 end

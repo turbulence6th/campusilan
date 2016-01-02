@@ -46,24 +46,9 @@ class User < ActiveRecord::Base
   validates :phone, :format => {
     :with => /\d{3}-\d{7}/
   }
-  
-  before_create :setUniversity
-  
-  private
-  def setUniversity
-    self.university = University.find_by_email(self.email.partition('@').last) if self.email
-  end
-  
-  def phone1
-    self.phone.split('-')[0]
-  end
-  
-  def phone2
-    self.phone.split('-')[1]
-  end
-  
+    
   has_secure_password
-  
+
   attr_accessor :phone1, :phone2
   
   enum :gender => [ :male, :female, :other ]
@@ -83,5 +68,6 @@ class User < ActiveRecord::Base
   belongs_to :university
   
   has_one :image, :as => :imageable, :dependent => :destroy
+  
   
 end
