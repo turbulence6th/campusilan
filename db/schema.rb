@@ -79,8 +79,10 @@ ActiveRecord::Schema.define(version: 20151225225240) do
     t.integer  "to_id"
     t.string   "topic"
     t.text     "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "fromdeleted"
+    t.boolean  "todeleted"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "messages", ["from_id"], name: "index_messages_on_from_id", using: :btree

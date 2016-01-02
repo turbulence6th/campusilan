@@ -389,9 +389,9 @@ class AdvertController < ApplicationController
       @title="En Güvenilir Satıcılar"
       @active = 5
       @adverts = []
-    elsif params[:enyakindakisaticilar]!=nil
+    elsif params[:kendiuniversitemdekiler]!=nil
       @enyakindakisaticilar=true
-      @title="En Yakında Olan Satıcılar"
+      @title="Kendi Üniversitemdeki İlanlar"
       @active = 6
       @adverts = []
     else

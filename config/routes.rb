@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'mesajlarim' => 'index#mesajlarim'
   
   post 'mesajgonder' => 'index#mesajPost', defaults: {format: :json}
+  post 'mesajsil' => 'index#mesajSil', defaults: {format: :json}
   get 'girisyap' => 'user#login'
   
   get 'kayitol' => 'user#register'
