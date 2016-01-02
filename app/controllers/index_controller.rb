@@ -63,6 +63,17 @@ def mesajPost
       end
     end
   end
+  
+  def mesajlarim
+    
+    if !current_user
+      
+      raise ActionController::RoutingError.new('Not Found')
+      
+    end
+    
+    
+  end
 
 
 end
