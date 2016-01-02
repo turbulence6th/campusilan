@@ -41,11 +41,24 @@ class UserController < ApplicationController
     @user.email_confirmation = @user.email_confirmation.downcase if @user.email_confirmation
     
     @user.university = University.find_by_email(@user.email.partition('@').last) if @user.email
+    @user.confirm_token = SecureRandom.urlsafe_base64.to_s
     
-    @user.save
+    if @user.save
+      #send mail
+    end
 
     redirect_to "/"
 
+  end
+  
+  def verify
+    
+    @user = User.find_by(:username => params[:user])
+    if @user && @user.confirm_token==params[:token]
+      @user.update_attributes(:verified => true, :confirm_token => nil)
+    end
+    redirect_to '/'
+    
   end
 
   def loginPost

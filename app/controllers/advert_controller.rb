@@ -210,6 +210,7 @@ class AdvertController < ApplicationController
     @advert.advertable = @secondhand
     @advert.user = current_user
     @advert.active = true
+    @advert.verified = false
     @advert.urgent = false
     @advert.opportunity = false
 

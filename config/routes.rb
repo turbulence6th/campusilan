@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   post 'login' => 'user#loginPost'
   get 'logout' => 'user#logout'
   post 'updateUser' => 'user#updateUser'
+  get 'verify' => 'user#verify'
   
   get 'ikinciel/:advert_name' => 'advert#ikinciel'
   post 'favorilereekle' => 'advert#favorilereekle', defaults: {format: :json}

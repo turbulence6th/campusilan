@@ -265,9 +265,10 @@
 									<br>
 									<% if current_user!= nil %>
 									<% fav = FavouriteAdvert.find_by(:advert => @advert, :user => current_user) %>
-									<button <%if  !fav %> style="display:none;" <% end %>  class="favorilereekle btn   btn-danger">Favorilere Ekle </button>
 									
-									<button <% if fav  %> style="display:none;" <% end %> class="favorilerdenkaldir btn     btn-danger">Favorilerden Kaldır </button>
+									<button <% if fav %> style="display:none;" <% end %>  class="favorilereekle btn btn-danger">Favorilere Ekle </button>
+									
+									<button <% if !fav  %> style="display:none;" <% end %> class="favorilerdenkaldir btn btn-danger">Favorilerden Kaldır </button>
 									
 									<% end %>
 									
