@@ -21,7 +21,8 @@ class IndexController < ApplicationController
     popularList = ViewedAdvertCount.group(:advert_id).count.first(6)
 
     popularList.each do |id, count|
-      #@mostpopular << Advert.available.find(id)
+      adv = Advert.available.find_by(:id => id)
+      @mostpopular << adv if adv
     end
     
     
