@@ -1,6 +1,6 @@
 University.create( :name => 'ORTA DOĞU TEKNİK ÜNİVERSİTESİ', :email => 'metu.edu.tr' )
 University.create(:name => 'ABANT İZZET BAYSAL ÜNİVERSİTESİ', :email => 'ibu.edu.tr')
-University.create(:name => 'ABDULLAH GÜLL ÜNİVERSİTESİ', :email => 'agu.edu.tr')
+University.create(:name => 'ABDULLAH GÜL ÜNİVERSİTESİ', :email => 'agu.edu.tr')
 University.create(:name => 'ACIBADEM ÜNİVERSİTESİ', :email => 'acibadem.edu.tr')
 University.create(:name => 'ADANA BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ', :email => 'adanabtu.edu.tr')
 University.create(:name => 'ADIYAMAN ÜNİVERSİTESİ', :email => 'adiyaman.edu.tr')
