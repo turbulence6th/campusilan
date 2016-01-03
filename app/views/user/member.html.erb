@@ -254,10 +254,21 @@
 									<div class="panel-body">
 										<div class="row">
 											<div class="col-md-3 col-lg-3 " align="center">
-												<% if !current_user.image %>
-												<img src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png"
+												<% if !current_user.image && current_user.gender == "male" %>
+												<img src="/resources/images/erkek.png"
 												class='img-circle img-responsive'
 												/>
+												<% elsif !current_user.image && current_user.gender == "female" %>
+												<img src="/resources/images/kadin.png"
+												class='img-circle img-responsive'
+												/>
+												
+												<% elsif !current_user.image && current_user.gender == "other" %>
+												<img src="/resources/images/diger.png"
+												class='img-circle img-responsive'
+												/>
+												
+												
 												<% else %>
 												<%= image_tag current_user.image.imagefile(:small),
 												:alt => 'User Pic',
@@ -728,7 +739,7 @@
 									<div class="row panel panel-info">
 
 										<div class="panel-heading">
-											<h3 class="panel-title">Önceki Satışlarım</h3>
+											<h3 class="panel-title">Önceki İlanlarım</h3>
 										</div>
 
 										<div class="panel-body">
@@ -797,82 +808,7 @@
 
 									</div>
 
-									<div>
-
-										<div class="row panel panel-info">
-
-											<div class="panel-heading">
-												<h3 class="panel-title">Önceki Alışlarım</h3>
-											</div>
-
-											<div class="panel-body">
-
-												<div class="row">
-
-													<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
-
-														<div class="thumbnail">
-															<a href="#"> <img src="/resources/images/cat-demo.jpg"
-															alt="cat demo photo"> </img> </a>
-
-														</div>
-
-														<div class="caption">
-
-															<b>Thumbnail label</b>
-															<p>
-																Some sample text.
-															</p>
-
-														</div>
-
-													</div>
-
-													<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
-
-														<div class="thumbnail">
-															<a href="#"> <img src="/resources/images/cat-demo.jpg"
-															alt="cat demo photo"> </img> </a>
-
-														</div>
-
-														<div class="caption">
-
-															<b>Thumbnail label</b>
-															<p>
-																Some sample text.
-															</p>
-
-														</div>
-
-													</div>
-
-													<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
-
-														<div class="thumbnail">
-															<a href="#"> <img src="/resources/images/cat-demo.jpg"
-															alt="cat demo photo"> </img> </a>
-
-														</div>
-
-														<div class="caption">
-
-															<b>Thumbnail label</b>
-															<p>
-																Some sample text.
-															</p>
-
-														</div>
-
-													</div>
-
-												</div>
-
-											</div>
-
-										</div>
-
-									</div>
+									
 
 								</div>
 

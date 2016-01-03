@@ -305,12 +305,16 @@
 												
 												
 												
-												<h5><% if advert.name.length > 30 %>
-														<%= advert.name[0..30] %>..
-													<% else %>
-														<%= advert.name %>
-													<% end %>
-												</h5>
+												<% if advert.name.length <= 15 %>
+
+											<h5><%= advert.name %></h5><br>
+											
+
+											<% else %>
+
+											<h5><%= advert.name[0..25] + "..." %></h5>
+
+											<% end %>
 	
 											</div>
 	

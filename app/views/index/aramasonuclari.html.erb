@@ -365,14 +365,15 @@
 
 		<div class="ikinciel" style="display:none">
 
+		
+			
 		<div class=" marka panel panel-danger">
 		<div class="panel-heading">
 		<h3 class="panel-title">Marka</h3>
 		</div>
 
-		
 		<div class="panel-body">
-		<%= text_field_tag :marka	,style: "padding:7px;border:solid 1px #000000;
+		<%= text_field_tag :marka,params[:marka]	,style: "padding:7px;border:solid 1px #000000;
 		-moz-border-radius-topleft: 13px;
 		-moz-border-radius-topright:12px;
 		-moz-border-radius-bottomleft:11px;
@@ -384,7 +385,7 @@
 		border-top-left-radius:13px;
 		border-top-right-radius:12px;
 		border-bottom-left-radius:11px;
-		border-bottom-right-radius:12px;",type:"text",placeholder:"Markayı Giriniz...",value:"" %> &nbsp;<br>
+		border-bottom-right-radius:12px;",type:"text",placeholder:"Markayı Giriniz..." %> &nbsp;<br>
 		</div>
 
 		</div>
@@ -395,7 +396,7 @@
 		</div>
 
 		<div class="panel-body">
-		<%= select_tag :kind, [['Siyah', 'siyah'], ['Beyaz', 'beyaz'], ['Kırmızı', 'kirmizi'],['Mavi','mavi'],['Sarı','sari'],['Yeşil','yesil']], {class:"form-control"}  %>
+		<%= select_tag :color, options_for_select([['Siyah', 'siyah'], ['Beyaz', 'beyaz'], ['Kırmızı', 'kirmizi'],['Mavi','mavi'],['Sarı','sari'],['Yeşil','yesil']],params[:color]), class:"form-control"  %>
 		
 		</div>
 		</div>
@@ -404,6 +405,8 @@
 		<div class="panel-heading">
 		<h3 class="panel-title">Fırsatlardan seç</h3>
 		</div>
+		
+		
 
 		<div class="panel-body">
 		<%= check_box_tag :acililan,1,params[:acililan]  %> &nbsp;Acil İlanlar<br>
@@ -440,24 +443,14 @@
 		<h3 class="panel-title">Fiyat Aralığı</h3>
 		</div>
 
-		<div class="panel-body">
-		<%= check_box_tag :sifir_elli  %> &nbsp;0 - 50 TL<br>
+		<div class=" panel-body">
+			
+		 <%= text_field_tag :taban,params[:taban]  %> &nbsp;ile <br><br>
+		
+		<%= text_field_tag :tavan,params[:tavan] %> &nbsp; arası
 		</div>
-		<div class="panel-body">
-		<%= check_box_tag :elli_yuz  %> &nbsp;50 - 100 TL<br>
-		</div>
-		<div class="panel-body">
-		<%= check_box_tag :yuz_ikiyuzelli  %> &nbsp;100 - 250 TL<br>
-		</div>
-		<div class="panel-body">
-		<%= check_box_tag :ikiyuzelli_besyuz  %> &nbsp;250 - 500 TL<br>
-		</div>
-		<div class="panel-body">
-		<%= check_box_tag :besyuz_bin  %> &nbsp;500 - 1000 TL<br>
-		</div>
-		<div class="panel-body">
-		<%= check_box_tag :binustu  %> &nbsp;1000 TL üstü<br>
-		</div>
+
+		
 
 		</div>
 

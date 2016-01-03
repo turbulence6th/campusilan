@@ -9,5 +9,20 @@ class Privatelesson < ActiveRecord::Base
   enum :location => [ :ogrencievi, :ogretmenevi, :sinifta ]
   
   has_one :advert, :as => :advertable
+  
+  def locationType
+    if self.location=='ogrencievi'
+      return "Öğrenci Evi"
+      
+      elsif self.location=='ogretmenevi'
+      return "Öğretmen Evi"
+      
+      elsif self.location=='sinifta'
+      return "Sınıfta"
+      
+    end
+    
+    
+  end
 
 end

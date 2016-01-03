@@ -361,46 +361,47 @@
 								<h2 style="text-align:center;" class="">Benzer Ürünler</h2>
 
 							</div>
+							
+							<%if @similar == [] %>
+							
+							<p> Benzer İlan Bulunmamaktadır.</p>
+							
+							<% else %>
+							
 
 							<div class="content-top1">
-								<div class="col-md-4 col-md3">
-									<div class="col-md1 simpleCart_shelfItem">
-										<a href="single.html"> <img class="img-responsive" src="/resources/plugins/producttemplate/images/pi6.png" alt="" /> </a>
-										<h3><a href="single.html">Jeans</a></h3>
-										<div class="price">
-											<h5 class="item_price">$300</h5>
-											<a href="#" class="item_add">İncele</a>
-											<div class="clearfix"></div>
+								
+								<% @similar.each do |advert| %>
+								
+									<div class="col-md-4 col-md3">
+										<div class="col-md1 simpleCart_shelfItem">
+											<% if advert.images != [] %>
+											<a title="<%= advert.name%> " href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small), :class => 'img-responsive' %> </a>
+											<% else %>
+											<a title="<%= advert.name%> " href="<%= advert.href %>"> <%= image_tag Image.new.imagefile,class:"img-responsive"  %> </a>
+											<% end %>
+											<% if advert.name.size >= 30 %>
+											<h3><a href="<%= advert.href %>"> <%= advert.name[0..27] %>... </a></h3>
+											<% else %>
+											<h3><a href="<%= advert.href %>"> <%= advert.name %> </a></h3>
+											<% end %>
+											<div class="price">
+												<h5 class="item_price"><%= advert.price %>&#8378;</h5>
+												<a href="#" class="item_add">İncele</a>
+												<div class="clearfix"></div>
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="col-md-4 col-md3">
-									<div class="col-md1 simpleCart_shelfItem">
-										<a href="single.html"> <img class="img-responsive" src="/resources/plugins/producttemplate/images/pi7.png" alt="" /> </a>
-										<h3><a href="single.html">Tops</a></h3>
-										<div class="price">
-											<h5 class="item_price">$300</h5>
-											<a href="#" class="item_add">İncele</a>
-											<div class="clearfix"></div>
-										</div>
-
-									</div>
-								</div>
-								<div class="col-md-4 col-md3">
-									<div class="col-md1 simpleCart_shelfItem">
-										<a href="single.html"> <img class="img-responsive" src="/resources/plugins/producttemplate/images/pi.png" alt="" /> </a>
-										<h3><a href="single.html">Tops</a></h3>
-										<div class="price">
-											<h5 class="item_price">$300</h5>
-											<a href="#" class="item_add">İncele</a>
-											<div class="clearfix"></div>
-										</div>
-
-									</div>
-								</div>
+								
+								<% end %>
+								
+								
+								
 
 								<div class="clearfix"></div>
 							</div>
+							
+							<% end %>
 						</div>
 						<!----->
 						<div class="col-md-3 product-bottom">
@@ -416,46 +417,35 @@
 							<br>
 							<div class="product-bottom">
 								<h3 class="cate">Bu ürüne bakanlar bunlara da baktı</h3>
+								
+								<% @looked.each do |advert|%>
 								<div class="product-go">
 									<div class=" fashion-grid">
-										<a href="single.html"><img class="img-responsive " src="/resources/plugins/producttemplate/images/pr.jpg" alt=""></a>
+										<% if advert.images != [] %>
+										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name,class:"img-responsive" %></a>
+										<% else %>
+										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name,class:"img-responsive"  %></a>
+										<% end %>
 									</div>
 									<div class=" fashion-grid1">
-										<h6 class="best2"><a href="single.html" >Lorem ipsum dolor sitamet consectetuer </a></h6>
-										<span class=" price-in1"> $40.00</span>
+										
+										<% if advert.name.size >=40 %>
+										<h6 class="best2"><a href="<%= advert.href %>" ><%= advert.name[0..39] %>...</a></h6>
+										<% else %>
+										<h6 class="best2"><a href="<%= advert.href %>" ><%= advert.name %></a></h6>
+										<% end %>
+										<span class=" price-in1"> <%= advert.price %>&#8378;</span>
+										
+										
+										
 									</div>
 									<div class="clearfix"></div>
 								</div>
-								<div class="product-go">
-									<div class=" fashion-grid">
-										<a href="single.html"><img class="img-responsive " src="/resources/plugins/producttemplate/images/pr1.jpg" alt=""></a>
-									</div>
-									<div class=" fashion-grid1">
-										<h6 class="best2"><a href="single.html" >Lorem ipsum dolor sitamet consectetuer </a></h6>
-										<span class=" price-in1"> $40.00</span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-								<div class="product-go">
-									<div class=" fashion-grid">
-										<a href="single.html"><img class="img-responsive " src="/resources/plugins/producttemplate/images/pr2.jpg" alt=""></a>
-									</div>
-									<div class=" fashion-grid1">
-										<h6 class="best2"><a href="single.html" >Lorem ipsum dolor sitamet consectetuer </a></h6>
-										<span class=" price-in1"> $40.00</span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-								<div class="product-go">
-									<div class=" fashion-grid">
-										<a href="single.html"><img class="img-responsive " src="/resources/plugins/producttemplate/images/pr3.jpg" alt=""></a>
-									</div>
-									<div class=" fashion-grid1">
-										<h6 class="best2"><a href="single.html" >Lorem ipsum dolor sitamet consectetuer </a></h6>
-										<span class=" price-in1"> $40.00</span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
+								
+								<% end %>
+								
+								
+								
 							</div>
 
 							<!--//seller-->

@@ -2,7 +2,7 @@
 
 	<div style="z-index: 3;">
 
-		<ul id="main-menu" class="sm sm-blue" style="border-radius: 0">
+		<ul id="main-menu" class="sm sm-blue" style="z-index: 3;border-radius: 0">
 			<li><a href="/">Anasayfa</a></li>
 			<li><a href="/kategoriler">Kategoriler</a>
 				<ul>
@@ -14,12 +14,12 @@
 				</ul>
 				
 			</li>
-			<li><a href="/kategoriler">Üniversiteler</a>
+			<li><a href="/universiteler">Üniversiteler</a>
 				
 				<ul>
 					
 					<% topUniversities.each do |record| %>
-					<li><a href="/kategoriler/ikincielilan"><%= record['name'] + " (" + record['count'] + ")" %></a></li>
+					<li><a href="/universiteler/?universities=<%= University.find_by(name: record['name']).id %>"><%= record['name'] + " (" + record['count'] + ")" %></a></li>
 					<% end %>
 				</ul>
 				

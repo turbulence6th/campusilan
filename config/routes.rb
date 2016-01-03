@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'satis-alis/:alislarim' => 'index#satis_alis'
   
   get 'mesajlarim' => 'index#mesajlarim'
+
   
   post 'mesajgonder' => 'index#mesajPost', defaults: {format: :json}
   post 'mesajsil' => 'index#mesajSil', defaults: {format: :json}
@@ -45,6 +46,7 @@ Rails.application.routes.draw do
   get 'kategoriler/:kategori/:subkategori' => 'advert#kategoriler'  
   get 'firsatlar' => 'advert#firsatlar'
   get 'uye/:username' => 'user#member'
+  get 'universiteler' => 'index#universiteler'
 
   get "/404" => "error#not_found"
   get "/422" => "error#unacceptable"
