@@ -9,4 +9,9 @@ class Message < ActiveRecord::Base
     :maximum => 500
   }
   
+  scope :valid_to, -> {where('todeleted=false or todeleted is null') }
+  
+  scope :valid_from, -> {where('fromdeleted=false or fromdeleted is null') }
+  
+  
 end

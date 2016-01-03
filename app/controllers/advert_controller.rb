@@ -27,6 +27,12 @@ class AdvertController < ApplicationController
     @advert_user = @advert.user
     @images = @advert.images
 
+    @looked = Advert.select('a2.*').from('adverts a,users u, viewed_adverts v, adverts a2, viewed_adverts v2')
+      .where('a.id=1 AND v.user_id = u.id AND v.advert_id = a.id AND a.id!=a2.id AND v2.user_id = u.id AND v2.advert_id = a2.id').group('a2.id').order('count(a2.id)')[0..4]
+      
+    @similar = Advert.joins('JOIN secondhands ON adverts.advertable_id=secondhands.id').where(:advertable_type => 'Secondhand',:secondhands => { :category => @advertable.read_attribute(:category) }).where.not(:id => @advert.id).sample(4)
+    puts @similar
+    
   end
 
   def evarkadasi
@@ -41,7 +47,7 @@ class AdvertController < ApplicationController
     if @advert.href != '/evarkadasi/' + advert_name
       redirect_to '/evarkadasi/' + link
     end
-    
+
     if current_user
       @advert.viewed_adverts << ViewedAdvert.new(:user => current_user)
     end
@@ -53,7 +59,7 @@ class AdvertController < ApplicationController
     @images = @advert.images
 
   end
-  
+
   def ozelders
     advert_name = params[:advert_name]
     id = advert_name.split('-')[-1]
@@ -66,7 +72,7 @@ class AdvertController < ApplicationController
     if @advert.href != '/ozelders/' + advert_name
       redirect_to '/ozelders/' + link
     end
-    
+
     if current_user
       @advert.viewed_adverts << ViewedAdvert.new(:user => current_user)
     end
@@ -94,13 +100,13 @@ class AdvertController < ApplicationController
     @advert = Advert.find_by(:id => id, :verified => true)
 
     if !@advert
-      
+
       raise ActionController::RoutingError.new('Not Found')
-      
+
     elsif !current_user || (@advert.user!=current_user && current_user.role!='admin')
-      
+
       raise ActionController::RoutingError.new('Not Found')
-       
+
     end
 
     name = @advert.name
@@ -108,21 +114,20 @@ class AdvertController < ApplicationController
     if link != advert_name
       redirect_to '/ilanguncelle/' + link
     end
-    
+
     @images = @advert.images
-    
 
   end
-  
-  def ilanguncellePost 
-    
+
+  def ilanguncellePost
+
     if params[:advert_type] == 'secondhand'
-      
+
       secondhandParam = params.require(:advert).require(:secondhand).permit(
-        :category, :color, :brand, :usage, :warranty)
+      :category, :color, :brand, :usage, :warranty)
       advertParam = params.require(:advert).permit(:name, :price, :explication)
       id = params.require(:advert).permit(:id)[:id]
-      
+
       advert = Advert.find(id)
       if !current_user || (advert.user!=current_user && current_user.role!='admin') || advert.advertable_type!='Secondhand'
         raise ActionController::RoutingError.new('Not Found')
@@ -137,14 +142,14 @@ class AdvertController < ApplicationController
         end
         redirect_to URI(request.referer).path
       end
-      
+
     elsif params[:advert_type] == 'homemate'
-      
+
       homemateParam = params.require(:advert).require(:homemate).permit(
-        :state, :city, :demand)
+      :state, :city, :demand)
       advertParam = params.require(:advert).permit(:name, :price, :explication)
       id = params.require(:advert).permit(:id)[:id]
-      
+
       advert = Advert.find(id)
       if !current_user || (advert.user!=current_user && current_user.role!='admin') || advert.advertable_type!='Homemate'
         raise ActionController::RoutingError.new('Not Found')
@@ -159,48 +164,43 @@ class AdvertController < ApplicationController
         end
         redirect_to URI(request.referer).path
       end
-      
+
     end
-      
-    
+
   end
-  
-  def deleteimage 
-    
+
+  def deleteimage
+
     advert = Advert.find(params[:advert])
     image = Image.find(params[:image])
-    
+
     if !current_user || (advert.user!=current_user && current_user.role!='admin')
-      
+
       respond_to do |format|
-        msg = {:check => false} 
+        msg = {:check => false}
         format.json { render :json => msg}
-       
+
       end
-     elsif advert.images.include? image
-       
-       image.destroy
-       
-       respond_to do |format|
-          msg = {:check => true} 
-          format.json { render :json => msg}
-       
-        end
-       
-     else
-       
-        respond_to do |format|
-          msg = {:check => false} 
-          format.json { render :json => msg}
-       
-        end
-       
-        
-       
+    elsif advert.images.include? image
+
+      image.destroy
+
+      respond_to do |format|
+        msg = {:check => true}
+        format.json { render :json => msg}
+
+      end
+
+    else
+
+      respond_to do |format|
+        msg = {:check => false}
+        format.json { render :json => msg}
+
+      end
+
     end
-    
-    
-    
+
   end
 
   def secondhandPost
@@ -224,9 +224,9 @@ class AdvertController < ApplicationController
     @advert.save
     redirect_to "/"
   end
-  
+
   def privatelessonPost
-    
+
     @privatelesson = Privatelesson.new(params.require(:advert).require(:advertable).permit(:state, :city,
       :kind, :lecture, :location))
     @advert = Advert.new(params.require(:advert).permit(:name, :price, :explication))
@@ -242,18 +242,17 @@ class AdvertController < ApplicationController
         @advert.images << @image
       end
     end
-    
+
     puts @advert.valid?
     puts @privatelesson.valid?
 
     @advert.save
     redirect_to "/"
-    
-    
+
   end
-  
+
   def homematePost
-    
+
     @homemate = Homemate.new(params.require(:advert).require(:advertable).permit(
       :state, :city, :demand))
     @advert = Advert.new(params.require(:advert).permit(:name, :price, :explication))
@@ -272,7 +271,7 @@ class AdvertController < ApplicationController
 
     @advert.save
     redirect_to "/"
-    
+
   end
 
   def kategoriler
@@ -280,8 +279,7 @@ class AdvertController < ApplicationController
     if kategori=="ikincielilan"
       @title="İkinci El İlanlar"
       @adverts = Advert.available.where(:advertable_type => 'Secondhand').reverse
-      
-      
+
       subkategori=params[:subkategori]
       if subkategori=="beyazesya"
         @title="Beyaz Eşya"
@@ -309,23 +307,20 @@ class AdvertController < ApplicationController
         @adverts = @adverts.select {|adv| adv.advertable.category=='giyim'}
       elsif subkategori=="dersnotu"
         @title="Ders Notları"
-        @adverts = @adverts.select {|adv| adv.advertable.category=='dersnotu'}    
+        @adverts = @adverts.select {|adv| adv.advertable.category=='dersnotu'}
       elsif subkategori=="diger"
         @title="Diğer"
         @adverts = @adverts.select {|adv| adv.advertable.category=='diger'}
       end
-      
-      
+
     elsif kategori=="evarkadasi"
       @title="Ev Arkadaşı İlanları"
       @adverts = Advert.available.where(:advertable_type => 'Homemate').reverse
-      
-      
+
     elsif kategori=="ozelders"
       @title="Özel Ders İlanları"
       @adverts = Advert.available.where(:advertable_type => 'Privatelesson').reverse
-      
-      
+
       subkategori=params[:subkategori]
       if subkategori=="matematik"
         @title="Matematik"
@@ -344,10 +339,9 @@ class AdvertController < ApplicationController
         @adverts = @adverts.select {|adv| adv.advertable.lecture=='genelmuhendislik'}
       elsif subkategori=="genelegitimbilimleri"
         @title="Genel Eğitim Bilimleri"
-        @adverts = @adverts.select {|adv| adv.advertable.lecture=='genelegitimbilimleri'} 
+        @adverts = @adverts.select {|adv| adv.advertable.lecture=='genelegitimbilimleri'}
       end
-      
-      
+
     elsif kategori==nil
       @title="İkinci El İlanlar"
       @adverts = Advert.available.where(:advertable_type => 'Secondhand').reverse
@@ -355,7 +349,6 @@ class AdvertController < ApplicationController
       redirect_to "/kategoriler"
     end
 
-    
   end
 
   def firsatlar
@@ -400,61 +393,53 @@ class AdvertController < ApplicationController
       @adverts = []
     end
   end
-  
+
   def favorilereekle
-    
+
     advertid = params[:advertid]
-    
-    
+
     if Advert.available.find(advertid).favourite_adverts << FavouriteAdvert.new(:user => current_user )
-      
-        respond_to do |format|
+
+      respond_to do |format|
         msg = { :check => true}
         format.json  { render :json => msg }
-        
-        end
-      
-     else
-       
-       respond_to do |format|
+
+      end
+
+    else
+
+      respond_to do |format|
         msg = { :check => false}
         format.json  { render :json => msg }
       end
-       
-        
+
     end
-    
-    
-    
-    
+
   end
-  
+
   def favorilerdenkaldir
-    
+
     advertid = params[:advertid]
-    
+
     a = Advert.available.find(advertid).favourite_adverts.find_by(:user => current_user)
     if a
-        
-         a.destroy
-        respond_to do |format|
+
+      a.destroy
+      respond_to do |format|
         msg = { :check => true}
         format.json  { render :json => msg }
-        
-        end
-      
-     else
-       
-       respond_to do |format|
+
+      end
+
+    else
+
+      respond_to do |format|
         msg = { :check => false}
         format.json  { render :json => msg }
       end
-       
-        
+
     end
-    
-    
-    
+
   end
 
 end

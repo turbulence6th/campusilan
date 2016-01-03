@@ -45,7 +45,7 @@
 		rel='stylesheet' type='text/css'>
 
 		<!-- Fixed Header sonu -->
-		
+
 		<!-- Arama Kutucuğu-->
 
 		<link href="/resources/css/searchbox.css" rel="stylesheet"
@@ -62,7 +62,6 @@
 
 		<link rel="stylesheet" href="/resources/plugins/DropDownMenu/css/component.css">
 
-		
 		<!-- Smart Menus plugin -->
 
 		<!-- jQuery import -->
@@ -94,18 +93,15 @@
 		<!-- end of plugins  -->
 
 		<style>
-		
-		body {
-			background-color:#F0F7F7;
-			
-		}
-		
-		
+			body {
+				background-color: #F0F7F7;
+			}
+
 			@media screen and (min-width: 1200px) {
 				body {
 					padding-left: 50px;
-				padding-right: 50px;
-				padding-top:30px;
+					padding-right: 50px;
+					padding-top: 30px;
 				}
 			}
 
@@ -149,17 +145,15 @@
 				<%= render "headerfixed" %>
 
 			</div>
-			
+
 			<!-- You need this element to prevent the content of the page from jumping up -->
 			<div class="header-fixed-placeholder"></div>
-			
+
 			<div class="row">
 
 				<%= render "smartmenus" %>
 
 			</div>
-			
-			
 
 			<div style="margin-top:-30px;"class="row">
 
@@ -175,25 +169,24 @@
 											<ul>
 												<li>
 													<a href="/kategoriler/ikincielilan/beyazesya">Beyaz Eşya</a>
-												</li>	
-												
+												</li>
+
 												<li>
 													<a href="/kategoriler/ikincielilan/dersnotu">Ders Notu</a>
-												</li>	
-												
+												</li>
+
 												<li>
 													<a href="/kategoriler/ikincielilan/elektronik">Elektronik</a>
-												</li>	
-												
+												</li>
+
 												<li>
 													<a href="/kategoriler/ikincielilan/evdekorasyonu">Ev Dekorasyonu</a>
-												</li>	
-												
+												</li>
+
 												<li>
 													<a href="/kategoriler/ikincielilan/giyim">Giyim</a>
-												</li>	
-												
-												
+												</li>
+
 											</ul>
 										</div>
 										<div>
@@ -201,20 +194,19 @@
 											<ul>
 												<li>
 													<a href="/kategoriler/ikincielilan/kirtasiye">Kırtasiye</a>
-													
-												</li>	
-												
+
+												</li>
+
 												<li>
 													<a href="/kategoriler/ikincielilan/mutfakesyalari">Mutfak Eşyaları</a>
-													
-												</li>	
-												
+
+												</li>
+
 												<li>
 													<a href="/kategoriler/ikincielilan/muzikaletleri">Müzik Aletleri</a>
-													
-												</li>	
-												
-												
+
+												</li>
+
 											</ul>
 										</div>
 										<div>
@@ -222,84 +214,78 @@
 											<ul>
 												<li>
 													<a href="/kategoriler/ikincielilan/vasita">Vasıta</a>
-													
-												</li>	
-													
-												<li>	
+
+												</li>
+
+												<li>
 													<a href="/kategoriler/ikincielilan/diger">Diğer</a>
 												</li>
-												
+
 											</ul>
-											
+
 										</div>
 									</div><!-- /cbp-hrsub-inner -->
 								</div><!-- /cbp-hrsub -->
 							</li>
 							<li>
 								<a href="#">Ev Arkadaşı</a>
-								
+
 							</li>
-							
+
 							<li>
 								<a href="#">Özel Ders</a>
 								<div class="cbp-hrsub">
 									<div class="cbp-hrsub-inner">
-										
+
 										<div>
 											<h4>Temel Bilimler</h4>
 											<ul>
 												<li>
 													<a href="/kategoriler/ozelders/matematik">Matematik</a>
 												</li>
-												
+
 												<li>
 													<a href="/kategoriler/ozelders/fizik">Fizik</a>
 												</li>
-												
-												
+
 												<li>
 													<a href="/kategoriler/ozelders/kimya">Kimya</a>
 												</li>
-												
-												
+
 												<li>
 													<a href="/kategoriler/ozelders/biyoloji">Biyoloji</a>
 												</li>
-												
 
-												
 											</ul>
-											
-										</div>	
-											
+
+										</div>
+
 										<div>
 											<h4>Mühendislik</h4>
 											<ul>
 												<li>
 													<a href="/kategoriler/ozelders/genelmuhendislik">Genel Mühendislik Özel Ders İlanları</a>
 												</li>
-												
+
 											</ul>
-											
+
 										</div>
-										
+
 										<div>
 											<h4>Eğitim Bilimleri</h4>
 											<ul>
 												<li>
 													<a href="/kategoriler/ozelders/genelegitimbilimleri">Genel Eğitim Bilimleri Özel Ders İlanları</a>
 												</li>
-												
+
 											</ul>
-											
+
 										</div>
-										
-										
-										
+
 									</div><!-- /cbp-hrsub-inner -->
 								</div><!-- /cbp-hrsub -->
 							</li>
-							
+
 						</ul>
 					</nav>
 				</div>
@@ -314,6 +300,25 @@
 					<div class="col-lg-3 hidden-xs hidden-sm hidden-md">
 
 						<%= render "kullanicipaneli"   %>
+
+						<div class="panel panel-danger">
+							<div class="panel-heading">
+								Üniversiteler
+							</div>
+							<div class="panel-body ">
+								
+								
+								<%= form_tag '/universiteler' , :method => :get do %>
+
+						<%= select_tag :universities,options_for_select(University.order(:name).collect { |a| [a.name, a.id] },params[:universities]),{:onchange => "this.form.submit()",style:"width:100%; "} %>
+
+						<% end %>
+								
+								
+							</div>
+						</div>
+
+						
 
 						<div class="well">
 
@@ -359,54 +364,42 @@
 								<div class="panel-body">
 									<% if @adverts!=[] %>
 									<% @adverts.each do |advert|  %>
-									
-										<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
-											<div class="thumbnail">
-												<a href="<%= advert.href %>"> 
-													<% if advert.images == [] %>
-														<%= image_tag Image.new.imagefile,title:advert.name %> 
-													<% else %>
-														<%= image_tag advert.images[0].imagefile(:small),title:advert.name %> 
-													<% end %>
-												</a>
-	
-											</div>
-	
-											<div class="caption">
-												
-												
-												<% if advert.name.length >= 12 %>
+									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
-											<h5><%= advert.name[0..11] %>...</h5>
-											
+										<div class="thumbnail">
+											<a href="<%= advert.href %>"> <% if advert.images == [] %>
+											<%= image_tag Image.new.imagefile %>
+											<% else %>
+											<%= image_tag advert.images[0].imagefile(:small) %>
+											<% end %> </a>
+
+										</div>
+
+										<div class="caption">
+
+											<% if advert.name.length <= 15 %>
+
+											<h5><%= advert.name %></h5>
+											<br>
 
 											<% else %>
 
-											<h5><%= advert.name %></h5>
+											<h5><%= advert.name[0..25] + "..." %></h5>
 
 											<% end %>
-	
-											</div>
-	
+
 										</div>
-										
-										<% end %>
-										
-										<% else %>
-										
-										
 
-											<span>Henüz hiç ilan bulunmamaktadır!!</span>
-	
-										
-										
-										
+									</div>
+
 									<% end %>
-									
 
-									
-									
+									<% else %>
+
+									<span>Henüz hiç ilan bulunmamaktadır!!</span>
+
+									<% end %>
 
 								</div>
 
@@ -425,10 +418,8 @@
 			<!-- pluginler -->
 
 			<!--  Dropdown menü-->
-			
+
 			<script src="/resources/plugins/DropDownMenu/js/cbpHorizontalMenu.min.js"></script>
-			
-			
 
 			<script>
 				$(function() {

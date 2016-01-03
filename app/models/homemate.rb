@@ -10,4 +10,27 @@ class Homemate < ActiveRecord::Base
   
   enum :demand => [ :male, :female, :both ]
 
+
+  def aranan
+    
+    if self.demand == 'male'
+      
+      return 'Erkek'
+      
+    elsif self.demand == 'female'
+      
+      return 'Kadın' 
+      
+   
+    
+    elsif self.demand == 'both'
+      
+      return 'Hepsi' 
+      
+    end
+    
+    
+  end
+
+
 end

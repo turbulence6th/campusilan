@@ -34,8 +34,6 @@
 		type="text/css" />
 
 		<script src="/resources/js/modernizer.js"></script>
-		
-		
 
 		<!-- Smart Menus plugin -->
 
@@ -121,12 +119,16 @@
 					padding: 10px;
 				}
 			}
+			
+			
+
+			
+
 		</style>
 
 	</head>
 
 	<body>
-		
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
@@ -204,11 +206,11 @@
 							<div class="panel-body">
 								<a style="margin-left:10px;" href="/kategoriler/ikincielilan/vasita">-Vasıta </a>
 							</div>
-							
+
 							<div class="panel-body">
 								<a style="margin-left:10px;" href="/kategoriler/ikincielilan/giyim">-Giyim </a>
 							</div>
-							
+
 							<div class="panel-body">
 								<a style="margin-left:10px;" href="/kategoriler/ikincielilan/dersnotu">-Ders Notu </a>
 							</div>
@@ -224,34 +226,30 @@
 							<div class="panel-body">
 								<a href="/kategoriler/ozelders">Özel Ders </a>
 							</div>
-							
+
 							<div class="panel-body">
 								<a style="margin-left:10px;" href="/kategoriler/ozelders/matematik">-Matematik </a>
 							</div>
-							
+
 							<div class="panel-body">
 								<a style="margin-left:10px;" href="/kategoriler/ozelders/fizik">-Fizik </a>
 							</div>
-							
+
 							<div class="panel-body">
 								<a style="margin-left:10px;" href="/kategoriler/ozelders/kimya">-Kimya </a>
 							</div>
-							
+
 							<div class="panel-body">
 								<a style="margin-left:10px;" href="/kategoriler/ozelders/biyoloji">-Biyoloji </a>
 							</div>
-							
+
 							<div class="panel-body">
 								<a style="margin-left:10px;" href="/kategoriler/ozelders/genelmuhendislik">-Genel Mühendislik </a>
 							</div>
-							
+
 							<div class="panel-body">
 								<a style="margin-left:10px;" href="/kategoriler/ozelders/genelegitimbilimleri">-Genel Eğitim Bilimleri </a>
 							</div>
-
-
-
-
 
 							<div class="panel-heading">
 								<h3 class="panel-title">Fırsatlar Paneli</h3>
@@ -280,24 +278,6 @@
 							<div class="panel-body">
 								<a href="/firsatlar?enguvenilirsaticilar=1">En Güvenilir Satıcılar</a>
 
-							</div>
-
-							
-
-							<div class="panel-heading">
-								<h3 class="panel-title">Diğer</h3>
-							</div>
-
-							<div class="panel-body">
-								<a href="/yardim">Yardım </a>
-							</div>
-
-							<div class="panel-body">
-								<a href="/kullanimkosullari">Kullanıcı Sözleşmesi</a>
-							</div>
-
-							<div class="panel-body">
-								<a href="/iletisim">İletişim</a>
 							</div>
 
 						</div>
@@ -393,8 +373,7 @@
 
 					</div>
 
-					<div style=""
-					class="col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm">
+					<div style="" class="gununfirsatlari col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm">
 
 						<div style="height:775px;" class="panel panel-info">
 
@@ -405,13 +384,13 @@
 
 							<div class="panel-body">
 
-								<div class="row">
+								<div style="margin-bottom:50px;"class="row">
 
 									<% @gununilanlari.each do |advert| %>
 
 									<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
 
-										<div class="thumbnail">
+										<div  class=" thumbnail">
 											<% if advert.images != [] %>
 											<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
 											<% else %>
@@ -420,15 +399,16 @@
 
 										</div>
 
-										<div class="caption">
+										<div  class="caption">
 
-											<% if advert.name.length <= 25 %>
+											<% if advert.name.length >= 12 %>
 
-											<h5><%= advert.name %></h5>
+											<h5><%= advert.name[0..11] %>...</h5>
+											
 
 											<% else %>
 
-											<h5><%= advert.name[0..25] + "..." %></h5>
+											<h5><%= advert.name %></h5>
 
 											<% end %>
 
@@ -599,7 +579,6 @@
 
 						</div>
 
-						
 						<div class="panel-heading">
 							<h3 class="panel-title">Diğer</h3>
 						</div>
@@ -703,8 +682,6 @@
 
 						</div>
 
-						
-
 						<div class="panel-heading">
 							<h3 class="panel-title">Diğer</h3>
 						</div>
@@ -769,20 +746,11 @@
 					<% if current_user!=nil %>
 					<div style=" margin-top:40px;"  class="hidden-md hidden-sm row">
 
-						
-						<a href="/uye/<%= current_user.username%>" style="margin-left:15px;margin-right:5px;"   type="button" class="col-xs-3 btn btn-md btn-info">
-							<span style="font-size:10px;">Üye Bilgileri</span>
-						</a>
+						<a href="/uye/<%= current_user.username%>" style="margin-left:15px;margin-right:5px;"   type="button" class="col-xs-3 btn btn-md btn-info"> <span style="font-size:10px;">Üye Bilgileri</span> </a>
 
-						
-						<a href="/kategoriler" style="margin-right:5px;" type="button" class="col-xs-3  btn btn-md btn-info">
-							<span style="font-size:10px;">Kategoriler</span>
-						</a>
+						<a href="/kategoriler" style="margin-right:5px;" type="button" class="col-xs-3  btn btn-md btn-info"> <span style="font-size:10px;">Kategoriler</span> </a>
 
-						
-						<a href="/firsatlar" type="button" class="col-xs-4  btn btn-md btn-danger">
-							<span style="font-size:12px;">Fırsatlar</span>
-						</a>
+						<a href="/firsatlar" type="button" class="col-xs-4  btn btn-md btn-danger"> <span style="font-size:12px;">Fırsatlar</span> </a>
 
 					</div>
 
@@ -790,13 +758,9 @@
 
 					<div style=" margin-top:40px;"  class="hidden-md hidden-sm row">
 
-						<a href="/kategoriler" style="margin-left:40px;margin-right:20px;" type="button" class="col-xs-4  btn btn-lg btn-info">
-							<span style="font-size:12px;">Kategoriler</span>
-						</a>
+						<a href="/kategoriler" style="margin-left:40px;margin-right:20px;" type="button" class="col-xs-4  btn btn-lg btn-info"> <span style="font-size:12px;">Kategoriler</span> </a>
 
-						<a  href="/firsatlar" type="button" class="col-xs-4  btn btn-lg btn-danger">
-							<span style="font-size:12px;">Fırsatlar</span>
-						</a>
+						<a  href="/firsatlar" type="button" class="col-xs-4  btn btn-lg btn-danger"> <span style="font-size:12px;">Fırsatlar</span> </a>
 
 					</div>
 
@@ -931,7 +895,7 @@
 
 							<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
 
-								<div class="thumbnail">
+								<div style="" class="thumbnail">
 									<% if advert.images != [] %>
 									<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
 									<% else %>
@@ -979,8 +943,7 @@
 
 						<div class="panel-body">
 
-							<div id="mi-slider" class="mi-slider"
-							style="margin-top: 20px; clear: both;">
+							<div id="mi-slider" class="mi-slider" style="margin-top: 20px; clear: both;">
 								<ul>
 									<% @ensonikinciel.each do |advert| %>
 									<li>
@@ -1005,7 +968,7 @@
 
 									<% end %>
 								</ul>
-								
+
 								<ul>
 									<% @ensonozelders.each do |advert| %>
 									<li>
@@ -1232,7 +1195,7 @@
 											<a href="#enguvenilirsaticilar" tabindex="-1"
 											data-toggle="tab">En Güvenilir Satıcılar</a>
 										</li>
-										
+
 									</ul>
 								</li>
 
@@ -1246,11 +1209,10 @@
 											<a href="#enguvenilirevarkadaslari" tabindex="-1"
 											data-toggle="tab">En Güvenilir Olanlar</a>
 										</li>
-										
+
 									</ul>
 								</li>
 
-							
 								<li class="dropdown">
 									<a href="#" id="myTabDrop4"
 									class="dropdown-toggle" data-toggle="dropdown">Özel Ders <b
@@ -1261,7 +1223,7 @@
 											<a href="#enguvenilirozelders" tabindex="-1"
 											data-toggle="tab">En Güvenilir Olanlar</a>
 										</li>
-										
+
 									</ul>
 								</li>
 
@@ -1519,8 +1481,6 @@
 
 								</div>
 
-								
-
 								<div class="tab-pane fade" id="enguvenilirevarkadaslari">
 
 									<h2 style="text-align: center; margin-bottom: 30px;">En
@@ -1645,8 +1605,6 @@
 									</div>
 
 								</div>
-
-								
 
 								<div class="tab-pane fade" id="enguvenilirsaticilar-dersnotu">
 
@@ -1773,8 +1731,6 @@
 
 								</div>
 
-								
-
 								<div class="tab-pane fade" id="enguvenilirozelders">
 
 									<h2 style="text-align: center; margin-bottom: 30px;">En
@@ -1900,10 +1856,44 @@
 
 								</div>
 
-								
-
 							</div>
 
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="hidden-xs row" style="margin-top: 30px; margin-bottom: 30px;">
+
+					<div class="" style="border: 1px solid black; margin-left:10px;margin-right:10px; margin-bottom: 0px; padding-left: 10px;padding-bottom:30px; padding-right: 10px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; background: #E6F3FF">
+
+						<h2 style="text-align: center; margin-bottom: 50px;"><u>Bizim Seçtiklerimiz</u></h2>
+
+						<div style="background:white;"class="jcarousel-wrapper" style="margin-bottom: 80px;">
+							<div class="jcarousel">
+								<ul>
+
+									<% @mostpopular.each do |advert| %>
+
+									<li>
+
+										<% if advert.images != [] %>
+										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+										<% else %>
+										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile, :title => advert.name %></a>
+										<% end %>
+
+									</li>
+
+									<% end %>
+								</ul>
+							</div>
+
+							<a href="#" class="jcarousel-control-prev">&lsaquo;</a><a href="#"
+							class="jcarousel-control-next">&rsaquo;</a>
+
+							<p class="jcarousel-pagination hidden-xs"></p>
 						</div>
 
 					</div>
@@ -1917,13 +1907,10 @@
 			<!-- plugin script importları: -->
 
 			<!-- JCarousel Plugin -->
-			
+
 			<script>
-				
-				
 				var $jcarousel = jQuery.noConflict();
-			
-				
+
 			</script>
 
 			<script>
