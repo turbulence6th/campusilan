@@ -12,6 +12,11 @@
 
 		<!--plugins: -->
 
+		<!-- Caption Eklentisi -->
+
+		<script src="resources/plugins/captionplugin/caption.js"></script>
+		<link rel="stylesheet" href="resources/plugins/captionplugin/caption.css">
+
 		<!-- dropdown login box -->
 
 		<link rel="stylesheet"
@@ -80,6 +85,19 @@
 		<link rel="stylesheet" type="text/css"
 		href="resources/plugins/ItemSlider/css/style.css" />
 
+		<!-- Mosaic resim eklentisi -->
+
+		<link rel="stylesheet" href="/resources/plugins/mosaicplugin/css/mosaic.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="/resources/plugins/mosaicplugin/js/mosaic.1.0.1.js"></script>
+		<script type="text/javascript">
+			jQuery(function($) {
+				$('.bar').mosaic({
+					animation : 'slide'
+				});
+			});
+
+		</script>
+
 		<!-- end of plugins  -->
 
 		<style>
@@ -119,10 +137,36 @@
 					padding: 10px;
 				}
 			}
-			
-			
 
-			
+			.details {
+				margin: 15px 20px;
+			}
+			.mosaic-block  h4 {
+				font: 300 16px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+				line-height: 160%;
+				letter-spacing: 0.15em;
+				color: #fff;
+				text-shadow: 1px 1px 0 rgb(0,0,0);
+			}
+			.mosaic-block p {
+				font: 300 12px 'Lucida Grande', Tahoma, Verdana, sans-serif;
+				color: #aaa;
+				text-shadow: 1px 1px 0 rgb(0,0,0);
+			}
+			.mosaic-block a {
+				text-decoration: none;
+			}
+
+			.tooltipeklentisi {
+				display: none;
+				position: absolute;
+				border: 1px solid #333;
+				background-color: #161616;
+				border-radius: 5px;
+				padding: 10px;
+				color: #fff;
+				font-size: 12px Arial;
+			}
 
 		</style>
 
@@ -344,10 +388,37 @@
 													<% @acililanlar.each do |advert| %>
 
 													<li>
+
 														<% if advert.images != [] %>
-														<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+
+														<div class="mosaic-block bar">
+															<a style="text-decoration: none;" href="http://buildinternet.com/project/mosaic" target="_blank" class="mosaic-overlay">
+															<div class="details">
+																<h4>Mosaic - Sliding Boxes and Captions jQuery Plugin</h4>
+																<p>
+																	by Build Internet
+																</p>
+															</div> </a>
+															<div class="mosaic-backdrop">
+																<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+															</div>
+														</div>
+
 														<% else %>
-														<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name%> </a>
+
+														<div class="mosaic-block bar">
+															<a style="text-decoration: none;" href="http://buildinternet.com/project/mosaic" target="_blank" class="mosaic-overlay">
+															<div class="details">
+																<h4>Mosaic - Sliding Boxes and Captions jQuery Plugin</h4>
+																<p>
+																	by Build Internet
+																</p>
+															</div> </a>
+															<div class="mosaic-backdrop">
+																<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name%> </a>
+															</div>
+														</div>
+
 														<% end %>
 
 													</li>
@@ -392,9 +463,9 @@
 
 										<div  class=" thumbnail">
 											<% if advert.images != [] %>
-											<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+											<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
 											<% else %>
-											<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name %></a>
+											<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name,class: "masterTooltip" %></a>
 											<% end %>
 
 										</div>
@@ -404,7 +475,6 @@
 											<% if advert.name.length >= 12 %>
 
 											<h5><%= advert.name[0..11] %>...</h5>
-											
 
 											<% else %>
 
@@ -783,10 +853,15 @@
 											<% @acililanlar.each do |advert| %>
 
 											<li>
+
 												<% if advert.images != [] %>
+
 												<a href="<%= advert.href + '-' + advert.id.to_s  %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+
 												<% else %>
+
 												<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name %></a>
+
 												<% end %>
 
 											</li>
@@ -908,11 +983,15 @@
 
 									<% if advert.name.length <= 15 %>
 
-									<h3><%= advert.name %></h3>
+									<p>
+										<%= advert.name %>
+									</p>
 
 									<% else %>
 
-									<h3><%= advert.name[0..15] + "..." %></h3>
+									<p>
+										<%= advert.name[0..15] + "..." %>
+									</p>
 
 									<% end %>
 
@@ -1030,10 +1109,40 @@
 
 								<li>
 
+									
+
 									<% if advert.images != [] %>
-									<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+
+									<div class='wrapper'>
+										<!-- image -->
+										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+										<!-- description div -->
+										<div class='description'>
+											<!-- description content -->
+											<div class='description_content'>
+												The pack, the basic unit of wolf social life, is usually a family group. It is made up of animals related to each other by blood and family ties of affection and mutual aid.
+											</div>
+											<!-- end description content -->
+										</div>
+										<!-- end description div -->
+									</div>
+
 									<% else %>
-									<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile, :title => advert.name %></a>
+
+									<div class='wrapper'>
+										<!-- image -->
+										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile, :title => advert.name %></a>
+										<!-- description div -->
+										<div class='description'>
+											<!-- description content -->
+											<div class='description_content'>
+												The pack, the basic unit of wolf social life, is usually a family group. It is made up of animals related to each other by blood and family ties of affection and mutual aid.
+											</div>
+											<!-- end description content -->
+										</div>
+										<!-- end description div -->
+									</div>
+
 									<% end %>
 
 								</li>
@@ -1101,9 +1210,37 @@
 								<li>
 
 									<% if advert.images != [] %>
-									<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+
+									<div class='wrapper'>
+										<!-- image -->
+										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+										<!-- description div -->
+										<div class='description'>
+											<!-- description content -->
+											<div class='description_content'>
+												<%= advert.name %>
+											</div>
+											<!-- end description content -->
+										</div>
+										<!-- end description div -->
+									</div>
+
 									<% else %>
-									<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name %></a>
+
+									<div class='wrapper'>
+										<!-- image -->
+										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile, :title => advert.name %></a>
+										<!-- description div -->
+										<div class='description'>
+											<!-- description content -->
+											<div class='description_content'>
+												<%= advert.name %>
+											</div>
+											<!-- end description content -->
+										</div>
+										<!-- end description div -->
+									</div>
+
 									<% end %>
 
 								</li>
@@ -1877,11 +2014,35 @@
 									<% @mostpopular.each do |advert| %>
 
 									<li>
-
 										<% if advert.images != [] %>
-										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+										<div class="mosaic-block bar">
+											<a style="text-decoration: none;" href="http://buildinternet.com/project/mosaic" target="_blank" class="mosaic-overlay">
+											<div class="details">
+												<h4>Mosaic - Sliding Boxes and Captions jQuery Plugin</h4>
+												<p>
+													by Build Internet
+												</p>
+											</div> </a>
+											<div class="mosaic-backdrop">
+												<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+											</div>
+										</div>
+
 										<% else %>
-										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile, :title => advert.name %></a>
+
+										<div class="mosaic-block bar">
+											<a href="http://buildinternet.com/project/mosaic" target="_blank" class="mosaic-overlay">
+											<div class="details">
+												<h4>Mosaic - Sliding Boxes and Captions jQuery Plugin</h4>
+												<p>
+													by Build Internet
+												</p>
+											</div> </a>
+											<div class="mosaic-backdrop">
+												<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile, :title => advert.name %></a>
+											</div>
+										</div>
+
 										<% end %>
 
 									</li>
@@ -1906,7 +2067,42 @@
 
 			<!-- plugin script importları: -->
 
+			<!-- Tooltip eklentisi-->
+
+			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+			<script>
+				var $tooltip = jQuery.noConflict();
+			</script>
+
+			<script type="text/javascript">
+				$tooltip(document).ready(function() {
+					// Tooltip only Text
+					$tooltip('.masterTooltip').hover(function() {
+						// Hover over code
+						var title = $tooltip(this).attr('title');
+						$tooltip(this).data('tipText', title).removeAttr('title');
+						$tooltip('<p class="tooltipeklentisi"></p>').text(title).appendTo('body').fadeIn('slow');
+					}, function() {
+						// Hover out code
+						$tooltip(this).attr('title', $tooltip(this).data('tipText'));
+						$tooltip('.tooltipeklentisi').remove();
+					}).mousemove(function(e) {
+						var mousex = e.pageX + 20;
+						//Get X coordinates
+						var mousey = e.pageY + 10;
+						//Get Y coordinates
+						$tooltip('.tooltipeklentisi').css({
+							top : mousey,
+							left : mousex
+						})
+					});
+				});
+			</script>
+
 			<!-- JCarousel Plugin -->
+
+			<script type="text/javascript" src="resources/plugins/jcarousel-0.3.3/libs/jquery/jquery.js"></script>
 
 			<script>
 				var $jcarousel = jQuery.noConflict();
