@@ -124,6 +124,12 @@ class IndexController < ApplicationController
    
    @title = University.find(params[:universities]).name
    
+   if params[:universities] == nil
+     
+    
+     
+   end
+   
    
    
    
