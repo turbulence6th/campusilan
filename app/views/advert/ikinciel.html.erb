@@ -158,18 +158,16 @@
 					<div class="container-fluid">
 						<div class="col-md-9">
 							<div class="hidden-xs hidden-sm col-md-6 grid">
-								
-								<% if @images == [] %>
-									<div>
-										<a> <%= image_tag Image.new.imagefile, :class =>"img-responsive", :style => "width:400px;height:400px;"%> </a>
-									</div>
-								<% else %>
-									<div class="row easyzoom easyzoom--overlay easyzoom--with-thumbnails">
-										<a href="<%= image_path @images[0].imagefile(:original) %>"> <%= image_tag @images[0].imagefile(:original), :class =>"img-responsive", :style => "width:400px;height:400px;"%> </a>
-									</div>
-								<% end %>
 
-								
+								<% if @images == [] %>
+								<div>
+									<a> <%= image_tag Image.new.imagefile, :class =>"img-responsive", :style => "width:400px;height:400px;"%> </a>
+								</div>
+								<% else %>
+								<div class="row easyzoom easyzoom--overlay easyzoom--with-thumbnails">
+									<a href="<%= image_path @images[0].imagefile(:original) %>"> <%= image_tag @images[0].imagefile(:original), :class =>"img-responsive", :style => "width:400px;height:400px;"%> </a>
+								</div>
+								<% end %>
 
 								<br>
 								<br>
@@ -200,60 +198,6 @@
 
 							</div>
 
-							<div class="visible-xs col-md-6 grid">
-
-								<div class="row  easyzoom easyzoom--overlay easyzoom--with-thumbnails">
-									<a href="/resources/plugins/productview/example-images/3_zoom_1.jpg"> <img class="img-responsive" src="/resources/plugins/productview/example-images/3_standard_1.jpg" alt=""  /> </a>
-								</div>
-
-								<br>
-								<br>
-
-								<div class="row thumbnails">
-
-									<div class="row">
-
-										<a class="col-xs-6 " href="/resources/plugins/productview/example-images/3_zoom_1.jpg" data-standard="/resources/plugins/productview/example-images/3_standard_1.jpg"> <img width="100" height="100" src="/resources/plugins/productview/example-images/3_thumbnail_1.jpg" alt="" /> </a>
-
-										<a class="col-xs-6 " href="/resources/plugins/productview/example-images/3_zoom_2.jpg" data-standard="/resources/plugins/productview/example-images/3_standard_2.jpg"> <img width="100" height="100" src="/resources/plugins/productview/example-images/3_thumbnail_2.jpg" alt="" /> </a>
-
-									</div>
-									<div style="margin-top:20px; " class="row">
-
-										<a class="col-lg-6 " href="/resources/plugins/productview/example-images/3_zoom_3.jpg" data-standard="/resources/plugins/productview/example-images/3_standard_3.jpg"> <img width="100" height="100" src="/resources/plugins/productview/example-images/3_thumbnail_3.jpg" alt="" /> </a>
-
-										<a class="col-xs-6" href="/resources/plugins/productview/example-images/3_zoom_4.jpg" data-standard="/resources/plugins/productview/example-images/3_standard_4.jpg"> <img width="100" height="100" src="/resources/plugins/productview/example-images/3_thumbnail_4.jpg" alt="" /> </a>
-									</div>
-								</div>
-
-							</div>
-
-							<div class="visible-sm col-md-6 grid">
-
-								<div class="row  easyzoom easyzoom--overlay easyzoom--with-thumbnails">
-									<a href="/resources/plugins/productview/example-images/3_zoom_1.jpg"> <img class="img-responsive" src="/resources/plugins/productview/example-images/3_standard_1.jpg" alt=""  /> </a>
-								</div>
-
-								<br>
-								<br>
-
-								<div class="row thumbnails">
-
-									<div class="row">
-
-										<a class="col-sm-3 " href="/resources/plugins/productview/example-images/3_zoom_1.jpg" data-standard="/resources/plugins/productview/example-images/3_standard_1.jpg"> <img width="100" height="100" src="/resources/plugins/productview/example-images/3_thumbnail_1.jpg" alt="" /> </a>
-
-										<a class="col-sm-3 " href="/resources/plugins/productview/example-images/3_zoom_2.jpg" data-standard="/resources/plugins/productview/example-images/3_standard_2.jpg"> <img width="100" height="100" src="/resources/plugins/productview/example-images/3_thumbnail_2.jpg" alt="" /> </a>
-
-										<a class="col-sm-3 " href="/resources/plugins/productview/example-images/3_zoom_3.jpg" data-standard="/resources/plugins/productview/example-images/3_standard_3.jpg"> <img width="100" height="100" src="/resources/plugins/productview/example-images/3_thumbnail_3.jpg" alt="" /> </a>
-
-										<a class="col-sm-3" href="/resources/plugins/productview/example-images/3_zoom_4.jpg" data-standard="/resources/plugins/productview/example-images/3_standard_4.jpg"> <img width="100" height="100" src="/resources/plugins/productview/example-images/3_thumbnail_4.jpg" alt="" /> </a>
-									</div>
-
-								</div>
-
-							</div>
-
 							<br class="visible-sm ">
 
 							<div class="col-md-6 single-top-in">
@@ -265,142 +209,157 @@
 									<br>
 									<% if current_user!= nil %>
 									<% fav = FavouriteAdvert.find_by(:advert => @advert, :user => current_user) %>
-									
-									<button <% if fav %> style="display:none;" <% end %>  class="favorilereekle btn btn-danger">Favorilere Ekle </button>
-									
-									<button <% if !fav  %> style="display:none;" <% end %> class="favorilerdenkaldir btn btn-danger">Favorilerden Kaldır </button>
-									
+
+									<button <% if fav %> style="display:none;" <% end %>  class="favorilereekle btn btn-danger">
+										Favorilere Ekle
+									</button>
+
+									<button <% if !fav  %> style="display:none;" <% end %> class="favorilerdenkaldir btn btn-danger">
+										Favorilerden Kaldır
+									</button>
+
 									<% end %>
-									
+
 									<% if @advert.user == current_user || current_user!= nil && current_user.role == 'admin' %>
-									
-									<button onclick="window.location = '<%= @advert.href_guncelle %>' " class="btn  btn-danger">İlanı Düzenle </button>
-									
+
+									<button onclick="window.location = '<%= @advert.href_guncelle %>' " class="btn  btn-danger">
+										İlanı Düzenle
+									</button>
+
 									<% end %>
+
 									
-									
-									
-									<br><br>
-									
-									<div style="padding:10px; border:1px solid black;">
+
+									<div>
 										<div class="star-on">
 
-											<h3>Kullanıcı Güven Oyu</h3>
-											<br>
-											<ul>
-												<li>
-													<a href="#"><i class="glyphicon glyphicon-star"> </i></a>
-												</li>
-												<li>
-													<a href="#"><i class="glyphicon glyphicon-star"> </i></a>
-												</li>
-												<li>
-													<a href="#"><i class="glyphicon glyphicon-star"> </i></a>
-												</li>
-												<li>
-													<a href="#"><i class="glyphicon glyphicon-star"> </i></a>
-												</li>
-												<li>
-													<a href="#"><i class="glyphicon glyphicon-star"> </i></a>
-												</li>
-											</ul>
-											<div class="review">
+											<div class = "panel panel-info">
+												<div class = "panel-heading">
+													İlan ve Üye Bilgileri
+												</div>
 
-												<a href="#"> 3 Yorum </a>
+												<div class = "panel-body">
+													
+													<h4>Kullanıcı Güven Oyu</h4> <br>
+													<ul>
+														<li>
+															<a href="#"><i class="glyphicon glyphicon-star"> </i></a>
+														</li>
+														<li>
+															<a href="#"><i class="glyphicon glyphicon-star"> </i></a>
+														</li>
+														<li>
+															<a href="#"><i class="glyphicon glyphicon-star"> </i></a>
+														</li>
+														<li>
+															<a href="#"><i class="glyphicon glyphicon-star"> </i></a>
+														</li>
+														<li>
+															<a href="#"><i class="glyphicon glyphicon-star"> </i></a>
+														</li>
+													</ul>
+													<div class="review">
 
+														<a href="#"> 3 Yorum </a>
+
+													</div>
+													<div class="clearfix"></div>
+												
+												<br>
+
+												<h4  class="add-to item_price">Fiyat: <%= @advert.price %>&#8378;</h4>
+												<br>
+
+												<h4  class="add-to item_price">Ürün Rengi: <%= @advertable.color %></h4>
+												<br>
+
+												<h4  class="add-to item_price">Marka: <%= @advertable.brand %> </h4>
+												<br>
+
+												<h4  class="add-to item_price">Kullanım Durumu: <% if @advertable.usage %>
+												Sıfır
+												<% else %>
+												İkinci El
+												<% end %> </h4>
+												<br>
+
+												<h4  class="add-to item_price">Garanti Durumu: <% if @advertable.warranty %>
+												Var
+												<% else %>
+												Yok
+												<% end %> </h4>
+												<br>
+
+												<h4  class="add-to item_price">İlan sahibinin telefonu: <%= @advert_user.phone %> </h4>
+												<br>
+												<h4> İlan sahibinin profili için <a href="/uye/<%= @advert_user.username %>">buraya</a> tıklayınız. </h4>
+												</div>
 											</div>
-											<div class="clearfix"></div>
 										</div>
-										<br>
 
-										<h4  class="add-to item_price">Fiyat: <%= @advert.price %>&#8378;</h4>
-										<br>
-
-										<h4  class="add-to item_price">Ürün Rengi: <%= @advertable.color %></h4>
-										<br>
-
-										<h4  class="add-to item_price">Marka: <%= @advertable.brand %> </h4>
-										<br>
-
-										<h4  class="add-to item_price">Kullanım Durumu: <% if @advertable.usage %>
-										Sıfır
-										<% else %>
-										İkinci El
-										<% end %> </h4>
-										<br>
-
-										<h4  class="add-to item_price">Garanti Durumu: <% if @advertable.warranty %>
-										Var
-										<% else %>
-										Yok
-										<% end %> </h4>
-										<br>
-
-										<h4  class="add-to item_price">İlan sahibinin telefonu: <%= @advert_user.phone %> </h4>
-										<br>
-										<h4> İlan sahibinin profili için <a href="/uye/<%= @advert_user.username %>">buraya</a> tıklayınız. </h4>
-										<br>
+										
 									</div>
 								</div>
 							</div>
 							<div class="clearfix"></div>
 							<br>
-							
+
 							<div style="padding-top:10px;padding-left:10px;padding-right:10px;padding-bottom:50px;border: 1px solid black;" class="row">
-								
+
 								<h2 style="text-align:center;" class="">Açıklama</h2>
-								
-								<p><%= @advert.explication  %></p>
-								
+
+								<p>
+									<%= @advert.explication  %>
+								</p>
+
 							</div>
-							
-							<br><br>
+
+							<br>
+							<br>
 
 							<div class="benzerurunler row">
 
 								<h2 style="text-align:center;" class="">Benzer Ürünler</h2>
 
 							</div>
-							
+
 							<%if @similar == [] %>
-							
-							<p> Benzer İlan Bulunmamaktadır.</p>
-							
+
+							<p>
+								Benzer İlan Bulunmamaktadır.
+							</p>
+
 							<% else %>
-							
 
 							<div class="content-top1">
-								
+
 								<% @similar.each do |advert| %>
-								
-									<div class="col-md-4 col-md3">
-										<div class="col-md1 simpleCart_shelfItem">
-											<% if advert.images != [] %>
-											<a title="<%= advert.name%> " href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small), :class => 'img-responsive' %> </a>
-											<% else %>
-											<a title="<%= advert.name%> " href="<%= advert.href %>"> <%= image_tag Image.new.imagefile,class:"img-responsive"  %> </a>
-											<% end %>
-											<% if advert.name.size >= 30 %>
-											<h3><a href="<%= advert.href %>"> <%= advert.name[0..27] %>... </a></h3>
-											<% else %>
-											<h3><a href="<%= advert.href %>"> <%= advert.name %> </a></h3>
-											<% end %>
-											<div class="price">
-												<h5 class="item_price"><%= advert.price %>&#8378;</h5>
-												<a href="#" class="item_add">İncele</a>
-												<div class="clearfix"></div>
-											</div>
+
+								<div class="col-md-4 col-md3">
+									<div class="col-md1 simpleCart_shelfItem">
+										<% if advert.images != [] %>
+										<a title="<%= advert.name%> " href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small), :class => 'img-responsive' %> </a>
+										<% else %>
+										<a title="<%= advert.name%> " href="<%= advert.href %>"> <%= image_tag Image.new.imagefile,class:"img-responsive"  %> </a>
+										<% end %>
+										<% if advert.name.size >= 30 %>
+										<h3><a href="<%= advert.href %>"> <%= advert.name[0..27] %>... </a></h3>
+										<% else %>
+										<h3><a href="<%= advert.href %>"> <%= advert.name %> </a></h3>
+										<% end %>
+										<div class="price">
+											<h5 class="item_price"><%= advert.price %>&#8378;</h5>
+											<a href="#" class="item_add">İncele</a>
+											<div class="clearfix"></div>
 										</div>
 									</div>
-								
+								</div>
+
 								<% end %>
-								
-								
-								
 
 								<div class="clearfix"></div>
 							</div>
-							
+
 							<% end %>
 						</div>
 						<!----->
@@ -417,7 +376,7 @@
 							<br>
 							<div class="product-bottom">
 								<h3 class="cate">Bu ürüne bakanlar bunlara da baktı</h3>
-								
+
 								<% @looked.each do |advert|%>
 								<div class="product-go">
 									<div class=" fashion-grid">
@@ -428,24 +387,20 @@
 										<% end %>
 									</div>
 									<div class=" fashion-grid1">
-										
+
 										<% if advert.name.size >=40 %>
 										<h6 class="best2"><a href="<%= advert.href %>" ><%= advert.name[0..39] %>...</a></h6>
 										<% else %>
 										<h6 class="best2"><a href="<%= advert.href %>" ><%= advert.name %></a></h6>
 										<% end %>
 										<span class=" price-in1"> <%= advert.price %>&#8378;</span>
-										
-										
-										
+
 									</div>
 									<div class="clearfix"></div>
 								</div>
-								
+
 								<% end %>
-								
-								
-								
+
 							</div>
 
 							<!--//seller-->
@@ -508,104 +463,86 @@
 			<%= render "footer" %>
 
 		</div>
-		
-		
+
 		<!-- favorilere ekle/kaldır ajax -->
-		
+
 		<% if current_user!= nil %>
-		
+
 		<script>
-			
+
 			$(".favorilereekle").click(function() {
-				
-				
-				$.ajax({
-				
-					url : '/favorilereekle',
-					data : {
-						authenticity_token : window._token,
-						advertid : <%= @advert.id %>,
-						
-						
-					},
-					error : function() {
-			
-						alert("Lütfen bağlantınızı kontrol edin!!")
-					},
-					dataType : 'json',
-					success : function(data) {
 
-						if (!data.check) {
+$.ajax({
 
-						
-						} 
-						
-						else {
-							
-							$(".favorilerdenkaldir").show();
-							$(".favorilereekle").hide();
-							
-						}
-				
-					},
-				
-				type : 'POST'
-				
-			}) 
-			
-			}
-			
-		)
-		
-		
-		
-		$(".favorilerdenkaldir").click(function() {
-				
-				
-				$.ajax({
-				
-					url : '/favorilerdenkaldir',
-					data : {
-						authenticity_token : window._token,
-						advertid : <%= @advert.id %>,
-						
-						
-					},
-					error : function() {
-			
-						alert("Lütfen bağlantınızı kontrol edin!!")
-					},
-					dataType : 'json',
-					success : function(data) {
+url : '/favorilereekle',
+data : {
+authenticity_token : window._token,
+advertid : <%= @advert.id %>,
 
-						if (!data.check) {
-							alert("Başarısız");
-						
-						} 
-						
-						else {
-							
-							$(".favorilereekle").show();
-							$(".favorilerdenkaldir").hide();
-						}
-				
-					},
-				
-				type : 'POST'
-				
-			}) 
-			
-			}
-			
-		)
-		
-		
-		
-		
-			
-			
+},
+error : function() {
+
+alert("Lütfen bağlantınızı kontrol edin!!")
+},
+dataType : 'json',
+success : function(data) {
+
+if (!data.check) {
+
+}
+
+else {
+
+$(".favorilerdenkaldir").show();
+$(".favorilereekle").hide();
+
+}
+
+},
+
+type : 'POST'
+
+})
+
+}
+
+)
+
+$(".favorilerdenkaldir").click(function() {
+
+$.ajax({
+
+url : '/favorilerdenkaldir',
+data : {
+authenticity_token : window._token,
+advertid : <%= @advert.id %>
+	,
+
+	}, error : function() {
+
+		alert("Lütfen bağlantınızı kontrol edin!!")
+	}, dataType : 'json',
+	success : function(data) {
+
+		if (!data.check) {
+			alert("Başarısız");
+
+		} else {
+
+			$(".favorilereekle").show();
+			$(".favorilerdenkaldir").hide();
+		}
+
+	}, type : 'POST'
+
+	})
+
+	}
+
+	)
+
 		</script>
-		
+
 		<% end %>
 
 		<!-- Plugins-->
