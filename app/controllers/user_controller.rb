@@ -84,15 +84,9 @@ class UserController < ApplicationController
 
   def member
     
-    @mostpopular = []
+    @mostpopular = mostpopular[0..5]
     
-    popularList = ViewedAdvertCount.group(:advert_id).count.first(6)
-    
-    popularList.each do |id, count|
-      @mostpopular << Advert.find(id)
-    end
-    
-    @gununilanlari = Advert.where(:opportunity => true).order('created_at DESC').last(9)
+    @gununilanlari = gununilanlari[0..8]
     
    
     if params[:profilim]!=nil
@@ -128,24 +122,14 @@ class UserController < ApplicationController
       current_user.phone1 =  current_user.phone.split('-')[0]
       current_user.phone2 =  current_user.phone.split('-')[1]
       
-      @favouriteadverts = []
-      
-      fovouritelist = FavouriteAdvert.where(:user_id => current_user.id).select(:advert_id)
-      
-      fovouritelist.each do |fav|
-        @favouriteadverts << Advert.find(fav.advert_id)
-      end
+      @favouriteadverts = Advert.available.select('adverts.*').from('adverts, users, favourite_adverts')
+        .where('adverts.id=favourite_adverts.advert_id AND users.id=favourite_adverts.user_id')
+        .order('favourite_adverts.created_at')
       
       
-       @viewedadverts = []
-      
-      viewedlist = ViewedAdvert.where(:user_id => current_user.id).select(:advert_id)
-      
-      viewedlist.each do |viewed|
-        @viewedadverts << Advert.find(viewed.advert_id)
-      end
-      
-      
+       @viewedadverts = Advert.available.select('adverts.*').from('adverts, users, viewed_adverts')
+        .where('adverts.id=viewed_adverts.advert_id AND users.id=viewed_adverts.user_id')
+        .order('viewed_adverts.created_at')
       
     end
 

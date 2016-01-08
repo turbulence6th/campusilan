@@ -379,10 +379,9 @@ class AdvertController < ApplicationController
       redirect_to "/kategoriler"
     end
     
-    @gununilanlari = Advert.available.where(:opportunity => true).order('created_at DESC').last(8)
+    @gununilanlari = gununilanlari[0..7]
     
-    @mostpopular = Advert.select('a.*').from('adverts a, viewed_advert_counts v')
-      .where('a.id=v.advert_id and verified=true and active=true').group('a.id').order('count(*) desc')
+    @mostpopular = mostpopular[0..9]
 
   end
 
@@ -390,20 +389,19 @@ class AdvertController < ApplicationController
     if params[:acililanlar]!=nil
       @title="Acil İlanlar"
       @active = 0
-      @adverts = Advert.available.where(:urgent => true).order('created_at DESC').paginate(:page => params[:page], :per_page => 18)
+      @adverts = acililanlar.paginate(:page => params[:page], :per_page => 18)
     elsif params[:gununfirsatlari]!=nil
       @title="Günün Fırsatları"
       @active = 1
-      @adverts = Advert.available.where(:opportunity => true).order('created_at DESC').paginate(:page => params[:page], :per_page => 18)
+      @adverts = gununilanlari.paginate(:page => params[:page], :per_page => 18)
     elsif params[:ensonilanlar]!=nil
       @title="En Son İlanlar"
       @active = 2
-      @adverts = Advert.available.order('created_at DESC').paginate(:page => params[:page], :per_page => 18)
+      @adverts = ensonilanlar.paginate(:page => params[:page], :per_page => 18)
     elsif params[:enpopulerilanlar]!=nil
       @title="En Popüler İlanlar"
       @active = 3
-      @adverts = Advert.select('a.*').from('adverts a, viewed_advert_counts v')
-      .where('a.id=v.advert_id and verified=true and active=true').group('a.id').order('count(*) desc').paginate(:page => params[:page], :per_page => 18)
+      @adverts = mostpopular.paginate(:page => params[:page], :per_page => 18)
     elsif params[:fiyatidusenler]!=nil
       @title="Fiyatı Düşenler"
       @active = 4
@@ -423,11 +421,10 @@ class AdvertController < ApplicationController
     else
      @title="Acil İlanlar"
       @active = 0
-      @adverts = Advert.available.where(:urgent => true).order('created_at DESC').paginate(:page => params[:page], :per_page => 18)
+      @adverts = acililanlar.paginate(:page => params[:page], :per_page => 18)
     end
     
-    @mostpopular = Advert.select('a.*').from('adverts a, viewed_advert_counts v')
-      .where('a.id=v.advert_id and verified=true and active=true').group('a.id').order('count(*) desc')
+    @mostpopular = mostpopular[0..9]
     
     
   end

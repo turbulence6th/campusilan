@@ -17,6 +17,7 @@ class CreateUsers < ActiveRecord::Migration
       t.date :birthday
       t.text :address
       t.references :university
+      t.boolean :deleted
       
       t.timestamps :null => false
     end

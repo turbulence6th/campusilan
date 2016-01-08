@@ -40,6 +40,35 @@ class ApplicationController < ActionController::Base
     arr = ActiveRecord::Base.connection.execute(sql)
   end
   
+  def ensonikinciel
+    Advert.available.where(advertable_type: 'Secondhand').order('created_at DESC')
+  end
+  
+  def ensonevarkadasi
+    Advert.available.where(advertable_type: 'Homemate').order('created_at DESC')
+  end
+  
+  def ensonozelders
+    Advert.available.where(advertable_type: 'Privatelesson').order('created_at DESC')
+  end
+  
+  def ensonilanlar
+    Advert.available.order('created_at DESC')
+  end
+  
+  def acililanlar
+    Advert.available.where(:urgent => true).order('created_at DESC')
+  end
+  
+  def gununilanlari
+    Advert.available.where(:opportunity => true).order('created_at DESC')
+  end
+  
+  def mostpopular
+    Advert.select('a.*').from('adverts a, viewed_advert_counts v')
+      .where('a.id=v.advert_id and verified=true and active=true').group('a.id').order('count(*) desc')
+  end
+  
  
   
 end

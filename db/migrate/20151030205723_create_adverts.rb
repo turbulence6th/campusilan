@@ -12,6 +12,7 @@ class CreateAdverts < ActiveRecord::Migration
       t.boolean :verified
       t.boolean :urgent
       t.boolean :opportunity
+      t.boolean :ours
       
       t.timestamps null: false
       

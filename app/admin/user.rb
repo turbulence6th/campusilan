@@ -29,6 +29,7 @@ ActiveAdmin.register User do
       input :bulletin, :as => :select, :collection => { :True => true, :False => false }
       input :birthday
       input :address
+      input :deleted, :as => :select, :collection => { :True => true, :False => false }
       
       if !object.new_record?
         input :university

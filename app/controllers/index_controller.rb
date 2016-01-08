@@ -6,18 +6,13 @@ class IndexController < ApplicationController
   
   def index
 
-    @ensonikinciel = Advert.available.where(advertable_type: 'Secondhand').last(4).reverse
-    @ensonevarkadasi = Advert.available.where(advertable_type: 'Homemate').last(4).reverse
-    @ensonozelders = Advert.available.where(advertable_type: 'Privatelesson').last(4).reverse
-
-    @ensonilanlar = Advert.available.all.last(4).reverse
-
-    @acililanlar = Advert.available.where(:urgent => true).order('created_at DESC').last(7)
-
-    @gununilanlari = Advert.available.where(:opportunity => true).order('created_at DESC').last(8)
-
-    @mostpopular = Advert.select('a.*').from('adverts a, viewed_advert_counts v')
-      .where('a.id=v.advert_id and verified=true and active=true').group('a.id').order('count(*) desc')
+    @ensonikinciel = ensonikinciel[0..3]
+    @ensonevarkadasi = ensonevarkadasi[0..3]
+    @ensonozelders = ensonozelders[0..3]
+    @ensonilanlar = ensonilanlar[0..4]
+    @acililanlar = acililanlar[0..7]
+    @gununilanlari = gununilanlari[0..7]
+    @mostpopular = mostpopular[0..9]
 
   end
 
