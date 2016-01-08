@@ -16,16 +16,8 @@ class IndexController < ApplicationController
 
     @gununilanlari = Advert.available.where(:opportunity => true).order('created_at DESC').last(8)
 
-    @mostpopular = []
-
-    popularList = ViewedAdvertCount.group(:advert_id).count.first(6)
-
-    popularList.each do |id, count|
-      adv = Advert.available.find_by(:id => id)
-      @mostpopular << adv if adv
-    end
-    
-    
+    @mostpopular = Advert.select('a.*').from('adverts a, viewed_advert_counts v')
+      .where('a.id=v.advert_id and verified=true and active=true').group('a.id').order('count(*) desc')
 
   end
 
@@ -120,12 +112,21 @@ class IndexController < ApplicationController
   
   def universiteler
     
-   @adverts = Advert.available.joins(:user).where(:users => {university: params[:universities]})
    
-   @title = University.find(params[:universities]).name
    
+
    if params[:universities] == nil
      
+     @adverts = Advert.available.joins(:user).where(:users => {university: topUniversities[0]['id']})
+   
+     @title = topUniversities[0]['name']
+       
+      
+   else
+     
+     @adverts = Advert.available.joins(:user).where(:users => {university: params[:universities]})
+   
+     @title = University.find(params[:universities]).name
     
      
    end
@@ -135,8 +136,7 @@ class IndexController < ApplicationController
    
    
    
-   
-    
+  
   end
 
 end

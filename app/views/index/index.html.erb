@@ -90,6 +90,13 @@
 		<link rel="stylesheet" type="text/css"
 		href="/resources/plugins/tooltipplugin/tooltip.css" />
 
+		<!-- Introjs-->
+
+		<!-- Add IntroJs styles -->
+		<link href="/resources/plugins/introjs/introjs.css" rel="stylesheet">
+
+		
+
 		<!-- end of plugins  -->
 
 		<style>
@@ -148,8 +155,6 @@
 			.mosaic-block a {
 				text-decoration: none;
 			}
-			
-			
 
 		</style>
 
@@ -164,30 +169,27 @@
 		<script src="resources/js/bootstrap.min.js"></script>
 
 		<div class="container-fluid">
-			
-			
 
 			<div class="row" style="position: relative;margin-bottom: 10px;">
-				
+
 				<div class="hidden-xs col-sm-8 ">
-			<a><img class="img-responsive" src="resources/images/asdasd.jpg"  ></a>
+					<a><img class="img-responsive" src="resources/images/asdasd.jpg"  ></a>
 				</div>
-				
-				
+
 				<div class="hidden-xs "style="position: absolute;
-    bottom: 0;
-    right: 0;" class="col-sm-4">
-				<!-- Login Starts Here -->
-				<%= render "loginContainer" %>
-				<!-- Login Ends Here -->
-				
+				bottom: 0;
+				right: 0;" class="col-sm-4">
+					<!-- Login Starts Here -->
+					<%= render "loginContainer" %>
+					<!-- Login Ends Here -->
+
 				</div>
-				
+
 				<div class="visible-xs">
-				<!-- Login Starts Here -->
-				<%= render "loginContainer" %>
-				<!-- Login Ends Here -->
-				
+					<!-- Login Starts Here -->
+					<%= render "loginContainer" %>
+					<!-- Login Ends Here -->
+
 				</div>
 
 			</div>
@@ -206,7 +208,9 @@
 				<%= render "smartmenus" %>
 
 			</div>
-
+			
+			<a  href="javascript:void(0);" onclick="javascript:startTour();"><div class = "alert alert-danger">Sitemizi ilk defa mı kullanıyorsunuz? O zaman Campus İlan tanıtıcımızı deneyin ve Campus İlan'ın arayüzüne hemen adapte olun!! </div></a>
+			
 			<!-- Geniş ekranda gözüken div -->
 			<div class="row">
 
@@ -215,7 +219,7 @@
 					<aside style="float: left;  line-height: 20%;"
 					class="col-lg-3 col-md-3 col-sm-3 hidden-xs ">
 
-						<div class="panel panel-primary">
+						<div  data-step="1" data-intro="Buradan tüm kategori ve fırsatlara erişebilirsiniz!" class="panel panel-primary">
 
 							<div class="panel-heading">
 								<h3 class="panel-title">Kategoriler</h3>
@@ -347,41 +351,38 @@
 									<div class="item active">
 										<img src="resources/images/hosgeldiniz.png" alt="First slide">
 										<div class="carousel-caption">
-										
+
 										</div>
 									</div>
 									<div class="item">
 										<img src="resources/images/duyuru1.png" alt="Second slide">
 										<div class="carousel-caption">
-											
+
 										</div>
 									</div>
 									<div class="item">
 										<img src="resources/images/duyuru2.png" alt="Third slide">
 										<div class="carousel-caption">
-											
+
 										</div>
 									</div>
 								</div>
-								
+
 								<!-- Carousel nav -->
-								
-									
+
 								<a  class="carousel-control left" href="#myCarousel"
 								data-slide="prev">&lsaquo;</a><a class="carousel-control right"
 								href="#myCarousel" data-slide="next">&rsaquo;</a>
-								
+
 							</div>
 
 						</div>
-						
-						
 
 						<div class="row">
 
 							<div style="margin: 10px; padding-left: 10px; padding-right: 10px;">
 
-								<div class="panel panel-danger">
+								<div data-step="3" data-intro="Buradan acil ilanları kolayca görebilirsiniz!" class="panel panel-danger">
 
 									<div class="panel-heading">
 										<h3 style="text-align: center;" class="panel-title">Acil
@@ -401,7 +402,7 @@
 
 														<div class='wrapper'>
 															<!-- image -->
-															<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+															<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small) %></a>
 															<!-- description div -->
 															<div class='description'>
 																<!-- description content -->
@@ -417,7 +418,7 @@
 
 														<div class='wrapper'>
 															<!-- image -->
-															<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile, :title => advert.name %></a>
+															<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile %></a>
 															<!-- description div -->
 															<div class='description'>
 																<!-- description content -->
@@ -454,11 +455,11 @@
 
 					</div>
 
-					<div style="" class="gununfirsatlari col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm">
+					<div  style="" class="gununfirsatlari col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm">
 
-						<div style="height:875px;" class="panel panel-info">
+						<div data-step="2" data-intro="Buradan günün fırsatlarını kolayca görebilirsiniz!" style="height:875px;" class="panel panel-info">
 
-							<div class="panel-heading">
+							<div  class="panel-heading">
 								<h3 style="text-align: center;" class="panel-title">Günün
 								Fırsatları</h3>
 							</div>
@@ -513,7 +514,7 @@
 			<div class="row visible-lg">
 				<div class="col-lg-6">
 
-					<div style="height:250px; padding-left: 10px; padding-right: 10px;">
+					<div style=" padding-left: 10px; padding-right: 10px;">
 
 						<div class="panel panel-success">
 
@@ -523,6 +524,12 @@
 
 							<div class="panel-body">
 								-Campus İlan'a Hoşgeldiniz!!
+								<br>
+								<br>
+								-Campus İlan'ın ne olduğu ve nasıl kullanıldığı ile ilgili bilgilere <a href="#campusilanbilgi"  >buradan</a> ulaşabilirsiniz.
+								<br>
+								<br>
+								-Reklam vermek yada bağışta mı bulunmak istiyorsunuz? O zaman sizi <a href="#"  >böyle</a> alalım.
 								<br>
 								<br>
 								-Yardıma mı mı ihtiyacınız var? O zaman <a href="/yardim">buraya</a> tıklayın.
@@ -540,29 +547,18 @@
 
 				<div class="col-lg-6">
 
-					<div style="height:250px;padding-left: 10px; padding-right: 10px;">
+					<div style="padding-left: 10px; padding-right: 10px;">
 
 						<div class="panel panel-info">
 
 							<div class="panel-heading">
-								<h3 style="text-align: center;" class="panel-title">Ekstra
-								Alan</h3>
+								<h3 style="text-align: center;" class="panel-title">Reklam
+								Alanı</h3>
 							</div>
 
-							<div class="panel-body">
+							<div style="text-align:center;"  class="panel-body">
 
-								Kafana göre bir şey ekle...
-								<br>
-								....
-								<br>
-								....
-								<br>
-								....
-								<br>
-								....
-								<br>
-								....
-								<br>
+								<img src="/resources/images/asdasd2.jpg">
 
 							</div>
 
@@ -788,7 +784,7 @@
 
 						<div id="myCarousel2" class="carousel slide">
 							<!-- Carousel indicators -->
-							<ol class="carousel-indicators">
+							<ol style="bottom:0;" class="carousel-indicators">
 								<li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
 								<li data-target="#myCarousel2" data-slide-to="1"></li>
 								<li data-target="#myCarousel2" data-slide-to="2"></li>
@@ -797,21 +793,21 @@
 							<!-- Carousel items -->
 							<div class="carousel-inner">
 								<div class="item active">
-									<img src="resources/images/cat-demo.jpg" alt="First slide">
+									<img src="resources/images/hosgeldiniz.png" alt="First slide">
 									<div class="carousel-caption">
-										This Caption 1
+
 									</div>
 								</div>
 								<div class="item">
-									<img src="resources/images/cat-demo.jpg" alt="Second slide">
+									<img src="resources/images/duyuru1.png" alt="Second slide">
 									<div class="carousel-caption">
-										This Caption 2
+
 									</div>
 								</div>
 								<div class="item">
-									<img src="resources/images/cat-demo.jpg" alt="Third slide">
+									<img src="resources/images/duyuru2.png" alt="Third slide">
 									<div class="carousel-caption">
-										This Caption 3
+
 									</div>
 								</div>
 							</div>
@@ -848,7 +844,7 @@
 
 					<div style="margin-top:40px;" class="row">
 
-						<div class="panel panel-danger">
+						<div  class="panel panel-danger">
 
 							<div class="panel-heading">
 								<h3 style="text-align: center;" class="panel-title">Acil İlanlar!!</h3>
@@ -866,37 +862,37 @@
 
 												<% if advert.images != [] %>
 
-														<div class='wrapper'>
-															<!-- image -->
-															<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
-															<!-- description div -->
-															<div class='descriptionSabit'>
-																<!-- description content -->
-																<div class='description_content'>
-																	<%= advert.name %>
-																</div>
-																<!-- end description content -->
-															</div>
-															<!-- end description div -->
+												<div class='wrapper'>
+													<!-- image -->
+													<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+													<!-- description div -->
+													<div class='descriptionSabit'>
+														<!-- description content -->
+														<div class='description_content'>
+															<%= advert.name %>
 														</div>
+														<!-- end description content -->
+													</div>
+													<!-- end description div -->
+												</div>
 
-														<% else %>
+												<% else %>
 
-														<div class='wrapper'>
-															<!-- image -->
-															<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile, :title => advert.name %></a>
-															<!-- description div -->
-															<div class='descriptionSabit'>
-																<!-- description content -->
-																<div class='description_content'>
-																	<%= advert.name %>
-																</div>
-																<!-- end description content -->
-															</div>
-															<!-- end description div -->
+												<div class='wrapper'>
+													<!-- image -->
+													<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile, :title => advert.name %></a>
+													<!-- description div -->
+													<div class='descriptionSabit'>
+														<!-- description content -->
+														<div class='description_content'>
+															<%= advert.name %>
 														</div>
+														<!-- end description content -->
+													</div>
+													<!-- end description div -->
+												</div>
 
-														<% end %>
+												<% end %>
 
 											</li>
 
@@ -924,7 +920,7 @@
 
 			<div class="row hidden-lg">
 
-				<div class="col-md-6 col-sm-6 col-xs-6" style="padding-left: 10px; padding-right: 10px;">
+				<div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 10px; padding-right: 10px;">
 
 					<div class="panel panel-success">
 
@@ -934,50 +930,19 @@
 
 						<div class="panel-body">
 
-							Kafana göre bir şey ekle...
+							-Campus İlan'a Hoşgeldiniz!!
 							<br>
-							....
 							<br>
-							....
+							-Campus İlan'ın ne olduğu ve nasıl kullanıldığı ile ilgili bilgilere <a href="#campusilanbilgi"  >buradan</a> ulaşabilirsiniz.
 							<br>
-							....
 							<br>
-							....
+							-Reklam vermek yada bağışta mı bulunmak istiyorsunuz? O zaman sizi <a href="#"  >böyle</a> alalım.
 							<br>
-							....
 							<br>
-							...
-
-						</div>
-
-					</div>
-
-				</div>
-
-				<div class="col-md-6 col-sm-6 col-xs-6" style="padding-left: 10px; padding-right: 10px;">
-
-					<div class="panel panel-info">
-
-						<div class="panel-heading">
-							<h3 style="text-align: center;" class="panel-title">Ekstra
-							Alan</h3>
-						</div>
-
-						<div class="panel-body">
-
-							Kafana göre bir şey ekle...
+							-Yardıma mı mı ihtiyacınız var? O zaman <a href="/yardim">buraya</a> tıklayın.
 							<br>
-							....
 							<br>
-							....
-							<br>
-							....
-							<br>
-							....
-							<br>
-							....
-							<br>
-							...
+							-Görüş ve Önerileriniz bizim için çok önemli!! <a href="/iletisim">İletişim</a> sayfasından bizimle iletişime geçebilirsiniz.
 
 						</div>
 
@@ -989,7 +954,7 @@
 
 			<div class="row hidden-lg" style="padding-left: 20px; padding-right: 20px;">
 
-				<div class="panel panel-info">
+				<div  class="panel panel-info">
 
 					<div class="panel-heading">
 						<h3 style="text-align: center;" class="panel-title">Günün
@@ -1045,9 +1010,9 @@
 
 			<div class="row">
 
-				<div class="hidden-xs" style="margin-bottom: 0px; margin-top: -25px;">
+				<div class="hidden-xs" style="margin-bottom: 0px;">
 
-					<div class="panel panel-info">
+					<div data-step="4" data-intro="Buradan en son eklenen ilanları kolayca görebilirsiniz!" class="panel panel-info">
 
 						<div class="panel-heading">
 							<h3 style="text-align: center;" class="panel-title">En Son
@@ -1143,28 +1108,13 @@
 
 			<div class="row">
 
-				<div class="alert alert-danger">
-
-					Ekstra alan...Kafana göre bir şey ekle...
-					<br>
-					....
-					<br>
-					....
-					<br>
-					....
-					<br>
-					....
-					<br>
-					....
-					<br>
-
-				</div>
+				<img width="100%;" src="/resources/images/asdasd3.png">
 
 			</div>
 
 			<div class="hidden-xs row" style="margin-top: 30px; margin-bottom: 30px;">
 
-				<div class="" style="border: 1px solid black; margin-left:10px;margin-right:10px; margin-bottom: 0px; padding-left: 10px;padding-bottom:30px; padding-right: 10px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; background: #E6F3FF">
+				<div data-step="5" data-intro="Buradan en popüler ilanları kolayca görebilirsiniz!" class="" style="border: 1px solid black; margin-left:10px;margin-right:10px; margin-bottom: 0px; padding-left: 10px;padding-bottom:30px; padding-right: 10px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; background: #E6F3FF">
 
 					<h2 style="text-align: center; margin-bottom: 50px;"><u>En Popüler İlanlar</u></h2>
 
@@ -1180,7 +1130,7 @@
 
 									<div class='wrapper'>
 										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small) %></a>
 										<!-- description div -->
 										<div class='description'>
 											<!-- description content -->
@@ -1196,7 +1146,7 @@
 
 									<div class='wrapper'>
 										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile, :title => advert.name %></a>
+										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile %></a>
 										<!-- description div -->
 										<div class='description'>
 											<!-- description content -->
@@ -1220,6 +1170,42 @@
 						class="jcarousel-control-next">&rsaquo;</a>
 
 						<p class="jcarousel-pagination hidden-xs"></p>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div style=" margin-top:20px;"  class="row">
+
+				<div class = "container">
+
+					<div data-step="7" data-intro="Son olarak daha ayrıntılı bilgiye ve yardıma mı ihtiyacınız var? O zaman bu kısım tam size göre :)" style="padding:10px;background-color:#9DD2E3;"  id="campusilanbilgi" class = "jumbotron">
+
+						<h1>Campus İlan ile neler yapabilirsiniz?</h1>
+						<p>
+							Campus İlan üniversitelilere özel ilan sitesidir.
+							<br>
+
+							<hr style="border-color:black;">
+
+							-Campus ilan ile ikinci el ilanı oluşturabilir,ders notu,özel ders ve ev arkadaşı ilanlarınızı paylaşabilirsiniz
+							<br>
+							<br>
+							Tabii ki üniversiteli olmak şartıyla!!
+							-Sadece ilanı açanın telefon numarası veya e-posta adresi bilgileri ile üye olmaya gerek kalmadan ilan sahibi ile irtibata geçin.
+							<br>
+							<br>
+							-Hepsi tamamen ücretsiz ve kullanıcı dostu bir arayüzle!!
+							<br>
+							<br>
+							-Hala daha yardıma mı ihtiyacınız var? Sizi <a href="/yardim" >böyle</a> alalım.
+						</p>
+
+						<p>
+							<a href="/ilanver" class = "hidden-xs hidden-sm btn btn-primary btn-lg" role = "button">Hemen İlan paylaşmaya başlayın</a>
+							<a href="/ilanver" class = "visible-xs visible-sm btn btn-primary btn-lg" role = "button">Hemen İlan paylaşın</a>
+						</p>
 					</div>
 
 				</div>
@@ -1420,7 +1406,7 @@
 				<div
 				style="margin-bottom: 20px;  padding-bottom: 30px;">
 
-					<div class="panel panel-success">
+					<div data-step="6" data-intro="Buradan en güvenilir satıcılara kolayca ulaşabilirsiniz!" class="panel panel-success">
 
 						<div class="panel-heading">
 							<h3 style="text-align: center;" class="panel-title">Kategoriye
@@ -2127,7 +2113,7 @@
 
 										<div class='wrapper'>
 											<!-- image -->
-											<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+											<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small) %></a>
 											<!-- description div -->
 											<div class='description'>
 												<!-- description content -->
@@ -2143,7 +2129,7 @@
 
 										<div class='wrapper'>
 											<!-- image -->
-											<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile, :title => advert.name %></a>
+											<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile %></a>
 											<!-- description div -->
 											<div class='description'>
 												<!-- description content -->
@@ -2178,6 +2164,21 @@
 			</div>
 
 			<!-- plugin script importları: -->
+			
+			<!-- Introjs-->
+			
+			<script type="text/javascript" src="/resources/plugins/introjs/intro.js"></script>
+			
+			<script>
+		function startTour() {
+			var tour = introJs()
+			tour.setOption('tooltipPosition', 'auto');
+			tour.setOption('showProgress', true);
+			tour.setOption('positionPrecedence', ['left', 'right', 'bottom', 'top'])
+			tour.start()
+		}
+	
+	</script>
 
 			<!-- Tooltip eklentisi-->
 
@@ -2234,6 +2235,8 @@
 			<%= render "headerfixedjs" %>
 
 			<!-- Dropdown login box -->
+			
+			
 
 	</body>
 

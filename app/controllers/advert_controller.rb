@@ -31,7 +31,6 @@ class AdvertController < ApplicationController
       .where('a.id=? AND v.user_id = u.id AND v.advert_id = a.id AND a.id!=a2.id AND v2.user_id = u.id AND v2.advert_id = a2.id', @advert.id).group('a2.id').order('count(a2.id)')[0..4]
       
     @similar = Advert.joins('JOIN secondhands ON adverts.advertable_id=secondhands.id').where(:advertable_type => 'Secondhand',:secondhands => { :category => @advertable.read_attribute(:category) }).where.not(:id => @advert.id).sample(4)
-    puts @similar
     
   end
 
@@ -378,13 +377,8 @@ class AdvertController < ApplicationController
     elsif params[:enpopulerilanlar]!=nil
       @title="En Popüler İlanlar"
       @active = 3
-      @adverts = []
-
-      popularList = ViewedAdvertCount.group(:advert_id).count
-
-      popularList.each do |id, count|
-        @adverts << Advert.available.find(id)
-      end
+      @adverts = Advert.select('a.*').from('adverts a, viewed_advert_counts v')
+      .where('a.id=v.advert_id and verified=true and active=true').group('a.id').order('count(*) desc')
     elsif params[:fiyatidusenler]!=nil
       @title="Fiyatı Düşenler"
       @active = 4
@@ -394,15 +388,23 @@ class AdvertController < ApplicationController
       @active = 5
       @adverts = []
     elsif params[:kendiuniversitemdekiler]!=nil
-      @enyakindakisaticilar=true
       @title="Kendi Üniversitemdeki İlanlar"
       @active = 6
-      @adverts = []
+      if current_user
+        @adverts = Advert.select('a.*').from('adverts a, users u1, users u2')
+          .where('u1.id=? and u1.university_id=u2.university_id and a.user_id=u2.id and a.verified=true and a.active=true', current_user.id)
+      end
+      
     else
-      @title="Acil İlanlar"
+     @title="Acil İlanlar"
       @active = 0
-      @adverts = []
+      @adverts = Advert.available.where(:urgent => true).order('created_at DESC')
     end
+    
+    @mostpopular = Advert.select('a.*').from('adverts a, viewed_advert_counts v')
+      .where('a.id=v.advert_id and verified=true and active=true').group('a.id').order('count(*) desc')
+    
+    
   end
 
   def favorilereekle

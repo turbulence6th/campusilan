@@ -31,10 +31,10 @@ class ApplicationController < ActionController::Base
   end
   
   def topUniversities
-    sql = "SELECT universities.name, COUNT(*) " + 
+    sql = "SELECT universities.id, universities.name, COUNT(*) " + 
       "FROM adverts LEFT JOIN users ON adverts.user_id=users.id, universities " +
       "WHERE users.university_id=universities.id "+
-      "GROUP BY universities.name "+
+      "GROUP BY universities.id, universities.name "+
       "ORDER BY COUNT(*) ASC"
       
     arr = ActiveRecord::Base.connection.execute(sql)

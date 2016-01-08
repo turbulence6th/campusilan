@@ -228,8 +228,6 @@
 
 									<% end %>
 
-									
-
 									<div>
 										<div class="star-on">
 
@@ -239,8 +237,9 @@
 												</div>
 
 												<div class = "panel-body">
-													
-													<h4>Kullanıcı Güven Oyu</h4> <br>
+
+													<h4>Kullanıcı Güven Oyu</h4>
+													<br>
 													<ul>
 														<li>
 															<a href="#"><i class="glyphicon glyphicon-star"> </i></a>
@@ -264,53 +263,57 @@
 
 													</div>
 													<div class="clearfix"></div>
-												
-												<br>
 
-												<h4  class="add-to item_price">Fiyat: <%= @advert.price %>&#8378;</h4>
-												<br>
+													<br>
 
-												<h4  class="add-to item_price">Ürün Rengi: <%= @advertable.color %></h4>
-												<br>
+													<h4  class="add-to item_price">Fiyat: <%= @advert.price %>&#8378;</h4>
+													<br>
 
-												<h4  class="add-to item_price">Marka: <%= @advertable.brand %> </h4>
-												<br>
+													<h4  class="add-to item_price">Ürün Rengi: <%= @advertable.color %></h4>
+													<br>
 
-												<h4  class="add-to item_price">Kullanım Durumu: <% if @advertable.usage %>
-												Sıfır
-												<% else %>
-												İkinci El
-												<% end %> </h4>
-												<br>
+													<h4  class="add-to item_price">Marka: <%= @advertable.brand %> </h4>
+													<br>
 
-												<h4  class="add-to item_price">Garanti Durumu: <% if @advertable.warranty %>
-												Var
-												<% else %>
-												Yok
-												<% end %> </h4>
-												<br>
+													<h4  class="add-to item_price">Kullanım Durumu: <% if @advertable.usage %>
+													Sıfır
+													<% else %>
+													İkinci El
+													<% end %> </h4>
+													<br>
 
-												<h4  class="add-to item_price">İlan sahibinin telefonu: <%= @advert_user.phone %> </h4>
-												<br>
-												<h4> İlan sahibinin profili için <a href="/uye/<%= @advert_user.username %>">buraya</a> tıklayınız. </h4>
+													<h4  class="add-to item_price">Garanti Durumu: <% if @advertable.warranty %>
+													Var
+													<% else %>
+													Yok
+													<% end %> </h4>
+													<br>
+
+													<h4  class="add-to item_price">İlan sahibinin telefonu: <%= @advert_user.phone %> </h4>
+													<br>
+													<h4> İlan sahibinin profili için <a href="/uye/<%= @advert_user.username %>">buraya</a> tıklayınız. </h4>
 												</div>
 											</div>
 										</div>
 
-										
 									</div>
 								</div>
 							</div>
 							<div class="clearfix"></div>
 							<br>
 
-							<div style="padding-top:10px;padding-left:10px;padding-right:10px;padding-bottom:50px;border: 1px solid black;" class="row">
+							<div style="padding-top:10px;padding-left:10px;padding-right:10px;padding-bottom:50px;" class="row">
 
-								<h2 style="text-align:center;" class="">Açıklama</h2>
+								<div class="panel panel-danger">
+									<div class="panel-heading">
+										Açıklama
+									</div>
+									<div class="panel-body">
+										<%= @advert.explication  %>
+									</div>
+								</div>
 
-								<p>
-									<%= @advert.explication  %>
-								</p>
+								
 
 							</div>
 
