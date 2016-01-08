@@ -28,7 +28,7 @@ class AdvertController < ApplicationController
     @images = @advert.images
 
     @looked = Advert.select('a2.*').from('adverts a,users u, viewed_adverts v, adverts a2, viewed_adverts v2')
-      .where('a.id=1 AND v.user_id = u.id AND v.advert_id = a.id AND a.id!=a2.id AND v2.user_id = u.id AND v2.advert_id = a2.id').group('a2.id').order('count(a2.id)')[0..4]
+      .where('a.id=? AND v.user_id = u.id AND v.advert_id = a.id AND a.id!=a2.id AND v2.user_id = u.id AND v2.advert_id = a2.id', @advert.id).group('a2.id').order('count(a2.id)')[0..4]
       
     @similar = Advert.joins('JOIN secondhands ON adverts.advertable_id=secondhands.id').where(:advertable_type => 'Secondhand',:secondhands => { :category => @advertable.read_attribute(:category) }).where.not(:id => @advert.id).sample(4)
     
@@ -347,6 +347,17 @@ class AdvertController < ApplicationController
     else
       redirect_to "/kategoriler"
     end
+    
+    @gununilanlari = Advert.available.where(:opportunity => true).order('created_at DESC').last(8)
+    
+    @mostpopular = []
+
+    popularList = ViewedAdvertCount.group(:advert_id).count.first(6)
+
+    popularList.each do |id, count|
+      adv = Advert.available.find_by(:id => id)
+      @mostpopular << adv if adv
+    end
 
   end
 
@@ -385,10 +396,15 @@ class AdvertController < ApplicationController
       end
       
     else
-      @title="Acil İlanlar"
+     @title="Acil İlanlar"
       @active = 0
-      @adverts = []
+      @adverts = Advert.available.where(:urgent => true).order('created_at DESC')
     end
+    
+    @mostpopular = Advert.select('a.*').from('adverts a, viewed_advert_counts v')
+      .where('a.id=v.advert_id and verified=true and active=true').group('a.id').order('count(*) desc')
+    
+    
   end
 
   def favorilereekle

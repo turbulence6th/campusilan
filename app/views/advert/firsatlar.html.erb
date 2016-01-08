@@ -89,7 +89,25 @@
 		<!-- Fırsatlar Paneli-->
 		<link href="/resources/plugins/firsatlarpaneli/style.css" rel="stylesheet">
 
+		<!-- Caption Eklentisi -->
+
+		<script src="resources/plugins/captionplugin/caption.js"></script>
+		<link rel="stylesheet" href="resources/plugins/captionplugin/caption.css">
 		
+		<!-- Tooltip eklentisi-->
+
+		<link rel="stylesheet" type="text/css"
+		href="/resources/plugins/tooltipplugin/tooltip.css" />
+		
+		<!-- JCarousel Plugin -->
+
+		<!-- Example assets -->
+
+		<link rel="stylesheet" type="text/css" href="/resources/plugins/jcarousel-0.3.3/examples/responsive/jcarousel.responsive.css">
+
+		<script type="text/javascript" src="/resources/plugins/jcarousel-0.3.3/dist/jquery.jcarousel.min.js"></script>
+
+		<script type="text/javascript" src="/resources/plugins/jcarousel-0.3.3/examples/responsive/jcarousel.responsive.js"></script>
 
 		<!-- end of plugins  -->
 
@@ -169,7 +187,7 @@
 			<div class="row">
 			
 				
-					<div  class="btn-group btn-group-justified">
+					<div style="z-index:1;" class="btn-group btn-group-justified">
 						<div class="btn-group">
 							<button onclick="window.location='/firsatlar?acililanlar=1'"  type="button" class="btn btn-nav">
 								<span class="glyphicon glyphicon-folder-close"></span>
@@ -223,7 +241,7 @@
 							<button onclick="window.location='/firsatlar?kendiuniversitemdekiler=1'" type="button" class="btn btn-nav">
 								<span class="glyphicon glyphicon-bell"></span>
 								<p>
-									Kendi Üniversitemdekiler
+									Üniversitemdekiler
 								</p>
 							</button>
 						</div>
@@ -236,7 +254,7 @@
 			<div class="row"
 			style="height: 60%; padding-bottom: 20px; margin-bottom: 30px; margin-top: 20px;">
 
-				<div class="row" style="padding-left: 20px; padding-right: 20px;">
+				<div class="row" >
 
 					<div class="col-lg-3 hidden-xs hidden-sm hidden-md">
 
@@ -244,24 +262,13 @@
 
 						<div class="well">
 
-							Buraya kafana göre bir şeyler ekle...
+							-Campus İlan'a Hoşgeldiniz!!
 							<br>
-							...
 							<br>
-							...
+							-Yardıma mı mı ihtiyacınız var? O zaman <a href="/yardim">buraya</a> tıklayın.
 							<br>
-							...
 							<br>
-							...
-							<br>
-							...
-							<br>
-							...
-							<br>
-							...
-							<br>
-							...
-							<br>
+							-Görüş ve Önerileriniz bizim için çok önemli!! <a href="/iletisim">İletişim</a> sayfasından bizimle iletişime geçebilirsiniz.
 
 						</div>
 
@@ -273,7 +280,7 @@
 					<br class="visible-sm visible-xs visible-md">
 
 					<div class="col-lg-9 col-md-12 col-sm-12 col-xs-12"
-					style="padding-left: 20px; padding-right: 20px">
+					style="">
 
 						<div style="">
 
@@ -285,7 +292,44 @@
 
 								<% if @enyakindakisaticilar!=true %>
 
-								<div class="panel-body">
+								<div class="hidden-sm hidden-xs panel-body">
+									
+									<% @adverts.each do |advert| %>
+									
+										<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+
+										<div class="thumbnail">
+											<a href="<%= advert.href %>"> <% if advert.images == [] %>
+											<%= image_tag Image.new.imagefile,title:advert.name,class: "masterTooltip" %>
+											<% else %>
+											<%= image_tag advert.images[0].imagefile(:small),title:advert.name,class: "masterTooltip" %>
+											<% end %> </a>
+
+										</div>
+
+										<div class="caption">
+
+											<% if advert.name.length >= 12 %>
+
+											<h5><%= advert.name[0..11] %>...</h5>
+
+											<% else %>
+
+											<h5><%= advert.name %></h5>
+
+											<% end %>
+
+										</div>
+
+									</div>
+										
+									<% end %>
+
+
+								</div>
+								
+								
+								<div class="visible-xs visible-sm panel-body">
 									
 									<% @adverts.each do |advert| %>
 									
@@ -305,14 +349,14 @@
 												
 												
 												
-												<% if advert.name.length <= 15 %>
+												<% if advert.name.length <= 25 %>
 
 											<h5><%= advert.name %></h5><br>
 											
 
 											<% else %>
 
-											<h5><%= advert.name[0..25] + "..." %></h5>
+											<h5><%= advert.name[0..24] + "..." %></h5>
 
 											<% end %>
 	
@@ -345,12 +389,170 @@
 					</div>
 
 				</div>
+				
+				<div style="margin-bottom:20px;" class="hidden-xs hidden-sm row">
+
+					<img width="100%;" src="/resources/images/asdasd3.png">
+
+				</div>
+				
+				<div style="padding:20px; margin-bottom:20px;" class="visible-xs visible-sm row">
+
+					<img width="100%;" src="/resources/images/asdasd3.png">
+
+				</div>
+				
+				<div class="hidden-xs row" style="margin-top: 30px; margin-bottom: 30px;">
+
+					<div class="" style="border: 1px solid black; margin-left:10px;margin-right:10px; margin-bottom: 0px; padding-left: 10px;padding-bottom:30px; padding-right: 10px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; background: #E6F3FF">
+
+						<h2 style="text-align: center; margin-bottom: 50px;"><u>Bizim Seçtiklerimiz</u></h2>
+
+						<div style="background:white;"class="jcarousel-wrapper" style="margin-bottom: 80px;">
+							<div class="jcarousel">
+								<ul>
+
+									<% @mostpopular.each do |advert| %>
+
+									<li>
+										<% if advert.images != [] %>
+
+										<div class='wrapper'>
+											<!-- image -->
+											<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small) %></a>
+											<!-- description div -->
+											<div class='description'>
+												<!-- description content -->
+												<div class='description_content'>
+													<%= advert.name %>
+												</div>
+												<!-- end description content -->
+											</div>
+											<!-- end description div -->
+										</div>
+
+										<% else %>
+
+										<div class='wrapper'>
+											<!-- image -->
+											<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile %></a>
+											<!-- description div -->
+											<div class='description'>
+												<!-- description content -->
+												<div class='description_content'>
+													<%= advert.name %>
+												</div>
+												<!-- end description content -->
+											</div>
+											<!-- end description div -->
+										</div>
+
+										<% end %>
+
+									</li>
+
+									<% end %>
+								</ul>
+							</div>
+
+							<a href="#" class="jcarousel-control-prev">&lsaquo;</a><a href="#"
+							class="jcarousel-control-next">&rsaquo;</a>
+
+							<p class="jcarousel-pagination hidden-xs"></p>
+						</div>
+
+					</div>
+
+				</div>
+				
+				
+				<div style="margin-bottom:20px;" class="row">
+					
+					<div class="col-lg-6">
+						
+						<img src="/resources/images/sosyalmedya.png" width="100%" height="350px">
+						
+					</div>
+					
+					
+					
+					
+				</div>
+				
+				
+				
+				<div style= "padding-left: 20px; padding-right: 20px">
+					
+					<div style="background-color:#9DD2E3;" class="row well">
+						
+						
+						
+						<div class="col-lg-4">
+						
+						<h4>Giriş mi Yapmak İstiyorsunuz?</h4> <br>
+						
+						<button type = "button" class = "btn btn-primary">Giriş Yap</button>
+						
+						</div>
+						
+						<div class="col-lg-4">
+						
+						<h4>Kayıt mı Olmak İstiyorsunuz?</h4> <br>
+						
+						<button type = "button" class = "btn btn-primary">Kayıt Ol</button>
+						
+						</div>
+						
+						<div class="col-lg-4">
+						
+						<h4>Zaten giriş yaptınız ve ilan mı açmak istiyorsunuz?</h4> 
+						
+						<button type = "button" class = "btn btn-primary">İlan Aç</button>
+						
+						</div>
+						
+						
+					</div>
+					
+					
+				</div>
 
 				<%= render "footer" %>
 
 			</div>
 
 			<!-- pluginler -->
+			
+			<!-- JCarousel Plugin -->
+
+			<script type="text/javascript" src="/resources/plugins/jcarousel-0.3.3/libs/jquery/jquery.js"></script>
+
+			<script>
+				var $jcarousel = jQuery.noConflict();
+
+			</script>
+
+			<script>
+				//multilevel dropdown
+
+				$jcarousel(document).ready(function() {
+					$jcarousel('.dropdown-submenu a.test').on("click", function(e) {
+						$jcarousel(this).next('ul').toggle();
+						e.stopPropagation();
+						e.preventDefault();
+					});
+				});
+			</script>
+			
+			<!-- Tooltip eklentisi-->
+
+			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+			<script>
+				var $tooltip = jQuery.noConflict();
+			</script>
+
+			<script type="text/javascript" src="/resources/plugins/tooltipplugin/tooltip.js"></script>
 
 			<!--  fixed header -->
 
