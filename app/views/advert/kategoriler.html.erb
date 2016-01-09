@@ -365,14 +365,14 @@
 										</div>
 
 									</div>
-									
+
 									<% if @adverts.count > 18 %>
-										<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
-	
-										<div style="clear:both;"  class="apple_pagination">
-											<%= will_paginate @adverts, :container => false,
-											:previous_label => 'Önceki', :next_label => 'Sonraki' %>
-										</div>
+									<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
+
+									<div style="clear:both;"  class="apple_pagination">
+										<%= will_paginate @adverts, :container => false,
+										:previous_label => 'Önceki', :next_label => 'Sonraki' %>
+									</div>
 									<% end %>
 
 									<% end %>
@@ -398,7 +398,7 @@
 					<img width="100%;" src="/resources/images/asdasd3.png">
 
 				</div>
-				
+
 				<div style="padding:20px; margin-bottom:20px;" class="visible-xs visible-sm row">
 
 					<img width="100%;" src="/resources/images/asdasd3.png">
@@ -419,8 +419,12 @@
 							<div class="panel-body">
 
 								<div class="row">
+									
+									<% if @gununilanlari!=[] %>
 
 									<% @gununilanlari.each do |advert| %>
+
+									
 
 									<div class="col-lg-3 col-xs-6 col-md-4 col-sm-4">
 
@@ -453,17 +457,33 @@
 
 									</div>
 
+									
+
+									<% end %>
+									
+									<% else %>
+
+									<div style="padding:20px;">
+										
+										Şuanda malesef günün fırsatı bulunmamaktadır!!
+
+									</div>
+
 									<% end %>
 
 								</div>
 
 								<br>
+								
+								<% if @gununilanlari!=[] %>
 								<div style="text-align:center;">
 									<a href="/firsatlar?gununfirsatlari=1" >
 									<button style="text-align:center;" type = "button" class = "btn btn-success">
 										Devamı İçin Tıklayınız.
 									</button></a>
 								</div>
+								
+								<% end %>
 
 							</div>
 
@@ -482,6 +502,8 @@
 							<div class="panel-body">
 
 								<div class="row">
+									
+									<% if @mostpopular!= [] %>
 
 									<% @mostpopular.each do |advert| %>
 
@@ -517,6 +539,18 @@
 									</div>
 
 									<% end %>
+									
+									<% else %>
+									
+									<div style="padding:20px;">
+										
+										Şuanda malesef popüler ilan bulunmamaktadır!!
+
+									</div>
+									
+									
+									
+									<% end %>
 
 								</div>
 
@@ -534,41 +568,45 @@
 					</div>
 
 				</div>
-				
+
 				<div style= "padding-left: 20px; padding-right: 20px">
-					
+
 					<div style="background-color:#9DD2E3;" class="row well">
-						
-						
-						
+
 						<div class="col-lg-4">
-						
-						<h4>Giriş mi Yapmak İstiyorsunuz?</h4> <br>
-						
-						<button type = "button" class = "btn btn-primary">Giriş Yap</button>
-						
+
+							<h4>Giriş mi Yapmak İstiyorsunuz?</h4>
+							<br>
+
+							<button type = "button" class = "btn btn-primary">
+								Giriş Yap
+							</button>
+
 						</div>
-						
+
 						<div class="col-lg-4">
-						
-						<h4>Kayıt mı Olmak İstiyorsunuz?</h4> <br>
-						
-						<button type = "button" class = "btn btn-primary">Kayıt Ol</button>
-						
+
+							<h4>Kayıt mı Olmak İstiyorsunuz?</h4>
+							<br>
+
+							<button type = "button" class = "btn btn-primary">
+								Kayıt Ol
+							</button>
+
 						</div>
-						
+
 						<div class="col-lg-4">
-						
-						<h4>Zaten giriş yaptınız ve ilan mı açmak istiyorsunuz?</h4> 
-						
-						<button type = "button" class = "btn btn-primary">İlan Aç</button>
-						
+
+							<h4>Zaten giriş yaptınız ve ilan mı açmak istiyorsunuz?</h4>
+
+							<button type = "button" class = "btn btn-primary">
+								İlan Aç
+							</button>
+
 						</div>
-						
-						
+
 					</div>
-					
-					
+
 				</div>
 
 				<%= render "footer" %>

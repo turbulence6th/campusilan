@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(version: 20160109154837) do
   create_table "votes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "advert_id"
-    t.string   "point"
+    t.integer  "point"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

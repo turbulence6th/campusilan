@@ -5,7 +5,7 @@ class CreateVotes < ActiveRecord::Migration
       t.references :user, :index => true
       t.references :advert, :index => true
       
-      t.string :point
+      t.integer :point
 
       t.timestamps null: false
     end
