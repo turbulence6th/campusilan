@@ -113,14 +113,14 @@ class IndexController < ApplicationController
 
    if params[:universities] == nil
      
-     @adverts = Advert.available.joins(:user).where(:users => {university: topUniversities[0]['id']})
+     @adverts = Advert.available.joins(:user).where(:users => {university_id: topUniversities[0]['id']})
    
      @title = topUniversities[0]['name']
        
       
    else
      
-     @adverts = Advert.available.joins(:user).where(:users => {university: params[:universities]})
+     @adverts = Advert.available.joins(:user).where(:users => {university_id: params[:universities]})
    
      @title = University.find(params[:universities]).name
     

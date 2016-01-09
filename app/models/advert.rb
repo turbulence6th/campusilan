@@ -38,6 +38,8 @@ class Advert < ActiveRecord::Base
   
   has_many :viewed_advert_counts, :dependent => :destroy
   
+  has_many :votes, :dependent => :destroy
+  
   def href
     
     if self.advertable_type=='Secondhand'
