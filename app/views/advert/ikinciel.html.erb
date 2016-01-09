@@ -338,7 +338,7 @@
 
 								<% @similar.each do |advert| %>
 
-								<div class="col-md-4 col-md3">
+								<div class="hidden-xs hidden-sm col-md-4 col-lg-3">
 									<div class="col-md1 simpleCart_shelfItem">
 										<% if advert.images != [] %>
 										<a title="<%= advert.name%> " href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small), :class => 'img-responsive' %> </a>
@@ -347,6 +347,26 @@
 										<% end %>
 										<% if advert.name.size >= 30 %>
 										<h3><a href="<%= advert.href %>"> <%= advert.name[0..27] %>... </a></h3>
+										<% else %>
+										<h3><a href="<%= advert.href %>"> <%= advert.name %> </a></h3>
+										<% end %>
+										<div class="price">
+											<h5 class="item_price"><%= advert.price %>&#8378;</h5>
+											<a href="#" class="item_add">İncele</a>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="visible-xs visible-sm col-xs-4 col-sm-4">
+									<div class="col-md1 simpleCart_shelfItem">
+										<% if advert.images != [] %>
+										<a title="<%= advert.name%> " href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small), :class => 'img-responsive' %> </a>
+										<% else %>
+										<a title="<%= advert.name%> " href="<%= advert.href %>"> <%= image_tag Image.new.imagefile,class:"img-responsive"  %> </a>
+										<% end %>
+										<% if advert.name.size >= 10 %>
+										<h3><a href="<%= advert.href %>"> <%= advert.name[0..9] %>... </a></h3>
 										<% else %>
 										<h3><a href="<%= advert.href %>"> <%= advert.name %> </a></h3>
 										<% end %>
