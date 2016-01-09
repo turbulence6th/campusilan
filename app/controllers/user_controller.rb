@@ -89,6 +89,8 @@ class UserController < ApplicationController
     
     @gununilanlari = gununilanlari[0..8]
     
+    @lastadverts = current_user.adverts.last(6)
+    
    
     if params[:profilim]!=nil
       @sekme=".profilim"

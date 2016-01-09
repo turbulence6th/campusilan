@@ -254,6 +254,8 @@
 									<div class="panel-body">
 										<div class="row">
 											<div class="col-md-3 col-lg-3 " align="center">
+												
+												
 												<% if !current_user.image && current_user.gender == "male" %>
 												<img src="/resources/images/erkek.png"
 												class='img-circle img-responsive'
@@ -274,7 +276,11 @@
 												:alt => 'User Pic',
 												:class => 'img-circle img-responsive' %>
 												<% end%>
+												
+												
 											</div>
+											
+											
 
 											<div class=" col-md-9 col-lg-9 ">
 												<table class="table table-user-information">
@@ -745,63 +751,37 @@
 										<div class="panel-body">
 
 											<div class="row">
+												
+												<% @lastadverts.each do |advert| %>
 
 												<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
 
 													<div class="thumbnail">
-														<a href="#"> <img src="/resources/images/cat-demo.jpg"
-														alt="cat demo photo"> </img> </a>
-
-													</div>
-
-													<div class="caption">
-
-														<b>Thumbnail label</b>
-														<p>
-															Some sample text.
-														</p>
-
-													</div>
+													<a title='<%= advert.name %>' href="<%= advert.href %>"> <% if advert.images == [] %>
+													<%= image_tag Image.new.imagefile %>
+													<% else %>
+													<%= image_tag advert.images[0].imagefile(:small) %>
+													<% end %> </a>
 
 												</div>
 
-												<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
+												<div class="caption">
 
-													<div class="thumbnail">
-														<a href="#"> <img src="/resources/images/cat-demo.jpg"
-														alt="cat demo photo"> </img> </a>
-
-													</div>
-
-													<div class="caption">
-
-														<b>Thumbnail label</b>
-														<p>
-															Some sample text.
-														</p>
-
-													</div>
+													<h5><% if advert.name.length > 14 %>
+													<%= advert.name[0..11] %>..
+													<% else %>
+													<%= advert.name %>
+													<% end %> </h5>
 
 												</div>
 
-												<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
-
-													<div class="thumbnail">
-														<a href="#"> <img src="/resources/images/cat-demo.jpg"
-														alt="cat demo photo"> </img> </a>
-
-													</div>
-
-													<div class="caption">
-
-														<b>Thumbnail label</b>
-														<p>
-															Some sample text.
-														</p>
-
-													</div>
-
 												</div>
+												
+												<% end %>
+
+												
+
+												
 
 											</div>
 										</div>
@@ -856,6 +836,7 @@
 												</div>
 
 											</div>
+											
 											<% end %>
 
 										</div>

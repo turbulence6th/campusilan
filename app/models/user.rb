@@ -59,10 +59,10 @@ class User < ActiveRecord::Base
   has_many :adverts, :dependent => :destroy
   
   has_many :viewed_adverts, :dependent => :destroy
-  has_many :adverts, through: :viewed_adverts
+  
   
   has_many :favourite_adverts, :dependent => :destroy
-  has_many :adverts, through: :favourite_adverts
+
   
   has_many :froms, :class_name => 'Message', :foreign_key => 'from_id', :dependent => :destroy
   has_many :tos, :class_name => 'Message', :foreign_key => 'to_id', :dependent => :destroy
