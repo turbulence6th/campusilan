@@ -3,6 +3,49 @@ class AdvertController < ApplicationController
   layout false
 
   helper_method :current_user
+  
+  def vote
+    
+    if current_user
+      
+      star = params[:star]
+      advert = Advert.find_by(:id => params[:advert])
+      point = params[:point]
+      
+      if Vote.where(:user => current_user, :advert => advert).present?
+        
+        vote = Vote.find_by(:user => current_user, :advert => advert)
+        vote.point = point
+      
+      else
+        
+        vote = Vote.new(:user => current_user, :advert => advert, :point => point)
+          
+      end
+      
+      if vote.save
+        
+        respond_to do |format|
+          msg = { :check => true }
+          format.json  { render :json => msg }
+        end
+        
+      else
+        
+        respond_to do |format|
+          msg = { :check => false }
+          format.json  { render :json => msg }
+        end
+        
+      end
+      
+      
+    end
+    
+    
+    
+  end
+  
   def ikinciel
 
     advert_name = params[:advert_name]
@@ -26,6 +69,15 @@ class AdvertController < ApplicationController
     @advertable = @advert.advertable
     @advert_user = @advert.user
     @images = @advert.images
+    
+    if current_user
+      vote = Vote.find_by(:user => current_user, :advert => @advert)
+      if vote
+        @vote = vote.point
+      else
+        @vote = 0
+      end
+    end
 
     @looked = Advert.select('a2.*').from('adverts a,users u, viewed_adverts v, adverts a2, viewed_adverts v2')
       .where('a.id=? AND v.user_id = u.id AND v.advert_id = a.id AND a.id!=a2.id AND v2.user_id = u.id AND v2.advert_id = a2.id', @advert.id).group('a2.id').order('count(a2.id)')[0..4]

@@ -94,6 +94,28 @@
 		<!-- Product View-->
 
 		<link rel="stylesheet" href="/resources/plugins/productview/css/easyzoom.css" />
+		
+		<!-- bootstrap star rating -->
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		
+		<script>
+			var starrating = jQuery.noConflict();
+		</script>
+
+		 
+		 <script src="/resources/plugins/bootstrap-star-rating-master/js/star-rating.js"></script>
+		 
+		 <script>
+		 	
+		 	
+		 	
+		 	
+		 	
+		 </script>
+		 
+		 <link rel="stylesheet" href="/resources/plugins/bootstrap-star-rating-master/css/star-rating.css" media="all" rel="stylesheet" type="text/css"/>
+
 
 		<!-- end of plugins  -->
 
@@ -240,23 +262,9 @@
 
 													<h4>Kullanıcı Güven Oyu</h4>
 													<br>
-													<ul>
-														<li>
-															<a href="#"><i class="glyphicon glyphicon-star"> </i></a>
-														</li>
-														<li>
-															<a href="#"><i class="glyphicon glyphicon-star"> </i></a>
-														</li>
-														<li>
-															<a href="#"><i class="glyphicon glyphicon-star"> </i></a>
-														</li>
-														<li>
-															<a href="#"><i class="glyphicon glyphicon-star"> </i></a>
-														</li>
-														<li>
-															<a href="#"><i class="glyphicon glyphicon-star"> </i></a>
-														</li>
-													</ul>
+													
+													<input id="input-21b" value="<%= @vote %>" type="number" class="rating" min=0 max=5 step=1 data-size="xs">
+													
 													<div class="review">
 
 														<a href="#"> 3 Yorum </a>
@@ -317,8 +325,7 @@
 
 							</div>
 
-							<br>
-							<br>
+							
 
 							<div class="benzerurunler row">
 
@@ -334,7 +341,7 @@
 
 							<% else %>
 
-							<div class="content-top1">
+							<div class="panel panel-default content-top1">
 
 								<% @similar.each do |advert| %>
 
@@ -357,6 +364,8 @@
 										</div>
 									</div>
 								</div>
+								
+							</div
 								
 								<div class="visible-xs visible-sm col-xs-4 col-sm-4">
 									<div class="col-md1 simpleCart_shelfItem">
@@ -388,6 +397,8 @@
 						<!----->
 						<div class="col-md-3 product-bottom">
 							<!--categories-->
+							
+							<br class="visible-xs">
 
 							<%= render 'ilankategoriler'%>
 
@@ -569,6 +580,90 @@ advertid : <%= @advert.id %>
 		<% end %>
 
 		<!-- Plugins-->
+		
+		<!-- bootstrap star rating -->
+		
+		
+		
+		<script>
+    starrating(document).ready(function () {
+        starrating("#input-21f").rating({
+            starCaptions: function(val) {
+                if (val < 3) {
+                    return val;
+                } else {
+                    return 'high';
+                }
+            },
+            starCaptionClasses: function(val) {
+                if (val < 3) {
+                    return 'label label-danger';
+                } else {
+                    return 'label label-success';
+                }
+            },
+            hoverOnClear: false
+        });
+        
+        starrating('#rating-input').rating({
+              min: 0,
+              max: 5,
+              step: 1,
+              size: 'lg',
+              showClear: false
+           });
+           
+        starrating('#btn-rating-input').on('click', function() {
+        	
+            starrating('#rating-input').rating('refresh', {
+                showClear:true, 
+                disabled:true
+            });
+        });
+        
+        
+        starrating('.btn-danger').on('click', function() {
+            starrating("#kartik").rating('destroy');
+        });
+        
+        starrating('.btn-success').on('click', function() {
+        	
+            starrating("#kartik").rating('create');
+        });
+        
+        starrating('#input-21b').on('rating.change', function() {
+        	
+            $.ajax({
+				url : '/vote',
+				data : {
+					authenticity_token : window._token,
+					advert : '<%= @advert.id %>',
+					point : starrating('#input-21b').val()
+				},
+				error : function() {
+					alert('error');
+				},
+				dataType : 'json',
+				success : function(data) {
+
+
+					if (!data.check) {
+
+						alert('Sunucuda Bir sorun meydana geldi');
+
+					} 
+
+				},
+				type : 'POST'
+			});
+            
+            
+        });
+        
+        
+        starrating('.rb-rating').rating({'showCaption':true, 'stars':'3', 'min':'0', 'max':'3', 'step':'1', 'size':'xs', 'starCaptions': {0:'status:nix', 1:'status:wackelt', 2:'status:geht', 3:'status:laeuft'}});
+    });
+</script>
 
 		<!-- Product Template-->
 
@@ -644,6 +739,8 @@ advertid : <%= @advert.id %>
 			var api1 = $easyzoom.filter('.easyzoom--with-thumbnails').data('easyZoom');
 
 			$('.thumbnails').on('click', 'a', function(e) {
+				
+				
 				var $this = productview(this);
 
 				e.preventDefault();
