@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   
+  scope :valid, -> { where(:deleted => false) }
+  
   validates :name, :surname, :username,  :phone, :role, :gender, :university, :presence => true
   
   validates :password_confirmation, :presence => true, :if => :password_digest_changed?

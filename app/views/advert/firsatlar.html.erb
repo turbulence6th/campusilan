@@ -326,7 +326,7 @@
 									
 										
 									<% end %>
-									<% if @adverts.count > 18 %>
+									<% if @adverts.length > 18 %>
 										<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
 	
 										<div style="clear:both;"  class="apple_pagination">
@@ -374,7 +374,7 @@
 										
 									<% end %>
 									
-									<% if @adverts.count > 18 %>
+									<% if @adverts.length > 18 %>
 	
 										<div style="clear:both;"  class="apple_pagination">
 											<%= will_paginate @adverts, :container => false,
@@ -428,7 +428,7 @@
 							<div class="jcarousel">
 								<ul>
 
-									<% @mostpopular.each do |advert| %>
+									<% @bizimsectiklerimiz.each do |advert| %>
 
 									<li>
 										<% if advert.images != [] %>

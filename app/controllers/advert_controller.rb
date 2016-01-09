@@ -427,7 +427,7 @@ class AdvertController < ApplicationController
       @adverts = acililanlar.paginate(:page => params[:page], :per_page => 18)
     end
     
-    @mostpopular = mostpopular[0..9]
+    @bizimsectiklerimiz = bizimsectiklerimiz[0..9]
     
     
   end

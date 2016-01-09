@@ -112,7 +112,7 @@ class UserController < ApplicationController
       @sekme=".profilim"
     end
     
-    @other_user=User.find_by_username(params[:username])
+    @other_user=User.valid.find_by_username(params[:username])
     
     if @other_user == nil 
       raise ActionController::RoutingError.new('Not Found') 

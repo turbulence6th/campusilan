@@ -13,6 +13,7 @@ class IndexController < ApplicationController
     @acililanlar = acililanlar[0..7]
     @gununilanlari = gununilanlari[0..7]
     @mostpopular = mostpopular[0..9]
+    @bizimsectiklerimiz = bizimsectiklerimiz[0..9]
 
   end
 
