@@ -365,6 +365,15 @@
 										</div>
 
 									</div>
+									
+									<% if @adverts.count > 18 %>
+										<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
+	
+										<div style="clear:both;"  class="apple_pagination">
+											<%= will_paginate @adverts, :container => false,
+											:previous_label => 'Önceki', :next_label => 'Sonraki' %>
+										</div>
+									<% end %>
 
 									<% end %>
 

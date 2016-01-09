@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151225225240) do
+ActiveRecord::Schema.define(version: 20160109154837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20151225225240) do
     t.boolean  "verified"
     t.boolean  "urgent"
     t.boolean  "opportunity"
+    t.boolean  "ours"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -50,8 +51,10 @@ ActiveRecord::Schema.define(version: 20151225225240) do
   add_index "adverts", ["user_id"], name: "index_adverts_on_user_id", using: :btree
 
   create_table "favourite_adverts", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "advert_id"
+    t.integer  "user_id"
+    t.integer  "advert_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "favourite_adverts", ["advert_id"], name: "index_favourite_adverts_on_advert_id", using: :btree
@@ -126,6 +129,7 @@ ActiveRecord::Schema.define(version: 20151225225240) do
     t.date     "birthday"
     t.text     "address"
     t.integer  "university_id"
+    t.boolean  "deleted"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -139,11 +143,24 @@ ActiveRecord::Schema.define(version: 20151225225240) do
   end
 
   create_table "viewed_adverts", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "advert_id"
+    t.integer  "user_id"
+    t.integer  "advert_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "viewed_adverts", ["advert_id"], name: "index_viewed_adverts_on_advert_id", using: :btree
   add_index "viewed_adverts", ["user_id"], name: "index_viewed_adverts_on_user_id", using: :btree
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "advert_id"
+    t.string   "point"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "votes", ["advert_id"], name: "index_votes_on_advert_id", using: :btree
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
 
 end

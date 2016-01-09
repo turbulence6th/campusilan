@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   
+  scope :valid, -> { where(:deleted => false) }
+  
   validates :name, :surname, :username,  :phone, :role, :gender, :university, :presence => true
   
   validates :password_confirmation, :presence => true, :if => :password_digest_changed?
@@ -10,7 +12,7 @@ class User < ActiveRecord::Base
   
   validates :email, :uniqueness => { :case_sensitive => false }
   
-  validates :verified, :bulletin, :inclusion => { :in => [true, false] }
+  validates :verified, :bulletin, :deleted, :inclusion => { :in => [true, false] }
   
   validates :password, :email, :confirmation => true
   
@@ -58,16 +60,16 @@ class User < ActiveRecord::Base
   
   has_many :viewed_adverts, :dependent => :destroy
   
-  
   has_many :favourite_adverts, :dependent => :destroy
-
-  
+ 
   has_many :froms, :class_name => 'Message', :foreign_key => 'from_id', :dependent => :destroy
   has_many :tos, :class_name => 'Message', :foreign_key => 'to_id', :dependent => :destroy
   
   belongs_to :university
   
   has_one :image, :as => :imageable, :dependent => :destroy
+  
+  has_many :votes, :dependent => :destroy
   
   
 end

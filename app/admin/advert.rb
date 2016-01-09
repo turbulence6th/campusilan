@@ -16,6 +16,7 @@ ActiveAdmin.register Advert do
       input :verified, :as => :select, :collection => { :True => true, :False => false }
       input :urgent, :as => :select, :collection => { :True => true, :False => false }
       input :opportunity, :as => :select, :collection => { :True => true, :False => false }
+      input :ours, :as => :select, :collection => { :True => true, :False => false }
 
     end
 
