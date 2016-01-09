@@ -94,6 +94,8 @@ class UserController < ApplicationController
     
     @gununilanlari = Advert.where(:opportunity => true).order('created_at DESC').last(9)
     
+    @lastadverts = current_user.adverts.last(6)
+    
    
     if params[:profilim]!=nil
       @sekme=".profilim"
