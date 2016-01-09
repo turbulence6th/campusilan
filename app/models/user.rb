@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   
   validates :email, :uniqueness => { :case_sensitive => false }
   
-  validates :verified, :bulletin, :inclusion => { :in => [true, false] }
+  validates :verified, :bulletin, :deleted, :inclusion => { :in => [true, false] }
   
   validates :password, :email, :confirmation => true
   

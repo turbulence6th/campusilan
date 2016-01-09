@@ -36,6 +36,7 @@ class UserController < ApplicationController
     @user.phone = @user.phone1 + '-' + @user.phone2
     @user.role = 'member'
     @user.verified = false
+    @user.deleted = false
     
     @user.email = @user.email.downcase if @user.email
     @user.email_confirmation = @user.email_confirmation.downcase if @user.email_confirmation

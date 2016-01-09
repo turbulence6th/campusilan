@@ -7,7 +7,7 @@ class UniversityTest < ActiveSupport::TestCase
   setup do
     @user = User.new(:name => "name", :surname => "surname", :username => "username", :password => "oguzTanrikulu123", 
     :password_confirmation => "oguzTanrikulu123", :email => "email@metu.edu.tr", :email_confirmation => "email@metu.edu.tr", 
-    :gender => "male", :phone => "111-1111111", :bulletin => false, :role => 'member', :verified => false)
+    :gender => "male", :phone => "111-1111111", :bulletin => false, :role => 'member', :verified => false, :deleted => false)
     @university = University.find_by_name("ORTA DOĞU TEKNİK ÜNİVERSİTESİ")
   end
   

@@ -214,6 +214,7 @@ class AdvertController < ApplicationController
     
     @advert.urgent = false
     @advert.opportunity = false
+    @advert.ours = false
 
     if params[:images]
       params[:images].reverse.each do |image|
@@ -238,6 +239,7 @@ class AdvertController < ApplicationController
     @advert.verified = true if current_user.role=='admin'
     @advert.urgent = false
     @advert.opportunity = false
+    @advert.ours = false
 
     if params[:images]
       params[:images].reverse.each do |image|
@@ -267,6 +269,7 @@ class AdvertController < ApplicationController
     
     @advert.urgent = false
     @advert.opportunity = false
+    @advert.ours = false
 
     if params[:images]
       params[:images].reverse.each do |image|
