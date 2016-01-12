@@ -14,6 +14,10 @@ class IndexController < ApplicationController
     @gununilanlari = gununilanlari[0..7]
     @mostpopular = mostpopular[0..9]
     @bizimsectiklerimiz = bizimsectiklerimiz[0..9]
+    
+    @enguvenilirikinciel = enguvenilirikinciel[0..5]
+    @enguvenilirevarkadasi = enguvenilirevarkadasi[0..5]
+    @enguvenilirozelders = enguvenilirozelders[0..5]
 
   end
 

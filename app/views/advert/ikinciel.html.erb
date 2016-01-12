@@ -660,6 +660,34 @@ advertid : <%= @advert.id %>
             
         });
         
+        starrating('#input-21b').on('rating.clear', function() {
+        	
+            $.ajax({
+				url : '/votedelete',
+				data : {
+					authenticity_token : window._token,
+					advert : '<%= @advert.id %>'
+				},
+				error : function() {
+					alert('error');
+				},
+				dataType : 'json',
+				success : function(data) {
+
+
+					if (!data.check) {
+
+						alert('Sunucuda Bir sorun meydana geldi');
+
+					} 
+
+				},
+				type : 'POST'
+			});
+            
+            
+        });
+        
         
         starrating('.rb-rating').rating({'showCaption':true, 'stars':'3', 'min':'0', 'max':'3', 'step':'1', 'size':'xs', 'starCaptions': {0:'status:nix', 1:'status:wackelt', 2:'status:geht', 3:'status:laeuft'}});
     });
