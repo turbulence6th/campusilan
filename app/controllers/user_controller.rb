@@ -63,7 +63,7 @@ class UserController < ApplicationController
   end
 
   def loginPost
-    user = User.find_by_username(params[:username]).try(:authenticate, params[:password])
+    user = User.valid.find_by_username(params[:username]).try(:authenticate, params[:password])
     if (user!=nil && user!=false)
       session[:user_id] = user.id
       if request.referer
@@ -126,8 +126,8 @@ class UserController < ApplicationController
       current_user.phone2 =  current_user.phone.split('-')[1]
       
       @favouriteadverts = Advert.available.select('adverts.*').from('adverts, users, favourite_adverts')
-        .where('adverts.id=favourite_adverts.advert_id AND users.id=favourite_adverts.user_id')
-        .order('favourite_adverts.created_at')
+        .where('adverts.id=favourite_adverts.advert_id AND users.id=favourite_adverts.user_id AND users.id=?', current_user.id)
+        .order('favourite_adverts.created_at DESC')[0..5]
       
       
        @viewedadverts = Advert.available.select('adverts.*').from('adverts, users, viewed_adverts')
@@ -147,6 +147,31 @@ class UserController < ApplicationController
   def logout
     reset_session
     redirect_to "/"
+  end
+  
+  def hesabisil 
+    
+    if current_user!= nil 
+      
+    
+      
+      current_user.deleted = true
+      current_user.save
+      
+      reset_session
+      
+      redirect_to "/"
+      
+     else
+       
+       raise ActionController::RoutingError.new('Not Found') 
+      
+      
+    end
+    
+  
+    
+    
   end
   
   

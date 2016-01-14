@@ -121,6 +121,12 @@
 		rel='stylesheet' type='text/css'>
 
 		<!-- Fixed Header sonu -->
+		
+		
+		<!-- Tooltip eklentisi-->
+
+		<link rel="stylesheet" type="text/css"
+		href="/resources/plugins/tooltipplugin/tooltip.css" />
 
 		<!-- end of plugins  -->
 
@@ -211,9 +217,9 @@
 
 											<div class="thumbnail">
 												<a title='<%= advert.name %>' href="<%= advert.href %>"> <% if advert.images == [] %>
-												<%= image_tag Image.new.imagefile %>
+												<%= image_tag Image.new.imagefile,title:advert.name,class: "masterTooltip" %>
 												<% else %>
-												<%= image_tag advert.images[0].imagefile(:small) %>
+												<%= image_tag advert.images[0].imagefile(:small),title:advert.name,class: "masterTooltip" %>
 												<% end %> </a>
 
 											</div>
@@ -254,8 +260,7 @@
 									<div class="panel-body">
 										<div class="row">
 											<div class="col-md-3 col-lg-3 " align="center">
-												
-												
+
 												<% if !current_user.image && current_user.gender == "male" %>
 												<img src="/resources/images/erkek.png"
 												class='img-circle img-responsive'
@@ -264,23 +269,19 @@
 												<img src="/resources/images/kadin.png"
 												class='img-circle img-responsive'
 												/>
-												
+
 												<% elsif !current_user.image && current_user.gender == "other" %>
 												<img src="/resources/images/diger.png"
 												class='img-circle img-responsive'
 												/>
-												
-												
+
 												<% else %>
 												<%= image_tag current_user.image.imagefile(:small),
 												:alt => 'User Pic',
 												:class => 'img-circle img-responsive' %>
 												<% end%>
-												
-												
+
 											</div>
-											
-											
 
 											<div class=" col-md-9 col-lg-9 ">
 												<table class="table table-user-information">
@@ -348,15 +349,20 @@
 										<a href="/mesajlarim" data-original-title="Mesajlarım"
 										data-toggle="tooltip" type="button"
 										class="btn btn-sm btn-primary"><i
-										class="glyphicon glyphicon-envelope"></i></a><span
-										class="pull-right"> <a href="/uye/<%= current_user.username %>?hesapayarlari=1"
+										class="glyphicon glyphicon-envelope"></i></a>
+
+										<span
+										class="pull-right"> <%= form_for :user, :url => 'hesabisil' , :method => :post , :html => {
+											:onsubmit => 'return vsubmit();',:id => 'uyeformu'
+											} do |t| %> <a href="/uye/<%= current_user.username %>?hesapayarlari=1"
 											data-original-title="Profili Düzenle" data-toggle="tooltip"
 											type="button" class="btn btn-sm btn-warning"><i
 											class="glyphicon glyphicon-edit"></i></a> <a
 											data-original-title="Hesabımı Sil"
-											data-toggle="tooltip" type="button"
+											data-toggle="modal"   data-target = "#hesabisil"  type="button"
 											class="btn btn-sm btn-danger"><i
-											class="glyphicon glyphicon-remove"></i></a> </span>
+											class="glyphicon glyphicon-remove"></i></a> <% end %> </span>
+
 									</div>
 
 								</div>
@@ -373,22 +379,24 @@
 
 										<div class="row">
 
+											<% if @favouriteadverts!= [] %>
+
 											<% @favouriteadverts.each do |advert| %>
 
 											<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
 
 												<div class="thumbnail">
 													<a title="<%= advert.name %>" href="<%= advert.href %>"> <% if advert.images == [] %>
-													<%= image_tag Image.new.imagefile %>
+													<%= image_tag Image.new.imagefile,title:advert.name,class: "masterTooltip" %>
 													<% else %>
-													<%= image_tag advert.images[0].imagefile(:small) %>
+													<%= image_tag advert.images[0].imagefile(:small),title:advert.name,class: "masterTooltip" %>
 													<% end %> </a>
 												</div>
 
 												<div class="caption">
 
-													<h5><% if advert.name.length > 12 %>
-													<%= advert.name[0..9] %>..
+													<h5><% if advert.name.length > 14 %>
+													<%= advert.name[0..13] %>...
 													<% else %>
 													<%= advert.name %>
 													<% end %> </h5>
@@ -398,7 +406,31 @@
 											</div>
 											<% end %>
 
+											<% else %>
+											
+											
+
+											<div style="padding:20px;">
+
+												Şuanda favori ilanınız bulunmamaktadır!!
+
+											</div>
+
+											<% end %>
+
 										</div>
+					
+										<% if @favouriteadverts!= [] %>
+										<br>
+										<div style="text-align:center;">
+											
+												
+											<button style="text-align:center;" onclick="window.location='/favorilerim'" type = "button" class = "btn btn-success">
+												Devamı İçin Tıklayınız.
+											</button>
+										</div>
+										
+										<% end %>
 									</div>
 
 								</div>
@@ -751,44 +783,38 @@
 										<div class="panel-body">
 
 											<div class="row">
-												
+
 												<% @lastadverts.each do |advert| %>
 
 												<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
 
 													<div class="thumbnail">
-													<a title='<%= advert.name %>' href="<%= advert.href %>"> <% if advert.images == [] %>
-													<%= image_tag Image.new.imagefile %>
-													<% else %>
-													<%= image_tag advert.images[0].imagefile(:small) %>
-													<% end %> </a>
+														<a  href="<%= advert.href %>"> <% if advert.images == [] %>
+														<%= image_tag Image.new.imagefile,title:advert.name,class: "masterTooltip" %>
+														<% else %>
+														<%= image_tag advert.images[0].imagefile(:small),title:advert.name,class: "masterTooltip" %>
+														<% end %> </a>
+
+													</div>
+
+													<div class="caption">
+
+														<h5><% if advert.name.length > 7 %>
+														<%= advert.name[0..6] %>..
+														<% else %>
+														<%= advert.name %>
+														<% end %> </h5>
+
+													</div>
 
 												</div>
 
-												<div class="caption">
-
-													<h5><% if advert.name.length > 14 %>
-													<%= advert.name[0..11] %>..
-													<% else %>
-													<%= advert.name %>
-													<% end %> </h5>
-
-												</div>
-
-												</div>
-												
 												<% end %>
-
-												
-
-												
 
 											</div>
 										</div>
 
 									</div>
-
-									
 
 								</div>
 
@@ -818,9 +844,9 @@
 
 												<div class="thumbnail">
 													<a title='<%= advert.name %>' href="<%= advert.href %>"> <% if advert.images == [] %>
-													<%= image_tag Image.new.imagefile %>
+													<%= image_tag Image.new.imagefile,title:advert.name,class: "masterTooltip" %>
 													<% else %>
-													<%= image_tag advert.images[0].imagefile(:small) %>
+													<%= image_tag advert.images[0].imagefile(:small),title:advert.name,class: "masterTooltip" %>
 													<% end %> </a>
 
 												</div>
@@ -836,7 +862,7 @@
 												</div>
 
 											</div>
-											
+
 											<% end %>
 
 										</div>
@@ -1447,145 +1473,6 @@
 
 		</div>
 
-		<div class="row" style="padding: 20px;">
-
-			<div style="">
-
-				<div class="panel panel-success">
-
-					<div class="panel-heading">
-						<h3 style="text-align: center;" class="panel-title">Arkadaş
-						Listem</h3>
-					</div>
-
-					<div class="row">
-
-						<div class="panel-body">
-
-							<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="/resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h3>Thumbnail label</h3>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
-							<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="/resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h3>Thumbnail label</h3>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
-							<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="/resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h3>Thumbnail label</h3>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
-							<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="/resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h3>Thumbnail label</h3>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
-							<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="/resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h3>Thumbnail label</h3>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
-							<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="/resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h3>Thumbnail label</h3>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
-
 		<div class="row">
 
 			<%= render "footer" %>
@@ -1594,7 +1481,64 @@
 
 		</div>
 
+		<!-- Modal -->
+		<div class = "modal fade" id = "hesabisil" tabindex = "-1" role = "dialog"
+		aria-labelledby = "myModalLabel" aria-hidden = "true">
+
+			<div class = "modal-dialog">
+				<div class = "modal-content">
+
+					<div class = "modal-header">
+						<button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+							×
+						</button>
+
+						<h4 class = "modal-title" id = "myModalLabel"> Hesabımı Sil </h4>
+					</div>
+
+					<div class = "modal-body">
+						Hesabınızı gerçekten silmek istediğinize emin misiniz?
+					</div>
+
+					<div class = "modal-footer">
+						<button type = "button" class = "btn btn-default" data-dismiss = "modal">
+							İptal
+						</button>
+
+						<button type = "button" onclick="hesapsilonay();"  class = "btn btn-primary">
+							Onayla!!
+						</button>
+					</div>
+
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+
+		</div><!-- /.modal -->
+
+		
+
+		<!-- hesabı sil-->
+
+		<script>
+			function hesapsilonay() {
+
+				document.getElementById("uyeformu").submit();
+
+			}
+
+		</script>
+
 		<!-- plugins -->
+		
+		<!-- Tooltip eklentisi-->
+
+			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+			<script>
+				var $tooltip = jQuery.noConflict();
+			</script>
+
+			<script type="text/javascript" src="/resources/plugins/tooltipplugin/tooltip.js"></script>
 
 		<!--  user panelinin js kodları -->
 
@@ -1635,7 +1579,7 @@
 
 				$uyepaneljs('button').click(function(e) {
 					e.preventDefault();
-					alert("This is a demo.\n :-)");
+
 				});
 			});
 		</script>

@@ -326,7 +326,10 @@
 									
 										
 									<% end %>
-									<% if @adverts.length > 18 %>
+									
+								</div>
+								
+								<% if @adverts.length > 18 %>
 										<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
 	
 										<div style="clear:both;"  class="apple_pagination">
@@ -334,7 +337,6 @@
 											:previous_label => 'Önceki', :next_label => 'Sonraki' %>
 										</div>
 									<% end %>
-								</div>
 								
 								
 								<div class="visible-xs visible-sm panel-body">
@@ -357,14 +359,14 @@
 												
 												
 												
-												<% if advert.name.length <= 25 %>
+												<% if advert.name.length <= 10 %>
 
 											<h5><%= advert.name %></h5><br>
 											
 
 											<% else %>
 
-											<h5><%= advert.name[0..24] + "..." %></h5>
+											<h5><%= advert.name[0..9] + "..." %></h5>
 
 											<% end %>
 	

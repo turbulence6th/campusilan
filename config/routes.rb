@@ -48,6 +48,8 @@ Rails.application.routes.draw do
   get 'uye/:username' => 'user#member'
   get 'universiteler' => 'index#universiteler'
   post 'vote' => 'advert#vote', defaults: {format: :json}
+  post '/uye/hesabisil' => 'user#hesabisil'
+  get 'favorilerim' => 'index#favorilerim'
 
   get "/404" => "error#not_found"
   get "/422" => "error#unacceptable"
