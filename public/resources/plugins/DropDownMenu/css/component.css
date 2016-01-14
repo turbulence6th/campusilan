@@ -39,6 +39,19 @@
 	z-index:1;
 }
 
+.cbp-hrmenu > ul  > a {
+	font-weight: 700;
+	padding: 1em 2em;
+	color: gray;
+	display: inline-block;
+	z-index:1;
+}
+
+.cbp-hrmenu > ul > a:hover {
+	color: #47a3da;
+	z-index:1;
+}
+
 .cbp-hrmenu > ul > li > a:hover {
 	color: #47a3da;
 	z-index:1;

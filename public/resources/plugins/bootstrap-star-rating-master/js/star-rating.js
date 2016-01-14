@@ -544,7 +544,7 @@
             5: '5 Yıldız'
         },
         clearButtonTitle: 'Clear',
-        clearCaption: 'Not Rated'
+        clearCaption: 'Henüz Oylamadınız.'
     };
 
     $.extend($.fn.rating.defaults, $.fn.ratingLocales.en);

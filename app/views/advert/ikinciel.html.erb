@@ -94,29 +94,27 @@
 		<!-- Product View-->
 
 		<link rel="stylesheet" href="/resources/plugins/productview/css/easyzoom.css" />
-		
+
 		<!-- bootstrap star rating -->
-		
+
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		
+
 		<script>
 			var starrating = jQuery.noConflict();
 		</script>
 
-		 
-		 <script src="/resources/plugins/bootstrap-star-rating-master/js/star-rating.js"></script>
-		 
-		 <script>
-		 	
-		 	
-		 	
-		 	
-		 	
-		 </script>
-		 
-		 <link rel="stylesheet" href="/resources/plugins/bootstrap-star-rating-master/css/star-rating.css" media="all" rel="stylesheet" type="text/css"/>
+		<script src="/resources/plugins/bootstrap-star-rating-master/js/star-rating.js"></script>
 
+		<script></script>
 
+		<link rel="stylesheet" href="/resources/plugins/bootstrap-star-rating-master/css/star-rating.css" media="all" rel="stylesheet" type="text/css"/>
+
+		
+		<!-- Tooltip eklentisi-->
+
+		<link rel="stylesheet" type="text/css"
+		href="/resources/plugins/tooltipplugin/tooltip.css" />
+		
 		<!-- end of plugins  -->
 
 		<style>
@@ -225,8 +223,56 @@
 							<div class="col-md-6 single-top-in">
 								<div class="single-para simpleCart_shelfItem">
 
-									<br class="visible-xs ">
+									<br class="visible-xs visible-sm ">
 									<h1><%= @advert.name %></h1>
+									<br>
+
+									<div class="visible-xs visible-sm col-md-6">
+
+										<% if @images == [] %>
+										<div>
+											<a> <%= image_tag Image.new.imagefile, :class =>"img-responsive img-rounded",  width:"100px", height:"100px" %> </a>
+										</div>
+										<% else %>
+
+										<div class="row">
+
+											<% @images[0..1].each do |image|%>
+
+											<a class="col-xs-6 col-sm-6" href="<%= image_path image.imagefile(:original) %>" data-standard="<%= image_path image.imagefile(:original) %>"> <img width="100" height="100" src="<%= image_path image.imagefile(:original) %>" alt="" class="img-rounded" /> </a>
+
+											<% end %>
+
+										</div>
+
+										<% if @images.count>2  %>
+
+										<div style="margin-top:20px; " class="row">
+											<% @images[2..3].each do |image|%>
+											<a class="col-xs-6 col-sm-6" href="<%= image_path image.imagefile(:original) %>" data-standard="<%= image_path image.imagefile(:original) %>"> <img width="100" height="100" src="<%= image_path image.imagefile(:original)  %>" alt="" class="img-rounded" /> </a>
+											<% end%>
+										</div>
+										
+										<% end %>
+										
+										<% if @images.count>4 %>
+
+										<div style="margin-top:20px; " class="row">
+											<% @images[4..5].each do |image|%>
+											<a class="col-xs-6 col-sm-6" href="<%= image_path image.imagefile(:original) %>" data-standard="<%= image_path image.imagefile(:original) %>"> <img width="100" height="100" src="<%= image_path image.imagefile(:original)  %>" alt="" class="img-rounded" /> </a>
+											<% end%>
+										</div>
+
+										<% end %>
+
+										<% end %>
+
+										<br>
+										<br>
+
+										
+
+									</div>
 
 									<br>
 									<% if current_user!= nil %>
@@ -262,9 +308,9 @@
 
 													<h4>Kullanıcı Güven Oyu</h4>
 													<br>
-													
+
 													<input id="input-21b" value="<%= @vote %>" type="number" class="rating" min=0 max=5 step=1 data-size="xs">
-													
+
 													<div class="review">
 
 														<a href="#"> 3 Yorum </a>
@@ -321,11 +367,7 @@
 									</div>
 								</div>
 
-								
-
 							</div>
-
-							
 
 							<div class="benzerurunler row">
 
@@ -341,19 +383,19 @@
 
 							<% else %>
 
-							<div class="panel panel-default content-top1">
+							<div class="content-top1">
 
 								<% @similar.each do |advert| %>
 
-								<div class="hidden-xs hidden-sm col-md-4 col-lg-3">
+								<div class="hidden-xs hidden-sm col-md-4 col-md3">
 									<div class="col-md1 simpleCart_shelfItem">
 										<% if advert.images != [] %>
-										<a title="<%= advert.name%> " href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small), :class => 'img-responsive' %> </a>
+										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small), :class => 'img-responsive masterTooltip',title: advert.name %> </a>
 										<% else %>
-										<a title="<%= advert.name%> " href="<%= advert.href %>"> <%= image_tag Image.new.imagefile,class:"img-responsive"  %> </a>
+										<a  href="<%= advert.href %>"> <%= image_tag Image.new.imagefile,class:"img-responsive masterTooltip"  %> </a>
 										<% end %>
-										<% if advert.name.size >= 30 %>
-										<h3><a href="<%= advert.href %>"> <%= advert.name[0..27] %>... </a></h3>
+										<% if advert.name.size >= 20 %>
+										<h3><a href="<%= advert.href %>"> <%= advert.name[0..19] %>... </a></h3>
 										<% else %>
 										<h3><a href="<%= advert.href %>"> <%= advert.name %> </a></h3>
 										<% end %>
@@ -364,18 +406,16 @@
 										</div>
 									</div>
 								</div>
-								
-							</div
-								
-								<div class="visible-xs visible-sm col-xs-4 col-sm-4">
+
+								<div class=" visible-xs visible-sm col-md-4 col-md3">
 									<div class="col-md1 simpleCart_shelfItem">
 										<% if advert.images != [] %>
-										<a title="<%= advert.name%> " href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small), :class => 'img-responsive' %> </a>
+										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small), :class => 'img-responsive masterTooltip',title: advert.name %> </a>
 										<% else %>
-										<a title="<%= advert.name%> " href="<%= advert.href %>"> <%= image_tag Image.new.imagefile,class:"img-responsive"  %> </a>
+										<a  href="<%= advert.href %>"> <%= image_tag Image.new.imagefile,class:"img-responsive masterTooltip",title: advert.name  %> </a>
 										<% end %>
-										<% if advert.name.size >= 10 %>
-										<h3><a href="<%= advert.href %>"> <%= advert.name[0..9] %>... </a></h3>
+										<% if advert.name.size >= 8 %>
+										<h3><a href="<%= advert.href %>"> <%= advert.name[0..7] %>... </a></h3>
 										<% else %>
 										<h3><a href="<%= advert.href %>"> <%= advert.name %> </a></h3>
 										<% end %>
@@ -397,7 +437,7 @@
 						<!----->
 						<div class="col-md-3 product-bottom">
 							<!--categories-->
-							
+
 							<br class="visible-xs">
 
 							<%= render 'ilankategoriler'%>
@@ -415,9 +455,9 @@
 								<div class="product-go">
 									<div class=" fashion-grid">
 										<% if advert.images != [] %>
-										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name,class:"img-responsive" %></a>
+										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name,class:"img-responsive masterTooltip" %></a>
 										<% else %>
-										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name,class:"img-responsive"  %></a>
+										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name,class:"img-responsive masterTooltip"  %></a>
 										<% end %>
 									</div>
 									<div class=" fashion-grid1">
@@ -581,89 +621,93 @@ advertid : <%= @advert.id %>
 
 		<!-- Plugins-->
 		
+		<!-- Tooltip eklentisi-->
+
+			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+			<script>
+				var $tooltip = jQuery.noConflict();
+			</script>
+
+			<script type="text/javascript" src="/resources/plugins/tooltipplugin/tooltip.js"></script>
+
 		<!-- bootstrap star rating -->
-		
-		
-		
+
 		<script>
-    starrating(document).ready(function () {
-        starrating("#input-21f").rating({
-            starCaptions: function(val) {
-                if (val < 3) {
-                    return val;
-                } else {
-                    return 'high';
-                }
-            },
-            starCaptionClasses: function(val) {
-                if (val < 3) {
-                    return 'label label-danger';
-                } else {
-                    return 'label label-success';
-                }
-            },
-            hoverOnClear: false
-        });
-        
-        starrating('#rating-input').rating({
-              min: 0,
-              max: 5,
-              step: 1,
-              size: 'lg',
-              showClear: false
-           });
-           
-        starrating('#btn-rating-input').on('click', function() {
-        	
-            starrating('#rating-input').rating('refresh', {
-                showClear:true, 
-                disabled:true
-            });
-        });
-        
-        
-        starrating('.btn-danger').on('click', function() {
-            starrating("#kartik").rating('destroy');
-        });
-        
-        starrating('.btn-success').on('click', function() {
-        	
-            starrating("#kartik").rating('create');
-        });
-        
-        starrating('#input-21b').on('rating.change', function() {
-        	
-            $.ajax({
-				url : '/vote',
-				data : {
-					authenticity_token : window._token,
-					advert : '<%= @advert.id %>',
-					point : starrating('#input-21b').val()
+						starrating(document).ready(function () {
+			starrating("#input-21f").rating({
+			starCaptions: function(val) {
+			if (val < 3) {
+			return val;
+			} else {
+			return 'high';
+			}
+			},
+			starCaptionClasses: function(val) {
+			if (val < 3) {
+			return 'label label-danger';
+			} else {
+			return 'label label-success';
+			}
+			},
+			hoverOnClear: false
+			});
+
+			starrating('#rating-input').rating({
+			min: 0,
+			max: 5,
+			step: 1,
+			size: 'lg',
+			showClear: false
+			});
+
+			starrating('#btn-rating-input').on('click', function() {
+
+			starrating('#rating-input').rating('refresh', {
+			showClear:true,
+			disabled:true
+			});
+			});
+
+			starrating('.btn-danger').on('click', function() {
+			starrating("#kartik").rating('destroy');
+			});
+
+			starrating('.btn-success').on('click', function() {
+
+			starrating("#kartik").rating('create');
+			});
+
+			starrating('#input-21b').on('rating.change', function() {
+
+			$.ajax({
+			url : '/vote',
+			data : {
+			authenticity_token : window._token,
+			advert : '<%= @advert.id %>',
+				point : starrating('#input-21b').val()
 				},
 				error : function() {
-					alert('error');
+				alert('error');
 				},
 				dataType : 'json',
 				success : function(data) {
 
+				if (!data.check) {
 
-					if (!data.check) {
+				alert('Sunucuda bir sorun meydana geldi');
 
-						alert('Sunucuda Bir sorun meydana geldi');
-
-					} 
+				}
 
 				},
 				type : 'POST'
-			});
-            
-            
-        });
-        
-        
-        starrating('.rb-rating').rating({'showCaption':true, 'stars':'3', 'min':'0', 'max':'3', 'step':'1', 'size':'xs', 'starCaptions': {0:'status:nix', 1:'status:wackelt', 2:'status:geht', 3:'status:laeuft'}});
-    });
-</script>
+				});
+
+				});
+
+				starrating('.rb-rating').rating({'showCaption':true, 'stars':'3', 'min':'0', 'max':'3', 'step':'1', 'size':'xs', 'starCaptions': {0:'status:nix', 1:'status:wackelt', 2:'status:geht', 3:'status:laeuft'}});
+				});
+		</script>
 
 		<!-- Product Template-->
 
@@ -739,8 +783,7 @@ advertid : <%= @advert.id %>
 			var api1 = $easyzoom.filter('.easyzoom--with-thumbnails').data('easyZoom');
 
 			$('.thumbnails').on('click', 'a', function(e) {
-				
-				
+
 				var $this = productview(this);
 
 				e.preventDefault();
