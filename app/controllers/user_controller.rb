@@ -63,7 +63,7 @@ class UserController < ApplicationController
   end
 
   def loginPost
-    user = User.find_by_username(params[:username]).try(:authenticate, params[:password])
+    user = User.valid.find_by_username(params[:username]).try(:authenticate, params[:password])
     if (user!=nil && user!=false)
       session[:user_id] = user.id
       if request.referer
