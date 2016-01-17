@@ -23,9 +23,6 @@ class IndexController < ApplicationController
 
  
 
-  def aramasonuclari
-
-  end
 
   def mesajPost
 
@@ -108,11 +105,24 @@ class IndexController < ApplicationController
 
   def aramasonuclari
     
-    if params[:kategori] == "ikinciel"
+     if params[:kategori] == 'hepsi'
+     
+      @adverts = Advert.available.all
       
-      @adverts = Advert.select("adverts.*").from("adverts, secondhands")
-        .where("adverts.advertable_type=? AND adverts.advertable_id=secondhands.id", "Secondhand")
+   
+   
     
+    elsif params[:kategori] == "ikinciel"
+      
+      @adverts = Advert.available.select("adverts.*").from("adverts, secondhands")
+        .where("adverts.advertable_type=? AND adverts.advertable_id=secondhands.id", "Secondhand")
+      
+      altkategori = params[:altkategori]
+      
+      if altkategori && altkategori != "" && altkategori != "hepsi"
+        @adverts = @adverts.where(:secondhands => {:category => altkategori})
+      end    
+        
       if params[:marka] && params[:marka] != ""
         @adverts = @adverts.where("secondhands.brand LIKE ?", "%" + params[:marka] + "%")
       end
@@ -121,13 +131,79 @@ class IndexController < ApplicationController
         @adverts = @adverts.where(:secondhands => {:color => params[:color]})
       end
       
-    else
+    elsif params[:kategori] == "evarkadasi"
       
+      @adverts = Advert.select("adverts.*").from("adverts, homemates")
+        .where("adverts.advertable_type=? AND adverts.advertable_id=homemates.id", "Homemate")
+        
+      if params[:sehir] && params[:sehir] != ""
+        @adverts = @adverts.where("homemates.city LIKE ?", "%" + params[:sehir] + "%")
+      end
+      
+      if params[:semt] && params[:semt] != ""
+        @adverts = @adverts.where("homemates.state LIKE ?", "%" + params[:semt] + "%")
+      end
+      
+      if params[:demand] && params[:demand] != ""
+        @adverts = @adverts.where(:homemates => {:demand => params[:demand]})
+      end
+      
+      if params[:sleep] && params[:sleep] != "" && params[:sleep] != "hepsi"
+        @adverts = @adverts.where(:homemates => {:sleep => params[:sleep]})
+      end
+      
+      if params[:friend] && params[:friend] != "" && params[:friend] != "hepsi"
+        @adverts = @adverts.where(:homemates => {:friend => params[:friend]})
+      end
+      
+      if params[:smoke] && params[:smoke] != "" && params[:smoke] != "hepsi"
+        @adverts = @adverts.where(:homemates => {:smoke => params[:smoke]})
+      end
+      
+      if params[:department] && params[:department] != "" && params[:department] != "hepsi"
+        @adverts = @adverts.where(:homemates => {:department => params[:department]})
+      end
+      
+      if params[:music] && params[:music] != "" && params[:music] != "hepsi"
+        @adverts = @adverts.where(:homemates => {:music => params[:music]})
+      end
+      
+     elsif params[:kategori] == "ozelders"
+       
+      @adverts = Advert.select("adverts.*").from("adverts, privatelessons")
+        .where("adverts.advertable_type=? AND adverts.advertable_id=privatelessons.id", "Privatelesson")
+        
+      if params[:sehir] && params[:sehir] != ""
+        @adverts = @adverts.where("privatelessons.city LIKE ?", "%" + params[:sehir] + "%")
+      end
+      
+      if params[:semt] && params[:semt] != ""
+        @adverts = @adverts.where("privatelessons.state LIKE ?", "%" + params[:semt] + "%")
+      end
+      
+      if params[:altkategori] && params[:altkategori] != "" && params[:altkategori] != "hepsi"
+        @adverts = @adverts.where(:privatelessons => {:lecture => params[:altkategori]})
+      end
+      
+      if params[:kind] && params[:kind] != "" && params[:kind] != "hepsi"
+        @adverts = @adverts.where(:privatelessons => {:kind => params[:kind]})
+      end
+      
+      if params[:location] && params[:location] != "" && params[:location] != "hepsi"
+        @adverts = @adverts.where(:privatelessons => {:location => params[:location]})
+      end
+          
+     else 
+        
       @adverts = Advert.all
-      
+           
     end
     
     
+    
+    if params[:aramakismi] && params[:aramakismi]!=""   
+      @adverts = @adverts.where("adverts.name LIKE ?", "%" + params[:aramakismi] + "%") 
+    end
     
     if params[:taban] && params[:taban] != ""
       @adverts = @adverts.where("adverts.price >= ?", params[:taban].to_i)
@@ -146,7 +222,7 @@ class IndexController < ApplicationController
       puts adv.name
     end
     
-   
+  
     
     
 

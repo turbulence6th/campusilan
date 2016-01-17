@@ -1419,8 +1419,7 @@
 
 			<div class="row">
 
-				<div
-				style="margin-bottom: 20px;  padding-bottom: 30px;">
+				<div style="margin-bottom: 20px;  padding-bottom: 30px;">
 
 					<div data-step="6" data-intro="Buradan en güvenilir satıcılara kolayca ulaşabilirsiniz!" class="panel panel-success">
 
@@ -1433,15 +1432,20 @@
 
 							<ul id="myTab" class="nav nav-tabs">
 
-								<li class="dropdown">
+								<li class="active dropdown">
 									<a href="#" id="myTabDrop1"
 									class="dropdown-toggle" data-toggle="dropdown">İkinci El
 									ilan <b class="caret"></b> </a>
 									<ul class="dropdown-menu" role="menu"
 									aria-labelledby="myTabDrop1">
-										<li>
+										<li class="active">
 											<a href="#enguvenilirsaticilar" tabindex="-1"
 											data-toggle="tab">En Güvenilir Satıcılar</a>
+										</li>
+										
+										<li>
+											<a href="#sehrimdekienguvenilir" tabindex="-1"
+											data-toggle="tab">Kendi Şehrimdeki En Güvenilir Satıcılar</a>
 										</li>
 
 									</ul>
@@ -1457,9 +1461,16 @@
 											<a href="#enguvenilirevarkadaslari" tabindex="-1"
 											data-toggle="tab">En Güvenilir Olanlar</a>
 										</li>
+										
+										<li>
+											<a href="#sehrimdekienguvenilirevarkadaslari" tabindex="-1"
+											data-toggle="tab">Kendi şehrimdeki en güvenilir olanlar</a>
+										</li>
 
 									</ul>
 								</li>
+								
+								
 
 								<li class="dropdown">
 									<a href="#" id="myTabDrop4"
@@ -1471,6 +1482,11 @@
 											<a href="#enguvenilirozelders" tabindex="-1"
 											data-toggle="tab">En Güvenilir Olanlar</a>
 										</li>
+										
+										<li>
+											<a href="#sehrimdekienguvenilirozelders" tabindex="-1"
+											data-toggle="tab">Kendi şehrimdeki en güvenilir olanlar</a>
+										</li>
 
 									</ul>
 								</li>
@@ -1480,7 +1496,7 @@
 							<div id="myTabContent" class="tab-content"
 							style="margin-top: 20px;">
 
-								<div class="tab-pane fade in active" id="home">
+								<div class="tab-pane fade in active" id="enguvenilirsaticilar">
 
 									<h2 style="text-align: center; margin-bottom: 30px;"><u>En Güvenilir İkinci El İlan Satıcıları</u></h2>
 
@@ -1490,625 +1506,184 @@
 										
 												<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 
-													<div class="thumbnail">
-														<a href="#"> <img src="resources/images/cat-demo.jpg"
-														alt="cat demo photo"> </img> </a>
-		
-													</div>
-		
-													<div class="caption">
-		
-														<h3><%= user.username %></h3>
-														<p>
-															Some sample text.
-														</p>
-		
-													</div>
-		
-												</div>
+								<div class="thumbnail">
+									<a href="<%= user.href %>"> <% if user.image == nil && user.gender =='male' %>
+									<img src="/resources/images/erkek.png">
+									
+									<% elsif user.image == nil && user.gender =='female' %>
+									<img src="/resources/images/kadin.png">
+									
+									<% elsif user.image == nil && user.gender =='other' %>
+									<img src="/resources/images/diger.png">
+									
+									<% else %>
+									<%= image_tag user.image.imagefile(:small) %>
+									<% end %> </a>
+								</div>
+
+								<div class="caption">
+
+									<% if user.username <= 8 %>
+
+									<h5><%= user.username %></h5>
+									<br>
+
+									<% else %>
+
+									<h5><%= user.username[0..7] + "..." %></h5>
+
+									<% end %>
+
+								</div>
+
+							</div>
 												
 										<% end %>
 
 										
 
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
+										
 
 									</div>
 
 								</div>
 
-								<div class="tab-pane fade" id="enguvenilirsaticilar">
+								<div class="tab-pane fade in " id="sehrimdekienguvenilir">
 
-									<h2 style="text-align: center; margin-bottom: 30px;">En
-									Güvenilir İkinci El İlan Satıcıları</h2>
+									<h2 style="text-align: center; margin-bottom: 30px;"><u>Kendi Şehrimdeki En Güvenilir İkinci El İlan Satıcıları</u></h2>
+
+									Bu özellik en yakın zamanda aktif olacaktır.Anlayışınız için teşekkür ederiz.
+
+								</div>
+
+								<div class="tab-pane fade in " id="enguvenilirevarkadaslari">
+
+									<h2 style="text-align: center; margin-bottom: 30px;"><u>En Güvenilir Ev Arkadaşı Adayları</u></h2>
 
 									<div class="row">
+										
+										<% @enguvenilirevarkadasi.each do |user| %>
+										
+												<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+								<div class="thumbnail">
+									<a href="<%= user.href %>"> <% if user.image == nil && user.gender =='male' %>
+									<img src="/resources/images/erkek.png">
+									
+									<% elsif user.image == nil && user.gender =='female' %>
+									<img src="/resources/images/kadin.png">
+									
+									<% elsif user.image == nil && user.gender =='other' %>
+									<img src="/resources/images/diger.png">
+									
+									<% else %>
+									<%= image_tag user.image.imagefile(:small) %>
+									<% end %> </a>
+								</div>
 
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
+								<div class="caption">
 
-											</div>
+									<% if user.username <= 8 %>
 
-											<div class="caption">
+									<h5><%= user.username %></h5>
+									<br>
 
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
+									<% else %>
 
-											</div>
+									<h5><%= user.username[0..7] + "..." %></h5>
 
-										</div>
+									<% end %>
 
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+								</div>
 
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
+							</div>
+												
+										<% end %>
 
-											</div>
+										
 
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
+										
 
 									</div>
 
 								</div>
+								
+								
+								
+								<div class="tab-pane fade in " id="sehrimdekienguvenilirevarkadaslari">
 
-								<div class="tab-pane fade" id="enguvenilirevarkadaslari">
+									<h2 style="text-align: center; margin-bottom: 30px;"><u>Kendi Şehrimdeki En Güvenilir Ev Arkadaşı Adayları</u></h2>
 
-									<h2 style="text-align: center; margin-bottom: 30px;">En
-									Güvenilir Ev Arkadaşları</h2>
+									Bu özellik en yakın zamanda aktif olacaktır.Anlayışınız için teşekkür ederiz.
+
+								</div>
+								
+
+
+								<div class="tab-pane fade in " id="enguvenilirozelders">
+
+									<h2 style="text-align: center; margin-bottom: 30px;"><u>En Güvenilir Özel Ders Verenler</u></h2>
 
 									<div class="row">
+										
+										<% @enguvenilirikinciel.each do |user| %>
+										
+												<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+								<div class="thumbnail">
+									<a href="<%= user.href %>"> <% if user.image == nil && user.gender =='male' %>
+									<img src="/resources/images/erkek.png">
+									
+									<% elsif user.image == nil && user.gender =='female' %>
+									<img src="/resources/images/kadin.png">
+									
+									<% elsif user.image == nil && user.gender =='other' %>
+									<img src="/resources/images/diger.png">
+									
+									<% else %>
+									<%= image_tag user.image.imagefile(:small) %>
+									<% end %> </a>
+								</div>
 
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
+								<div class="caption">
 
-											</div>
+									<% if user.username <= 8 %>
 
-											<div class="caption">
+									<h5><%= user.username %></h5>
+									<br>
 
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
+									<% else %>
 
-											</div>
+									<h5><%= user.username[0..7] + "..." %></h5>
 
-										</div>
+									<% end %>
 
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+								</div>
 
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
+							</div>
+												
+										<% end %>
 
-											</div>
+										
 
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
+										
 
 									</div>
 
 								</div>
+								
+								
+								<div class="tab-pane fade in " id="sehrimdekienguvenilirozelders">
 
-								<div class="tab-pane fade" id="enguvenilirsaticilar-dersnotu">
+									<h2 style="text-align: center; margin-bottom: 30px;"><u>Kendi Şehrimdeki En Güvenilir Özel Ders Verenler</u></h2>
 
-									<h2 style="text-align: center; margin-bottom: 30px;">En
-									Güvenilir Ders Notu Satıcıları</h2>
-
-									<div class="row">
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-									</div>
-
+									Bu özellik en yakın zamanda aktif olacaktır.Anlayışınız için teşekkür ederiz.
 								</div>
-
-								<div class="tab-pane fade" id="enguvenilirozelders">
-
-									<h2 style="text-align: center; margin-bottom: 30px;">En
-									Güvenilir Özel Ders Verenler</h2>
-
-									<div class="row">
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h3>Thumbnail label</h3>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
+								
+								
+								
+								
+								
 
 							</div>
 

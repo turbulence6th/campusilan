@@ -161,7 +161,7 @@
 
 		<div  style="z-index: 1;" class = "input-group">
 		<%= text_field_tag :aramakismi,params[:aramakismi],class: "form-control",placeholder: "Arama Yap..."  %>	
-		<%= hidden_field_tag "kategori", "ikinciel" %>
+		
 
 		<span class = "input-group-btn">
 		<%= submit_tag 'Ara',name:nil,class: "btn btn-default" %>
@@ -179,135 +179,32 @@
 		</div>
 
 		<div class="panel-body">
-		<select onChange="changeformcontent(this.value)">
+		
 
-		<option selected value="select">Kategori Seçiniz</option>
-		<option value="ikinciel">İkinci El İlan</option>
-		<option value="evarkadasi">Ev Arkadaşı</option>
-		<option value="dersnotlari">Ders Notları</option>
-		<option value="ozelders">Özel Ders</option>
+		
+		
+		
+		<%= select_tag :kategori,options_for_select([['Kategori Seçiniz', 'hepsi'], ['İkinci El İlan', 'ikinciel'], ['Ev Arkadaşı', 'evarkadasi'],['Özel Ders','ozelders']],params[:kategori]),:onChange => "changeformcontent(this.value)", class:"form-control"  %>
 
-		</select>
+		
 		</div>
 
 		</div>
 
-		<div class="formicerigi" action="">
+		<div class="formicerigi" >
 			
-			<div class="panel panel-success">
-		<div class="panel-heading">
-		<h3 class="panel-title">Alt Kategori </h3>
-		</div>
-
-		<div class="panel-body">
-		<select  name="" onChange="changeformcontent2(this.value)" value="Bike">
-
-		<option selected value="ikincieldiger">Beyaz Eşya</option>
-		<option value="ikincieldiger">Ev Dekorasyonu</option>
-		<option value="ikincieldiger">Müzik Aletleri</option>
-		<option value="ikincieldiger">Elektronik</option>
-		<option value="ikincieldiger">Kırtasiye</option>
-		<option value="ikincieldiger">Mutfak Eşyaları</option>
-		<option value="ikincieldiger">Vasıta</option>
-		<option value="ikincieldiger">Giyim</option>
-		<option value="ikincieldiger">Diğer</option>
-
-		</select>
-		</div>
-
-		</div>
-
-		<div class=" marka panel panel-success">
-		<div class="panel-heading">
-		<h3 class="panel-title">Marka</h3>
-		</div>
-
-		<div class="panel-body">
-		<%= text_field_tag :marka,params[:marka]	,style: "padding:7px;border:solid 1px #000000;
-		-moz-border-radius-topleft: 13px;
-		-moz-border-radius-topright:12px;
-		-moz-border-radius-bottomleft:11px;
-		-moz-border-radius-bottomright:12px;
-		-webkit-border-top-left-radius:13px;
-		-webkit-border-top-right-radius:12px;
-		-webkit-border-bottom-left-radius:11px;
-		-webkit-border-bottom-right-radius:12px;
-		border-top-left-radius:13px;
-		border-top-right-radius:12px;
-		border-bottom-left-radius:11px;
-		border-bottom-right-radius:12px;",type:"text",placeholder:"Markayı Giriniz..." %> &nbsp;<br>
-		</div>
-
-		</div>
-
-		<div class="renk panel panel-success">
-		<div class="panel-heading">
-		<h3 class="panel-title">Renk</h3>
-		</div>
-
-		<div class="panel-body">
-		<%= select_tag :color, options_for_select([['Hepsi', 'hepsi'], ['Siyah', 'siyah'], ['Beyaz', 'beyaz'], ['Kırmızı', 'kirmizi'],['Mavi','mavi'],['Sarı','sari'],['Yeşil','yesil']],params[:color]), class:"form-control"  %>
-		
-		</div>
-		</div>
-
-		<div class="panel panel-success">
-		<div class="panel-heading">
-		<h3 class="panel-title">Fırsatlardan seç</h3>
-		</div>
-		
-		
-
-		<div class="panel-body">
-		<%= check_box_tag :acililan,1,params[:acililan]  %> &nbsp;Acil İlanlar<br>
-		</div>
-
-		<div class="panel-body">
-		<%= check_box_tag :gununfirsatlari,1,params[:gununfirsatlari]  %> &nbsp;Günün Fırsatları<br>
-		</div>
-
-		<div class="panel-body">
-		<%= check_box_tag :enpopuler,1,params[:enpopuler]  %> &nbsp;En Popüler İlanlar<br>
-		</div>
-
-		<div class="panel-body">
-		<%= check_box_tag :ensonilanlar,1,params[:ensonilanlar]  %> &nbsp;En Son İlanlar<br>
-		</div>
-
-		<div class="panel-body">
-		<%= check_box_tag :fiyatidusenler,1,params[:fiyatidusenler]  %> &nbsp;Fiyatı Düşenler<br>
-		</div>
-
-		<div class="panel-body">
-		<%= check_box_tag :enguvenilir,1,params[:enguvenilir]  %> &nbsp;En Güvenilir Satıcılardan<br>
-		</div>
-
-		<div class="panel-body">
-		<%= check_box_tag :enyakindaki,1,params[:enyakindaki]  %> &nbsp;En Yakında Olan Satıcılardan<br>
-		</div>
-
-		</div>
-
-		<div class="panel panel-success">
-		<div class="panel-heading">
-		<h3 class="panel-title">Fiyat Aralığı</h3>
-		</div>
-
-		<div class=" panel-body">
 			
-		 <%= text_field_tag :taban,params[:taban]  %> &nbsp;ile <br><br>
-		
-		<%= text_field_tag :tavan,params[:tavan] %> &nbsp; arası
-		</div>
-		
-		
-		
-
-		</div>
 
 		</div>
 
 		<% end %>
+
+		</div>
+		
+		
+		<div class="formicerigiyedek" >
+			
+			
 
 		</div>
 		
@@ -373,14 +270,9 @@
 		</div>
 
 		<div class="panel-body">
-		<select  name=""  value="Bike">
-
-		<option selected value="ikincieldiger">Erkek</option>
-		<option value="ikincieldiger">Kadın</option>
-		<option value="ikincieldiger">Hepsi</option>
 		
-
-		</select>
+		
+		<%= select_tag :demand, options_for_select([['Erkek', 'male'], ['Kadın', 'female'], ['Hepsi', 'both']],params[:demand]), class:"form-control"  %>
 		</div>
 
 		</div>
@@ -392,14 +284,8 @@
 		</div>
 
 		<div class="panel-body">
-		<select  name=""  value="Bike">
-
-		<option selected value="">Evet</option>
-		<option value="">Hayır</option>
-		<option value="">Değişken</option>
 		
-
-		</select>
+		<%= select_tag :sleep, options_for_select([['Hepsi', 'hepsi'], ['Evet', 'evet1'], ['Hayır', 'hayir1'], ['Değişken', 'degisken1']],params[:sleep]), class:"form-control"  %>
 		</div>
 
 		</div>
@@ -410,14 +296,8 @@
 		</div>
 
 		<div class="panel-body">
-		<select  name=""  value="Bike">
-
-		<option selected value="">Evet</option>
-		<option value="">Hayır</option>
-		<option value="">Değişken</option>
 		
-
-		</select>
+		<%= select_tag :friend, options_for_select([['Hepsi', 'hepsi'], ['Evet', 'evet2'], ['Hayır', 'hayir2'], ['Değişken', 'degisken2']],params[:friend]), class:"form-control"  %>
 		</div>
 
 		</div>
@@ -428,14 +308,8 @@
 		</div>
 
 		<div class="panel-body">
-		<select  name=""  value="Bike">
-
-		<option selected value="">Evet</option>
-		<option value="">Hayır</option>
-		<option value="">Arada</option>
 		
-
-		</select>
+		<%= select_tag :smoke, options_for_select([['Hepsi', 'hepsi'], ['Evet', 'evet3'], ['Hayır', 'hayir3'], ['Arada', 'arada3']],params[:smoke]), class:"form-control"  %>
 		</div>
 
 		</div>
@@ -446,15 +320,8 @@
 		</div>
 
 		<div class="panel-body">
-		<select  name=""  value="Bike">
-
-		<option selected value="">Mühendislik</option>
-		<option value="">Eğitim Bilimleri</option>
-		<option value="">Tıp</option>
-		<option value="">Diğer</option>
 		
-
-		</select>
+		<%= select_tag :department, options_for_select([['Hepsi', 'hepsi'], ['Mühendislik', 'muhendislik'], ['Eğitim Bilimleri', 'egitim'], ['Siyasal Bilimler', 'siyasal'],['Tıp','tip'],['Diğer','diger']],params[:department]), class:"form-control"  %>
 		</div>
 
 		</div>
@@ -465,14 +332,9 @@
 		</div>
 
 		<div class="panel-body">
-		<select  name=""  value="Bike">
-
-		<option selected value="">Evet</option>
-		<option value="">Hayır</option>
-		<option value="">Arada</option>
 		
-
-		</select>
+		
+		<%= select_tag :music, options_for_select([['Hepsi', 'hepsi'], ['Evet', 'evet4'], ['Hayır', 'hayir4'], ['Arada', 'arada4']],params[:music]), class:"form-control"  %>
 		</div>
 
 		</div>
@@ -541,6 +403,8 @@
 		} do |t| %>
 
 		<div class="ikincieldiger" style="display:none">
+			
+		<%= hidden_field_tag "kategori", "ikinciel" %>
 
 		
 		<div class="panel panel-success">
@@ -549,19 +413,7 @@
 		</div>
 
 		<div class="panel-body">
-		<select  name="" onChange="changeformcontent2(this.value)" value="Bike">
-
-		<option selected value="ikincieldiger">Beyaz Eşya</option>
-		<option value="ikincieldiger">Ev Dekorasyonu</option>
-		<option value="ikincieldiger">Müzik Aletleri</option>
-		<option value="ikincieldiger">Elektronik</option>
-		<option value="ikincieldiger">Kırtasiye</option>
-		<option value="ikincieldiger">Mutfak Eşyaları</option>
-		<option value="ikincieldiger">Vasıta</option>
-		<option value="ikincieldiger">Giyim</option>
-		<option value="ikincieldiger">Diğer</option>
-
-		</select>
+		<%= select_tag :altkategori,options_for_select([['Kategori Seçiniz', 'hepsi'],['Beyaz Eşya', 'beyazesya'], ['Ev Dekorasyonu', 'evdekorasyon'], ['Müzik Aletleri', 'muzikaletleri'],['Elektronik','elektronik'],['Kırtasiye','kirtasiye'],['Mutfak Eşyaları','mutfakesyalari']],params[:altkategori]), :class => 'form-control'  %>
 		</div>
 
 		</div>
@@ -598,7 +450,7 @@
 		</div>
 
 		<div class="panel-body">
-		<%= select_tag :color, options_for_select([['Siyah', 'siyah'], ['Beyaz', 'beyaz'], ['Kırmızı', 'kirmizi'],['Mavi','mavi'],['Sarı','sari'],['Yeşil','yesil']],params[:color]), class:"form-control"  %>
+		<%= select_tag :color, options_for_select([['Hepsi', 'hepsi'], ['Siyah', 'siyah'], ['Beyaz', 'beyaz'], ['Kırmızı', 'kirmizi'],['Mavi','mavi'],['Sarı','sari'],['Yeşil','yesil']],params[:color]), class:"form-control"  %>
 		
 		</div>
 		</div>
@@ -722,17 +574,9 @@
 		</div>
 
 		<div class="panel-body">
-		<select  name="" value="Bike">
-
-		<option selected value="ikincieldiger">Matematik</option>
-		<option value="ikincieldiger">Fizik</option>
-		<option value="ikincieldiger">Kimya</option>
-		<option value="ikincieldiger">Biyoloji</option>
-		<option value="ikincieldiger">Genel Mühendislik</option>
-		<option value="ikincieldiger">Genel Eğitim Bilimleri</option>
 		
-
-		</select>
+		<%= select_tag :altkategori, options_for_select([['Hepsi', 'hepsi'], ['Matematik', 'matematik'], ['Fizik', 'fizik'], ['Kimya', 'kimya'],['Biyoloji','biyoloji'],['Genel Mühendislik','genelmuhendislik'],['Genel Eğitim Bilimleri','genelegitimbilimleri']],params[:altkategori]), class:"form-control"  %>
+		
 		</div>
 
 		</div>	
@@ -743,15 +587,9 @@
 		</div>
 
 		<div class="panel-body">
-		<select  name="" value="Bike">
-
-		<option selected value="ikincieldiger">Birebir</option>
-		<option value="ikincieldiger">Grup</option>
-		<option value="ikincieldiger">Sınıf Dersi</option>
 		
+		<%= select_tag :kind, options_for_select([['Hepsi', 'hepsi'], ['Birebir', 'birebir'], ['Grup', 'grup'], ['Sınıf Dersi', 'sinifdersi']],params[:lecture]), class:"form-control"  %>
 		
-
-		</select>
 		</div>
 
 		</div>	
@@ -763,15 +601,10 @@
 		</div>
 
 		<div class="panel-body">
-		<select  name="" value="Bike">
-
-		<option selected value="ikincieldiger">Öğrenci Evinde</option>
-		<option value="ikincieldiger">Öğretmenin Evinde</option>
-		<option value="ikincieldiger">Sınıfta</option>
+		
+		<%= select_tag :location, options_for_select([['Hepsi', 'hepsi'], ['Öğrenci Evinde', 'ogrencievi'], ['Öğretmenin Evinde', 'ogretmenevi'], ['Sınıfta', 'sinifta']],params[:location]), class:"form-control"  %>
 		
 		
-
-		</select>
 		</div>
 
 		</div>	
@@ -839,97 +672,6 @@
 		
 		
 		
-		<%= form_for :arama,:url => 'aramasonuclari' , :method => :get , :html => {
-
-		} do |t| %>
-
-		<div class="ikincieldersnotu" style="display:none">
-			
-			
-		<div class="panel panel-success">
-		<div class="panel-heading">
-		<h3 class="panel-title">Ders Kategorisi </h3>
-		</div>
-
-		<div class="panel-body">
-		<select  name="" value="Bike">
-
-		<option selected value="ikincieldiger">Matematik</option>
-		<option value="ikincieldiger">Fizik</option>
-		<option value="ikincieldiger">Kimya</option>
-		<option value="ikincieldiger">Biyoloji</option>
-		<option value="ikincieldiger">Genel Mühendislik</option>
-		<option value="ikincieldiger">Genel Eğitim Bilimleri</option>
-		
-
-		</select>
-		</div>
-
-		</div>	
-		
-		
-		
-			
-			
-			
-
-
-		<div class="panel panel-success">
-		<div class="panel-heading">
-		<h3 class="panel-title">Fırsatlardan seç</h3>
-		</div>
-		
-		
-
-		<div class="panel-body">
-		<%= check_box_tag :acililan,1,params[:acililan]  %> &nbsp;Acil İlanlar<br>
-		</div>
-
-		<div class="panel-body">
-		<%= check_box_tag :gununfirsatlari,1,params[:gununfirsatlari]  %> &nbsp;Günün Fırsatları<br>
-		</div>
-
-		<div class="panel-body">
-		<%= check_box_tag :enpopuler,1,params[:enpopuler]  %> &nbsp;En Popüler İlanlar<br>
-		</div>
-
-		<div class="panel-body">
-		<%= check_box_tag :ensonilanlar,1,params[:ensonilanlar]  %> &nbsp;En Son İlanlar<br>
-		</div>
-
-		<div class="panel-body">
-		<%= check_box_tag :fiyatidusenler,1,params[:fiyatidusenler]  %> &nbsp;Fiyatı Düşenler<br>
-		</div>
-
-		<div class="panel-body">
-		<%= check_box_tag :enguvenilir,1,params[:enguvenilir]  %> &nbsp;En Güvenilir Satıcılardan<br>
-		</div>
-
-		<div class="panel-body">
-		<%= check_box_tag :enyakindaki,1,params[:enyakindaki]  %> &nbsp;En Yakında Olan Satıcılardan<br>
-		</div>
-
-		</div>
-
-		<div class="panel panel-success">
-		<div class="panel-heading">
-		<h3 class="panel-title">Fiyat Aralığı</h3>
-		</div>
-
-		<div class=" panel-body">
-			
-		 <%= text_field_tag :taban,params[:taban]  %> &nbsp;ile <br><br>
-		
-		<%= text_field_tag :tavan,params[:tavan] %> &nbsp; arası
-		</div>
-
-		
-
-		</div>
-
-		</div>
-		
-		<% end %>
 		
 		
 		
@@ -955,6 +697,12 @@
 
 				}
 				
+				else if(value == "kategorisec") {
+					
+					$(".formicerigi").html($(".formicerigiyedek").html());
+					
+				}
+				
 				else if (value == "dersnotlari") {
 
 					$(".formicerigi").html($(".ikincieldersnotu").html());
@@ -970,19 +718,7 @@
 			}
 			
 			
-			function changeformcontent2(value) {
-
-				if (value == "ikincieldersnotu") {
-
-					$(".formicerigi").html($(".ikincieldersnotu").html());
-
-				} else if (value == "ikincieldiger") {
-
-					$(".formicerigi").html($(".ikincieldiger").html());
-
-				}
-
-			}
+			
 			
 			
 
@@ -1012,131 +748,37 @@
 		<div class="col-lg-9 col-md-9">
 
 		<div style="margin-top: 10px;" id="products" class="row list-group">
+		<% @adverts.each do |advert| %>	
+			
 		<div class="item  col-sm-6 col-xs-6 col-lg-4">
 		<div class="thumbnail">
-		<img class="group list-group-image" src="/resources/images/aramaformuresim.png" alt="" />
+		<% if advert.images != [] %>
+		<a href="<%= advert.href %>"><%= image_tag advert.images[0].imagefile(:small),title: advert.name %></a>
+		<% else %>
+		<a  href="<%= advert.href %>"> <%= image_tag Image.new.imagefile,class:"img-responsive masterTooltip"  %> </a>
+		<% end %>
 		<div class="caption">
 		<h4 class="group inner list-group-item-heading">
-		Product title</h4>
+		<%= advert.name %></h4>
 		<p class="group inner list-group-item-text">
-		Deneme deneme deneme</p>
+		<%= advert.explication %>  </p>
 		<div style="margin-top:25px;" class="row">
 		<div class="col-xs-12 col-md-6">
 		<p class="lead">
-		$21.000</p>
+		<%= advert.price  %></p>
 		</div>
 		<div class="col-xs-12 col-md-6">
-		<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
+		<a style="float:right;" class="btn btn-success" href="<%= advert.href %>">İlana Git</a>
 		</div>
 		</div>
 		</div>
 		</div>
 		</div>
-		<div class="item  col-sm-6 col-xs-6 col-lg-4">
-		<div class="thumbnail">
-		<img class="group list-group-image" src="/resources/images/aramaformuresim.png" alt="" />
-		<div class="caption">
-		<h4 class="group inner list-group-item-heading">
-		Product title</h4>
-		<p class="group inner list-group-item-text">
-		Deneme deneme deneme</p>
-		<div style="margin-top:25px;" class="row">
-			<div class="col-xs-12 col-md-6">
-				<p class="lead">
-					$21.000
-				</p>
-			</div>
-			<div class="col-xs-12 col-md-6">
-				<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
-			</div>
-		</div>
-		</div>
-		</div>
-		</div>
-		<div class="item  col-sm-6 col-xs-6 col-lg-4">
-			<div class="thumbnail">
-				<img class="group list-group-image" src="/resources/images/aramaformuresim.png" alt="" />
-				<div class="caption">
-					<h4 class="group inner list-group-item-heading"> Product title</h4>
-					<p class="group inner list-group-item-text">
-						Deneme deneme deneme
-					</p>
-					<div style="margin-top:25px;" class="row">
-						<div class="col-xs-12 col-md-6">
-							<p class="lead">
-								$21.000
-							</p>
-						</div>
-						<div class="col-xs-12 col-md-6">
-							<a style="float:right;"class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="item  col-sm-6 col-xs-6 col-lg-4">
-			<div class="thumbnail">
-				<img class="group list-group-image" src="/resources/images/aramaformuresim.png" alt="" />
-				<div class="caption">
-					<h4 class="group inner list-group-item-heading"> Product title</h4>
-					<p class="group inner list-group-item-text">
-						Deneme deneme deneme
-					</p>
-					<div style="margin-top:25px;" class="row">
-						<div class="col-xs-12 col-md-6">
-							<p class="lead">
-								$21.000
-							</p>
-						</div>
-						<div class="col-xs-12 col-md-6">
-							<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="item  col-sm-6 col-xs-6 col-lg-4">
-			<div class="thumbnail">
-				<img class="group list-group-image" src="/resources/images/aramaformuresim.png" alt="" />
-				<div class="caption">
-					<h4 class="group inner list-group-item-heading"> Product title</h4>
-					<p class="group inner list-group-item-text">
-						Deneme deneme deneme
-					</p>
-					<div style="margin-top:25px;" class="row">
-						<div class="col-xs-12 col-md-6">
-							<p class="lead">
-								$21.000
-							</p>
-						</div>
-						<div class="col-xs-12 col-md-6">
-							<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="item  col-sm-6 col-xs-6 col-lg-4">
-			<div class="thumbnail">
-				<img class="group list-group-image" src="/resources/images/aramaformuresim.png" alt="" />
-				<div class="caption">
-					<h4 class="group inner list-group-item-heading"> Product title</h4>
-					<p class="group inner list-group-item-text">
-						Deneme deneme deneme
-					</p>
-					<div style="margin-top:25px;" class="row">
-						<div class="col-xs-12 col-md-6">
-							<p class="lead">
-								$21.000
-							</p>
-						</div>
-						<div class="col-xs-12 col-md-6">
-							<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		
+		
+		<% end %>
+		
+		
 		</div>
 
 		</div>
