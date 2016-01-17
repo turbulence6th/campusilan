@@ -146,10 +146,15 @@
 		display: block;
 		border-bottom: 4px solid #47a3da;
 	}
+	
+	.cbp-hrmenu > ul > a {
+		display: block;
+		border-bottom: 4px solid #47a3da;
+	}
 
 	.cbp-hrmenu > ul > li > a { 
 		display: block;
-		padding: 1em 3em;
+		
 	}
 
 	.cbp-hrmenu .cbp-hrsub { 

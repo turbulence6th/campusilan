@@ -1,7 +1,7 @@
 .header-fixed {
 	background-color:white;
 	
-	padding: 20px 40px;
+	padding: 20px;
 	height: 80px;
 	color: #ffffff;
 	box-sizing: border-box;
@@ -75,7 +75,7 @@
 
 body.fixed .header-fixed {
 	padding: 10px 40px;
-	height: 50px;
+	height: 75px;
 	position: fixed;
 	width: 100%;
 	top: 0;
@@ -104,7 +104,7 @@ body.fixed .header-fixed .header-limiter nav {
 
 	.header-fixed {
 		padding: 20px 0;
-		height: 75px;
+		height:60px;
 	}
 
 	.header-fixed .header-limiter h1 {

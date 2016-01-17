@@ -121,8 +121,7 @@
 		rel='stylesheet' type='text/css'>
 
 		<!-- Fixed Header sonu -->
-		
-		
+
 		<!-- Tooltip eklentisi-->
 
 		<link rel="stylesheet" type="text/css"
@@ -163,10 +162,12 @@
 			as needed -->
 			<script src="/resources/js/bootstrap.min.js"></script>
 
-			<div class="row" style="margin-bottom: 10px;">
+			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
 				<!-- Login Starts Here -->
+
 				<%= render "loginContainer" %>
+
 				<!-- Login Ends Here -->
 
 			</div>
@@ -200,7 +201,7 @@
 
 						<div class="row">
 
-							<div class="panel panel-danger">
+							<div class="panel panel-info">
 
 								<div class="panel-heading">
 									<h3 style="text-align: center;" class="panel-title">Popüler
@@ -340,7 +341,7 @@
 												</table>
 
 												<a href="/ilanver" class="col-lg-5 btn btn-primary">İlan Ver</a>
-												<a href="#" style="margin-left: 20px;"
+												<a href="/ilanlarim" style="margin-left: 20px;"
 												class="col-lg-5 btn btn-primary">İlanlarım</a>
 											</div>
 										</div>
@@ -357,15 +358,24 @@
 											} do |t| %> <a href="/uye/<%= current_user.username %>?hesapayarlari=1"
 											data-original-title="Profili Düzenle" data-toggle="tooltip"
 											type="button" class="btn btn-sm btn-warning"><i
-											class="glyphicon glyphicon-edit"></i></a> <a
-											data-original-title="Hesabımı Sil"
-											data-toggle="modal"   data-target = "#hesabisil"  type="button"
-											class="btn btn-sm btn-danger"><i
-											class="glyphicon glyphicon-remove"></i></a> <% end %> </span>
+											class="glyphicon glyphicon-edit"></i></a> <span data-toggle="modal" data-target = "#hesabisil"> <a
+												data-original-title="Hesabımı Sil"
+												data-toggle="tooltip"     type="button"
+												class="btn btn-sm btn-danger"><i
+												class="glyphicon glyphicon-remove"></i></a> </span> <% end %> </span>
 
 									</div>
 
 								</div>
+								
+								<!-- Tekliflerim Kısmı(Yeni hali)-->
+								
+								<div class="tekliflerim alert alert-danger" style="display:none;">
+												<p>
+													Bu hizmet yakında aktif edilecektir!!
+												</p>
+
+											</div>
 
 								<!--  Favorilerim kısmı -->
 
@@ -407,8 +417,6 @@
 											<% end %>
 
 											<% else %>
-											
-											
 
 											<div style="padding:20px;">
 
@@ -419,17 +427,16 @@
 											<% end %>
 
 										</div>
-					
+
 										<% if @favouriteadverts!= [] %>
 										<br>
 										<div style="text-align:center;">
-											
-												
+
 											<button style="text-align:center;" onclick="window.location='/favorilerim'" type = "button" class = "btn btn-success">
 												Devamı İçin Tıklayınız.
 											</button>
 										</div>
-										
+
 										<% end %>
 									</div>
 
@@ -483,195 +490,199 @@
 
 										<div class=" uyepaneli col-xs-12 col-sm-12 col-md-12 col-lg-12  toppad">
 
-											<!-- Tekliflerim kısmı -->
+											<!-- Eski Tekliflerim kısmı(degiskenpanel içinde ) -->
 
-											<div style="height:500px;" class="panelortak tekliflerim method">
-												<div class="row margin-0 list-header hidden-sm hidden-xs">
-													<div class="col-md-3">
-														<div class="header">
-															Property
-														</div>
-													</div>
-													<div class="col-md-2">
-														<div class="header">
-															Type
-														</div>
-													</div>
-													<div class="col-md-2">
-														<div class="header">
-															Required
-														</div>
-													</div>
-													<div class="col-md-5">
-														<div class="header">
-															Description
-														</div>
-													</div>
-												</div>
+											
 
-												<div class="row margin-0">
-													<div class="col-md-3">
-														<div class="cell">
-															<div class="propertyname">
-																CurrencyCode <span class="mobile-isrequired">[Required]</span>
-															</div>
-														</div>
-													</div>
-													<div class="col-md-2">
-														<div class="cell">
-															<div class="type">
-																<code>
-																	String
-																</code>
-															</div>
-														</div>
-													</div>
-													<div class="col-md-2">
-														<div class="cell">
-															<div class="isrequired">
-																Yes
-															</div>
-														</div>
-													</div>
-													<div class="col-md-5">
-														<div class="cell">
-															<div class="description">
-																The standard ISO 4217 3-letter
-																currency code
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="row margin-0">
-													<div class="col-md-3">
-														<div class="cell">
-															<div class="propertyname">
-																PriceType <span class="mobile-isrequired">[Required]</span>
-															</div>
-														</div>
-													</div>
-													<div class="col-md-2">
-														<div class="cell">
-															<div class="type">
-																<code>
-																	Int32
-																</code>
-															</div>
-														</div>
-													</div>
-													<div class="col-md-2">
-														<div class="cell">
-															<div class="isrequired">
-																Yes
-															</div>
-														</div>
-													</div>
-													<div class="col-md-5">
-														<div class="cell">
-															<div class="description">
-																The type of price
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="row margin-0">
-													<div class="col-md-3">
-														<div class="cell">
-															<div class="propertyname">
-																WarehouseID <span class="mobile-isrequired">[Required]</span>
-															</div>
-														</div>
-													</div>
-													<div class="col-md-2">
-														<div class="cell">
-															<div class="type">
-																<code>
-																	Int32
-																</code>
-															</div>
-														</div>
-													</div>
-													<div class="col-md-2">
-														<div class="cell">
-															<div class="isrequired">
-																Yes
-															</div>
-														</div>
-													</div>
-													<div class="col-md-5">
-														<div class="cell">
-															<div class="description">
-																The unique identifier for the
-																warehouse
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="row margin-0">
-													<div class="col-md-3">
-														<div class="cell">
-															<div class="propertyname">
-																ItemCodes
-															</div>
-														</div>
-													</div>
-													<div class="col-md-2">
-														<div class="cell">
-															<div class="type">
-																<code>
-																	String[]
-																</code>
-															</div>
-														</div>
-													</div>
-													<div class="col-md-2">
-														<div class="cell">
-															<div class="isrequired">
-																<span class="text-muted">No</span>
-															</div>
-														</div>
-													</div>
-													<div class="col-md-5">
-														<div class="cell">
-															<div class="description"></div>
-														</div>
-													</div>
-												</div>
-												<div class="row margin-0">
-													<div class="col-md-3">
-														<div class="cell">
-															<div class="propertyname">
-																LanguageID <a class="lookuplink" href="javascript:;"> <i
-																class="glyphicon glyphicon-search"></i> </a>
-															</div>
-														</div>
-													</div>
-													<div class="col-md-2">
-														<div class="cell">
-															<div class="type">
-																<code>
-																	Int32?
-																</code>
-															</div>
-														</div>
-													</div>
-													<div class="col-md-2">
-														<div class="cell">
-															<div class="isrequired">
-																<span class="text-muted">No</span>
-															</div>
-														</div>
-													</div>
-													<div class="col-md-5">
-														<div class="cell">
-															<div class="description">
-																The customer's preferred language
-																ID (ex. 0 (English), 1 (Spanish), etc.)
-															</div>
-														</div>
-													</div>
-												</div>
+											<!-- 		<div style="height:500px;" class="panelortak tekliflerim method">
+											<div class="row margin-0 list-header hidden-sm hidden-xs">
+											<div class="col-md-3">
+											<div class="header">
+											Property
 											</div>
+											</div>
+											<div class="col-md-2">
+											<div class="header">
+											Type
+											</div>
+											</div>
+											<div class="col-md-2">
+											<div class="header">
+											Required
+											</div>
+											</div>
+											<div class="col-md-5">
+											<div class="header">
+											Description
+											</div>
+											</div>
+											</div>
+
+											<div class="row margin-0">
+											<div class="col-md-3">
+											<div class="cell">
+											<div class="propertyname">
+											CurrencyCode <span class="mobile-isrequired">[Required]</span>
+											</div>
+											</div>
+											</div>
+											<div class="col-md-2">
+											<div class="cell">
+											<div class="type">
+											<code>
+											String
+											</code>
+											</div>
+											</div>
+											</div>
+											<div class="col-md-2">
+											<div class="cell">
+											<div class="isrequired">
+											Yes
+											</div>
+											</div>
+											</div>
+											<div class="col-md-5">
+											<div class="cell">
+											<div class="description">
+											The standard ISO 4217 3-letter
+											currency code
+											</div>
+											</div>
+											</div>
+											</div>
+											<div class="row margin-0">
+											<div class="col-md-3">
+											<div class="cell">
+											<div class="propertyname">
+											PriceType <span class="mobile-isrequired">[Required]</span>
+											</div>
+											</div>
+											</div>
+											<div class="col-md-2">
+											<div class="cell">
+											<div class="type">
+											<code>
+											Int32
+											</code>
+											</div>
+											</div>
+											</div>
+											<div class="col-md-2">
+											<div class="cell">
+											<div class="isrequired">
+											Yes
+											</div>
+											</div>
+											</div>
+											<div class="col-md-5">
+											<div class="cell">
+											<div class="description">
+											The type of price
+											</div>
+											</div>
+											</div>
+											</div>
+											<div class="row margin-0">
+											<div class="col-md-3">
+											<div class="cell">
+											<div class="propertyname">
+											WarehouseID <span class="mobile-isrequired">[Required]</span>
+											</div>
+											</div>
+											</div>
+											<div class="col-md-2">
+											<div class="cell">
+											<div class="type">
+											<code>
+											Int32
+											</code>
+											</div>
+											</div>
+											</div>
+											<div class="col-md-2">
+											<div class="cell">
+											<div class="isrequired">
+											Yes
+											</div>
+											</div>
+											</div>
+											<div class="col-md-5">
+											<div class="cell">
+											<div class="description">
+											The unique identifier for the
+											warehouse
+											</div>
+											</div>
+											</div>
+											</div>
+											<div class="row margin-0">
+											<div class="col-md-3">
+											<div class="cell">
+											<div class="propertyname">
+											ItemCodes
+											</div>
+											</div>
+											</div>
+											<div class="col-md-2">
+											<div class="cell">
+											<div class="type">
+											<code>
+											String[]
+											</code>
+											</div>
+											</div>
+											</div>
+											<div class="col-md-2">
+											<div class="cell">
+											<div class="isrequired">
+											<span class="text-muted">No</span>
+											</div>
+											</div>
+											</div>
+											<div class="col-md-5">
+											<div class="cell">
+											<div class="description"></div>
+											</div>
+											</div>
+											</div>
+											<div class="row margin-0">
+											<div class="col-md-3">
+											<div class="cell">
+											<div class="propertyname">
+											LanguageID <a class="lookuplink" href="javascript:;"> <i
+											class="glyphicon glyphicon-search"></i> </a>
+											</div>
+											</div>
+											</div>
+											<div class="col-md-2">
+											<div class="cell">
+											<div class="type">
+											<code>
+											Int32?
+											</code>
+											</div>
+											</div>
+											</div>
+											<div class="col-md-2">
+											<div class="cell">
+											<div class="isrequired">
+											<span class="text-muted">No</span>
+											</div>
+											</div>
+											</div>
+											<div class="col-md-5">
+											<div class="cell">
+											<div class="description">
+											The customer's preferred language
+											ID (ex. 0 (English), 1 (Spanish), etc.)
+											</div>
+											</div>
+											</div>
+											</div>
+											</div>
+
+											-->
 
 											<!--  Hesap Ayarları -->
 
@@ -784,6 +795,8 @@
 
 											<div class="row">
 
+												<% if @lastadverts!= [] %>
+
 												<% @lastadverts.each do |advert| %>
 
 												<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
@@ -811,7 +824,28 @@
 
 												<% end %>
 
+												<% else %>
+
+												<div style="padding:20px;">
+
+													Şuanda favori ilanınız bulunmamaktadır!!
+
+												</div>
+
+												<% end %>
+
 											</div>
+
+											<% if @lastadverts!= [] %>
+											<br>
+											<div style="text-align:center;">
+
+												<button style="text-align:center;" onclick="window.location='/ilanlarim'" type = "button" class = "btn btn-success">
+													Devamı İçin Tıklayınız.
+												</button>
+											</div>
+
+											<% end %>
 										</div>
 
 									</div>
@@ -827,7 +861,7 @@
 							<div
 							style="margin: 10px; padding-left: 10px; padding-right: 10px;">
 
-								<div class="panel panel-danger">
+								<div class="panel panel-info">
 
 									<div class="panel-heading">
 										<h3 style="text-align: center;" class="panel-title">Günün
@@ -881,508 +915,460 @@
 
 			</div>
 
-		</div>
+			<%= render "kullanicipaneli2"%>
 
-		<%= render "kullanicipaneli2"%>
+			<div style="" class="visible-xs visible-sm visible-md row">
 
-		<div style="padding:20px;" class="visible-xs visible-sm visible-md row">
+				<div class=" uyepaneli col-xs-12 col-sm-12 col-md-12 col-lg-12 toppad">
 
-			<div class=" uyepaneli col-xs-12 col-sm-12 col-md-12 col-lg-12 toppad">
+					<div class="panelortak profilim panel panel-info">
+						<div class="panel-heading">
+							<h3 class="panel-title"><%= current_user.name+" "+ current_user.surname %> </h3>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-3 col-lg-3 " align="center">
+									<% if !current_user.image && current_user.gender == "male" %>
+									<img src="/resources/images/erkek.png"
+									class='img-circle img-responsive' width="50%" height="50%"
+									/>
+									<% elsif !current_user.image && current_user.gender == "female" %>
+									<img src="/resources/images/kadin.png" width="50%" height="50%"
+									class='img-circle img-responsive'
+									/>
 
-				<div class="panelortak profilim panel panel-info">
-					<div class="panel-heading">
-						<h3 class="panel-title"><%= current_user.name+" "+ current_user.surname %> </h3>
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-md-3 col-lg-3 " align="center">
-								<img alt="User Pic"
-								src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png"
-								class="img-circle img-responsive">
-							</div>
+									<% elsif !current_user.image && current_user.gender == "other" %>
+									<img src="/resources/images/diger.png" width="50%" height="50%"
+									class='img-circle img-responsive'
+									/>
 
-							<!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-							<dl>
-							<dt>DEPARTMENT:</dt>
-							<dd>Administrator</dd>
-							<dt>HIRE DATE</dt>
-							<dd>11/12/2013</dd>
-							<dt>DATE OF BIRTH</dt>
-							<dd>11/12/2013</dd>
-							<dt>GENDER</dt>
-							<dd>Male</dd>
-							</dl>
-							</div>-->
-							<div class=" col-md-9 col-lg-9 ">
-								<table class="table table-user-information">
-									<tbody>
+									<% else %>
+									<%= image_tag current_user.image.imagefile(:small),
+									:alt => 'User Pic',
+									:class => 'img-circle img-responsive' %>
+									<% end%>
+								</div>
 
-										<% if current_user.university!=nil %>
+								<!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+								<dl>
+								<dt>DEPARTMENT:</dt>
+								<dd>Administrator</dd>
+								<dt>HIRE DATE</dt>
+								<dd>11/12/2013</dd>
+								<dt>DATE OF BIRTH</dt>
+								<dd>11/12/2013</dd>
+								<dt>GENDER</dt>
+								<dd>Male</dd>
+								</dl>
+								</div>-->
+								<div class=" col-md-9 col-lg-9 ">
+									<table style="table-layout:fixed" class="table table-user-information">
+										<tbody>
 
-										<tr>
-											<td>Üniversite:</td>
-											<td><%= current_user.university.name %></td>
-										</tr>
+											<% if current_user.university!=nil %>
 
-										<% end %>
+											<tr>
+												<td>Üniversite:</td>
+												<td><%= current_user.university.name %></td>
+											</tr>
 
-										<tr>
-											<td>Ne zaman katıldı?:</td>
-											<td><% created_at = current_user.created_at %>
-											<%= created_at.day %> <%= months[created_at.month] %> <%= created_at.year %> </td>
-										</tr>
+											<% end %>
 
-										<% if current_user.birthday!=nil %>
+											<tr>
+												<td>Ne zaman katıldı?:</td>
+												<td><% created_at = current_user.created_at %>
+												<%= created_at.day %> <%= months[created_at.month] %> <%= created_at.year %> </td>
+											</tr>
 
-										<tr>
-											<td>Doğum Tarihi:</td>
-											<td><% birthday = current_user.birthday %>
-											<%= birthday.day %> <%= months[birthday.month] %> <%= birthday.year %> </td>
-										</tr>
+											<% if current_user.birthday!=nil %>
 
-										<% end %>
+											<tr>
+												<td>Doğum Tarihi:</td>
+												<td><% birthday = current_user.birthday %>
+												<%= birthday.day %> <%= months[birthday.month] %> <%= birthday.year %> </td>
+											</tr>
 
-										<tr>
-										<tr>
-											<td>Cinsiyet</td>
-											<td><%= gender[current_user.gender] %></td>
-										</tr>
+											<% end %>
 
-										<% if current_user.address!='' %>
+											<tr>
+											<tr>
+												<td>Cinsiyet</td>
+												<td><%= gender[current_user.gender] %></td>
+											</tr>
 
-										<tr>
-											<td>Açık adres</td>
-											<td><%= current_user.address %></td>
-										</tr>
+											<% if current_user.address!='' %>
 
-										<% end %>
+											<tr>
+												<td>Açık adres</td>
+												<td><%= current_user.address %></td>
+											</tr>
 
-										<tr>
-											<td>E-posta</td>
-											<td><%= current_user.email %></td>
-										</tr>
-										<td>Telefon Numarası</td>
-										<td><%= current_user.phone %></td>
+											<% end %>
 
-										</tr>
+											<tr>
+												<td>E-posta</td>
+												<td style=" white-space: -webkit-pre-wrap;word-break: break-all;"><%= current_user.email %></td>
+											</tr>
+											<td>Telefon Numarası</td>
+											<td><%= current_user.phone %></td>
 
-									</tbody>
-								</table>
+											</tr>
 
-								<a href="#" class="col-lg-5 btn btn-primary">İlan Ver</a>
-								<a href="#" style="margin-left: 20px;"
-								class="col-lg-5 btn btn-primary">Önceki İlanlarım</a>
+										</tbody>
+									</table>
+
+									<a href="/ilanver" class="col-lg-5 btn btn-primary">İlan Ver</a>
+									<a href="/ilanlarim" style="margin-left: 20px;"
+									class="col-lg-5 btn btn-primary">Önceki İlanlarım</a>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="panel-footer">
-						<a data-original-title="Mesajlarım"
-						data-toggle="tooltip" type="button"
-						class="btn btn-sm btn-primary"><i
-						class="glyphicon glyphicon-envelope"></i></a><span
-						class="pull-right"> <a href="edit.html"
-							data-original-title="Profili Düzenle" data-toggle="tooltip"
-							type="button" class="btn btn-sm btn-warning"><i
-							class="glyphicon glyphicon-edit"></i></a> <a
-							data-original-title="Hesabımı Sil"
+						<div class="panel-footer">
+							<a href="/mesajlarim" data-original-title="Mesajlarım"
 							data-toggle="tooltip" type="button"
-							class="btn btn-sm btn-danger"><i
-							class="glyphicon glyphicon-remove"></i></a> </span>
-					</div>
+							class="btn btn-sm btn-primary"><i
+							class="glyphicon glyphicon-envelope"></i></a>
 
-				</div>
-
-				<!--  Favorilerim kısmı -->
-
-				<div style="display:none; margin: 10px; " class="panelortak favoriler panel panel-info" >
-
-					<div class="panel-heading">
-						<h3 class="panel-title">Favorilerim</h3>
-					</div>
-
-					<div class="panel-body">
-
-						<div class="row">
-
-							<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="/resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h4>Thumbnail label</h4>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
-							<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="/resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h4>Thumbnail label</h4>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
-							<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="/resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h4>Thumbnail label</h4>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
+							<span
+							class="pull-right"> <%= form_for :user, :url => 'hesabisil' , :method => :post , :html => {
+								:onsubmit => 'return vsubmit();',:id => 'uyeformu'
+								} do |t| %> <a href="/uye/<%= current_user.username %>?hesapayarlari=1"
+								data-original-title="Profili Düzenle" data-toggle="tooltip"
+								type="button" class="btn btn-sm btn-warning"><i
+								class="glyphicon glyphicon-edit"></i></a> <span data-toggle="modal" data-target = "#hesabisil"> <a
+									data-original-title="Hesabımı Sil"
+									data-toggle="tooltip"     type="button"
+									class="btn btn-sm btn-danger"><i
+									class="glyphicon glyphicon-remove"></i></a> </span> <% end %> </span>
 
 						</div>
 
-						<div class="row">
-
-							<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="/resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h4>Thumbnail label</h4>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
-							<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="/resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h4>Thumbnail label</h4>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
-							<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="/resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h4>Thumbnail label</h4>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
-						</div>
-
-						<div class="row">
-
-							<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="/resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h4>Thumbnail label</h4>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
-							<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="/resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h4>Thumbnail label</h4>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
-							<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
-
-								<div class="thumbnail">
-									<a href="#"> <img src="/resources/images/cat-demo.jpg"
-									alt="cat demo photo"> </img> </a>
-
-								</div>
-
-								<div class="caption">
-
-									<h4>Thumbnail label</h4>
-									<p>
-										Some sample text.
-									</p>
-
-								</div>
-
-							</div>
-
-						</div>
 					</div>
 
-				</div>
+					<!--  İncelediğim İlanlar kısmı -->
 
-				<!-- Tekliflerim kısmı -->
+					<div style="display:none; margin-bottom: 10px;  " class="panelortak inceledigimilanlar panel panel-info">
 
-				<div style="height:500px;" class="panelortak tekliflerim method">
+						<div class="panel-heading">
+							<h3 class="panel-title">İncelediğim İlanlar</h3>
+						</div>
+
+						<div class="panel-body">
+
+							<div class="row">
+
+								<% @viewedadverts.each do |advert| %>
+
+								<div class=" col-xs-6 col-md-4 col-sm-6">
+
+									<div class="thumbnail">
+										<a title="<%= advert.name %>" href="<%= advert.href %>"> <% if advert.images == [] %>
+										<%= image_tag Image.new.imagefile %>
+										<% else %>
+										<%= image_tag advert.images[0].imagefile(:small) %>
+										<% end %> </a>
+									</div>
+
+									<div class="caption">
+
+										<h5><% if advert.name.length >= 10 %>
+										<%= advert.name[0..9] %>..
+										<% else %>
+										<%= advert.name %>
+										<% end %> </h5>
+
+									</div>
+
+								</div>
+								<% end %>
+
+							</div>
+
+							<% if @viewedadverts != [] %>
+							<br>
+							<div style="text-align:center;">
+
+								<button style="text-align:center;" onclick="window.location='/incelediklerim'" type = "button" class = "btn btn-success">
+									Devamı İçin Tıklayınız.
+								</button>
+							</div>
+
+							<% end %>
+
+						</div>
+
+					</div>
+
+					<!--  Favorilerim kısmı -->
+
+					<div style="display:none;  " class="panelortak favoriler panel panel-info" >
+
+						<div class="panel-heading">
+							<h3 class="panel-title">Favorilerim</h3>
+						</div>
+
+						<div class="panel-body">
+
+							<div class="row">
+
+								<% if @favouriteadverts!= [] %>
+
+								<% @favouriteadverts.each do |advert| %>
+
+								<div class="col-xs-6 col-md-4 col-sm-6">
+
+									<div class="thumbnail">
+										<a title="<%= advert.name %>" href="<%= advert.href %>"> <% if advert.images == [] %>
+										<%= image_tag Image.new.imagefile,title:advert.name,class: "masterTooltip" %>
+										<% else %>
+										<%= image_tag advert.images[0].imagefile(:small),title:advert.name,class: "masterTooltip" %>
+										<% end %> </a>
+									</div>
+
+									<div class="caption">
+
+										<h5><% if advert.name.length >= 10 %>
+										<%= advert.name[0..9] %>...
+										<% else %>
+										<%= advert.name %>
+										<% end %> </h5>
+
+									</div>
+
+								</div>
+								<% end %>
+
+								<% else %>
+
+								<div style="padding:20px;">
+
+									Şuanda favori ilanınız bulunmamaktadır!!
+
+								</div>
+
+								<% end %>
+
+							</div>
+
+							<% if @favouriteadverts!= [] %>
+							<br>
+							<div style="text-align:center;">
+
+								<button style="text-align:center;" onclick="window.location='/favorilerim'" type = "button" class = "btn btn-success">
+									Devamı İçin Tıklayınız.
+								</button>
+							</div>
+
+							<% end %>
+						</div>
+
+					</div>
+
+					<!-- Tekliflerim kısmı -->
+					<div class="tekliflerim alert alert-danger" style="display:none;">
+						<p>
+							Bu hizmet yakında aktif edilecektir!!
+						</p>
+
+					</div>
+
+					<!--	<div style="height:500px;" class="panelortak tekliflerim method">
 					<div class="row margin-0 list-header hidden-sm hidden-xs">
-						<div class="col-md-3">
-							<div class="header">
-								Property
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="header">
-								Type
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="header">
-								Required
-							</div>
-						</div>
-						<div class="col-md-5">
-							<div class="header">
-								Description
-							</div>
-						</div>
+					<div class="col-md-3">
+					<div class="header">
+					Property
+					</div>
+					</div>
+					<div class="col-md-2">
+					<div class="header">
+					Type
+					</div>
+					</div>
+					<div class="col-md-2">
+					<div class="header">
+					Required
+					</div>
+					</div>
+					<div class="col-md-5">
+					<div class="header">
+					Description
+					</div>
+					</div>
 					</div>
 
 					<div class="row margin-0">
-						<div class="col-md-3">
-							<div class="cell">
-								<div class="propertyname">
-									CurrencyCode <span class="mobile-isrequired">[Required]</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="cell">
-								<div class="type">
-									<code>
-										String
-									</code>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="cell">
-								<div class="isrequired">
-									Yes
-								</div>
-							</div>
-						</div>
-						<div class="col-md-5">
-							<div class="cell">
-								<div class="description">
-									The standard ISO 4217 3-letter
-									currency code
-								</div>
-							</div>
-						</div>
+					<div class="col-md-3">
+					<div class="cell">
+					<div class="propertyname">
+					CurrencyCode <span class="mobile-isrequired">[Required]</span>
+					</div>
+					</div>
+					</div>
+					<div class="col-md-2">
+					<div class="cell">
+					<div class="type">
+					<code>
+					String
+					</code>
+					</div>
+					</div>
+					</div>
+					<div class="col-md-2">
+					<div class="cell">
+					<div class="isrequired">
+					Yes
+					</div>
+					</div>
+					</div>
+					<div class="col-md-5">
+					<div class="cell">
+					<div class="description">
+					The standard ISO 4217 3-letter
+					currency code
+					</div>
+					</div>
+					</div>
 					</div>
 					<div class="row margin-0">
-						<div class="col-md-3">
-							<div class="cell">
-								<div class="propertyname">
-									PriceType <span class="mobile-isrequired">[Required]</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="cell">
-								<div class="type">
-									<code>
-										Int32
-									</code>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="cell">
-								<div class="isrequired">
-									Yes
-								</div>
-							</div>
-						</div>
-						<div class="col-md-5">
-							<div class="cell">
-								<div class="description">
-									The type of price
-								</div>
-							</div>
-						</div>
+					<div class="col-md-3">
+					<div class="cell">
+					<div class="propertyname">
+					PriceType <span class="mobile-isrequired">[Required]</span>
+					</div>
+					</div>
+					</div>
+					<div class="col-md-2">
+					<div class="cell">
+					<div class="type">
+					<code>
+					Int32
+					</code>
+					</div>
+					</div>
+					</div>
+					<div class="col-md-2">
+					<div class="cell">
+					<div class="isrequired">
+					Yes
+					</div>
+					</div>
+					</div>
+					<div class="col-md-5">
+					<div class="cell">
+					<div class="description">
+					The type of price
+					</div>
+					</div>
+					</div>
 					</div>
 					<div class="row margin-0">
-						<div class="col-md-3">
-							<div class="cell">
-								<div class="propertyname">
-									WarehouseID <span class="mobile-isrequired">[Required]</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="cell">
-								<div class="type">
-									<code>
-										Int32
-									</code>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="cell">
-								<div class="isrequired">
-									Yes
-								</div>
-							</div>
-						</div>
-						<div class="col-md-5">
-							<div class="cell">
-								<div class="description">
-									The unique identifier for the
-									warehouse
-								</div>
-							</div>
-						</div>
+					<div class="col-md-3">
+					<div class="cell">
+					<div class="propertyname">
+					WarehouseID <span class="mobile-isrequired">[Required]</span>
+					</div>
+					</div>
+					</div>
+					<div class="col-md-2">
+					<div class="cell">
+					<div class="type">
+					<code>
+					Int32
+					</code>
+					</div>
+					</div>
+					</div>
+					<div class="col-md-2">
+					<div class="cell">
+					<div class="isrequired">
+					Yes
+					</div>
+					</div>
+					</div>
+					<div class="col-md-5">
+					<div class="cell">
+					<div class="description">
+					The unique identifier for the
+					warehouse
+					</div>
+					</div>
+					</div>
 					</div>
 					<div class="row margin-0">
-						<div class="col-md-3">
-							<div class="cell">
-								<div class="propertyname">
-									ItemCodes
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="cell">
-								<div class="type">
-									<code>
-										String[]
-									</code>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="cell">
-								<div class="isrequired">
-									<span class="text-muted">No</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-5">
-							<div class="cell">
-								<div class="description"></div>
-							</div>
-						</div>
+					<div class="col-md-3">
+					<div class="cell">
+					<div class="propertyname">
+					ItemCodes
+					</div>
+					</div>
+					</div>
+					<div class="col-md-2">
+					<div class="cell">
+					<div class="type">
+					<code>
+					String[]
+					</code>
+					</div>
+					</div>
+					</div>
+					<div class="col-md-2">
+					<div class="cell">
+					<div class="isrequired">
+					<span class="text-muted">No</span>
+					</div>
+					</div>
+					</div>
+					<div class="col-md-5">
+					<div class="cell">
+					<div class="description"></div>
+					</div>
+					</div>
 					</div>
 					<div class="row margin-0">
-						<div class="col-md-3">
-							<div class="cell">
-								<div class="propertyname">
-									LanguageID <a class="lookuplink" href="javascript:;"> <i
-									class="glyphicon glyphicon-search"></i> </a>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="cell">
-								<div class="type">
-									<code>
-										Int32?
-									</code>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="cell">
-								<div class="isrequired">
-									<span class="text-muted">No</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-5">
-							<div class="cell">
-								<div class="description">
-									The customer's preferred language
-									ID (ex. 0 (English), 1 (Spanish), etc.)
-								</div>
-							</div>
-						</div>
+					<div class="col-md-3">
+					<div class="cell">
+					<div class="propertyname">
+					LanguageID <a class="lookuplink" href="javascript:;"> <i
+					class="glyphicon glyphicon-search"></i> </a>
 					</div>
-				</div>
+					</div>
+					</div>
+					<div class="col-md-2">
+					<div class="cell">
+					<div class="type">
+					<code>
+					Int32?
+					</code>
+					</div>
+					</div>
+					</div>
+					<div class="col-md-2">
+					<div class="cell">
+					<div class="isrequired">
+					<span class="text-muted">No</span>
+					</div>
+					</div>
+					</div>
+					<div class="col-md-5">
+					<div class="cell">
+					<div class="description">
+					The customer's preferred language
+					ID (ex. 0 (English), 1 (Spanish), etc.)
+					</div>
+					</div>
+					</div>
+					</div>
+					</div>  -->
 
-				<!--  Hesap Ayarları -->
+					<!--  Hesap Ayarları -->
 
-				<div style="" class="panelortak hesapayarlari panel-body">
-					<form id="signupform" class="form-horizontal" role="form">
+					<div style="" class="panelortak hesapayarlari panel-body">
 
+						<%= form_for current_user, :url => '/updateUser', :method => :post, :html => {
+						:class => 'form-horizontal',
+						:id => 'signupform',
+						:role => 'form'
+						} do |t| %>
 						<div id="signupalert" style="display: none"
 						class="alert alert-danger">
 							<p>
@@ -1394,40 +1380,47 @@
 						<div class="form-group">
 							<label for="firstname" class="col-md-3 control-label">Ad</label>
 							<div class="col-md-9">
-								<input type="text" class="form-control" name="firstname"
-								placeholder="First Name">
+								<%= t.text_field :name, :class => 'form-control' %>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="lastname" class="col-md-3 control-label">Soyad</label>
 							<div class="col-md-9">
-								<input type="text" class="form-control" name="lastname"
-								placeholder="Last Name">
+								<%= t.text_field :surname, :class => 'form-control' %>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="password" class="col-md-3 control-label">Şifre</label>
+							<label for="password" class="col-md-3 control-label">Adres</label>
 							<div class="col-md-9">
-								<input type="password" class="form-control" name="passwd"
-								placeholder="Password">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="password" class="col-md-3 control-label">Şifreyi
-								tekrarla</label>
-							<div class="col-md-9">
-								<input type="password" class="form-control" name="passwd"
-								placeholder="Password">
+								<%= t.text_area :address, :class => 'form-control' %>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label for="icode" class="col-md-3 control-label">Cep
 								Telefonu</label>
+							<br>
+							<div class="col-xs-4">
+
+								<%= t.text_field :phone1, :class => 'form-control', :maxlength => 3 %>
+							</div>
+
+							<div class="col-xs-8">
+								<%= t.text_field :phone2, :class => 'form-control', :maxlength => 7 %>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="icode" class="col-md-3 control-label">Doğum Tarihi</label>
+
 							<div class="col-md-9">
-								<input type="text" class="form-control" name="icode"
-								placeholder="">
+
+								<div class = "input-group">
+
+									<%= t.text_field :birthday, :class =>'datepicker form-control', :placeholder => "Buraya tıklayınız" %>
+
+								</div>
+
 							</div>
 						</div>
 
@@ -1435,49 +1428,38 @@
 							<label for="icode" class="col-md-3 control-label">Cinsiyet</label>
 
 							<div class="col-md-9">
-								<select class="form-control " name="gender">
-									<option value="0">Erkek</option>
-									<option value="1">Kadın</option>
-									<option value="2">Diğer</option>
-
-								</select>
+								<%= t.select :gender, [['Erkek', 'male'], ['Kadın', 'female'], ['Diğer','other']],{}, { :class => 'form-control' }  %>
 
 							</div>
 						</div>
 
-						<div style="border-top: 1px solid #999; border-bottom: 1px solid #999; padding-top: 20px; padding-bottom: 20px;" class="form-group">
+						<div style="padding-top: 20px" class="row form-group">
 
-							<div class="col-md-offset-3 col-md-9">
+							<div class="col-md-offset-4 col-md-5">
 								<button id="btn-fbsignup" type="button" class="btn btn-primary">
 									<i class="icon-facebook"></i>   Facebook hesabını bağla
 								</button>
 							</div>
+							<br>
 
-						</div>
-
-						<div style="padding-top: 20px" class="form-group">
-
-							<div style="float: right; margin-right: 20px;">
-								<button id="btn-fbsignup" type="submit" class="btn btn-danger">
-									Kaydet
-								</button>
+							<div class="col-md-3">
+								<%= t.submit 'Kaydet', :class => 'btn btn-danger' %>
 							</div>
 
 						</div>
+						<% end %>
 
-					</form>
+					</div>
 
 				</div>
 
 			</div>
 
-		</div>
+			<div class="row">
 
-		<div class="row">
+				<%= render "footer" %>
 
-			<%= render "footer" %>
-
-		</div>
+			</div>
 
 		</div>
 
@@ -1515,8 +1497,6 @@
 
 		</div><!-- /.modal -->
 
-		
-
 		<!-- hesabı sil-->
 
 		<script>
@@ -1529,16 +1509,16 @@
 		</script>
 
 		<!-- plugins -->
-		
+
 		<!-- Tooltip eklentisi-->
 
-			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 
-			<script>
-				var $tooltip = jQuery.noConflict();
-			</script>
+		<script>
+			var $tooltip = jQuery.noConflict();
+		</script>
 
-			<script type="text/javascript" src="/resources/plugins/tooltipplugin/tooltip.js"></script>
+		<script type="text/javascript" src="/resources/plugins/tooltipplugin/tooltip.js"></script>
 
 		<!--  user panelinin js kodları -->
 

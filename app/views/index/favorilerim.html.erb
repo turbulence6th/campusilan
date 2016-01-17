@@ -129,7 +129,7 @@
 			as needed -->
 			<script src="resources/js/bootstrap.min.js"></script>
 
-			<div class="row" style="margin-bottom: 10px;">
+			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
 				<!-- Login Starts Here -->
 
@@ -245,13 +245,92 @@
 
 				</div>
 
-				<div class="row">
+				
 
-					<%= render "footer" %>
+			</div>
+			
+			
+			<%= render "kullanicipaneli2"%>
+			
+			<div class="visible-xs visible-sm">
+
+				
+
+				<div style="margin-top:20px;"class="row">
+
+					<div class=" col-sm-12 col-xs-12">
+
+						<div class="row">
+
+							<div class = "panel panel-success">
+
+								<div class="panel-heading">
+									<h3 style="text-align: center;" class="panel-title">Favori İlanlarım</h3>
+								</div>
+
+								<div class = "panel-body">
+
+									<% @favouriteadverts .each do |advert|  %>
+
+									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+
+										<div class="thumbnail">
+											<a href="<%= advert.href %>"> <% if advert.images == [] %>
+											<%= image_tag Image.new.imagefile %>
+											<% else %>
+											<%= image_tag advert.images[0].imagefile(:small),title:advert.name,class: "masterTooltip" %>
+											<% end %> </a>
+
+										</div>
+
+										<div class="caption">
+
+											<% if advert.name.length >= 10 %>
+
+											<h5><%= advert.name[0..9] %>...</h5>
+
+											<% else %>
+
+											<h5><%= advert.name %></h5>
+
+											<% end %>
+
+										</div>
+
+									</div>
+
+									<% end %>
+
+								</div>
+
+								<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
+
+								<% if @favouriteadverts.count > 8 %>
+								<div style="text-align:center;">
+									<div style="clear:both;"    class="apple_pagination">
+										<%= will_paginate @favouriteadverts , :container => false,
+										:previous_label => 'Önceki', :next_label => 'Sonraki' %>
+									</div>
+								</div>
+
+								<% end %>
+
+							</div>
+
+						</div>
+
+					</div>
 
 				</div>
 
 			</div>
+			
+			
+			<div class="row">
+
+					<%= render "footer" %>
+
+				</div>
 
 			<!-- pluginler -->
 			

@@ -128,7 +128,7 @@
 
 		<div class="container-fluid">
 
-			<div class="row" style="margin-bottom: 10px;">
+			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
 				<!-- Login Starts Here -->
 
@@ -440,6 +440,46 @@
 							<%= field.select :demand, [['Erkek', 'male'], ['Kadın', 'female'], ['Hepsi', 'both']],{}, {class:"form-control"}  %>
 						</div>
 					</div>
+					
+					<div class = "row form-group">
+						<label class = "col-sm-2 control-label">Genelde gece 12'den sonra uyur musun?</label>
+
+						<div class = "col-sm-10">
+							<%= field.select :sleep, [['Evet', 'evet'], ['Hayır', 'hayir'], ['Değişken', 'degisken']],{}, {class:"form-control"}  %>
+						</div>
+					</div>
+					
+					<div class = "row form-group">
+						<label class = "col-sm-2 control-label">Eve arkadaşlarını getiriyor musun?</label>
+
+						<div class = "col-sm-10">
+							<%= field.select :friend, [['Evet', 'evet'], ['Hayır', 'hayir'], ['Değişken', 'degisken']],{}, {class:"form-control"}  %>
+						</div>
+					</div>
+					
+					<div class = "row form-group">
+						<label class = "col-sm-2 control-label">Sigara içiyor musun?</label>
+
+						<div class = "col-sm-10">
+							<%= field.select :smoke, [['Evet', 'evet'], ['Hayır', 'hayir'], ['Arada', 'arada']],{}, {class:"form-control"}  %>
+						</div>
+					</div>
+					
+					<div class = "row form-group">
+						<label class = "col-sm-2 control-label">Bölümün?</label>
+
+						<div class = "col-sm-10">
+							<%= field.select :department, [['Mühendislik', 'muhendislik'], ['Egitim Bilimleri', 'egitim'], ['Tıp', 'tip'],['Siyasal Bilgiler', 'siyasal'],['Diğer', 'diger'] ],{}, {class:"form-control"}  %>
+						</div>
+					</div>
+					
+					<div class = "row form-group">
+						<label class = "col-sm-2 control-label">Sesli Müzik vs. dinler misin?</label>
+
+						<div class = "col-sm-10">
+							<%= field.select :music, [['Evet', 'evet'], ['Hayır', 'hayir'], ['Arada', 'arada']],{}, {class:"form-control"}  %>
+						</div>
+					</div>
 
 					<div class = "row form-group">
 						<label class = "col-sm-2 control-label">Açıklama</label>
@@ -682,7 +722,21 @@
 
 				</div>
 
-				<div style="padding-left:50px; margin-top:85px;"class="sagsutun col-lg-6">
+				<div style="padding-left:50px; margin-top:85px;"class="hidden-xs hidden-sm sagsutun col-lg-6">
+					-Kullanım Koşulları için <a href="#">buraya</a> tıklayınız.
+					<br>
+					<br>
+					<br>
+					-İlanınız onaylandıktan sonra yayınlanacaktır.
+					<br>
+					<br>
+					<br>
+					-Sitemizin işleyişi ile ilgili bilgi mi almak istiyorsunuz? <a href="#">Buraya</a> tıklayın.
+					<br>
+					Ya da yardıma mı ihtiyacınız var? O zaman <a href="#">buraya</a> tıklayın.
+				</div>
+				
+				<div style="margin-top:85px;"class="visible-xs visible-sm sagsutun col-lg-6">
 					-Kullanım Koşulları için <a href="#">buraya</a> tıklayınız.
 					<br>
 					<br>
@@ -724,7 +778,7 @@ imageupload(".file_image").filer({
 limit: 5,
 maxSize: 2,
 extensions: ['jpg', 'jpeg', 'png'],
-changeInput: '<div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i></div><div class="jFiler-input-text"><h3>Drag&Drop files here</h3> <span style="display:inline-block; margin: 15px 0">or</span></div><a class="jFiler-input-choose-btn blue">Browse Files</a></div></div>',
+changeInput: '<div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i></div><div class="jFiler-input-text"><h3>Resim dosyalarınızı buraya sürükleyebilirsiniz</h3> <span style="display:inline-block; margin: 15px 0">veya</span></div><a class="jFiler-input-choose-btn blue">Buradan Ekleyin </a></div></div>',
 showThumbs: true,
 theme: "dragdropbox",
 templates: {

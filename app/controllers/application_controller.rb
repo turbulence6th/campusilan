@@ -73,6 +73,24 @@ class ApplicationController < ActionController::Base
     Advert.available.where(:ours => true).order('created_at DESC')
   end
   
+  def enguvenilirikinciel
+    User.valid.select('users.*').from('users, adverts, votes')
+      .where('adverts.advertable_type=? AND users.id=adverts.user_id AND votes.advert_id=adverts.id', 'Secondhand')
+      .group('users.id').having('count(votes)>=10').order('AVG(votes.point) DESC')
+  end
+  
+  def enguvenilirevarkadasi
+    User.valid.select('users.*').from('users, adverts, votes')
+      .where('adverts.advertable_type=? AND users.id=adverts.user_id AND votes.advert_id=adverts.id', 'Homemate')
+      .group('users.id').having('count(votes)>=10').order('AVG(votes.point) DESC')
+  end
+  
+  def enguvenilirozelders
+    User.valid.select('users.*').from('users, adverts, votes')
+      .where('adverts.advertable_type=? AND users.id=adverts.user_id AND votes.advert_id=adverts.id', 'Privatelesson')
+      .group('users.id').having('count(votes)>=10').order('AVG(votes.point) DESC')
+  end
+  
  
   
 end

@@ -135,7 +135,7 @@
 			as needed -->
 			<script src="/resources/js/bootstrap.min.js"></script>
 
-			<div class="row" style="margin-bottom: 10px;">
+			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
 				<!-- Login Starts Here -->
 
@@ -232,10 +232,8 @@
 									</div><!-- /cbp-hrsub-inner -->
 								</div><!-- /cbp-hrsub -->
 							</li>
-							
-								<a href="/kategoriler/evarkadasi">Ev Arkadaşı</a>
 
-							
+							<a href="/kategoriler/evarkadasi">Ev Arkadaşı</a>
 
 							<li>
 								<a href="#">Özel Ders</a>
@@ -297,89 +295,97 @@
 
 			</div>
 
-			<div class="row"
-			style="height: 60%; padding-bottom: 20px; margin-bottom: 30px; margin-top: 20px;">
+			<div class="visible-lg visible-md ">
 
-				<div class="row" >
+				<div class="row" style="height: 60%; padding-bottom: 20px; margin-bottom: 30px; margin-top: 20px;">
 
-					<div class="col-lg-3 hidden-xs hidden-sm hidden-md">
+					<div class="row" >
 
-						<%= render "kullanicipaneli"   %>
+						<div class="col-lg-3  hidden-md">
 
-						<div class="well">
+							<%= render "kullanicipaneli"   %>
 
-							-Campus İlan'a Hoşgeldiniz!!
-							<br>
-							<br>
-							-Yardıma mı mı ihtiyacınız var? O zaman <a href="/yardim">buraya</a> tıklayın.
-							<br>
-							<br>
-							-Görüş ve Önerileriniz bizim için çok önemli!! <a href="/iletisim">İletişim</a> sayfasından bizimle iletişime geçebilirsiniz.
+							<div class="well">
+
+								-Campus İlan'a Hoşgeldiniz!!
+								<br>
+								<br>
+								-Yardıma mı mı ihtiyacınız var? O zaman <a href="/yardim">buraya</a> tıklayın.
+								<br>
+								<br>
+								-Görüş ve Önerileriniz bizim için çok önemli!! <a href="/iletisim">İletişim</a> sayfasından bizimle iletişime geçebilirsiniz.
+
+							</div>
 
 						</div>
 
-					</div>
+						<div class="hidden-xs hidden-sm col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
 
-					<%= render "kullanicipaneli2" %>
+							<div style="">
 
-					<br class="visible-sm visible-xs visible-md">
-					<br class="visible-sm visible-xs visible-md">
+								<div class="panel panel-success">
 
-					<div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-
-						<div style="">
-
-							<div class="panel panel-success">
-
-								<div class="panel-heading">
-									<h3 style="text-align: center;" class="panel-title"><%= @title %></h3>
-								</div>
-
-								<div class="panel-body">
-									<% if @adverts!=[] %>
-									<% @adverts.each do |advert|  %>
-
-									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-
-										<div class="thumbnail">
-											<a href="<%= advert.href %>"> <% if advert.images == [] %>
-											<%= image_tag Image.new.imagefile,title:advert.name,class: "masterTooltip" %>
-											<% else %>
-											<%= image_tag advert.images[0].imagefile(:small),title:advert.name,class: "masterTooltip" %>
-											<% end %> </a>
-
-										</div>
-
-										<div class="caption">
-
-											<% if advert.name.length >= 12 %>
-
-											<h5><%= advert.name[0..11] %>...</h5>
-
-											<% else %>
-
-											<h5><%= advert.name %></h5>
-
-											<% end %>
-
-										</div>
-
+									<div class="panel-heading">
+										<h3 style="text-align: center;" class="panel-title"><%= @title %></h3>
 									</div>
 
-									<% if @adverts.count > 18 %>
+									<% if @adverts!=[] %>
+
+									<div class=" panel-body">
+
+										<% @adverts.each do |advert| %>
+
+										<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="<%= advert.href %>"> <% if advert.images == [] %>
+												<%= image_tag Image.new.imagefile,title:advert.name,class: "masterTooltip" %>
+												<% else %>
+												<%= image_tag advert.images[0].imagefile(:small),title:advert.name,class: "masterTooltip" %>
+												<% end %> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<% if advert.name.length >= 12 %>
+
+												<h5><%= advert.name[0..11] %>...</h5>
+
+												<% else %>
+
+												<h5><%= advert.name %></h5>
+
+												<% end %>
+
+											</div>
+
+										</div>
+
+										<% end %>
+
+									</div>
+									
 									<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
 
-									<div style="clear:both;"  class="apple_pagination">
+									<% if @adverts.length > 18 %>
+									
+									
+									
+									<div style=""  class="apple_pagination">
 										<%= will_paginate @adverts, :container => false,
 										:previous_label => 'Önceki', :next_label => 'Sonraki' %>
 									</div>
-									<% end %>
-
+									
 									<% end %>
 
 									<% else %>
 
-									<span>Henüz hiç ilan bulunmamaktadır!!</span>
+									<div class="panel-body">
+
+										Henüz bu kategoride ilan bulunmamaktadır!!
+
+									</div>
 
 									<% end %>
 
@@ -392,252 +398,326 @@
 					</div>
 
 				</div>
-
-				<div style="margin-bottom:20px;" class="hidden-xs hidden-sm row">
-
-					<img width="100%;" src="/resources/images/asdasd3.png">
-
-				</div>
-
-				<div style="padding:20px; margin-bottom:20px;" class="visible-xs visible-sm row">
-
-					<img width="100%;" src="/resources/images/asdasd3.png">
-
-				</div>
-
-				<div class="row">
-
-					<div style="padding-left: 20px; padding-right: 20px" class="col-lg-6">
-
-						<div class="panel panel-info">
-
-							<div class="panel-heading">
-								<h3 style="text-align: center;" class="panel-title">Günün
-								Fırsatlarını Gördünüz mü?</h3>
-							</div>
-
-							<div class="panel-body">
-
-								<div class="row">
-									
-									<% if @gununilanlari!=[] %>
-
-									<% @gununilanlari.each do |advert| %>
-
-									
-
-									<div class="col-lg-3 col-xs-6 col-md-4 col-sm-4">
-
-										<div style="" class="thumbnail">
-											<% if advert.images != [] %>
-											<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
-											<% else %>
-											<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name,class: "masterTooltip"   %></a>
-											<% end %>
-
-										</div>
-
-										<div class="caption">
-
-											<% if advert.name.length <= 12 %>
-
-											<p>
-												<%= advert.name %>
-											</p>
-
-											<% else %>
-
-											<p>
-												<%= advert.name[0..11] + "..." %>
-											</p>
-
-											<% end %>
-
-										</div>
-
-									</div>
-
-									
-
-									<% end %>
-									
-									<% else %>
-
-									<div style="padding:20px;">
-										
-										Şuanda malesef günün fırsatı bulunmamaktadır!!
-
-									</div>
-
-									<% end %>
-
-								</div>
-
-								<br>
-								
-								<% if @gununilanlari!=[] %>
-								<div style="text-align:center;">
-									<a href="/firsatlar?gununfirsatlari=1" >
-									<button style="text-align:center;" type = "button" class = "btn btn-success">
-										Devamı İçin Tıklayınız.
-									</button></a>
-								</div>
-								
-								<% end %>
-
-							</div>
-
-						</div>
-
-					</div>
-
-					<div style="padding-left: 20px; padding-right: 20px" class="col-lg-6">
-
-						<div class="panel panel-info">
-
-							<div class="panel-heading">
-								<h3 style="text-align: center;" class="panel-title">En Popüler Ürünlere Bir Göz Atmalısınız</h3>
-							</div>
-
-							<div class="panel-body">
-
-								<div class="row">
-									
-									<% if @mostpopular!= [] %>
-
-									<% @mostpopular.each do |advert| %>
-
-									<div class="col-lg-3 col-xs-6 col-md-4 col-sm-4">
-
-										<div style="" class="thumbnail">
-											<% if advert.images != [] %>
-											<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
-											<% else %>
-											<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name,class: "masterTooltip"   %></a>
-											<% end %>
-
-										</div>
-
-										<div class="caption">
-
-											<% if advert.name.length <= 12 %>
-
-											<p>
-												<%= advert.name %>
-											</p>
-
-											<% else %>
-
-											<p>
-												<%= advert.name[0..11] + "..." %>
-											</p>
-
-											<% end %>
-
-										</div>
-
-									</div>
-
-									<% end %>
-									
-									<% else %>
-									
-									<div style="padding:20px;">
-										
-										Şuanda malesef popüler ilan bulunmamaktadır!!
-
-									</div>
-									
-									
-									
-									<% end %>
-
-								</div>
-
-								<br>
-								<div style="text-align:center;">
-									<a href="/firsatlar?enpopulerilanlar=1" >
-									<button style="text-align:center;" type = "button" class = "btn btn-success">
-										Devamı İçin Tıklayınız.
-									</button></a>
-								</div>
-							</div>
-
-						</div>
-
-					</div>
-
-				</div>
-
-				<div style= "padding-left: 20px; padding-right: 20px">
-
-					<div style="background-color:#9DD2E3;" class="row well">
-
-						<div class="col-lg-4">
-
-							<h4>Giriş mi Yapmak İstiyorsunuz?</h4>
-							<br>
-
-							<button type = "button" class = "btn btn-primary">
-								Giriş Yap
-							</button>
-
-						</div>
-
-						<div class="col-lg-4">
-
-							<h4>Kayıt mı Olmak İstiyorsunuz?</h4>
-							<br>
-
-							<button type = "button" class = "btn btn-primary">
-								Kayıt Ol
-							</button>
-
-						</div>
-
-						<div class="col-lg-4">
-
-							<h4>Zaten giriş yaptınız ve ilan mı açmak istiyorsunuz?</h4>
-
-							<button type = "button" class = "btn btn-primary">
-								İlan Aç
-							</button>
-
-						</div>
-
-					</div>
-
-				</div>
-
-				<%= render "footer" %>
 
 			</div>
 
-			<!-- pluginler -->
+			<%= render "kullanicipaneli2" %>
 
-			<!-- Tooltip eklentisi-->
+			<br class="visible-sm visible-xs visible-md">
+			<br class="visible-sm visible-xs visible-md">
 
-			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+			<div class="hidden-lg hidden-md col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
 
-			<script>
-				var $tooltip = jQuery.noConflict();
-			</script>
+				<div class="row">
 
-			<script type="text/javascript" src="/resources/plugins/tooltipplugin/tooltip.js"></script>
+					<div class="panel panel-success">
 
-			<!--  Dropdown menü-->
+						<div class="panel-heading">
+							<h3 style="text-align: center;" class="panel-title"><%= @title %></h3>
+						</div>
 
-			<script src="/resources/plugins/DropDownMenu/js/cbpHorizontalMenu.min.js"></script>
+						<% if @adverts!= [] %>
 
-			<script>
-				$(function() {
-					cbpHorizontalMenu.init();
-				});
-			</script>
+						<div class=" panel-body">
 
-			<!--  fixed header -->
+							<% @adverts.each do |advert| %>
 
-			<%= render "headerfixedjs" %>
+							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+
+								<div class="thumbnail">
+									<a href="<%= advert.href %>"> <% if advert.images == [] %>
+									<%= image_tag Image.new.imagefile %>
+									<% else %>
+									<%= image_tag advert.images[0].imagefile(:small) %>
+									<% end %> </a>
+								</div>
+
+								<div class="caption">
+
+									<% if advert.name.length <= 8 %>
+
+									<h5><%= advert.name %></h5>
+									<br>
+
+									<% else %>
+
+									<h5><%= advert.name[0..7] + "..." %></h5>
+
+									<% end %>
+
+								</div>
+
+							</div>
+
+							<% end %>
+
+							<% if @adverts.length > 13 %>
+
+							<div style="clear:both;"  class="apple_pagination">
+								<%= will_paginate @adverts, :container => false,
+								:previous_label => 'Önceki', :next_label => 'Sonraki' %>
+							</div>
+							<% end %>
+
+						</div>
+
+						<% else %>
+
+						<div class=" panel-body">
+							
+							Henüz bu kategoride ilan bulunmamaktadır!!
+
+						</div>
+
+						<% end %>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div style="margin-bottom:20px;" class="hidden-xs hidden-sm row">
+
+			<img width="100%;" src="/resources/images/asdasd3.png">
+
+		</div>
+
+		<div style="padding:20px; margin-bottom:20px;" class="visible-xs visible-sm row">
+
+			<img width="100%;" src="/resources/images/asdasd3.png">
+
+		</div>
+
+		<div class="row">
+
+			<div style="padding-left: 20px; padding-right: 20px" class="col-lg-6">
+
+				<div class="panel panel-info">
+
+					<div class="panel-heading">
+						<h3 style="text-align: center;" class="panel-title">Günün
+						Fırsatlarını Gördünüz mü?</h3>
+					</div>
+
+					<div class="panel-body">
+
+						<div class="row">
+
+							<% if @gununilanlari!=[] %>
+
+							<% @gununilanlari.each do |advert| %>
+
+							<div class="col-lg-3 col-xs-6 col-md-4 col-sm-4">
+
+								<div style="" class="thumbnail">
+									<% if advert.images != [] %>
+									<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
+									<% else %>
+									<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name,class: "masterTooltip"   %></a>
+									<% end %>
+
+								</div>
+
+								<div class="caption">
+
+									<% if advert.name.length <= 12 %>
+
+									<p>
+										<%= advert.name %>
+									</p>
+
+									<% else %>
+
+									<p>
+										<%= advert.name[0..11] + "..." %>
+									</p>
+
+									<% end %>
+
+								</div>
+
+							</div>
+
+							<% end %>
+
+							<% else %>
+
+							<div style="padding:20px;">
+
+								Şuanda malesef günün fırsatı bulunmamaktadır!!
+
+							</div>
+
+							<% end %>
+
+						</div>
+
+						<br>
+
+						<% if @gununilanlari!=[] %>
+						<div style="text-align:center;">
+							<a href="/firsatlar?gununfirsatlari=1" >
+							<button style="text-align:center;" type = "button" class = "btn btn-success">
+								Devamı İçin Tıklayınız.
+							</button></a>
+						</div>
+
+						<% end %>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div style="padding-left: 20px; padding-right: 20px" class="col-lg-6">
+
+				<div class="panel panel-info">
+
+					<div class="panel-heading">
+						<h3 style="text-align: center;" class="panel-title">En Popüler Ürünlere Bir Göz Atmalısınız</h3>
+					</div>
+
+					<div class="panel-body">
+
+						<div class="row">
+
+							<% if @mostpopular!= [] %>
+
+							<% @mostpopular.each do |advert| %>
+
+							<div class="col-lg-3 col-xs-6 col-md-4 col-sm-4">
+
+								<div style="" class="thumbnail">
+									<% if advert.images != [] %>
+									<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
+									<% else %>
+									<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name,class: "masterTooltip"   %></a>
+									<% end %>
+
+								</div>
+
+								<div class="caption">
+
+									<% if advert.name.length <= 12 %>
+
+									<p>
+										<%= advert.name %>
+									</p>
+
+									<% else %>
+
+									<p>
+										<%= advert.name[0..11] + "..." %>
+									</p>
+
+									<% end %>
+
+								</div>
+
+							</div>
+
+							<% end %>
+
+							<% else %>
+
+							<div style="padding:20px;">
+
+								Şuanda malesef popüler ilan bulunmamaktadır!!
+
+							</div>
+
+							<% end %>
+
+						</div>
+
+						<br>
+						<div style="text-align:center;">
+							<a href="/firsatlar?enpopulerilanlar=1" >
+							<button style="text-align:center;" type = "button" class = "btn btn-success">
+								Devamı İçin Tıklayınız.
+							</button></a>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div style= "padding-left: 20px; padding-right: 20px">
+
+			<div style="background-color:#9DD2E3;" class="row well">
+
+				<div class="col-lg-4">
+
+					<h4>Giriş mi Yapmak İstiyorsunuz?</h4>
+					<br class="hidden-xs hidden-sm ">
+
+					<button type = "button" class = "btn btn-primary">
+						Giriş Yap
+					</button>
+
+				</div>
+
+				<div class="col-lg-4">
+
+					<h4>Kayıt mı Olmak İstiyorsunuz?</h4>
+					<br class="hidden-xs hidden-sm ">
+
+					<button type = "button" class = "btn btn-primary">
+						Kayıt Ol
+					</button>
+
+				</div>
+
+				<div class="col-lg-4">
+
+					<h4>Zaten giriş yaptınız ve ilan mı açmak istiyorsunuz?</h4>
+
+					<button type = "button" class = "btn btn-primary">
+						İlan Aç
+					</button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<%= render "footer" %>
+
+		</div>
+
+		<!-- pluginler -->
+
+		<!-- Tooltip eklentisi-->
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+		<script>
+			var $tooltip = jQuery.noConflict();
+		</script>
+
+		<script type="text/javascript" src="/resources/plugins/tooltipplugin/tooltip.js"></script>
+
+		<!--  Dropdown menü-->
+
+		<script src="/resources/plugins/DropDownMenu/js/cbpHorizontalMenu.min.js"></script>
+
+		<script>
+			$(function() {
+				cbpHorizontalMenu.init();
+			});
+		</script>
+
+		<!--  fixed header -->
+
+		<%= render "headerfixedjs" %>
 
 	</body>
 

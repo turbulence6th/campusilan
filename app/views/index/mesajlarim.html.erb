@@ -124,7 +124,7 @@
 			as needed -->
 			<script src="resources/js/bootstrap.min.js"></script>
 
-			<div class="row" style="margin-bottom: 10px;">
+			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
 				<!-- Login Starts Here -->
 
@@ -224,7 +224,7 @@
 										</thead>
 										<tbody>
 
-											<% if @messagetype == 'gelenmesajlar' %>
+											<% if @messagetype!= 'gidenmesajlar' %>
 
 											<% @messages.each do |mesaj| %>
 
@@ -244,7 +244,7 @@
 												<td>
 												<p data-placement="top" data-toggle="tooltip"
 												title="Cevapla">
-													<button class="btn btn-primary btn-xs <%= mesaj.from.username %>" data-title="Cevapla"
+													<button class="btn btn-primary btn-xs <%= mesaj.id %>" data-title="Cevapla"
 													data-toggle="modal" data-target="#mesajcevapla">
 														<span class="glyphicon glyphicon-pencil"></span>
 													</button>
@@ -260,14 +260,14 @@
 												</p></td>
 
 												<script>
-													$(".<%= mesaj.from.username %>").click(function() {
+													$(".<%= mesaj.id %>").click(function() {
 
 													$(".cevaplapaneli .ickisim").attr("placeholder", "<%= mesaj.from.username %>");
 
 														$(".cevaplapaneli .ickisim").val("<%= mesaj.from.username %>");
 														});
 
-													<% if mesaj.from_id != current_user.id %>
+													
 
 													$(".<%= mesaj.id %>").click(function() {
 
@@ -275,15 +275,9 @@
 
 														});
 
-													<% else %>
+													
 
-													$(".<%= mesaj.id %>").click(function() {
-
-														$(".silpaneli .mesajtoid").val("<%= mesaj.id %>");
-
-														});
-
-													<% end %></script>
+													</script>
 
 											</tr>
 
@@ -309,7 +303,7 @@
 												<td>
 												<p data-placement="top" data-toggle="tooltip"
 												title="Cevapla">
-													<button class="btn btn-primary btn-xs <%= mesaj.from.username %>" data-title="Cevapla"
+													<button class="btn btn-primary btn-xs <%= mesaj.id %>" data-title="Cevapla"
 													data-toggle="modal" data-target="#mesajcevapla">
 														<span class="glyphicon glyphicon-pencil"></span>
 													</button>
@@ -325,23 +319,15 @@
 												</p></td>
 
 												<script>
-$(".<%= mesaj.from.username %>").click(function() {
+$(".<%= mesaj.id %>").click(function() {
 
-	$(".cevaplapaneli .ickisim").attr("placeholder", "<%= mesaj.from.username %>");
+	$(".cevaplapaneli .ickisim").attr("placeholder", "<%= mesaj.to.username %>");
 
-	$(".cevaplapaneli .ickisim").val("<%= mesaj.from.username %>");
+	$(".cevaplapaneli .ickisim").val("<%= mesaj.to.username %>");
 	
 	});
 
-<% if mesaj.from_id != current_user.id %>
 
-$(".<%= mesaj.id %>").click(function() {
-
-	$(".silpaneli .mesajfromid").val("<%= mesaj.id %>");
-
-	});
-
-<% else %>
 
 $(".<%= mesaj.id %>").click(function() {
 
@@ -349,7 +335,7 @@ $(".<%= mesaj.id %>").click(function() {
 
 	});
 
-<% end %></script>
+</script>
 
 											</tr>
 
@@ -402,7 +388,7 @@ $(".<%= mesaj.id %>").click(function() {
 											</div>
 											<div class="form-group">
 
-												<%= m.text_field :topic,type: "text",placeholder: "Konu",class: "form-control" %>
+												<%= m.text_field :topic,type: "text",placeholder: "Konu",class: "konu form-control" %>
 
 											</div>
 											<div class="form-group">
@@ -556,12 +542,416 @@ $(".<%= mesaj.id %>").click(function() {
 
 				</div>
 
-				<div class="row">
+				
 
-					<%= render "footer" %>
+			</div>
+			
+			
+			
+			
+			<%= render "kullanicipaneli2"   %>
+			
+			
+				
+			<div style="margin-top:50px;" class="visible-xs visible-sm">
+				
+				<div class="row" style="padding-left: 20px; padding-right: 20px;">
+
+						<div class="row">
+
+							<div class="col-md-12">
+
+								<div class="row">
+									<h4 class="col-xs-3">Mesajlarım</h4>
+
+									<a style="float:right;margin-bottom:20px;" type = "button" data-title="Cevapla"
+									data-toggle="modal" data-target="#mesajgonder2" class = "mesajgonderbutonu btn btn-danger">Mesaj Gönder</a>
+
+								</div>
+
+								<%= form_tag 'mesajlarim' , :method => :get do %>
+
+								<%= select_tag :messagetype,options_for_select([['Gelen Mesajlar','gelenmesajlar'], ['Giden Mesajlar','gidenmesajlar']],params[:messagetype]),{:onchange => "this.form.submit()"} %>
+
+								<% end %>
+
+								<br>
+								<br>
+								
+
+								<div class="table-responsive">
+
+									<table id="mytable" class="table table-bordred table-striped">
+
+										<thead>
+
+											<th>
+											<input type="checkbox" id="checkall" />
+											</th>
+											<th>Ad</th>
+											<th>Soyad</th>
+											<th>Konu</th>
+											<th>Kullanıcı Adı</th>
+											
+											<th style="display:none;">Mesaj Id</th>
+											<th>Cevapla</th>
+											<th>Sil</th>
+
+										</thead>
+										<tbody>
+
+											<% if @messagetype!= 'gidenmesajlar' %>
+
+											<% @messages.each do |mesaj| %>
+
+											<tr>
+
+												<td>
+												<input type="checkbox" class="checkthis" />
+												</td>
+
+												<td><%= mesaj.from.name %></td>
+												<td><%= mesaj.from.surname %></td>
+												<td><%= mesaj.topic %></td>
+												<td><%= mesaj.from.username %></td>
+												
+												<td style="display:none;"><%= mesaj.id %></td>
+
+												<td>
+												<p data-placement="top" data-toggle="tooltip"
+												title="Cevapla">
+													<button class="btn btn-primary btn-xs <%= mesaj.from.username %>" data-title="Cevapla"
+													data-toggle="modal" data-target="#mesajcevapla2">
+														<span class="glyphicon glyphicon-pencil"></span>
+													</button>
+													
+													
+													
+													
+													
+												</p></td>
+
+												<td>
+												<p data-placement="top" data-toggle="tooltip"
+												title="Sil">
+													<button class="<%= mesaj.id %>  btn btn-danger btn-xs" data-title="Sil"
+													data-toggle="modal" data-target="#mesajsil2">
+														<span class="glyphicon glyphicon-trash"></span>
+													</button>
+												</p></td>
+
+												<script>
+													$(".<%= mesaj.id %>").click(function() {
+
+													$(".cevaplapaneli .ickisim").attr("placeholder", "<%= mesaj.from.username %>");
+
+														$(".cevaplapaneli .ickisim").val("<%= mesaj.from.username %>");
+														});
+
+													
+
+													$(".<%= mesaj.id %>").click(function() {
+
+														$(".silpaneli .mesajfromid").val("<%= mesaj.id %>");
+
+														});
+
+												
+
+													
+
+													</script>
+
+											</tr>
+
+											<%end %>
+
+											<% elsif @messagetype == 'gidenmesajlar' %>
+
+											<% @messages.each do |mesaj| %>
+
+											<tr>
+
+												<td>
+												<input type="checkbox" class="checkthis" />
+												</td>
+
+												<td><%= mesaj.to.name %></td>
+												<td><%= mesaj.to.surname %></td>
+												<td><%= mesaj.topic %></td>
+												<td><%= mesaj.to.username %></td>
+												
+												<td style="display:none;"><%= mesaj.id %></td>
+
+												<td>
+												<p data-placement="top" data-toggle="tooltip"
+												title="Cevapla">
+													<button class="btn btn-primary btn-xs <%= mesaj.id %>" data-title="Cevapla"
+													data-toggle="modal" data-target="#mesajcevapla2">
+														<span class="glyphicon glyphicon-pencil"></span>
+													</button>
+												</p></td>
+
+												<td>
+												<p data-placement="top" data-toggle="tooltip"
+												title="Sil">
+													<button class="<%= mesaj.id %>  btn btn-danger btn-xs" data-title="Sil"
+													data-toggle="modal" data-target="#mesajsil2">
+														<span class="glyphicon glyphicon-trash"></span>
+													</button>
+												</p></td>
+
+												<script>
+$(".<%= mesaj.id %>").click(function() {
+
+	$(".cevaplapaneli .ickisim").attr("placeholder", "<%= mesaj.to.username %>");
+
+	$(".cevaplapaneli .ickisim").val("<%= mesaj.to.username %>");
+	
+	});
+
+
+
+$(".<%= mesaj.id %>").click(function() {
+
+	$(".silpaneli .mesajtoid").val("<%= mesaj.id %>");
+
+	});
+
+</script>
+
+											</tr>
+
+											<%end %>
+
+											<% end %>
+
+										</tbody>
+
+									</table>
+
+								</div>
+
+								<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
+
+								<% if @messages.count > 10 %>
+
+								<div class="apple_pagination">
+									<%= will_paginate @messages, :container => false,
+									:previous_label => 'Önceki', :next_label => 'Sonraki' %>
+								</div>
+
+								<% end %>
+
+							</div>
+
+							
+							
+							
+							
+							
+							<%= form_for :mesaj, :url => 'mesajgonder',:html => {id: 'mesajcevaplaformu2'} do |m| %>
+
+							<div class="cevaplapaneli modal fade" id="mesajcevapla2" tabindex="-1" role="dialog"
+							aria-labelledby="Cevapla" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">
+												<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+											</button>
+											<h4 class="modal-title custom_align" id="Heading">Mesajı Cevapla</h4>
+
+											<br>
+
+											<span style="display:none;color:red"  class="basarisiz">Mesaj Gönderme Başarısız</span>
+
+											<span style="display:none;color:green"  class="basarili">Mesaj Başarıyla Gönderildi</span>
+										</div>
+										<div class="modal-body">
+											<div class="form-group">
+												<%= m.text_field :username,type: "text",placeholder:"Kullanıcı Adı",class:"form-control kullaniciadi ickisim",readonly: true %>
+
+											</div>
+											<div class="form-group">
+
+												<%= m.text_field :topic,type: "text",placeholder: "Konu",class: "form-control" %>
+
+											</div>
+											<div class="form-group">
+												<%= m.text_area :text,rows: "2",class:"form-control",placeholder: "Mesaj İçeriği" %>
+
+											</div>
+										</div>
+										<div class="modal-footer ">
+											<button onclick="mesajcevapla2()" type="button" class="gonderbutonu btn btn-warning btn-lg"
+											style="width: 100%;">
+												<span class="glyphicon glyphicon-ok-sign"></span> Gönder
+											</button>
+										</div>
+									</div>
+									<!-- /.modal-content -->
+								</div>
+								<!-- /.modal-dialog -->
+							</div>
+
+							<% end %>
+							
+							
+							
+
+							
+							
+							
+							
+							
+							
+							<%= form_for :mesaj, :url => 'mesajgonder',:html => {id: 'mesajgonderformu2'} do |m| %>
+
+							<div class="modal fade" id="mesajgonder2" tabindex="-1" role="dialog"
+							aria-labelledby="Cevapla" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">
+												<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+											</button>
+
+											<h4 class="modal-title custom_align" id="Heading">Mesaj Gönder</h4>
+
+											<br>
+
+											<span style="display:none;color:red"  class="basarisiz">Mesaj Gönderme Başarısız</span>
+
+											<span style="display:none;color:green"  class="basarili">Mesaj Başarıyla Gönderildi</span>
+
+										</div>
+										<div class="modal-body">
+											<div class="form-group">
+												<%= m.text_field :username,type: "text",placeholder:"Kullanıcı Adı",class:"form-control kullaniciadi" %>
+											</div>
+											<div class="form-group">
+
+												<%= m.text_field :topic,type: "text",placeholder: "Konu",class: "form-control konu" %>
+											</div>
+											<div class="form-group">
+												<%= m.text_area :text,rows: "2",class:"form-control",placeholder: "Mesaj İçeriği" %>
+
+											</div>
+										</div>
+										<div class="modal-footer ">
+											<button onclick="mesajgonder2()" type="button" class="gonderbutonu btn btn-warning btn-lg"
+											style="width: 100%;">
+												<span class="glyphicon glyphicon-ok-sign"></span> Gönder
+											</button>
+										</div>
+									</div>
+									<!-- /.modal-content -->
+								</div>
+								<!-- /.modal-dialog -->
+							</div>
+
+							<% end %>
+							
+							
+							
+							
+
+							
+							
+							
+							
+							<%= form_for :mesaj, :url => 'mesajsil',:html => {id: 'mesajsilformu2'} do |m| %>
+
+							<div class="silpaneli modal fade" id="mesajsil2" tabindex="-1" role="dialog"
+							aria-labelledby="Cevapla" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">
+												<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+											</button>
+											<h4 class="modal-title custom_align" id="Heading">Bu Mesajı Sil</h4>
+
+											<br>
+
+											<span style="display:none;color:red"  class="basarisiz">Mesaj Silme Başarısız</span>
+
+											<span style="display:none;color:green"  class="basarili">Mesaj Başarıyla Silindi</span>
+										</div>
+
+										<div style="display:none;" class="form-group">
+											<%= m.text_field :mesajfromid,type: "text",class:"form-control mesajfromid" %>
+										</div>
+
+										<div style="display:none;" class="form-group">
+											<%= m.text_field :mesajtoid,type: "text",class:"form-control mesajtoid" %>
+										</div>
+
+										<div class="silmeonayi modal-body">
+
+											<div class=" alert alert-danger">
+												<span class="glyphicon glyphicon-warning-sign"></span> Silmek istediğinden emin misin?
+											</div>
+
+										</div>
+
+										<div class="modal-footer ">
+											<button onclick="mesajsil2()" type="button" class="silmeevet btn btn-success">
+												<span class="glyphicon glyphicon-ok-sign"></span> Evet
+											</button>
+											<button type="button" class="silmehayir btn btn-default"
+											data-dismiss="modal">
+												<span class="glyphicon glyphicon-remove"></span> Hayır
+											</button>
+										</div>
+									</div>
+									<!-- /.modal-content -->
+								</div>
+								<!-- /.modal-dialog -->
+							</div>
+
+							<% end %>
+							
+							
+							
+
+							<div class="modal fade" id="warning" tabindex="-1" role="dialog"
+							aria-labelledby="Cevapla" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">
+												<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+											</button>
+											<h4 class="modal-title custom_align" id="Heading">Mesaj Gönderimi</h4>
+										</div>
+										<div class="modal-body">
+
+											<div class="alert alert-danger">
+												<span class="glyphicon glyphicon-warning-sign"></span> Mesaj Gönderimi:
+											</div>
+
+										</div>
+
+									</div>
+									<!-- /.modal-content -->
+								</div>
+								<!-- /.modal-dialog -->
+							</div>
+
+						</div>
+
+					
 
 				</div>
-
+				
+				
+				
 			</div>
 
 			<!-- Mesaj ajaxlar-->
@@ -583,6 +973,78 @@ $(".<%= mesaj.id %>").click(function() {
 					})
 
 					var form = document.getElementById("mesajgonderformu");
+					var username = form.elements['mesaj_username'].value;
+
+					var topic = form.elements['mesaj_topic'].value;
+
+					var text = form.elements['mesaj_text'].value;
+
+					$.ajax({
+
+						url : 'mesajgonder',
+						data : {
+							authenticity_token : window._token,
+							username : username,
+							topic : topic,
+							text : text
+						},
+						error : function() {
+
+						},
+						dataType : 'json',
+						success : function(data) {
+
+							if (!data.check) {
+
+								$(".basarisiz").show();
+
+							} else {
+
+								$(".basarisiz").hide();
+								$(".basarili").show();
+
+								$(".kullaniciadi").attr('disabled', 'disabled');
+								$(".konu").attr('disabled', 'disabled');
+								$("textarea#mesaj_text").attr('disabled', 'disabled');
+
+								$(".gonderbutonu").attr('disabled', 'disabled');
+
+							}
+
+							$modaljquery("#mesajgonder").on('hidden.bs.modal', function() {
+
+								$(".kullaniciadi").val("");
+								$(".konu").val("");
+								$("textarea#mesaj_text").val("");
+
+								$(".basarisiz").hide();
+
+								$(".basarili").hide();
+
+								$(".kullaniciadi").removeAttr('disabled');
+								$(".konu").removeAttr('disabled');
+								$("textarea#mesaj_text").removeAttr('disabled');
+
+								$(".gonderbutonu").removeAttr('disabled');
+
+							});
+
+						},
+
+						type : 'POST'
+
+					})
+
+				}
+				
+				
+				function mesajgonder2() {
+
+					$modaljquery('#warning').modal({
+						show : false
+					})
+
+					var form = document.getElementById("mesajgonderformu2");
 					var username = form.elements['mesaj_username'].value;
 
 					var topic = form.elements['mesaj_topic'].value;
@@ -717,6 +1179,77 @@ $(".<%= mesaj.id %>").click(function() {
 					})
 
 				}
+				
+				function mesajcevapla2() {
+
+					$modaljquery('#warning').modal({
+						show : false
+					})
+
+					var form = document.getElementById("mesajcevaplaformu2");
+					var username = form.elements['mesaj_username'].value;
+
+					var topic = form.elements['mesaj_topic'].value;
+
+					var text = form.elements['mesaj_text'].value;
+
+					$.ajax({
+
+						url : 'mesajgonder',
+						data : {
+							authenticity_token : window._token,
+							username : username,
+							topic : topic,
+							text : text
+						},
+						error : function() {
+
+						},
+						dataType : 'json',
+						success : function(data) {
+
+							if (!data.check) {
+
+								$(".basarisiz").show();
+
+							} else {
+
+								$(".basarisiz").hide();
+								$(".basarili").show();
+
+								$(".kullaniciadi").attr('disabled', 'disabled');
+								$(".konu").attr('disabled', 'disabled');
+								$("textarea#mesaj_text").attr('disabled', 'disabled');
+
+								$(".gonderbutonu").attr('disabled', 'disabled');
+
+							}
+
+							$modaljquery("#mesajgonder").on('hidden.bs.modal', function() {
+
+								$(".kullaniciadi").val("");
+								$(".konu").val("");
+								$("textarea#mesaj_text").val("");
+
+								$(".basarisiz").hide();
+
+								$(".basarili").hide();
+
+								$(".kullaniciadi").removeAttr('disabled');
+								$(".konu").removeAttr('disabled');
+								$("textarea#mesaj_text").removeAttr('disabled');
+
+								$(".gonderbutonu").removeAttr('disabled');
+
+							});
+
+						},
+
+						type : 'POST'
+
+					})
+
+				}
 
 				function mesajsil() {
 
@@ -773,6 +1306,64 @@ $(".<%= mesaj.id %>").click(function() {
 					});
 
 				}
+				
+				
+				
+				function mesajsil2() {
+
+					$modaljquery('#warning').modal({
+						show : false
+					})
+
+					var form = document.getElementById("mesajsilformu2");
+					var mesajfromid = form.elements['mesaj_mesajfromid'].value;
+					var mesajtoid = form.elements['mesaj_mesajtoid'].value;
+
+					$.ajax({
+
+						url : 'mesajsil',
+						data : {
+							authenticity_token : window._token,
+							mesajfromid : mesajfromid,
+							mesajtoid : mesajtoid
+						},
+						error : function() {
+							alert("asd");
+						},
+						dataType : 'json',
+						success : function(data) {
+
+							if (!data.check) {
+
+								$(".basarisiz").show();
+
+							} else {
+
+								$(".basarisiz").hide();
+								$(".basarili").show();
+								$(".silmeonayi").hide();
+								$(".silmeevet").attr('disabled', 'disabled');
+								$(".silmehayir").attr('disabled', 'disabled');
+							}
+
+							$modaljquery("#mesajsil").on('hidden.bs.modal', function() {
+
+								$(".silmeevet").removeAttr('disabled');
+								$(".silmehayir").removeAttr('disabled');
+
+								$(".basarisiz").hide();
+
+								$(".basarili").hide();
+
+							});
+
+						},
+						dataType : 'json',
+						type : 'POST',
+
+					});
+
+				}
 
 			</script>
 
@@ -780,16 +1371,35 @@ $(".<%= mesaj.id %>").click(function() {
 				$modaljquery("#mesajgonder").on('hidden.bs.modal', function() {
 					location.reload();
 				});
+				
+				$modaljquery("#mesajgonder2").on('hidden.bs.modal', function() {
+					location.reload();
+				});
 
 				$modaljquery("#mesajcevapla").on('hidden.bs.modal', function() {
+					location.reload();
+				});
+				
+				$modaljquery("#mesajcevapla2").on('hidden.bs.modal', function() {
 					location.reload();
 				});
 
 				$modaljquery("#mesajsil").on('hidden.bs.modal', function() {
 					location.reload();
 				});
+				
+				$modaljquery("#mesajsil2").on('hidden.bs.modal', function() {
+					location.reload();
+				});
 
 			</script>
+			
+			
+			<div class="row">
+
+					<%= render "footer" %>
+
+				</div>
 
 			<!-- pluginler -->
 
@@ -815,6 +1425,9 @@ $(".<%= mesaj.id %>").click(function() {
 
 				});
 			</script>
+			
+			</div>
+			
 	</body>
 
 </html>

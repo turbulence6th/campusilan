@@ -89,7 +89,7 @@
 				smartmenus('#main-menu').smartmenus();
 			});
 		</script>
-		
+
 		<!-- Tooltip eklentisi-->
 
 		<link rel="stylesheet" type="text/css"
@@ -135,7 +135,7 @@
 			as needed -->
 			<script src="/resources/js/bootstrap.min.js"></script>
 
-			<div class="row" style="margin-bottom: 10px;">
+			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
 				<!-- Login Starts Here -->
 
@@ -297,12 +297,11 @@
 
 			</div>
 
-			<div class="row"
-			style="height: 60%; padding-bottom: 20px; margin-bottom: 30px; margin-top: 20px;">
+			<div class="row hidden-xs hidden-sm" style="height: 60%; padding-bottom: 20px; margin-bottom: 30px; margin-top: 30px;">
 
-				<div class="row" >
+				<div class="row" style="padding-left: 20px; padding-right: 20px;">
 
-					<div class="col-lg-3 hidden-xs hidden-sm hidden-md">
+					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 
 						<%= render "kullanicipaneli"   %>
 
@@ -311,56 +310,36 @@
 								Üniversiteler
 							</div>
 							<div class="panel-body ">
-								
-								
+
 								<%= form_tag '/universiteler' , :method => :get do %>
 
-						<%= select_tag :universities,options_for_select(University.order(:name).collect { |a| [a.name, a.id] },params[:universities]),{:onchange => "this.form.submit()",style:"width:100%; "} %>
+								<%= select_tag :universities,options_for_select(University.order(:name).collect { |a| [a.name, a.id] },params[:universities]),{:onchange => "this.form.submit()",style:"width:100%; "} %>
 
-						<% end %>
-								
-								
+								<% end %>
+
 							</div>
 						</div>
 
-						
-
 						<div class="well">
 
-							Buraya kafana göre bir şeyler ekle...
+							-Campus İlan'a Hoşgeldiniz!!
 							<br>
-							...
 							<br>
-							...
+							-Yardıma mı mı ihtiyacınız var? O zaman <a href="/yardim">buraya</a> tıklayın.
 							<br>
-							...
 							<br>
-							...
-							<br>
-							...
-							<br>
-							...
-							<br>
-							...
-							<br>
-							...
-							<br>
+							-Görüş ve Önerileriniz bizim için çok önemli!! <a href="/iletisim">İletişim</a> sayfasından bizimle iletişime geçebilirsiniz.
 
 						</div>
 
 					</div>
 
-					<%= render "kullanicipaneli2" %>
+					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9"
+					style="padding-left: 20px; padding-right: 20px">
 
-					<br class="visible-sm visible-xs visible-md">
-					<br class="visible-sm visible-xs visible-md">
+						<div class="row">
 
-					<div class="col-lg-9 col-md-12 col-sm-12 col-xs-12"
-					style="">
-
-						<div style="">
-
-							<div class="panel panel-success">
+							<div class = "panel panel-success">
 
 								<div class="panel-heading">
 									<h3 style="text-align: center;" class="panel-title"><%= @title %></h3>
@@ -385,22 +364,22 @@
 
 											<% if advert.name.length <= 12 %>
 
-											<p><%= advert.name %></p>
-											
+											<p>
+												<%= advert.name %>
+											</p>
 
 											<% else %>
 
-											<p><%= advert.name[0..11] + "..." %></p>
+											<p>
+												<%= advert.name[0..11] + "..." %>
+											</p>
 
 											<% end %>
 
 										</div>
 
 									</div>
-									
-									
-									
-									
+
 									<div class="visible-xs visible-sm  col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
@@ -416,12 +395,15 @@
 
 											<% if advert.name.length <= 10 %>
 
-											<p><%= advert.name %></p>
-											
+											<p>
+												<%= advert.name %>
+											</p>
 
 											<% else %>
 
-											<p><%= advert.name[0..9] + "..." %></p>
+											<p>
+												<%= advert.name[0..9] + "..." %>
+											</p>
 
 											<% end %>
 
@@ -447,12 +429,92 @@
 
 				</div>
 
+			</div>
+
+			<%= render "kullanicipaneli2"%>
+			
+			
+
+			<div class="visible-xs visible-sm">
+
+				
+
+				<div style="margin-top:20px;"class="row">
+
+					<div class=" col-sm-12 col-xs-12">
+
+						<div class="row">
+
+							<div class = "panel panel-success">
+
+								<div class="panel-heading">
+									<h3 style="text-align: center;" class="panel-title"><%= @title %></h3>								</div>
+
+								<div class = "panel-body">
+
+									<% @adverts .each do |advert|  %>
+
+									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+
+										<div class="thumbnail">
+											<a href="<%= advert.href %>"> <% if advert.images == [] %>
+											<%= image_tag Image.new.imagefile %>
+											<% else %>
+											<%= image_tag advert.images[0].imagefile(:small),title:advert.name,class: "masterTooltip" %>
+											<% end %> </a>
+
+										</div>
+
+										<div class="caption">
+
+											<% if advert.name.length >= 10 %>
+
+											<h5><%= advert.name[0..9] %>...</h5>
+
+											<% else %>
+
+											<h5><%= advert.name %></h5>
+
+											<% end %>
+
+										</div>
+
+									</div>
+
+									<% end %>
+
+								</div>
+
+								<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
+
+								<% if @adverts .count > 8 %>
+								<div style="text-align:center;">
+									<div style="clear:both;"    class="apple_pagination">
+										<%= will_paginate @adverts , :container => false,
+										:previous_label => 'Önceki', :next_label => 'Sonraki' %>
+									</div>
+								</div>
+
+								<% end %>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="row">
+
 				<%= render "footer" %>
 
 			</div>
 
 			<!-- pluginler -->
-			
+
 			<!-- Tooltip eklentisi-->
 
 			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>

@@ -3,49 +3,73 @@ class AdvertController < ApplicationController
   layout false
 
   helper_method :current_user
-  
   def vote
-    
+
     if current_user
-      
-      star = params[:star]
+
       advert = Advert.find_by(:id => params[:advert])
       point = params[:point]
-      
+
       if Vote.where(:user => current_user, :advert => advert).present?
-        
+
         vote = Vote.find_by(:user => current_user, :advert => advert)
-        vote.point = point
-      
+      vote.point = point
+
       else
-        
+
         vote = Vote.new(:user => current_user, :advert => advert, :point => point)
-          
+
       end
-      
+
       if vote.save
-        
+
         respond_to do |format|
           msg = { :check => true }
           format.json  { render :json => msg }
         end
-        
+
       else
-        
+
         respond_to do |format|
           msg = { :check => false }
           format.json  { render :json => msg }
         end
-        
+
       end
-      
-      
+
     end
-    
-    
-    
+
   end
-  
+
+  def votedelete
+
+    if current_user
+
+      advert = Advert.find_by(:id => params[:advert])
+
+      if Vote.where(:user => current_user, :advert => advert).present?
+
+        vote = Vote.find_by(:user => current_user, :advert => advert)
+        vote.destroy
+
+        respond_to do |format|
+          msg = { :check => true }
+          format.json  { render :json => msg }
+        end
+
+      else
+
+        respond_to do |format|
+          msg = { :check => false }
+          format.json  { render :json => msg }
+        end
+
+      end
+
+    end
+
+  end
+
   def ikinciel
 
     advert_name = params[:advert_name]
@@ -69,7 +93,7 @@ class AdvertController < ApplicationController
     @advertable = @advert.advertable
     @advert_user = @advert.user
     @images = @advert.images
-    
+
     if current_user
       vote = Vote.find_by(:user => current_user, :advert => @advert)
       if vote
@@ -81,9 +105,9 @@ class AdvertController < ApplicationController
 
     @looked = Advert.select('a2.*').from('adverts a,users u, viewed_adverts v, adverts a2, viewed_adverts v2')
       .where('a.id=? AND v.user_id = u.id AND v.advert_id = a.id AND a.id!=a2.id AND v2.user_id = u.id AND v2.advert_id = a2.id', @advert.id).group('a2.id').order('count(a2.id)')[0..4]
-      
+
     @similar = Advert.joins('JOIN secondhands ON adverts.advertable_id=secondhands.id').where(:advertable_type => 'Secondhand',:secondhands => { :category => @advertable.read_attribute(:category) }).where.not(:id => @advert.id).sample(4)
-    
+
   end
 
   def evarkadasi
@@ -277,7 +301,7 @@ class AdvertController < ApplicationController
     @advert.active = true
     @advert.verified = false
     @advert.verified = true if current_user.role=='admin'
-    
+
     @advert.urgent = false
     @advert.opportunity = false
     @advert.ours = false
@@ -332,7 +356,7 @@ class AdvertController < ApplicationController
     @advert.active = true
     @advert.verified = false
     @advert.verified = true if current_user.role=='admin'
-    
+
     @advert.urgent = false
     @advert.opportunity = false
     @advert.ours = false
@@ -394,12 +418,12 @@ class AdvertController < ApplicationController
         @title="Diğer"
         @adverts = Advert.available.select('adverts.*').from('adverts, secondhands')
           .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=9").paginate(:page => params[:page], :per_page => 18).reverse
-      
+
       else
-        
+
         @title="İkinci El İlanlar"
         @adverts = Advert.available.where(:advertable_type => 'Secondhand').paginate(:page => params[:page], :per_page => 18).reverse
-        
+
       end
 
     elsif kategori=="evarkadasi"
@@ -407,7 +431,7 @@ class AdvertController < ApplicationController
       @adverts = Advert.available.where(:advertable_type => 'Homemate').paginate(:page => params[:page], :per_page => 18).reverse
 
     elsif kategori=="ozelders"
-      
+
       subkategori=params[:subkategori]
       if subkategori=="matematik"
         @title="Matematik"
@@ -433,9 +457,9 @@ class AdvertController < ApplicationController
         @title="Genel Eğitim Bilimleri"
         @adverts = Advert.available.select('adverts.*').from('adverts, privatelessons')
           .where("adverts.advertable_type='Privatelesson' AND adverts.advertable_id=privatelessons.id AND privatelessons.lecture=5").paginate(:page => params[:page], :per_page => 18).reverse
-          
+
       else
-        
+
         @title="Özel Ders İlanları"
         @adverts = Advert.available.where(:advertable_type => 'Privatelesson').paginate(:page => params[:page], :per_page => 18).reverse
 
@@ -447,9 +471,9 @@ class AdvertController < ApplicationController
     else
       redirect_to "/kategoriler"
     end
-    
+
     @gununilanlari = gununilanlari[0..7]
-    
+
     @mostpopular = mostpopular[0..9]
 
   end
@@ -486,16 +510,15 @@ class AdvertController < ApplicationController
         @adverts = Advert.select('a.*').from('adverts a, users u1, users u2')
           .where('u1.id=? and u1.university_id=u2.university_id and a.user_id=u2.id and a.verified=true and a.active=true', current_user.id).paginate(:page => params[:page], :per_page => 18)
       end
-      
+
     else
-     @title="Acil İlanlar"
+      @title="Acil İlanlar"
       @active = 0
       @adverts = acililanlar.paginate(:page => params[:page], :per_page => 18)
     end
-    
+
     @bizimsectiklerimiz = bizimsectiklerimiz[0..9]
-    
-    
+
   end
 
   def favorilereekle

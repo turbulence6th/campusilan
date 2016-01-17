@@ -15,4 +15,31 @@ class Secondhand < ActiveRecord::Base
   
   enum :color => [ :siyah, :beyaz, :kirmizi, :mavi, :sari, :yesil ]
   
+  def renkler
+    
+     if self.color=='siyah'
+       return 'Siyah'
+       
+      elsif self.color=='beyaz'
+       return 'Beyaz'
+       
+      elsif self.color=='kirmizi'
+       return 'Kırmızı'
+       
+      elsif self.color=='mavi'
+       return 'Mavi'
+       
+      elsif self.color=='sari'
+       return 'Sarı'   
+       
+      elsif self.color=='yesil'
+       return 'Yeşil'   
+       
+     end
+    
+    
+    
+  end
+  
+  
 end

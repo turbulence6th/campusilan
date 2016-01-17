@@ -2,7 +2,7 @@
 	<ul>
 
 		<% if current_user!=nil %>
-		<li class='has-sub'>
+		<li class='birincimenu active has-sub'>
 			<a href='#'><span>Kullanıcı
 				Paneli</span></a>
 			<ul>
@@ -12,12 +12,7 @@
 				<li>
 					<a  id="ilanver" href='/ilanver'><span>İlan Ver</span></a>
 				</li>
-				<li class='last'>
-					<a class="panellinkler" id="satislarim" href='/satis-alis/satislarim'><span>Satışlarım</span></a>
-				</li>
-				<li class='last'>
-					<a class="panellinkler" id="alislarim" href='/satis-alis/alislarim'><span>Alışlarım</span></a>
-				</li>
+				
 				<li class='last'>
 					<a class="panellinkler" id="favorilerid" href='/uye/<%= current_user.username%>?favorilerim=1'><span>Favorilerim</span></a>
 				</li>
@@ -120,6 +115,7 @@
 		$("#hesapayarlariid").click(function() {
 
 			$(".panelortak").hide();
+			$(".tekliflerim").hide();
 			$(".degiskenpanel").show();
 
 			$(".hesapayarlari").show();
@@ -130,6 +126,7 @@
 			
 			
 			$(".panelortak").hide();
+			$(".tekliflerim").hide();
 			$(".degiskenpanel").hide();
 
 			$(".hesapayarlari").hide();
@@ -152,6 +149,7 @@
 
 			
 			$(".panelortak").hide();
+			$(".tekliflerim").hide();
 
 			$(".profilim").show();
 			
@@ -163,6 +161,7 @@
 
 			
 			$(".panelortak").hide();
+			$(".tekliflerim").hide();
 			$(".favoriler").show();
 			$(".degiskenpanel").hide();
 
@@ -170,7 +169,7 @@
 
 		$("#tekliflerim").click(function() {
 
-			$(".degiskenpanel").show();
+			$(".degiskenpanel").hide();
 			$(".panelortak").hide();
 			$(".tekliflerim").show();
 
@@ -196,12 +195,9 @@
 
 	});
 	
+$(".birincimenu > ul").slideDown(0);
 	
-	
-	
-	
-	
-	
+
 
 </script>
 <% end %>

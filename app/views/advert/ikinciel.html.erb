@@ -146,7 +146,7 @@
 
 		<div class="container-fluid">
 
-			<div class="row" style="margin-bottom: 10px;">
+			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
 				<!-- Login Starts Here -->
 
@@ -320,30 +320,30 @@
 
 													<br>
 
-													<h4  class="add-to item_price">Fiyat: <%= @advert.price %>&#8378;</h4>
+													<h4  class="add-to item_price">Fiyat: <span style="color:red;" ><%= @advert.price %>&#8378;</span></h4>
 													<br>
 
-													<h4  class="add-to item_price">Ürün Rengi: <%= @advertable.color %></h4>
+													<h4  class="add-to item_price">Ürün Rengi: <span style="color:red;" ><%= @advertable.color %></span></h4>
 													<br>
 
-													<h4  class="add-to item_price">Marka: <%= @advertable.brand %> </h4>
+													<h4  class="add-to item_price">Marka: <span style="color:red;" ><%= @advertable.brand %></span> </h4>
 													<br>
 
 													<h4  class="add-to item_price">Kullanım Durumu: <% if @advertable.usage %>
-													Sıfır
+													<span style="color:red;" >Sıfır</span>
 													<% else %>
-													İkinci El
+													<span style="color:red;" >İkinci El</span>
 													<% end %> </h4>
 													<br>
 
 													<h4  class="add-to item_price">Garanti Durumu: <% if @advertable.warranty %>
-													Var
+													<span style="color:red;" >Var</span>
 													<% else %>
-													Yok
+													<span style="color:red;" >Yok</span>
 													<% end %> </h4>
 													<br>
 
-													<h4  class="add-to item_price">İlan sahibinin telefonu: <%= @advert_user.phone %> </h4>
+													<h4  class="add-to item_price">İlan sahibinin telefonu: <span style="color:red;" ><%= @advert_user.phone %></span> </h4>
 													<br>
 													<h4> İlan sahibinin profili için <a href="/uye/<%= @advert_user.username %>">buraya</a> tıklayınız. </h4>
 												</div>
@@ -701,13 +701,45 @@ advertid : <%= @advert.id %>
 
 				},
 				type : 'POST'
-				});
 
-				});
+			});
+            
+            
+        });
+        
+        starrating('#input-21b').on('rating.clear', function() {
+        	
+            $.ajax({
+				url : '/votedelete',
+				data : {
+					authenticity_token : window._token,
+					advert : '<%= @advert.id %>'
+				},
+				error : function() {
+					alert('error');
+				},
+				dataType : 'json',
+				success : function(data) {
 
-				starrating('.rb-rating').rating({'showCaption':true, 'stars':'3', 'min':'0', 'max':'3', 'step':'1', 'size':'xs', 'starCaptions': {0:'status:nix', 1:'status:wackelt', 2:'status:geht', 3:'status:laeuft'}});
-				});
-		</script>
+
+					if (!data.check) {
+
+						alert('Sunucuda Bir sorun meydana geldi');
+
+					} 
+
+				},
+				type : 'POST'
+			});
+            
+            
+        });
+        
+        
+        starrating('.rb-rating').rating({'showCaption':true, 'stars':'3', 'min':'0', 'max':'3', 'step':'1', 'size':'xs', 'starCaptions': {0:'status:nix', 1:'status:wackelt', 2:'status:geht', 3:'status:laeuft'}});
+    });
+</script>
+
 
 		<!-- Product Template-->
 
