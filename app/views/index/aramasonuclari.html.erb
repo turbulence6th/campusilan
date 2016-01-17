@@ -161,7 +161,7 @@
 
 		<div  style="z-index: 1;" class = "input-group">
 		<%= text_field_tag :aramakismi,params[:aramakismi],class: "form-control",placeholder: "Arama Yap..."  %>	
-		
+		<%= hidden_field_tag "kategori", "ikinciel" %>
 
 		<span class = "input-group-btn">
 		<%= submit_tag 'Ara',name:nil,class: "btn btn-default" %>
@@ -179,9 +179,10 @@
 		</div>
 
 		<div class="panel-body">
-		<select  name="" onChange="changeformcontent(this.value)" value="Bike">
+		<select onChange="changeformcontent(this.value)">
 
-		<option selected value="ikinciel">İkinci El İlan</option>
+		<option selected value="select">Kategori Seçiniz</option>
+		<option value="ikinciel">İkinci El İlan</option>
 		<option value="evarkadasi">Ev Arkadaşı</option>
 		<option value="dersnotlari">Ders Notları</option>
 		<option value="ozelders">Özel Ders</option>
@@ -245,7 +246,7 @@
 		</div>
 
 		<div class="panel-body">
-		<%= select_tag :color, options_for_select([['Siyah', 'siyah'], ['Beyaz', 'beyaz'], ['Kırmızı', 'kirmizi'],['Mavi','mavi'],['Sarı','sari'],['Yeşil','yesil']],params[:color]), class:"form-control"  %>
+		<%= select_tag :color, options_for_select([['Hepsi', 'hepsi'], ['Siyah', 'siyah'], ['Beyaz', 'beyaz'], ['Kırmızı', 'kirmizi'],['Mavi','mavi'],['Sarı','sari'],['Yeşil','yesil']],params[:color]), class:"form-control"  %>
 		
 		</div>
 		</div>

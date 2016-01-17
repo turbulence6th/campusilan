@@ -349,7 +349,7 @@ class AdvertController < ApplicationController
   def homematePost
 
     @homemate = Homemate.new(params.require(:advert).require(:advertable).permit(
-      :state, :city, :demand))
+      :state, :city, :demand, :sleep, :friend, :smoke, :department, :music))
     @advert = Advert.new(params.require(:advert).permit(:name, :price, :explication))
     @advert.advertable = @homemate
     @advert.user = current_user
