@@ -10,11 +10,11 @@ class Homemate < ActiveRecord::Base
   
   enum :demand => [ :male, :female, :both ]
   
-  enum :sleep => [ :evet, :hayir, :degisken ]
-  enum :friend => [ :evet, :hayir, :degisken ]
-  enum :smoke => [ :evet, :hayir, :arada ]
+  enum :sleep => [ :evet1, :hayir1, :degisken1 ]
+  enum :friend => [ :evet2, :hayir2, :degisken2 ]
+  enum :smoke => [ :evet3, :hayir3, :arada3 ]
   enum :department => [ :muhendislik, :egitim, :tip, :siyasal, :diger ]
-  enum :music => [ :evet, :hayir, :arada ]
+  enum :music => [ :evet4, :hayir4, :arada4 ]
 
 
   def aranan
