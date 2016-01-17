@@ -132,6 +132,12 @@ class AdvertController < ApplicationController
     @advertable = @advert.advertable
     @advert_user = @advert.user
     @images = @advert.images
+    
+    
+    @looked = Advert.select('a2.*').from('adverts a,users u, viewed_adverts v, adverts a2, viewed_adverts v2')
+      .where('a.id=? AND v.user_id = u.id AND v.advert_id = a.id AND a.id!=a2.id AND v2.user_id = u.id AND v2.advert_id = a2.id', @advert.id).group('a2.id').order('count(a2.id)')[0..4]
+    
+    @similar = Advert.joins('JOIN secondhands ON adverts.advertable_id=secondhands.id').where(:advertable_type => 'Secondhand',:secondhands => { :category => @advertable.read_attribute(:category) }).where.not(:id => @advert.id).sample(4)
 
   end
 
@@ -157,6 +163,14 @@ class AdvertController < ApplicationController
     @advertable = @advert.advertable
     @advert_user = @advert.user
     @images = @advert.images
+    
+    @looked = Advert.select('a2.*').from('adverts a,users u, viewed_adverts v, adverts a2, viewed_adverts v2')
+      .where('a.id=? AND v.user_id = u.id AND v.advert_id = a.id AND a.id!=a2.id AND v2.user_id = u.id AND v2.advert_id = a2.id', @advert.id).group('a2.id').order('count(a2.id)')[0..4]
+    
+    @similar = Advert.joins('JOIN secondhands ON adverts.advertable_id=secondhands.id').where(:advertable_type => 'Secondhand',:secondhands => { :category => @advertable.read_attribute(:category) }).where.not(:id => @advert.id).sample(4)
+    
+    
+    
 
   end
 

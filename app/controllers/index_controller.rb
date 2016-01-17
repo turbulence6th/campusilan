@@ -169,8 +169,59 @@ class IndexController < ApplicationController
     
      
    end
-   
+
+
+  end
   
+  def favorilerim
+    
+    if current_user!= nil
+      
+      @favouriteadverts = Advert.available.select('adverts.*').from('adverts, users, favourite_adverts')
+        .where('adverts.id=favourite_adverts.advert_id AND users.id=favourite_adverts.user_id AND users.id=?', current_user.id)
+        .order('favourite_adverts.created_at DESC').limit(9).paginate(:page => params[:page], :per_page => 1)
+      
+    else 
+      
+      raise ActionController::RoutingError.new('Not Found')  
+      
+      
+    end
+    
+    
+  end
+  
+  def ilanlarim
+    
+    if current_user!= nil
+    
+    @lastadverts = current_user.adverts.paginate(:page => params[:page], :per_page => 8)
+    
+    
+    else
+      
+       raise ActionController::RoutingError.new('Not Found')  
+    
+    end
+    
+  end
+
+  
+  def incelediklerim
+    
+    if current_user!= nil
+    
+    @incelediklerim = Advert.available.select('adverts.*').from('adverts, users, viewed_adverts')
+        .where('adverts.id=viewed_adverts.advert_id AND users.id=viewed_adverts.user_id AND users.id=?', current_user.id)
+        .order('viewed_adverts.created_at DESC')
+        
+     else
+       
+        raise ActionController::RoutingError.new('Not Found')  
+       
+       
+     end  
+    
   end
 
 end

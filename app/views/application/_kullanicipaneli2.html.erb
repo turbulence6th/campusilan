@@ -5,145 +5,131 @@
 
 <!--  sadece xsmall larda gözükecek -->
 
-					<div style="padding-left: 50px; margin-top: 50px;"
-					class="row visible-xs">
+					
+
+					<div style="padding-left: 25px; margin-top: 25px;" class="row visible-xs">
 
 						<div class="row">
 
-							<button type="button" class="col-xs-3 col-sm-2 btn btn-success">
+							<a href="/uye/<%= current_user.username%>?profilim=1" type="button" class="panellinkler col-xs-3 col-sm-2 btn btn-info" id="profilim2" >
 								<span style="">Profilim</span>
-							</button>
+							</a>
 
-							<button style="margin-left: 10px;" type="button"
-							class="col-xs-3  col-sm-2 btn btn-primary">
+							<a href="/ilanver"  style="margin-left: 10px;" type="button"
+							class="panellinkler col-xs-3  col-sm-2 btn btn-info">
 								<span style="">İlan Ver</span>
-							</button>
-
-							<button style="margin-left: 10px;" type="button"
-							class="col-xs-3 col-sm-2 btn btn-info">
-								<span style="font-size:11px;">Satışlarım</span>
-							</button>
-
-						</div>
-
-						<div style="margin-top: 10px;" class="row">
-
-							<button type="button" class="col-xs-3 col-sm-2 btn btn-danger">
-								<span style="">Alışlarım</span>
-							</button>
-
-							<button style="margin-left: 10px;" type="button"
-							class="col-xs-3 col-sm-2 btn btn-success">
+							</a>
+							
+							<a href="/uye/<%= current_user.username%>?favorilerim=1" style="margin-left: 10px;" type="button" class="panellinkler col-xs-3 col-sm-2 btn btn-info" id="favorilerid2" >
 								<span style="font-size:10px;">Favorilerim</span>
-							</button>
+							</a>
 
-							<button style="margin-left: 10px;" type="button"
-							class="col-xs-3 col-sm-2 btn btn-warning">
-								<span style="font-size:10px;">Mesajlarım</span>
-							</button>
+							
 
 						</div>
 
 						<div style="margin-top: 10px;" class="row">
 
-							<button type="button" class="col-xs-3 col-sm-2 btn btn-primary">
+
+							<a href="/mesajlarim" type="button"
+							class="panellinkler col-xs-3 col-sm-2 btn btn-info">
+								<span style="font-size:11px;">Mesajlarım</span>
+							</a>
+							
+							<a href='/uye/<%= current_user.username%>?tekliflerim=1' style="margin-left: 10px;" type="button" class="panellinkler col-xs-3 col-sm-2 btn btn-info" id="tekliflerim2" >
 								<span style="font-size:12px;">Tekliflerim</span>
-							</button>
+							</a>
 
-							<button style="margin-left: 10px;" type="button"
-							class="col-xs-3 col-sm-2 btn btn-danger">
-								<span style="font-size:9px;">İncelediklerim</span>
-							</button>
-
-							<button style="margin-left: 10px;" type="button"
-							class="col-xs-3 col-sm-2 btn btn-info">
-								<span >Ayarlar</span>
-							</button>
+							<a href='/uye/<%= current_user.username%>?inceledigimilanlar=1' style="margin-left: 10px;"  type="button"
+							class="panellinkler col-xs-3 col-sm-2 btn btn-info" id="inceledigimilanlar2" >
+								<span style="font-size:10px;">İncelenenler</span>
+							</a>
 
 						</div>
 
 						<div style="margin-top: 10px;" class="row">
 
-							<button type="button"
-							class="col-xs-3 col-sm-2 btn btn-info">
-								<span style="">Fırsatlar</span>
-							</button>
 
-							<button style="margin-left:10px;" type="button" class="col-xs-3 col-sm-2 btn btn-primary">
+							<a href='/uye/<%= current_user.username%>?hesapayarlari=1' type="button" id="hesapayarlariid2"
+							class="panellinkler col-xs-3 col-sm-2 btn btn-info">
+								<span >Ayarlar</span>
+							</a>
+							
+							<a style="margin-left: 10px;" type="button" href="/firsatlar"
+							class="panellinkler col-xs-3 col-sm-2 btn btn-info">
+								<span style="">Fırsatlar</span>
+							</a>
+
+							<a href="/kategoriler" style="margin-left:10px;" type="button" class="panellinkler col-xs-3 col-sm-2 btn btn-info">
 								<span style="font-size:10px;">Kategoriler</span>
-							</button>
+							</a>
+
 						</div>
+
+						
 
 					</div>
 
 					<!--  sadece small cihazlarda(small,medium) gözükecek -->
 
-					<div style="padding-left: 75px; margin-top: 50px;"
+					<div style="padding-left: 75px; margin-top: 25px;"
 					class="row visible-sm visible-md">
 
 						<div class="row">
 
-							<button type="button" class=" col-sm-2 btn btn-success">
+							<a href='/uye/<%= current_user.username%>?profilim=1' type="button" class="panellinkler col-sm-2 btn btn-info">
 								Profilim
-							</button>
+							</a>
 
-							<button style="margin-left: 10px;" type="button"
-							class=" col-sm-2 btn btn-primary">
+							<a href="/ilanver" style="margin-left: 10px;" type="button"
+							class="panellinkler col-sm-2 btn btn-info">
 								İlan Ver
-							</button>
+							</a>
 
-							<button style="margin-left: 10px;" type="button"
-							class=" col-sm-2 btn btn-info">
-								Satışlarım
-							</button>
+							
 
-							<button style="margin-left: 10px;" type="button"
-							class="col-sm-2 btn btn-danger">
-								Alışlarım
-							</button>
-
-							<button style="margin-left: 10px;" type="button"
-							class=" col-sm-2 btn btn-success">
+							<a href='/uye/<%= current_user.username%>?favorilerim=1' style="margin-left: 10px;" type="button"
+							class="panellinkler col-sm-2 btn btn-info">
 								Favorilerim
-							</button>
-
-						</div>
-
-						<div style="margin-top: 20px;" class="row">
-
-							<button style="" type="button" class=" col-sm-2 btn btn-warning">
+							</a>
+							
+							<a href="/mesajlarim" style="margin-left: 10px;" type="button" class="panellinkler col-sm-2 btn btn-info">
 								Mesajlarım
-							</button>
+							</a>
 
-							<button style="margin-left: 10px;" type="button"
-							class=" col-sm-2 btn btn-danger">
+							<a href='/uye/<%= current_user.username%>?tekliflerim=1'  style="margin-left: 10px;" type="button"
+							class="panellinkler col-sm-2 btn btn-info">
 								Tekliflerim
-							</button>
-
-							<button style="margin-left: 10px;" type="button"
-							class=" col-sm-2 btn btn-success">
-								<span style="">İncelediklerim</span>
-							</button>
-
-							<button style="margin-left: 10px;" type="button"
-							class=" col-sm-2 btn btn-info">
-								Hesap Ayarları
-							</button>
-
-							<button style="margin-left: 10px;" type="button"
-							class="col-xs-3 col-sm-2 btn btn-info">
-								<span style="">Fırsatlar Paneli</span>
-							</button>
+							</a>
 
 						</div>
 
 						<div style="margin-top: 20px;" class="row">
 
-							<button type="button" class="col-xs-3 col-sm-2 btn btn-primary">
+							
+
+							<a href='/uye/<%= current_user.username%>?inceledigimilanlar=1' style="" type="button"
+							class="panellinkler col-sm-2 btn btn-info">
+								<span style="">İncelediklerim</span>
+							</a>
+
+							<a href='/uye/<%= current_user.username%>?hesapayarlari=1' style="margin-left: 10px;" type="button"
+							class="panellinkler col-sm-2 btn btn-info">
+								Hesap Ayarları
+							</a>
+
+							<a href="/firsatlar" style="margin-left: 10px;" type="button"
+							class="panellinkler col-xs-3 col-sm-2 btn btn-info">
+								<span style="">Fırsatlar Paneli</span>
+							</a>
+							
+							<a href="/kategoriler" style="margin-left: 10px;" type="button" class="panellinkler col-xs-3 col-sm-2 btn btn-info">
 								<span style="">Kategoriler</span>
-							</button>
+							</a>
 
 						</div>
+
+						
 
 					</div>
 
@@ -158,15 +144,127 @@
 
 						<div class="row">
 							
-							<button style="margin-left: 10px;" type="button"
-							class="col-xs-3 col-sm-2 btn btn-info">
+							<a style="margin-left: 10px;" type="button"
+							class="panellinkler col-xs-3 col-sm-2 btn btn-info">
 								<span style="">Fırsatlar Paneli</span>
-							</button>
+							</a>
 							
-							<button type="button" class="col-xs-3 col-sm-2 btn btn-primary">
+							<a type="button" class="panellinkler col-xs-3 col-sm-2 btn btn-info">
 								<span style="">Kategoriler</span>
-							</button>
+							</a>
 						</div>
 </div>
 
 	<%end%>	
+	
+<!-- Kullanıcı paneli js kısmı -->
+<% if current_user!= nil && request.env['PATH_INFO']=="/uye/" + current_user.username %>
+<script>
+	$(function() {
+		
+		$(".hesapayarlari").hide();
+		$(".favoriler").hide();
+		$(".tekliflerim").hide();
+		$(".profilim").hide();
+		$(".inceledigimilanlar").hide();
+		
+		
+		
+		
+		
+
+		$("#hesapayarlariid2").click(function() {
+
+			
+			
+		$(".favoriler").hide();
+		$(".tekliflerim").hide();
+		$(".profilim").hide();
+		$(".inceledigimilanlar").hide();
+
+			$(".hesapayarlari").show();
+
+		})
+		
+		$("#inceledigimilanlar2").click(function(){
+			
+			
+			$(".hesapayarlari").hide();
+		$(".favoriler").hide();
+		$(".tekliflerim").hide();
+		$(".profilim").hide();
+		$(".inceledigimilanlar").show();
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		)
+
+		$("#profilim2").click(function() {
+
+			
+			$(".hesapayarlari").hide();
+		$(".favoriler").hide();
+		$(".tekliflerim").hide();
+		
+		$(".inceledigimilanlar").hide();
+
+			$(".profilim").show();
+			
+			
+
+		})
+
+		$("#favorilerid2").click(function() {
+
+			
+			$(".hesapayarlari").hide();
+		
+		$(".tekliflerim").hide();
+		$(".profilim").hide();
+		$(".inceledigimilanlar").hide();
+			$(".favoriler").show();
+			
+		})
+
+		$("#tekliflerim2").click(function() {
+
+			
+			$(".hesapayarlari").hide();
+		$(".favoriler").hide();
+		
+		$(".profilim").hide();
+		$(".inceledigimilanlar").hide();
+			$(".tekliflerim").show();
+
+		})
+		
+		$("<%= @sekme %>").show(); 
+		
+		<% if @sekme==".tekliflerim" || @sekme==".hesapayarlari" %>
+		
+		
+		
+		<% end %>
+		
+	})
+
+	$(".panellinkler").click(function(event) {
+
+		// This will prevent the default action of the anchor
+		event.preventDefault();
+
+		// Failing the above, you could use this, however the above is recommended
+		return false;
+
+	});
+	
+
+
+</script>
+<% end %>

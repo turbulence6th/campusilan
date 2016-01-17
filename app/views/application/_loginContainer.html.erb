@@ -1,6 +1,6 @@
 <% if current_user==nil %>
 
-<div id="loginContainer">
+<div class="hidden-xs hidden-sm"  id="loginContainer">
 	<a href="#" id="loginButton"><span>Giriş Yap &amp; Kaydol</span><em></em></a>
 	<div style="clear: both"></div>
 	<div id="loginBox">
@@ -36,21 +36,59 @@
 	</div>
 </div>
 
+
+<div class="visible-xs visible-sm" id="loginContainer2">
+	<a href="#" id="loginButton"><span>Giriş Yap &amp; Kaydol</span><em></em></a>
+	<div style="clear: both"></div>
+	<div id="loginBox">
+
+		<%= form_tag '/login', :id => 'loginForm' do  %>
+		<fieldset id="body">
+			<fieldset>
+				<label for="username">Kullanıcı Adı</label>
+				<%= text_field_tag :username %>
+			</fieldset>
+			<fieldset>
+				<label for="password">Şifre</label>
+				<%= password_field_tag :password %>
+			</fieldset>
+			<%= submit_tag "Giriş Yap", :id => 'login' %>
+			<input type="button" id="login" onclick="yonlendir()" value="Kayıt Ol" />
+			<label for="checkbox">
+				<%= check_box_tag :remember, 1, false, :id => 'checkbox' %>
+				Beni hatırla </label>
+		</fieldset>
+		<span><a href="#">Şifreni mi unuttun?</a></span>
+		<% end %>
+
+		<script>
+			function yonlendir() {
+
+				window.location = "/kayitol";
+
+			}
+
+		</script>
+
+	</div>
+</div>
+
+
 <% else %>
 
-<p style="float:right;">
+<p style="color:black;float:right;">
 	Hoşgeldin; <%= current_user.username %>
 </p>
 <br>
 
-<p  style="clear: both;float:right;">
+<div  style="color:black;clear: both;float:right;">
 	
 	<% if current_user && current_user.role=='admin' %>
 		<a href="/admin"> Admin Paneli </a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<% end %>
 	
 	<a href="/uye/<%= current_user.username %>"> Profilim </a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/logout"> Çıkış Yap </a>
-</p>
+</div>
 
 <%end%>
 

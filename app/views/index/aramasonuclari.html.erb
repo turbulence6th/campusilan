@@ -89,6 +89,8 @@
 		<!-- end of plugins  -->
 
 		<style>
+		
+			
 			body {
 				background-color: #F0F7F7;
 			}
@@ -120,15 +122,15 @@
 
 		<div class="container-fluid">
 
-		<div class="row" style="margin-bottom: 10px;">
+		<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
-		<!-- Login Starts Here -->
+				<!-- Login Starts Here -->
 
-		<%= render "loginContainer" %>
+				<%= render "loginContainer" %>
 
-		<!-- Login Ends Here -->
+				<!-- Login Ends Here -->
 
-		</div>
+			</div>
 
 		<div class="row">
 
@@ -171,7 +173,7 @@
 
 		<br>
 
-		<div class="panel panel-danger">
+		<div class="panel panel-success">
 		<div class="panel-heading">
 		<h3 class="panel-title">Kategori</h3>
 		</div>
@@ -191,8 +193,31 @@
 		</div>
 
 		<div class="formicerigi" action="">
+			
+			<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Alt Kategori </h3>
+		</div>
 
-		<div class=" marka panel panel-danger">
+		<div class="panel-body">
+		<select  name="" onChange="changeformcontent2(this.value)" value="Bike">
+
+		<option selected value="ikincieldiger">Beyaz Eşya</option>
+		<option value="ikincieldiger">Ev Dekorasyonu</option>
+		<option value="ikincieldiger">Müzik Aletleri</option>
+		<option value="ikincieldiger">Elektronik</option>
+		<option value="ikincieldiger">Kırtasiye</option>
+		<option value="ikincieldiger">Mutfak Eşyaları</option>
+		<option value="ikincieldiger">Vasıta</option>
+		<option value="ikincieldiger">Giyim</option>
+		<option value="ikincieldiger">Diğer</option>
+
+		</select>
+		</div>
+
+		</div>
+
+		<div class=" marka panel panel-success">
 		<div class="panel-heading">
 		<h3 class="panel-title">Marka</h3>
 		</div>
@@ -215,7 +240,7 @@
 
 		</div>
 
-		<div class="renk panel panel-danger">
+		<div class="renk panel panel-success">
 		<div class="panel-heading">
 		<h3 class="panel-title">Renk</h3>
 		</div>
@@ -226,7 +251,7 @@
 		</div>
 		</div>
 
-		<div class="panel panel-danger">
+		<div class="panel panel-success">
 		<div class="panel-heading">
 		<h3 class="panel-title">Fırsatlardan seç</h3>
 		</div>
@@ -263,7 +288,7 @@
 
 		</div>
 
-		<div class="panel panel-danger">
+		<div class="panel panel-success">
 		<div class="panel-heading">
 		<h3 class="panel-title">Fiyat Aralığı</h3>
 		</div>
@@ -292,9 +317,169 @@
 
 		} do |t| %>
 
-		<div class="ikincieldisinda" style="display:none;">
+		<div class="evarkadasi" style="display:none;">
+			
+		<div class=" sehir panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Şehir</h3>
+		</div>
 
-		<div class="panel panel-danger">
+		<div class="panel-body">
+		<%= text_field_tag :sehir,params[:sehir]	,style: "padding:7px;border:solid 1px #000000;
+		-moz-border-radius-topleft: 13px;
+		-moz-border-radius-topright:12px;
+		-moz-border-radius-bottomleft:11px;
+		-moz-border-radius-bottomright:12px;
+		-webkit-border-top-left-radius:13px;
+		-webkit-border-top-right-radius:12px;
+		-webkit-border-bottom-left-radius:11px;
+		-webkit-border-bottom-right-radius:12px;
+		border-top-left-radius:13px;
+		border-top-right-radius:12px;
+		border-bottom-left-radius:11px;
+		border-bottom-right-radius:12px;",type:"text",placeholder:"Şehri Giriniz..." %> &nbsp;<br>
+		</div>
+
+		</div>	
+		
+		<div class=" marka panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Semt</h3>
+		</div>
+
+		<div class="panel-body">
+		<%= text_field_tag :semt,params[:semt]	,style: "padding:7px;border:solid 1px #000000;
+		-moz-border-radius-topleft: 13px;
+		-moz-border-radius-topright:12px;
+		-moz-border-radius-bottomleft:11px;
+		-moz-border-radius-bottomright:12px;
+		-webkit-border-top-left-radius:13px;
+		-webkit-border-top-right-radius:12px;
+		-webkit-border-bottom-left-radius:11px;
+		-webkit-border-bottom-right-radius:12px;
+		border-top-left-radius:13px;
+		border-top-right-radius:12px;
+		border-bottom-left-radius:11px;
+		border-bottom-right-radius:12px;",type:"text",placeholder:"Semti Giriniz..." %> &nbsp;<br>
+		</div>
+
+		</div>
+		
+		
+		
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Aranan </h3>
+		</div>
+
+		<div class="panel-body">
+		<select  name=""  value="Bike">
+
+		<option selected value="ikincieldiger">Erkek</option>
+		<option value="ikincieldiger">Kadın</option>
+		<option value="ikincieldiger">Hepsi</option>
+		
+
+		</select>
+		</div>
+
+		</div>
+		
+		
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Genelde gece 12'den sonra uyur mu? </h3>
+		</div>
+
+		<div class="panel-body">
+		<select  name=""  value="Bike">
+
+		<option selected value="">Evet</option>
+		<option value="">Hayır</option>
+		<option value="">Değişken</option>
+		
+
+		</select>
+		</div>
+
+		</div>
+		
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Eve arkadaşlarını getiriyor mu? </h3>
+		</div>
+
+		<div class="panel-body">
+		<select  name=""  value="Bike">
+
+		<option selected value="">Evet</option>
+		<option value="">Hayır</option>
+		<option value="">Değişken</option>
+		
+
+		</select>
+		</div>
+
+		</div>
+		
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Sigara İçiyor mu? </h3>
+		</div>
+
+		<div class="panel-body">
+		<select  name=""  value="Bike">
+
+		<option selected value="">Evet</option>
+		<option value="">Hayır</option>
+		<option value="">Arada</option>
+		
+
+		</select>
+		</div>
+
+		</div>
+		
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Bölümü </h3>
+		</div>
+
+		<div class="panel-body">
+		<select  name=""  value="Bike">
+
+		<option selected value="">Mühendislik</option>
+		<option value="">Eğitim Bilimleri</option>
+		<option value="">Tıp</option>
+		<option value="">Diğer</option>
+		
+
+		</select>
+		</div>
+
+		</div>
+		
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Sesli Müzik vs. dinler mi? </h3>
+		</div>
+
+		<div class="panel-body">
+		<select  name=""  value="Bike">
+
+		<option selected value="">Evet</option>
+		<option value="">Hayır</option>
+		<option value="">Arada</option>
+		
+
+		</select>
+		</div>
+
+		</div>
+		
+		
+
+		<div class="panel panel-success">
 		<div class="panel-heading">
 		<h3 class="panel-title">Fırsatlardan seç</h3>
 		</div>
@@ -329,31 +514,22 @@
 
 		</div>
 
-		<div class="panel panel-danger">
+		<div class="panel panel-success">
 		<div class="panel-heading">
-		<h3 class="panel-title">Fiyat Aralığı</h3>
+		<h3 class="panel-title">Aylık Kira Ücreti</h3>
 		</div>
 
-		<div class="panel-body">
-		<%= check_box_tag :sifir_elli  %> &nbsp;0 - 50 TL<br>
-		</div>
-		<div class="panel-body">
-		<%= check_box_tag :elli_yuz  %> &nbsp;50 - 100 TL<br>
-		</div>
-		<div class="panel-body">
-		<%= check_box_tag :yuz_ikiyuzelli  %> &nbsp;100 - 250 TL<br>
-		</div>
-		<div class="panel-body">
-		<%= check_box_tag :ikiyuzelli_besyuz  %> &nbsp;250 - 500 TL<br>
-		</div>
-		<div class="panel-body">
-		<%= check_box_tag :besyuz_bin  %> &nbsp;500 - 1000 TL<br>
-		</div>
-		<div class="panel-body">
-		<%= check_box_tag :binustu  %> &nbsp;1000 TL üstü<br>
+		<div class=" panel-body">
+			
+		 <%= text_field_tag :taban,params[:taban]  %> &nbsp;ile <br><br>
+		
+		<%= text_field_tag :tavan,params[:tavan] %> &nbsp; arası
 		</div>
 
+		
+
 		</div>
+		
 
 		</div>
 		
@@ -364,11 +540,34 @@
 
 		} do |t| %>
 
-		<div class="ikinciel" style="display:none">
+		<div class="ikincieldiger" style="display:none">
 
 		
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Alt Kategori </h3>
+		</div>
+
+		<div class="panel-body">
+		<select  name="" onChange="changeformcontent2(this.value)" value="Bike">
+
+		<option selected value="ikincieldiger">Beyaz Eşya</option>
+		<option value="ikincieldiger">Ev Dekorasyonu</option>
+		<option value="ikincieldiger">Müzik Aletleri</option>
+		<option value="ikincieldiger">Elektronik</option>
+		<option value="ikincieldiger">Kırtasiye</option>
+		<option value="ikincieldiger">Mutfak Eşyaları</option>
+		<option value="ikincieldiger">Vasıta</option>
+		<option value="ikincieldiger">Giyim</option>
+		<option value="ikincieldiger">Diğer</option>
+
+		</select>
+		</div>
+
+		</div>
+		
 			
-		<div class=" marka panel panel-danger">
+		<div class=" marka panel panel-success">
 		<div class="panel-heading">
 		<h3 class="panel-title">Marka</h3>
 		</div>
@@ -390,8 +589,10 @@
 		</div>
 
 		</div>
+		
+		
 
-		<div class="renk panel panel-danger">
+		<div class="renk panel panel-success">
 		<div class="panel-heading">
 		<h3 class="panel-title">Renk</h3>
 		</div>
@@ -402,7 +603,7 @@
 		</div>
 		</div>
 
-		<div class="panel panel-danger">
+		<div class="panel panel-success">
 		<div class="panel-heading">
 		<h3 class="panel-title">Fırsatlardan seç</h3>
 		</div>
@@ -439,7 +640,7 @@
 
 		</div>
 
-		<div class="panel panel-danger">
+		<div class="panel panel-success">
 		<div class="panel-heading">
 		<h3 class="panel-title">Fiyat Aralığı</h3>
 		</div>
@@ -458,23 +659,332 @@
 		</div>
 		
 		<% end %>
+		
+		
+		
+		
+		<%= form_for :arama,:url => 'aramasonuclari' , :method => :get , :html => {
+
+		} do |t| %>
+
+		<div class="ozelders" style="display:none">
+			
+		<div class=" sehir panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Şehir</h3>
+		</div>
+
+		<div class="panel-body">
+		<%= text_field_tag :sehir,params[:sehir]	,style: "padding:7px;border:solid 1px #000000;
+		-moz-border-radius-topleft: 13px;
+		-moz-border-radius-topright:12px;
+		-moz-border-radius-bottomleft:11px;
+		-moz-border-radius-bottomright:12px;
+		-webkit-border-top-left-radius:13px;
+		-webkit-border-top-right-radius:12px;
+		-webkit-border-bottom-left-radius:11px;
+		-webkit-border-bottom-right-radius:12px;
+		border-top-left-radius:13px;
+		border-top-right-radius:12px;
+		border-bottom-left-radius:11px;
+		border-bottom-right-radius:12px;",type:"text",placeholder:"Şehri Giriniz..." %> &nbsp;<br>
+		</div>
+
+		</div>	
+		
+		<div class=" marka panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Semt</h3>
+		</div>
+
+		<div class="panel-body">
+		<%= text_field_tag :semt,params[:semt]	,style: "padding:7px;border:solid 1px #000000;
+		-moz-border-radius-topleft: 13px;
+		-moz-border-radius-topright:12px;
+		-moz-border-radius-bottomleft:11px;
+		-moz-border-radius-bottomright:12px;
+		-webkit-border-top-left-radius:13px;
+		-webkit-border-top-right-radius:12px;
+		-webkit-border-bottom-left-radius:11px;
+		-webkit-border-bottom-right-radius:12px;
+		border-top-left-radius:13px;
+		border-top-right-radius:12px;
+		border-bottom-left-radius:11px;
+		border-bottom-right-radius:12px;",type:"text",placeholder:"Semti Giriniz..." %> &nbsp;<br>
+		</div>
+
+		</div>	
+			
+			
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Ders Kategorisi </h3>
+		</div>
+
+		<div class="panel-body">
+		<select  name="" value="Bike">
+
+		<option selected value="ikincieldiger">Matematik</option>
+		<option value="ikincieldiger">Fizik</option>
+		<option value="ikincieldiger">Kimya</option>
+		<option value="ikincieldiger">Biyoloji</option>
+		<option value="ikincieldiger">Genel Mühendislik</option>
+		<option value="ikincieldiger">Genel Eğitim Bilimleri</option>
+		
+
+		</select>
+		</div>
+
+		</div>	
+		
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Özel Ders Şekli </h3>
+		</div>
+
+		<div class="panel-body">
+		<select  name="" value="Bike">
+
+		<option selected value="ikincieldiger">Birebir</option>
+		<option value="ikincieldiger">Grup</option>
+		<option value="ikincieldiger">Sınıf Dersi</option>
+		
+		
+
+		</select>
+		</div>
+
+		</div>	
+		
+		
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Dersi Nerede verecek? </h3>
+		</div>
+
+		<div class="panel-body">
+		<select  name="" value="Bike">
+
+		<option selected value="ikincieldiger">Öğrenci Evinde</option>
+		<option value="ikincieldiger">Öğretmenin Evinde</option>
+		<option value="ikincieldiger">Sınıfta</option>
+		
+		
+
+		</select>
+		</div>
+
+		</div>	
+			
+			
+			
+
+
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Fırsatlardan seç</h3>
+		</div>
+		
+		
+
+		<div class="panel-body">
+		<%= check_box_tag :acililan,1,params[:acililan]  %> &nbsp;Acil İlanlar<br>
+		</div>
+
+		<div class="panel-body">
+		<%= check_box_tag :gununfirsatlari,1,params[:gununfirsatlari]  %> &nbsp;Günün Fırsatları<br>
+		</div>
+
+		<div class="panel-body">
+		<%= check_box_tag :enpopuler,1,params[:enpopuler]  %> &nbsp;En Popüler İlanlar<br>
+		</div>
+
+		<div class="panel-body">
+		<%= check_box_tag :ensonilanlar,1,params[:ensonilanlar]  %> &nbsp;En Son İlanlar<br>
+		</div>
+
+		<div class="panel-body">
+		<%= check_box_tag :fiyatidusenler,1,params[:fiyatidusenler]  %> &nbsp;Fiyatı Düşenler<br>
+		</div>
+
+		<div class="panel-body">
+		<%= check_box_tag :enguvenilir,1,params[:enguvenilir]  %> &nbsp;En Güvenilir Satıcılardan<br>
+		</div>
+
+		<div class="panel-body">
+		<%= check_box_tag :enyakindaki,1,params[:enyakindaki]  %> &nbsp;En Yakında Olan Satıcılardan<br>
+		</div>
+
+		</div>
+
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Saatlik Ücret</h3>
+		</div>
+
+		<div class=" panel-body">
+			
+		 <%= text_field_tag :taban,params[:taban]  %> &nbsp;ile <br><br>
+		
+		<%= text_field_tag :tavan,params[:tavan] %> &nbsp; arası
+		</div>
+
+		
+
+		</div>
+
+		</div>
+		
+		<% end %>
+		
+		
+		
+		<%= form_for :arama,:url => 'aramasonuclari' , :method => :get , :html => {
+
+		} do |t| %>
+
+		<div class="ikincieldersnotu" style="display:none">
+			
+			
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Ders Kategorisi </h3>
+		</div>
+
+		<div class="panel-body">
+		<select  name="" value="Bike">
+
+		<option selected value="ikincieldiger">Matematik</option>
+		<option value="ikincieldiger">Fizik</option>
+		<option value="ikincieldiger">Kimya</option>
+		<option value="ikincieldiger">Biyoloji</option>
+		<option value="ikincieldiger">Genel Mühendislik</option>
+		<option value="ikincieldiger">Genel Eğitim Bilimleri</option>
+		
+
+		</select>
+		</div>
+
+		</div>	
+		
+		
+		
+			
+			
+			
+
+
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Fırsatlardan seç</h3>
+		</div>
+		
+		
+
+		<div class="panel-body">
+		<%= check_box_tag :acililan,1,params[:acililan]  %> &nbsp;Acil İlanlar<br>
+		</div>
+
+		<div class="panel-body">
+		<%= check_box_tag :gununfirsatlari,1,params[:gununfirsatlari]  %> &nbsp;Günün Fırsatları<br>
+		</div>
+
+		<div class="panel-body">
+		<%= check_box_tag :enpopuler,1,params[:enpopuler]  %> &nbsp;En Popüler İlanlar<br>
+		</div>
+
+		<div class="panel-body">
+		<%= check_box_tag :ensonilanlar,1,params[:ensonilanlar]  %> &nbsp;En Son İlanlar<br>
+		</div>
+
+		<div class="panel-body">
+		<%= check_box_tag :fiyatidusenler,1,params[:fiyatidusenler]  %> &nbsp;Fiyatı Düşenler<br>
+		</div>
+
+		<div class="panel-body">
+		<%= check_box_tag :enguvenilir,1,params[:enguvenilir]  %> &nbsp;En Güvenilir Satıcılardan<br>
+		</div>
+
+		<div class="panel-body">
+		<%= check_box_tag :enyakindaki,1,params[:enyakindaki]  %> &nbsp;En Yakında Olan Satıcılardan<br>
+		</div>
+
+		</div>
+
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Fiyat Aralığı</h3>
+		</div>
+
+		<div class=" panel-body">
+			
+		 <%= text_field_tag :taban,params[:taban]  %> &nbsp;ile <br><br>
+		
+		<%= text_field_tag :tavan,params[:tavan] %> &nbsp; arası
+		</div>
+
+		
+
+		</div>
+
+		</div>
+		
+		<% end %>
+		
+		
+		
+		
+		
+		
+		
 
 		<!-- Change Form Script-->
 
 		<script>
 			function changeformcontent(value) {
 
-				if (value != "ikinciel") {
+				if (value == "ikinciel") {
 
-					$(".formicerigi").html($(".ikincieldisinda").html());
+					$(".formicerigi").html($(".ikincieldiger").html());
 
-				} else {
+				} 
+				
+				else if (value == "evarkadasi") {
 
-					$(".formicerigi").html($(".ikinciel").html());
+					$(".formicerigi").html($(".evarkadasi").html());
+
+				}
+				
+				else if (value == "dersnotlari") {
+
+					$(".formicerigi").html($(".ikincieldersnotu").html());
+
+				}
+				
+				else if (value == "ozelders") {
+
+					$(".formicerigi").html($(".ozelders").html());
 
 				}
 
 			}
+			
+			
+			function changeformcontent2(value) {
+
+				if (value == "ikincieldersnotu") {
+
+					$(".formicerigi").html($(".ikincieldersnotu").html());
+
+				} else if (value == "ikincieldiger") {
+
+					$(".formicerigi").html($(".ikincieldiger").html());
+
+				}
+
+			}
+			
+			
 
 		</script>
 
