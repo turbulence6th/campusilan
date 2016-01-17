@@ -107,13 +107,52 @@ class IndexController < ApplicationController
  
 
   def aramasonuclari
+    
+    if params[:kategori] == "ikinciel"
+      
+      @adverts = Advert.select("adverts.*").from("adverts, secondhands")
+        .where("adverts.advertable_type=? AND adverts.advertable_id=secondhands.id", "Secondhand")
+    
+      if params[:marka] && params[:marka] != ""
+        @adverts = @adverts.where("secondhands.brand LIKE ?", "%" + params[:marka] + "%")
+      end
+      
+      if params[:color] && params[:color] != "" && params[:color] != "hepsi"
+        @adverts = @adverts.where(:secondhands => {:color => params[:color]})
+      end
+      
+    else
+      
+      @adverts = Advert.all
+      
+    end
+    
+    
+    
+    if params[:taban] && params[:taban] != ""
+      @adverts = @adverts.where("adverts.price >= ?", params[:taban].to_i)
+    end
+    
+    if params[:tavan] && params[:tavan] != ""
+      @adverts = @adverts.where("adverts.price <= ?", params[:tavan].to_i)
+    end
+    
+    if params[:acililan] == "1"
+      @adverts = @adverts & acililanlar
+    end
+    
+    
+    @adverts.each do |adv|
+      puts adv.name
+    end
+    
+   
+    
+    
 
   end
   
   def universiteler
-    
-   
-   
 
    if params[:universities] == nil
      
@@ -130,11 +169,6 @@ class IndexController < ApplicationController
     
      
    end
-   
-   
-   
-   
-   
    
   
   end
