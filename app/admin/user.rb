@@ -2,7 +2,7 @@ ActiveAdmin.register User do
 
   permit_params :username, :password, :password_confirmation, :name, :surname, :email,
     :email_confirmation, :phone, :role, :gender, :verified, :bulletin, :birthday, :address,
-    :university_id
+    :university_id, :deleted
       
   form do |f|
     inputs "User" do

@@ -85,11 +85,11 @@ class UserController < ApplicationController
 
   def member
     
-    @mostpopular = mostpopular[0..5]
+    @mostpopular = mostpopular.limit(6)
     
-    @gununilanlari = gununilanlari[0..8]
+    @gununilanlari = gununilanlari.limit(9)
     
-    @lastadverts = current_user.adverts.last(6)
+    @lastadverts = current_user.adverts.order('created_at DESC').limit(6)
     
    
     if params[:profilim]!=nil
@@ -153,8 +153,6 @@ class UserController < ApplicationController
     
     if current_user!= nil 
       
-    
-      
       current_user.deleted = true
       current_user.save
       
@@ -165,8 +163,6 @@ class UserController < ApplicationController
      else
        
        raise ActionController::RoutingError.new('Not Found') 
-      
-      
     end
     
   
