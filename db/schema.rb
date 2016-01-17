@@ -64,6 +64,11 @@ ActiveRecord::Schema.define(version: 20160109154837) do
     t.string  "state"
     t.string  "city"
     t.integer "demand"
+    t.integer "sleep"
+    t.integer "friend"
+    t.integer "smoke"
+    t.integer "department"
+    t.integer "music"
   end
 
   create_table "images", force: :cascade do |t|
