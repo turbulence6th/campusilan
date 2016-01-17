@@ -6,18 +6,18 @@ class IndexController < ApplicationController
   
   def index
 
-    @ensonikinciel = ensonikinciel[0..3]
-    @ensonevarkadasi = ensonevarkadasi[0..3]
-    @ensonozelders = ensonozelders[0..3]
-    @ensonilanlar = ensonilanlar[0..4]
-    @acililanlar = acililanlar[0..7]
-    @gununilanlari = gununilanlari[0..7]
-    @mostpopular = mostpopular[0..9]
-    @bizimsectiklerimiz = bizimsectiklerimiz[0..9]
+    @ensonikinciel = ensonikinciel.limit(4)
+    @ensonevarkadasi = ensonevarkadasi.limit(4)
+    @ensonozelders = ensonozelders.limit(4)
+    @ensonilanlar = ensonilanlar.limit(4)
+    @acililanlar = acililanlar.limit(8)
+    @gununilanlari = gununilanlari.limit(8)
+    @mostpopular = mostpopular.limit(10)
+    @bizimsectiklerimiz = bizimsectiklerimiz.limit(10)
     
-    @enguvenilirikinciel = enguvenilirikinciel[0..5]
-    @enguvenilirevarkadasi = enguvenilirevarkadasi[0..5]
-    @enguvenilirozelders = enguvenilirozelders[0..5]
+    @enguvenilirikinciel = enguvenilirikinciel.limit(6)
+    @enguvenilirevarkadasi = enguvenilirevarkadasi.limit(6)
+    @enguvenilirozelders = enguvenilirozelders.limit(6)
 
   end
 

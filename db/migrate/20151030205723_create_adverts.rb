@@ -14,6 +14,8 @@ class CreateAdverts < ActiveRecord::Migration
       t.boolean :opportunity
       t.boolean :ours
       
+      t.integer :selected_image
+      
       t.timestamps null: false
       
     end

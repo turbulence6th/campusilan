@@ -367,54 +367,54 @@ class AdvertController < ApplicationController
       if subkategori=="beyazesya"
         @title="Beyaz Eşya"
         @adverts = Advert.available.select('adverts.*').from('adverts, secondhands')
-          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=0").paginate(:page => params[:page], :per_page => 18).reverse
+          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=0").order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
       elsif subkategori=="evdekorasyonu"
         @title="Ev Dekorasyonu"
         @adverts = Advert.available.select('adverts.*').from('adverts, secondhands')
-          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=1").paginate(:page => params[:page], :per_page => 18).reverse
+          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=1").order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
       elsif subkategori=="muzikaletleri"
         @title="Müzik Aletleri"
         @adverts = Advert.available.select('adverts.*').from('adverts, secondhands')
-          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=2").paginate(:page => params[:page], :per_page => 18).reverse
+          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=2").order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
       elsif subkategori=="elektronik"
         @title="Elektronik"
         @adverts = Advert.available.select('adverts.*').from('adverts, secondhands')
-          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=3").paginate(:page => params[:page], :per_page => 18).reverse
+          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=3").order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
       elsif subkategori=="kirtasiye"
         @title="Kırtasiye"
         @adverts = Advert.available.select('adverts.*').from('adverts, secondhands')
-          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=4").paginate(:page => params[:page], :per_page => 18).reverse
+          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=4").order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
       elsif subkategori=="mutfakesyalari"
         @title="Mutfak Eşyaları"
         @adverts = Advert.available.select('adverts.*').from('adverts, secondhands')
-          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=5").paginate(:page => params[:page], :per_page => 18).reverse
+          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=5").order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
       elsif subkategori=="vasita"
         @title="Vasıta"
         @adverts = Advert.available.select('adverts.*').from('adverts, secondhands')
-          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=6").paginate(:page => params[:page], :per_page => 18).reverse
+          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=6").order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
       elsif subkategori=="giyim"
         @title="Giyim"
         @adverts = Advert.available.select('adverts.*').from('adverts, secondhands')
-          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=7").paginate(:page => params[:page], :per_page => 18).reverse
+          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=7").order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
       elsif subkategori=="dersnotu"
         @title="Ders Notları"
         @adverts = Advert.available.select('adverts.*').from('adverts, secondhands')
-          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=8").paginate(:page => params[:page], :per_page => 18).reverse
+          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=8").order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
       elsif subkategori=="diger"
         @title="Diğer"
         @adverts = Advert.available.select('adverts.*').from('adverts, secondhands')
-          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=9").paginate(:page => params[:page], :per_page => 18).reverse
+          .where("adverts.advertable_type='Secondhand' AND adverts.advertable_id=secondhands.id AND secondhands.category=9").order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
 
       else
 
         @title="İkinci El İlanlar"
-        @adverts = Advert.available.where(:advertable_type => 'Secondhand').paginate(:page => params[:page], :per_page => 18).reverse
+        @adverts = Advert.available.where(:advertable_type => 'Secondhand').order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
 
       end
 
     elsif kategori=="evarkadasi"
       @title="Ev Arkadaşı İlanları"
-      @adverts = Advert.available.where(:advertable_type => 'Homemate').paginate(:page => params[:page], :per_page => 18).reverse
+      @adverts = Advert.available.where(:advertable_type => 'Homemate').order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
 
     elsif kategori=="ozelders"
 
@@ -422,38 +422,38 @@ class AdvertController < ApplicationController
       if subkategori=="matematik"
         @title="Matematik"
         @adverts = Advert.available.select('adverts.*').from('adverts, privatelessons')
-          .where("adverts.advertable_type='Privatelesson' AND adverts.advertable_id=privatelessons.id AND privatelessons.lecture=0").paginate(:page => params[:page], :per_page => 18).reverse
+          .where("adverts.advertable_type='Privatelesson' AND adverts.advertable_id=privatelessons.id AND privatelessons.lecture=0").order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
       elsif subkategori=="fizik"
         @title="Fizik"
         @adverts = Advert.available.select('adverts.*').from('adverts, privatelessons')
-          .where("adverts.advertable_type='Privatelesson' AND adverts.advertable_id=privatelessons.id AND privatelessons.lecture=1").paginate(:page => params[:page], :per_page => 18).reverse
+          .where("adverts.advertable_type='Privatelesson' AND adverts.advertable_id=privatelessons.id AND privatelessons.lecture=1").order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
       elsif subkategori=="kimya"
         @title="Kimya"
         @adverts = Advert.available.select('adverts.*').from('adverts, privatelessons')
-          .where("adverts.advertable_type='Privatelesson' AND adverts.advertable_id=privatelessons.id AND privatelessons.lecture=2").paginate(:page => params[:page], :per_page => 18).reverse
+          .where("adverts.advertable_type='Privatelesson' AND adverts.advertable_id=privatelessons.id AND privatelessons.lecture=2").order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
       elsif subkategori=="biyoloji"
         @title="Biyoloji"
         @adverts = Advert.available.select('adverts.*').from('adverts, privatelessons')
-          .where("adverts.advertable_type='Privatelesson' AND adverts.advertable_id=privatelessons.id AND privatelessons.lecture=3").paginate(:page => params[:page], :per_page => 18).reverse
+          .where("adverts.advertable_type='Privatelesson' AND adverts.advertable_id=privatelessons.id AND privatelessons.lecture=3").order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
       elsif subkategori=="genelmuhendislik"
         @title="Genel Mühendislik"
         @adverts = Advert.available.select('adverts.*').from('adverts, privatelessons')
-          .where("adverts.advertable_type='Privatelesson' AND adverts.advertable_id=privatelessons.id AND privatelessons.lecture=4").paginate(:page => params[:page], :per_page => 18).reverse
+          .where("adverts.advertable_type='Privatelesson' AND adverts.advertable_id=privatelessons.id AND privatelessons.lecture=4").order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
       elsif subkategori=="genelegitimbilimleri"
         @title="Genel Eğitim Bilimleri"
         @adverts = Advert.available.select('adverts.*').from('adverts, privatelessons')
-          .where("adverts.advertable_type='Privatelesson' AND adverts.advertable_id=privatelessons.id AND privatelessons.lecture=5").paginate(:page => params[:page], :per_page => 18).reverse
+          .where("adverts.advertable_type='Privatelesson' AND adverts.advertable_id=privatelessons.id AND privatelessons.lecture=5").order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
 
       else
 
         @title="Özel Ders İlanları"
-        @adverts = Advert.available.where(:advertable_type => 'Privatelesson').paginate(:page => params[:page], :per_page => 18).reverse
+        @adverts = Advert.available.where(:advertable_type => 'Privatelesson').order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
 
       end
 
     elsif kategori==nil
       @title="İkinci El İlanlar"
-      @adverts = Advert.available.where(:advertable_type => 'Secondhand').paginate(:page => params[:page], :per_page => 18).reverse
+      @adverts = Advert.available.where(:advertable_type => 'Secondhand').order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
     else
       redirect_to "/kategoriler"
     end
@@ -488,13 +488,15 @@ class AdvertController < ApplicationController
     elsif params[:enguvenilirsaticilar]!=nil
       @title="En Güvenilir Satıcılar"
       @active = 5
+      @users = enguvenilir.paginate(:page => params[:page], :per_page => 18)
       @adverts = []
     elsif params[:kendiuniversitemdekiler]!=nil
       @title="Kendi Üniversitemdeki İlanlar"
       @active = 6
       if current_user
-        @adverts = Advert.select('a.*').from('adverts a, users u1, users u2')
-          .where('u1.id=? and u1.university_id=u2.university_id and a.user_id=u2.id and a.verified=true and a.active=true', current_user.id).paginate(:page => params[:page], :per_page => 18)
+        @adverts = kendiuniversitem.paginate(:page => params[:page], :per_page => 18)
+      else
+        @advert = []
       end
 
     else
@@ -503,7 +505,7 @@ class AdvertController < ApplicationController
       @adverts = acililanlar.paginate(:page => params[:page], :per_page => 18)
     end
 
-    @bizimsectiklerimiz = bizimsectiklerimiz[0..9]
+    @bizimsectiklerimiz = bizimsectiklerimiz.limit(10)
 
   end
 

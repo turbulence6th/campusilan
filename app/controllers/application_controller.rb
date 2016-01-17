@@ -91,6 +91,17 @@ class ApplicationController < ActionController::Base
       .group('users.id').having('count(votes)>=10').order('AVG(votes.point) DESC')
   end
   
+  def enguvenilir
+    User.valid.select('users.*').from('users, adverts, votes')
+      .where('users.id=adverts.user_id AND votes.advert_id=adverts.id')
+      .group('users.id').having('count(votes)>=10').order('AVG(votes.point) DESC')
+  end
+  
+  def kendiuniversitem
+    Advert.available.select('adverts.*').from('adverts, users u1, users u2')
+          .where('u1.id=? and u1.university_id=u2.university_id and adverts.user_id=u2.id', current_user.id)
+  end
+  
  
   
 end
