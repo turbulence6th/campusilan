@@ -46,6 +46,8 @@ class UserController < ApplicationController
     
     if @user.save
       #send mail
+      
+     UserMailer.verify(@user).deliver_now 
     end
 
     redirect_to "/"
