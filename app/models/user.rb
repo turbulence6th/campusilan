@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   
-  scope :valid, -> { where(:deleted => false) }
+  scope :valid, -> { where(:deleted => false, :verified => true) }
   
   validates :name, :surname, :username,  :phone, :role, :gender, :university, :presence => true
   
@@ -70,6 +70,10 @@ class User < ActiveRecord::Base
   has_one :image, :as => :imageable, :dependent => :destroy
   
   has_many :votes, :dependent => :destroy
+  
+  def href
+    "uye/" + self.username
+  end
   
   
 end
