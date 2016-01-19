@@ -225,7 +225,7 @@
 								
 									<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
 	
-									<% if @favouriteadverts.count > 1 %>
+									<% if @favouriteadverts.count > 9 %>
 									<div style="text-align:center;">	
 									<div style="clear:both;"    class="apple_pagination">
 										<%= will_paginate @favouriteadverts, :container => false,

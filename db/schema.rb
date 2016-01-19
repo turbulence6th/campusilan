@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20160109154837) do
     t.boolean  "urgent"
     t.boolean  "opportunity"
     t.boolean  "ours"
+    t.integer  "image_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

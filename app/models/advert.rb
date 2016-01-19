@@ -40,6 +40,8 @@ class Advert < ActiveRecord::Base
   
   has_many :votes, :dependent => :destroy
   
+  belongs_to :image
+  
   def href
     
     if self.advertable_type=='Secondhand'
@@ -56,9 +58,13 @@ class Advert < ActiveRecord::Base
   
   def href_guncelle
     
-
     '/ilanguncelle/' + self.name.parameterize + '-' + self.id.to_s
     
   end
+  
+  def pimage
+    self.image || Image.new
+  end
+  
   
 end

@@ -66,7 +66,7 @@ class ApplicationController < ActionController::Base
   
   def mostpopular
     Advert.available.select('adverts.*').from('adverts, viewed_advert_counts v')
-      .where('adverts.id=v.advert_id').group('adverts.id').order('count(*) desc')
+      .where('adverts.id=v.advert_id').group('adverts.id').order('count(*) DESC, created_at DESC')
   end
   
   def bizimsectiklerimiz

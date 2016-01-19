@@ -414,11 +414,9 @@
 
 													<li>
 
-														<% if advert.images != [] %>
-
 														<div class='wrapper'>
 															<!-- image -->
-															<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small) %></a>
+															<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %></a>
 															<!-- description div -->
 															<div class='description'>
 																<!-- description content -->
@@ -429,24 +427,6 @@
 															</div>
 															<!-- end description div -->
 														</div>
-
-														<% else %>
-
-														<div class='wrapper'>
-															<!-- image -->
-															<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile %></a>
-															<!-- description div -->
-															<div class='description'>
-																<!-- description content -->
-																<div class='description_content'>
-																	<%= advert.name %>
-																</div>
-																<!-- end description content -->
-															</div>
-															<!-- end description div -->
-														</div>
-
-														<% end %>
 
 													</li>
 
@@ -489,11 +469,9 @@
 									<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
 
 										<div  class=" thumbnail">
-											<% if advert.images != [] %>
-											<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
-											<% else %>
-											<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name,class: "masterTooltip" %></a>
-											<% end %>
+											
+											<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
+											
 
 										</div>
 
@@ -876,11 +854,11 @@
 
 											<li>
 
-												<% if advert.images != [] %>
+												
 
 												<div   class='wrapper'>
 													<!-- image -->
-													<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+													<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name %></a>
 													<!-- description div -->
 													<div class='descriptionSabit'>
 														<!-- description content -->
@@ -892,23 +870,7 @@
 													<!-- end description div -->
 												</div>
 
-												<% else %>
-
-												<div class='wrapper'>
-													<!-- image -->
-													<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile, :title => advert.name %></a>
-													<!-- description div -->
-													<div class='descriptionSabit'>
-														<!-- description content -->
-														<div class='description_content'>
-															<%= advert.name %>
-														</div>
-														<!-- end description content -->
-													</div>
-													<!-- end description div -->
-												</div>
-
-												<% end %>
+												
 
 											</li>
 
@@ -986,11 +948,9 @@
 							<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
 
 								<div style="" class="thumbnail">
-									<% if advert.images != [] %>
-									<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
-									<% else %>
-									<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name%></a>
-									<% end %>
+									
+									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name %></a>
+									
 
 								</div>
 
@@ -1041,22 +1001,14 @@
 								<ul>
 									<% @ensonikinciel.each do |advert| %>
 									<li>
-										<% if advert.images != [] %>
-										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name,class: "masterTooltip" %>
+										
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
 										<% if advert.name.length <= 18 %> <h4><%= advert.name %></h4></a>
 
 										<% else %>
 										<h4><%= advert.name[0..17] + "..." %></h4></a>
 										<% end %>
-										<% else %>
-										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name,class: "masterTooltip"   %>
-										<% if advert.name.length <= 18 %> <h4><%= advert.name %></h4></a>
-
-										<% else %>
-										<h4><%= advert.name[0..17] + "..." %></h4></a>
-										<% end %>
-
-										<% end %>
+										
 									</li>
 
 									<% end %>
@@ -1064,22 +1016,14 @@
 								<ul>
 									<% @ensonevarkadasi.each do |advert| %>
 									<li>
-										<% if advert.images != [] %>
-										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name,class: "masterTooltip" %>
+										
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
 										<% if advert.name.length <= 18 %> <h4><%= advert.name %></h4></a>
 
 										<% else %>
 										<h4><%= advert.name[0..17] + "..." %></h4></a>
 										<% end %>
-										<% else %>
-										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name,class: "masterTooltip"   %>
-										<% if advert.name.length <= 18 %> <h4><%= advert.name %></h4></a>
-
-										<% else %>
-										<h4><%= advert.name[0..17] + "..." %></h4></a>
-										<% end %>
-
-										<% end %>
+										
 									</li>
 
 									<% end %>
@@ -1088,22 +1032,14 @@
 								<ul>
 									<% @ensonozelders.each do |advert| %>
 									<li>
-										<% if advert.images != [] %>
-										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name,class: "masterTooltip" %>
+										
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
 										<% if advert.name.length <= 18 %> <h4><%= advert.name %></h4></a>
 
 										<% else %>
 										<h4><%= advert.name[0..17] + "..." %></h4></a>
 										<% end %>
-										<% else %>
-										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name,class: "masterTooltip"   %>
-										<% if advert.name.length <= 18 %> <h4><%= advert.name %></h4></a>
-
-										<% else %>
-										<h4><%= advert.name[0..17] + "..." %></h4></a>
-										<% end %>
-
-										<% end %>
+										
 									</li>
 
 									<% end %>
@@ -1142,11 +1078,11 @@
 
 								<li>
 
-									<% if advert.images != [] %>
+									
 
 									<div class='wrapper'>
 										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small) %></a>
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %></a>
 										<!-- description div -->
 										<div class='description'>
 											<!-- description content -->
@@ -1158,23 +1094,7 @@
 										<!-- end description div -->
 									</div>
 
-									<% else %>
-
-									<div class='wrapper'>
-										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile %></a>
-										<!-- description div -->
-										<div class='description'>
-											<!-- description content -->
-											<div class='description_content'>
-												<%= advert.name %>
-											</div>
-											<!-- end description content -->
-										</div>
-										<!-- end description div -->
-									</div>
-
-									<% end %>
+									
 
 								</li>
 
@@ -1241,11 +1161,11 @@
 								<% @ensonilanlar.each do |advert| %>
 
 								<li>
-									<% if advert.images != [] %>
+									
 
 									<div class='wrapper'>
 										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name %></a>
 										<!-- description div -->
 										<div class='descriptionSabit'>
 											<!-- description content -->
@@ -1257,23 +1177,7 @@
 										<!-- end description div -->
 									</div>
 
-									<% else %>
-
-									<div class='wrapper'>
-										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile, :title => advert.name %></a>
-										<!-- description div -->
-										<div class='descriptionSabit'>
-											<!-- description content -->
-											<div class='description_content'>
-												<%= advert.name %>
-											</div>
-											<!-- end description content -->
-										</div>
-										<!-- end description div -->
-									</div>
-
-									<% end %>
+					
 								</li>
 
 								<% end %>
@@ -1304,11 +1208,11 @@
 
 								<li>
 
-									<% if advert.images != [] %>
+									
 
 									<div class='wrapper'>
 										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name %></a>
 										<!-- description div -->
 										<div class='descriptionSabit'>
 											<!-- description content -->
@@ -1320,23 +1224,7 @@
 										<!-- end description div -->
 									</div>
 
-									<% else %>
-
-									<div class='wrapper'>
-										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile, :title => advert.name %></a>
-										<!-- description div -->
-										<div class='descriptionSabit'>
-											<!-- description content -->
-											<div class='description_content'>
-												<%= advert.name %>
-											</div>
-											<!-- end description content -->
-										</div>
-										<!-- end description div -->
-									</div>
-
-									<% end %>
+									
 
 								</li>
 
@@ -1367,11 +1255,11 @@
 								<% @mostpopular.each do |advert| %>
 
 								<li>
-									<% if advert.images != [] %>
+									
 
 									<div class='wrapper'>
 										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name %></a>
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name %></a>
 										<!-- description div -->
 										<div class='descriptionSabit'>
 											<!-- description content -->
@@ -1383,23 +1271,7 @@
 										<!-- end description div -->
 									</div>
 
-									<% else %>
-
-									<div class='wrapper'>
-										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile, :title => advert.name %></a>
-										<!-- description div -->
-										<div class='descriptionSabit'>
-											<!-- description content -->
-											<div class='description_content'>
-												<%= advert.name %>
-											</div>
-											<!-- end description content -->
-										</div>
-										<!-- end description div -->
-									</div>
-
-									<% end %>
+									
 
 								</li>
 

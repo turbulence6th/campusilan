@@ -133,7 +133,7 @@ class IndexController < ApplicationController
       
     elsif params[:kategori] == "evarkadasi"
       
-      @adverts = Advert.select("adverts.*").from("adverts, homemates")
+      @adverts = Advert.available.select("adverts.*").from("adverts, homemates")
         .where("adverts.advertable_type=? AND adverts.advertable_id=homemates.id", "Homemate")
         
       if params[:sehir] && params[:sehir] != ""
@@ -170,7 +170,7 @@ class IndexController < ApplicationController
       
      elsif params[:kategori] == "ozelders"
        
-      @adverts = Advert.select("adverts.*").from("adverts, privatelessons")
+      @adverts = Advert.available.select("adverts.*").from("adverts, privatelessons")
         .where("adverts.advertable_type=? AND adverts.advertable_id=privatelessons.id", "Privatelesson")
         
       if params[:sehir] && params[:sehir] != ""
@@ -195,7 +195,7 @@ class IndexController < ApplicationController
           
      else 
         
-      @adverts = Advert.all
+      @adverts = Advert.available.all
            
     end
     
@@ -255,7 +255,7 @@ class IndexController < ApplicationController
       
       @favouriteadverts = Advert.available.select('adverts.*').from('adverts, users, favourite_adverts')
         .where('adverts.id=favourite_adverts.advert_id AND users.id=favourite_adverts.user_id AND users.id=?', current_user.id)
-        .order('favourite_adverts.created_at DESC').limit(9).paginate(:page => params[:page], :per_page => 1)
+        .order('favourite_adverts.created_at DESC').paginate(:page => params[:page], :per_page => 9)
       
     else 
       
