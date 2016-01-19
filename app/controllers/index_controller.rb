@@ -120,7 +120,7 @@ class IndexController < ApplicationController
       altkategori = params[:altkategori]
       
       if altkategori && altkategori != "" && altkategori != "hepsi"
-        @adverts = @adverts.where(:secondhands => {:category => altkategori})
+        @adverts = @adverts.where(:secondhands => {:category => Secondhand.categories[altkategori]})
       end    
         
       if params[:marka] && params[:marka] != ""
@@ -232,14 +232,14 @@ class IndexController < ApplicationController
 
    if params[:universities] == nil
      
-     @adverts = Advert.available.joins(:user).where(:users => {university_id: topUniversities[0]['id']})
+     @adverts = Advert.available.joins(:user).where(:users => {university_id: topUniversities[0]['id']}).paginate(:page => params[:page], :per_page => 18)
    
      @title = topUniversities[0]['name']
        
       
    else
      
-     @adverts = Advert.available.joins(:user).where(:users => {university_id: params[:universities]})
+     @adverts = Advert.available.joins(:user).where(:users => {university_id: params[:universities]}).paginate(:page => params[:page], :per_page => 18)
    
      @title = University.find(params[:universities]).name
     

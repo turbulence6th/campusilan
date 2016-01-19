@@ -421,6 +421,11 @@
 
 								</div>
 
+								<div style="clear:both;"  class="apple_pagination">
+									<%= will_paginate @adverts, :container => false,
+									:previous_label => 'Önceki', :next_label => 'Sonraki' %>
+								</div>
+
 							</div>
 
 						</div>
@@ -432,12 +437,8 @@
 			</div>
 
 			<%= render "kullanicipaneli2"%>
-			
-			
 
 			<div class="visible-xs visible-sm">
-
-				
 
 				<div style="margin-top:20px;"class="row">
 
@@ -448,7 +449,8 @@
 							<div class = "panel panel-success">
 
 								<div class="panel-heading">
-									<h3 style="text-align: center;" class="panel-title"><%= @title %></h3>								</div>
+									<h3 style="text-align: center;" class="panel-title"><%= @title %></h3>
+								</div>
 
 								<div class = "panel-body">
 
@@ -487,15 +489,10 @@
 
 								<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
 
-								<% if @adverts .count > 8 %>
-								<div style="text-align:center;">
-									<div style="clear:both;"    class="apple_pagination">
-										<%= will_paginate @adverts , :container => false,
-										:previous_label => 'Önceki', :next_label => 'Sonraki' %>
-									</div>
+								<div style="clear:both;"  class="apple_pagination">
+									<%= will_paginate @adverts, :container => false,
+									:previous_label => 'Önceki', :next_label => 'Sonraki' %>
 								</div>
-
-								<% end %>
 
 							</div>
 

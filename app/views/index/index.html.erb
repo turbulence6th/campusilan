@@ -11,23 +11,18 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 		<!--plugins: -->
-		
+
 		<!-- dropdown login box -->
 
 		<link rel="stylesheet"
 		href="/resources/plugins/dropdownloginbox/css/style.css" />
 
-		<script src="/resources/plugins/dropdownloginbox/js/login.js">
-			
-			
-		</script>
+		<script src="/resources/plugins/dropdownloginbox/js/login.js"></script>
 
 		<!-- Caption Eklentisi -->
 
 		<script src="resources/plugins/captionplugin/caption.js"></script>
 		<link rel="stylesheet" href="resources/plugins/captionplugin/caption.css">
-
-		
 
 		<!-- Fixed Header -->
 
@@ -98,11 +93,10 @@
 		<!-- hopscotch -->
 
 		<link rel="stylesheet" type="text/css" href="/resources/plugins/hopscotch/dist/css/hopscotch.css" />
-		
+
 		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/hopscotch.js"></script>
-		
+
 		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/siteturu.js"></script>
-		
 
 		<!-- end of plugins  -->
 
@@ -136,9 +130,10 @@
 					padding-top: 30px;
 				}
 				#loginkismi {
-					
-					position: absolute;bottom: 0;right: 0;
-					
+
+					position: absolute;
+					bottom: 0;
+					right: 0;
 				}
 			}
 
@@ -195,8 +190,6 @@
 
 				</div>
 
-				
-
 			</div>
 
 			<div class="row">
@@ -213,20 +206,20 @@
 				<%= render "smartmenus" %>
 
 			</div>
-			
+
 			<div class="hidden-xs hidden-sm">
-			
-	<!-- 		<a  href="javascript:void(0);" onclick="javascript:startTour();"><div class = "alert alert-danger">Sitemizi ilk defa mı kullanıyorsunuz? O zaman Campus İlan tanıtıcımızı deneyin ve Campus İlan'ın arayüzüne hemen adapte olun!! </div></a>
-			
-		-->
-		
-		
-		
-		<a href="javascript:void(0);" id="startTourBtn"  ><div class = "alert alert-success">Sitemizi ilk defa mı kullanıyorsunuz? O zaman Campus İlan tanıtıcımızı deneyin ve Campus İlan'ın arayüzüne hemen adapte olun!! </div></a>
-		
-			
+
+				<!-- 		<a  href="javascript:void(0);" onclick="javascript:startTour();"><div class = "alert alert-danger">Sitemizi ilk defa mı kullanıyorsunuz? O zaman Campus İlan tanıtıcımızı deneyin ve Campus İlan'ın arayüzüne hemen adapte olun!! </div></a>
+
+				-->
+
+				<a href="javascript:void(0);" id="startTourBtn"  >
+				<div class = "alert alert-success">
+					Sitemizi ilk defa mı kullanıyorsunuz? O zaman Campus İlan tanıtıcımızı deneyin ve Campus İlan'ın arayüzüne hemen adapte olun!!
+				</div></a>
+
 			</div>
-			
+
 			<!-- Geniş ekranda gözüken div -->
 			<div class="row">
 
@@ -469,9 +462,8 @@
 									<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
 
 										<div  class=" thumbnail">
-											
+
 											<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
-											
 
 										</div>
 
@@ -854,8 +846,6 @@
 
 											<li>
 
-												
-
 												<div   class='wrapper'>
 													<!-- image -->
 													<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name %></a>
@@ -869,8 +859,6 @@
 													</div>
 													<!-- end description div -->
 												</div>
-
-												
 
 											</li>
 
@@ -948,9 +936,8 @@
 							<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
 
 								<div style="" class="thumbnail">
-									
+
 									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name %></a>
-									
 
 								</div>
 
@@ -1001,14 +988,14 @@
 								<ul>
 									<% @ensonikinciel.each do |advert| %>
 									<li>
-										
+
 										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
 										<% if advert.name.length <= 18 %> <h4><%= advert.name %></h4></a>
 
 										<% else %>
 										<h4><%= advert.name[0..17] + "..." %></h4></a>
 										<% end %>
-										
+
 									</li>
 
 									<% end %>
@@ -1016,14 +1003,14 @@
 								<ul>
 									<% @ensonevarkadasi.each do |advert| %>
 									<li>
-										
+
 										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
 										<% if advert.name.length <= 18 %> <h4><%= advert.name %></h4></a>
 
 										<% else %>
 										<h4><%= advert.name[0..17] + "..." %></h4></a>
 										<% end %>
-										
+
 									</li>
 
 									<% end %>
@@ -1032,14 +1019,14 @@
 								<ul>
 									<% @ensonozelders.each do |advert| %>
 									<li>
-										
+
 										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
 										<% if advert.name.length <= 18 %> <h4><%= advert.name %></h4></a>
 
 										<% else %>
 										<h4><%= advert.name[0..17] + "..." %></h4></a>
 										<% end %>
-										
+
 									</li>
 
 									<% end %>
@@ -1078,8 +1065,6 @@
 
 								<li>
 
-									
-
 									<div class='wrapper'>
 										<!-- image -->
 										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %></a>
@@ -1093,8 +1078,6 @@
 										</div>
 										<!-- end description div -->
 									</div>
-
-									
 
 								</li>
 
@@ -1161,7 +1144,6 @@
 								<% @ensonilanlar.each do |advert| %>
 
 								<li>
-									
 
 									<div class='wrapper'>
 										<!-- image -->
@@ -1177,7 +1159,6 @@
 										<!-- end description div -->
 									</div>
 
-					
 								</li>
 
 								<% end %>
@@ -1208,8 +1189,6 @@
 
 								<li>
 
-									
-
 									<div class='wrapper'>
 										<!-- image -->
 										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name %></a>
@@ -1223,8 +1202,6 @@
 										</div>
 										<!-- end description div -->
 									</div>
-
-									
 
 								</li>
 
@@ -1252,10 +1229,9 @@
 					<div class="jcarousel-wrapper" style="margin-bottom: 80px;">
 						<div class="jcarousel">
 							<ul>
-								<% @mostpopular.each do |advert| %>
+								<% @bizimsectiklerimiz.each do |advert| %>
 
 								<li>
-									
 
 									<div class='wrapper'>
 										<!-- image -->
@@ -1270,8 +1246,6 @@
 										</div>
 										<!-- end description div -->
 									</div>
-
-									
 
 								</li>
 
@@ -1314,7 +1288,7 @@
 											<a href="#enguvenilirsaticilar" tabindex="-1"
 											data-toggle="tab">En Güvenilir Satıcılar</a>
 										</li>
-										
+
 										<li>
 											<a href="#sehrimdekienguvenilir" tabindex="-1"
 											data-toggle="tab">Kendi Şehrimdeki En Güvenilir Satıcılar</a>
@@ -1333,7 +1307,7 @@
 											<a href="#enguvenilirevarkadaslari" tabindex="-1"
 											data-toggle="tab">En Güvenilir Olanlar</a>
 										</li>
-										
+
 										<li>
 											<a href="#sehrimdekienguvenilirevarkadaslari" tabindex="-1"
 											data-toggle="tab">Kendi şehrimdeki en güvenilir olanlar</a>
@@ -1341,8 +1315,6 @@
 
 									</ul>
 								</li>
-								
-								
 
 								<li class="dropdown">
 									<a href="#" id="myTabDrop4"
@@ -1354,7 +1326,7 @@
 											<a href="#enguvenilirozelders" tabindex="-1"
 											data-toggle="tab">En Güvenilir Olanlar</a>
 										</li>
-										
+
 										<li>
 											<a href="#sehrimdekienguvenilirozelders" tabindex="-1"
 											data-toggle="tab">Kendi şehrimdeki en güvenilir olanlar</a>
@@ -1373,48 +1345,35 @@
 									<h2 style="text-align: center; margin-bottom: 30px;"><u>En Güvenilir İkinci El İlan Satıcıları</u></h2>
 
 									<div class="row">
-										
+
 										<% @enguvenilirikinciel.each do |user| %>
-										
-												<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 
-								<div class="thumbnail">
-									<a href="<%= user.href %>"> <% if user.image == nil && user.gender =='male' %>
-									<img src="/resources/images/erkek.png">
-									
-									<% elsif user.image == nil && user.gender =='female' %>
-									<img src="/resources/images/kadin.png">
-									
-									<% elsif user.image == nil && user.gender =='other' %>
-									<img src="/resources/images/diger.png">
-									
-									<% else %>
-									<%= image_tag user.image.imagefile(:small) %>
-									<% end %> </a>
-								</div>
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 
-								<div class="caption">
+											<div class="thumbnail">
+												<a href="<%= user.href %>"> <% if user.image == nil && user.gender =='male' %> <img src="/resources/images/erkek.png"> <% elsif user.image == nil && user.gender =='female' %> <img src="/resources/images/kadin.png"> <% elsif user.image == nil && user.gender =='other' %> <img src="/resources/images/diger.png"> <% else %>
+												<%= image_tag user.image.imagefile(:small) %>
+												<% end %> </a>
+											</div>
 
-									<% if user.username <= 8 %>
+											<div class="caption">
 
-									<h5><%= user.username %></h5>
-									<br>
+												<% if user.username.length <= 8 %>
 
-									<% else %>
+												<h5><%= user.username %></h5>
+												<br>
 
-									<h5><%= user.username[0..7] + "..." %></h5>
+												<% else %>
 
-									<% end %>
+												<h5><%= user.username[0..7] + "..." %></h5>
 
-								</div>
+												<% end %>
 
-							</div>
-												
+											</div>
+
+										</div>
+
 										<% end %>
-
-										
-
-										
 
 									</div>
 
@@ -1433,55 +1392,40 @@
 									<h2 style="text-align: center; margin-bottom: 30px;"><u>En Güvenilir Ev Arkadaşı Adayları</u></h2>
 
 									<div class="row">
-										
+
 										<% @enguvenilirevarkadasi.each do |user| %>
-										
-												<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 
-								<div class="thumbnail">
-									<a href="<%= user.href %>"> <% if user.image == nil && user.gender =='male' %>
-									<img src="/resources/images/erkek.png">
-									
-									<% elsif user.image == nil && user.gender =='female' %>
-									<img src="/resources/images/kadin.png">
-									
-									<% elsif user.image == nil && user.gender =='other' %>
-									<img src="/resources/images/diger.png">
-									
-									<% else %>
-									<%= image_tag user.image.imagefile(:small) %>
-									<% end %> </a>
-								</div>
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 
-								<div class="caption">
+											<div class="thumbnail">
+												<a href="<%= user.href %>"> <% if user.image == nil && user.gender =='male' %> <img src="/resources/images/erkek.png"> <% elsif user.image == nil && user.gender =='female' %> <img src="/resources/images/kadin.png"> <% elsif user.image == nil && user.gender =='other' %> <img src="/resources/images/diger.png"> <% else %>
+												<%= image_tag user.image.imagefile(:small) %>
+												<% end %> </a>
+											</div>
 
-									<% if user.username <= 8 %>
+											<div class="caption">
 
-									<h5><%= user.username %></h5>
-									<br>
+												<% if user.username.length <= 8 %>
 
-									<% else %>
+												<h5><%= user.username %></h5>
+												<br>
 
-									<h5><%= user.username[0..7] + "..." %></h5>
+												<% else %>
 
-									<% end %>
+												<h5><%= user.username[0..7] + "..." %></h5>
 
-								</div>
+												<% end %>
 
-							</div>
-												
+											</div>
+
+										</div>
+
 										<% end %>
-
-										
-
-										
 
 									</div>
 
 								</div>
-								
-								
-								
+
 								<div class="tab-pane fade in " id="sehrimdekienguvenilirevarkadaslari">
 
 									<h2 style="text-align: center; margin-bottom: 30px;"><u>Kendi Şehrimdeki En Güvenilir Ev Arkadaşı Adayları</u></h2>
@@ -1489,73 +1433,52 @@
 									Bu özellik en yakın zamanda aktif olacaktır.Anlayışınız için teşekkür ederiz.
 
 								</div>
-								
-
 
 								<div class="tab-pane fade in " id="enguvenilirozelders">
 
 									<h2 style="text-align: center; margin-bottom: 30px;"><u>En Güvenilir Özel Ders Verenler</u></h2>
 
 									<div class="row">
-										
+
 										<% @enguvenilirikinciel.each do |user| %>
-										
-												<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 
-								<div class="thumbnail">
-									<a href="<%= user.href %>"> <% if user.image == nil && user.gender =='male' %>
-									<img src="/resources/images/erkek.png">
-									
-									<% elsif user.image == nil && user.gender =='female' %>
-									<img src="/resources/images/kadin.png">
-									
-									<% elsif user.image == nil && user.gender =='other' %>
-									<img src="/resources/images/diger.png">
-									
-									<% else %>
-									<%= image_tag user.image.imagefile(:small) %>
-									<% end %> </a>
-								</div>
+										<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 
-								<div class="caption">
+											<div class="thumbnail">
+												<a href="<%= user.href %>"> <% if user.image == nil && user.gender =='male' %> <img src="/resources/images/erkek.png"> <% elsif user.image == nil && user.gender =='female' %> <img src="/resources/images/kadin.png"> <% elsif user.image == nil && user.gender =='other' %> <img src="/resources/images/diger.png"> <% else %>
+												<%= image_tag user.image.imagefile(:small) %>
+												<% end %> </a>
+											</div>
 
-									<% if user.username <= 8 %>
+											<div class="caption">
 
-									<h5><%= user.username %></h5>
-									<br>
+												<% if user.username.length <= 8 %>
 
-									<% else %>
+												<h5><%= user.username %></h5>
+												<br>
 
-									<h5><%= user.username[0..7] + "..." %></h5>
+												<% else %>
 
-									<% end %>
+												<h5><%= user.username[0..7] + "..." %></h5>
 
-								</div>
+												<% end %>
 
-							</div>
-												
+											</div>
+
+										</div>
+
 										<% end %>
-
-										
-
-										
 
 									</div>
 
 								</div>
-								
-								
+
 								<div class="tab-pane fade in " id="sehrimdekienguvenilirozelders">
 
 									<h2 style="text-align: center; margin-bottom: 30px;"><u>Kendi Şehrimdeki En Güvenilir Özel Ders Verenler</u></h2>
 
 									Bu özellik en yakın zamanda aktif olacaktır.Anlayışınız için teşekkür ederiz.
 								</div>
-								
-								
-								
-								
-								
 
 							</div>
 
@@ -1633,8 +1556,6 @@
 			</div>
 
 			<!-- plugin script importları: -->
-			
-			
 
 			<!-- Tooltip eklentisi-->
 
@@ -1691,8 +1612,6 @@
 			<%= render "headerfixedjs" %>
 
 			<!-- Dropdown login box -->
-			
-			
 
 	</body>
 

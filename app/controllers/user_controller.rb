@@ -89,7 +89,7 @@ class UserController < ApplicationController
     
     @gununilanlari = gununilanlari.limit(9)
     
-    @lastadverts = current_user.adverts.order('created_at DESC').limit(6)
+    
     
    
     if params[:profilim]!=nil
@@ -124,6 +124,8 @@ class UserController < ApplicationController
       
       current_user.phone1 =  current_user.phone.split('-')[0]
       current_user.phone2 =  current_user.phone.split('-')[1]
+      
+      @lastadverts = current_user.adverts.order('created_at DESC').limit(6)
       
       @favouriteadverts = Advert.available.select('adverts.*').from('adverts, users, favourite_adverts')
         .where('adverts.id=favourite_adverts.advert_id AND users.id=favourite_adverts.user_id AND users.id=?', current_user.id)

@@ -366,7 +366,7 @@
 									
 									<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
 
-									<% if @adverts.length > 18 %>
+									
 									
 									
 									
@@ -375,7 +375,7 @@
 										:previous_label => 'Önceki', :next_label => 'Sonraki' %>
 									</div>
 									
-									<% end %>
+									
 
 									<% else %>
 
@@ -447,13 +447,13 @@
 
 							<% end %>
 
-							<% if @adverts.length > 13 %>
+						
 
 							<div style="clear:both;"  class="apple_pagination">
 								<%= will_paginate @adverts, :container => false,
 								:previous_label => 'Önceki', :next_label => 'Sonraki' %>
 							</div>
-							<% end %>
+							
 
 						</div>
 
