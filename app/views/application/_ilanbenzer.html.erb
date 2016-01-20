@@ -1,0 +1,54 @@
+<%if @similar == [] %>
+
+<p>
+	Benzer İlan Bulunmamaktadır.
+</p>
+
+<% else %>
+
+<div class="content-top1">
+
+	<% @similar.each do |advert| %>
+
+	<div class="hidden-xs hidden-sm col-md-4 col-md3">
+		<div class="col-md1 simpleCart_shelfItem">
+
+			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small), :class => 'img-responsive masterTooltip',title: advert.name %> </a>
+
+			<% if advert.name.size >= 20 %>
+			<h3><a href="<%= advert.href %>"> <%= advert.name[0..19] %>... </a></h3>
+			<% else %>
+			<h3><a href="<%= advert.href %>"> <%= advert.name %> </a></h3>
+			<% end %>
+			<div class="price">
+				<h5 class="item_price"><%= advert.price %>&#8378;</h5>
+				<a href="<%= advert.href %>" class="item_add">İncele</a>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class=" visible-xs visible-sm col-md-4 col-md3">
+		<div class="col-md1 simpleCart_shelfItem">
+
+			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small), :class => 'img-responsive masterTooltip',title: advert.name %> </a>
+
+			<% if advert.name.size >= 8 %>
+			<h3><a href="<%= advert.href %>"> <%= advert.name[0..7] %>... </a></h3>
+			<% else %>
+			<h3><a href="<%= advert.href %>"> <%= advert.name %> </a></h3>
+			<% end %>
+			<div class="price">
+				<h5 class="item_price"><%= advert.price %>&#8378;</h5>
+				<a href="#" class="item_add">İncele</a>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+
+	<% end %>
+
+	<div class="clearfix"></div>
+</div>
+
+<% end %>

@@ -102,6 +102,11 @@ class ApplicationController < ActionController::Base
           .where('u1.id=? and u1.university_id=u2.university_id and adverts.user_id=u2.id', current_user.id)
   end
   
- 
+  def looked(advert)
+    Advert.select('a2.*').from('adverts a,users u, viewed_adverts v, adverts a2, viewed_adverts v2')
+      .where('a.id=? AND v.user_id = u.id AND v.advert_id = a.id AND a.id!=a2.id AND v2.user_id = u.id AND v2.advert_id = a2.id', advert.id)
+      .group('a2.id').order('count(a2.id)')
+  end
+  
   
 end

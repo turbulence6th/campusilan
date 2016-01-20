@@ -1,1 +1,29 @@
-<%= @user.username %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Actionable emails e.g. reset password</title>
+
+
+
+</head>
+
+<body >
+	
+	<img src="http://144.122.148.221:3000/resources/images/logo.png"/>
+	
+	<p>	Campus İlan'a hoşgeldiniz.Umarız Campus İlan'da keyifli vakit geçirir ve aradığınızı bulabilirsiniz. </p> 
+
+	<p> Kayıt olmak için kullandığınız eposta adresi: <%= @user.email %> Lütfen kaydınızı onaylamak için aşağıdaki butona tıklayınız.</p> 
+	
+	<p> Lütfen kaydınızı onaylamak için aşağıdaki butona tıklayınız.</p> 
+
+<a href="144.122.148.221:3000/verify?user=<%= @user.username %>&token=<%= @user.confirm_token %>">Hesabımı onayla</a> <br><br>
+
+<p>Bizi tercih ettiğiniz için teşekkür ederiz. </p>
+<p style="color:#2E86A3;">Campus İlan - Üniversitelilerin ilan sitesi  </p>
+
+
+</body>
+</html>

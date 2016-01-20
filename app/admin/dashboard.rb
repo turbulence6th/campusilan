@@ -11,7 +11,7 @@ ActiveAdmin.register_page "Dashboard" do
        column do
          panel "Recent Adverts" do
            ul do
-             Advert.last(5).map do |advert|
+             Advert.order('created_at DESC').limit(20).map do |advert|
                li link_to(advert.name, "/admin/adverts/" + advert.id.to_s)
              end
            end
@@ -21,13 +21,7 @@ ActiveAdmin.register_page "Dashboard" do
        column do
          panel "Most Popular Adverts" do
            ul do
-              @mostpopular = []
-    
-              popularList = ViewedAdvertCount.group(:advert_id).count.first(6)
-              
-              popularList.each do |id, count|
-                @mostpopular << Advert.find(id)
-              end
+             @mostpopular = ApplicationController.new.mostpopular.limit(20)
              @mostpopular.map do |advert|
                li link_to(advert.name, "/admin/adverts/" + advert.id.to_s)
              end
@@ -38,8 +32,19 @@ ActiveAdmin.register_page "Dashboard" do
        column do
          panel "Recent Users" do
            ul do
-             User.last(5).map do |user|
+             User.order('created_at DESC').limit(20).map do |user|
                li link_to(user.username, "/admin/users/" + user.id.to_s)
+             end
+           end
+         end
+       end
+       
+       column do
+         panel "Waiting Adverts" do
+           ul do
+             @waitings = Advert.where(:active => true, :verified => false).order('created_at ASC').limit(20)
+             @waitings.map do |advert|
+               li link_to(advert.name, "/admin/adverts/" + advert.id.to_s)
              end
            end
          end

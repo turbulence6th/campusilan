@@ -780,12 +780,24 @@
 		
 		
 		</div>
+		
+		
 
 		</div>
+		
+		
 
 		</div>
+		
+		<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
+
+						<div style="clear:both;"  class="apple_pagination">
+							<%= will_paginate @adverts, :container => false,
+							:previous_label => 'Önceki', :next_label => 'Sonraki' %>
+						</div>
 
 		</div>
+		
 
 		</div>
 		<div class="row">

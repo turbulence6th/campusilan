@@ -218,9 +218,7 @@ class IndexController < ApplicationController
     end
     
     
-    @adverts.each do |adv|
-      puts adv.name
-    end
+    @adverts = @adverts.paginate(:page => params[:page], :per_page => 18)
     
   
     
@@ -232,14 +230,14 @@ class IndexController < ApplicationController
 
    if params[:universities] == nil
      
-     @adverts = Advert.available.joins(:user).where(:users => {university_id: topUniversities[0]['id']}).paginate(:page => params[:page], :per_page => 18)
+     @adverts = Advert.available.joins(:user).where(:users => {university_id: topUniversities[0]['id']}).order('created_at DESC').paginate(:page => params[:page], :per_page => 18)
    
      @title = topUniversities[0]['name']
        
       
    else
      
-     @adverts = Advert.available.joins(:user).where(:users => {university_id: params[:universities]}).paginate(:page => params[:page], :per_page => 18)
+     @adverts = Advert.available.joins(:user).where(:users => {university_id: params[:universities]}).order('created_at DESC').paginate(:page => params[:page], :per_page => 18)
    
      @title = University.find(params[:universities]).name
     
@@ -271,7 +269,7 @@ class IndexController < ApplicationController
     
     if current_user!= nil
     
-    @lastadverts = current_user.adverts.paginate(:page => params[:page], :per_page => 8)
+    @lastadverts = current_user.adverts.order('created_at DESC').paginate(:page => params[:page], :per_page => 8)
     
     
     else
@@ -289,7 +287,7 @@ class IndexController < ApplicationController
     
     @incelediklerim = Advert.available.select('adverts.*').from('adverts, users, viewed_adverts')
         .where('adverts.id=viewed_adverts.advert_id AND users.id=viewed_adverts.user_id AND users.id=?', current_user.id)
-        .order('viewed_adverts.created_at DESC')
+        .order('viewed_adverts.created_at DESC').paginate(:page => params[:page], :per_page => 8)
         
      else
        

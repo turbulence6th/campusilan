@@ -1,6 +1,16 @@
 class Advert < ActiveRecord::Base
   
+  #class UserValidator < ActiveModel::Validator
+   # def validate(record)
+    #  if record.user.role == 'buyer'
+     #   record.errors[:base] << "Invalid Role"
+     # end
+   # end
+ # end
+  
   scope :available, -> { where(:verified => true, :active => true) }
+  
+  #validates_with UserValidator
   
   validates :name, :price, :explication, :user, :advertable, :presence => true
   

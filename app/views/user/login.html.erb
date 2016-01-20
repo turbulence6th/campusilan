@@ -139,7 +139,7 @@
 
 			<div  class="well">
 
-				<%if params[:hataligiris]!=nil%>
+				<%if params[:hataligiris]%>
 				<div class="row">
 
 					<div style="margin-left:20px;"class="col-lg-4 col-md-5 hidden-sm hidden-xs alert alert-danger">
@@ -153,6 +153,38 @@
 					</div>
 
 				</div>
+				
+				<%elsif params[:onay]%>
+				<div class="row">
+
+					<div style="margin-left:20px;"class="col-lg-4 col-md-5 hidden-sm hidden-xs alert alert-danger">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<strong>Hata!</strong> Hesabınız henüz onaylanmadı
+					</div>
+
+					<div style=""class="hidden-lg hidden-md col-sm-12 col-xs-12 alert alert-danger">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<strong>Hata!</strong> Hesabınız henüz onaylanmadı
+					</div>
+
+				</div>
+			
+				
+				<%elsif params[:silinmis]%>
+				<div class="row">
+
+					<div style="margin-left:20px;"class="col-lg-4 col-md-5 hidden-sm hidden-xs alert alert-danger">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<strong>Hata!</strong> Hesabınız silinmiş tekrar etkinleştirmek için admin ile iletişime geçiniz
+					</div>
+
+					<div style=""class="hidden-lg hidden-md col-sm-12 col-xs-12 alert alert-danger">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<strong>Hata!</strong> Hesabınız silinmiş tekrar etkinleştirmek için admin ile iletişime geçiniz
+					</div>
+
+				</div>
+			
 				<%end%>
 
 				<div class="row">

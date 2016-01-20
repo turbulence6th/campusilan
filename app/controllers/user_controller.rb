@@ -45,7 +45,7 @@ class UserController < ApplicationController
     @user.confirm_token = SecureRandom.urlsafe_base64.to_s
     
     if @user.save
-      #send mail
+     UserMailer.verify(@user).deliver_now 
     end
 
     redirect_to "/"
@@ -63,14 +63,18 @@ class UserController < ApplicationController
   end
 
   def loginPost
-    user = User.valid.find_by_username(params[:username]).try(:authenticate, params[:password])
-    if (user!=nil && user!=false)
+    user = User.find_by_username(params[:username]).try(:authenticate, params[:password])
+    if (user && user.verified && !user.deleted)
       session[:user_id] = user.id
       if request.referer
         redirect_to URI(request.referer).path
       else
         redirect_to "/"
       end
+    elsif (user && user.deleted)
+      redirect_to "/girisyap?silinmis=1"
+    elsif (user && !user.verified)
+      redirect_to "/girisyap?onay=1"
     else
       redirect_to "/girisyap?hataligiris=1"
     end

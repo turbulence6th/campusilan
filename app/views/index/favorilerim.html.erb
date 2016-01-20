@@ -191,11 +191,9 @@
 									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
-											<a href="<%= advert.href %>"> <% if advert.images == [] %>
-											<%= image_tag Image.new.imagefile,title:advert.name,class: "masterTooltip" %>
-											<% else %>
-											<%= image_tag advert.images[0].imagefile(:small),title:advert.name,class: "masterTooltip" %>
-											<% end %> </a>
+											<a href="<%= advert.href %>"> 
+											<%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %>
+											</a>
 
 										</div>
 
@@ -225,7 +223,7 @@
 								
 									<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
 	
-									<% if @favouriteadverts.count > 9 %>
+									
 									<div style="text-align:center;">	
 									<div style="clear:both;"    class="apple_pagination">
 										<%= will_paginate @favouriteadverts, :container => false,
@@ -233,7 +231,7 @@
 									</div>
 									</div>
 	
-									<% end %>
+									
 								
 								
 							</div>

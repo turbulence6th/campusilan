@@ -17,6 +17,7 @@ ActiveAdmin.register User do
       input :name
       input :surname
       input :email
+      input :email_confirmation
       
       if object.new_record?
         input :email_confirmation

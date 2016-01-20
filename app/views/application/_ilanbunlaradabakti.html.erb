@@ -1,0 +1,26 @@
+<div class="product-bottom">
+	<h3 class="cate">Bu ürüne bakanlar bunlara da baktı</h3>
+
+	<% @looked.each do |advert|%>
+	<div class="product-go">
+		<div class=" fashion-grid">
+
+			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class:"img-responsive masterTooltip" %></a>
+
+		</div>
+		<div class=" fashion-grid1">
+
+			<% if advert.name.size >=40 %>
+			<h6 class="best2"><a href="<%= advert.href %>" ><%= advert.name[0..39] %>...</a></h6>
+			<% else %>
+			<h6 class="best2"><a href="<%= advert.href %>" ><%= advert.name %></a></h6>
+			<% end %>
+			<span class=" price-in1"> <%= advert.price %>&#8378;</span>
+
+		</div>
+		<div class="clearfix"></div>
+	</div>
+
+	<% end %>
+
+</div>

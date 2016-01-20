@@ -172,7 +172,7 @@
 						</div>
 					</div>
 
-					<%= form_for :advert, :url => 'secondhand' , :method => :post , :html => {
+					<%= form_for :advert, :url => 'newadvert/secondhand' , :method => :post , :html => {
 					:class => 'form-basic ikinciel' , :id => 'ikincielform',
 					:multipart => true,
 					:onsubmit => 'return ikincielsubmit();'
@@ -376,7 +376,7 @@
 					</script>
 
 
-					<%= form_for :advert, :url => 'homemate' , :method => :post , :html => {
+					<%= form_for :advert, :url => 'newadvert/homemate' , :method => :post , :html => {
 					:class => 'form-basic ikinciel' , :id => 'evarkadasiform',
 					:style => 'display:none;',
 					:multipart => true,
@@ -621,7 +621,7 @@
 						}
 					</script>
 
-					<%= form_for :advert, :url => 'privatelesson' , :method => :post , :html => {
+					<%= form_for :advert, :url => 'newadvert/privatelesson' , :method => :post , :html => {
 					:class => 'form-basic ikinciel' , :id => 'ozeldersform',
 					:multipart => true,
 					:style => 'display:none;'

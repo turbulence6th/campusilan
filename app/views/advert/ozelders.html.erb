@@ -349,64 +349,8 @@
 
 							</div>
 
-							<%if @similar == [] %>
-
-							<p>
-								Benzer İlan Bulunmamaktadır.
-							</p>
-
-							<% else %>
-
-							<div class="content-top1">
-
-								<% @similar.each do |advert| %>
-
-								<div class="hidden-xs hidden-sm col-md-4 col-md3">
-									<div class="col-md1 simpleCart_shelfItem">
-										<% if advert.images != [] %>
-										<a title="<%= advert.name%> " href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small), :class => 'img-responsive' %> </a>
-										<% else %>
-										<a title="<%= advert.name%> " href="<%= advert.href %>"> <%= image_tag Image.new.imagefile,class:"img-responsive"  %> </a>
-										<% end %>
-										<% if advert.name.size >= 20 %>
-										<h3><a href="<%= advert.href %>"> <%= advert.name[0..19] %>... </a></h3>
-										<% else %>
-										<h3><a href="<%= advert.href %>"> <%= advert.name %> </a></h3>
-										<% end %>
-										<div class="price">
-											<h5 class="item_price"><%= advert.price %>&#8378;</h5>
-											<a href="#" class="item_add">İncele</a>
-											<div class="clearfix"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class=" visible-xs visible-sm col-md-4 col-md3">
-									<div class="col-md1 simpleCart_shelfItem">
-										<% if advert.images != [] %>
-										<a title="<%= advert.name%> " href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small), :class => 'img-responsive' %> </a>
-										<% else %>
-										<a title="<%= advert.name%> " href="<%= advert.href %>"> <%= image_tag Image.new.imagefile,class:"img-responsive"  %> </a>
-										<% end %>
-										<% if advert.name.size >= 8 %>
-										<h3><a href="<%= advert.href %>"> <%= advert.name[0..7] %>... </a></h3>
-										<% else %>
-										<h3><a href="<%= advert.href %>"> <%= advert.name %> </a></h3>
-										<% end %>
-										<div class="price">
-											<h5 class="item_price"><%= advert.price %>&#8378;</h5>
-											<a href="#" class="item_add">İncele</a>
-											<div class="clearfix"></div>
-										</div>
-									</div>
-								</div>
-
-								<% end %>
-
-								<div class="clearfix"></div>
-							</div>
-
-							<% end %>
+							<%= render "ilanbenzer" %>
+							
 						</div>
 						<!----->
 						<div class="col-md-3 product-bottom">
@@ -422,81 +366,9 @@
 							<!--seller-->
 
 							<br>
-							<div class="product-bottom">
-								<h3 class="cate">Bu ürüne bakanlar bunlara da baktı</h3>
-
-								<% @looked.each do |advert|%>
-								<div class="product-go">
-									<div class=" fashion-grid">
-										<% if advert.images != [] %>
-										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),:title => advert.name,class:"img-responsive" %></a>
-										<% else %>
-										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile ,:title => advert.name,class:"img-responsive"  %></a>
-										<% end %>
-									</div>
-									<div class=" fashion-grid1">
-
-										<% if advert.name.size >=40 %>
-										<h6 class="best2"><a href="<%= advert.href %>" ><%= advert.name[0..39] %>...</a></h6>
-										<% else %>
-										<h6 class="best2"><a href="<%= advert.href %>" ><%= advert.name %></a></h6>
-										<% end %>
-										<span class=" price-in1"> <%= advert.price %>&#8378;</span>
-
-									</div>
-									<div class="clearfix"></div>
-								</div>
-
-								<% end %>
-
-							</div>
-
-							<!--//seller-->
-							<!--tag-->
-							<!-- <div class="tag">
-							<h3 class="cate">Etiketler</h3>
-							<div class="tags">
-							<ul>
-							<li>
-							<a href="#">design</a>
-							</li>
-							<li>
-							<a href="#">fashion</a>
-							</li>
-							<li>
-							<a href="#">lorem</a>
-							</li>
-							<li>
-							<a href="#">dress</a>
-							</li>
-							<li>
-							<a href="#">fashion</a>
-							</li>
-							<li>
-							<a href="#">dress</a>
-							</li>
-							<li>
-							<a href="#">design</a>
-							</li>
-							<li>
-							<a href="#">dress</a>
-							</li>
-							<li>
-							<a href="#">design</a>
-							</li>
-							<li>
-							<a href="#">fashion</a>
-							</li>
-							<li>
-							<a href="#">lorem</a>
-							</li>
-							<li>
-							<a href="#">dress</a>
-							</li>
-							<div class="clearfix"></div>
-							</ul>
-							</div>
-							</div> -->
+							
+							<%= render "ilanbunlaradabakti" %>
+							
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -514,165 +386,13 @@
 
 		<!-- favorilere ekle/kaldır ajax -->
 
-		<% if current_user!= nil %>
-
-		<script>
-
-			$(".favorilereekle").click(function() {
-
-$.ajax({
-
-url : '/favorilereekle',
-data : {
-authenticity_token : window._token,
-advertid : <%= @advert.id %>,
-
-},
-error : function() {
-
-alert("Lütfen bağlantınızı kontrol edin!!")
-},
-dataType : 'json',
-success : function(data) {
-
-if (!data.check) {
-
-}
-
-else {
-
-$(".favorilerdenkaldir").show();
-$(".favorilereekle").hide();
-
-}
-
-},
-
-type : 'POST'
-
-})
-
-}
-
-)
-
-$(".favorilerdenkaldir").click(function() {
-
-$.ajax({
-
-url : '/favorilerdenkaldir',
-data : {
-authenticity_token : window._token,
-advertid : <%= @advert.id %>
-	,
-
-	}, error : function() {
-
-		alert("Lütfen bağlantınızı kontrol edin!!")
-	}, dataType : 'json',
-	success : function(data) {
-
-		if (!data.check) {
-			alert("Başarısız");
-
-		} else {
-
-			$(".favorilereekle").show();
-			$(".favorilerdenkaldir").hide();
-		}
-
-	}, type : 'POST'
-
-	})
-
-	}
-
-	)
-
-		</script>
-
-		<% end %>
+		<%= render "ilanfavorilereekle" %>
 
 		<!-- Plugins-->
 
 		<!-- bootstrap star rating -->
 
-		<script>
-						starrating(document).ready(function () {
-			starrating("#input-21f").rating({
-			starCaptions: function(val) {
-			if (val < 3) {
-			return val;
-			} else {
-			return 'high';
-			}
-			},
-			starCaptionClasses: function(val) {
-			if (val < 3) {
-			return 'label label-danger';
-			} else {
-			return 'label label-success';
-			}
-			},
-			hoverOnClear: false
-			});
-
-			starrating('#rating-input').rating({
-			min: 0,
-			max: 5,
-			step: 1,
-			size: 'lg',
-			showClear: false
-			});
-
-			starrating('#btn-rating-input').on('click', function() {
-
-			starrating('#rating-input').rating('refresh', {
-			showClear:true,
-			disabled:true
-			});
-			});
-
-			starrating('.btn-danger').on('click', function() {
-			starrating("#kartik").rating('destroy');
-			});
-
-			starrating('.btn-success').on('click', function() {
-
-			starrating("#kartik").rating('create');
-			});
-
-			starrating('#input-21b').on('rating.change', function() {
-
-			$.ajax({
-			url : '/vote',
-			data : {
-			authenticity_token : window._token,
-			advert : '<%= @advert.id %>
-				',
-				point : starrating('#input-21b').val()
-				},
-				error : function() {
-				alert('error');
-				},
-				dataType : 'json',
-				success : function(data) {
-
-				if (!data.check) {
-
-				alert('Sunucuda bir sorun meydana geldi');
-
-				}
-
-				},
-				type : 'POST'
-				});
-
-				});
-
-				starrating('.rb-rating').rating({'showCaption':true, 'stars':'3', 'min':'0', 'max':'3', 'step':'1', 'size':'xs', 'starCaptions': {0:'status:nix', 1:'status:wackelt', 2:'status:geht', 3:'status:laeuft'}});
-				});
-		</script>
+		<%= render "ilanvote" %>
 
 		<!-- Product Template-->
 

@@ -3,7 +3,7 @@ class UserMailer < ApplicationMailer
   def verify(user)
     
     @user = user
-    mail :to => @user.email, :subject => 'Doğrulama Maili'
+    mail :to => @user.email, :subject => 'Campus İlan Kayıt Onay E-postası'
     
   end
   
