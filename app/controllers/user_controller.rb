@@ -143,6 +143,42 @@ class UserController < ApplicationController
     end
 
   end
+  
+  def profilephoto
+    
+    if params[:profilephoto]
+      
+        if current_user.image!= nil
+        current_user.image.destroy
+        end
+     
+        @image = Image.new(:imagefile => params[:profilephoto])
+        
+        
+        current_user.image = @image
+      
+         redirect_to URI(request.referer).path
+        
+      
+    elsif params[:deletephoto]
+      
+      if current_user.image!= nil
+      current_user.image.destroy
+       redirect_to URI(request.referer).path
+       
+       else
+         
+         redirect_to URI(request.referer).path
+       
+       end
+       
+       
+    end
+      
+        
+   
+    
+  end
 
   def login
     if current_user!=nil

@@ -183,7 +183,7 @@
 					<a><img class="img-responsive" src="resources/images/asdasd.jpg"  ></a>
 				</div>
 
-				<div id="loginkismi"  class="visible-xs visible-sm ">
+				<div id="loginkismi "  class="visible-xs visible-sm ">
 					<!-- Login Starts Here -->
 					<%= render "loginContainer" %>
 					<!-- Login Ends Here -->
@@ -209,14 +209,16 @@
 
 			<div class="hidden-xs hidden-sm">
 
-				<!-- 		<a  href="javascript:void(0);" onclick="javascript:startTour();"><div class = "alert alert-danger">Sitemizi ilk defa mı kullanıyorsunuz? O zaman Campus İlan tanıtıcımızı deneyin ve Campus İlan'ın arayüzüne hemen adapte olun!! </div></a>
-
-				-->
-
-				<a href="javascript:void(0);" id="startTourBtn"  >
-				<div class = "alert alert-success">
-					Sitemizi ilk defa mı kullanıyorsunuz? O zaman Campus İlan tanıtıcımızı deneyin ve Campus İlan'ın arayüzüne hemen adapte olun!!
-				</div></a>
+			
+	<!-- 		<a  href="javascript:void(0);" onclick="javascript:startTour();"><div class = "alert alert-danger">Sitemizi ilk defa mı kullanıyorsunuz? O zaman Campus İlan tanıtıcımızı deneyin ve Campus İlan'ın arayüzüne hemen adapte olun!! </div></a>
+			
+		-->
+		
+		
+		<div id="ondorduncukisim">
+		<a href="javascript:void(0);" onclick="hopscotch.startTour(tour);" id="startTourBtn "> <div class = "hidden-xs hidden-sm hidden-md alert alert-success">Sitemizi ilk defa mı kullanıyorsunuz? O zaman Campus İlan tanıtıcımızı deneyin ve Campus İlan'ın arayüzüne hemen adapte olun!! </div> </a>
+		</div>
+			
 
 			</div>
 
@@ -225,7 +227,7 @@
 
 				<div class="ustkisim row hidden-md hidden-sm hidden-xs">
 
-					<aside id="ilkkisim"  style="float: left;  line-height: 20%;"
+					<aside id="ikincikisim"  style="float: left;  line-height: 20%;"
 					class="col-lg-3 col-md-3 col-sm-3 hidden-xs ">
 
 						<div  data-step="1" data-intro="Buradan tüm kategori ve fırsatlara erişebilirsiniz!" class="panel panel-primary">
@@ -387,11 +389,11 @@
 
 						</div>
 
-						<div class="row">
+						<div id="dorduncukisim" class="row">
 
 							<div style="margin: 10px; padding-left: 10px; padding-right: 10px;">
 
-								<div data-step="3" data-intro="Buradan acil ilanları kolayca görebilirsiniz!" class="panel panel-danger">
+								<div  class="panel panel-danger">
 
 									<div class="panel-heading">
 										<h3 style="text-align: center;" class="panel-title">Acil
@@ -444,9 +446,9 @@
 
 					</div>
 
-					<div  style="" class="gununfirsatlari col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm">
+					<div  id="ucuncukisim" style="" class="gununfirsatlari col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm">
 
-						<div data-step="2" data-intro="Buradan günün fırsatlarını kolayca görebilirsiniz!" style="height:875px;" class="panel panel-info">
+						<div  style="height:875px;" class="panel panel-info">
 
 							<div  class="panel-heading">
 								<h3 style="text-align: center;" class="panel-title">Günün
@@ -489,7 +491,7 @@
 
 							</div>
 
-						</div>
+						
 
 					</div>
 
@@ -975,7 +977,7 @@
 
 				<div class="hidden-xs" style="margin-bottom: 0px;">
 
-					<div data-step="4" data-intro="Buradan en son eklenen ilanları kolayca görebilirsiniz!" class="panel panel-info">
+					<div id="5.kisim" class="panel panel-info">
 
 						<div class="panel-heading">
 							<h3 style="text-align: center;" class="panel-title">En Son
@@ -1053,7 +1055,7 @@
 
 			<div class="hidden-xs row" style="margin-top: 30px; margin-bottom: 30px;">
 
-				<div data-step="5" data-intro="Buradan en popüler ilanları kolayca görebilirsiniz!" class="" style="border: 1px solid black; margin-left:10px;margin-right:10px; margin-bottom: 0px; padding-left: 10px;padding-bottom:30px; padding-right: 10px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; background: #E6F3FF">
+				<div id="6.kisim" class="" style="border: 1px solid black; margin-left:10px;margin-right:10px; margin-bottom: 0px; padding-left: 10px;padding-bottom:30px; padding-right: 10px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; background: #E6F3FF">
 
 					<h2 style="text-align: center; margin-bottom: 50px;"><u>En Popüler İlanlar</u></h2>
 
@@ -1267,7 +1269,7 @@
 
 				<div style="margin-bottom: 20px;  padding-bottom: 30px;">
 
-					<div data-step="6" data-intro="Buradan en güvenilir satıcılara kolayca ulaşabilirsiniz!" class="panel panel-success">
+					<div id="yedincikisim" class="panel panel-success">
 
 						<div class="panel-heading">
 							<h3 style="text-align: center;" class="panel-title">Kategoriye
@@ -1556,6 +1558,15 @@
 			</div>
 
 			<!-- plugin script importları: -->
+	
+			<script>
+			  if (hopscotch.getState() === "hello-hopscotch:13") {
+          hopscotch.startTour(tour);
+        }
+			
+		</script>
+			
+
 
 			<!-- Tooltip eklentisi-->
 

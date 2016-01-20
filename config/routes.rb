@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   get 'kategoriler/:kategori/:subkategori' => 'advert#kategoriler'  
   get 'firsatlar' => 'advert#firsatlar'
   get 'uye/:username' => 'user#member'
+  post 'profilephoto' => 'user#profilephoto'
   get 'universiteler' => 'index#universiteler'
   post 'vote' => 'advert#vote', defaults: {format: :json}
   post '/uye/hesabisil' => 'user#hesabisil'

@@ -94,6 +94,15 @@
 
 		<link rel="stylesheet" type="text/css"
 		href="/resources/plugins/tooltipplugin/tooltip.css" />
+		
+		
+		<!-- hopscotch -->
+
+		<link rel="stylesheet" type="text/css" href="/resources/plugins/hopscotch/dist/css/hopscotch.css" />
+		
+		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/hopscotch.js"></script>
+		
+		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/siteturu.js"></script>
 
 		<!-- end of plugins  -->
 
@@ -305,7 +314,7 @@
 
 						<%= render "kullanicipaneli"   %>
 
-						<div class="panel panel-danger">
+						<div id ="onuncukisim" class="panel panel-danger">
 							<div class="panel-heading">
 								Üniversiteler
 							</div>
@@ -334,7 +343,7 @@
 
 					</div>
 
-					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9"
+					<div id="onbirincikisim" class="col-lg-9 col-md-9 col-sm-9 col-xs-9"
 					style="padding-left: 20px; padding-right: 20px">
 
 						<div class="row">
@@ -509,6 +518,13 @@
 			</div>
 
 			<!-- pluginler -->
+			
+			<script>
+			  if (hopscotch.getState() === "hello-hopscotch:9") {
+          hopscotch.startTour(tour);
+        }
+			
+		</script>
 
 			<!-- Tooltip eklentisi-->
 
