@@ -109,6 +109,14 @@
 
 		<script type="text/javascript" src="/resources/plugins/jcarousel-0.3.3/examples/responsive/jcarousel.responsive.js"></script>
 
+		<!-- hopscotch -->
+
+		<link rel="stylesheet" type="text/css" href="/resources/plugins/hopscotch/dist/css/hopscotch.css" />
+		
+		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/hopscotch.js"></script>
+		
+		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/siteturu.js"></script>
+
 		<!-- end of plugins  -->
 
 		<style>
@@ -183,7 +191,7 @@
 				});
 			</script>
 
-			<div class="row">
+			<div id="dokuzuncukisim" class="row">
 
 				<div style="z-index:1;" class="btn-group btn-group-justified">
 					<div class="btn-group">
@@ -574,6 +582,19 @@
 		</div>
 
 		<!-- pluginler -->
+		
+		<script>
+			$(".ucuncumenu > ul").slideDown(0);
+			$(".ucuncumenu").addClass("active");
+			
+		</script>
+		
+		<script>
+			  if (hopscotch.getState() === "hello-hopscotch:8") {
+          hopscotch.startTour(tour);
+        }
+        
+       </script>	
 
 		<!-- JCarousel Plugin -->
 

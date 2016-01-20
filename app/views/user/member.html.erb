@@ -148,6 +148,27 @@
 					padding: 10px;
 				}
 			}
+
+			.btn-file {
+				position: relative;
+				overflow: hidden;
+			}
+			.btn-file input[type=file],.resimkaldir {
+				position: absolute;
+				top: 0;
+				right: 0;
+				min-width: 100%;
+				min-height: 100%;
+				font-size: 100px;
+				text-align: right;
+				filter: alpha(opacity=0);
+				opacity: 0;
+				outline: none;
+				background: white;
+				cursor: inherit;
+				display: block;
+			}
+
 		</style>
 
 	</head>
@@ -281,6 +302,30 @@
 												:alt => 'User Pic',
 												:class => 'img-circle img-responsive' %>
 												<% end%>
+												<br>
+												<div class="row">
+													<%= form_tag '/profilephoto', :role => 'form',:multipart => true  do  %>
+													<span style="width:95%;margin-left:10px;"   class="btn-file profilresmi btn btn-info btn-xs">
+														Profil Resmini Değiştir
+														<input type="file" name="profilephoto"  onchange="submit();">
+													</span>
+													
+												
+
+													<% end %>
+												</div>
+												
+												<div style="margin-top:10px;"  class="row">
+													<%= form_tag '/profilephoto', :role => 'form',:multipart => true  do  %>
+													<span style="width:95%;margin-left:10px;" style="margin-left:10px;"  class="btn-file profilresmi btn btn-info btn-xs">
+														Profil Resmini Kaldır
+														<input  class="resimkaldir" name="deletephoto"  onclick="submit();">
+													</span>
+
+													<% end %>
+												</div>
+												
+												
 
 											</div>
 
@@ -367,15 +412,15 @@
 									</div>
 
 								</div>
-								
-								<!-- Tekliflerim Kısmı(Yeni hali)-->
-								
-								<div class="tekliflerim alert alert-danger" style="display:none;">
-												<p>
-													Bu hizmet yakında aktif edilecektir!!
-												</p>
 
-											</div>
+								<!-- Tekliflerim Kısmı(Yeni hali)-->
+
+								<div class="tekliflerim alert alert-danger" style="display:none;">
+									<p>
+										Bu hizmet yakında aktif edilecektir!!
+									</p>
+
+								</div>
 
 								<!--  Favorilerim kısmı -->
 
@@ -491,8 +536,6 @@
 										<div class=" uyepaneli col-xs-12 col-sm-12 col-md-12 col-lg-12  toppad">
 
 											<!-- Eski Tekliflerim kısmı(degiskenpanel içinde ) -->
-
-											
 
 											<!-- 		<div style="height:500px;" class="panelortak tekliflerim method">
 											<div class="row margin-0 list-header hidden-sm hidden-xs">
@@ -858,8 +901,7 @@
 
 						<div class="row">
 
-							<div
-							style="margin: 10px; padding-left: 10px; padding-right: 10px;">
+							<div style="margin: 10px; padding-left: 10px; padding-right: 10px;">
 
 								<div class="panel panel-info">
 
@@ -871,6 +913,8 @@
 									<div class="panel-body">
 
 										<div class="row">
+
+											<% if @gununilanlari!= [] %>
 
 											<% @gununilanlari.each do |advert| %>
 
@@ -896,6 +940,14 @@
 												</div>
 
 											</div>
+
+											<% end %>
+
+											<% else %>
+
+											<p style="margin-left:20px;" >
+												Henüz günün fırsatı bulunmamaktadır!!
+											</p>
 
 											<% end %>
 
@@ -1562,6 +1614,12 @@
 
 				});
 			});
+		</script>
+
+		<script>
+			$(".birincimenu > ul").slideDown(0);
+			$(".birincimenu").addClass("active");
+
 		</script>
 
 	</body>

@@ -94,6 +94,15 @@
 
 		<link rel="stylesheet" type="text/css"
 		href="/resources/plugins/tooltipplugin/tooltip.css" />
+		
+		
+		<!-- hopscotch -->
+
+		<link rel="stylesheet" type="text/css" href="/resources/plugins/hopscotch/dist/css/hopscotch.css" />
+		
+		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/hopscotch.js"></script>
+		
+		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/siteturu.js"></script>
 
 		<!-- end of plugins  -->
 
@@ -160,7 +169,7 @@
 
 			</div>
 
-			<div style="margin-top:-30px;"class="row">
+			<div id="sekizincikisim" style="margin-top:-30px;"class="row">
 
 				<div class="main">
 					<nav id="cbp-hrmenu" class="cbp-hrmenu">
@@ -694,6 +703,19 @@
 		</div>
 
 		<!-- pluginler -->
+		
+		<script>
+			$(".ikincimenu > ul").slideDown(0);
+			$(".ikincimenu").addClass("active");
+			
+		</script>
+		
+		<script>
+			  if (hopscotch.getState() === "hello-hopscotch:7") {
+          hopscotch.startTour(tour);
+        }
+			
+		</script>
 
 		<!-- Tooltip eklentisi-->
 

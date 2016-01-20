@@ -176,7 +176,7 @@ class AdvertController < ApplicationController
 
   def ilanver
 
-    if !current_user
+    if !current_user && current_user.role== 'buyer'
       redirect_to "/girisyap"
     end
 

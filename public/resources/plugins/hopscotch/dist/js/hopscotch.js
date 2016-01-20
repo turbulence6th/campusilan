@@ -592,11 +592,11 @@
 
   HopscotchI18N = {
     stepNums: null,
-    nextBtn: 'Next',
-    prevBtn: 'Back',
-    doneBtn: 'Done',
-    skipBtn: 'Skip',
-    closeTooltip: 'Close'
+    nextBtn: 'İleri',
+    prevBtn: 'Geri',
+    doneBtn: 'Tamamladım',
+    skipBtn: 'Atla',
+    closeTooltip: 'Kapat'
   };
 
   customI18N = {}; // Developer's custom i18n strings goes here.

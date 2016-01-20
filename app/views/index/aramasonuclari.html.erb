@@ -85,6 +85,14 @@
 		<link href="resources/plugins/listgridview/css/style.css"
 
 		<script src="resources/plugins/listgridview/js/script.js"
+		
+		<!-- hopscotch -->
+
+		<link rel="stylesheet" type="text/css" href="/resources/plugins/hopscotch/dist/css/hopscotch.css" />
+		
+		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/hopscotch.js"></script>
+		
+		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/siteturu.js"></script>
 
 		<!-- end of plugins  -->
 
@@ -159,7 +167,7 @@
 
 		} do  %>
 
-		<div  style="z-index: 1;" class = "input-group">
+		<div  id="onucuncukisim" style="z-index: 1;" class = "input-group">
 		<%= text_field_tag :aramakismi,params[:aramakismi],class: "form-control",placeholder: "Arama Yap..."  %>	
 		
 
@@ -173,7 +181,7 @@
 
 		<br>
 
-		<div class="panel panel-success">
+		<div id="onikincikisim" class="panel panel-success">
 		<div class="panel-heading">
 		<h3 class="panel-title">Kategori</h3>
 		</div>
@@ -796,6 +804,13 @@
 		</div>
 
 		<!-- pluginler -->
+		
+		<script>
+			  if (hopscotch.getState() === "hello-hopscotch:11") {
+          hopscotch.startTour(tour);
+        }
+			
+		</script>
 
 		<!--  fixed header -->
 
