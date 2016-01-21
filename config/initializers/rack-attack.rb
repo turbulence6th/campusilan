@@ -6,6 +6,16 @@ class Rack::Attack
     end
   end
   
+  Rack::Attack.throttle('register/ip', :limit => 5, :period => 120.seconds) do |req|
+    if req.path == '/register' && req.post?
+      req.ip
+    end
+  end
+  
+  Rack::Attack.throttle('req/ip', :limit => 5, :period => 1.seconds) do |req|
+    req.ip
+  end
+  
   Rack::Attack.throttled_response = lambda do |env|
     # name and other data about the matched throttle
     body = [

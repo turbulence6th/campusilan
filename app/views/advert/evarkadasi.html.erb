@@ -298,11 +298,14 @@
 
 												<div class = "panel-body">
 
+													<% if current_user!= nil %>
+
 													<h4>Kullanıcı Güven Oyu</h4>
 													<br>
 
 													<input id="input-21b" value="<%= @vote %>" type="number" class="rating" min=0 max=5 step=1 data-size="xs">
-
+													
+													<% end %>
 													<div class="review">
 
 														<a href="#"> 3 Yorum </a>

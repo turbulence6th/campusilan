@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'ilanguncelle/:advert_name' => 'advert#ilanguncelle'
   post 'ilanguncelle/:advert_type' => 'advert#ilanguncellePost'
   post 'deleteimage' => 'advert#deleteimage', defaults: {format: :json}
+  post 'imagetotop' => 'advert#imagetotop', defaults: {format: :json}
   post 'newadvert/:advert_type' => 'advert#newAdvertPost'
   get 'satis-alis' => 'index#satis_alis'
   get 'satis-alis/:satislarim' => 'index#satis_alis'

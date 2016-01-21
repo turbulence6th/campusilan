@@ -67,17 +67,17 @@
   border-bottom: none;
 }
 #cssmenu > ul > li.active > a {
-  background: #97be10;
-  background: -moz-linear-gradient(#97be10 0%, #79980d 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #97be10), color-stop(100%, #79980d));
-  background: -webkit-linear-gradient(#97be10 0%, #79980d 100%);
-  background: linear-gradient(#97be10 0%, #79980d 100%);
+  background: #42BBE3;
+  background: -moz-linear-gradient(#42BBE3 0%, #42BBE3 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #42BBE3), color-stop(100%, #42BBE3));
+  background: -webkit-linear-gradient(#42BBE3 0%, #42BBE3 100%);
+  background: linear-gradient(#42BBE3 0%, #42BBE3 100%);
   color: #fff;
   text-shadow: 0 1px 1px #000;
-  border: 1px solid #79980d;
+  border: 1px solid #42BBE3;
 }
 #cssmenu > ul > li.active > a span {
-  border: 1px solid #97be10;
+  border: 1px solid #42BBE3;
 }
 #cssmenu > ul > li.has-sub > a span {
   background: url(images/icon_plus.png) 98% center no-repeat;
@@ -100,5 +100,5 @@
   font-weight: bold;
 }
 #cssmenu ul ul a:hover {
-  color: #79980d;
+  color: #42BBE3;
 }

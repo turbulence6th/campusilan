@@ -183,7 +183,7 @@
 					<a><img class="img-responsive" src="resources/images/asdasd.jpg"  ></a>
 				</div>
 
-				<div id="loginkismi "  class="visible-xs visible-sm ">
+				<div id="loginkismi "  class="visible-xs ">
 					<!-- Login Starts Here -->
 					<%= render "loginContainer" %>
 					<!-- Login Ends Here -->
@@ -1627,6 +1627,12 @@
 			<%= render "headerfixedjs" %>
 
 			<!-- Dropdown login box -->
+			
+			<% if params[:yeniilan] %>
+				<script>
+					alert("İlanınız Başarıyla Alındı");
+				</script>
+			<% end %>
 
 	</body>
 

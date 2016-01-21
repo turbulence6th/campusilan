@@ -130,6 +130,11 @@
 		<!-- end of plugins  -->
 
 		<style>
+		
+		body {
+
+				background-color: #F0F7F7;
+			}
 			#cssmenu {
 
 				width: 100%;
@@ -308,6 +313,10 @@
 													<% end %>
 												</div>
 
+												
+												<% if current_user.image %>
+
+
 												<div style="margin-top:10px;"  class="row">
 													<%= form_tag '/profilephoto', :role => 'form',:multipart => true  do  %>
 													<span style="width:95%;margin-left:10px;" style="margin-left:10px;"  class="btn-file profilresmi btn btn-info btn-xs"> Profil Resmini Kaldır
@@ -316,6 +325,11 @@
 
 													<% end %>
 												</div>
+
+												<% end %>
+												
+												
+
 
 											</div>
 
@@ -648,7 +662,10 @@
 
 													<div class="thumbnail">
 														<a  href="<%= advert.href %>">
+
 														<%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
+
+													
 
 													</div>
 

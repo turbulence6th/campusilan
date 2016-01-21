@@ -189,7 +189,7 @@ class AdvertController < ApplicationController
 
   def ilanver
 
-    if !current_user && current_user.role== 'buyer'
+    if !current_user
       redirect_to "/girisyap"
     end
 
@@ -199,7 +199,7 @@ class AdvertController < ApplicationController
 
     advert_name = params[:advert_name]
     id = advert_name.split('-')[-1]
-    @advert = Advert.find_by(:id => id, :verified => true)
+    @advert = Advert.available.find_by(:id => id, :verified => true)
 
     if !@advert
 
@@ -233,7 +233,7 @@ class AdvertController < ApplicationController
       advertableparam = params.require(:advert).require(:homemate).permit(
       :state, :city, :demand, :sleep, :friend, :smoke, :department, :music)
 
-    elsif param[:advert_type] == 'privatelesson'
+    elsif params[:advert_type] == 'privatelesson'
 
       advertableparam = params.require(:advert).require(:privatelesson).permit(
       :kind, :lecture, :state, :city, :location)
@@ -244,7 +244,7 @@ class AdvertController < ApplicationController
     id = params.require(:advert).permit(:id)[:id]
 
     advert = Advert.find(id)
-    if !current_user || (advert.user!=current_user && current_user.role!='admin') || advert.advertable_type!='Secondhand'
+    if !current_user || (advert.user!=current_user && current_user.role!='admin') 
       raise ActionController::RoutingError.new('Not Found')
     else
       advert.update_attributes(advertParam)
@@ -294,6 +294,40 @@ class AdvertController < ApplicationController
 
   end
   
+  def imagetotop
+    
+    advert = Advert.find(params[:advert])
+    
+    image = Image.find(params[:image])
+    
+    
+    if !current_user || (advert.user!=current_user && current_user.role!='admin')
+
+      respond_to do |format|
+        msg = {:check => false}
+        format.json { render :json => msg}
+        
+
+      end
+    
+    elsif advert.images.include? image
+      
+      advert.image = image
+      
+      advert.save
+      
+       respond_to do |format|
+        msg = {:check => true}
+        format.json { render :json => msg}
+        
+
+      end
+      
+      
+    end
+    
+  end
+  
   def newAdvertPost
     
     if params[:advert_type] == 'secondhand'
@@ -339,10 +373,12 @@ class AdvertController < ApplicationController
     end
 
     if @advert.save
-    # send mail
+      redirect_to('/?yeniilan=1')
+    else
+      raise ActionController::RoutingError.new('InternalError')
     end
 
-    redirect_to "/"
+    
   end
 
 
@@ -435,19 +471,19 @@ class AdvertController < ApplicationController
     if params[:acililanlar]!=nil
       @title="Acil İlanlar"
       @active = 0
-      @adverts = acililanlar.paginate(:page => params[:page], :per_page => 18)
+      @adverts = acililanlar
     elsif params[:gununfirsatlari]!=nil
       @title="Günün Fırsatları"
       @active = 1
-      @adverts = gununilanlari.paginate(:page => params[:page], :per_page => 18)
+      @adverts = gununilanlari
     elsif params[:ensonilanlar]!=nil
       @title="En Son İlanlar"
       @active = 2
-      @adverts = ensonilanlar.paginate(:page => params[:page], :per_page => 18)
+      @adverts = ensonilanlar
     elsif params[:enpopulerilanlar]!=nil
       @title="En Popüler İlanlar"
       @active = 3
-      @adverts = mostpopular.paginate(:page => params[:page], :per_page => 18)
+      @adverts = mostpopular
     elsif params[:fiyatidusenler]!=nil
       @title="Fiyatı Düşenler"
       @active = 4
@@ -455,13 +491,13 @@ class AdvertController < ApplicationController
     elsif params[:enguvenilirsaticilar]!=nil
       @title="En Güvenilir Satıcılar"
       @active = 5
-      @users = enguvenilir.paginate(:page => params[:page], :per_page => 18)
+      @users = enguvenilir
       @adverts = []
     elsif params[:kendiuniversitemdekiler]!=nil
       @title="Kendi Üniversitemdeki İlanlar"
       @active = 6
       if current_user
-        @adverts = kendiuniversitem.paginate(:page => params[:page], :per_page => 18)
+        @adverts = kendiuniversitem
       else
         @advert = []
       end
@@ -469,8 +505,10 @@ class AdvertController < ApplicationController
     else
       @title="Acil İlanlar"
       @active = 0
-      @adverts = acililanlar.paginate(:page => params[:page], :per_page => 18)
+      @adverts = acililanlar
     end
+    
+    @adverts = @adverts.paginate(:page => params[:page], :per_page => 18)
 
     @bizimsectiklerimiz = bizimsectiklerimiz.limit(10)
 
