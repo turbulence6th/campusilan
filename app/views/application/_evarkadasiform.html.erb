@@ -1,0 +1,270 @@
+<% if local[:mode] == 0 %>
+<% style = "display:none" %>
+<% advertable = "advertable" %>
+<% elsif local[:mode] == 1 %>
+<% style = "" %>
+<% advertable = "homemate" %>
+<% end %>
+
+<%= form_for local[:advert], :url => local[:url] , :method => :post , :html => {
+:class => 'form-basic ikinciel' , :id => 'evarkadasiform',
+:style => style,
+:multipart => true,
+:onsubmit => 'return evarkadasisubmit();'
+} do |t| %>
+
+<%= t.fields_for local[:advertable] do |field| %>
+
+<% if local[:mode] == 1%>
+<%= t.hidden_field :id %>
+<% end %>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">İlan Adı</label>
+
+	<div class = "col-sm-10">
+		<%= t.text_field :name, class:"form-control", :onkeyup => 'evarkadasiilanadiVerify()' %>
+	</div>
+</div>
+
+<div style="display:none;" class = 'evarkadasiAlert evarkadasiNameAlert col-xs-12 label label-danger form-group'>
+	Lüften İlan Adı Giriniz
+</div>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">Aylık Kira</label>
+
+	<div class = "col-sm-10">
+		<%= t.text_field :price, class:"form-control", :onkeyup => 'evarkadasifiyatVerify()' %>
+	</div>
+</div>
+
+<div style="display:none;" class = 'evarkadasiAlert evarkadasiPriceAlert col-xs-12 label label-danger form-group'>
+	Geçersiz Fiyat Değeri
+</div>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">Semt</label>
+
+	<div class = "col-sm-10">
+		<%= field.text_field :state, class:"form-control", :onkeyup => 'evarkadasisemtVerify()' %>
+	</div>
+</div>
+
+<div style="display:none;" class = 'evarkadasiAlert evarkadasiStateAlert col-xs-12 label label-danger form-group'>
+	Geçersiz Semt Adı
+</div>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">Şehir</label>
+
+	<div class = "col-sm-10">
+		<%= field.text_field :city, class:"form-control", :onkeyup => 'evarkadasisehirVerify()' %>
+	</div>
+</div>
+
+<div style="display:none;" class = 'evarkadasiAlert evarkadasiCityAlert col-xs-12 label label-danger form-group'>
+	Geçersiz Şehir Adı
+</div>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">Aranan</label>
+
+	<div class = "col-sm-10">
+		<%= field.select :demand, [['Erkek', 'male'], ['Kadın', 'female'], ['Hepsi', 'both']],{}, {class:"form-control"}  %>
+	</div>
+</div>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">Genelde gece 12'den sonra uyur musun?</label>
+
+	<div class = "col-sm-10">
+		<%= field.select :sleep, [['Evet', 'evet1'], ['Hayır', 'hayir1'], ['Değişken', 'degisken1']],{}, {class:"form-control"}  %>
+	</div>
+</div>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">Eve arkadaşlarını getiriyor musun?</label>
+
+	<div class = "col-sm-10">
+		<%= field.select :friend, [['Evet', 'evet2'], ['Hayır', 'hayir2'], ['Değişken', 'degisken2']],{}, {class:"form-control"}  %>
+	</div>
+</div>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">Sigara içiyor musun?</label>
+
+	<div class = "col-sm-10">
+		<%= field.select :smoke, [['Evet', 'evet3'], ['Hayır', 'hayir3'], ['Arada', 'arada3']],{}, {class:"form-control"}  %>
+	</div>
+</div>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">Bölümün?</label>
+
+	<div class = "col-sm-10">
+		<%= field.select :department, [['Mühendislik', 'muhendislik'], ['Egitim Bilimleri', 'egitim'], ['Tıp', 'tip'],['Siyasal Bilgiler', 'siyasal'],['Diğer', 'diger'] ],{}, {class:"form-control"}  %>
+	</div>
+</div>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">Sesli Müzik vs. dinler misin?</label>
+
+	<div class = "col-sm-10">
+		<%= field.select :music, [['Evet', 'evet4'], ['Hayır', 'hayir4'], ['Arada', 'arada4']],{}, {class:"form-control"}  %>
+	</div>
+</div>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">Açıklama</label>
+
+	<div class = "col-sm-10">
+		<%= t.text_area :explication, class:"form-control",rows: "5", :onkeyup => 'evarkadasiaciklamaVerify()' %>
+	</div>
+</div>
+
+<div style="display:none;" class = 'evarkadasiAlert evarkadasiExplicationAlert col-xs-12 label label-danger form-group'>
+	Lüften Açıklama Giriniz
+</div>
+
+<br/>
+
+<div class="row">
+	<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image'%>
+</div>
+
+<% if local[:mode] == 0 %>
+<div class = "row form-group">
+	<div class = "col-sm-offset-2 col-sm-10">
+		<div class = "checkbox">
+			<label>
+				<input type = "checkbox" id="kullanim" value="true">
+				Kullanım koşullarını kabul ediyorum</label>
+		</div>
+	</div>
+</div>
+<div class = "row form-group">
+	<div class = "col-sm-offset-2 col-sm-10">
+		<%= t.submit 'İlan Ver',class:"btn btn-default" %>
+	</div>
+</div>
+<% elsif local[:mode] == 1 %>
+<% @images.each do |image|%>
+
+<div class="image-<%= image.id %>">
+
+	<%= image_tag image.imagefile(:small) %>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+	<a  style="cursor: pointer;" onclick="resimsil(<%= @advert.id %>,<%= image.id %>);" ><span style="font-size:20px;"class="glyphicon glyphicon-trash"></span></a>
+	<br>
+	<br>
+
+</div>
+
+<% end %>
+<div class = "row form-group">
+	<div class = "col-sm-offset-2 col-sm-10">
+		<%= t.submit 'İlanı Güncelle',class:"btn btn-default" %>
+	</div>
+</div>
+<%end%>
+
+<% end %>
+<% end %>
+
+<script>
+	function evarkadasiilanadiVerify() {
+var form = document.getElementById("evarkadasiform");
+var advertname = form.elements['advert_name'].value;
+var result = false;
+
+if (!/\S/.test(advertname)) {
+$('.evarkadasiNameAlert').show();
+} else {
+$('.evarkadasiNameAlert').hide();
+result = true;
+}
+return result;
+
+}
+
+function evarkadasifiyatVerify() {
+var form = document.getElementById("evarkadasiform");
+var price = form.elements['advert_price'].value;
+var result = false;
+
+var priceRegexp = new RegExp('^[0-9]+$');
+var check = priceRegexp.test(price);
+
+if (!check) {
+$('.evarkadasiPriceAlert').show();
+} else {
+$('.evarkadasiPriceAlert').hide();
+result = true;
+}
+return result;
+}
+
+function evarkadasisemtVerify() {
+var form = document.getElementById("evarkadasiform");
+var state = form.elements['advert_<%= advertable %>
+	_state'].value;
+	var result = false;
+
+	if (!/^[a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}$/.test(state)) {
+	$('.evarkadasiStateAlert').show();
+	} else {
+	$('.evarkadasiStateAlert').hide();
+	result = true;
+	}
+	return result;
+
+	}
+
+	function evarkadasisehirVerify() {
+	var form = document.getElementById("evarkadasiform");
+	var city = form.elements['advert_
+<%= advertable %>
+	_city'].value;
+	var result = false;
+
+	if (!/^[a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}$/.test(city)) {
+	$('.evarkadasiCityAlert').show();
+	} else {
+	$('.evarkadasiCityAlert').hide();
+	result = true;
+	}
+	return result;
+
+	}
+
+	function evarkadasiaciklamaVerify() {
+	var form = document.getElementById("evarkadasiform");
+	var explication = form.elements['advert_explication'].value;
+	var result = false;
+
+	if (!/\S/.test(explication)) {
+	$('.evarkadasiExplicationAlert').show();
+	} else {
+	$('.evarkadasiExplicationAlert').hide();
+	result = true;
+	}
+	return result;
+	}
+
+	function evarkadasisubmit() {
+
+	var ilanadi = evarkadasiilanadiVerify();
+	var fiyat = evarkadasifiyatVerify();
+	var semt = evarkadasisemtVerify();
+	var sehir = evarkadasisehirVerify();
+	var aciklama = evarkadasiaciklamaVerify();
+
+<% if local[:mode] == 0 %>
+	var kullanim = $("#ikincielform #kullanim").is(":checked");
+	return ilanadi && fiyat && marka && aciklama && kullanim;
+<% elsif local[:mode] == 1 %>
+	return ilanadi && fiyat && marka && aciklama;
+<% end %>}</script>

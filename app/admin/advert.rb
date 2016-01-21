@@ -1,7 +1,7 @@
 ActiveAdmin.register Advert do
 
   permit_params :user_id, :advertable_id, :advertable_type, :name, :price, :explication,
-    :active, :verified, :urgent, :opportunity
+    :active, :verified, :urgent, :opportunity, :ours
 
   form do |f|
     inputs "Advert" do

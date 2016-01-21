@@ -313,6 +313,7 @@
 													<% end %>
 												</div>
 												
+												<% if current_user.image %>
 												<div style="margin-top:10px;"  class="row">
 													<%= form_tag '/profilephoto', :role => 'form',:multipart => true  do  %>
 													<span style="width:95%;margin-left:10px;" style="margin-left:10px;"  class="btn-file profilresmi btn btn-info btn-xs">
@@ -322,6 +323,7 @@
 
 													<% end %>
 												</div>
+												<% end %>
 												
 												
 
@@ -661,7 +663,7 @@
 												<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
 
 													<div class="thumbnail">
-														<a  href="<%= advert.href %>"> <
+														<a  href="<%= advert.href %>">
 														<%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %>
 														</a>
 
