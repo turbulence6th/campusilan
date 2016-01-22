@@ -679,9 +679,32 @@
 		<% end %>
 		
 		
+		<% if params[:kategori] == 'ikinciel'%>
+		
+		<script>
+			$(".formicerigi").html($(".ikincieldiger").html());
+			
+		</script>
+		
+		<% elsif params[:kategori] =='evarkadasi' %>
+		
+		<script>
+			$(".formicerigi").html($(".evarkadasi").html());
+			
+		</script>
+		
+		
+		<% elsif params[:kategori] =='ozelders' %>
+		
+		<script>
+			$(".formicerigi").html($(".ozelders").html());
+			
+		</script>
 		
 		
 		
+		
+		<% end %>
 		
 		
 		
@@ -705,17 +728,13 @@
 
 				}
 				
-				else if(value == "kategorisec") {
+				else if(value == "hepsi") {
 					
 					$(".formicerigi").html($(".formicerigiyedek").html());
 					
 				}
 				
-				else if (value == "dersnotlari") {
-
-					$(".formicerigi").html($(".ikincieldersnotu").html());
-
-				}
+				
 				
 				else if (value == "ozelders") {
 
@@ -748,6 +767,10 @@
 				} else if (value == "ozelders") {
 					$(".renk").hide();
 					$(".marka").hide();
+				}
+				else if (value == "hepsi") {
+					$(".formicerigi").html($(".formicerigiyedek").html());
+
 				}
 			}
 
@@ -797,12 +820,17 @@
 
 		</div>
 		
+		
+		
 		<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
 
 						<div style="clear:both;"  class="apple_pagination">
 							<%= will_paginate @adverts, :container => false,
 							:previous_label => 'Önceki', :next_label => 'Sonraki' %>
 						</div>
+						
+						
+				
 
 		</div>
 		
@@ -814,6 +842,8 @@
 		</div>
 
 		</div>
+		
+		<%= render 'paginationkaldir' %>
 
 		<!-- pluginler -->
 		

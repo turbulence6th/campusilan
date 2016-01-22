@@ -294,6 +294,40 @@ class AdvertController < ApplicationController
 
   end
   
+  def imagetotop
+    
+    advert = Advert.find(params[:advert])
+    
+    image = Image.find(params[:image])
+    
+    
+    if !current_user || (advert.user!=current_user && current_user.role!='admin')
+
+      respond_to do |format|
+        msg = {:check => false}
+        format.json { render :json => msg}
+        
+
+      end
+    
+    elsif advert.images.include? image
+      
+      advert.image = image
+      
+      advert.save
+      
+       respond_to do |format|
+        msg = {:check => true}
+        format.json { render :json => msg}
+        
+
+      end
+      
+      
+    end
+    
+  end
+  
   def newAdvertPost
     
     if params[:advert_type] == 'secondhand'
@@ -437,7 +471,7 @@ class AdvertController < ApplicationController
     if params[:acililanlar]!=nil
       @title="Acil İlanlar"
       @active = 0
-      @adverts = acililanlarx
+      @adverts = acililanlar
     elsif params[:gununfirsatlari]!=nil
       @title="Günün Fırsatları"
       @active = 1

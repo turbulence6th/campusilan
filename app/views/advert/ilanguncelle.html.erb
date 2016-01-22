@@ -92,6 +92,11 @@
 
 		<script type="text/javascript" src="/resources/plugins/imageupload/js/jquery.filer.js?v=1.0.5"></script>
 		<script type="text/javascript" src="/resources/plugins/imageupload/js/custom.js?v=1.0.5"></script>
+		
+		<!-- Tooltip eklentisi-->
+
+		<link rel="stylesheet" type="text/css"
+		href="/resources/plugins/tooltipplugin/tooltip.css" />
 
 		<!-- end of plugins  -->
 
@@ -220,6 +225,59 @@
 		</div>
 		<!-- Resim Silme-->
 		<script>
+		
+		
+		
+			function resimuste(a,b) {
+				
+				if (confirm("Resmi birinci sıraya taşımak istediğinize emin misiniz?") == true) {
+					
+					
+					$.ajax({
+						
+						url: '/imagetotop',
+						data: {
+							authenticity_token : window._token,
+							advert : a,
+							image : b
+							
+							
+						},
+						
+						error : function () {
+							alert('error');
+							
+						},
+						
+						dataType: 'json',
+						success: function(data) {
+							
+							if (data.check) {
+								
+								alert("İlan resmi başarıyla ana resim olarak belirlendi.");
+								
+							}
+							
+							
+						},
+						type : 'POST'
+						
+			
+						
+					});
+					
+					
+					
+					
+				}	
+				
+				
+				
+				
+			}
+		
+		
+		
 			function resimsil(k,l) {
 				
 				if (confirm("Silmek istediğinize emin misiniz?") == true) {
@@ -365,6 +423,16 @@ filesSizeAll: "Files you've choosed are too large! Please upload files up to {{f
 		</script>
 
 		<!-- pluginler -->
+		
+		<!-- Tooltip eklentisi-->
+
+			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+			<script>
+				var $tooltip = jQuery.noConflict();
+			</script>
+
+			<script type="text/javascript" src="/resources/plugins/tooltipplugin/tooltip.js"></script>
 
 		<!--  fixed header -->
 

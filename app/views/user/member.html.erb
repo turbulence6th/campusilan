@@ -130,6 +130,11 @@
 		<!-- end of plugins  -->
 
 		<style>
+		
+		body {
+
+				background-color: #F0F7F7;
+			}
 			#cssmenu {
 
 				width: 100%;
@@ -153,7 +158,7 @@
 				position: relative;
 				overflow: hidden;
 			}
-			.btn-file input[type=file],.resimkaldir {
+			.btn-file input[type=file], .resimkaldir {
 				position: absolute;
 				top: 0;
 				right: 0;
@@ -238,9 +243,7 @@
 										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
 
 											<div class="thumbnail">
-												<a title='<%= advert.name %>' href="<%= advert.href %>"> 
-												<%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %>
-												</a>
+												<a title='<%= advert.name %>' href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
 
 											</div>
 
@@ -303,29 +306,30 @@
 												<br>
 												<div class="row">
 													<%= form_tag '/profilephoto', :role => 'form',:multipart => true  do  %>
-													<span style="width:95%;margin-left:10px;"   class="btn-file profilresmi btn btn-info btn-xs">
-														Profil Resmini Değiştir
+													<span style="width:95%;margin-left:10px;"   class="btn-file profilresmi btn btn-info btn-xs"> Profil Resmini Değiştir
 														<input type="file" name="profilephoto"  onchange="submit();">
 													</span>
-													
-												
 
 													<% end %>
 												</div>
+
 												
 												<% if current_user.image %>
+
+
 												<div style="margin-top:10px;"  class="row">
 													<%= form_tag '/profilephoto', :role => 'form',:multipart => true  do  %>
-													<span style="width:95%;margin-left:10px;" style="margin-left:10px;"  class="btn-file profilresmi btn btn-info btn-xs">
-														Profil Resmini Kaldır
+													<span style="width:95%;margin-left:10px;" style="margin-left:10px;"  class="btn-file profilresmi btn btn-info btn-xs"> Profil Resmini Kaldır
 														<input  class="resimkaldir" name="deletephoto"  onclick="submit();">
 													</span>
 
 													<% end %>
 												</div>
+
 												<% end %>
 												
 												
+
 
 											</div>
 
@@ -441,9 +445,7 @@
 											<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
 
 												<div class="thumbnail">
-													<a title="<%= advert.name %>" href="<%= advert.href %>"> 
-													<%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %>
-													</a>
+													<a title="<%= advert.name %>" href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
 												</div>
 
 												<div class="caption">
@@ -502,9 +504,7 @@
 											<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
 
 												<div class="thumbnail">
-													<a title="<%= advert.name %>" href="<%= advert.href %>">
-													<%= image_tag advert.pimage.imagefile(:small) %>
-													</a>
+													<a title="<%= advert.name %>" href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %> </a>
 												</div>
 
 												<div class="caption">
@@ -521,7 +521,7 @@
 											<% end %>
 
 										</div>
-										
+
 										<% if @viewedadverts= [] %>
 										<br>
 										<div style="text-align:center;">
@@ -532,7 +532,7 @@
 										</div>
 
 										<% end %>
-										
+
 									</div>
 
 								</div>
@@ -542,8 +542,6 @@
 									<div class="row">
 
 										<div class=" uyepaneli col-xs-12 col-sm-12 col-md-12 col-lg-12  toppad">
-
-
 
 											<!--  Hesap Ayarları -->
 
@@ -664,8 +662,10 @@
 
 													<div class="thumbnail">
 														<a  href="<%= advert.href %>">
-														<%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %>
-														</a>
+
+														<%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
+
+													
 
 													</div>
 
@@ -737,9 +737,7 @@
 											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
 
 												<div class="thumbnail">
-													<a title='<%= advert.name %>' href="<%= advert.href %>"> 
-													<%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %>
-													</a>
+													<a title='<%= advert.name %>' href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
 
 												</div>
 
@@ -796,15 +794,15 @@
 								<div class="col-md-3 col-lg-3 " align="center">
 									<% if !current_user.image && current_user.gender == "male" %>
 									<img src="/resources/images/erkek.png"
-									class='img-circle img-responsive' width="50%" height="50%"
+									class='img-circle img-responsive' 
 									/>
 									<% elsif !current_user.image && current_user.gender == "female" %>
-									<img src="/resources/images/kadin.png" width="50%" height="50%"
+									<img src="/resources/images/kadin.png" 
 									class='img-circle img-responsive'
 									/>
 
 									<% elsif !current_user.image && current_user.gender == "other" %>
-									<img src="/resources/images/diger.png" width="50%" height="50%"
+									<img src="/resources/images/diger.png" 
 									class='img-circle img-responsive'
 									/>
 
@@ -815,7 +813,6 @@
 									<% end%>
 								</div>
 
-								
 								<div class=" col-md-9 col-lg-9 ">
 									<table style="table-layout:fixed" class="table table-user-information">
 										<tbody>
@@ -875,6 +872,49 @@
 									<a href="/ilanver" class="col-lg-5 btn btn-primary">İlan Ver</a>
 									<a href="/ilanlarim" style="margin-left: 20px;"
 									class="col-lg-5 btn btn-primary">Önceki İlanlarım</a>
+									
+									
+										<div class="row">
+										
+										<a  style="margin-left: 20px;" class="hidden-xs hidden-sm col-lg-5 btn-file profilresmi btn btn-primary "> Profil Resmini Değiştir
+											<%= form_tag '/profilephoto', :role => 'form',:multipart => true  do  %>
+											<input type="file" name="profilephoto"  onchange="submit();">
+											<% end %>
+										</a>
+
+										<a  style="margin-left: 20px;" class="hidden-xs hidden-sm col-lg-5 btn-file profilresmi btn btn-primary "> Profil Resmini Kaldır
+											<%= form_tag '/profilephoto', :role => 'form',:multipart => true  do  %>
+											<input  class="resimkaldir" name="deletephoto"  onclick="submit();">
+											<% end %>
+										</a>
+										
+										</div>
+										
+										<div style="text-align:center;margin-top:20px;" class="row">
+											
+											<a  style="width:90%;" class=" col-lg-5 btn-file profilresmi btn btn-primary "> Profil Resmini Değiştir
+											<%= form_tag '/profilephoto', :role => 'form',:multipart => true  do  %>
+											<input type="file" name="profilephoto"  onchange="submit();">
+											<% end %>
+										</a>
+										
+										</div>
+										
+										<div style="text-align:center;margin-top:20px;" class="row">
+
+										<a  style="width:90%;"  class=" col-lg-5 btn-file profilresmi btn btn-primary "> Profil Resmini Kaldır
+											<%= form_tag '/profilephoto', :role => 'form',:multipart => true  do  %>
+											<input  class="resimkaldir" name="deletephoto"  onclick="submit();">
+											<% end %>
+										</a>
+											
+											
+										</div>
+										
+										
+
+									
+
 								</div>
 							</div>
 						</div>
@@ -917,9 +957,7 @@
 								<div class=" col-xs-6 col-md-4 col-sm-6">
 
 									<div class="thumbnail">
-										<a title="<%= advert.name %>" href="<%= advert.href %>"> 
-										<%= image_tag advert.pimage.imagefile(:small) %>
-										</a>
+										<a title="<%= advert.name %>" href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %> </a>
 									</div>
 
 									<div class="caption">
@@ -971,9 +1009,7 @@
 								<div class="col-xs-6 col-md-4 col-sm-6">
 
 									<div class="thumbnail">
-										<a title="<%= advert.name %>" href="<%= advert.href %>"> 
-										<%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %>
-										</a>
+										<a title="<%= advert.name %>" href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
 									</div>
 
 									<div class="caption">
@@ -1022,8 +1058,6 @@
 						</p>
 
 					</div>
-
-					
 
 					<!--  Hesap Ayarları -->
 

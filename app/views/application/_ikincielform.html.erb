@@ -106,6 +106,8 @@
 	<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image' %>
 </div>
 
+
+<br>
 <% if local[:mode] == 0 %>
 <div class = "row form-group">
 	<div class = "col-sm-offset-2 col-sm-10">
@@ -122,17 +124,59 @@
 	</div>
 </div>
 <% elsif local[:mode] == 1 %>
+
+<div class = "hidden-xs hidden-sm alert alert-info">İlanınızın ana resmini(en başta gözükecek resim) resimlerin yanındaki yukarı ok butonuna tıklayarak belirleyebilirsiniz.</div>
+
+<div class = "hidden-xs hidden-sm alert alert-info">Silmek istediğiniz ilan resminin yanındaki çöp butonuna tıklayarak ilanın resmini kaldırabilirsiniz. </div>
+
+<div class = "visible-xs visible-sm alert alert-info">İlanınızın ana resmini(en başta gözükecek resim) resimlerin altındaki yukarı ok butonuna tıklayarak belirleyebilirsiniz.</div>
+
+<div class = "visible-xs visible-sm alert alert-info">Silmek istediğiniz ilan resminin altındaki çöp butonuna tıklayarak ilanın resmini kaldırabilirsiniz. </div>
+
+
 <% @images.each do |image|%>
 
-<div class="image-<%= image.id %>">
+<div class = "visible-xs visible-sm panel panel-default">
+   <div class = "panel-body">
+     
+     
+     <div class="image-<%= image.id %>">
 
+	<%= image_tag image.imagefile(:small),width:"175px;",height:"175px;" %>
+	
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	
+	<br>
+	<a  style="cursor: pointer;"   onclick="resimuste(<%= @advert.id %>,<%= image.id %>);" ><span title="Resmi birinci olarak seç" style="font-size:20px;"class="masterTooltip glyphicon glyphicon-triangle-top"></span></a>
+	&nbsp;
+	<a  style="cursor: pointer;" onclick="resimsil(<%= @advert.id %>,<%= image.id %>);" ><span title="Resmi sil" style="font-size:20px;"class="masterTooltip glyphicon glyphicon-trash"></span></a>
+	<br>
+	<br>
+
+</div>
+     
+     
+     
+   </div>
+</div>
+
+<div class="hidden-xs hidden-sm panel panel-default image-<%= image.id %>">
+
+	<div class = "panel-body">
+		
 	<%= image_tag image.imagefile(:small) %>
 
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-	<a  style="cursor: pointer;" onclick="resimsil(<%= @advert.id %>,<%= image.id %>);" ><span style="font-size:20px;"class="glyphicon glyphicon-trash"></span></a>
+	
+	<br class="visible-xs visible-sm">
+	<a  style="cursor: pointer;"   onclick="resimuste(<%= @advert.id %>,<%= image.id %>);" ><span title="Resmi birinci olarak seç" style="font-size:20px;"class="masterTooltip glyphicon glyphicon-triangle-top"></span></a>
+	&nbsp;
+	<a  style="cursor: pointer;" onclick="resimsil(<%= @advert.id %>,<%= image.id %>);" ><span title="Resmi sil" style="font-size:20px;"class="masterTooltip glyphicon glyphicon-trash"></span></a>
 	<br>
 	<br>
+	
+	</div>
 
 </div>
 
@@ -182,8 +226,7 @@ return result;
 
 function ikincielmarkaVerify() {
 var form = document.getElementById("ikincielform");
-var brand = form.elements['advert_<%= advertable %>
-	_brand'].value;
+var brand = form.elements['advert_<%= advertable %>_brand'].value;
 	var result = false;
 
 	if (!/\S/.test(brand)) {

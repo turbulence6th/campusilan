@@ -109,12 +109,11 @@
 
 		<link rel="stylesheet" href="/resources/plugins/bootstrap-star-rating-master/css/star-rating.css" media="all" rel="stylesheet" type="text/css"/>
 
-		
 		<!-- Tooltip eklentisi-->
 
 		<link rel="stylesheet" type="text/css"
 		href="/resources/plugins/tooltipplugin/tooltip.css" />
-		
+
 		<!-- end of plugins  -->
 
 		<style>
@@ -225,7 +224,6 @@
 
 									<br class="visible-xs visible-sm ">
 									<h1><%= @advert.name %></h1>
-									
 
 									<div class="visible-xs visible-sm col-md-6">
 
@@ -252,9 +250,9 @@
 											<a class="col-xs-6 col-sm-6" href="<%= image_path image.imagefile(:original) %>" data-standard="<%= image_path image.imagefile(:original) %>"> <img width="100" height="100" src="<%= image_path image.imagefile(:original)  %>" alt="" class="img-rounded" /> </a>
 											<% end%>
 										</div>
-										
+
 										<% end %>
-										
+
 										<% if @images.count>4 %>
 
 										<div style="margin-top:20px; " class="row">
@@ -269,8 +267,6 @@
 
 										<br>
 										<br>
-
-										
 
 									</div>
 
@@ -305,21 +301,17 @@
 												</div>
 
 												<div class = "panel-body">
-													
+
 													<% if current_user!= nil %>
 
 													<h4>Kullanıcı Güven Oyu</h4>
 													<br>
 
 													<input id="input-21b" value="<%= @vote %>" type="number" class="rating" min=0 max=5 step=1 data-size="xs">
-													
+
 													<% end %>
 
-													<div class="review">
-
-														<a href="#"> 3 Yorum </a>
-
-													</div>
+													
 													<div class="clearfix"></div>
 
 													<br>
@@ -330,24 +322,16 @@
 													<h4  class="add-to item_price">Ürün Rengi: <span style="color:red;" ><%= @advertable.color %></span></h4>
 													<br>
 
-													<h4  class="add-to item_price">Marka: <span style="color:red;" ><%= @advertable.brand %></span> </h4>
+													<h4  class="add-to item_price">Marka: <span style="color:red;" ><%= @advertable.brand %></span></h4>
 													<br>
 
-													<h4  class="add-to item_price">Kullanım Durumu: <% if @advertable.usage %>
-													<span style="color:red;" >Sıfır</span>
-													<% else %>
-													<span style="color:red;" >İkinci El</span>
-													<% end %> </h4>
+													<h4  class="add-to item_price">Kullanım Durumu: <% if @advertable.usage %> <span style="color:red;" >Sıfır</span> <% else %> <span style="color:red;" >İkinci El</span> <% end %> </h4>
 													<br>
 
-													<h4  class="add-to item_price">Garanti Durumu: <% if @advertable.warranty %>
-													<span style="color:red;" >Var</span>
-													<% else %>
-													<span style="color:red;" >Yok</span>
-													<% end %> </h4>
+													<h4  class="add-to item_price">Garanti Durumu: <% if @advertable.warranty %> <span style="color:red;" >Var</span> <% else %> <span style="color:red;" >Yok</span> <% end %> </h4>
 													<br>
 
-													<h4  class="add-to item_price">İlan sahibinin telefonu: <span style="color:red;" ><%= @advert_user.phone %></span> </h4>
+													<h4  class="add-to item_price">İlan sahibinin telefonu: <span style="color:red;" ><%= @advert_user.phone %></span></h4>
 													<br>
 													<h4> İlan sahibinin profili için <a href="/uye/<%= @advert_user.username %>">buraya</a> tıklayınız. </h4>
 												</div>
@@ -360,28 +344,73 @@
 							<div class="clearfix"></div>
 							<br>
 
-							<div style="padding-top:10px;padding-left:10px;padding-right:10px;padding-bottom:50px;" class="row">
+							<div  class="row">
 
-								<div class="panel panel-danger">
+								<div class="panel panel-info">
 									<div class="panel-heading">
 										Açıklama
 									</div>
-									<div class="panel-body">
+									<div style="padding-top:10px;padding-left:10px;padding-right:10px;padding-bottom:30px;" class="panel-body">
 										<%= @advert.explication  %>
 									</div>
 								</div>
 
 							</div>
+							
+							<div class="row">
+
+							<div class = "panel panel-info">
+
+								<div class = "panel-heading">
+									Yorumlar
+								</div>
+
+								<div style="padding:30px;" class = "panel-body">
+									
+									
+								<div style="overflow: auto;height:350px;overflow-x: hidden;-webkit-overflow-scrolling: touch"" class="row" id="disqus_thread"></div>
+							<script>
+								/**
+								 * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+								 * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+								 */
+								/*
+								 var disqus_config = function () {
+								 this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+								 this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+								 };
+								 */
+								(function() {// DON'T EDIT BELOW THIS LINE
+									var d = document,
+									    s = d.createElement('script');
+
+									s.src = '//campusilan.disqus.com/embed.js';
+
+									s.setAttribute('data-timestamp', +new Date());
+									(d.head || d.body).appendChild(s);
+								})();
+							</script>
+							<noscript>
+								Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+							</noscript>	
+									
+									
+
+								</div>
+							</div>
+							
+							</div>
+
+							
 
 							<div class="benzerurunler row">
 
 								<h2 style="text-align:center;" class="">Benzer Ürünler</h2>
 
 							</div>
-							
+
 							<%= render "ilanbenzer" %>
 
-							
 						</div>
 						<!----->
 						<div class="col-md-3 product-bottom">
@@ -397,7 +426,7 @@
 							<!--seller-->
 
 							<br>
-							
+
 							<%= render "ilanbunlaradabakti" %>
 
 						</div>
@@ -418,21 +447,21 @@
 		<!-- favorilere ekle/kaldır ajax -->
 
 		<%= render "ilanfavorilereekle" %>
-		
+
 		<!-- Plugins-->
-		
+
 		<!-- Tooltip eklentisi-->
 
-			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 
-			<script>
-				var $tooltip = jQuery.noConflict();
-			</script>
+		<script>
+			var $tooltip = jQuery.noConflict();
+		</script>
 
-			<script type="text/javascript" src="/resources/plugins/tooltipplugin/tooltip.js"></script>
+		<script type="text/javascript" src="/resources/plugins/tooltipplugin/tooltip.js"></script>
 
 		<!-- bootstrap star rating -->
-			
+
 		<%= render "ilanvote" %>
 
 		<!-- Product Template-->
@@ -533,6 +562,9 @@
 				}
 			});
 		</script>
+
+		<script id="dsq-count-scr" src="//campusilan.disqus.com/count.js" async></script>
+
 
 	</body>
 
