@@ -6,7 +6,23 @@ class ApplicationController < ActionController::Base
   helper_method :topUniversities
    
   def current_user
-    @current_user ||= User.valid.find_by(:id => session[:user_id])
+    if @current_user == false
+      nil
+    elsif @current_user 
+      @current_user
+    else
+      if session[:expires_at] && session[:expires_at] < Time.current
+        reset_session
+        @current_user = false
+      elsif session[:expires_at] && session[:expires_at] >= Time.current
+        session[:expires_at] = 10.minutes.from_now
+        @current_user = User.valid.find_by(:id => session[:user_id])
+      else
+        @current_user = User.valid.find_by(:id => session[:user_id])
+      end
+    end
+    
+    
   end
   
   def authenticate_admin_user! #use predefined method name
@@ -20,15 +36,6 @@ class ApplicationController < ActionController::Base
     current_user 
   end 
   
-  def path_exists?(path)
-    begin
-      Rails.application.routes.recognize_path(path)
-    rescue
-      return false
-    end
-    
-    true
-  end
   
   def topUniversities
     sql = "SELECT universities.id, universities.name, COUNT(*) " + 
@@ -100,12 +107,6 @@ class ApplicationController < ActionController::Base
   def kendiuniversitem
     Advert.available.select('adverts.*').from('adverts, users u1, users u2')
           .where('u1.id=? and u1.university_id=u2.university_id and adverts.user_id=u2.id', current_user.id)
-  end
-  
-  def looked(advert)
-    Advert.select('a2.*').from('adverts a,users u, viewed_adverts v, adverts a2, viewed_adverts v2')
-      .where('a.id=? AND v.user_id = u.id AND v.advert_id = a.id AND a.id!=a2.id AND v2.user_id = u.id AND v2.advert_id = a2.id', advert.id)
-      .group('a2.id').order('count(a2.id)')
   end
   
   

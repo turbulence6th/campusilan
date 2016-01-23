@@ -70,18 +70,26 @@ class AdvertController < ApplicationController
 
   end
 
-  def ikinciel
+  def ilan
 
+    type = request.path.split('/')[1]
     advert_name = params[:advert_name]
     id = advert_name.split('-')[-1]
-    @advert = Advert.find_by(:id => id, :advertable_type => 'Secondhand', :verified => true)
+
+    if type == 'ikinciel'
+      @advert = Advert.find_by(:id => id, :advertable_type => 'Secondhand', :verified => true)
+    elsif type == 'evarkadasi'
+      @advert = Advert.find_by(:id => id, :advertable_type => 'Homemate', :verified => true)
+    elsif type == 'ozelders'
+      @advert = Advert.find_by(:id => id, :advertable_type => 'Privatelesson', :verified => true)
+    end
 
     if !@advert
       raise ActionController::RoutingError.new('Not Found')
     end
 
-    if @advert.href != '/ikinciel/' + advert_name
-      redirect_to '/ikinciel/' + link
+    if @advert.href != request.path
+      redirect_to @advert.href
     end
 
     if current_user
@@ -103,87 +111,26 @@ class AdvertController < ApplicationController
       end
     end
 
-    @looked = looked(@advert).limit(5)
+    @looked = Advert.available.from('adverts, viewed_advert_counts v1, viewed_advert_counts v2')
+      .where('v1.advert_id = ? AND v2.advert_id != v1.advert_id AND v2.ip = v1.ip ' + 
+        'AND adverts.id = v2.advert_id', @advert.id).group('adverts.id')
+        .order('count(adverts) DESC, created_at ASC').limit(5)
 
-    @similar = Advert.joins('JOIN secondhands ON adverts.advertable_id=secondhands.id')
-      .where(:advertable_type => 'Secondhand',:secondhands => { :category => @advertable.read_attribute(:category) })
-      .where.not(:id => @advert.id).sample(3)
 
-  end
-
-  def evarkadasi
-    advert_name = params[:advert_name]
-    id = advert_name.split('-')[-1]
-    @advert = Advert.find_by(:id => id, :advertable_type => 'Homemate', :verified => true)
-
-    if !@advert
-      raise ActionController::RoutingError.new('Not Found')
+    if type == 'ikinciel'
+      @similar = Advert.available.from('adverts, secondhands')
+      .where('adverts.id != ? AND adverts.advertable_type = ? ' + '
+        AND adverts.advertable_id = secondhands.id AND secondhands.category = ?',
+           @advert.id, 'Secondhand', Secondhand.categories[@advertable.category]).sample(3)
+    elsif type == 'evarkadasi'
+       @similar = Advert.available.where(:advertable_type => 'Homemate').where.not(:id => @advert.id).sample(3)
+    elsif type == 'ozelders'
+      @similar = Advert.available.from('adverts, privatelessons')
+      .where('adverts.id != ? AND adverts.advertable_type = ? ' + '
+        AND adverts.advertable_id = privatelessons.id AND privatelessons.lecture = ?',
+           @advert.id, 'Privatelesson', Privatelesson.lectures[@advertable.lecture]).sample(3)
     end
-
-    if @advert.href != '/evarkadasi/' + advert_name
-      redirect_to '/evarkadasi/' + link
-    end
-
-    if current_user
-      @advert.viewed_adverts << ViewedAdvert.new(:user => current_user)
-    end
-
-    @advert.viewed_advert_counts << ViewedAdvertCount.new(:ip => request.remote_ip)
-
-    @advertable = @advert.advertable
-    @advert_user = @advert.user
-    @images = @advert.images
     
-    if current_user
-      vote = Vote.find_by(:user => current_user, :advert => @advert)
-      if vote
-        @vote = vote.point
-      else
-        @vote = 0
-      end
-    end
-
-    @looked = looked(@advert).limit(5)
-
-    @similar = Advert.where(:advertable_type => 'Homemate').where.not(:id => @advert.id).offset(Homemate.count).limit(4)
-
-  end
-
-  def ozelders
-    advert_name = params[:advert_name]
-    id = advert_name.split('-')[-1]
-    @advert = Advert.find_by(:id => id, :advertable_type => 'Privatelesson', :verified => true)
-
-    if !@advert
-      raise ActionController::RoutingError.new('Not Found')
-    end
-
-    if @advert.href != '/ozelders/' + advert_name
-      redirect_to '/ozelders/' + link
-    end
-
-    if current_user
-      @advert.viewed_adverts << ViewedAdvert.new(:user => current_user)
-    end
-
-    @advert.viewed_advert_counts << ViewedAdvertCount.new(:ip => request.remote_ip)
-
-    @advertable = @advert.advertable
-    @advert_user = @advert.user
-    @images = @advert.images
-    
-    if current_user
-      vote = Vote.find_by(:user => current_user, :advert => @advert)
-      if vote
-        @vote = vote.point
-      else
-        @vote = 0
-      end
-    end
-
-    @looked = looked(@advert).limit(5)
-
-    @similar = Advert.joins('JOIN secondhands ON adverts.advertable_id=secondhands.id').where(:advertable_type => 'Secondhand',:secondhands => { :category => @advertable.read_attribute(:category) }).where.not(:id => @advert.id).sample(4)
 
   end
 
@@ -237,14 +184,14 @@ class AdvertController < ApplicationController
 
       advertableparam = params.require(:advert).require(:privatelesson).permit(
       :kind, :lecture, :state, :city, :location)
-      
+
     end
 
     advertParam = params.require(:advert).permit(:name, :price, :explication)
     id = params.require(:advert).permit(:id)[:id]
 
     advert = Advert.find(id)
-    if !current_user || (advert.user!=current_user && current_user.role!='admin') 
+    if !current_user || (advert.user!=current_user && current_user.role!='admin')
       raise ActionController::RoutingError.new('Not Found')
     else
       advert.update_attributes(advertParam)
@@ -293,60 +240,56 @@ class AdvertController < ApplicationController
     end
 
   end
-  
+
   def imagetotop
-    
+
     advert = Advert.find(params[:advert])
-    
+
     image = Image.find(params[:image])
-    
-    
+
     if !current_user || (advert.user!=current_user && current_user.role!='admin')
 
       respond_to do |format|
         msg = {:check => false}
         format.json { render :json => msg}
-        
 
       end
-    
+
     elsif advert.images.include? image
-      
+
       advert.image = image
-      
+
       advert.save
-      
-       respond_to do |format|
+
+      respond_to do |format|
         msg = {:check => true}
         format.json { render :json => msg}
-        
 
       end
-      
-      
+
     end
-    
+
   end
-  
+
   def newAdvertPost
-    
+
     if params[:advert_type] == 'secondhand'
-      
+
       @advertable = Secondhand.new(params.require(:advert).require(:advertable).permit(
       :category, :color, :brand, :usage, :warranty))
-     
+
     elsif params[:advert_type] == 'homemate'
-      
+
       @advertable = Homemate.new(params.require(:advert).require(:advertable).permit(
       :state, :city, :demand, :sleep, :friend, :smoke, :department, :music))
-      
+
     elsif params[:advert_type] == 'privatelesson'
-      
+
       @advertable = Privatelesson.new(params.require(:advert).require(:advertable).permit(:state, :city,
       :kind, :lecture, :location))
-      
+
     end
-     
+
     @advert = Advert.new(params.require(:advert).permit(:name, :price, :explication))
     @advert.advertable = @advertable
     @advert.user = current_user
@@ -378,9 +321,7 @@ class AdvertController < ApplicationController
       raise ActionController::RoutingError.new('InternalError')
     end
 
-    
   end
-
 
   def kategoriler
     kategori=params[:kategori]
@@ -507,7 +448,7 @@ class AdvertController < ApplicationController
       @active = 0
       @adverts = acililanlar
     end
-    
+
     @adverts = @adverts.paginate(:page => params[:page], :per_page => 18)
 
     @bizimsectiklerimiz = bizimsectiklerimiz.limit(10)

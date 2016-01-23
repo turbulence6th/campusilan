@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
   attr_accessor :phone1, :phone2
   
   enum :gender => [ :male, :female, :other ]
-  enum :role => [ :admin, :seller , :buyer ]
+  enum :role => [ :admin, :member ]
   
   has_many :adverts, :dependent => :destroy
   

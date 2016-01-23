@@ -35,11 +35,11 @@ Rails.application.routes.draw do
   post 'updateUser' => 'user#updateUser'
   get 'verify' => 'user#verify'
   
-  get 'ikinciel/:advert_name' => 'advert#ikinciel'
+  get 'ikinciel/:advert_name' => 'advert#ilan'
   post 'favorilereekle' => 'advert#favorilereekle', defaults: {format: :json}
   post 'favorilerdenkaldir' => 'advert#favorilerdenkaldir', defaults: {format: :json}
-  get 'evarkadasi/:advert_name' => 'advert#evarkadasi'
-  get 'ozelders/:advert_name' => 'advert#ozelders'
+  get 'evarkadasi/:advert_name' => 'advert#ilan'
+  get 'ozelders/:advert_name' => 'advert#ilan'
   get 'kategoriler/:kategori' => 'advert#kategoriler'
   get 'kategoriler' => 'advert#kategoriler'
   get 'kategoriler/:kategori/:subkategori' => 'advert#kategoriler'  

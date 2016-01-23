@@ -37,34 +37,41 @@ class UserController < ApplicationController
     @user.role = 'member'
     @user.verified = false
     @user.deleted = false
-    
+
     @user.email = @user.email.downcase if @user.email
     @user.email_confirmation = @user.email_confirmation.downcase if @user.email_confirmation
-    
+
     @user.university = University.find_by_email(@user.email.partition('@').last) if @user.email
     @user.confirm_token = SecureRandom.urlsafe_base64.to_s
-    
+
     if @user.save
-     UserMailer.verify(@user).deliver_now 
+      UserMailer.verify(@user).deliver_now
     end
 
     redirect_to "/"
 
   end
-  
+
   def verify
-    
+
     @user = User.find_by(:username => params[:user])
     if @user && @user.confirm_token==params[:token]
       @user.update_attributes(:verified => true, :confirm_token => nil)
     end
     redirect_to '/'
-    
+
   end
 
   def loginPost
     user = User.find_by_username(params[:username]).try(:authenticate, params[:password])
     if (user && user.verified && !user.deleted)
+      
+      reset_session
+
+      if params[:remember] != 1
+        session[:expires_at] = 10.minutes.from_now
+      end
+
       session[:user_id] = user.id
       if request.referer
         redirect_to URI(request.referer).path
@@ -79,7 +86,7 @@ class UserController < ApplicationController
       redirect_to "/girisyap?hataligiris=1"
     end
   end
-  
+
   def updateUser
     attr = params.require(:user).permit(:name, :surname, :phone1, :phone2, :bulletin, :gender, :address, :birthday)
     attr.merge! :phone => attr[:phone1] + '-' + attr[:phone2]
@@ -88,14 +95,11 @@ class UserController < ApplicationController
   end
 
   def member
-    
+
     @mostpopular = mostpopular.limit(6)
-    
+
     @gununilanlari = gununilanlari.limit(9)
-    
-    
-    
-   
+
     if params[:profilim]!=nil
       @sekme=".profilim"
     elsif params[:ilanver]!=nil
@@ -109,75 +113,68 @@ class UserController < ApplicationController
     elsif params[:mesajlarim]!=nil
       @sekme=".mesajlarim"
     elsif params[:tekliflerim]!=nil
-      @sekme=".tekliflerim"    
+      @sekme=".tekliflerim"
     elsif params[:inceledigimilanlar]!=nil
       @sekme=".inceledigimilanlar"
     elsif params[:hesapayarlari]!=nil
-      @sekme=".hesapayarlari"   
+      @sekme=".hesapayarlari"
     else
       @sekme=".profilim"
     end
-    
+
     @other_user=User.valid.find_by_username(params[:username])
-    
-    if @other_user == nil 
-      raise ActionController::RoutingError.new('Not Found') 
+
+    if @other_user == nil
+      raise ActionController::RoutingError.new('Not Found')
     elsif  current_user != @other_user
       render 'member2'
     else
-      
+
       current_user.phone1 =  current_user.phone.split('-')[0]
       current_user.phone2 =  current_user.phone.split('-')[1]
-      
+
       @lastadverts = current_user.adverts.order('created_at DESC').limit(6)
-      
+
       @favouriteadverts = Advert.available.select('adverts.*').from('adverts, users, favourite_adverts')
         .where('adverts.id=favourite_adverts.advert_id AND users.id=favourite_adverts.user_id AND users.id=?', current_user.id)
         .order('favourite_adverts.created_at DESC').limit(6)
-      
-      
-       @viewedadverts = Advert.available.select('adverts.*').from('adverts, users, viewed_adverts')
+
+      @viewedadverts = Advert.available.select('adverts.*').from('adverts, users, viewed_adverts')
         .where('adverts.id=viewed_adverts.advert_id AND users.id=viewed_adverts.user_id')
         .order('viewed_adverts.created_at').limit(6)
-      
+
     end
 
   end
-  
+
   def profilephoto
-    
+
     if params[:profilephoto]
-      
-        if current_user.image!= nil
-        current_user.image.destroy
-        end
-     
-        @image = Image.new(:imagefile => params[:profilephoto])
-        
-        
-        current_user.image = @image
-      
-         redirect_to URI(request.referer).path
-        
-      
-    elsif params[:deletephoto]
-      
+
       if current_user.image!= nil
-      current_user.image.destroy
-       redirect_to URI(request.referer).path
-       
-       else
-         
-         redirect_to URI(request.referer).path
-       
-       end
-       
-       
+        current_user.image.destroy
+      end
+
+      @image = Image.new(:imagefile => params[:profilephoto])
+
+      current_user.image = @image
+
+      redirect_to URI(request.referer).path
+
+    elsif params[:deletephoto]
+
+      if current_user.image!= nil
+        current_user.image.destroy
+        redirect_to URI(request.referer).path
+
+      else
+
+        redirect_to URI(request.referer).path
+
+      end
+
     end
-      
-        
-   
-    
+
   end
 
   def login
@@ -190,31 +187,23 @@ class UserController < ApplicationController
     reset_session
     redirect_to "/"
   end
-  
-  def hesabisil 
-    
-    if current_user!= nil 
-      
+
+  def hesabisil
+
+    if current_user!= nil
+
       current_user.deleted = true
       current_user.save
-      
+
       reset_session
-      
+
       redirect_to "/"
-      
-     else
-       
-       raise ActionController::RoutingError.new('Not Found') 
+
+    else
+
+      raise ActionController::RoutingError.new('Not Found')
     end
-    
-  
-    
-    
+
   end
-  
-  
-  
-  
- 
 
 end
