@@ -1,257 +1,201 @@
-
-
 <% if current_user!=nil %>
-
 
 <!--  sadece xsmall larda gözükecek -->
 
-					
+<div style="padding-left:17%; margin-top: 25px;" class="row visible-xs">
 
-					<div style="padding-left: 25px; margin-top: 25px;" class="row visible-xs">
+	<div class="row">
 
-						<div class="row">
+		<a href="/uye/<%= current_user.username%>?profilim=1"style="" type="button" class="panellinkler col-xs-3 col-sm-2 btn btn-info" id="profilim2" > <span style="font-size:12px;">Profilim</span> </a>
 
-							<a href="/uye/<%= current_user.username%>?profilim=1" type="button" class="panellinkler col-xs-3 col-sm-2 btn btn-info" id="profilim2" >
-								<span style="">Profilim</span>
-							</a>
+		<a href="/ilanver"  style=" margin-left: 10px;" type="button"
+		class=" col-xs-3  col-sm-2 btn btn-info"> <span style="font-size:12px;">İlan Ver</span> </a>
 
-							<a href="/ilanver"  style="margin-left: 10px;" type="button"
-							class=" col-xs-3  col-sm-2 btn btn-info">
-								<span style="">İlan Ver</span>
-							</a>
-							
-							<a href="/uye/<%= current_user.username%>?favorilerim=1" style="margin-left: 10px;" type="button" class="panellinkler col-xs-3 col-sm-2 btn btn-info" id="favorilerid2" >
-								<span style="font-size:10px;">Favorilerim</span>
-							</a>
+		<a href="/uye/<%= current_user.username%>?favorilerim=1" style="text-align:left;padding-left:3px; margin-left: 10px;" type="button" class="panellinkler col-xs-3 col-sm-2 btn btn-info" id="favorilerid2" > <span style="font-size:12px;">Favorilerim</span> </a>
 
-							
+	</div>
 
-						</div>
+	<div style="margin-top: 10px;" class="row">
 
-						<div style="margin-top: 10px;" class="row">
+		<a href="/mesajlarim" style="text-align:left;padding-left:5px;"  type="button"
+		class=" col-xs-3 col-sm-2 btn btn-info"> <span style="font-size:12px;">Mesajlarım</span> </a>
 
+		<a href="/uye/<%= current_user.username%>?tekliflerim=1" style="text-align:left;padding-left:7px;margin-left: 10px;" type="button" class="panellinkler col-xs-3 col-sm-2 btn btn-info" id="tekliflerim2" > <span style="font-size:12px;">Tekliflerim</span> </a>
 
-							<a href="/mesajlarim" type="button"
-							class=" col-xs-3 col-sm-2 btn btn-info">
-								<span style="font-size:11px;">Mesajlarım</span>
-							</a>
-							
-							<a href='/uye/<%= current_user.username%>?tekliflerim=1' style="margin-left: 10px;" type="button" class="panellinkler col-xs-3 col-sm-2 btn btn-info" id="tekliflerim2" >
-								<span style="font-size:12px;">Tekliflerim</span>
-							</a>
+		<a href="/uye/<%= current_user.username%>?inceledigimilanlar=1" style="text-align:left;padding-left:3px;margin-left: 10px;"  type="button"
+		class="panellinkler col-xs-3 col-sm-2 btn btn-info" id="inceledigimilanlar2" > <span style="font-size:11px;">İncelenenler</span> </a>
 
-							<a href='/uye/<%= current_user.username%>?inceledigimilanlar=1' style="margin-left: 10px;"  type="button"
-							class="panellinkler col-xs-3 col-sm-2 btn btn-info" id="inceledigimilanlar2" >
-								<span style="font-size:10px;">İncelenenler</span>
-							</a>
+	</div>
 
-						</div>
+	<div style="margin-top: 10px;" class="row">
 
-						<div style="margin-top: 10px;" class="row">
+		<a href="/uye/<%= current_user.username%>?hesapayarlari=1"  type="button" id="hesapayarlariid2" class="panellinkler col-xs-3 col-sm-2 btn btn-info"> <span style="font-size:12px;" >Ayarlar</span> </a>
 
+		<a style="margin-left: 10px;" type="button" href="/firsatlar"
+		class=" col-xs-3 col-sm-2 btn btn-info"> <span style="font-size:12px;">Fırsatlar</span> </a>
 
-							<a href='/uye/<%= current_user.username%>?hesapayarlari=1' type="button" id="hesapayarlariid2"
-							class="panellinkler col-xs-3 col-sm-2 btn btn-info">
-								<span >Ayarlar</span>
-							</a>
-							
-							<a style="margin-left: 10px;" type="button" href="/firsatlar"
-							class=" col-xs-3 col-sm-2 btn btn-info">
-								<span style="">Fırsatlar</span>
-							</a>
+		<a href="/kategoriler" style="text-align:left;padding-left:3px;margin-left:10px;" type="button" class="col-xs-3 col-sm-2 btn btn-info"> <span style="font-size:12px;">Kategoriler</span> </a>
 
-							<a href="/kategoriler" style="margin-left:10px;" type="button" class="col-xs-3 col-sm-2 btn btn-info">
-								<span style="font-size:10px;">Kategoriler</span>
-							</a>
+	</div>
 
-						</div>
-
-						
-
-					</div>
-
-					<!--  sadece small cihazlarda(small,medium) gözükecek -->
-
-					<div style="padding-left: 75px; margin-top: 25px;"
-					class="row visible-sm visible-md">
-
-						<div class="row">
-
-							<a href='/uye/<%= current_user.username%>?profilim=1' type="button" class="panellinkler col-sm-2 btn btn-info">
-								Profilim
-							</a>
-
-							<a href="/ilanver" style="margin-left: 10px;" type="button"
-							class=" col-sm-2 btn btn-info">
-								İlan Ver
-							</a>
-
-							
-
-							<a href='/uye/<%= current_user.username%>?favorilerim=1' style="margin-left: 10px;" type="button"
-							class="panellinkler col-sm-2 btn btn-info">
-								Favorilerim
-							</a>
-							
-							<a href="/mesajlarim" style="margin-left: 10px;" type="button" class=" col-sm-2 btn btn-info">
-								Mesajlarım
-							</a>
-
-							<a href='/uye/<%= current_user.username%>?tekliflerim=1'  style="margin-left: 10px;" type="button"
-							class="panellinkler col-sm-2 btn btn-info">
-								Tekliflerim
-							</a>
-
-						</div>
-
-						<div style="margin-top: 20px;" class="row">
-
-							
-
-							<a href='/uye/<%= current_user.username%>?inceledigimilanlar=1' style="" type="button"
-							class="panellinkler col-sm-2 btn btn-info">
-								<span style="">İncelediklerim</span>
-							</a>
-
-							<a href='/uye/<%= current_user.username%>?hesapayarlari=1' style="margin-left: 10px;" type="button"
-							class="panellinkler col-sm-2 btn btn-info">
-								Hesap Ayarları
-							</a>
-
-							<a href="/firsatlar" style="margin-left: 10px;" type="button"
-							class=" col-xs-3 col-sm-2 btn btn-info">
-								<span style="">Fırsatlar Paneli</span>
-							</a>
-							
-							<a href="/kategoriler" style="margin-left: 10px;" type="button" class=" col-xs-3 col-sm-2 btn btn-info">
-								<span style="">Kategoriler</span>
-							</a>
-
-						</div>
-
-						
-
-					</div>
-
-		
-	
-	
-	<%else %>
-	
-	
-	<div style="padding-left: 50px; margin-top: 50px;"
-					class="row visible-sm visible-md">
-
-						<div class="row">
-							
-							<a style="margin-left: 10px;" type="button"
-							class="panellinkler col-xs-3 col-sm-2 btn btn-info">
-								<span style="">Fırsatlar Paneli</span>
-							</a>
-							
-							<a href="/kategoriler" type="button" class="panellinkler col-xs-3 col-sm-2 btn btn-info">
-								<span style="">Kategoriler</span>
-							</a>
-						</div>
 </div>
 
-	<%end%>	
+<!--  sadece small cihazlarda(small,medium) gözükecek -->
+
+<div style="padding-left: 75px; margin-top: 25px;" class="row visible-sm visible-md">
+
+	<div class="row">
+
+		<a href='/uye/<%= current_user.username%>?profilim=1' type="button" class="panellinkler col-sm-2 btn btn-info"> Profilim </a>
+
+		<a href="/ilanver" style="margin-left: 10px;" type="button"
+		class=" col-sm-2 btn btn-info"> İlan Ver </a>
+
+		<a href='/uye/<%= current_user.username%>?favorilerim=1' style="margin-left: 10px;" type="button"
+		class="panellinkler col-sm-2 btn btn-info"> Favorilerim </a>
+
+		<a href="/mesajlarim" style="margin-left: 10px;" type="button" class=" col-sm-2 btn btn-info"> Mesajlarım </a>
+
+		<a href='/uye/<%= current_user.username%>?tekliflerim=1'  style="margin-left: 10px;" type="button"
+		class="panellinkler col-sm-2 btn btn-info"> Tekliflerim </a>
+
+	</div>
+
+	<div style="margin-top: 20px;" class="row">
+
+		<a href='/uye/<%= current_user.username%>?inceledigimilanlar=1' style="" type="button"
+		class="panellinkler col-sm-2 btn btn-info"> <span style="">İncelediklerim</span> </a>
+
+		<a href='/uye/<%= current_user.username%>?hesapayarlari=1' style="margin-left: 10px;" type="button"
+		class="panellinkler col-sm-2 btn btn-info"> Hesap Ayarları </a>
+
+		<a href="/firsatlar" style="margin-left: 10px;" type="button"
+		class=" col-xs-3 col-sm-2 btn btn-info"> <span style="">Fırsatlar Paneli</span> </a>
+
+		<a href="/kategoriler" style="margin-left: 10px;" type="button" class=" col-xs-3 col-sm-2 btn btn-info"> <span style="">Kategoriler</span> </a>
+
+	</div>
+
+</div>
+
+<%else %>
+
+<div style="padding-left: 50px; margin-top: 50px;" class="row visible-sm ">
+
+	<div class="row">
 	
+		<% if request.path != "/firsatlar" %>
+		
+		
+		<a style="margin-left: 28%;" type="button"
+		href="/firsatlar" class="panellinkler col-xs-3 col-sm-2 btn btn-info"> <span style="">Fırsatlar Paneli</span> </a>
+		
+		<% else %>
+		
+		<a style="margin-left: 28%;" type="button"
+		href="#firsatlarpaneli" class="panellinkler col-xs-3 col-sm-2 btn btn-info"> <span style="">Fırsatlar Paneli</span> </a>
+		
+		<% end %>
+
+		<a href="/kategoriler" style="margin-left: 10px;" type="button" class="panellinkler col-xs-3 col-sm-2 btn btn-info"> <span style="">Kategoriler</span> </a>
+	</div>
+</div>
+
+
+<div style="padding-left: 13%; margin-top: 50px;" class="row  visible-xs">
+
+	<div class="row">
+
+		<% if request.path != "/firsatlar" %>
+		
+		
+		<a  type="button"
+		href="/firsatlar" class="panellinkler col-xs-5 col-sm-2 btn btn-info"> <span style="">Fırsatlar Paneli</span> </a>
+		
+		<% else %>
+		
+		<a  type="button" href="#firsatlarpaneli" class="panellinkler col-xs-5 col-sm-2 btn btn-info"> <span style="">Fırsatlar Paneli</span> </a>
+		
+		<% end %>
+
+		<a href="/kategoriler" style="margin-left: 10px;" type="button" class="panellinkler col-xs-5 col-sm-2 btn btn-info"> <span style="">Kategoriler</span> </a>
+	</div>
+</div>
+
+<%end%>
+
 <!-- Kullanıcı paneli js kısmı -->
 <% if current_user!= nil && request.env['PATH_INFO']=="/uye/" + current_user.username %>
 <script>
 	$(function() {
-		
-		$(".hesapayarlari").hide();
-		$(".favoriler").hide();
-		$(".tekliflerim").hide();
-		$(".profilim").hide();
-		$(".inceledigimilanlar").hide();
-		
-		
-		
-		
-		
 
-		$("#hesapayarlariid2").click(function() {
+$(".hesapayarlari").hide();
+$(".favoriler").hide();
+$(".tekliflerim").hide();
+$(".profilim").hide();
+$(".inceledigimilanlar").hide();
 
-			
-			
-		$(".favoriler").hide();
-		$(".tekliflerim").hide();
-		$(".profilim").hide();
-		$(".inceledigimilanlar").hide();
+$("#hesapayarlariid2").click(function() {
 
-			$(".hesapayarlari").show();
+$(".favoriler").hide();
+$(".tekliflerim").hide();
+$(".profilim").hide();
+$(".inceledigimilanlar").hide();
 
-		})
-		
-		$("#inceledigimilanlar2").click(function(){
-			
-			
-			$(".hesapayarlari").hide();
-		$(".favoriler").hide();
-		$(".tekliflerim").hide();
-		$(".profilim").hide();
-		$(".inceledigimilanlar").show();
-			
-			
-			
-			
-		}
-		
-		
-		
-		
-		)
+$(".hesapayarlari").show();
 
-		$("#profilim2").click(function() {
+})
 
-			
-			$(".hesapayarlari").hide();
-		$(".favoriler").hide();
-		$(".tekliflerim").hide();
-		
-		$(".inceledigimilanlar").hide();
+$("#inceledigimilanlar2").click(function(){
 
-			$(".profilim").show();
-			
-			
+$(".hesapayarlari").hide();
+$(".favoriler").hide();
+$(".tekliflerim").hide();
+$(".profilim").hide();
+$(".inceledigimilanlar").show();
 
-		})
+}
 
-		$("#favorilerid2").click(function() {
+)
 
-			
-			$(".hesapayarlari").hide();
-		
-		$(".tekliflerim").hide();
-		$(".profilim").hide();
-		$(".inceledigimilanlar").hide();
-			$(".favoriler").show();
-			
-		})
+$("#profilim2").click(function() {
 
-		$("#tekliflerim2").click(function() {
+$(".hesapayarlari").hide();
+$(".favoriler").hide();
+$(".tekliflerim").hide();
 
-			
-			$(".hesapayarlari").hide();
-		$(".favoriler").hide();
-		
-		$(".profilim").hide();
-		$(".inceledigimilanlar").hide();
-			$(".tekliflerim").show();
+$(".inceledigimilanlar").hide();
 
-		})
-		
-		$("<%= @sekme %>").show(); 
-		
-		<% if @sekme==".tekliflerim" || @sekme==".hesapayarlari" %>
-		
-		
-		
-		<% end %>
-		
+$(".profilim").show();
+
+})
+
+$("#favorilerid2").click(function() {
+
+$(".hesapayarlari").hide();
+
+$(".tekliflerim").hide();
+$(".profilim").hide();
+$(".inceledigimilanlar").hide();
+$(".favoriler").show();
+
+})
+
+$("#tekliflerim2").click(function() {
+
+$(".hesapayarlari").hide();
+$(".favoriler").hide();
+
+$(".profilim").hide();
+$(".inceledigimilanlar").hide();
+$(".tekliflerim").show();
+
+})
+
+$("<%= @sekme %>
+	").show();
+
+<% if @sekme==".tekliflerim" || @sekme==".hesapayarlari" %><% end %>
 	})
 
 	$(".panellinkler").click(function(event) {
@@ -263,8 +207,6 @@
 		return false;
 
 	});
-	
-
 
 </script>
 <% end %>

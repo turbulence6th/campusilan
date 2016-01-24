@@ -132,11 +132,12 @@
 
 		<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
-				<!-- Login Starts Here -->
+				<div id="loginkismi "  class="visible-xs ">
+					<!-- Login Starts Here -->
+					<%= render "loginContainer" %>
+					<!-- Login Ends Here -->
 
-				<%= render "loginContainer" %>
-
-				<!-- Login Ends Here -->
+				</div>
 
 			</div>
 
@@ -781,18 +782,35 @@
 		<div style="margin-top: 10px;" id="products" class="row list-group">
 		<% @adverts.each do |advert| %>	
 			
-		<div class="item  col-sm-6 col-xs-6 col-lg-4">
+		<div class="item visible-lg hidden-sm col-sm-6 col-xs-6 col-lg-4">
 		<div class="thumbnail">
-		<% if advert.images != [] %>
-		<a href="<%= advert.href %>"><%= image_tag advert.images[0].imagefile(:small),title: advert.name %></a>
-		<% else %>
-		<a  href="<%= advert.href %>"> <%= image_tag Image.new.imagefile,class:"img-responsive masterTooltip"  %> </a>
-		<% end %>
+			
+			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title: advert.name,class:"img-responsive masterTooltip" %></a>
+		
 		<div class="caption">
+			
+			<% if advert.name.length <= 22 %>
 		<h4 class="group inner list-group-item-heading">
+			
 		<%= advert.name %></h4>
+		<% else %>
+		
+		<h4 class="group inner list-group-item-heading">
+			
+		<%= advert.name[0..21] %>...</h4>
+		
+		<% end %>
+		
+		<% if advert.explication.length <= 22 %>
 		<p class="group inner list-group-item-text">
 		<%= advert.explication %>  </p>
+		
+		<% else %>
+		<p class="group inner list-group-item-text">
+		<%= advert.explication[0..21] %>...  </p>
+		
+		<% end 	%>
+		
 		<div style="margin-top:25px;" class="row">
 		<div class="col-xs-12 col-md-6">
 		<p class="lead">
@@ -805,6 +823,132 @@
 		</div>
 		</div>
 		</div>
+		
+		
+		<div class="item visible-md  col-sm-6 col-xs-6 col-lg-4">
+		<div class="thumbnail">
+			
+			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title: advert.name,class:"img-responsive masterTooltip" %></a>
+		
+		<div class="caption">
+			
+			<% if advert.name.length <= 45 %>
+		<h4 class="group inner list-group-item-heading">
+			
+		<%= advert.name %></h4>
+		<% else %>
+		
+		<h4 class="group inner list-group-item-heading">
+			
+		<%= advert.name[0..44] %>...</h4>
+		
+		<% end %>
+		
+		<% if advert.explication.length <= 45 %>
+		<p class="group inner list-group-item-text">
+		<%= advert.explication %>  </p>
+		
+		<% else %>
+		<p class="group inner list-group-item-text">
+		<%= advert.explication[0..44] %>...  </p>
+		
+		<% end 	%>
+		
+		<div style="margin-top:25px;" class="row">
+		<div class="col-xs-12 col-md-6">
+		<p class="lead">
+		<%= advert.price  %></p>
+		</div>
+		<div class="col-xs-12 col-md-6">
+		<a style="float:right;" class="btn btn-success" href="<%= advert.href %>">İlana Git</a>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		
+		
+		
+		
+		<div class="item visible-xs  col-sm-6 col-xs-6 col-lg-4">
+		<div class="thumbnail">
+			
+			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title: advert.name,class:"img-responsive masterTooltip" %></a>
+		
+		<div class="caption">
+		<h4 class="group inner list-group-item-heading">
+			<% if advert.name.length <= 10 %>
+		<%= advert.name %></h4>
+		
+		<% else %>
+		
+		<%= advert.name[0..9] %>...</h4>
+		<% end %>
+		<p class="group inner list-group-item-text">
+			
+		<% if advert.explication.length <=14 %>	
+		<%= advert.explication %>  </p>
+		<% else %>
+		
+		<%= advert.explication[0..13] %>...  </p>
+		
+		<% end %>
+		<div style="margin-top:25px;" class="row">
+		<div class="col-xs-12 col-md-6">
+		<p class="lead">
+		<%= advert.price  %></p>
+		</div>
+		<div class="col-xs-12 col-md-6">
+		<a style="float:right;" class="btn btn-success" href="<%= advert.href %>">İlana Git</a>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		
+		
+		
+		<div class="item visible-sm col-sm-6 col-xs-6 col-lg-4">
+		<div class="thumbnail">
+			
+			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title: advert.name,class:"img-responsive masterTooltip" %></a>
+		
+		<div class="caption">
+		<h4 class="group inner list-group-item-heading">
+			<% if advert.name.length <= 45 %>
+		<%= advert.name %></h4>
+		
+		<% else %>
+		
+		<%= advert.name[0..44] %>...</h4>
+		<% end %>
+		<p class="group inner list-group-item-text">
+			
+		<% if advert.explication.length <=45 %>	
+		<%= advert.explication %>  </p>
+		<% else %>
+		
+		<%= advert.explication[0..44] %>...  </p>
+		
+		<% end %>
+		<div style="margin-top:25px;" class="row">
+		<div class="col-xs-12 col-md-6">
+		<p class="lead">
+		<%= advert.price  %></p>
+		</div>
+		<div class="col-xs-12 col-md-6">
+		<a style="float:right;" class="btn btn-success" href="<%= advert.href %>">İlana Git</a>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		
+		
+		
+		
+		
+		
 		
 		
 		<% end %>

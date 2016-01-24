@@ -96,9 +96,13 @@ class UserController < ApplicationController
 
   def member
 
-    @mostpopular = mostpopular.limit(6)
+    @mostpopular = Rails.cache.fetch("user_mostpopular", :expires_in => 5.minutes) do 
+      mostpopular.take(6)
+    end
 
-    @gununilanlari = gununilanlari.limit(9)
+    @gununilanlari = Rails.cache.fetch("user_gununilanlari", :expires_in => 5.minutes) do
+      gununilanlari.take(9)
+    end
 
     if params[:profilim]!=nil
       @sekme=".profilim"

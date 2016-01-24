@@ -311,6 +311,10 @@ class AdvertController < ApplicationController
         @image = Image.new(:imagefile => image)
         @advert.images << @image
       end
+      
+     
+      
+      
     end
 
     if @advert.save
@@ -411,6 +415,9 @@ class AdvertController < ApplicationController
   end
 
   def firsatlar
+    
+   
+    
     if params[:acililanlar]!=nil
       @title="Acil İlanlar"
       @active = 0
@@ -427,22 +434,18 @@ class AdvertController < ApplicationController
       @title="En Popüler İlanlar"
       @active = 3
       @adverts = mostpopular
-    elsif params[:fiyatidusenler]!=nil
-      @title="Fiyatı Düşenler"
-      @active = 4
-      @adverts = []
     elsif params[:enguvenilirsaticilar]!=nil
       @title="En Güvenilir Satıcılar"
-      @active = 5
+      @active = 4
       @users = enguvenilir
       @adverts = []
     elsif params[:kendiuniversitemdekiler]!=nil
       @title="Kendi Üniversitemdeki İlanlar"
-      @active = 6
+      @active = 5
       if current_user
         @adverts = kendiuniversitem
       else
-        @adverts = [].paginate(:page => params[:page], :per_page => 18)
+        @adverts = []
       end
 
     else

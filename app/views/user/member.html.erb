@@ -130,8 +130,7 @@
 		<!-- end of plugins  -->
 
 		<style>
-		
-		body {
+			body {
 
 				background-color: #F0F7F7;
 			}
@@ -190,11 +189,12 @@
 
 			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
-				<!-- Login Starts Here -->
+				<div id="loginkismi "  class="visible-xs ">
+					<!-- Login Starts Here -->
+					<%= render "loginContainer" %>
+					<!-- Login Ends Here -->
 
-				<%= render "loginContainer" %>
-
-				<!-- Login Ends Here -->
+				</div>
 
 			</div>
 
@@ -313,9 +313,7 @@
 													<% end %>
 												</div>
 
-												
 												<% if current_user.image %>
-
 
 												<div style="margin-top:10px;"  class="row">
 													<%= form_tag '/profilephoto', :role => 'form',:multipart => true  do  %>
@@ -327,9 +325,6 @@
 												</div>
 
 												<% end %>
-												
-												
-
 
 											</div>
 
@@ -661,11 +656,7 @@
 												<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
 
 													<div class="thumbnail">
-														<a  href="<%= advert.href %>">
-
-														<%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
-
-													
+														<a  href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
 
 													</div>
 
@@ -791,18 +782,66 @@
 						</div>
 						<div class="panel-body">
 							<div class="row">
-								<div class="col-md-3 col-lg-3 " align="center">
+								<div class="visible-md col-md-3 col-lg-3 col-xs-10 " align="center">
 									<% if !current_user.image && current_user.gender == "male" %>
 									<img src="/resources/images/erkek.png"
-									class='img-circle img-responsive' 
+									class='img-circle img-responsive'
 									/>
 									<% elsif !current_user.image && current_user.gender == "female" %>
-									<img src="/resources/images/kadin.png" 
+									<img src="/resources/images/kadin.png"
 									class='img-circle img-responsive'
 									/>
 
 									<% elsif !current_user.image && current_user.gender == "other" %>
-									<img src="/resources/images/diger.png" 
+									<img src="/resources/images/diger.png"
+									class='img-circle img-responsive'
+									/>
+
+									<% else %>
+									<%= image_tag current_user.image.imagefile(:small),
+									:alt => 'User Pic',
+									:class => 'img-circle img-responsive' %>
+									<% end%>
+								</div>
+								
+								
+								<div style="margin-bottom:40px;" class="visible-sm col-md-3 col-lg-3 col-xs-10 col-sm-offset-1" align="center">
+									<% if !current_user.image && current_user.gender == "male" %>
+									<img src="/resources/images/erkek.png"
+									class='img-circle img-responsive'
+									/>
+									<% elsif !current_user.image && current_user.gender == "female" %>
+									<img src="/resources/images/kadin.png"
+									class='img-circle img-responsive'
+									/>
+
+									<% elsif !current_user.image && current_user.gender == "other" %>
+									<img src="/resources/images/diger.png"
+									class='img-circle img-responsive'
+									/>
+
+									<% else %>
+									<%= image_tag current_user.image.imagefile(:small),
+									:alt => 'User Pic',
+									:class => 'img-circle img-responsive' %>
+									<% end%>
+								</div>
+								
+								
+								
+
+								<div style="margin-bottom:40px;" class="visible-xs col-md-3 col-lg-3 col-xs-10 col-xs-offset-1" align="center">
+									<% if !current_user.image && current_user.gender == "male" %>
+									<img src="/resources/images/erkek.png"
+									class='img-circle img-responsive'
+									/>
+									<% elsif !current_user.image && current_user.gender == "female" %>
+									<img src="/resources/images/kadin.png"
+									class='img-circle img-responsive'
+									/>
+
+									<% elsif !current_user.image && current_user.gender == "other" %>
+									<img src="/resources/images/diger.png"
 									class='img-circle img-responsive'
 									/>
 
@@ -869,58 +908,70 @@
 										</tbody>
 									</table>
 
-									<a href="/ilanver" class="col-lg-5 btn btn-primary">İlan Ver</a>
-									<a href="/ilanlarim" style="margin-left: 20px;"
-									class="col-lg-5 btn btn-primary">Önceki İlanlarım</a>
-									
-									
-										<div class="row">
+									<div class="hidden-md">
+
 										
-										<a  style="margin-left: 20px;" class="hidden-xs hidden-sm col-lg-5 btn-file profilresmi btn btn-primary "> Profil Resmini Değiştir
+
+										<div class="row">
+
+											<a  style="margin-left: 20px;" class="hidden-xs hidden-sm col-lg-5 btn-file profilresmi btn btn-primary "> Profil Resmini Değiştir
 											<%= form_tag '/profilephoto', :role => 'form',:multipart => true  do  %>
 											<input type="file" name="profilephoto"  onchange="submit();">
-											<% end %>
-										</a>
+											<% end %> </a>
 
-										<a  style="margin-left: 20px;" class="hidden-xs hidden-sm col-lg-5 btn-file profilresmi btn btn-primary "> Profil Resmini Kaldır
+											<a  style="margin-left: 20px;" class="hidden-xs hidden-sm col-lg-5 btn-file profilresmi btn btn-primary "> Profil Resmini Kaldır
 											<%= form_tag '/profilephoto', :role => 'form',:multipart => true  do  %>
 											<input  class="resimkaldir" name="deletephoto"  onclick="submit();">
-											<% end %>
-										</a>
-										
+											<% end %> </a>
+
 										</div>
-										
+
+									</div>
+
+									<div class="hidden-lg">
+
 										<div style="text-align:center;margin-top:20px;" class="row">
-											
-											<a  style="width:90%;" class=" col-lg-5 btn-file profilresmi btn btn-primary "> Profil Resmini Değiştir
-											<%= form_tag '/profilephoto', :role => 'form',:multipart => true  do  %>
-											<input type="file" name="profilephoto"  onchange="submit();">
-											<% end %>
-										</a>
-										
+
+											<a  href="/ilanver" style="width:90%;" class=" col-lg-5 btn-file  btn btn-primary "> İlan Ver </a>
+
 										</div>
-										
+
 										<div style="text-align:center;margin-top:20px;" class="row">
+
+											<a  href="/ilanlarim" style="width:90%;" class=" col-lg-5 btn-file  btn btn-primary "> Önceki İlanlarım </a>
+
+										</div>
+
+									</div>
+
+									<div style="text-align:center;margin-top:20px;" class="row">
+
+										<a  style="width:90%;" class=" col-lg-5 btn-file profilresmi btn btn-primary "> Profil Resmini Değiştir
+										<%= form_tag '/profilephoto', :role => 'form',:multipart => true  do  %>
+										<input type="file" name="profilephoto"  onchange="submit();">
+										<% end %> </a>
+
+									</div>
+
+									<% if current_user.image %>
+
+									<div style="text-align:center;margin-top:20px;" class="row">
 
 										<a  style="width:90%;"  class=" col-lg-5 btn-file profilresmi btn btn-primary "> Profil Resmini Kaldır
-											<%= form_tag '/profilephoto', :role => 'form',:multipart => true  do  %>
-											<input  class="resimkaldir" name="deletephoto"  onclick="submit();">
-											<% end %>
-										</a>
-											
-											
-										</div>
-										
-										
+										<%= form_tag '/profilephoto', :role => 'form',:multipart => true  do  %>
+										<input  class="resimkaldir" name="deletephoto"  onclick="submit();">
+										<% end %> </a>
 
-									
+									</div>
+
+									<% end %>
 
 								</div>
 							</div>
 						</div>
 						<div class="panel-footer">
 							<a href="/mesajlarim" data-original-title="Mesajlarım"
-							data-toggle="tooltip" type="button"
+							 type="button"
 							class="btn btn-sm btn-primary"><i
 							class="glyphicon glyphicon-envelope"></i></a>
 
@@ -928,11 +979,11 @@
 							class="pull-right"> <%= form_for :user, :url => 'hesabisil' , :method => :post , :html => {
 								:onsubmit => 'return vsubmit();',:id => 'uyeformu'
 								} do |t| %> <a href="/uye/<%= current_user.username %>?hesapayarlari=1"
-								data-original-title="Profili Düzenle" data-toggle="tooltip"
+								data-original-title="Profili Düzenle" 
 								type="button" class="btn btn-sm btn-warning"><i
 								class="glyphicon glyphicon-edit"></i></a> <span data-toggle="modal" data-target = "#hesabisil"> <a
 									data-original-title="Hesabımı Sil"
-									data-toggle="tooltip"     type="button"
+									    type="button"
 									class="btn btn-sm btn-danger"><i
 									class="glyphicon glyphicon-remove"></i></a> </span> <% end %> </span>
 

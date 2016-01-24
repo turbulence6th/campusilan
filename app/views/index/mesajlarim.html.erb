@@ -129,11 +129,12 @@
 
 			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
-				<!-- Login Starts Here -->
+				<div id="loginkismi "  class="visible-xs ">
+					<!-- Login Starts Here -->
+					<%= render "loginContainer" %>
+					<!-- Login Ends Here -->
 
-				<%= render "loginContainer" %>
-
-				<!-- Login Ends Here -->
+				</div>
 
 			</div>
 
@@ -151,7 +152,7 @@
 
 			<div class="row hidden-xs hidden-sm" style="height: 60%; padding-bottom: 20px; margin-bottom: 30px; margin-top: 30px;">
 
-				<div class="row" style="padding-left: 20px; padding-right: 20px;">
+				<div class="row" style="">
 
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 
@@ -159,31 +160,20 @@
 
 						<div class="well">
 
-							Buraya kafana göre bir şeyler ekle...
-							<br>
-							...
-							<br>
-							...
-							<br>
-							...
-							<br>
-							...
-							<br>
-							...
-							<br>
-							...
-							<br>
-							...
-							<br>
-							...
-							<br>
+							-Campus İlan'a Hoşgeldiniz!!
+								<br>
+								<br>
+								-Yardıma mı mı ihtiyacınız var? O zaman <a href="/yardim">buraya</a> tıklayın.
+								<br>
+								<br>
+								-Görüş ve Önerileriniz bizim için çok önemli!! <a href="/iletisim">İletişim</a> sayfasından bizimle iletişime geçebilirsiniz.
+
 
 						</div>
 
 					</div>
 
-					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9"
-					style="padding-left: 20px; padding-right: 20px">
+					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 well" style="padding-left: 30px; padding-right: 30px">
 
 						<div class="row">
 
@@ -540,12 +530,16 @@ $(".cevaplapaneli .ickisim").attr("placeholder", "<%= mesaj.to.username %>");
 				</div>
 
 			</div>
+			
+			<div class="hidden-md" >
 
 			<%= render "kullanicipaneli2"   %>
+			
+			</div>
 
 			<div style="margin-top:50px;" class="visible-xs visible-sm">
 
-				<div class="row" style="padding-left: 20px; padding-right: 20px;">
+				<div class="row well" style="padding-left: 20px; padding-right: 20px;">
 
 					<div class="row">
 
@@ -1375,11 +1369,15 @@ $(".<%= mesaj.id %>").click(function() {
 				});
 
 			</script>
+			
+			
 
 			<div class="row">
 
 				<%= render "footer" %>
 
+			</div>
+			
 			</div>
 
 			<%= render 'paginationkaldir' %>
@@ -1415,7 +1413,7 @@ $(".<%= mesaj.id %>").click(function() {
 
 			</script>
 
-		</div>
+		
 
 	</body>
 

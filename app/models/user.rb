@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
   }, :if => :password_digest_changed?
   
   validates :phone, :format => {
-    :with => /\d{3}-\d{7}/
+    :with => /\d/
   }
     
   has_secure_password

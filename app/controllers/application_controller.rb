@@ -107,8 +107,9 @@ class ApplicationController < ActionController::Base
   end
   
   def kendiuniversitem
-    Advert.available.select('adverts.*').from('adverts, users u1, users u2')
-          .where('u1.id=? and u1.university_id=u2.university_id and adverts.user_id=u2.id', current_user.id)
+    Advert.available.select('adverts.*').from('adverts, users')
+          .where('users.university_id = ? and adverts.user_id=users.id', current_user.university_id)
+          .order('created_at DESC')
   end
   
   
