@@ -149,7 +149,7 @@
   border-top: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   /* Switch to desktop layout
   -----------------------------------------------
      These transform the menu tree from

@@ -112,6 +112,11 @@
 		<!-- end of plugins  -->
 
 		<style>
+		
+		body {
+
+				background-color: #F0F7F7;
+			}
 			@media screen and (min-width: 1200px) {
 				body {
 					padding-left: 50px;
@@ -142,11 +147,12 @@
 
 			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
-				<!-- Login Starts Here -->
+				<div id="loginkismi "  class="visible-xs ">
+					<!-- Login Starts Here -->
+					<%= render "loginContainer" %>
+					<!-- Login Ends Here -->
 
-				<%= render "loginContainer" %>
-
-				<!-- Login Ends Here -->
+				</div>
 
 			</div>
 
@@ -165,11 +171,11 @@
 
 			</div>
 
-			<div class="row">
+			<div style="margin-bottom:30px;"  class="row">
 
 				<div class="single">
 
-					<div class="container-fluid">
+					<div style="padding-bottom:50px;" class="container-fluid">
 						<div class="col-md-9">
 							<div class="hidden-xs hidden-sm col-md-6 grid">
 
@@ -219,7 +225,7 @@
 
 									<br class="visible-xs visible-sm ">
 									<h1><%= @advert.name %></h1>
-									<br>
+									<br class="visible-xs visible-sm ">
 
 									<div class="visible-xs visible-sm col-md-6">
 

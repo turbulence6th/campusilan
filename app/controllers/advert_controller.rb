@@ -370,6 +370,10 @@ class AdvertController < ApplicationController
         @image = Image.new(:imagefile => image)
         @advert.images << @image
       end
+      
+     
+      
+      
     end
 
     if @advert.save
@@ -468,6 +472,9 @@ class AdvertController < ApplicationController
   end
 
   def firsatlar
+    
+   
+    
     if params[:acililanlar]!=nil
       @title="Acil İlanlar"
       @active = 0

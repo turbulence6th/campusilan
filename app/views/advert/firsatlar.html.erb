@@ -112,9 +112,9 @@
 		<!-- hopscotch -->
 
 		<link rel="stylesheet" type="text/css" href="/resources/plugins/hopscotch/dist/css/hopscotch.css" />
-		
+
 		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/hopscotch.js"></script>
-		
+
 		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/siteturu.js"></script>
 
 		<!-- end of plugins  -->
@@ -158,11 +158,12 @@
 
 			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
-				<!-- Login Starts Here -->
+				<div id="loginkismi "  class="visible-xs ">
+					<!-- Login Starts Here -->
+					<%= render "loginContainer" %>
+					<!-- Login Ends Here -->
 
-				<%= render "loginContainer" %>
-
-				<!-- Login Ends Here -->
+				</div>
 
 			</div>
 
@@ -179,21 +180,21 @@
 			</div>
 
 			<script>var activeEl =<%= @active %>
-				;
-				$(function() {
-					var items = $('.btn-nav');
-					$(items[activeEl]).addClass('active');
-					$(".btn-nav").click(function() {
-						$(items[activeEl]).removeClass('active');
-						$(this).addClass('active');
-						activeEl = $(".btn-nav").index(this);
-					});
-				});
+	;
+	$(function() {
+		var items = $('.btn-nav');
+		$(items[activeEl]).addClass('active');
+		$(".btn-nav").click(function() {
+			$(items[activeEl]).removeClass('active');
+			$(this).addClass('active');
+			activeEl = $(".btn-nav").index(this);
+		});
+	});
 			</script>
 
-			<div id="dokuzuncukisim" class="row">
+			<div id="dokuzuncukisim" class="row hidden-sm">
 
-				<div style="z-index:1;" class="btn-group btn-group-justified">
+				<div id="firsatlarpaneli" style="z-index:1;" class="btn-group btn-group-justified">
 					<div class="btn-group">
 						<button onclick="window.location='/firsatlar?acililanlar=1'"  type="button" class="btn btn-nav">
 							<span class="glyphicon glyphicon-bell"></span>
@@ -226,7 +227,7 @@
 							</p>
 						</button>
 					</div>
-					
+
 					<div class="btn-group">
 						<button onclick="window.location='/firsatlar?enguvenilirsaticilar=1'" type="button" class="btn btn-nav">
 							<span class="glyphicon glyphicon-user"></span>
@@ -241,6 +242,64 @@
 							<span class="glyphicon glyphicon-book"></span>
 							<p>
 								Üniversitemdekiler
+							</p>
+						</button>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div  class="row visible-sm">
+
+				<div id="firsatlarpaneli" style="z-index:1;" class="btn-group btn-group-justified">
+					<div class="btn-group">
+						<button onclick="window.location='/firsatlar?acililanlar=1'"  type="button" class="btn btn-nav">
+							<span class="glyphicon glyphicon-bell"></span>
+							<p>
+								Acil İlanlar
+							</p>
+						</button>
+					</div>
+					<div class="btn-group">
+						<button onclick="window.location='/firsatlar?gununfirsatlari=1'" type="button" class="btn btn-nav">
+							<span class="glyphicon glyphicon-calendar"></span>
+							<p>
+								Günün Fırsatları
+							</p>
+						</button>
+					</div>
+					<div class="btn-group">
+						<button onclick="window.location='/firsatlar?ensonilanlar=1'" type="button" class="btn btn-nav">
+							<span class="glyphicon glyphicon-time"></span>
+							<p>
+								En Son İlanlar
+							</p>
+						</button>
+					</div>
+					<div class="btn-group">
+						<button onclick="window.location='/firsatlar?enpopulerilanlar=1'" type="button" class="btn btn-nav">
+							<span class="glyphicon glyphicon-globe"></span>
+							<p>
+								En Popüler İlanlar
+							</p>
+						</button>
+					</div>
+
+					<div class="btn-group">
+						<button onclick="window.location='/firsatlar?enguvenilirsaticilar=1'" type="button" class="btn btn-nav">
+							<span class="glyphicon glyphicon-user"></span>
+							<p>
+								En Güvenilirler
+							</p>
+						</button>
+					</div>
+
+					<div class="btn-group">
+						<button onclick="window.location='/firsatlar?kendiuniversitemdekiler=1'" type="button" class="btn btn-nav">
+							<span class="glyphicon glyphicon-book"></span>
+							<p>
+								Üniversitemde
 							</p>
 						</button>
 					</div>
@@ -272,95 +331,94 @@
 							</div>
 
 						</div>
-						
-						
-						<div class="hidden-xs hidden-sm col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
 
-				<div style="">
-
-					<div class="panel panel-success">
-
-						<div class="panel-heading">
-							<h3 style="text-align: center;" class="panel-title"><%= @title %></h3>
+						<div class="visible-md" >
+							<%= render "kullanicipaneli2" %>
 						</div>
 
-						<% if @adverts!= []  %>
+						<br class="visible-md">
+						<br class="visible-md">
 
-						<div class=" panel-body">
+						<div class="hidden-xs hidden-sm col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
 
-							<% @adverts.each do |advert| %>
+							<div style="">
 
-							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+								<div class="panel panel-success">
 
-								<div class="thumbnail">
-									<a href="<%= advert.href %>"> 
-									<%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %>
-									 </a>
+									<div class="panel-heading">
+										<h3 style="text-align: center;" class="panel-title"><%= @title %></h3>
+									</div>
 
-								</div>
+									<% if @adverts!= []  %>
 
-								<div class="caption">
+									<div class=" panel-body">
 
-									<% if advert.name.length >= 12 %>
+										<% @adverts.each do |advert| %>
 
-									<h5><%= advert.name[0..11] %>...</h5>
+										<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<% if advert.name.length >= 12 %>
+
+												<h5><%= advert.name[0..11] %>...</h5>
+
+												<% else %>
+
+												<h5><%= advert.name %></h5>
+
+												<% end %>
+
+											</div>
+
+										</div>
+
+										<% end %>
+
+									</div>
+
+									<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
+
+									<div style="clear:both;"  class="apple_pagination">
+										<%= will_paginate @adverts, :container => false,
+										:previous_label => 'Önceki', :next_label => 'Sonraki' %>
+									</div>
 
 									<% else %>
 
-									<h5><%= advert.name %></h5>
+									<div class="panel-body">
 
-									<% end %>
+										Henüz bu kategoride ilan bulunmamaktadır!!
+
+										<% end %>
+
+									</div>
 
 								</div>
 
 							</div>
 
-							<% end %>
-
 						</div>
-
-						
-						<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
-
-						<div style="clear:both;"  class="apple_pagination">
-							<%= will_paginate @adverts, :container => false,
-							:previous_label => 'Önceki', :next_label => 'Sonraki' %>
-						</div>
-						
-
-						<% else %>
-						
-						
-						<div class="panel-body">
-							
-							Henüz bu kategoride ilan bulunmamaktadır!!
-						
-						<% end %>
-
-						
 
 					</div>
 
 				</div>
 
 			</div>
-						
 
-					</div>
-
-				</div>
-
+			<div class="container-fluid hidden-md" >
+				<%= render "kullanicipaneli2" %>
 			</div>
-			
-			</div>
-			
-			
-			<%= render "kullanicipaneli2" %>
 
 			<br class="visible-sm visible-xs visible-md">
 			<br class="visible-sm visible-xs visible-md">
 
-			<div class="hidden-lg hidden-md col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
+			<div id="ilanpaneli" class="hidden-lg hidden-md col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
 
 				<div class="row">
 
@@ -405,189 +463,196 @@
 
 							<% end %>
 
-							
-
 							<div style="clear:both;"  class="apple_pagination">
 								<%= will_paginate @adverts, :container => false,
 								:previous_label => 'Önceki', :next_label => 'Sonraki' %>
 							</div>
-							
 
 						</div>
 
 						<% else %>
-						
+
 						<div class=" panel-body">
-						
-						Henüz bu kategoride ilan bulunmamaktadır!!
-						
+
+							Henüz bu kategoride ilan bulunmamaktadır!!
+
 						</div>
-						
+
 						<% end %>
 
-						
-
 					</div>
 
 				</div>
 
 			</div>
 
-		</div>
+			<div style="margin-bottom:20px;" class="hidden-xs hidden-sm row">
 
-		<div style="margin-bottom:20px;" class="hidden-xs hidden-sm row">
+				<img width="100%;" src="/resources/images/asdasd3.png">
 
-			<img width="100%;" src="/resources/images/asdasd3.png">
+			</div>
 
-		</div>
+			<div style="padding:20px; margin-bottom:20px;" class="visible-xs visible-sm row">
 
-		<div style="padding:20px; margin-bottom:20px;" class="visible-xs visible-sm row">
+				<img width="100%;" src="/resources/images/asdasd3.png">
 
-			<img width="100%;" src="/resources/images/asdasd3.png">
+			</div>
 
-		</div>
+			<div class = "hidden-xs panel panel-info">
+				<div class = "panel-heading">
+					<h3 style="text-align: center;" class="panel-title">Bizim Seçtiklerimiz</h3>
+				</div>
 
-		<div class="hidden-xs row" style="margin-top: 30px; margin-bottom: 30px;">
+				<div class = "panel-body">
+					
+					<div style="background:white;"class="jcarousel-wrapper" style="margin-bottom: 80px;">
+						<div class="jcarousel">
+							<ul>
 
-			<div class="" style="border: 1px solid black; margin-left:10px;margin-right:10px; margin-bottom: 0px; padding-left: 10px;padding-bottom:30px; padding-right: 10px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; background: #E6F3FF">
+								<% @bizimsectiklerimiz.each do |advert| %>
 
-				<h2 style="text-align: center; margin-bottom: 50px;"><u>Bizim Seçtiklerimiz</u></h2>
+								<li>
+									<% if advert.images != [] %>
 
-				<div style="background:white;"class="jcarousel-wrapper" style="margin-bottom: 80px;">
-					<div class="jcarousel">
-						<ul>
-
-							<% @bizimsectiklerimiz.each do |advert| %>
-
-							<li>
-								<% if advert.images != [] %>
-
-								<div class='wrapper'>
-									<!-- image -->
-									<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small) %></a>
-									<!-- description div -->
-									<div class='description'>
-										<!-- description content -->
-										<div class='description_content'>
-											<%= advert.name %>
+									<div class='wrapper'>
+										<!-- image -->
+										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small) %></a>
+										<!-- description div -->
+										<div class='description'>
+											<!-- description content -->
+											<div class='description_content'>
+												<%= advert.name %>
+											</div>
+											<!-- end description content -->
 										</div>
-										<!-- end description content -->
+										<!-- end description div -->
 									</div>
-									<!-- end description div -->
-								</div>
 
-								<% else %>
+									<% else %>
 
-								<div class='wrapper'>
-									<!-- image -->
-									<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile %></a>
-									<!-- description div -->
-									<div class='description'>
-										<!-- description content -->
-										<div class='description_content'>
-											<%= advert.name %>
+									<div class='wrapper'>
+										<!-- image -->
+										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile %></a>
+										<!-- description div -->
+										<div class='description'>
+											<!-- description content -->
+											<div class='description_content'>
+												<%= advert.name %>
+											</div>
+											<!-- end description content -->
 										</div>
-										<!-- end description content -->
+										<!-- end description div -->
 									</div>
-									<!-- end description div -->
-								</div>
+
+									<% end %>
+
+								</li>
 
 								<% end %>
+							</ul>
+						</div>
 
-							</li>
+						<a href="#" class="jcarousel-control-prev">&lsaquo;</a><a href="#"
+						class="jcarousel-control-next">&rsaquo;</a>
 
-							<% end %>
-						</ul>
+						<p class="jcarousel-pagination hidden-xs"></p>
+					</div>
+					
+					
+					
+					
+				</div>
+			</div>
+
+			
+
+			<div style="margin-bottom:20px;" class="row">
+
+				<div class="col-lg-6">
+
+					<div class="hidden-xs hidden-sm">
+						<img src="/resources/images/sosyalmedya.png" width="100%" height="350px">
+
 					</div>
 
-					<a href="#" class="jcarousel-control-prev">&lsaquo;</a><a href="#"
-					class="jcarousel-control-next">&rsaquo;</a>
+					<div class="visible-xs visible-sm">
+						<img src="/resources/images/sosyalmedya.png" width="100%" height="250px">
 
-					<p class="jcarousel-pagination hidden-xs"></p>
-				</div>
-
-			</div>
-
-		</div>
-
-		<div style="margin-bottom:20px;" class="row">
-
-			<div class="col-lg-6">
-
-				<div class="hidden-xs hidden-sm">
-				<img src="/resources/images/sosyalmedya.png" width="100%" height="350px">
-				
-				</div>
-				
-				<div class="visible-xs visible-sm">
-				<img src="/resources/images/sosyalmedya.png" width="100%" height="250px">
-				
-				</div>
-
-			</div>
-
-		</div>
-
-		<div style= "padding-left: 20px; padding-right: 20px">
-
-			<div style="background-color:#9DD2E3;" class="row well">
-
-				<div class="col-lg-4">
-
-					<h4>Giriş mi Yapmak İstiyorsunuz?</h4>
-					<br class="hidden-xs hidden-sm">
-
-					<button type = "button" class = "btn btn-primary">
-						Giriş Yap
-					</button>
-
-				</div>
-
-				<div class="col-lg-4">
-
-					<h4>Kayıt mı Olmak İstiyorsunuz?</h4>
-					<br class="hidden-xs hidden-sm">
-
-					<button type = "button" class = "btn btn-primary">
-						Kayıt Ol
-					</button>
-
-				</div>
-
-				<div class="col-lg-4">
-
-					<h4>Zaten giriş yaptınız ve ilan mı açmak istiyorsunuz?</h4>
-
-					<button type = "button" class = "btn btn-primary">
-						İlan Aç
-					</button>
+					</div>
 
 				</div>
 
 			</div>
 
+			<div style= "padding-left: 20px; padding-right: 20px">
+
+				<div style="background-color:#9DD2E3;" class="row well">
+
+					<div class="col-lg-4">
+
+						<h4>Giriş mi Yapmak İstiyorsunuz?</h4>
+						<br class="hidden-xs hidden-sm">
+
+						<button type = "button" class = "btn btn-primary">
+							Giriş Yap
+						</button>
+
+					</div>
+
+					<div class="col-lg-4">
+
+						<h4>Kayıt mı Olmak İstiyorsunuz?</h4>
+						<br class="hidden-xs hidden-sm">
+
+						<button type = "button" class = "btn btn-primary">
+							Kayıt Ol
+						</button>
+
+					</div>
+
+					<div class="col-lg-4">
+
+						<h4>Zaten giriş yaptınız ve ilan mı açmak istiyorsunuz?</h4>
+
+						<button type = "button" class = "btn btn-primary">
+							İlan Aç
+						</button>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<%= render "footer" %>
+
 		</div>
 
-		<%= render "footer" %>
-
-		</div>
-		
 		<%= render 'paginationkaldir' %>
 
+		<% if params[:gununfirsatlari]!= nil || params[:acililanlar]!= nil || params[:ensonilanlar]!= nil || params[:enpopulerilanlar]!= nil || params[:evguvenilirsaticilar]!= nil || params[:kendiuniversitemdekiler]!= nil%>
+
+		<script>
+			document.getElementById('ilanpaneli').scrollIntoView();
+
+		</script>
+
+		<% end %>
+
 		<!-- pluginler -->
-		
+
 		<script>
 			$(".ucuncumenu > ul").slideDown(0);
 			$(".ucuncumenu").addClass("active");
-			
+
 		</script>
-		
+
 		<script>
-			  if (hopscotch.getState() === "hello-hopscotch:8") {
-          hopscotch.startTour(tour);
-        }
-        
-       </script>	
+			if (hopscotch.getState() === "hello-hopscotch:8") {
+				hopscotch.startTour(tour);
+			}
+
+		</script>
 
 		<!-- JCarousel Plugin -->
 

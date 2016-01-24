@@ -71,7 +71,7 @@ Inspired by http://dribbble.com/shots/890759-Ui-Kit-Metro/attachments/97174
 @keyframes pulsate {
  50% { color: #000; }
 }
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .btn-group {
         display: block !important;
         float: none !important;

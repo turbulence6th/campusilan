@@ -94,14 +94,13 @@
 
 		<link rel="stylesheet" type="text/css"
 		href="/resources/plugins/tooltipplugin/tooltip.css" />
-		
-		
+
 		<!-- hopscotch -->
 
 		<link rel="stylesheet" type="text/css" href="/resources/plugins/hopscotch/dist/css/hopscotch.css" />
-		
+
 		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/hopscotch.js"></script>
-		
+
 		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/siteturu.js"></script>
 
 		<!-- end of plugins  -->
@@ -146,11 +145,12 @@
 
 			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
-				<!-- Login Starts Here -->
+				<div id="loginkismi "  class="visible-xs ">
+					<!-- Login Starts Here -->
+					<%= render "loginContainer" %>
+					<!-- Login Ends Here -->
 
-				<%= render "loginContainer" %>
-
-				<!-- Login Ends Here -->
+				</div>
 
 			</div>
 
@@ -328,6 +328,14 @@
 
 						</div>
 
+						<div class="visible-md">
+							<%= render "kullanicipaneli2" %>
+						</div>
+
+						
+						<br class="visible-md">
+						<br class="visible-md">
+
 						<div class="hidden-xs hidden-sm col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
 
 							<div style="">
@@ -347,9 +355,7 @@
 										<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 											<div class="thumbnail">
-												<a href="<%= advert.href %>"> 
-												<%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %>
-												 </a>
+												<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
 
 											</div>
 
@@ -372,19 +378,13 @@
 										<% end %>
 
 									</div>
-									
+
 									<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
 
-									
-									
-									
-									
 									<div style=""  class="apple_pagination">
 										<%= will_paginate @adverts, :container => false,
 										:previous_label => 'Önceki', :next_label => 'Sonraki' %>
 									</div>
-									
-									
 
 									<% else %>
 
@@ -408,10 +408,12 @@
 
 			</div>
 
-			<%= render "kullanicipaneli2" %>
+			<div class="hidden-md">
+				<%= render "kullanicipaneli2" %>
+			</div>
 
-			<br class="visible-sm visible-xs visible-md">
-			<br class="visible-sm visible-xs visible-md">
+			<br class="visible-sm visible-xs ">
+			<br class="visible-sm visible-xs ">
 
 			<div class="hidden-lg hidden-md col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
 
@@ -432,9 +434,7 @@
 							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 								<div class="thumbnail">
-									<a href="<%= advert.href %>">
-									<%= image_tag advert.pimage.imagefile(:small) %>
-									</a>
+									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %> </a>
 								</div>
 
 								<div class="caption">
@@ -456,20 +456,17 @@
 
 							<% end %>
 
-						
-
 							<div style="clear:both;"  class="apple_pagination">
 								<%= will_paginate @adverts, :container => false,
 								:previous_label => 'Önceki', :next_label => 'Sonraki' %>
 							</div>
-							
 
 						</div>
 
 						<% else %>
 
 						<div class=" panel-body">
-							
+
 							Henüz bu kategoride ilan bulunmamaktadır!!
 
 						</div>
@@ -484,7 +481,7 @@
 
 		</div>
 
-		<div style="margin-bottom:20px;" class="hidden-xs hidden-sm row">
+		<div style="margin-bottom:20px;" class="hidden-xs hidden-sm ">
 
 			<img width="100%;" src="/resources/images/asdasd3.png">
 
@@ -518,9 +515,8 @@
 							<div class="col-lg-3 col-xs-6 col-md-4 col-sm-4">
 
 								<div style="" class="thumbnail">
-									
+
 									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
-									
 
 								</div>
 
@@ -528,15 +524,15 @@
 
 									<% if advert.name.length <= 12 %>
 
-									<p>
+									<h5>
 										<%= advert.name %>
-									</p>
+									</h5>
 
 									<% else %>
 
-									<p>
+									<h5>
 										<%= advert.name[0..11] + "..." %>
-									</p>
+									</h5>
 
 									<% end %>
 
@@ -595,9 +591,8 @@
 							<div class="col-lg-3 col-xs-6 col-md-4 col-sm-4">
 
 								<div style="" class="thumbnail">
-									
+
 									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
-									
 
 								</div>
 
@@ -693,22 +688,22 @@
 		<%= render "footer" %>
 
 		</div>
-		
+
 		<%= render 'paginationkaldir' %>
 
 		<!-- pluginler -->
-		
+
 		<script>
 			$(".ikincimenu > ul").slideDown(0);
 			$(".ikincimenu").addClass("active");
-			
+
 		</script>
-		
+
 		<script>
-			  if (hopscotch.getState() === "hello-hopscotch:7") {
-          hopscotch.startTour(tour);
-        }
-			
+			if (hopscotch.getState() === "hello-hopscotch:7") {
+				hopscotch.startTour(tour);
+			}
+
 		</script>
 
 		<!-- Tooltip eklentisi-->

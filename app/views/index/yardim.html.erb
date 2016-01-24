@@ -112,11 +112,12 @@
 
 			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
-				<!-- Login Starts Here -->
+				<div id="loginkismi "  class="visible-xs ">
+					<!-- Login Starts Here -->
+					<%= render "loginContainer" %>
+					<!-- Login Ends Here -->
 
-				<%= render "loginContainer" %>
-
-				<!-- Login Ends Here -->
+				</div>
 
 			</div>
 
@@ -143,108 +144,113 @@
 
 						<div class="col-lg-3 col-md-3 visible-lg visible-md ">
 
-							<div class="panel panel-primary">
+							<div  style="height:600px;" class="panel panel-primary">
 
 								<div class="panel-heading">
 									<h3 class="panel-title">En Sık Sorulanlar</h3>
 								</div>
 
 								<div class="panel-body">
-									<a style="cursor:pointer;
-									text-decoration:none;"  onclick="changecontent1();" >-Nasıl Üye Olurum? </a>
+									<a style="cursor:pointer; text-decoration:none;" href="#" onclick="changecontent1();" >-Nasıl Üye Olurum? </a>
+								</div>
+
+								<div class="panel-body">
+									<a style="cursor:pointer; text-decoration:none;" href="#" onclick="changecontent2();" >-Nasıl İlan Ekleyebilirim? </a>
 								</div>
 
 								<div class="panel-body">
 									<a style="cursor:pointer;
-									text-decoration:none;"onclick="changecontent2();" href="#">-Nasıl İlan Ekleyebilirim? </a>
+									text-decoration:none;" href="#" onclick="changecontent3();" >-Nasıl Hizmet Satın Alırım? </a>
 								</div>
 
 								<div class="panel-body">
 									<a style="cursor:pointer;
-									text-decoration:none;"onclick="changecontent3();" href="#">-Nasıl Ürün Satın Alırım? </a>
-								</div>
-
-								<div class="panel-body">
-									<a style="cursor:pointer;
-									text-decoration:none;"onclick="changecontent4();" href="#">-Ürün Satın Alırken Komisyon Ücreti Veriyor
+									text-decoration:none;" href="#" onclick="changecontent4();" >-Ürün Satın Alırken Komisyon Ücreti Veriyor
 									muyuz? </a>
 								</div>
 
 								<div class="panel-body">
 									<a style="cursor:pointer;
-									text-decoration:none;"onclick="changecontent5();" href="#">-Siteniz ne kadar güvenli? </a>
+									text-decoration:none;" href="#" sonclick="changecontent5();" >-Siteniz ne kadar güvenli? </a>
 								</div>
 
 								<div class="panel-body">
 									<a style="cursor:pointer;
-									text-decoration:none;"onclick="changecontent6();" href="#">-Sitenizi diğer benzer sitelerden farklı kılan
+									text-decoration:none;" href="#" onclick="changecontent6();" >-Sitenizi diğer benzer sitelerden farklı kılan
 									nedir? </a>
 								</div>
 
 								<div class="panel-body">
 									<a style="cursor:pointer;
-									text-decoration:none;"onclick="changecontent7();" href="#">-Kullanım Koşulları Neler? </a>
+									text-decoration:none;" href="#" onclick="changecontent7();" >-Kullanım Koşulları Neler? </a>
+								</div>
+								
+								<div class="panel-body">
+									<a style="cursor:pointer;
+									text-decoration:none;" href="#" onclick="changecontent8();" >-Daha fazla yardım mı gerek? </a>
 								</div>
 
 							</div>
 
 						</div>
 
-						<div style="margin-bottom:30px;margin-left:10px;margin-right:10px;" class="hidden-lg hidden-md panel panel-primary">
+						<div style="margin-bottom:30px;margin-left:10px;margin-right:10px;" class="hidden-lg hidden-md panel panel-primary" >
 
 							<div class="panel-heading">
 								<h3 class="panel-title">En Sık Sorulanlar</h3>
 							</div>
 
 							<div class="panel-body">
-								<a style="cursor:pointer;
-								text-decoration:none;"onclick="changecontent1();" >-Nasıl Üye Olurum? </a>
+								<a  href="#yardimicerikleri" onclick="changecontent1();" >-Nasıl Üye Olurum? </a>
 							</div>
 
 							<div class="panel-body">
 								<a style="cursor:pointer;
-								text-decoration:none;"onclick="changecontent2();" href="#">-Nasıl İlan Ekleyebilirim? </a>
+								text-decoration:none;" href="#yardimicerikleri" onclick="changecontent2();" >-Nasıl İlan Ekleyebilirim? </a>
 							</div>
 
 							<div class="panel-body">
 								<a style="cursor:pointer;
-								text-decoration:none;"onclick="changecontent3();" href="#">-Nasıl Ürün Satın Alırım? </a>
+								text-decoration:none;" href="#yardimicerikleri" onclick="changecontent3();" >-Nasıl Hizmet Satın Alırım? </a>
 							</div>
 
 							<div class="panel-body">
 								<a style="cursor:pointer;
-								text-decoration:none;"onclick="changecontent4();" href="#">-Ürün Satın Alırken Komisyon Ücreti Veriyor
+								text-decoration:none;" href="#yardimicerikleri" onclick="changecontent4();" >-Ürün Satın Alırken Komisyon Ücreti Veriyor
 								muyuz? </a>
 							</div>
 
 							<div class="panel-body">
 								<a style="cursor:pointer;
-								text-decoration:none;"onclick="changecontent5();" href="#">-Siteniz ne kadar güvenli? </a>
+								text-decoration:none;" href="#yardimicerikleri" onclick="changecontent5();" >-Siteniz ne kadar güvenli? </a>
 							</div>
 
 							<div class="panel-body">
 								<a style="cursor:pointer;
-								text-decoration:none;"onclick="changecontent6();" href="#">-Sitenizi diğer benzer sitelerden farklı kılan
+								text-decoration:none;" href="#yardimicerikleri" onclick="changecontent6();" >-Sitenizi diğer benzer sitelerden farklı kılan
 								nedir? </a>
 							</div>
 
 							<div class="panel-body">
 								<a style="cursor:pointer;
-								text-decoration:none;"onclick="changecontent7();" href="#">-Kullanım Koşulları Neler? </a>
+								text-decoration:none;" href="#yardimicerikleri" onclick="changecontent7();" >-Kullanım Koşulları Neler? </a>
 							</div>
+							
+							<div class="panel-body">
+									<a style="cursor:pointer;
+									text-decoration:none;" href="#yardimicerikleri" onclick="changecontent8();" >-Daha fazla yardım mı gerek? </a>
+								</div>
 
 						</div>
 
-						<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+						<div  class="hidden-xs col-lg-9 col-md-9 col-sm-12 col-xs-12" >
 
-							<div style="height:550px;" class = "panel panel-default">
-								<div class = "yardimicerikleri panel-body">
+							<div style="padding:20px;height:600px;" class = "panel panel-default" >
+								<div  class = "yardimicerikleri panel-body">
 									
-									<h2 class="visible-md visible-lg" style="text-align: center">Size Nasıl Yardımcı
-								Olabiliriz?</h2>
+									<h2 class="visible-md visible-lg" style="text-align: center">Size Nasıl Yardımcı Olabiliriz?</h2>
 
-								<h4 class="visible-xs visible-sm" style="">Size Nasıl Yardımcı
-								Olabiliriz?</h4>
+								<h4 class="visible-xs visible-sm" style="">Size Nasıl Yardımcı Olabiliriz?</h4>
 
 								<br>
 
@@ -257,7 +263,54 @@
 								<br>
 								<br>
 
-								<div style="text-align:center;">
+								<div class="visible-xs" style="text-align:center;">
+									<img  class="img-responsive" src="/resources/images/help.jpg" >
+
+								</div>
+								
+								<div class="hidden-xs" style="text-align:center;">
+									<img  src="/resources/images/help.jpg" width="85%" height="300px">
+
+								</div>
+									
+									
+									
+								</div>
+							</div>
+
+						
+
+						</div>
+						
+						
+						
+						
+						<div id="yardimicerikleri" class="visible-xs col-lg-9 col-md-9 col-sm-12 col-xs-12" >
+
+							<div  style="padding:20px;" class = "panel panel-default" >
+								<div  class = "yardimicerikleri panel-body">
+									
+									<h2 class="visible-md visible-lg" style="text-align: center">Size Nasıl Yardımcı Olabiliriz?</h2>
+
+								<h4 class="visible-xs visible-sm" style="">Size Nasıl Yardımcı Olabiliriz?</h4>
+
+								<br>
+
+								Campus İlan olarak sorunlarınızı çözmek ve aklınızdaki soru işaretlerini gidermek en büyük görevimiz!!
+								<br>
+								<br>
+
+								Soldaki panelden en genel soruları tıklayarak cevaplarını bulabilir yada <a href="/iletisim"> buradan</a> bizimle iletişime geçebilirsiniz.
+								<br>
+								<br>
+								<br>
+
+								<div class="visible-xs" style="text-align:center;">
+									<img  class="img-responsive" src="/resources/images/help.jpg" >
+
+								</div>
+								
+								<div class="hidden-xs" style="text-align:center;">
 									<img  src="/resources/images/help.jpg" width="85%" height="300px">
 
 								</div>
@@ -279,21 +332,156 @@
 
 			</div>
 
-			<div class="nasiluyeolurum">
-
+			<div style="display:none;"  class="nasiluyeolurum">
+				
+				<h3>Campus İlan'a nasıl üye olabilirim?</h3>
+				<br><br>
 				Üye olmak için kayıt sayfasına gitmelisiniz. <a href="/kayitol">Buradan</a> kayıt sayfasına ulaşabilirsiniz.
 
 			</div>
-
-			<div class="nasiluyeolurum">
-
-				Üye olmak için kayıt sayfasına gitmelisiniz. <a href="/kayitol">Buradan</a> kayıt sayfasına ulaşabilirsiniz.
+			
+			<div style="display:none;"   class="nasililaneklerim">
+					
+				<h3>Campus İlan'a nasıl ilan ekleyebilirim?</h3>
+				<br><br>
+				İlan eklemek için öncelikle sistemimize giriş yapmalısınız. Eğer giriş yapmadıysanız <a href="/kayitol">buradan</a> giriş ekranına ulaşabilirsiniz.
+				<br><br>
+				Eğer sitemize kayıtlı değilseniz <a href="/kayitol">buradan</a> kayıt sayfasına ulaşabilirsiniz.
+				<br><br>
+				Giriş yaptıktan sonra <a href="/ilanver">"İlan Ver"</a> sayfasından ilan vermeye başlayabilirsiniz.
 
 			</div>
+			
+			<div style="display:none;" class="nasilurunalirim">
+				
+				<h3>Campus İlan'da nasıl hizmet satın alabilirim?</h3>
+				<br><br>
+				Campus İlan'da hizmet satın almak için giriş yapmanıza gerek yoktur.
+				<br><br>
+				Giriş yapmadan doğrudan hizmeti veren kişiye cep telefonu numarası ya da e-posta adresi bilgileri ile ulaşabilirsiniz.
+				<br><br>
+				Eğer kullanıcıya doğrudan üye paneli üzerinden mesja atmak istiyorsanız sistemimize <a href="/girisyap">giriş</a> yapmak zorundasınız.
+				<br><br>
+				Eğer sitemize kayıtlı değilseniz <a href="/kayitol">buradan</a> kayıt sayfasına ulaşabilirsiniz.
+				<br><br>
+				Giriş yaptıktan sonra iletişim kurmak istediğiniz kullanıcının profiline gidip mesaj gönder butonuna tıklayarak o kullanıcıya doğrudan mesaj gönderebilirsiniz.
+
+			</div>
+			
+			<div style="display:none;"  class="komisyonucreti">
+				
+				<h3>Campus İlan'da komisyon ücreti var mı?</h3>
+				<br><br>
+				Campus İlan'da herhangi bir komisyon ücreti alma yada hizmet bedeli vs. gibi şeyler yoktur.
+				<br><br>
+				Özgürce ilan verebilir,hizmet satın alabilirsiniz. Hepsi tamamen ücretsiz!! 
+				
+				
+				
+
+			</div>
+			
+			<div style="display:none;"  class="siteniznekadarguvenli">
+
+				<h3>Campus İlan ne kadar güvenli?</h3>
+				
+				<br><br>
+				Campus İlan'da kullanıcı bilgileriniz güvendedir ve tüm dış sanal tehditlere karşı gerekli önlemler alınmıştır. Ekibimizin en hassas davrandığı konu sunucu güvenliğidir.
+				<br><br>
+				 Sistemimizin dış sanal tehditlere karşı güvenliğini sağlama konusunda elimizden geleni yaptığımızı bilmenizi istiyoruz.Güvenliği en üst seviyede tutmak için sürekli çalışmaya devam edeceğiz!!
+				<br><br>
+				Campus İlan'da güvenle ilan açabilir,kullanıcı bilgileriniz girebilir ve hizmet satın alabilirsiniz. Campus İlan'da kredi kartı kullanmadan hizmet verebilir ve satın alabilirsiniz.
+				<br><br>
+				Campus İlan'ı diğer e-ticaret sitelerinden farklı kılan da bu!! Üniversitelilere özel güvenli bir platformda ilan paylaşma ve hizmet alma keyfini çıkarın.
+				
+				
+
+			</div>
+			
+			<div style="display:none;"   class="nedenfarkliyiz">
+
+				<h3>Campus İlan'ı farklı yapan şeyler kısaca şunlar:</h3>
+				<br><br>
+				-Campus İlan tamamen üniversitelilere özel bir ilan sitesidir. Üniversiteli olmayan birisi Campus İlan'a üye olamaz.Sadece hizmet alabilir.
+				<br><br>
+				-Campus İlan size kredi kartı bilgileri gibi hassas bilgileri asla ve asla sormaz. Sadece kullanıcının cep telefonu numarası & e-posta adresi veya adres bilgileri ile kendisiyle iletişime geçebilirsiniz.
+				<br><br>
+				-Campus İlan'ın arayüzü kullanıcı dostudur. İstediğiniz sayfaya kısa sürede ulaşırsınız ve aradığınızı bulabilirsiniz. Diğer karmakarışık ilan siteleri gibi sitenin arayüzünü anlamak için saatlerinizi hatta günlerinizi harcamazsınız!!
+				<br><br>
+				Hatta ve hatta arayüzümüzü hemen kavramak için anasayfada en üst panelde yer alan Campus İlan tanıcımızı deneyebilirsiniz.İstediğiniz zaman Campus İlan tanıcısını çalıştırabilirsiniz.
+				<br><br>
+				-Campus İlan arada belli yerlere yerleştireceği anketler ile doğrudan kullanıcıların isteğine göre platformu değiştirecek ve zengileştirecektir!! Yani kısacası Campus İlan'ın arayüzüne,fonksiyonelliğine ve geleceğine siz karar verebilirsiniz!!
+			</div>
+			
+			<div style="display:none;"  class="kullanimkosullari">
+
+				<h3>Kullanım Koşulları neler?</h3>
+				<br><br>
+				-Campus İlan'ın kullanım koşullarına <a href="/kullanimkosullari">buradan</a> ulaşabilirsiniz.
+				<br><br>				
+				 Campus İlan gerektiğinde kullanım koşullarını değiştirme hakkına sahiptir.
+			</div>	
+			
+			<div style="display:none;"   class="dahafazlayardim">
+
+				<h3>Hala daha yardıma mı ihtiyacınız var?</h3>
+				<br><br>
+				-<a href="/iletisim" >Buradan</a> bizimle iletişime geçin. Size en kısa sürede dönelim.
+							
+				
+			</div>	
+
+			
 
 			<script>
 				function changecontent1() {
 					$(".yardimicerikleri").html($(".nasiluyeolurum").html());
+					
+					
+
+				}
+				
+				function changecontent2() {
+					$(".yardimicerikleri").html($(".nasililaneklerim").html());
+					
+					
+
+				}
+				
+				function changecontent3() {
+					$(".yardimicerikleri").html($(".nasilurunalirim").html());
+					
+					
+
+				}
+				
+				function changecontent4() {
+					$(".yardimicerikleri").html($(".komisyonucreti").html());
+					
+
+				}
+				
+				function changecontent5() {
+					$(".yardimicerikleri").html($(".siteniznekadarguvenli").html());
+					
+
+				}
+				
+				function changecontent6() {
+					$(".yardimicerikleri").html($(".nedenfarkliyiz").html());
+					
+
+				}
+				
+				function changecontent7() {
+					$(".yardimicerikleri").html($(".kullanimkosullari").html());
+					
+
+				}
+				
+				function changecontent8() {
+					$(".yardimicerikleri").html($(".dahafazlayardim").html());
+					
 
 				}
 

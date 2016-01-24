@@ -94,14 +94,23 @@
 
 		<link rel="stylesheet" type="text/css"
 		href="/resources/plugins/tooltipplugin/tooltip.css" />
-		
-		
+
+		<!-- JCarousel Plugin -->
+
+		<!-- Example assets -->
+
+		<link rel="stylesheet" type="text/css" href="/resources/plugins/jcarousel-0.3.3/examples/responsive/jcarousel.responsive.css">
+
+		<script type="text/javascript" src="/resources/plugins/jcarousel-0.3.3/dist/jquery.jcarousel.min.js"></script>
+
+		<script type="text/javascript" src="/resources/plugins/jcarousel-0.3.3/examples/responsive/jcarousel.responsive.js"></script>
+
 		<!-- hopscotch -->
 
 		<link rel="stylesheet" type="text/css" href="/resources/plugins/hopscotch/dist/css/hopscotch.css" />
-		
+
 		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/hopscotch.js"></script>
-		
+
 		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/siteturu.js"></script>
 
 		<!-- end of plugins  -->
@@ -146,11 +155,12 @@
 
 			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
-				<!-- Login Starts Here -->
+				<div id="loginkismi "  class="visible-xs ">
+					<!-- Login Starts Here -->
+					<%= render "loginContainer" %>
+					<!-- Login Ends Here -->
 
-				<%= render "loginContainer" %>
-
-				<!-- Login Ends Here -->
+				</div>
 
 			</div>
 
@@ -241,10 +251,8 @@
 									</div><!-- /cbp-hrsub-inner -->
 								</div><!-- /cbp-hrsub -->
 							</li>
-							<li>
-								<a href="#">Ev Arkadaşı</a>
 
-							</li>
+							<a href="/kategoriler/evarkadasi">Ev Arkadaşı</a>
 
 							<li>
 								<a href="#">Özel Ders</a>
@@ -361,9 +369,7 @@
 									<div class="col-lg-2 col-md-3 hidden-xs hidden-sm">
 
 										<div class="thumbnail">
-											<a href="<%= advert.href %>"> 
-											<%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
-											
+											<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %> </a>
 
 										</div>
 
@@ -371,15 +377,11 @@
 
 											<% if advert.name.length <= 12 %>
 
-											<p>
-												<%= advert.name %>
-											</p>
+											<h5> <%= advert.name %> </h5>
 
 											<% else %>
 
-											<p>
-												<%= advert.name[0..11] + "..." %>
-											</p>
+											<h5> <%= advert.name[0..11] + "..." %> </h5>
 
 											<% end %>
 
@@ -402,15 +404,11 @@
 
 											<% if advert.name.length <= 10 %>
 
-											<p>
-												<%= advert.name %>
-											</p>
+											<h5> <%= advert.name %> </h5>
 
 											<% else %>
 
-											<p>
-												<%= advert.name[0..9] + "..." %>
-											</p>
+											<h5> <%= advert.name[0..9] + "..." %> </h5>
 
 											<% end %>
 
@@ -443,7 +441,80 @@
 
 			</div>
 
-			<%= render "kullanicipaneli2"%>
+			<div class="hidden-md" >
+
+				<%= render "kullanicipaneli2"%>
+
+			</div>
+
+			<div style="margin-bottom:20px;" class="hidden-xs hidden-sm row">
+
+				<img width="100%;" src="/resources/images/asdasd3.png">
+
+			</div>
+
+			<div class = "hidden-xs hidden-sm panel panel-info">
+				<div class = "panel-heading">
+					<h3 style="text-align: center;" class="panel-title">Günün Fırsatları</h3>
+				</div>
+
+				<div class = "panel-body">
+
+					<div style="background:white;"class="jcarousel-wrapper" style="margin-bottom: 80px;">
+						<div class="jcarousel">
+							<ul>
+
+								<% @gununilanlari.each do |advert| %>
+
+								<li>
+									<% if advert.images != [] %>
+
+									<div class='wrapper'>
+										<!-- image -->
+										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small) %></a>
+										<!-- description div -->
+										<div class='description'>
+											<!-- description content -->
+											<div class='description_content'>
+												<%= advert.name %>
+											</div>
+											<!-- end description content -->
+										</div>
+										<!-- end description div -->
+									</div>
+
+									<% else %>
+
+									<div class='wrapper'>
+										<!-- image -->
+										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile %></a>
+										<!-- description div -->
+										<div class='description'>
+											<!-- description content -->
+											<div class='description_content'>
+												<%= advert.name %>
+											</div>
+											<!-- end description content -->
+										</div>
+										<!-- end description div -->
+									</div>
+
+									<% end %>
+
+								</li>
+
+								<% end %>
+							</ul>
+						</div>
+
+						<a href="#" class="jcarousel-control-prev">&lsaquo;</a><a href="#"
+						class="jcarousel-control-next">&rsaquo;</a>
+
+						<p class="jcarousel-pagination hidden-xs"></p>
+					</div>
+
+				</div>
+			</div>
 
 			<div class="visible-xs visible-sm">
 
@@ -511,22 +582,181 @@
 
 			</div>
 
+			<div style=" margin-bottom:20px;" class="visible-xs visible-sm row">
+
+				<img width="100%;" src="/resources/images/asdasd3.png">
+
+			</div>
+			
+			
+			
+			<div class = "visible-sm panel panel-info">
+				<div class = "panel-heading">
+					<h3 style="text-align: center;" class="panel-title">Günün Fırsatları</h3>
+				</div>
+
+				<div class = "panel-body">
+
+					<div style="background:white;"class="jcarousel-wrapper" style="margin-bottom: 80px;">
+						<div class="jcarousel">
+							<ul>
+
+								<% @gununilanlari.each do |advert| %>
+
+								<li>
+									<% if advert.images != [] %>
+
+									<div class='wrapper'>
+										<!-- image -->
+										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small) %></a>
+										<!-- description div -->
+										<div class='description'>
+											<!-- description content -->
+											<div class='description_content'>
+												<%= advert.name %>
+											</div>
+											<!-- end description content -->
+										</div>
+										<!-- end description div -->
+									</div>
+
+									<% else %>
+
+									<div class='wrapper'>
+										<!-- image -->
+										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile %></a>
+										<!-- description div -->
+										<div class='description'>
+											<!-- description content -->
+											<div class='description_content'>
+												<%= advert.name %>
+											</div>
+											<!-- end description content -->
+										</div>
+										<!-- end description div -->
+									</div>
+
+									<% end %>
+
+								</li>
+
+								<% end %>
+							</ul>
+						</div>
+
+						<a href="#" class="jcarousel-control-prev">&lsaquo;</a><a href="#"
+						class="jcarousel-control-next">&rsaquo;</a>
+
+						<p class="jcarousel-pagination hidden-xs"></p>
+					</div>
+
+				</div>
+			</div>
+			
+			
+			
+			<div style="margin-bottom:20px;" class="row">
+
+				<div class="col-lg-6 row">
+
+					<div class="hidden-xs hidden-sm">
+						<img src="/resources/images/sosyalmedya.png" width="100%" height="350px">
+
+					</div>
+
+					<div class="visible-xs visible-sm">
+						<img src="/resources/images/sosyalmedya.png" width="100%" height="250px">
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div >
+
+				<div style="background-color:#9DD2E3;" class="row well">
+
+					<div class="col-lg-4">
+
+						<h4>Giriş mi Yapmak İstiyorsunuz?</h4>
+						<br class="hidden-xs hidden-sm">
+
+						<button type = "button" class = "btn btn-primary">
+							Giriş Yap
+						</button>
+
+					</div>
+
+					<div class="col-lg-4">
+
+						<h4>Kayıt mı Olmak İstiyorsunuz?</h4>
+						<br class="hidden-xs hidden-sm">
+
+						<button type = "button" class = "btn btn-primary">
+							Kayıt Ol
+						</button>
+
+					</div>
+
+					<div class="col-lg-4">
+
+						<h4>Zaten giriş yaptınız ve ilan mı açmak istiyorsunuz?</h4>
+
+						<button type = "button" class = "btn btn-primary">
+							İlan Aç
+						</button>
+
+					</div>
+
+				</div>
+
+			</div>
+			
+			
+
 			<div class="row">
 
 				<%= render "footer" %>
 
 			</div>
-			
+
 			<%= render 'paginationkaldir' %>
 
 			<!-- pluginler -->
-			
+
 			<script>
-			  if (hopscotch.getState() === "hello-hopscotch:9") {
-          hopscotch.startTour(tour);
-        }
-			
-		</script>
+				if (hopscotch.getState() === "hello-hopscotch:9") {
+					hopscotch.startTour(tour);
+				}
+
+			</script>
+
+			<!-- JCarousel Plugin -->
+
+			<script type="text/javascript" src="/resources/plugins/jcarousel-0.3.3/libs/jquery/jquery.js"></script>
+
+			<script>
+				var $jcarousel = jQuery.noConflict();
+
+			</script>
+
+			<script>
+				//multilevel dropdown
+
+				$jcarousel(document).ready(function() {
+					$jcarousel('.dropdown-submenu a.test').on("click", function(e) {
+						$jcarousel(this).next('ul').toggle();
+						e.stopPropagation();
+						e.preventDefault();
+					});
+				});
+			</script>
+
+			<!-- Caption Eklentisi -->
+
+			<script src="/resources/plugins/captionplugin/caption.js"></script>
+			<link rel="stylesheet" href="/resources/plugins/captionplugin/caption.css">
 
 			<!-- Tooltip eklentisi-->
 

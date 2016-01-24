@@ -246,6 +246,8 @@ class IndexController < ApplicationController
     
      
    end
+   
+   @gununilanlari = gununilanlari.limit(8)
 
 
   end
