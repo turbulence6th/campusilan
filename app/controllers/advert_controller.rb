@@ -1,5 +1,5 @@
 class AdvertController < ApplicationController
-
+  require 'will_paginate/array'
   layout false
 
   helper_method :current_user
@@ -112,10 +112,9 @@ class AdvertController < ApplicationController
     end
 
     @looked = Advert.available.from('adverts, viewed_advert_counts v1, viewed_advert_counts v2')
-      .where('v1.advert_id = ? AND v2.advert_id != v1.advert_id AND v2.ip = v1.ip ' + 
+      .where('v1.advert_id = ? AND v2.advert_id != v1.advert_id AND v2.ip = v1.ip ' +
         'AND adverts.id = v2.advert_id', @advert.id).group('adverts.id')
         .order('count(adverts) DESC, created_at ASC').limit(5)
-
 
     if type == 'ikinciel'
       @similar = Advert.available.from('adverts, secondhands')
@@ -123,14 +122,13 @@ class AdvertController < ApplicationController
         AND adverts.advertable_id = secondhands.id AND secondhands.category = ?',
            @advert.id, 'Secondhand', Secondhand.categories[@advertable.category]).sample(3)
     elsif type == 'evarkadasi'
-       @similar = Advert.available.where(:advertable_type => 'Homemate').where.not(:id => @advert.id).sample(3)
+      @similar = Advert.available.where(:advertable_type => 'Homemate').where.not(:id => @advert.id).sample(3)
     elsif type == 'ozelders'
       @similar = Advert.available.from('adverts, privatelessons')
       .where('adverts.id != ? AND adverts.advertable_type = ? ' + '
         AND adverts.advertable_id = privatelessons.id AND privatelessons.lecture = ?',
            @advert.id, 'Privatelesson', Privatelesson.lectures[@advertable.lecture]).sample(3)
     end
-    
 
   end
 
@@ -402,9 +400,13 @@ class AdvertController < ApplicationController
 
     @adverts = @adverts.order("created_at DESC").paginate(:page => params[:page], :per_page => 18)
 
-    @gununilanlari = gununilanlari.limit(8)
+    @gununilanlari = Rails.cache.fetch("index_gununilanlari", :expires_in => 5.minutes) do
+      gununilanlari.take(8)
+    end
 
-    @mostpopular = mostpopular.limit(8)
+    @mostpopular = Rails.cache.fetch("index_mostpopular", :expires_in => 5.minutes) do 
+      mostpopular.take(8)
+    end
 
   end
 
@@ -440,7 +442,7 @@ class AdvertController < ApplicationController
       if current_user
         @adverts = kendiuniversitem
       else
-        @advert = []
+        @adverts = [].paginate(:page => params[:page], :per_page => 18)
       end
 
     else
@@ -451,7 +453,9 @@ class AdvertController < ApplicationController
 
     @adverts = @adverts.paginate(:page => params[:page], :per_page => 18)
 
-    @bizimsectiklerimiz = bizimsectiklerimiz.limit(10)
+    @bizimsectiklerimiz = Rails.cache.fetch("index_bizimsectiklerimiz", :expires_in => 5.minutes) do 
+      bizimsectiklerimiz.take(10)
+    end
 
   end
 

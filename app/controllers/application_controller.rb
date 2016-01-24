@@ -6,14 +6,13 @@ class ApplicationController < ActionController::Base
   helper_method :topUniversities
    
   def current_user
-    if @current_user == false
-      nil
-    elsif @current_user 
+    
+    if @current_user 
       @current_user
     else
       if session[:expires_at] && session[:expires_at] < Time.current
         reset_session
-        @current_user = false
+        @current_user = nil
       elsif session[:expires_at] && session[:expires_at] >= Time.current
         session[:expires_at] = 10.minutes.from_now
         @current_user = User.valid.find_by(:id => session[:user_id])
@@ -38,13 +37,16 @@ class ApplicationController < ActionController::Base
   
   
   def topUniversities
-    sql = "SELECT universities.id, universities.name, COUNT(*) " + 
-      "FROM adverts LEFT JOIN users ON adverts.user_id=users.id, universities " +
-      "WHERE users.university_id=universities.id "+
-      "GROUP BY universities.id, universities.name "+
-      "ORDER BY COUNT(*) ASC"
-      
-    arr = ActiveRecord::Base.connection.execute(sql)
+    sql = "select universities.id, universities.name, count(universities)" + 
+      "from universities, adverts, users " + 
+      "where adverts.user_id = users.id AND users.university_id = universities.id " +
+      "group by universities.id " + 
+      "order by count(universities) DESC " +
+      "limit 7" 
+      Rails.cache.fetch("top_universities", :expires_in => 5.minutes) do
+        ActiveRecord::Base.connection.select_rows(sql)
+      end
+   
   end
   
   def ensonikinciel
@@ -73,7 +75,7 @@ class ApplicationController < ActionController::Base
   
   def mostpopular
     Advert.available.select('adverts.*').from('adverts, viewed_advert_counts v')
-      .where('adverts.id=v.advert_id').group('adverts.id').order('count(*) DESC, created_at DESC')
+      .where('adverts.id=v.advert_id').group('adverts.id').order('count(*) DESC, created_at ASC')
   end
   
   def bizimsectiklerimiz

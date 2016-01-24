@@ -17,9 +17,8 @@
 			<li><a href="/universiteler">Üniversiteler</a>
 				
 				<ul>
-					
 					<% topUniversities.each do |record| %>
-					<li><a href="/universiteler?universities=<%= record['id'] %>"><%= record['name'] + " (" + record['count'] + ")" %></a></li>
+					<li><a href="/universiteler?universities=<%= record[0] %>"><%= record[1] + " (" + record[2]+ ")" %></a></li>
 					<% end %>
 				</ul>
 				
