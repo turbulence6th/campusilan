@@ -589,7 +589,7 @@
 
 									<div class='wrapper'>
 										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small) %></a>
+										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),width:"100%" %></a>
 										<!-- description div -->
 										<div class='description'>
 											<!-- description content -->
@@ -605,7 +605,7 @@
 
 									<div class='wrapper'>
 										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile %></a>
+										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile,width:"100%" %></a>
 										<!-- description div -->
 										<div class='description'>
 											<!-- description content -->

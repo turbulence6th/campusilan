@@ -126,7 +126,31 @@
 					padding-right: 50px;
 					padding-top: 30px;
 				}
+				
+				.duyurupaneli {
+					
+					height:300px;
+					
+					
+				}
+				
+				
 			}
+			
+			
+			
+			
+			
+			@media screen and (min-width: 1500px) {
+				.duyurupaneli {
+					
+					height:500px;
+					
+					
+				}
+			}
+			
+			
 
 			@media screen and (max-width: 1200px) {
 				body {
@@ -339,7 +363,7 @@
 							</div>
 						</div>
 
-						<div style="height:300px;" class="well">
+						<div  class="duyurupaneli well">
 
 							-Campus İlan'a Hoşgeldiniz!!
 							<br>
@@ -350,6 +374,9 @@
 							-Görüş ve Önerileriniz bizim için çok önemli!! <a href="/iletisim">İletişim</a> sayfasından bizimle iletişime geçebilirsiniz.
 
 						</div>
+						
+						
+						
 
 					</div>
 
@@ -368,7 +395,7 @@
 									<% if @adverts!=[] %>
 									<% @adverts.each do |advert|  %>
 
-									<div class="col-lg-2 col-md-3 hidden-xs hidden-sm">
+									<div class="col-lg-2 col-md-2 hidden-xs hidden-sm">
 
 										<div class="thumbnail">
 											<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %> </a>
