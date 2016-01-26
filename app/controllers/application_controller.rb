@@ -4,11 +4,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   helper_method :topUniversities
+  
+  before_filter :set_start_time, :if => proc {|c| ENV['RAILS_ENV'].to_s == 'development' || ENV['RAILS_ENV'].to_s == ''}
+
+  def set_start_time
+    @start_time = Time.now.to_f
+  end
    
   def current_user
     
     if @current_user 
-      @current_user
+      return @current_user
     else
       if session[:expires_at] && session[:expires_at] < Time.current
         reset_session
@@ -21,6 +27,7 @@ class ApplicationController < ActionController::Base
       end
     end
     
+ 
     
   end
   

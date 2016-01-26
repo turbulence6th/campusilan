@@ -3,7 +3,7 @@ class CreateAdverts < ActiveRecord::Migration
     create_table :adverts do |t|
   
       t.references :user, :index => true
-      t.references :advertable, :polymorphic => true, :index => true
+      t.references :advertable, :polymorphic => true
       
       t.string :name
       t.integer :price

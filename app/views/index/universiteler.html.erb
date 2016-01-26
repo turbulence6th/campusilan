@@ -356,7 +356,7 @@
 
 								<%= form_tag '/universiteler' , :method => :get do %>
 
-								<%= select_tag :universities,options_for_select(University.order(:name).collect { |a| [a.name, a.id] },params[:universities]),{:onchange => "this.form.submit()",style:"width:100%; "} %>
+								<%= select_tag :universities,options_for_select(@universities,params[:universities]),{:onchange => "this.form.submit()",style:"width:100%; ", :class => 'form-control'} %>
 
 								<% end %>
 
@@ -421,11 +421,9 @@
 									<div class="visible-xs visible-sm  col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
-											<a href="<%= advert.href %>"> <% if advert.images == [] %>
-											<%= image_tag Image.new.imagefile,:title => advert.name,class: "masterTooltip" %>
-											<% else %>
-											<%= image_tag advert.images[0].imagefile(:small),:title => advert.name,class: "masterTooltip" %>
-											<% end %> </a>
+											<a href="<%= advert.href %>"> 
+											<%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
+											</a>
 
 										</div>
 
@@ -496,11 +494,11 @@
 								<% @gununilanlari.each do |advert| %>
 
 								<li>
-									<% if advert.images != [] %>
+									
 
 									<div class='wrapper'>
 										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small) %></a>
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %></a>
 										<!-- description div -->
 										<div class='description'>
 											<!-- description content -->
@@ -512,23 +510,7 @@
 										<!-- end description div -->
 									</div>
 
-									<% else %>
-
-									<div class='wrapper'>
-										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile %></a>
-										<!-- description div -->
-										<div class='description'>
-											<!-- description content -->
-											<div class='description_content'>
-												<%= advert.name %>
-											</div>
-											<!-- end description content -->
-										</div>
-										<!-- end description div -->
-									</div>
-
-									<% end %>
+								
 
 								</li>
 
@@ -566,11 +548,9 @@
 									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
-											<a href="<%= advert.href %>"> <% if advert.images == [] %>
-											<%= image_tag Image.new.imagefile %>
-											<% else %>
-											<%= image_tag advert.images[0].imagefile(:small),title:advert.name,class: "masterTooltip" %>
-											<% end %> </a>
+											<a href="<%= advert.href %>"> 
+											<%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %>
+											</a>
 
 										</div>
 
@@ -633,11 +613,11 @@
 								<% @gununilanlari.each do |advert| %>
 
 								<li>
-									<% if advert.images != [] %>
+									
 
 									<div class='wrapper'>
 										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small) %></a>
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %></a>
 										<!-- description div -->
 										<div class='description'>
 											<!-- description content -->
@@ -649,23 +629,7 @@
 										<!-- end description div -->
 									</div>
 
-									<% else %>
-
-									<div class='wrapper'>
-										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile %></a>
-										<!-- description div -->
-										<div class='description'>
-											<!-- description content -->
-											<div class='description_content'>
-												<%= advert.name %>
-											</div>
-											<!-- end description content -->
-										</div>
-										<!-- end description div -->
-									</div>
-
-									<% end %>
+									
 
 								</li>
 

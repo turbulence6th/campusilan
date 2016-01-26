@@ -1,3 +1,7 @@
+<% if ENV['RAILS_ENV'].to_s == 'development' || ENV['RAILS_ENV'].to_s == '' %>
+	Page Rendered in <%= sprintf('%.3f', (Time.now.to_f - @start_time) ) %> seconds
+<% end %>
+
 <header style="z-index:4;" class="header-fixed">
 
 	<div  style="float:left;"class="hidden-xs header-limiter">
