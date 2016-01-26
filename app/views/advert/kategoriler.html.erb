@@ -489,38 +489,65 @@
 			<br class="visible-sm visible-xs ">
 			<br class="visible-sm visible-xs ">
 
-			<div class="row hidden-lg hidden-md" >
+			
+			
+			<div class="visible-xs visible-sm col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
 
-				<div style="padding-left: 20px; padding-right: 20px" class="row">
+							<div class="row" style="">
 
-					<div class="panel panel-success">
+								<div class="row panel panel-success">
 
-						<div class="panel-heading">
-							<h3 style="text-align: center;" class="panel-title"><%= @title %></h3>
-						</div>
+									<div class="panel-heading">
+										<h3 style="text-align: center;" class="panel-title"><%= @title %></h3>
+									</div>
 
-						<% if @adverts!= [] %>
+									<% if @adverts!=[] %>
 
-						<div class=" panel-body">
+									<div class=" panel-body">
 
-							<% @adverts.each do |advert| %>
+										<% @adverts.each do |advert| %>
 
-							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+										<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
-								<div class="thumbnail">
-									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %> </a>
-								</div>
+											<div class="thumbnail">
+												<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
 
-								<div class="caption">
+											</div>
 
-									<% if advert.name.length <= 8 %>
+											<div class="caption">
 
-									<h5><%= advert.name %></h5>
-									<br>
+												<% if advert.name.length >= 10 %>
+
+												<h5><%= advert.name[0..9] %>...</h5>
+
+												<% else %>
+
+												<h5><%= advert.name %></h5>
+
+												<% end %>
+
+											</div>
+
+										</div>
+
+										<% end %>
+
+									</div>
+
+									<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
+
+									<div style=""  class="apple_pagination">
+										<%= will_paginate @adverts, :container => false,
+										:previous_label => 'Önceki', :next_label => 'Sonraki' %>
+									</div>
 
 									<% else %>
 
-									<h5><%= advert.name[0..7] + "..." %></h5>
+									<div class="panel-body">
+
+										Henüz bu kategoride ilan bulunmamaktadır!!
+
+									</div>
 
 									<% end %>
 
@@ -528,30 +555,11 @@
 
 							</div>
 
-							<% end %>
-
-							<div style="clear:both;"  class="apple_pagination">
-								<%= will_paginate @adverts, :container => false,
-								:previous_label => 'Önceki', :next_label => 'Sonraki' %>
-							</div>
-
 						</div>
-
-						<% else %>
-
-						<div class=" panel-body">
-
-							Henüz bu kategoride ilan bulunmamaktadır!!
-
-						</div>
-
-						<% end %>
-
-					</div>
-
-				</div>
-
-			</div>
+			
+			
+			
+			
 
 		</div>
 

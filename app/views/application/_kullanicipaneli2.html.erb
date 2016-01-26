@@ -1,8 +1,34 @@
+
+<style scoped>
+
+@media screen and (min-width: 400px) {
+   
+   .xsmallpanel a {
+		
+		
+		padding-left:0px !important;
+		text-align:center !important;
+		
+	}
+	
+	
+   
+   
+   
+}
+	
+	
+
+	
+</style>
+
+
+
 <% if current_user!=nil %>
 
 <!--  sadece xsmall larda gözükecek -->
 
-<div style="padding-left:17%; margin-top: 25px;" class="row visible-xs">
+<div style="padding-left:17%; margin-top: 25px;" class="xsmallpanel row visible-xs">
 
 	<div class="row">
 
@@ -17,8 +43,7 @@
 
 	<div style="margin-top: 10px;" class="row">
 
-		<a href="/mesajlarim" style="text-align:left;padding-left:5px;"  type="button"
-		class=" col-xs-3 col-sm-2 btn btn-info"> <span style="font-size:12px;">Mesajlarım</span> </a>
+		<a  href="/mesajlarim"  style="text-align:left;padding-left:5px;" type="button" class="asd1 col-xs-3 col-sm-2 btn btn-info"> <span style="font-size:12px;">Mesajlarım</span> </a>
 
 		<a href="/uye/<%= current_user.username%>?tekliflerim=1" style="text-align:left;padding-left:7px;margin-left: 10px;" type="button" class="panellinkler col-xs-3 col-sm-2 btn btn-info" id="tekliflerim2" > <span style="font-size:12px;">Tekliflerim</span> </a>
 
@@ -83,39 +108,36 @@
 <div style="padding-left: 50px; margin-top: 50px;" class="row visible-sm ">
 
 	<div class="row">
-	
+
 		<% if request.path != "/firsatlar" %>
-		
-		
+
 		<a style="margin-left: 28%;" type="button"
 		href="/firsatlar" class="panellinkler col-xs-3 col-sm-2 btn btn-info"> <span style="">Fırsatlar Paneli</span> </a>
-		
+
 		<% else %>
-		
+
 		<a style="margin-left: 28%;" type="button"
 		href="#firsatlarpaneli" class="panellinkler col-xs-3 col-sm-2 btn btn-info"> <span style="">Fırsatlar Paneli</span> </a>
-		
+
 		<% end %>
 
 		<a href="/kategoriler" style="margin-left: 10px;" type="button" class="panellinkler col-xs-3 col-sm-2 btn btn-info"> <span style="">Kategoriler</span> </a>
 	</div>
 </div>
 
-
 <div style="padding-left: 13%; margin-top: 50px;" class="row  visible-xs">
 
 	<div class="row">
 
 		<% if request.path != "/firsatlar" %>
-		
-		
+
 		<a  type="button"
 		href="/firsatlar" class="panellinkler col-xs-5 col-sm-2 btn btn-info"> <span style="">Fırsatlar Paneli</span> </a>
-		
+
 		<% else %>
-		
+
 		<a  type="button" href="#firsatlarpaneli" class="panellinkler col-xs-5 col-sm-2 btn btn-info"> <span style="">Fırsatlar Paneli</span> </a>
-		
+
 		<% end %>
 
 		<a href="/kategoriler" style="margin-left: 10px;" type="button" class="panellinkler col-xs-5 col-sm-2 btn btn-info"> <span style="">Kategoriler</span> </a>
@@ -127,86 +149,85 @@
 <!-- Kullanıcı paneli js kısmı -->
 <% if current_user!= nil && request.env['PATH_INFO']=="/uye/" + current_user.username %>
 <script>
-	$(function() {
+		$(function() {
 
-$(".hesapayarlari").hide();
-$(".favoriler").hide();
-$(".tekliflerim").hide();
-$(".profilim").hide();
-$(".inceledigimilanlar").hide();
+	$(".hesapayarlari").hide();
+	$(".favoriler").hide();
+	$(".tekliflerim").hide();
+	$(".profilim").hide();
+	$(".inceledigimilanlar").hide();
 
-$("#hesapayarlariid2").click(function() {
+	$("#hesapayarlariid2").click(function() {
 
-$(".favoriler").hide();
-$(".tekliflerim").hide();
-$(".profilim").hide();
-$(".inceledigimilanlar").hide();
+	$(".favoriler").hide();
+	$(".tekliflerim").hide();
+	$(".profilim").hide();
+	$(".inceledigimilanlar").hide();
 
-$(".hesapayarlari").show();
+	$(".hesapayarlari").show();
 
-})
-
-$("#inceledigimilanlar2").click(function(){
-
-$(".hesapayarlari").hide();
-$(".favoriler").hide();
-$(".tekliflerim").hide();
-$(".profilim").hide();
-$(".inceledigimilanlar").show();
-
-}
-
-)
-
-$("#profilim2").click(function() {
-
-$(".hesapayarlari").hide();
-$(".favoriler").hide();
-$(".tekliflerim").hide();
-
-$(".inceledigimilanlar").hide();
-
-$(".profilim").show();
-
-})
-
-$("#favorilerid2").click(function() {
-
-$(".hesapayarlari").hide();
-
-$(".tekliflerim").hide();
-$(".profilim").hide();
-$(".inceledigimilanlar").hide();
-$(".favoriler").show();
-
-})
-
-$("#tekliflerim2").click(function() {
-
-$(".hesapayarlari").hide();
-$(".favoriler").hide();
-
-$(".profilim").hide();
-$(".inceledigimilanlar").hide();
-$(".tekliflerim").show();
-
-})
-
-$("<%= @sekme %>
-	").show();
-
-<% if @sekme==".tekliflerim" || @sekme==".hesapayarlari" %><% end %>
 	})
 
-	$(".panellinkler").click(function(event) {
+	$("#inceledigimilanlar2").click(function(){
 
-		// This will prevent the default action of the anchor
-		event.preventDefault();
+	$(".hesapayarlari").hide();
+	$(".favoriler").hide();
+	$(".tekliflerim").hide();
+	$(".profilim").hide();
+	$(".inceledigimilanlar").show();
 
-		// Failing the above, you could use this, however the above is recommended
-		return false;
+	}
 
-	});
+	)
 
+	$("#profilim2").click(function() {
+
+	$(".hesapayarlari").hide();
+	$(".favoriler").hide();
+	$(".tekliflerim").hide();
+
+	$(".inceledigimilanlar").hide();
+
+	$(".profilim").show();
+
+	})
+
+	$("#favorilerid2").click(function() {
+
+	$(".hesapayarlari").hide();
+
+	$(".tekliflerim").hide();
+	$(".profilim").hide();
+	$(".inceledigimilanlar").hide();
+	$(".favoriler").show();
+
+	})
+
+	$("#tekliflerim2").click(function() {
+
+	$(".hesapayarlari").hide();
+	$(".favoriler").hide();
+
+	$(".profilim").hide();
+	$(".inceledigimilanlar").hide();
+	$(".tekliflerim").show();
+
+	})
+
+	$("<%= @sekme %>
+		").show();
+
+	<% if @sekme==".tekliflerim" || @sekme==".hesapayarlari" %><% end %>
+		})
+
+		$(".panellinkler").click(function(event) {
+
+			// This will prevent the default action of the anchor
+			event.preventDefault();
+
+			// Failing the above, you could use this, however the above is recommended
+			return false;
+
+		}); 
 </script>
 <% end %>
