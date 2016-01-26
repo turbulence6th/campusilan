@@ -6,18 +6,49 @@ class IndexController < ApplicationController
   
   def index
 
-    @ensonikinciel = ensonikinciel.limit(4)
-    @ensonevarkadasi = ensonevarkadasi.limit(4)
-    @ensonozelders = ensonozelders.limit(4)
-    @ensonilanlar = ensonilanlar.limit(4)
-    @acililanlar = acililanlar.limit(8)
-    @gununilanlari = gununilanlari.limit(8)
-    @mostpopular = mostpopular.limit(10)
-    @bizimsectiklerimiz = bizimsectiklerimiz.limit(10)
+    @ensonikinciel = Rails.cache.fetch("index_ensonikinciel", :expires_in => 5.minutes) do 
+      ensonikinciel.take(4)
+    end
     
-    @enguvenilirikinciel = enguvenilirikinciel.limit(6)
-    @enguvenilirevarkadasi = enguvenilirevarkadasi.limit(6)
-    @enguvenilirozelders = enguvenilirozelders.limit(6)
+    @ensonevarkadasi = Rails.cache.fetch("index_ensonevarkadasi", :expires_in => 5.minutes) do 
+      ensonevarkadasi.take(4)
+    end
+    
+    @ensonozelders = Rails.cache.fetch("index_ensonozelders", :expires_in => 5.minutes) do 
+      ensonozelders.take(4)
+    end
+    
+    @ensonilanlar = Rails.cache.fetch("index_ensonilanlar", :expires_in => 5.minutes) do 
+      ensonilanlar.take(4)
+    end
+    
+    @acililanlar = Rails.cache.fetch("index_acililanlar", :expires_in => 5.minutes) do 
+      acililanlar.take(8)
+    end
+    
+    @gununilanlari = Rails.cache.fetch("index_gununilanlari", :expires_in => 5.minutes) do
+      gununilanlari.take(8)
+    end
+    
+    @mostpopular = Rails.cache.fetch("index_mostpopular", :expires_in => 5.minutes) do 
+      mostpopular.take(8)
+    end
+    
+    @bizimsectiklerimiz = Rails.cache.fetch("index_bizimsectiklerimiz", :expires_in => 5.minutes) do 
+      bizimsectiklerimiz.take(10)
+    end
+    
+    @enguvenilirikinciel = Rails.cache.fetch("index_enguvenilirikinciel", :expires_in => 5.minutes) do 
+      enguvenilirikinciel.take(6)
+    end
+    
+    @enguvenilirevarkadasi = Rails.cache.fetch("index_enguvenilirevarkadasi", :expires_in => 5.minutes) do 
+      enguvenilirevarkadasi.take(6)
+    end
+    
+    @enguvenilirozelders = Rails.cache.fetch("index_enguvenilirozelders", :expires_in => 5.minutes) do 
+      enguvenilirozelders.take(6)
+    end
 
   end
 
@@ -221,11 +252,7 @@ class IndexController < ApplicationController
    
     @adverts = @adverts.paginate(:page => params[:page], :per_page => 18)
     
-     
-      
-  
-    
-    
+
 
   end
   
@@ -233,9 +260,9 @@ class IndexController < ApplicationController
 
    if params[:universities] == nil
      
-     @adverts = Advert.available.joins(:user).where(:users => {university_id: topUniversities[0]['id']}).order('created_at DESC').paginate(:page => params[:page], :per_page => 18)
+     @adverts = Advert.available.joins(:user).where(:users => {university_id: topUniversities[0][0]}).order('created_at DESC').paginate(:page => params[:page], :per_page => 18)
    
-     @title = topUniversities[0]['name']
+     @title = topUniversities[0][1]
        
       
    else

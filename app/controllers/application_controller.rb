@@ -6,7 +6,22 @@ class ApplicationController < ActionController::Base
   helper_method :topUniversities
    
   def current_user
-    @current_user ||= User.valid.find_by(:id => session[:user_id])
+    
+    if @current_user 
+      @current_user
+    else
+      if session[:expires_at] && session[:expires_at] < Time.current
+        reset_session
+        @current_user = nil
+      elsif session[:expires_at] && session[:expires_at] >= Time.current
+        session[:expires_at] = 10.minutes.from_now
+        @current_user = User.valid.find_by(:id => session[:user_id])
+      else
+        @current_user = User.valid.find_by(:id => session[:user_id])
+      end
+    end
+    
+    
   end
   
   def authenticate_admin_user! #use predefined method name
@@ -20,24 +35,18 @@ class ApplicationController < ActionController::Base
     current_user 
   end 
   
-  def path_exists?(path)
-    begin
-      Rails.application.routes.recognize_path(path)
-    rescue
-      return false
-    end
-    
-    true
-  end
   
   def topUniversities
-    sql = "SELECT universities.id, universities.name, COUNT(*) " + 
-      "FROM adverts LEFT JOIN users ON adverts.user_id=users.id, universities " +
-      "WHERE users.university_id=universities.id "+
-      "GROUP BY universities.id, universities.name "+
-      "ORDER BY COUNT(*) ASC"
-      
-    arr = ActiveRecord::Base.connection.execute(sql)
+    sql = "select universities.id, universities.name, count(universities)" + 
+      "from universities, adverts, users " + 
+      "where adverts.user_id = users.id AND users.university_id = universities.id " +
+      "group by universities.id " + 
+      "order by count(universities) DESC " +
+      "limit 7" 
+      Rails.cache.fetch("top_universities", :expires_in => 5.minutes) do
+        ActiveRecord::Base.connection.select_rows(sql)
+      end
+   
   end
   
   def ensonikinciel
@@ -66,7 +75,7 @@ class ApplicationController < ActionController::Base
   
   def mostpopular
     Advert.available.select('adverts.*').from('adverts, viewed_advert_counts v')
-      .where('adverts.id=v.advert_id').group('adverts.id').order('count(*) DESC, created_at DESC')
+      .where('adverts.id=v.advert_id').group('adverts.id').order('count(*) DESC, created_at ASC')
   end
   
   def bizimsectiklerimiz
@@ -98,14 +107,9 @@ class ApplicationController < ActionController::Base
   end
   
   def kendiuniversitem
-    Advert.available.select('adverts.*').from('adverts, users u1, users u2')
-          .where('u1.id=? and u1.university_id=u2.university_id and adverts.user_id=u2.id', current_user.id)
-  end
-  
-  def looked(advert)
-    Advert.select('a2.*').from('adverts a,users u, viewed_adverts v, adverts a2, viewed_adverts v2')
-      .where('a.id=? AND v.user_id = u.id AND v.advert_id = a.id AND a.id!=a2.id AND v2.user_id = u.id AND v2.advert_id = a2.id', advert.id)
-      .group('a2.id').order('count(a2.id)')
+    Advert.available.select('adverts.*').from('adverts, users')
+          .where('users.university_id = ? and adverts.user_id=users.id', current_user.university_id)
+          .order('created_at DESC')
   end
   
   

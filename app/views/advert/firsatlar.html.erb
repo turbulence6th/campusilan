@@ -310,7 +310,7 @@
 
 			<div class="visible-lg visible-md ">
 
-				<div class="row" style="height: 60%; padding-bottom: 20px; margin-bottom: 30px; margin-top: 20px;">
+				<div class="row" style="height: 60%;  margin-top: 20px;">
 
 					<div class="row" >
 
@@ -318,7 +318,7 @@
 
 							<%= render "kullanicipaneli"   %>
 
-							<div class="well">
+							<div style="height:275px;" class="well">
 
 								-Campus İlan'a Hoşgeldiniz!!
 								<br>
@@ -338,8 +338,10 @@
 
 						<br class="visible-md">
 						<br class="visible-md">
+						
+						
 
-						<div class="hidden-xs hidden-sm col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
+						<div class="visible-lg col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
 
 							<div style="">
 
@@ -404,6 +406,77 @@
 							</div>
 
 						</div>
+						
+						
+						
+						
+						<div class="visible-md col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
+
+							<div style="">
+
+								<div class="panel panel-success">
+
+									<div class="panel-heading">
+										<h3 style="text-align: center;" class="panel-title"><%= @title %></h3>
+									</div>
+
+									<% if @adverts!= []  %>
+
+									<div class=" panel-body">
+
+										<% @adverts.each do |advert| %>
+
+										<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<% if advert.name.length >= 25 %>
+
+												<h5><%= advert.name[0..24] %>...</h5>
+
+												<% else %>
+
+												<h5><%= advert.name %></h5>
+
+												<% end %>
+
+											</div>
+
+										</div>
+
+										<% end %>
+
+									</div>
+
+									<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
+
+									<div style="clear:both;"  class="apple_pagination">
+										<%= will_paginate @adverts, :container => false,
+										:previous_label => 'Önceki', :next_label => 'Sonraki' %>
+									</div>
+
+									<% else %>
+
+									<div class="panel-body">
+
+										Henüz bu kategoride ilan bulunmamaktadır!!
+
+										<% end %>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+						
+						
 
 					</div>
 

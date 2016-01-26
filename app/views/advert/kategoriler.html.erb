@@ -338,7 +338,7 @@
 						<br class="visible-md">
 						<br class="visible-md">
 
-						<div class="hidden-xs hidden-sm col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
+						<div class="visible-md col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
 
 							<div style="">
 
@@ -363,9 +363,9 @@
 
 											<div class="caption">
 
-												<% if advert.name.length >= 12 %>
+												<% if advert.name.length >= 25 %>
 
-												<h5><%= advert.name[0..11] %>...</h5>
+												<h5><%= advert.name[0..24] %>...</h5>
 
 												<% else %>
 
@@ -403,6 +403,78 @@
 							</div>
 
 						</div>
+						
+						
+						
+						
+						<div class="visible-lg col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
+
+							<div style="">
+
+								<div class="panel panel-success">
+
+									<div class="panel-heading">
+										<h3 style="text-align: center;" class="panel-title"><%= @title %></h3>
+									</div>
+
+									<% if @adverts!=[] %>
+
+									<div class=" panel-body">
+
+										<% @adverts.each do |advert| %>
+
+										<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+
+											<div class="thumbnail">
+												<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
+
+											</div>
+
+											<div class="caption">
+
+												<% if advert.name.length >= 13 %>
+
+												<h5><%= advert.name[0..12] %>...</h5>
+
+												<% else %>
+
+												<h5><%= advert.name %></h5>
+
+												<% end %>
+
+											</div>
+
+										</div>
+
+										<% end %>
+
+									</div>
+
+									<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
+
+									<div style=""  class="apple_pagination">
+										<%= will_paginate @adverts, :container => false,
+										:previous_label => 'Önceki', :next_label => 'Sonraki' %>
+									</div>
+
+									<% else %>
+
+									<div class="panel-body">
+
+										Henüz bu kategoride ilan bulunmamaktadır!!
+
+									</div>
+
+									<% end %>
+
+								</div>
+
+							</div>
+
+						</div>
+						
+						
+						
 
 					</div>
 
@@ -417,7 +489,7 @@
 			<br class="visible-sm visible-xs ">
 			<br class="visible-sm visible-xs ">
 
-			<div class="row" >
+			<div class="row hidden-lg hidden-md" >
 
 				<div style="padding-left: 20px; padding-right: 20px" class="row">
 
@@ -497,9 +569,9 @@
 
 		<div class="row">
 
-			<div style="padding-left: 20px; padding-right: 20px" class="col-lg-6">
+			<div style="padding-left: 20px; padding-right: 20px" class="hidden-md col-lg-6">
 
-				<div class="panel panel-info">
+				<div class="equal-height-panels panel panel-info">
 
 					<div class="panel-heading">
 						<h3 style="text-align: center;" class="panel-title">Günün
@@ -573,10 +645,92 @@
 				</div>
 
 			</div>
+			
+			
+			
+			
+			<div style="padding-left: 20px; padding-right: 20px" class="visible-md col-lg-6">
 
-			<div style="padding-left: 20px; padding-right: 20px" class="col-lg-6">
+				<div class="equal-height-panels panel panel-info">
 
-				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 style="text-align: center;" class="panel-title">Günün
+						Fırsatlarını Gördünüz mü?</h3>
+					</div>
+
+					<div class="panel-body">
+
+						<div class="row">
+
+							<% if @gununilanlari!=[] %>
+
+							<% @gununilanlari.each do |advert| %>
+
+							<div class="col-lg-3 col-xs-6 col-md-4 col-sm-4">
+
+								<div style="" class="thumbnail">
+
+									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
+
+								</div>
+
+								<div class="caption">
+
+									<% if advert.name.length <= 40 %>
+
+									<h5>
+										<%= advert.name %>
+									</h5>
+
+									<% else %>
+
+									<h5>
+										<%= advert.name[0..39] + "..." %>
+									</h5>
+
+									<% end %>
+
+								</div>
+
+							</div>
+
+							<% end %>
+
+							<% else %>
+
+							<div style="padding:20px;">
+
+								Şuanda malesef günün fırsatı bulunmamaktadır!!
+
+							</div>
+
+							<% end %>
+
+						</div>
+
+						<br>
+
+						<% if @gununilanlari!=[] %>
+						<div style="text-align:center;">
+							<a href="/firsatlar?gununfirsatlari=1" >
+							<button style="text-align:center;" type = "button" class = "btn btn-success">
+								Devamı İçin Tıklayınız.
+							</button></a>
+						</div>
+
+						<% end %>
+
+					</div>
+
+				</div>
+
+			</div>
+			
+			
+
+			<div style="padding-left: 20px; padding-right: 20px" class="hidden-md col-lg-6">
+
+				<div class="equal-height-panels panel panel-info">
 
 					<div class="panel-heading">
 						<h3 style="text-align: center;" class="panel-title">En Popüler Ürünlere Bir Göz Atmalısınız</h3>
@@ -602,15 +756,15 @@
 
 									<% if advert.name.length <= 12 %>
 
-									<p>
+									<h5>
 										<%= advert.name %>
-									</p>
+									</h5>
 
 									<% else %>
 
-									<p>
+									<h5>
 										<%= advert.name[0..11] + "..." %>
-									</p>
+									</h5>
 
 									<% end %>
 
@@ -644,6 +798,81 @@
 				</div>
 
 			</div>
+			
+			
+			
+			<div style="padding-left: 20px; padding-right: 20px" class="visible-md col-lg-6">
+
+				<div class="equal-height-panels panel panel-info">
+
+					<div class="panel-heading">
+						<h3 style="text-align: center;" class="panel-title">En Popüler Ürünlere Bir Göz Atmalısınız</h3>
+					</div>
+
+					<div class="panel-body">
+
+						<div class="row">
+
+							<% if @mostpopular!= [] %>
+
+							<% @mostpopular.each do |advert| %>
+
+							<div class="col-lg-3 col-xs-6 col-md-4 col-sm-4">
+
+								<div style="" class="thumbnail">
+
+									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
+
+								</div>
+
+								<div class="caption">
+
+									<% if advert.name.length <= 40 %>
+
+									<h5>
+										<%= advert.name %>
+									</h5>
+
+									<% else %>
+
+									<h5>
+										<%= advert.name[0..39] + "..." %>
+									</h5>
+
+									<% end %>
+
+								</div>
+
+							</div>
+
+							<% end %>
+
+							<% else %>
+
+							<div style="padding:20px;">
+
+								Şuanda malesef popüler ilan bulunmamaktadır!!
+
+							</div>
+
+							<% end %>
+
+						</div>
+
+						<br>
+						<div style="text-align:center;">
+							<a href="/firsatlar?enpopulerilanlar=1" >
+							<button style="text-align:center;" type = "button" class = "btn btn-success">
+								Devamı İçin Tıklayınız.
+							</button></a>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+			
+			
 
 		</div>
 
@@ -656,9 +885,9 @@
 					<h4>Giriş mi Yapmak İstiyorsunuz?</h4>
 					<br class="hidden-xs hidden-sm ">
 
-					<button type = "button" class = "btn btn-primary">
+					<a href="/girisyap" type = "button" class = "btn btn-primary">
 						Giriş Yap
-					</button>
+					</a>
 
 				</div>
 
@@ -667,9 +896,9 @@
 					<h4>Kayıt mı Olmak İstiyorsunuz?</h4>
 					<br class="hidden-xs hidden-sm ">
 
-					<button type = "button" class = "btn btn-primary">
+					<a href="/kayitol" type = "button" class = "btn btn-primary">
 						Kayıt Ol
-					</button>
+					</a>
 
 				</div>
 
@@ -677,9 +906,9 @@
 
 					<h4>Zaten giriş yaptınız ve ilan mı açmak istiyorsunuz?</h4>
 
-					<button type = "button" class = "btn btn-primary">
+					<a href="/ilanver" type = "button" class = "btn btn-primary">
 						İlan Aç
-					</button>
+					</a>
 
 				</div>
 
@@ -694,6 +923,37 @@
 		<%= render 'paginationkaldir' %>
 
 		<!-- pluginler -->
+		
+		
+		<!-- jquery-match-height-master -->
+		
+		
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		
+		
+		
+
+		<script src="/resources/plugins/jquery-match-height-master/jquery.matchHeight.js" type="text/javascript"></script>
+		
+		
+		<script>
+			var heightfixer = jQuery.noConflict();
+
+		</script>
+
+		<script>
+			heightfixer(function() {
+    heightfixer('.equal-height-panels').matchHeight();
+		});
+		
+		
+		
+		
+		
+		
+
+		</script>
 
 		<script>
 			$(".ikincimenu > ul").slideDown(0);

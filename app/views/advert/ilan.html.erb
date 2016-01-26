@@ -408,21 +408,14 @@
 													<div class="clearfix"></div>
 
 													<br>
-
-													<h4  class="add-to item_price">Fiyat: <span style="color:red;" ><%= @advert.price %>&#8378;</span></h4>
-													<br>
-
-													<h4  class="add-to item_price">Ürün Rengi: <span style="color:red;" ><%= @advertable.color %></span></h4>
-													<br>
-
-													<h4  class="add-to item_price">Marka: <span style="color:red;" ><%= @advertable.brand %></span></h4>
-													<br>
-
-													<h4  class="add-to item_price">Kullanım Durumu: <% if @advertable.usage %> <span style="color:red;" >Sıfır</span> <% else %> <span style="color:red;" >İkinci El</span> <% end %> </h4>
-													<br>
-
-													<h4  class="add-to item_price">Garanti Durumu: <% if @advertable.warranty %> <span style="color:red;" >Var</span> <% else %> <span style="color:red;" >Yok</span> <% end %> </h4>
-													<br>
+													
+													<% if @advert.advertable_type == 'Secondhand' %>
+														<%= render "ilanikinciel" %>
+													<% elsif @advert.advertable_type == 'Homemate' %>
+														<%= render "ilanevarkadasi" %>
+													<% elsif @advert.advertable_type == 'Privatelesson' %>
+														<%= render "ilanozelders" %>
+													<% end %>
 
 													<h4  class="add-to item_price">İlan sahibinin telefonu: <span style="color:red;" ><%= @advert_user.phone %></span></h4>
 													<br>
@@ -526,10 +519,13 @@
 
 							
 
+
 							<div class="benzerurunler row" >
 
-								<h2 style="text-align:center;" class="hidden-xs hidden-sm" >Benzer Ürünler</h2>
-								<h3 style="text-align:center;" class="cate visible-xs visible-sm" ><u>Benzer Ürünler</u></h3>
+
+
+								<h2 style="text-align:center;" class="hidden-xs hidden-sm" >Benzer İlanlar</h2>
+								<h3 style="text-align:center;" class="cate visible-xs visible-sm" ><u>Benzer İlanlar</u></h3>
 								<br class="visible-xs visible-sm">
 							</div>
 
