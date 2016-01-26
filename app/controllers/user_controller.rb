@@ -96,6 +96,7 @@ class UserController < ApplicationController
 
   def member
 
+
     @mostpopular = Rails.cache.fetch("user_mostpopular", :expires_in => 5.minutes) do 
       mostpopular.take(6)
     end
@@ -131,7 +132,14 @@ class UserController < ApplicationController
     if @other_user == nil
       raise ActionController::RoutingError.new('Not Found')
     elsif  current_user != @other_user
+      
+      @lastadverts = @other_user.adverts.order('created_at DESC').limit(12)
       render 'member2'
+      
+      
+      
+      
+      
     else
 
       current_user.phone1 =  current_user.phone.split('-')[0]

@@ -274,6 +274,10 @@ class IndexController < ApplicationController
      
    end
    
+   @universities = Rails.cache.fetch("universities", :expires_in => 5.minutes) do 
+     University.order(:name).collect { |a| [a.name, a.id] }
+   end
+   
    @gununilanlari = gununilanlari.limit(8)
 
 
