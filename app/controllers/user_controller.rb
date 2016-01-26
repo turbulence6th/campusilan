@@ -127,19 +127,15 @@ class UserController < ApplicationController
       @sekme=".profilim"
     end
 
-    @other_user=User.valid.find_by_username(params[:username])
+    @other_user=User.valid.find_by(:username => params[:username])
 
     if @other_user == nil
       raise ActionController::RoutingError.new('Not Found')
-    elsif  current_user != @other_user
+    elsif current_user.id != @other_user.id
       
       @lastadverts = @other_user.adverts.order('created_at DESC').limit(12)
       render 'member2'
-      
-      
-      
-      
-      
+
     else
 
       current_user.phone1 =  current_user.phone.split('-')[0]

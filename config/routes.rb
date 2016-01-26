@@ -54,9 +54,9 @@ Rails.application.routes.draw do
   get 'incelediklerim' => 'index#incelediklerim'
   post 'votedelete' => 'advert#votedelete', defaults: {format: :json}
 
-  get "/404" => "error#not_found"
-  get "/422" => "error#unacceptable"
-  get "/500" => "error#internal_error"
+  get "404" => "error#not_found"
+  get "422" => "error#unacceptable"
+  get "500" => "error#internal_error"
 
   
   

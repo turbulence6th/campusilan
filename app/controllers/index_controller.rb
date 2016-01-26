@@ -267,7 +267,10 @@ class IndexController < ApplicationController
       
    else
      
-     @adverts = Advert.available.joins(:user).where(:users => {university_id: params[:universities]}).order('created_at DESC').paginate(:page => params[:page], :per_page => 18)
+     @adverts = Rails.cache.fetch("universities/#{params[:universities]}/#{params[:page]}", :expires_in => 5.minutes) do 
+        Advert.available.joins(:user).where(:users => {university_id: params[:universities]})
+          .order('created_at DESC').paginate(:page => params[:page], :per_page => 18).take(18)
+     end
    
      @title = University.find(params[:universities]).name
     
@@ -278,7 +281,9 @@ class IndexController < ApplicationController
      University.order(:name).collect { |a| [a.name, a.id] }
    end
    
-   @gununilanlari = gununilanlari.limit(8)
+   @gununilanlari = Rails.cache.fetch("index_gununilanlari", :expires_in => 5.minutes) do
+      gununilanlari.take(8)
+   end
 
 
   end

@@ -318,7 +318,7 @@
 
 			<div class="row hidden-xs hidden-sm" style="height: 60%; padding-bottom: 20px; margin-bottom: 30px; margin-top: 30px;">
 
-				<div class="row" style="padding-left: 20px; padding-right: 20px;">
+				<div class="row" >
 
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 
@@ -339,7 +339,7 @@
 							</div>
 						</div>
 
-						<div class="well">
+						<div style="height:300px;" class="well">
 
 							-Campus İlan'a Hoşgeldiniz!!
 							<br>
@@ -394,11 +394,9 @@
 									<div class="visible-xs visible-sm  col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
-											<a href="<%= advert.href %>"> <% if advert.images == [] %>
-											<%= image_tag Image.new.imagefile,:title => advert.name,class: "masterTooltip" %>
-											<% else %>
-											<%= image_tag advert.images[0].imagefile(:small),:title => advert.name,class: "masterTooltip" %>
-											<% end %> </a>
+											<a href="<%= advert.href %>"> 
+											<%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
+											</a>
 
 										</div>
 
@@ -455,7 +453,7 @@
 
 			</div>
 
-			<div class = "hidden-xs hidden-sm panel panel-info">
+			<div class = "hidden-xs hidden-sm row panel panel-info">
 				<div class = "panel-heading">
 					<h3 style="text-align: center;" class="panel-title">Günün Fırsatları</h3>
 				</div>
@@ -469,11 +467,11 @@
 								<% @gununilanlari.each do |advert| %>
 
 								<li>
-									<% if advert.images != [] %>
+									
 
 									<div class='wrapper'>
 										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small) %></a>
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %></a>
 										<!-- description div -->
 										<div class='description'>
 											<!-- description content -->
@@ -485,23 +483,7 @@
 										<!-- end description div -->
 									</div>
 
-									<% else %>
-
-									<div class='wrapper'>
-										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile %></a>
-										<!-- description div -->
-										<div class='description'>
-											<!-- description content -->
-											<div class='description_content'>
-												<%= advert.name %>
-											</div>
-											<!-- end description content -->
-										</div>
-										<!-- end description div -->
-									</div>
-
-									<% end %>
+								
 
 								</li>
 
@@ -539,11 +521,9 @@
 									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
-											<a href="<%= advert.href %>"> <% if advert.images == [] %>
-											<%= image_tag Image.new.imagefile %>
-											<% else %>
-											<%= image_tag advert.images[0].imagefile(:small),title:advert.name,class: "masterTooltip" %>
-											<% end %> </a>
+											<a href="<%= advert.href %>"> 
+											<%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %>
+											</a>
 
 										</div>
 
@@ -606,11 +586,11 @@
 								<% @gununilanlari.each do |advert| %>
 
 								<li>
-									<% if advert.images != [] %>
+									
 
 									<div class='wrapper'>
 										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small) %></a>
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %></a>
 										<!-- description div -->
 										<div class='description'>
 											<!-- description content -->
@@ -622,23 +602,7 @@
 										<!-- end description div -->
 									</div>
 
-									<% else %>
-
-									<div class='wrapper'>
-										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile %></a>
-										<!-- description div -->
-										<div class='description'>
-											<!-- description content -->
-											<div class='description_content'>
-												<%= advert.name %>
-											</div>
-											<!-- end description content -->
-										</div>
-										<!-- end description div -->
-									</div>
-
-									<% end %>
+									
 
 								</li>
 
