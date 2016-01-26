@@ -111,23 +111,31 @@ class AdvertController < ApplicationController
       end
     end
 
-    @looked = Advert.available.from('adverts, viewed_advert_counts v1, viewed_advert_counts v2')
-      .where('v1.advert_id = ? AND v2.advert_id != v1.advert_id AND v2.ip = v1.ip ' +
-        'AND adverts.id = v2.advert_id', @advert.id).group('adverts.id')
-        .order('count(adverts) DESC, created_at ASC').limit(5)
+    @looked = Rails.cache.fetch("looked/#{id}", :expires_in => 5.minutes) do
+      Advert.available.from('adverts, viewed_advert_counts v1, viewed_advert_counts v2')
+        .where('v1.advert_id = ? AND v2.advert_id != v1.advert_id AND v2.ip = v1.ip ' +
+          'AND adverts.id = v2.advert_id', @advert.id).group('adverts.id')
+          .order('count(adverts) DESC, created_at ASC').take(5)
+    end
 
     if type == 'ikinciel'
-      @similar = Advert.available.from('adverts, secondhands')
-      .where('adverts.id != ? AND adverts.advertable_type = ? ' + '
-        AND adverts.advertable_id = secondhands.id AND secondhands.category = ?',
-           @advert.id, 'Secondhand', Secondhand.categories[@advertable.category]).sample(3)
+      @similar = Rails.cache.fetch("similar/#{id}", :expires_in => 5.minutes) do 
+        Advert.available.from('adverts, secondhands')
+          .where('adverts.id != ? AND adverts.advertable_type = ? ' + '
+            AND adverts.advertable_id = secondhands.id AND secondhands.category = ?',
+               @advert.id, 'Secondhand', Secondhand.categories[@advertable.category]).sample(3)
+       end
     elsif type == 'evarkadasi'
-      @similar = Advert.available.where(:advertable_type => 'Homemate').where.not(:id => @advert.id).sample(3)
+      @similar = Rails.cache.fetch("similar/#{id}", :expires_in => 5.minutes) do 
+        Advert.available.where(:advertable_type => 'Homemate').where.not(:id => @advert.id).sample(3)
+      end
     elsif type == 'ozelders'
-      @similar = Advert.available.from('adverts, privatelessons')
-      .where('adverts.id != ? AND adverts.advertable_type = ? ' + '
-        AND adverts.advertable_id = privatelessons.id AND privatelessons.lecture = ?',
-           @advert.id, 'Privatelesson', Privatelesson.lectures[@advertable.lecture]).sample(3)
+      @similar = Rails.cache.fetch("similar/#{id}", :expires_in => 5.minutes) do 
+        Advert.available.from('adverts, privatelessons')
+        .where('adverts.id != ? AND adverts.advertable_type = ? ' + '
+          AND adverts.advertable_id = privatelessons.id AND privatelessons.lecture = ?',
+             @advert.id, 'Privatelesson', Privatelesson.lectures[@advertable.lecture]).sample(3)
+      end
     end
 
   end
