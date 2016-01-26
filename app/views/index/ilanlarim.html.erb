@@ -87,7 +87,7 @@
 				smartmenus('#main-menu').smartmenus();
 			});
 		</script>
-		
+
 		<!-- Tooltip eklentisi-->
 
 		<link rel="stylesheet" type="text/css"
@@ -180,15 +180,15 @@
 						<div class="row">
 
 							<div class = "panel panel-success">
-								
+
 								<div class="panel-heading">
 									<h3 style="text-align: center;" class="panel-title">En Son İlanlarım</h3>
 								</div>
-								
+
 								<div class = "panel-body">
-									
+
 									<% @lastadverts.each do |advert|  %>
-									
+
 									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
@@ -215,30 +215,24 @@
 										</div>
 
 									</div>
-									
-	
+
 									<% end %>
-									
-									
-									
-									
+
 								</div>
-								
-									<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
-	
-									<% if @lastadverts.count > 8 %>
-									<div style="text-align:center;">	
+
+								<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
+
+								<% if @lastadverts.count > 8 %>
+								<div style="text-align:center;">
 									<div style="clear:both;"    class="apple_pagination">
 										<%= will_paginate @lastadverts, :container => false,
 										:previous_label => 'Önceki', :next_label => 'Sonraki' %>
 									</div>
-									</div>
-	
-									<% end %>
-								
-								
+								</div>
+
+								<% end %>
+
 							</div>
-							
 
 						</div>
 
@@ -246,50 +240,136 @@
 
 				</div>
 
-				<div class="row">
+			</div
+			
+			<%= render "kullanicipaneli2"   %>
 
-					<%= render "footer" %>
+			<div class="visible-xs visible-sm row">
+				
+				
+				<div class="visible-xs visible-sm">
+
+				
+
+				<div style="margin-top:20px;"class="">
+
+					<div class=" col-sm-12 col-xs-12">
+
+						<div class="row">
+
+							<div class = "panel panel-success">
+
+								<div class="panel-heading">
+									<h3 style="text-align: center;" class="panel-title">En Son İlanlarım</h3>
+								</div>
+
+								<div class = "panel-body">
+
+									<% @lastadverts .each do |advert|  %>
+
+									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+
+										<div class="thumbnail">
+											<a href="<%= advert.href %>"> <% if advert.images == [] %>
+											<%= image_tag Image.new.imagefile %>
+											<% else %>
+											<%= image_tag advert.images[0].imagefile(:small),title:advert.name,class: "masterTooltip" %>
+											<% end %> </a>
+
+										</div>
+
+										<div class="caption">
+
+											<% if advert.name.length >= 10 %>
+
+											<h5><%= advert.name[0..9] %>...</h5>
+
+											<% else %>
+
+											<h5><%= advert.name %></h5>
+
+											<% end %>
+
+										</div>
+
+									</div>
+
+									<% end %>
+
+								</div>
+
+								<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
+
+								<% if @lastadverts .count > 8 %>
+								<div style="text-align:center;">
+									<div style="clear:both;"    class="apple_pagination">
+										<%= will_paginate @lastadverts , :container => false,
+										:previous_label => 'Önceki', :next_label => 'Sonraki' %>
+									</div>
+								</div>
+
+								<% end %>
+
+							</div>
+
+						</div>
+
+					</div>
 
 				</div>
 
 			</div>
-			
-			<%= render 'paginationkaldir' %>
+				
+				
+				
 
-			<!-- pluginler -->
-			
-			<!-- Tooltip eklentisi-->
+			</div>
 
-			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+			<div class="row">
 
-			<script>
-				var $tooltip = jQuery.noConflict();
-			</script>
+				<%= render "footer" %>
 
-			<script type="text/javascript" src="/resources/plugins/tooltipplugin/tooltip.js"></script>
+			</div>
 
-			<!--  fixed header -->
+		</div>
+		</div>
 
-			<%= render "headerfixedjs" %>
+		<%= render 'paginationkaldir' %>
 
-			<!--  Mesajlar paneli -->
+		<!-- pluginler -->
 
-			<script type="text/javascript">
-				$(document).ready(function() {
-					$("#mytable #checkall").click(function() {
-						if ($("#mytable #checkall").is(':checked')) {
-							$("#mytable input[type=checkbox]").each(function() {
-								$(this).prop("checked", true);
-							});
-						} else {
-							$("#mytable input[type=checkbox]").each(function() {
-								$(this).prop("checked", false);
-							});
-						}
-					});
+		<!-- Tooltip eklentisi-->
 
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+		<script>
+			var $tooltip = jQuery.noConflict();
+		</script>
+
+		<script type="text/javascript" src="/resources/plugins/tooltipplugin/tooltip.js"></script>
+
+		<!--  fixed header -->
+
+		<%= render "headerfixedjs" %>
+
+		<!--  Mesajlar paneli -->
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#mytable #checkall").click(function() {
+					if ($("#mytable #checkall").is(':checked')) {
+						$("#mytable input[type=checkbox]").each(function() {
+							$(this).prop("checked", true);
+						});
+					} else {
+						$("#mytable input[type=checkbox]").each(function() {
+							$(this).prop("checked", false);
+						});
+					}
 				});
-			</script>
+
+			});
+		</script>
 	</body>
 
-</html>	
+</html>

@@ -876,21 +876,25 @@
 			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title: advert.name,class:"img-responsive masterTooltip" %></a>
 		
 		<div class="caption">
-		<h4 class="group inner list-group-item-heading">
-			<% if advert.name.length <= 10 %>
-		<%= advert.name %></h4>
+		<h5 class="group inner list-group-item-heading">
+			<% if advert.name.length <= 7 %>
+		<%= advert.name %></h5>
 		
 		<% else %>
 		
-		<%= advert.name[0..9] %>...</h4>
+		<h5 class="group inner list-group-item-heading">
+		
+		<%= advert.name[0..6] %>...</h5>
 		<% end %>
 		<p class="group inner list-group-item-text">
 			
-		<% if advert.explication.length <=14 %>	
+		<% if advert.explication.length <= 7 %>	
+		
+		<p class="group inner list-group-item-text">
 		<%= advert.explication %>  </p>
 		<% else %>
-		
-		<%= advert.explication[0..13] %>...  </p>
+		<p class="group inner list-group-item-text">
+		<%= advert.explication[0..6] %>...</p>
 		
 		<% end %>
 		<div style="margin-top:25px;" class="row">
@@ -920,6 +924,7 @@
 		
 		<% else %>
 		
+		<h4 class="group inner list-group-item-heading">
 		<%= advert.name[0..44] %>...</h4>
 		<% end %>
 		<p class="group inner list-group-item-text">

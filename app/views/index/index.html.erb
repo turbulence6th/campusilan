@@ -131,7 +131,7 @@
 				body {
 					padding-left: 50px;
 					padding-right: 50px;
-					padding-top: 30px;
+					padding-top: 5px;
 				}
 				#loginkismi {
 
@@ -140,6 +140,48 @@
 					right: 0;
 				}
 			}
+			
+			
+			@media screen and (max-width: 1500px) and (min-width: 1200px) {
+				body {
+					padding-left: 50px;
+					padding-right: 50px;
+					padding-top: 5px;
+				}
+				
+				.ensonilanlar-large {
+					
+					margin-top: -40px;
+					
+					
+				}
+				
+				#loginkismi {
+
+					position: absolute;
+					bottom: 0;
+					right: 0;
+				}
+			}
+			
+			
+			@media screen and (max-width: 1500px) {
+				.kategoriler-large {
+
+					line-height: 20%;
+				}
+			}
+			
+			
+			@media screen and (min-width: 1500px) {
+				.kategoriler-large {
+
+					line-height: 75%;
+				}
+			}
+			
+			
+			
 
 			@media screen and (max-width: 1200px) {
 				body {
@@ -238,10 +280,9 @@
 
 				<div class="ustkisim row visible-lg">
 
-					<aside id="ikincikisim"  style="float: left;  line-height: 20%;"
-					class="col-lg-3 col-md-3 col-sm-3 hidden-xs ">
+					<aside id="ikincikisim"  style="float: left;  " class="kategoriler-large col-lg-3 col-md-3 col-sm-3 hidden-xs ">
 
-						<div  data-step="1" data-intro="Buradan tüm kategori ve fırsatlara erişebilirsiniz!" class="panel panel-primary">
+						<div  data-step="1" data-intro="Buradan tüm kategori ve fırsatlara erişebilirsiniz!" class=" panel panel-primary">
 
 							<div class="panel-heading">
 								<h3 class="panel-title">Kategoriler</h3>
@@ -459,7 +500,7 @@
 
 					<div  id="ucuncukisim" style="" class="gununfirsatlari col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm">
 
-						<div  style="height:875px;" class="panel panel-info">
+						<div  style="" class="panel panel-info">
 
 							<div  class="panel-heading">
 								<h3 style="text-align: center;" class="panel-title">Günün
@@ -935,7 +976,7 @@
 				
 				
 				<% if current_user!=nil %>
-				<div style=" margin-top:40px;"  class="visible-sm row">
+				<div style=" margin-top:20px;"  class="visible-sm row">
 
 					<a href="/uye/<%= current_user.username%>" style="margin-left:11%;margin-right:5px;"   type="button" class="col-xs-3 btn btn-md btn-info"> <span style="font-size:10px;">Üye Bilgileri</span> </a>
 
@@ -947,7 +988,7 @@
 
 				<% else %>
 
-				<div style=" margin-top:40px;"  class="visible-sm row">
+				<div style=" margin-top:20px;"  class="visible-sm row">
 
 					<a href="/kategoriler" style="margin-left:15%;margin-right:20px;" type="button" class="col-xs-4  btn btn-lg btn-info"> <span style="font-size:12px;">Kategoriler</span> </a>
 
@@ -958,7 +999,7 @@
 				<% end %>
 				
 				<br class="visible-sm">
-				<br class="visible-sm">
+				
 				
 				
 
@@ -1418,7 +1459,7 @@
 
 					<div class="panel-body">
 
-						<div id="mi-slider2" class="mi-slider" style="margin-top: -40px; clear: both;">
+						<div id="mi-slider2" class="ensonilanlar-large mi-slider" style=" clear: both;">
 							<ul>
 								<% @ensonikinciel.each do |advert| %>
 								<li>
@@ -1513,7 +1554,7 @@
 
 									<div class='wrapper'>
 										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %></a>
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),width:"100%;" %></a>
 										<!-- description div -->
 										<div class='description'>
 											<!-- description content -->
