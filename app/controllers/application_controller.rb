@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   
   helper_method :topUniversities
   
-  before_filter :set_start_time, :if => proc {|c| ENV['RAILS_ENV'].to_s == 'development' || ENV['RAILS_ENV'].to_s == ''}
+  before_filter :set_start_time, :if => proc {|c| ENV['RAILS_ENV'].to_s == 'development'}
 
   def set_start_time
     @start_time = Time.now.to_f
