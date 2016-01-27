@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   before_filter :check_admin_mode
 
   def check_admin_mode
-    if ENV['ADMIN_MODE'] && (request.remote_ip != "144.122.120.18" || !current_user || current_user.role != 'admin')
+    if ENV['ADMIN_MODE'] && request.remote_ip != "144.122.120.18"
       redirect_to '/portfolio'
     end
   end
