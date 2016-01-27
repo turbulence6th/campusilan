@@ -5,6 +5,10 @@ class Message < ActiveRecord::Base
   
   validates :from, :to, :topic, :presence => true
   
+  validates :topic, :length => {
+    :maximum => 20
+  }
+  
   validates :text, :length => {
     :maximum => 500
   }

@@ -47,7 +47,7 @@
 	<label class = "col-sm-2 control-label">Semt</label>
 
 	<div class = "col-sm-10">
-		<%= field.text_field :state, class:"form-control", :onkeyup => 'evarkadasisemtVerify()' %>
+		<%= field.text_field :state, class:"form-control", :onkeyup => 'evarkadasisemtVerify()', :maxlength => 20 %>
 	</div>
 </div>
 
@@ -59,7 +59,7 @@
 	<label class = "col-sm-2 control-label">Şehir</label>
 
 	<div class = "col-sm-10">
-		<%= field.text_field :city, class:"form-control", :onkeyup => 'evarkadasisehirVerify()' %>
+		<%= field.text_field :city, class:"form-control", :onkeyup => 'evarkadasisehirVerify()', :maxlength => 20 %>
 	</div>
 </div>
 
@@ -209,11 +209,10 @@ return result;
 
 function evarkadasisemtVerify() {
 var form = document.getElementById("evarkadasiform");
-var state = form.elements['advert_<%= advertable %>
-	_state'].value;
+var state = form.elements['advert_<%= advertable %>_state'].value;
 	var result = false;
 
-	if (!/^[a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}$/.test(state)) {
+	if (!/^[a-zA-Z0-9.-_ \u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}$/.test(state)) {
 	$('.evarkadasiStateAlert').show();
 	} else {
 	$('.evarkadasiStateAlert').hide();
@@ -225,12 +224,10 @@ var state = form.elements['advert_<%= advertable %>
 
 	function evarkadasisehirVerify() {
 	var form = document.getElementById("evarkadasiform");
-	var city = form.elements['advert_
-<%= advertable %>
-	_city'].value;
+	var city = form.elements['advert_<%= advertable %>_city'].value;
 	var result = false;
 
-	if (!/^[a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}$/.test(city)) {
+	if (!/^[a-zA-Z0-9.-_ \u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}$/.test(city)) {
 	$('.evarkadasiCityAlert').show();
 	} else {
 	$('.evarkadasiCityAlert').hide();

@@ -369,9 +369,12 @@ class AdvertController < ApplicationController
         @title="İncik Boncuk"
       elsif subkategori=="diger"
         @title="Diğer"
-      else
+      elsif !subkategori
         @title="İkinci El İlanlar"
+      else
+        raise ActionController::RoutingError.new('Not Found') 
       end
+      
 
     elsif kategori=="evarkadasi"
 
@@ -401,16 +404,15 @@ class AdvertController < ApplicationController
         @title="Genel Mühendislik"
       elsif subkategori=="genelegitimbilimleri"
         @title="Genel Eğitim Bilimleri"
-      else
+      elsif !subkategori
         @title="Özel Ders İlanları"
+      else
+        raise ActionController::RoutingError.new('Not Found')
       end
 
-    elsif kategori==nil
-      @title="İkinci El İlanlar"
-      @adverts = Advert.available.select('adverts.*').from('adverts, secondhands')
-          .where("adverts.advertable_type=? AND adverts.advertable_id=secondhands.id", "Secondhand")
     else
-      redirect_to "/kategoriler"
+      redirect_to "/kategoriler/ikincielilan"
+      return
     end
 
     @adverts = Rails.cache.fetch("#{request.path}/#{params[:page]}", :expires_in => 5.minutes) do
