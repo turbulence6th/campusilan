@@ -3,6 +3,7 @@ class AdvertController < ApplicationController
   layout false
 
   helper_method :current_user
+
   def vote
 
     if current_user
@@ -119,7 +120,7 @@ class AdvertController < ApplicationController
     end
 
     if type == 'ikinciel'
-      @similar = Rails.cache.fetch("similar/#{id}", :expires_in => 5.minutes) do 
+      @similar = Rails.cache.fetch("similar/#{id}", :expires_in => 5.minutes) do
         Advert.available.from('adverts, secondhands')
           .where('adverts.id != ? AND adverts.advertable_type = ? ' + '
             AND adverts.advertable_id = secondhands.id AND secondhands.category = ?',
@@ -127,12 +128,12 @@ class AdvertController < ApplicationController
           .order("RANDOM()").take(3)
        end
     elsif type == 'evarkadasi'
-      @similar = Rails.cache.fetch("similar/#{id}", :expires_in => 5.minutes) do 
+      @similar = Rails.cache.fetch("similar/#{id}", :expires_in => 5.minutes) do
         Advert.available.where(:advertable_type => 'Homemate').where.not(:id => @advert.id)
           .order("RANDOM()").take(3)
       end
     elsif type == 'ozelders'
-      @similar = Rails.cache.fetch("similar/#{id}", :expires_in => 5.minutes) do 
+      @similar = Rails.cache.fetch("similar/#{id}", :expires_in => 5.minutes) do
         Advert.available.from('adverts, privatelessons')
         .where('adverts.id != ? AND adverts.advertable_type = ? ' + '
           AND adverts.advertable_id = privatelessons.id AND privatelessons.lecture = ?',
@@ -322,10 +323,7 @@ class AdvertController < ApplicationController
         @image = Image.new(:imagefile => image)
         @advert.images << @image
       end
-      
-     
-      
-      
+
     end
 
     if @advert.save
@@ -367,6 +365,8 @@ class AdvertController < ApplicationController
         @title="Giyim"
       elsif subkategori=="dersnotu"
         @title="Ders Notları"
+      elsif subkategori=="incikboncuk"
+        @title="İncik Boncuk"
       elsif subkategori=="diger"
         @title="Diğer"
       else
@@ -413,9 +413,7 @@ class AdvertController < ApplicationController
       redirect_to "/kategoriler"
     end
 
-    
-    
-    @adverts = Rails.cache.fetch("#{request.path}/#{params[:page]}", :expires_in => 5.minutes) do 
+    @adverts = Rails.cache.fetch("#{request.path}/#{params[:page]}", :expires_in => 5.minutes) do
       @adverts.order("created_at DESC").paginate(:page => params[:page], :per_page => 18).take(18)
     end
 
@@ -423,16 +421,14 @@ class AdvertController < ApplicationController
       gununilanlari.take(8)
     end
 
-    @mostpopular = Rails.cache.fetch("index_mostpopular", :expires_in => 5.minutes) do 
+    @mostpopular = Rails.cache.fetch("index_mostpopular", :expires_in => 5.minutes) do
       mostpopular.take(8)
     end
 
   end
 
   def firsatlar
-    
-   
-    
+
     if params[:acililanlar]!=nil
       @title="Acil İlanlar"
       @active = 0
@@ -471,7 +467,7 @@ class AdvertController < ApplicationController
 
     @adverts = @adverts.paginate(:page => params[:page], :per_page => 18)
 
-    @bizimsectiklerimiz = Rails.cache.fetch("index_bizimsectiklerimiz", :expires_in => 5.minutes) do 
+    @bizimsectiklerimiz = Rails.cache.fetch("index_bizimsectiklerimiz", :expires_in => 5.minutes) do
       bizimsectiklerimiz.take(10)
     end
 
