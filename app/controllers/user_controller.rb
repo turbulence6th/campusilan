@@ -131,20 +131,10 @@ class UserController < ApplicationController
 
     if @other_user == nil
       raise ActionController::RoutingError.new('Not Found')
-    elsif  current_user!=nil && current_user.id != @other_user.id 
+    elsif  current_user==nil || current_user.id != @other_user.id 
       
       @lastadverts = @other_user.adverts.order('created_at DESC').limit(12)
       render 'member2'
-
-
-     elsif current_user == nil
-       
-       @lastadverts = @other_user.adverts.order('created_at DESC').limit(12)
-       
-      
-      render 'member2'
-       
-
 
     else
 

@@ -510,11 +510,9 @@
 							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 								<div class="thumbnail">
-									<a href="<%= advert.href %>"> <% if advert.images == [] %>
-									<%= image_tag Image.new.imagefile %>
-									<% else %>
-									<%= image_tag advert.images[0].imagefile(:small) %>
-									<% end %> </a>
+									<a href="<%= advert.href %>"> 
+									<%= image_tag advert.pimage.imagefile(:small) %>
+									</a>
 								</div>
 
 								<div class="caption">
@@ -585,11 +583,11 @@
 								<% @bizimsectiklerimiz.each do |advert| %>
 
 								<li>
-									<% if advert.images != [] %>
+									
 
 									<div class='wrapper'>
 										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag advert.images[0].imagefile(:small),width:"100%" %></a>
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),width:"100%" %></a>
 										<!-- description div -->
 										<div class='description'>
 											<!-- description content -->
@@ -601,23 +599,6 @@
 										<!-- end description div -->
 									</div>
 
-									<% else %>
-
-									<div class='wrapper'>
-										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag Image.new.imagefile,width:"100%" %></a>
-										<!-- description div -->
-										<div class='description'>
-											<!-- description content -->
-											<div class='description_content'>
-												<%= advert.name %>
-											</div>
-											<!-- end description content -->
-										</div>
-										<!-- end description div -->
-									</div>
-
-									<% end %>
 
 								</li>
 

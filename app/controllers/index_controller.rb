@@ -159,7 +159,7 @@ class IndexController < ApplicationController
       end
       
       if params[:color] && params[:color] != "" && params[:color] != "hepsi"
-        @adverts = @adverts.where(:secondhands => {:color => params[:color]})
+        @adverts = @adverts.where(:secondhands => {:color => Secondhand.colors[params[:color]]})
       end
       
     elsif params[:kategori] == "evarkadasi"
@@ -176,27 +176,27 @@ class IndexController < ApplicationController
       end
       
       if params[:demand] && params[:demand] != ""
-        @adverts = @adverts.where(:homemates => {:demand => params[:demand]})
+        @adverts = @adverts.where(:homemates => {:demand => Homemate.demands[params[:demand]]})
       end
       
       if params[:sleep] && params[:sleep] != "" && params[:sleep] != "hepsi"
-        @adverts = @adverts.where(:homemates => {:sleep => params[:sleep]})
+        @adverts = @adverts.where(:homemates => {:sleep => Homemate.sleeps[params[:sleep]]})
       end
       
       if params[:friend] && params[:friend] != "" && params[:friend] != "hepsi"
-        @adverts = @adverts.where(:homemates => {:friend => params[:friend]})
+        @adverts = @adverts.where(:homemates => {:friend => Homemate.friends[params[:friend]]})
       end
       
       if params[:smoke] && params[:smoke] != "" && params[:smoke] != "hepsi"
-        @adverts = @adverts.where(:homemates => {:smoke => params[:smoke]})
+        @adverts = @adverts.where(:homemates => {:smoke => Homemate.somekes[params[:smoke]]})
       end
       
       if params[:department] && params[:department] != "" && params[:department] != "hepsi"
-        @adverts = @adverts.where(:homemates => {:department => params[:department]})
+        @adverts = @adverts.where(:homemates => {:department => Homemate.departments[params[:department]]})
       end
       
       if params[:music] && params[:music] != "" && params[:music] != "hepsi"
-        @adverts = @adverts.where(:homemates => {:music => params[:music]})
+        @adverts = @adverts.where(:homemates => {:music => Homemate.musics[params[:music]]})
       end
       
      elsif params[:kategori] == "ozelders"
@@ -245,7 +245,19 @@ class IndexController < ApplicationController
     end
     
     if params[:acililan] == "1"
-      @adverts = @adverts & acililanlar
+      @adverts = @adverts.where(:urgent => true)
+    end
+    
+    if params[:gununfirsatlari] == "1"
+      @adverts = @adverts.where(:opportunity => true)
+    end
+    
+    if params[:enpopuler] == "1"
+      
+    end
+    
+    if params[:enguvenilir] == "1"
+      
     end
     
     

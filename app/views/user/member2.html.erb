@@ -200,11 +200,9 @@
 										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
 
 											<div class="thumbnail">
-												<a title='<%= advert.name %>' href="<%= advert.href %>"> <% if advert.images == [] %>
-												<%= image_tag Image.new.imagefile %>
-												<% else %>
-												<%= image_tag advert.images[0].imagefile(:small) %>
-												<% end %> </a>
+												<a title='<%= advert.name %>' href="<%= advert.href %>"> 
+												<%= image_tag advert.pimage.imagefile(:small) %>
+											 </a>
 
 											</div>
 
@@ -244,11 +242,9 @@
 										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
 
 											<div class="thumbnail">
-												<a title='<%= advert.name %>' href="<%= advert.href %>"> <% if advert.images == [] %>
-												<%= image_tag Image.new.imagefile %>
-												<% else %>
-												<%= image_tag advert.images[0].imagefile(:small) %>
-												<% end %> </a>
+												<a title='<%= advert.name %>' href="<%= advert.href %>"> 
+												<%= image_tag advert.pimage.imagefile(:small) %>
+												</a>
 
 											</div>
 
@@ -301,11 +297,9 @@
 										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
 
 											<div class="thumbnail">
-												<a title='<%= advert.name %>' href="<%= advert.href %>"> <% if advert.images == [] %>
-												<%= image_tag Image.new.imagefile %>
-												<% else %>
-												<%= image_tag advert.images[0].imagefile(:small) %>
-												<% end %> </a>
+												<a title='<%= advert.name %>' href="<%= advert.href %>">
+												<%= image_tag advert.pimage.imagefile(:small) %>
+												</a>
 
 											</div>
 
@@ -346,11 +340,9 @@
 										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
 
 											<div class="thumbnail">
-												<a title='<%= advert.name %>' href="<%= advert.href %>"> <% if advert.images == [] %>
-												<%= image_tag Image.new.imagefile %>
-												<% else %>
-												<%= image_tag advert.images[0].imagefile(:small) %>
-												<% end %> </a>
+												<a title='<%= advert.name %>' href="<%= advert.href %>">
+												<%= image_tag advert.pimage.imagefile(:small) %>
+												</a>
 
 											</div>
 
@@ -503,7 +495,7 @@
 																<td><%= gender[@other_user.gender] %></td>
 															</tr>
 
-															<% if current_user.address!='' %>
+															<% if @other_user.address!='' %>
 
 															<tr>
 																<td>Açık adres</td>

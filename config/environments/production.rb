@@ -56,4 +56,5 @@ config.active_support.deprecation = :notify
 config.log_formatter = ::Logger::Formatter.new
 # Do not dump schema after migrations.
 config.active_record.dump_schema_after_migration = false
+config.assets.precompile += %w[active_admin.css active_admin.js]
 end
