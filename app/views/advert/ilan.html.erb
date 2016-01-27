@@ -202,8 +202,37 @@
 
 								<br>
 								<br>
+								
+								<% if @images == [] %>
+								
+								
+								<div class = "alert alert-danger">
+									Bu ilanın resmi bulunmamaktadır!!
+								</div>
+								
+								
+								
+								<% elsif @images.count == 1 %>
+									
+									<div class="row thumbnails">
 
-								<% if @images.count >1 %>
+									<div class="row">
+
+										<% @images.each do |image|%>
+
+										<a class="col-lg-4 col-md-4" href="<%= image_path image.imagefile(:original) %>" data-standard="<%= image_path image.imagefile(:original) %>"> <img width="100" height="100" src="<%= image_path image.imagefile(:original) %>" alt="" /> </a>
+
+										<% end %>
+
+									</div>
+
+									
+								</div>
+									
+									
+								
+
+								<% elsif @images.count > 1 %>
 
 								<div class="row thumbnails">
 
@@ -229,11 +258,9 @@
 
 								</div>
 
-								<% else %>
+								
 
-								<div class = "alert alert-danger">
-									Bu ilanın başka resmi bulunmamaktadır!!
-								</div>
+								
 
 								<% end %>
 

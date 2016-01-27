@@ -14,6 +14,8 @@ class Secondhand < ActiveRecord::Base
      :mutfakesyalari, :vasita, :giyim, :dersnotu, :diger ]
 
   enum :color => [ :siyah, :beyaz, :kirmizi, :mavi, :sari, :yesil ]
+  
+  
   def renkler
 
     if self.color=='siyah'
