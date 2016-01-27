@@ -148,8 +148,8 @@ class UserController < ApplicationController
         .where('adverts.id=favourite_adverts.advert_id AND users.id=favourite_adverts.user_id AND users.id=?', current_user.id)
         .order('favourite_adverts.created_at DESC').limit(6)
 
-      @viewedadverts = Advert.available.select('adverts.*').from('adverts, users, viewed_adverts')
-        .where('adverts.id=viewed_adverts.advert_id AND users.id=viewed_adverts.user_id')
+      @viewedadverts = Advert.available.select('adverts.*').from('adverts, viewed_adverts')
+        .where('adverts.id=viewed_adverts.advert_id AND viewed_adverts.user_id = ?', current_user.id)
         .order('viewed_adverts.created_at').limit(6)
 
     end
