@@ -102,8 +102,6 @@
 
 		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/siteturu.js"></script>
 
-		
-
 		<!-- end of plugins  -->
 
 		<style>
@@ -202,9 +200,6 @@
 			.mosaic-block a {
 				text-decoration: none;
 			}
-			
-			
-			
 
 		</style>
 
@@ -1142,9 +1137,7 @@
 			</div>
 
 		</div>
-		
-		
-		
+
 		<div id="" class="row visible-md" >
 
 			<div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 25px; padding-right: 25px;">
@@ -1201,7 +1194,6 @@
 			</div>
 
 		</div>
-		
 
 		<div class="row visible-xs">
 
@@ -2329,6 +2321,40 @@
 		<a id='backTop'>Back To Top</a>
 
 		<%= render "footer" %>
+		
+		
+		
+
+		<div class = "ilaneklendi modal fade" id = "myModal" tabindex = "-1" role = "dialog"
+		aria-labelledby = "myModalLabel" aria-hidden = "true">
+
+			<div class = "modal-dialog">
+				<div class = "modal-content">
+
+					<div class = "modal-header">
+						<button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+							&times;
+						</button>
+
+						<h4 class = "modal-title" id = "myModalLabel"> Başarılı </h4>
+					</div>
+
+					<div class = "modal-body">
+						İlanınız başarıyla eklendi.
+					</div>
+
+					<div class = "modal-footer">
+						<button type = "button" class = "btn btn-primary" data-dismiss = "modal">
+							Kapat
+						</button>
+
+						
+					</div>
+
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+
+		</div>
 
 		<!-- plugin script importları: -->
 
@@ -2422,17 +2448,11 @@
 		</script>
 
 		<!-- jquery-match-height-master -->
-		
-		
-		
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		
-		
-		
 
 		<script src="/resources/plugins/jquery-match-height-master/jquery.matchHeight.js" type="text/javascript"></script>
-		
-		
+
 		<script>
 			var heightfixer = jQuery.noConflict();
 
@@ -2440,16 +2460,12 @@
 
 		<script>
 			heightfixer(function() {
-    heightfixer('.equal-height-panels').matchHeight();
-		});
-		
-		heightfixer(function() {
-    heightfixer('.equalheight2').matchHeight();
-		});
-		
-		
-		
-		
+				heightfixer('.equal-height-panels').matchHeight();
+			});
+
+			heightfixer(function() {
+				heightfixer('.equalheight2').matchHeight();
+			});
 
 		</script>
 
@@ -2479,10 +2495,19 @@
 		<%= render "headerfixedjs" %>
 
 		<!-- Dropdown login box -->
+		
+		
+		<script src="resources/js/bootstrap.min.js"></script>
+
+			<script>
+				var $modaljquery = jQuery.noConflict();
+
+			</script>
 
 		<% if params[:yeniilan] %>
 		<script>
-			alert("İlanınız Başarıyla Alındı");
+			$modaljquery('.ilaneklendi').modal('show');
+
 		</script>
 		<% end %>
 
