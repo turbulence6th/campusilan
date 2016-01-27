@@ -10,8 +10,6 @@ class ApplicationController < ActionController::Base
   
   before_filter :check_admin_mode
 
-  protected
-
   def check_admin_mode
     if ENV['ADMIN_MODE'] && (!current_user || current_user.role != 'admin')
       redirect_to '/maintenance.html'
