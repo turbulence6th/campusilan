@@ -229,7 +229,7 @@ var form = document.getElementById("ikincielform");
 var brand = form.elements['advert_<%= advertable %>_brand'].value;
 	var result = false;
 
-	if (!/\S/.test(brand)) {
+	if (brand != "" && !/\S/.test(brand)) {
 	$('.ikincielBrandAlert').show();
 	} else {
 	$('.ikincielBrandAlert').hide();
