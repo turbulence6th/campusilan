@@ -55,7 +55,7 @@
 	<label class = "col-sm-2 control-label">Şehir</label>
 
 	<div class = "col-sm-10">
-		<%= field.text_field  :city, class:"form-control", :onkeyup => 'ozelderssehirVerify();' %>
+		<%= field.text_field  :city, class:"form-control", :onkeyup => 'ozelderssehirVerify();', :maxlength => 20 %>
 	</div>
 </div>
 
@@ -67,7 +67,7 @@
 	<label class = "col-sm-2 control-label">Semt</label>
 
 	<div class = "col-sm-10">
-		<%= field.text_field :state, class:"form-control", :onkeyup => 'ozelderssemtVerify();' %>
+		<%= field.text_field :state, class:"form-control", :onkeyup => 'ozelderssemtVerify();', :maxlength => 20 %>
 	</div>
 </div>
 
@@ -184,11 +184,10 @@ return result;
 
 function ozelderssemtVerify() {
 var form = document.getElementById("ozeldersform");
-var state = form.elements['advert_<%= advertable %>
-	_state'].value;
+var state = form.elements['advert_<%= advertable %>_state'].value;
 	var result = false;
 
-	if (!/^[a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}$/.test(state)) {
+	if (!/^[a-zA-Z0-9.-_ \u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}$/.test(state)) {
 	$('.ozeldersStateAlert').show();
 	} else {
 	$('.ozeldersStateAlert').hide();
@@ -200,12 +199,10 @@ var state = form.elements['advert_<%= advertable %>
 
 	function ozelderssehirVerify() {
 	var form = document.getElementById("ozeldersform");
-	var city = form.elements['advert_
-<%= advertable %>
-	_city'].value;
+	var city = form.elements['advert_<%= advertable %>_city'].value;
 	var result = false;
 
-	if (!/^[a-zA-Z\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}$/.test(city)) {
+	if (!/^[a-zA-Z0-9.-_ \u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}$/.test(city)) {
 	$('.ozeldersCityAlert').show();
 	} else {
 	$('.ozeldersCityAlert').hide();
