@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def check_admin_mode
     if ENV['ADMIN_MODE'] && (!current_user || current_user.role != 'admin')
-      redirect_to '/portfolio/index.html'
+      redirect_to '/portfolio'
     end
   end
 
