@@ -1,6 +1,6 @@
 class Secondhand < ActiveRecord::Base
 
-  validates :category, :brand, :presence => true
+  validates :category, :presence => true
 
   validates :usage, :warranty, :inclusion => { :in => [true, false] }
 

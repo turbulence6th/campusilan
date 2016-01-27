@@ -5,7 +5,18 @@ class ApplicationController < ActionController::Base
   
   helper_method :topUniversities
   
-  before_filter :set_start_time, :if => proc {|c| current_user && current_user.role == 'admin' }
+  before_filter :check_admin_mode,
+    :set_start_time, :if => proc {|c| current_user && current_user.role == 'admin' }
+  
+  before_filter :check_admin_mode
+
+  protected
+
+  def check_admin_mode
+    if ENV['ADMIN_MODE'] && (!current_user || current_user.role != 'admin')
+      redirect_to '/maintenance.html'
+    end
+  end
 
   def set_start_time
     @start_time = Time.now.to_f
