@@ -19,7 +19,7 @@ ActiveAdmin.register User do
       input :email
       input :email_confirmation
       
-      if object.new_record?
+      if !object.new_record?
         input :email_confirmation
       end
       
@@ -31,10 +31,8 @@ ActiveAdmin.register User do
       input :birthday
       input :address
       input :deleted, :as => :select, :collection => { :True => true, :False => false }
+      input :university
       
-      if !object.new_record?
-        input :university
-      end
         
     end
  

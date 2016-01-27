@@ -233,7 +233,7 @@ class IndexController < ApplicationController
     
     
     if params[:aramakismi] && params[:aramakismi]!=""   
-      @adverts = @adverts.where("adverts.name LIKE ?", "%" + params[:aramakismi] + "%") 
+      @adverts = @adverts.where("adverts.name LIKE LOWER(?)", "%" + params[:aramakismi].downcase + "%") 
     end
     
     if params[:taban] && params[:taban] != ""
