@@ -510,7 +510,7 @@
 										<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 											<div class="thumbnail">
-												<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
+												<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small)%> </a>
 
 											</div>
 
@@ -577,7 +577,7 @@
 
 		<div class="row">
 
-			<div style="padding-left: 20px; padding-right: 20px" class="hidden-md col-lg-6">
+			<div style="padding-left: 20px; padding-right: 20px" class="visible-lg col-lg-6">
 
 				<div class="equal-height-panels panel panel-info">
 
@@ -653,6 +653,90 @@
 				</div>
 
 			</div>
+			
+			
+			
+			
+			
+			<div style="padding-left: 20px; padding-right: 20px" class="visible-xs visible-sm col-lg-6">
+
+				<div class="equal-height-panels panel panel-info">
+
+					<div class="panel-heading">
+						<h3 style="text-align: center;" class="panel-title">Günün
+						Fırsatlarını Gördünüz mü?</h3>
+					</div>
+
+					<div class="panel-body">
+
+						<div class="row">
+
+							<% if @gununilanlari!=[] %>
+
+							<% @gununilanlari.each do |advert| %>
+
+							<div class="col-lg-3 col-xs-6 col-md-4 col-sm-4">
+
+								<div style="" class="thumbnail">
+
+									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %></a>
+
+								</div>
+
+								<div class="caption">
+
+									<% if advert.name.length <= 12 %>
+
+									<h5>
+										<%= advert.name %>
+									</h5>
+
+									<% else %>
+
+									<h5>
+										<%= advert.name[0..11] + "..." %>
+									</h5>
+
+									<% end %>
+
+								</div>
+
+							</div>
+
+							<% end %>
+
+							<% else %>
+
+							<div style="padding:20px;">
+
+								Şuanda malesef günün fırsatı bulunmamaktadır!!
+
+							</div>
+
+							<% end %>
+
+						</div>
+
+						<br>
+
+						<% if @gununilanlari!=[] %>
+						<div style="text-align:center;">
+							<a href="/firsatlar?gununfirsatlari=1" >
+							<button style="text-align:center;" type = "button" class = "btn btn-success">
+								Devamı İçin Tıklayınız.
+							</button></a>
+						</div>
+
+						<% end %>
+
+					</div>
+
+				</div>
+
+			</div>
+			
+			
+			
 			
 			
 			
@@ -736,7 +820,7 @@
 			
 			
 
-			<div style="padding-left: 20px; padding-right: 20px" class="hidden-md col-lg-6">
+			<div style="padding-left: 20px; padding-right: 20px" class="visible-lg col-lg-6">
 
 				<div class="equal-height-panels panel panel-info">
 
@@ -806,6 +890,82 @@
 				</div>
 
 			</div>
+			
+			
+			
+			
+			<div style="padding-left: 20px; padding-right: 20px" class="visible-xs visible-sm col-lg-6">
+
+				<div class="equal-height-panels panel panel-info">
+
+					<div class="panel-heading">
+						<h3 style="text-align: center;" class="panel-title">En Popüler Ürünlere Bir Göz Atmalısınız</h3>
+					</div>
+
+					<div class="panel-body">
+
+						<div class="row">
+
+							<% if @mostpopular!= [] %>
+
+							<% @mostpopular.each do |advert| %>
+
+							<div class="col-lg-3 col-xs-6 col-md-4 col-sm-4">
+
+								<div style="" class="thumbnail">
+
+									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %></a>
+
+								</div>
+
+								<div class="caption">
+
+									<% if advert.name.length <= 12 %>
+
+									<h5>
+										<%= advert.name %>
+									</h5>
+
+									<% else %>
+
+									<h5>
+										<%= advert.name[0..11] + "..." %>
+									</h5>
+
+									<% end %>
+
+								</div>
+
+							</div>
+
+							<% end %>
+
+							<% else %>
+
+							<div style="padding:20px;">
+
+								Şuanda malesef popüler ilan bulunmamaktadır!!
+
+							</div>
+
+							<% end %>
+
+						</div>
+
+						<br>
+						<div style="text-align:center;">
+							<a href="/firsatlar?enpopulerilanlar=1" >
+							<button style="text-align:center;" type = "button" class = "btn btn-success">
+								Devamı İçin Tıklayınız.
+							</button></a>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+			
+			
 			
 			
 			

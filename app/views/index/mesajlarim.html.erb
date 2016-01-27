@@ -221,7 +221,7 @@
 
 											<% @messages.each do |mesaj| %>
 
-											<tr id="<%= mesaj.id %>">
+											<tr class="mmm_<%= mesaj.id %>">
 
 												<td>
 												<input type="checkbox" class="checkthis" />
@@ -285,7 +285,7 @@ $(".<%= mesaj.id %>").click(function() {
 
 											<% @messages.each do |mesaj| %>
 
-											<tr id="<%= mesaj.id %>">
+											<tr class="mmm_<%= mesaj.id %>">
 
 												<td>
 												<input type="checkbox" class="checkthis" />
@@ -322,14 +322,12 @@ $(".<%= mesaj.id %>").click(function() {
 $(".cevaplapaneli .ickisim").attr("placeholder", "<%= mesaj.to.username %>");
 
 	$(".cevaplapaneli .ickisim").val("<%= mesaj.to.username %>");
-
-	});
-
-	$(".<%= mesaj.id %>").click(function() {
-
+	
 	$(".silpaneli .mesajtoid").val("<%= mesaj.id %>");
 
 	});
+
+	
 
 												</script>
 
@@ -602,7 +600,7 @@ $(".cevaplapaneli .ickisim").attr("placeholder", "<%= mesaj.to.username %>");
 
 										<% @messages.each do |mesaj| %>
 
-										<tr>
+										<tr class="mmm_<%= mesaj.id %>">
 
 											<td>
 											<input type="checkbox" class="checkthis" />
@@ -658,7 +656,7 @@ $(".<%= mesaj.id %>").click(function() {
 
 										<% @messages.each do |mesaj| %>
 
-										<tr>
+										<tr class="mmm_<%= mesaj.id %>">
 
 											<td>
 											<input type="checkbox" class="checkthis" />
@@ -692,7 +690,7 @@ $(".<%= mesaj.id %>").click(function() {
 											<script>
 $(".<%= mesaj.id %>").click(function() {
 
-												$(".cevaplapaneli .ickisim").attr("placeholder", "<%= mesaj.to.username %>");
+	$(".cevaplapaneli .ickisim").attr("placeholder", "<%= mesaj.to.username %>");
 
 	$(".cevaplapaneli .ickisim").val("<%= mesaj.to.username %>");
 
@@ -1039,7 +1037,7 @@ $(".<%= mesaj.id %>").click(function() {
 
 							}
 
-							$modaljquery("#mesajgonder").on('hidden.bs.modal', function() {
+							$modaljquery("#mesajgonder2").on('hidden.bs.modal', function() {
 
 								$(".kullaniciadi").val("");
 								$(".konu").val("");
@@ -1181,7 +1179,7 @@ $(".<%= mesaj.id %>").click(function() {
 
 							}
 
-							$modaljquery("#mesajgonder").on('hidden.bs.modal', function() {
+							$modaljquery("#mesajcevapla2").on('hidden.bs.modal', function() {
 
 								$(".kullaniciadi").val("");
 								$(".konu").val("");
@@ -1215,9 +1213,9 @@ $(".<%= mesaj.id %>").click(function() {
 
 					var form = document.getElementById("mesajsilformu");
 					var mesajfromid = form.elements['mesaj_mesajfromid'].value;
-					var mesajfromid_objesi = document.getElementById(mesajfromid);
+					var mesajfromid_objesi = document.getElementsByClassName('mmm_'+mesajfromid);
 					var mesajtoid = form.elements['mesaj_mesajtoid'].value;
-					var mesajtoid_objesi = document.getElementById(mesajtoid);
+					var mesajtoid_objesi = document.getElementsByClassName('mmm_'+mesajtoid);
 
 					$.ajax({
 
@@ -1255,16 +1253,17 @@ $(".<%= mesaj.id %>").click(function() {
 
 								$(".basarili").hide();
 								
-								if (mesajfromid_objesi != null) {
+								if (mesajfromid_objesi[0] != null && mesajfromid_objesi[1] != null ) {
 									
+ 								mesajfromid_objesi[0].remove(); 
 									
+								mesajfromid_objesi[0].remove(); 	
 									
-									mesajfromid_objesi.remove();
+								} else if(mesajtoid_objesi[0] != null && mesajtoid_objesi[1] != null) {
 									
+									mesajtoid_objesi[0].remove();
 									
-								} else if(mesajtoid_objesi!= null) {
-									
-									mesajtoid_objesi.remove();
+									mesajtoid_objesi[0].remove();
 									
 								}
 								
@@ -1288,9 +1287,10 @@ $(".<%= mesaj.id %>").click(function() {
 
 					var form = document.getElementById("mesajsilformu2");
 					var mesajfromid = form.elements['mesaj_mesajfromid'].value;
-					var mesajfromid_objesi = document.getElementById(mesajfromid);
+					
+					var mesajfromid_objesi = document.getElementsByClassName('mmm_'+mesajfromid);
 					var mesajtoid = form.elements['mesaj_mesajtoid'].value;
-					var mesajtoid_objesi = document.getElementById(mesajtoid);
+					var mesajtoid_objesi = document.getElementsByClassName('mmm_'+mesajtoid);
 
 					$.ajax({
 
@@ -1319,7 +1319,7 @@ $(".<%= mesaj.id %>").click(function() {
 								$(".silmehayir").attr('disabled', 'disabled');
 							}
 
-							$modaljquery("#mesajsil").on('hidden.bs.modal', function() {
+							$modaljquery("#mesajsil2").on('hidden.bs.modal', function() {
 
 								$(".silmeevet").removeAttr('disabled');
 								$(".silmehayir").removeAttr('disabled');
@@ -1328,16 +1328,23 @@ $(".<%= mesaj.id %>").click(function() {
 
 								$(".basarili").hide();
 								
-								if (mesajfromid_objesi != null) {
+								
+								
+								if (mesajfromid_objesi[0] != null && mesajfromid_objesi[1] != null) {
 									
 									
 									
-									mesajfromid_objesi.remove();
+ 								mesajfromid_objesi[0].remove(); 
 									
+								mesajfromid_objesi[0].remove(); 	
 									
-								} else if(mesajtoid_objesi!= null) {
+								} else if(mesajtoid_objesi[0] != null && mesajtoid_objesi[1] != null) {
 									
-									mesajtoid_objesi.remove();
+								
+									
+									mesajtoid_objesi[0].remove();
+									
+									mesajtoid_objesi[0].remove();
 									
 								}
 

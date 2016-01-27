@@ -114,15 +114,20 @@
 		<link rel="stylesheet" type="text/css"
 		href="/resources/plugins/tooltipplugin/tooltip.css" />
 
+		<!-- swipebox master -->
+
+		<link rel="stylesheet" href="/resources/plugins/swipebox-master/src/css/swipebox.css">
+
 		<!-- end of plugins  -->
 
 		<style>
 		
-		body {
+		
+			body {
 
 				background-color: #F0F7F7;
 			}
-		
+
 			@media screen and (min-width: 1200px) {
 				body {
 					padding-left: 50px;
@@ -153,8 +158,6 @@
 
 			<div class="row" style="position: relative;margin-bottom: 10px;">
 
-				
-
 				<div id="loginkismi "  class="visible-xs ">
 					<!-- Login Starts Here -->
 					<%= render "loginContainer" %>
@@ -181,7 +184,7 @@
 
 			<div style="margin-bottom:30px;"  class="row">
 
-				<div class="single">
+				<div  class="single">
 
 					<div style="padding-bottom:50px;" class="container-fluid">
 						<div class="col-md-9">
@@ -199,6 +202,8 @@
 
 								<br>
 								<br>
+
+								<% if @images.count >1 %>
 
 								<div class="row thumbnails">
 
@@ -224,15 +229,22 @@
 
 								</div>
 
+								<% else %>
+
+								<div class = "alert alert-danger">
+									Bu ilanın başka resmi bulunmamaktadır!!
+								</div>
+
+								<% end %>
+
 							</div>
 
-							
 							<div class="col-md-6 single-top-in">
 								<div class="single-para simpleCart_shelfItem">
 
-									<h1 class="hidden-xs hidden-sm "><%= @advert.name %></h1>
-									<h1 class="visible-xs visible-sm "style="text-align:center"><u><%= @advert.name %></u></h1>
-									
+									<h1 style="word-break: break-all;" class="hidden-xs hidden-sm "><%= @advert.name %></h1>
+									<h1 class="visible-xs visible-sm " style="word-break: break-all;text-align:center" ><u><%= @advert.name %></u></h1>
+
 									<br class="visible-xs visible-sm ">
 									<br class="visible-xs visible-sm ">
 
@@ -244,37 +256,41 @@
 										</div>
 										<% else %>
 
-										<div class="row">
+										
 
-											<% @images[0..1].each do |image|%>
+											<div class="row">
 
-											<a class="col-xs-6 col-sm-6" href="<%= image_path image.imagefile(:original) %>" data-standard="<%= image_path image.imagefile(:original) %>"> <img width="100%" height="100%" src="<%= image_path image.imagefile(:original) %>" alt="" class="img-rounded" /> </a>
+												<% @images[0..1].each do |image|%>
+												
+												<a rel="gallery-1" class="swipebox col-xs-6 col-sm-6" href="<%= image_path image.imagefile(:original) %>" data-standard="<%= image_path image.imagefile(:original) %>"> <img width="100%" height="100%" src="<%= image_path image.imagefile(:original) %>" alt="" class="img-rounded" /> </a>
+
+												<% end %>
+
+											</div>
+
+											<% if @images.count>2  %>
+
+											<div style="margin-top:20px; " class="row">
+												<% @images[2..3].each do |image|%>
+												<a rel="gallery-1" class="swipebox col-xs-6 col-sm-6" href="<%= image_path image.imagefile(:original) %>" data-standard="<%= image_path image.imagefile(:original) %>"> <img width="100%" height="100%" src="<%= image_path image.imagefile(:original)  %>" alt="" class="img-rounded" /> </a>
+												<% end%>
+											</div>
 
 											<% end %>
 
-										</div>
+											<% if @images.count>4 %>
 
-										<% if @images.count>2  %>
+											<div style="margin-top:20px; " class="row">
+												<% @images[4..5].each do |image|%>
+												<a rel="gallery-1" class="swipebox col-xs-6 col-sm-6" href="<%= image_path image.imagefile(:original) %>" data-standard="<%= image_path image.imagefile(:original) %>"> <img width="100%" height="100%" src="<%= image_path image.imagefile(:original)  %>" alt="" class="img-rounded" /> </a>
+												<% end%>
+											</div>
 
-										<div style="margin-top:20px; " class="row">
-											<% @images[2..3].each do |image|%>
-											<a class="col-xs-6 col-sm-6" href="<%= image_path image.imagefile(:original) %>" data-standard="<%= image_path image.imagefile(:original) %>"> <img width="100%" height="100%" src="<%= image_path image.imagefile(:original)  %>" alt="" class="img-rounded" /> </a>
-											<% end%>
-										</div>
+											<% end %>
 
-										<% end %>
+											<% end %>
 
-										<% if @images.count>4 %>
-
-										<div style="margin-top:20px; " class="row">
-											<% @images[4..5].each do |image|%>
-											<a class="col-xs-6 col-sm-6" href="<%= image_path image.imagefile(:original) %>" data-standard="<%= image_path image.imagefile(:original) %>"> <img width="100%" height="100%" src="<%= image_path image.imagefile(:original)  %>" alt="" class="img-rounded" /> </a>
-											<% end%>
-										</div>
-
-										<% end %>
-
-										<% end %>
+										
 
 										<br>
 										<br>
@@ -282,64 +298,61 @@
 									</div>
 
 									<br>
-									
+
 									<div class="hidden-sm hidden-xs">
-									<% if current_user!= nil %>
-									<% fav = FavouriteAdvert.find_by(:advert => @advert, :user => current_user) %>
+										<% if current_user!= nil %>
+										<% fav = FavouriteAdvert.find_by(:advert => @advert, :user => current_user) %>
 
-									<button <% if fav %> style="display:none;" <% end %>  class="favorilereekle btn btn-danger">
-										Favorilere Ekle
-									</button>
+										<button <% if fav %> style="display:none;" <% end %>  class="favorilereekle btn btn-danger">
+											Favorilere Ekle
+										</button>
 
-									<button <% if !fav  %> style="display:none;" <% end %> class="favorilerdenkaldir btn btn-danger">
-										Favorilerden Kaldır
-									</button>
+										<button <% if !fav  %> style="display:none;" <% end %> class="favorilerdenkaldir btn btn-danger">
+											Favorilerden Kaldır
+										</button>
 
-									<% end %>
+										<% end %>
 
-									<% if @advert.user == current_user || current_user!= nil && current_user.role == 'admin' %>
+										<% if @advert.user == current_user || current_user!= nil && current_user.role == 'admin' %>
 
-									<button onclick="window.location = '<%= @advert.href_guncelle %>' " class="btn  btn-danger">
-										İlanı Düzenle
-									</button>
+										<button onclick="window.location = '<%= @advert.href_guncelle %>' " class="btn  btn-danger">
+											İlanı Düzenle
+										</button>
 
-									<% end %>
-									
+										<% end %>
+
 									</div>
-									
-									
-									
+
 									<div style="text-align:center;" class="visible-sm visible-xs">
-									<% if current_user!= nil %>
-									<% fav = FavouriteAdvert.find_by(:advert => @advert, :user => current_user) %>
+										<% if current_user!= nil %>
+										<% fav = FavouriteAdvert.find_by(:advert => @advert, :user => current_user) %>
 
-									<button <% if fav %> style="display:none;" <% end %>  class="favorilereekle btn btn-danger">
-										Favorilere Ekle
-									</button>
+										<button <% if fav %> style="display:none;" <% end %>  class="favorilereekle btn btn-danger">
+											Favorilere Ekle
+										</button>
 
-									<button <% if !fav  %> style="display:none;" <% end %> class="favorilerdenkaldir btn btn-danger">
-										Favorilerden Kaldır
-									</button>
+										<button <% if !fav  %> style="display:none;" <% end %> class="favorilerdenkaldir btn btn-danger">
+											Favorilerden Kaldır
+										</button>
 
-									<% end %>
+										<% end %>
 
-									<% if @advert.user == current_user || current_user!= nil && current_user.role == 'admin' %>
+										<% if @advert.user == current_user || current_user!= nil && current_user.role == 'admin' %>
 
-									<button onclick="window.location = '<%= @advert.href_guncelle %>' " class="btn  btn-danger">
-										İlanı Düzenle
-									</button>
+										<button onclick="window.location = '<%= @advert.href_guncelle %>' " class="btn  btn-danger">
+											İlanı Düzenle
+										</button>
 
-									<% end %>
-									
+										<% end %>
+
 									</div>
-									
 
 									<div class="row visible-sm">
 										<div class="star-on row ">
 
 											<div class = "panel panel-info">
 												<div class = "panel-heading">
-													İlan ve Üye Bilgileri
+													<h4 style="text-align:center;">İlan ve Üye Bilgileri</h4>
 												</div>
 
 												<div class = "panel-body">
@@ -353,21 +366,19 @@
 
 													<% end %>
 
-													
 													<div class="clearfix"></div>
 
 													<br>
 
 													<% if @advert.advertable_type == 'Secondhand' %>
-														<%= render "ilanikinciel" %>
+													<%= render "ilanikinciel" %>
 													<% elsif @advert.advertable_type == 'Homemate' %>
-														<%= render "ilanevarkadasi" %>
+													<%= render "ilanevarkadasi" %>
 													<% elsif @advert.advertable_type == 'Privatelesson' %>
-														<%= render "ilanozelders" %>
+													<%= render "ilanozelders" %>
 													<% end %>
 
-
-													<h4  class="add-to item_price">İlan sahibinin telefonu: <span style="color:red;" ><%= @advert_user.phone %></span></h4>
+													<h4  class="add-to item_price">İlan sahibinin telefonu: <span style="color:#4DACC9;" ><%= @advert_user.phone %></span></h4>
 													<br>
 													<h4> İlan sahibinin profili için <a href="/uye/<%= @advert_user.username %>">buraya</a> tıklayınız. </h4>
 												</div>
@@ -375,16 +386,13 @@
 										</div>
 
 									</div>
-									
-									
-									
-									
+
 									<div class=" hidden-sm">
 										<div class="star-on  ">
 
 											<div class = "panel panel-info">
 												<div class = "panel-heading">
-													İlan ve Üye Bilgileri
+													<h4 style="text-align:center;">İlan ve Üye Bilgileri</h4>
 												</div>
 
 												<div class = "panel-body">
@@ -398,20 +406,19 @@
 
 													<% end %>
 
-													
 													<div class="clearfix"></div>
 
 													<br>
-													
+
 													<% if @advert.advertable_type == 'Secondhand' %>
-														<%= render "ilanikinciel" %>
+													<%= render "ilanikinciel" %>
 													<% elsif @advert.advertable_type == 'Homemate' %>
-														<%= render "ilanevarkadasi" %>
+													<%= render "ilanevarkadasi" %>
 													<% elsif @advert.advertable_type == 'Privatelesson' %>
-														<%= render "ilanozelders" %>
+													<%= render "ilanozelders" %>
 													<% end %>
 
-													<h4  class="add-to item_price">İlan sahibinin telefonu: <span style="color:red;" ><%= @advert_user.phone %></span></h4>
+													<h4  class="add-to item_price">İlan sahibinin telefonu: <span style="color:#4DACC9;" ><%= @advert_user.phone %></span></h4>
 													<br>
 													<h4> İlan sahibinin profili için <a href="/uye/<%= @advert_user.username %>">buraya</a> tıklayınız. </h4>
 												</div>
@@ -419,11 +426,7 @@
 										</div>
 
 									</div>
-									
-									
-									
-									
-									
+
 								</div>
 							</div>
 							<div class="clearfix"></div>
@@ -433,94 +436,73 @@
 
 								<div class="panel panel-info">
 									<div class="panel-heading">
-										Açıklama
+										<h4 style="text-align:center;">Açıklama</h4>
 									</div>
-									<div style="padding-top:10px;padding-left:10px;padding-right:10px;padding-bottom:30px;" class="panel-body">
+									<div style="word-break: break-all;padding-top:10px;padding-left:10px;padding-right:10px;padding-bottom:30px;" class="panel-body">
 										<%= @advert.explication  %>
 									</div>
 								</div>
 
 							</div>
-							
+
 							<div  class="row visible-sm">
 
 								<div class="panel panel-info">
 									<div class="panel-heading">
-										Açıklama
+										<h4 style="text-align:center;">Açıklama</h4>
 									</div>
-									<div style="padding-top:10px;padding-left:10px;padding-right:10px;padding-bottom:30px;" class="panel-body">
+									<div style="word-break: break-all;padding-top:10px;padding-left:10px;padding-right:10px;padding-bottom:30px;" class="panel-body">
 										<%= @advert.explication  %>
 									</div>
 								</div>
 
 							</div>
-							
-							
-							
+
 							<div class="">
 
-							<div class = "panel panel-info">
+								<div class = "panel panel-info">
 
-								<div class = "panel-heading">
-									Yorumlar
+									<div class = "panel-heading">
+										<h4 style="text-align:center;">Yorumlar</h4>
+									</div>
+
+									<div style="padding:30px;" class = "panel-body">
+
+										<div style="overflow: auto;height:350px;overflow-x: hidden;-webkit-overflow-scrolling: touch" class="row" id="disqus_thread">
+
+										</div>
+
+										<script>
+											/**
+											 * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+											 * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+											 */
+											/*
+											 var disqus_config = function () {
+											 this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+											 this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+											 };
+											 */
+											(function() {// DON'T EDIT BELOW THIS LINE
+												var d = document,
+												    s = d.createElement('script');
+
+												s.src = '//campusilan.disqus.com/embed.js';
+
+												s.setAttribute('data-timestamp', +new Date());
+												(d.head || d.body).appendChild(s);
+											})();
+										</script>
+										<noscript>
+											Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+										</noscript>
+
+									</div>
 								</div>
 
-								<div style="padding:30px;" class = "panel-body">
-									
-									
-								<div style="overflow: auto;height:350px;overflow-x: hidden;-webkit-overflow-scrolling: touch" class="row" id="disqus_thread">
-									
-									
-								</div>
-								
-							<script>
-								/**
-								 * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-								 * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-								 */
-								/*
-								 var disqus_config = function () {
-								 this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
-								 this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-								 };
-								 */
-								(function() {// DON'T EDIT BELOW THIS LINE
-									var d = document,
-									    s = d.createElement('script');
-
-									s.src = '//campusilan.disqus.com/embed.js';
-
-									s.setAttribute('data-timestamp', +new Date());
-									(d.head || d.body).appendChild(s);
-								})();
-							</script>
-							<noscript>
-								Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
-							</noscript>	
-									
-									
-
-								</div>
 							</div>
-							
-							</div>
-							
-							
-							
-							
-							
-							
-
-							
-
-
-								
 
 							<div class="benzerurunler row" >
-
-
-
-
 
 								<h2 style="text-align:center;" class="hidden-xs hidden-sm" >Benzer İlanlar</h2>
 								<h3 style="text-align:center;" class="cate visible-xs visible-sm" ><u>Benzer İlanlar</u></h3>
@@ -561,12 +543,14 @@
 			<%= render "footer" %>
 
 		</div>
-		
-	</div>
-	</div>
-			<!-- favorilere ekle/kaldır ajax -->
+
+		</div>
+		</div>
+		<!-- favorilere ekle/kaldır ajax -->
 
 		<%= render "ilanfavorilereekle" %>
+
+		
 
 		<!-- Plugins-->
 
@@ -685,6 +669,23 @@
 
 		<script id="dsq-count-scr" src="//campusilan.disqus.com/count.js" async></script>
 
+		<!-- swipebox master -->
+
+		<script src="/resources/plugins/swipebox-master/lib/jquery-2.1.0.min.js"></script>
+
+		<script>
+			var swipebox = jQuery.noConflict();
+		</script>
+
+		<script src="/resources/plugins/swipebox-master/src/js/jquery.swipebox.js"></script>
+
+		<script type="text/javascript">
+			;(function(swipebox) {
+
+				swipebox('.swipebox').swipebox();
+
+			} )(jQuery);
+		</script>
 
 	</body>
 
