@@ -33,7 +33,7 @@ module Campusilan
 
       :address              => "smtp.gmail.com",
       :port                 => 587,
-      :user_name            => 'iletisim@campusilan.com',
+      :user_name            => 'info@campusilan.com',
       :password             => '1559o8663',
       :domain               => 'campusilan.com',
       :authentication       => "plain",
