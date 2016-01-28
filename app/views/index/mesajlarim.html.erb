@@ -229,7 +229,7 @@
 
 												<td><%= mesaj.from.name %></td>
 												<td><%= mesaj.from.surname %></td>
-												<td><%= mesaj.topic %></td>
+												<td style="word-break: break-all;"><%= mesaj.topic %></td>
 												<td><%= mesaj.from.username %></td>
 												<td><%= mesaj.created_at %></td>
 												<td style="display:none;"><%= mesaj.id %></td>
@@ -293,7 +293,7 @@ $(".<%= mesaj.id %>").click(function() {
 
 												<td><%= mesaj.to.name %></td>
 												<td><%= mesaj.to.surname %></td>
-												<td><%= mesaj.topic %></td>
+												<td style="word-break: break-all;"><%= mesaj.topic %></td>
 												<td><%= mesaj.to.username %></td>
 												<td><%= mesaj.created_at %></td>
 												<td style="display:none;"><%= mesaj.id %></td>
@@ -608,7 +608,7 @@ $(".cevaplapaneli .ickisim").attr("placeholder", "<%= mesaj.to.username %>");
 
 											<td><%= mesaj.from.name %></td>
 											<td><%= mesaj.from.surname %></td>
-											<td><%= mesaj.topic %></td>
+											<td style="word-break: break-all;"><%= mesaj.topic %></td>
 											<td><%= mesaj.from.username %></td>
 
 											<td style="display:none;"><%= mesaj.id %></td>
@@ -664,7 +664,7 @@ $(".<%= mesaj.id %>").click(function() {
 
 											<td><%= mesaj.to.name %></td>
 											<td><%= mesaj.to.surname %></td>
-											<td><%= mesaj.topic %></td>
+											<td style="word-break: break-all;"><%= mesaj.topic %></td>
 											<td><%= mesaj.to.username %></td>
 
 											<td style="display:none;"><%= mesaj.id %></td>
