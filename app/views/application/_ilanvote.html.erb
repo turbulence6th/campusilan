@@ -1,7 +1,7 @@
 <% if current_user!= nil %>
 <script>
 	starrating(document).ready(function () {
-starrating("#input-21f").rating({
+starrating(".input-21f").rating({
 starCaptions: function(val) {
 if (val < 3) {
 return val;
@@ -44,14 +44,14 @@ starrating('.btn-success').on('click', function() {
 starrating("#kartik").rating('create');
 });
 
-starrating('#input-21b').on('rating.change', function() {
+starrating('.input-21b').on('rating.change', function() {
 
 $.ajax({
 url : '/vote',
 data : {
 authenticity_token : window._token,
 advert : '<%= @advert.id %>',
-	point : starrating('#input-21b').val()
+	point : starrating('.input-21b').val()
 	},
 	error : function() {
 	alert('error');
@@ -65,7 +65,50 @@ advert : '<%= @advert.id %>',
 	type : 'POST'
 	});
 	});
-	starrating('#input-21b').on('rating.clear', function() {
+	starrating('.input-21b').on('rating.clear', function() {
+	$.ajax({
+	url : '/votedelete',
+	data : {
+	authenticity_token : window._token,
+	advert : '<%= @advert.id %>'
+	},
+	error : function() {
+	alert('error');
+	},
+	dataType : 'json',
+	success : function(data) {
+	if (!data.check) {
+	alert('Sunucuda Bir sorun meydana geldi');
+	}
+	},
+	type : 'POST'
+	});
+	});
+	starrating('.rb-rating').rating({'showCaption':true, 'stars':'3', 'min':'0', 'max':'3', 'step':'1', 'size':'xs', 'starCaptions': {0:'status:nix', 1:'status:wackelt', 2:'status:geht', 3:'status:laeuft'}});
+	
+	
+starrating('.input-21c').on('rating.change', function() {
+
+$.ajax({
+url : '/vote',
+data : {
+authenticity_token : window._token,
+advert : '<%= @advert.id %>',
+	point : starrating('.input-21c').val()
+	},
+	error : function() {
+	alert('error');
+	},
+	dataType : 'json',
+	success : function(data) {
+	if (!data.check) {
+	alert('Sunucuda bir sorun meydana geldi');
+	}
+	},
+	type : 'POST'
+	});
+	});
+	starrating('.input-21c').on('rating.clear', function() {
 	$.ajax({
 	url : '/votedelete',
 	data : {
