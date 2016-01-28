@@ -35,26 +35,6 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-
-  # Raises error for missing translations
-  # config.action_view.raise_on_missing_translations = true
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  # SMTP settings for gmail
-  config.action_mailer.smtp_settings = {
-
-    :address              => "smtp.gmail.com",
-    :port                 => 465,
-    :user_name            => 'iletisim@campusilan.com',
-    :password             => '1559o8663',
-    :domain               => 'campusilan.com',
-    :authentication       => "login",
-    :enable_starttls_auto => true,
-    :openssl_verify_mode  => 'none'
-    
-  }
-  
-   config.action_mailer.raise_delivery_errors = true
   
   Paperclip.options[:command_path] = "/usr/local/bin/"
 
