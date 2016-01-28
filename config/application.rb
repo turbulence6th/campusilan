@@ -32,13 +32,12 @@ module Campusilan
     config.action_mailer.smtp_settings = {
 
       :address              => "smtp.gmail.com",
-      :port                 => 465,
+      :port                 => 587,
       :user_name            => 'iletisim@campusilan.com',
       :password             => '1559o8663',
       :domain               => 'campusilan.com',
-      :authentication       => "login",
-      :enable_starttls_auto => true,
-      :openssl_verify_mode  => 'none'
+      :authentication       => "plain",
+      :enable_starttls_auto => true
 
     }
 
