@@ -1100,7 +1100,8 @@
 
 								var emailCheck = emailcheck();
 
-								if (usernameCheck && passwordCheck && nameCheck && surnameCheck && phoneCheck && emailCheck) {
+								if (usernameCheck && passwordCheck && nameCheck 
+									&& surnameCheck && phoneCheck && emailCheck && grecaptcha.getResponse()!="") {
 
 									return true;
 
