@@ -43,11 +43,11 @@ Rails.application.configure do
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
 
-    :address              => "webmail.onurdemirtas.com",
-    :port                 => 587,
-    :user_name            => 'iletisim@onurdemirtas.com',
-    :password             => '1234Onur1234',
-    :domain               => 'onurdemirtas.com',
+    :address              => "smtp.gmail.com",
+    :port                 => 465,
+    :user_name            => 'iletisim@campusilan.com',
+    :password             => '1559o8663',
+    :domain               => 'campusilan.com',
     :authentication       => "login",
     :enable_starttls_auto => true,
     :openssl_verify_mode  => 'none'
