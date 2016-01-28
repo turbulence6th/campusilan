@@ -150,7 +150,7 @@ class UserController < ApplicationController
 
       @viewedadverts = Advert.available.select('adverts.*').from('adverts, viewed_adverts')
         .where('adverts.id=viewed_adverts.advert_id AND viewed_adverts.user_id = ?', current_user.id)
-        .order('viewed_adverts.created_at').limit(6)
+        .order('viewed_adverts.created_at DESC').limit(6)
 
     end
 
