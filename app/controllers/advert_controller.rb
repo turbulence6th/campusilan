@@ -329,11 +329,21 @@ class AdvertController < ApplicationController
       end
 
     end
+    
+    captcha = params["g-recaptcha-response"]
+    postParams = {
+      :secret => "6Ld3uhYTAAAAADMhUY5DpJr2e333FOvp-ZWv45Ki",
+      :response => captcha,
+      :remoteip => request.remote_ip
+    }
+    
+    x = Net::HTTP.post_form(
+      URI.parse('https://www.google.com/recaptcha/api/siteverify'), postParams)
 
-    if @advert.save
+    if JSON.parse(x.body)["success"] && @advert.save
       redirect_to('/?yeniilan=1')
     else
-      raise ActionController::RoutingError.new('InternalError')
+      redirect_to('/ilanver')
     end
 
   end

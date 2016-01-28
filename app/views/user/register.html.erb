@@ -105,7 +105,8 @@
 				}
 			}
 		</style>
-
+	
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 	</head>
 
 	<body>
@@ -668,16 +669,13 @@
 								<br>
 
 								<div class="row">
-
 									
+									<div class="g-recaptcha" data-sitekey="6Ld3uhYTAAAAAICn8yQ17ES81jCf7J4Dpz0yUgkf"></div>
 									
+									<br>
+							
 									<%= t.submit 'Kayıt Ol' , :class => 'hidden-lg hidden-md col-lg-2  btn btn-primary' , :style => 'margin-left: 20px;' %>
-									
-									
-									
-									
-									
-									
+						
 									<%= t.submit 'Kayıt Ol' , :class => 'hidden-sm hidden-xs col-lg-2 col-md-2 btn btn-primary'  %>
 									
 									
@@ -699,6 +697,8 @@
 								</div>
 
 							</div>
+							
+							
 
 						</div>
 
@@ -1100,7 +1100,8 @@
 
 								var emailCheck = emailcheck();
 
-								if (usernameCheck && passwordCheck && nameCheck && surnameCheck && phoneCheck && emailCheck) {
+								if (usernameCheck && passwordCheck && nameCheck 
+									&& surnameCheck && phoneCheck && emailCheck && grecaptcha.getResponse()!="") {
 
 									return true;
 

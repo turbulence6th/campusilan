@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-
+  
   using TurkishSupport
 
   layout false
@@ -43,9 +43,19 @@ class UserController < ApplicationController
 
     @user.university = University.find_by_email(@user.email.partition('@').last) if @user.email
     @user.confirm_token = SecureRandom.urlsafe_base64.to_s
+    
+    captcha = params["g-recaptcha-response"]
+    postParams = {
+      :secret => "6Ld3uhYTAAAAADMhUY5DpJr2e333FOvp-ZWv45Ki",
+      :response => captcha,
+      :remoteip => request.remote_ip
+    }
+    
+    x = Net::HTTP.post_form(
+      URI.parse('https://www.google.com/recaptcha/api/siteverify'), postParams)
 
-    if @user.save
-      UserMailer.verify(@user).deliver_now
+    if JSON.parse(x.body)["success"] && @user.save
+      #UserMailer.verify(@user).deliver_now
     end
 
     redirect_to "/"
@@ -150,7 +160,7 @@ class UserController < ApplicationController
 
       @viewedadverts = Advert.available.select('adverts.*').from('adverts, viewed_adverts')
         .where('adverts.id=viewed_adverts.advert_id AND viewed_adverts.user_id = ?', current_user.id)
-        .order('viewed_adverts.created_at').limit(6)
+        .order('viewed_adverts.created_at DESC').limit(6)
 
     end
 
