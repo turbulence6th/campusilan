@@ -211,7 +211,6 @@
 
 		<!-- Include all compiled plugins (below), or include individual files
 		as needed -->
-		<script src="resources/js/bootstrap.min.js"></script>
 
 		<div class="container-fluid">
 
@@ -1046,19 +1045,19 @@
 													<div class='descriptionSabit'>
 														<!-- description content -->
 														<div class='description_content'>
-															
+
 															<% if advert.name.length <= 28 %>
 															<%= advert.name %>
-															
+
 															<% else %>
-															
+
 															<%= advert.name[0..27] %>...
-															
+
 															<% end %>
 														</div>
 														<!-- end description content -->
 													</div>
-													
+
 													<div class='descriptionSabit2'>
 														<!-- description content -->
 														<div class='description_content'>
@@ -1066,8 +1065,7 @@
 														</div>
 														<!-- end description content -->
 													</div>
-													
-													
+
 													<!-- end description div -->
 												</div>
 
@@ -1300,7 +1298,18 @@
 
 								<div style="" class="thumbnail">
 
-									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name %></a>
+									<div class="wrapper2">
+
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name %></a>
+										<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content2'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+
+									</div>
 
 								</div>
 
@@ -1582,25 +1591,24 @@
 							<ul>
 								<% @ensonevarkadasi.each do |advert| %>
 								<li>
-									
-									<div class="wrapper wrapper2"> 
 
-									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
-									<% if advert.name.length <= 18 %> <h4><%= advert.name %></h4></a>
+									<div class="wrapper wrapper2">
 
-									<% else %>
-									<h4><%= advert.name[0..17] + "..." %></h4></a>
-									<% end %>
-									
-									
-									<div class='descriptionSabit2'>
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
+										<% if advert.name.length <= 18 %> <h4><%= advert.name %></h4></a>
+
+										<% else %>
+										<h4><%= advert.name[0..17] + "..." %></h4></a>
+										<% end %>
+
+										<div class='descriptionSabit2'>
 											<!-- description content -->
 											<div class='description_content2'>
 												<%= advert.price %> &#x20BA;
 											</div>
 											<!-- end description content -->
 										</div>
-									
+
 									</div>
 
 								</li>
@@ -1611,25 +1619,24 @@
 							<ul>
 								<% @ensonozelders.each do |advert| %>
 								<li>
-									
-									<div class="wrapper wrapper2"> 
 
-									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
-									<% if advert.name.length <= 18 %> <h4><%= advert.name %></h4></a>
+									<div class="wrapper wrapper2">
 
-									<% else %>
-									<h4><%= advert.name[0..17] + "..." %></h4></a>
-									<% end %>
-									
-									
-									<div class='descriptionSabit2'>
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
+										<% if advert.name.length <= 18 %> <h4><%= advert.name %></h4></a>
+
+										<% else %>
+										<h4><%= advert.name[0..17] + "..." %></h4></a>
+										<% end %>
+
+										<div class='descriptionSabit2'>
 											<!-- description content -->
 											<div class='description_content2'>
 												<%= advert.price %> &#x20BA;
 											</div>
 											<!-- end description content -->
 										</div>
-									
+
 									</div>
 
 								</li>
@@ -1693,8 +1700,7 @@
 											</div>
 											<!-- end description content -->
 										</div>
-										
-										
+
 										<div class='descriptionSabit2'>
 											<!-- description content -->
 											<div class='description_content'>
@@ -1702,8 +1708,7 @@
 											</div>
 											<!-- end description content -->
 										</div>
-										
-										
+
 										<!-- end description div -->
 									</div>
 
@@ -1789,11 +1794,15 @@
 											</div>
 											<!-- end description content -->
 										</div>
-										
-										
-										
-										
-										
+
+										<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+
 										<!-- end description div -->
 									</div>
 
@@ -1832,7 +1841,7 @@
 
 								<li>
 
-									<div class='wrapper'>
+									<div class='wrapper wrapper2'>
 										<!-- image -->
 										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name %></a>
 										<!-- description div -->
@@ -1843,6 +1852,17 @@
 											</div>
 											<!-- end description content -->
 										</div>
+										
+										
+										<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+										
+										
 										<!-- end description div -->
 									</div>
 
@@ -1880,7 +1900,7 @@
 
 								<li>
 
-									<div class='wrapper'>
+									<div class='wrapper wrapper2'>
 										<!-- image -->
 										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name %></a>
 										<!-- description div -->
@@ -1891,6 +1911,17 @@
 											</div>
 											<!-- end description content -->
 										</div>
+										
+										
+										
+										<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+										
 										<!-- end description div -->
 									</div>
 
@@ -2385,7 +2416,7 @@
 											</div>
 											<!-- end description content -->
 										</div>
-										
+
 										<div class='descriptionSabit2'>
 											<!-- description content -->
 											<div class='description_content'>
@@ -2393,7 +2424,7 @@
 											</div>
 											<!-- end description content -->
 										</div>
-										
+
 										<!-- end description div -->
 									</div>
 
@@ -2410,8 +2441,7 @@
 											</div>
 											<!-- end description content -->
 										</div>
-										
-										
+
 										<div class='descriptionSabit2'>
 											<!-- description content -->
 											<div class='description_content'>
@@ -2419,7 +2449,7 @@
 											</div>
 											<!-- end description content -->
 										</div>
-										
+
 										<!-- end description div -->
 									</div>
 
