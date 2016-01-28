@@ -14,13 +14,17 @@ class AdvertController < ApplicationController
       if Vote.where(:user => current_user, :advert => advert).present?
 
         vote = Vote.find_by(:user => current_user, :advert => advert)
-      vote.point = point
+        vote.point = point
 
       else
 
         vote = Vote.new(:user => current_user, :advert => advert, :point => point)
 
       end
+      
+      puts vote.user.id
+      puts vote.advert.id
+      puts vote.point
 
       if vote.save
 

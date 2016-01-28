@@ -360,7 +360,7 @@
 									<div class="row visible-sm">
 										<div class="star-on row ">
 
-											<div class = "panel panel-info">
+											<div class = "panel panel-info" id="vote_panel">
 												<div class = "panel-heading">
 													<h4 style="text-align:center;">İlan ve Üye Bilgileri</h4>
 												</div>
@@ -372,7 +372,7 @@
 													<h4>Kullanıcı Güven Oyu</h4>
 													<br>
 
-													<input id="input-21b" value="<%= @vote %>" type="number" class="rating" min=0 max=5 step=1 data-size="xs">
+													<input value="<%= @vote %>" type="number" class="rating input-21b" min=0 max=5 step=1 data-size="xs">
 
 													<% end %>
 
@@ -398,7 +398,7 @@
 									</div>
 
 									<div class=" hidden-sm">
-										<div class="star-on  ">
+										<div class="star-on">
 
 											<div class = "panel panel-info">
 												<div class = "panel-heading">
@@ -412,7 +412,7 @@
 													<h4>Kullanıcı Güven Oyu</h4>
 													<br>
 
-													<input id="input-21b" value="<%= @vote %>" type="number" class="rating" min=0 max=5 step=1 data-size="xs">
+													<input value="<%= @vote %>" type="number" class="rating input-21c" min=0 max=5 step=1 data-size="xs">
 
 													<% end %>
 
