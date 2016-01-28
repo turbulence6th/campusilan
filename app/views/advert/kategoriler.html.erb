@@ -90,6 +90,11 @@
 			});
 		</script>
 
+		<!-- Caption Eklentisi -->
+
+		<script src="/resources/plugins/captionplugin/caption.js"></script>
+		<link rel="stylesheet" href="/resources/plugins/captionplugin/caption.css">
+
 		<!-- Tooltip eklentisi-->
 
 		<link rel="stylesheet" type="text/css"
@@ -168,7 +173,7 @@
 				<%= render "smartmenus" %>
 
 			</div>
-			
+
 			<br class="visible-sm" >
 
 			<div id="sekizincikisim" style="margin-top:-30px;"class="row">
@@ -212,7 +217,7 @@
 													<a href="/kategoriler/ikincielilan/incikboncuk">İncik Boncuk</a>
 
 												</li>
-												
+
 												<li>
 													<a href="/kategoriler/ikincielilan/kirtasiye">Kırtasiye</a>
 
@@ -339,7 +344,6 @@
 							<%= render "kullanicipaneli2" %>
 						</div>
 
-						
 						<br class="visible-md">
 						<br class="visible-md">
 
@@ -362,7 +366,20 @@
 										<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 											<div class="thumbnail">
-												<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
+
+												<div class="wrapper2">
+
+													<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
+
+													<div class='descriptionSabit2'>
+														<!-- description content -->
+														<div class='description_conten2'>
+															<%= advert.price %> &#x20BA;
+														</div>
+														<!-- end description content -->
+													</div>
+
+												</div>
 
 											</div>
 
@@ -408,10 +425,7 @@
 							</div>
 
 						</div>
-						
-						
-						
-						
+
 						<div class="visible-lg col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
 
 							<div style="">
@@ -477,9 +491,6 @@
 							</div>
 
 						</div>
-						
-						
-						
 
 					</div>
 
@@ -494,65 +505,38 @@
 			<br class="visible-sm visible-xs ">
 			<br class="visible-sm visible-xs ">
 
-			
-			
 			<div class="visible-xs visible-sm col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
 
-							<div class="row" style="">
+				<div class="row" style="">
 
-								<div class="row panel panel-success">
+					<div class="row panel panel-success">
 
-									<div class="panel-heading">
-										<h3 style="text-align: center;" class="panel-title"><%= @title %></h3>
-									</div>
+						<div class="panel-heading">
+							<h3 style="text-align: center;" class="panel-title"><%= @title %></h3>
+						</div>
 
-									<% if @adverts!=[] %>
+						<% if @adverts!=[] %>
 
-									<div class=" panel-body">
+						<div class=" panel-body">
 
-										<% @adverts.each do |advert| %>
+							<% @adverts.each do |advert| %>
 
-										<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
-											<div class="thumbnail">
-												<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small)%> </a>
+								<div class="thumbnail">
+									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small)%> </a>
 
-											</div>
+								</div>
 
-											<div class="caption">
+								<div class="caption">
 
-												<% if advert.name.length >= 10 %>
+									<% if advert.name.length >= 10 %>
 
-												<h5><%= advert.name[0..9] %>...</h5>
-
-												<% else %>
-
-												<h5><%= advert.name %></h5>
-
-												<% end %>
-
-											</div>
-
-										</div>
-
-										<% end %>
-
-									</div>
-
-									<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
-
-									<div style=""  class="apple_pagination">
-										<%= will_paginate @adverts, :container => false,
-										:previous_label => 'Önceki', :next_label => 'Sonraki' %>
-									</div>
+									<h5><%= advert.name[0..9] %>...</h5>
 
 									<% else %>
 
-									<div class="panel-body">
-
-										Henüz bu kategoride ilan bulunmamaktadır!!
-
-									</div>
+									<h5><%= advert.name %></h5>
 
 									<% end %>
 
@@ -560,11 +544,32 @@
 
 							</div>
 
+							<% end %>
+
 						</div>
-			
-			
-			
-			
+
+						<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
+
+						<div style=""  class="apple_pagination">
+							<%= will_paginate @adverts, :container => false,
+							:previous_label => 'Önceki', :next_label => 'Sonraki' %>
+						</div>
+
+						<% else %>
+
+						<div class="panel-body">
+
+							Henüz bu kategoride ilan bulunmamaktadır!!
+
+						</div>
+
+						<% end %>
+
+					</div>
+
+				</div>
+
+			</div>
 
 		</div>
 
@@ -603,7 +608,19 @@
 
 								<div style="" class="thumbnail">
 
-									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
+									<div class="wrapper2">
+
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
+
+										<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content2'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+
+									</div>
 
 								</div>
 
@@ -611,15 +628,11 @@
 
 									<% if advert.name.length <= 12 %>
 
-									<h5>
-										<%= advert.name %>
-									</h5>
+									<h5> <%= advert.name %> </h5>
 
 									<% else %>
 
-									<h5>
-										<%= advert.name[0..11] + "..." %>
-									</h5>
+									<h5> <%= advert.name[0..11] + "..." %> </h5>
 
 									<% end %>
 
@@ -658,11 +671,7 @@
 				</div>
 
 			</div>
-			
-			
-			
-			
-			
+
 			<div style="padding-left: 20px; padding-right: 20px" class="visible-xs visible-sm col-lg-6">
 
 				<div class="equal-height-panels panel panel-info">
@@ -684,7 +693,19 @@
 
 								<div style="" class="thumbnail">
 
-									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %></a>
+									<div class="wrapper2">
+
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %></a>
+
+										<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content2'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+
+									</div>
 
 								</div>
 
@@ -692,15 +713,11 @@
 
 									<% if advert.name.length <= 12 %>
 
-									<h5>
-										<%= advert.name %>
-									</h5>
+									<h5> <%= advert.name %> </h5>
 
 									<% else %>
 
-									<h5>
-										<%= advert.name[0..11] + "..." %>
-									</h5>
+									<h5> <%= advert.name[0..11] + "..." %> </h5>
 
 									<% end %>
 
@@ -739,13 +756,7 @@
 				</div>
 
 			</div>
-			
-			
-			
-			
-			
-			
-			
+
 			<div style="padding-left: 20px; padding-right: 20px" class="visible-md col-lg-6">
 
 				<div class="equal-height-panels panel panel-info">
@@ -766,24 +777,30 @@
 							<div class="col-lg-3 col-xs-6 col-md-4 col-sm-4">
 
 								<div style="" class="thumbnail">
+									<div class="wrapper2">
 
-									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
 
+										<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content2'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+
+									</div>
 								</div>
 
 								<div class="caption">
 
 									<% if advert.name.length <= 40 %>
 
-									<h5>
-										<%= advert.name %>
-									</h5>
+									<h5> <%= advert.name %> </h5>
 
 									<% else %>
 
-									<h5>
-										<%= advert.name[0..39] + "..." %>
-									</h5>
+									<h5> <%= advert.name[0..39] + "..." %> </h5>
 
 									<% end %>
 
@@ -822,8 +839,6 @@
 				</div>
 
 			</div>
-			
-			
 
 			<div style="padding-left: 20px; padding-right: 20px" class="visible-lg col-lg-6">
 
@@ -853,15 +868,11 @@
 
 									<% if advert.name.length <= 12 %>
 
-									<h5>
-										<%= advert.name %>
-									</h5>
+									<h5> <%= advert.name %> </h5>
 
 									<% else %>
 
-									<h5>
-										<%= advert.name[0..11] + "..." %>
-									</h5>
+									<h5> <%= advert.name[0..11] + "..." %> </h5>
 
 									<% end %>
 
@@ -895,10 +906,7 @@
 				</div>
 
 			</div>
-			
-			
-			
-			
+
 			<div style="padding-left: 20px; padding-right: 20px" class="visible-xs visible-sm col-lg-6">
 
 				<div class="equal-height-panels panel panel-info">
@@ -927,15 +935,11 @@
 
 									<% if advert.name.length <= 12 %>
 
-									<h5>
-										<%= advert.name %>
-									</h5>
+									<h5> <%= advert.name %> </h5>
 
 									<% else %>
 
-									<h5>
-										<%= advert.name[0..11] + "..." %>
-									</h5>
+									<h5> <%= advert.name[0..11] + "..." %> </h5>
 
 									<% end %>
 
@@ -969,11 +973,7 @@
 				</div>
 
 			</div>
-			
-			
-			
-			
-			
+
 			<div style="padding-left: 20px; padding-right: 20px" class="visible-md col-lg-6">
 
 				<div class="equal-height-panels panel panel-info">
@@ -1002,15 +1002,11 @@
 
 									<% if advert.name.length <= 40 %>
 
-									<h5>
-										<%= advert.name %>
-									</h5>
+									<h5> <%= advert.name %> </h5>
 
 									<% else %>
 
-									<h5>
-										<%= advert.name[0..39] + "..." %>
-									</h5>
+									<h5> <%= advert.name[0..39] + "..." %> </h5>
 
 									<% end %>
 
@@ -1044,8 +1040,6 @@
 				</div>
 
 			</div>
-			
-			
 
 		</div>
 
@@ -1058,9 +1052,7 @@
 					<h4>Giriş mi Yapmak İstiyorsunuz?</h4>
 					<br class="hidden-xs hidden-sm ">
 
-					<a href="/girisyap" type = "button" class = "btn btn-primary">
-						Giriş Yap
-					</a>
+					<a href="/girisyap" type = "button" class = "btn btn-primary"> Giriş Yap </a>
 
 				</div>
 
@@ -1069,9 +1061,7 @@
 					<h4>Kayıt mı Olmak İstiyorsunuz?</h4>
 					<br class="hidden-xs hidden-sm ">
 
-					<a href="/kayitol" type = "button" class = "btn btn-primary">
-						Kayıt Ol
-					</a>
+					<a href="/kayitol" type = "button" class = "btn btn-primary"> Kayıt Ol </a>
 
 				</div>
 
@@ -1079,9 +1069,7 @@
 
 					<h4>Zaten giriş yaptınız ve ilan mı açmak istiyorsunuz?</h4>
 
-					<a href="/ilanver" type = "button" class = "btn btn-primary">
-						İlan Aç
-					</a>
+					<a href="/ilanver" type = "button" class = "btn btn-primary"> İlan Aç </a>
 
 				</div>
 
@@ -1096,20 +1084,13 @@
 		<%= render 'paginationkaldir' %>
 
 		<!-- pluginler -->
-		
-		
+
 		<!-- jquery-match-height-master -->
-		
-		
-		
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		
-		
-		
 
 		<script src="/resources/plugins/jquery-match-height-master/jquery.matchHeight.js" type="text/javascript"></script>
-		
-		
+
 		<script>
 			var heightfixer = jQuery.noConflict();
 
@@ -1117,14 +1098,8 @@
 
 		<script>
 			heightfixer(function() {
-    heightfixer('.equal-height-panels').matchHeight();
-		});
-		
-		
-		
-		
-		
-		
+				heightfixer('.equal-height-panels').matchHeight();
+			});
 
 		</script>
 
