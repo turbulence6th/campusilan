@@ -34,7 +34,7 @@ module Campusilan
       :address              => "smtp.gmail.com",
       :port                 => 587,
       :user_name            => 'info@campusilan.com',
-      :password             => '1559o8663',
+      :password             => '1234Onur1234',
       :domain               => 'campusilan.com',
       :authentication       => "plain",
       :enable_starttls_auto => true
