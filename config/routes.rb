@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   get 'kategoriler' => 'advert#kategoriler'
   get 'kategoriler/:kategori/:subkategori' => 'advert#kategoriler'  
   get 'firsatlar' => 'advert#firsatlar'
-  get 'uye/:username' => 'user#member'
+  get 'uye/:username' => 'user#member', :constraints => { :username => /[^\/]+/ }
   post 'profilephoto' => 'user#profilephoto'
   get 'universiteler' => 'index#universiteler'
   post 'vote' => 'advert#vote', defaults: {format: :json}
