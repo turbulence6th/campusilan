@@ -126,6 +126,14 @@
 
 		<link rel="stylesheet" type="text/css"
 		href="/resources/plugins/tooltipplugin/tooltip.css" />
+		
+		
+		<!-- Caption Eklentisi -->
+
+		<script src="/resources/plugins/captionplugin/caption.js"></script>
+		<link rel="stylesheet" href="/resources/plugins/captionplugin/caption.css">
+		
+		
 
 		<!-- end of plugins  -->
 
@@ -243,7 +251,19 @@
 										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
 
 											<div class="thumbnail">
+												
+												<div class="wrapper wrapper2">
 												<a  href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
+
+<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content2'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+
+											</div>
 
 											</div>
 
@@ -440,7 +460,23 @@
 											<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
 
 												<div class="thumbnail">
+													
+													<div class="wrapper wrapper2">
+													
 													<a  href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
+												
+												
+													<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content2'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+												
+												
+													</div>
+												
 												</div>
 
 												<div class="caption">
@@ -730,7 +766,21 @@
 											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
 
 												<div class="thumbnail">
+													
+													<div class="wrapper wrapper2">
 													<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
+
+
+
+													<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content2'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+
+													</div>
 
 												</div>
 
@@ -1105,7 +1155,7 @@
 					</div>
 
 					<!-- Tekliflerim kısmı -->
-					<div class="tekliflerim alert alert-danger" style="display:none;">
+					<div  class="tekliflerim alert alert-danger" style="display:none;">
 						<p>
 							Bu hizmet yakında aktif edilecektir!!
 						</p>

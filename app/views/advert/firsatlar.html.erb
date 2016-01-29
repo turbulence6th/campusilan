@@ -158,8 +158,6 @@
 
 			<div class="row" style="position: relative;margin-bottom: 10px;">
 
-				
-
 				<div id="loginkismi "  class="visible-xs ">
 					<!-- Login Starts Here -->
 					<%= render "loginContainer" %>
@@ -340,8 +338,6 @@
 
 						<br class="visible-md">
 						<br class="visible-md">
-						
-						
 
 						<div class="visible-lg col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
 
@@ -362,7 +358,19 @@
 										<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 											<div class="thumbnail">
-												<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
+
+												<div class="wrapper wrapper2">
+													<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
+
+													<div class='descriptionSabit2'>
+														<!-- description content -->
+														<div class='description_content2'>
+															<%= advert.price %> &#x20BA;
+														</div>
+														<!-- end description content -->
+													</div>
+
+												</div>
 
 											</div>
 
@@ -408,10 +416,7 @@
 							</div>
 
 						</div>
-						
-						
-						
-						
+
 						<div class="visible-md col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
 
 							<div style="">
@@ -477,8 +482,6 @@
 							</div>
 
 						</div>
-						
-						
 
 					</div>
 
@@ -512,9 +515,20 @@
 							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
 								<div class="thumbnail">
-									<a href="<%= advert.href %>"> 
-									<%= image_tag advert.pimage.imagefile(:small) %>
-									</a>
+
+									<div class="wrapper wrapper2">
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %> </a>
+
+										<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content2'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+
+									</div>
+
 								</div>
 
 								<div class="caption">
@@ -577,7 +591,7 @@
 				</div>
 
 				<div class = "panel-body">
-					
+
 					<div style="background:white;"class="jcarousel-wrapper" style="margin-bottom: 80px;">
 						<div class="jcarousel">
 							<ul>
@@ -585,9 +599,8 @@
 								<% @bizimsectiklerimiz.each do |advert| %>
 
 								<li>
-									
 
-									<div class='wrapper'>
+									<div class='wrapper wrapper2'>
 										<!-- image -->
 										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),width:"100%" %></a>
 										<!-- description div -->
@@ -598,9 +611,17 @@
 											</div>
 											<!-- end description content -->
 										</div>
+
+										<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+
 										<!-- end description div -->
 									</div>
-
 
 								</li>
 
@@ -613,14 +634,9 @@
 
 						<p class="jcarousel-pagination hidden-xs"></p>
 					</div>
-					
-					
-					
-					
+
 				</div>
 			</div>
-
-			
 
 			<div style="margin-bottom:20px;" class="row">
 

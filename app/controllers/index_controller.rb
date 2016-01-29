@@ -270,23 +270,15 @@ class IndexController < ApplicationController
   
   def universiteler
 
-   if params[:universities] == nil
-     
+   if params[:universities] == nil 
      @adverts = Advert.available.joins(:user).where(:users => {university_id: topUniversities[0][0]}).order('created_at DESC').paginate(:page => params[:page], :per_page => 18)
-   
-     @title = topUniversities[0][1]
-       
-      
-   else
-     
+     @title = topUniversities[0][1]     
+   else  
      @adverts = Rails.cache.fetch("universities/#{params[:universities]}/#{params[:page]}", :expires_in => 5.minutes) do 
         Advert.available.joins(:user).where(:users => {university_id: params[:universities]})
           .order('created_at DESC').paginate(:page => params[:page], :per_page => 18).take(18)
-     end
-   
-     @title = University.find(params[:universities]).name
-    
-     
+     end  
+     @title = University.find(params[:universities]).name  
    end
    
    @universities = Rails.cache.fetch("universities", :expires_in => 5.minutes) do 
@@ -296,23 +288,17 @@ class IndexController < ApplicationController
    @gununilanlari = Rails.cache.fetch("index_gununilanlari", :expires_in => 5.minutes) do
       gununilanlari.take(8)
    end
-
-
   end
   
   def favorilerim
     
-    if current_user!= nil
-      
+    if current_user!= nil  
       @favouriteadverts = Advert.available.select('adverts.*').from('adverts, users, favourite_adverts')
         .where('adverts.id=favourite_adverts.advert_id AND users.id=favourite_adverts.user_id AND users.id=?', current_user.id)
         .order('favourite_adverts.created_at DESC').paginate(:page => params[:page], :per_page => 9)
       
     else 
-      
-      raise ActionController::RoutingError.new('Not Found')  
-      
-      
+      raise ActionController::RoutingError.new('Not Found')        
     end
     
     
@@ -320,15 +306,10 @@ class IndexController < ApplicationController
   
   def ilanlarim
     
-    if current_user!= nil
-    
-    @lastadverts = current_user.adverts.order('created_at DESC').paginate(:page => params[:page], :per_page => 8)
-    
-    
-    else
-      
-       raise ActionController::RoutingError.new('Not Found')  
-    
+    if current_user!= nil 
+      @lastadverts = current_user.adverts.order('created_at DESC').paginate(:page => params[:page], :per_page => 8) 
+    else  
+       raise ActionController::RoutingError.new('Not Found')   
     end
     
   end
@@ -340,14 +321,39 @@ class IndexController < ApplicationController
     
     @incelediklerim = Advert.available.select('adverts.*').from('adverts, users, viewed_adverts')
         .where('adverts.id=viewed_adverts.advert_id AND users.id=viewed_adverts.user_id AND users.id=?', current_user.id)
-        .order('viewed_adverts.created_at DESC').paginate(:page => params[:page], :per_page => 8)
-        
-     else
-       
+        .order('viewed_adverts.created_at DESC').paginate(:page => params[:page], :per_page => 8)      
+     else       
         raise ActionController::RoutingError.new('Not Found')  
-       
-       
      end  
+     
+  end
+  
+  def iletisimPost
+    
+    if(params.has_key?(:name) && params.has_key?(:email) && 
+        params.has_key?(:subject) && params.has_key?(:message) &&
+        params.has_key?("g-recaptcha-response") && params[:email] =~ /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i)
+      name = params[:name]
+      email = params[:email]
+      subject = params[:subject]
+      message = params[:message]
+      
+      captcha = params["g-recaptcha-response"]
+      postParams = {
+        :secret => "6Ld3uhYTAAAAADMhUY5DpJr2e333FOvp-ZWv45Ki",
+        :response => captcha,
+        :remoteip => request.remote_ip
+      }
+      
+      x = Net::HTTP.post_form(
+        URI.parse('https://www.google.com/recaptcha/api/siteverify'), postParams)
+      if JSON.parse(x.body)["success"] 
+        AnnounceMailer.iletisim(name, email, subject, message).deliver_now
+        AnnounceMailer.ulasti(email, message).deliver_now
+      end
+    end
+    
+    redirect_to "/"
     
   end
 

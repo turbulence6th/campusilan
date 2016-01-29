@@ -214,6 +214,7 @@ class UserController < ApplicationController
 
       current_user.deleted = true
       current_user.save
+      Advert.where(:user_id => current_user.id).update_all(:active => false)
 
       reset_session
 

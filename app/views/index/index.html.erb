@@ -1662,10 +1662,10 @@
 									<div class="wrapper wrapper2">
 
 										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
-										<% if advert.name.length <= 18 %> <h4><%= advert.name %></h4></a>
+										<% if advert.name.length <= 16 %> <h4><%= advert.name %></h4></a>
 
 										<% else %>
-										<h4><%= advert.name[0..17] + "..." %></h4></a>
+										<h4><%= advert.name[0..15] + "..." %></h4></a>
 										<% end %>
 
 										<div class='descriptionSabit2'>
@@ -1690,10 +1690,10 @@
 									<div class="wrapper wrapper2">
 
 										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
-										<% if advert.name.length <= 18 %> <h4><%= advert.name %></h4></a>
+										<% if advert.name.length <= 16 %> <h4><%= advert.name %></h4></a>
 
 										<% else %>
-										<h4><%= advert.name[0..17] + "..." %></h4></a>
+										<h4><%= advert.name[0..15] + "..." %></h4></a>
 										<% end %>
 
 										<div class='descriptionSabit2'>
