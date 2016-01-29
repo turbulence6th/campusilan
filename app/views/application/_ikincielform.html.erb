@@ -118,6 +118,9 @@
 		</div>
 	</div>
 </div>
+
+<div class="g-recaptcha" data-sitekey="6Ld3uhYTAAAAAICn8yQ17ES81jCf7J4Dpz0yUgkf"></div>
+<br>
 <div class = "row form-group">
 	<div class = " col-sm-10">
 		<%= t.submit 'İlan Ver',class:"btn btn-default" %>
@@ -261,7 +264,7 @@ var brand = form.elements['advert_<%= advertable %>_brand'].value;
 
 <% if local[:mode] == 0 %>
 	var kullanim = $("#ikincielform #kullanim").is(":checked");
-	return ilanadi && fiyat && marka && aciklama && kullanim;
+	return ilanadi && fiyat && marka && aciklama && kullanim && grecaptcha.getResponse()!="";
 <% elsif local[:mode] == 1 %>
 	return ilanadi && fiyat && marka && aciklama;
 <% end %>}</script>
