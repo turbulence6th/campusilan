@@ -17,11 +17,8 @@ ActiveAdmin.register User do
       input :name
       input :surname
       input :email
-      input :email_confirmation
+      input :email_confirmation, :input_html => {:value => f.object.email}
       
-      if !object.new_record?
-        input :email_confirmation
-      end
       
       input :phone
       input :role, :as => :select, :collection => { :Admin => :admin, :Member => :member }
