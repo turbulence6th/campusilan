@@ -21,7 +21,7 @@
 
 	<div class="col-sm-10">
 		<%= field.select :category, [['Beyaz Eşya', 'beyazesya'], ['Ev Dekorasyonu',
-        'evdekorasyon'], ['Müzik Aletleri', 'muzikaletleri'], ['Elektronik', 'elektronik'], ['Kırtasiye', 'kirtasiye'],
+        'evdekorasyonu'], ['Müzik Aletleri', 'muzikaletleri'], ['Elektronik', 'elektronik'], ['Kırtasiye', 'kirtasiye'],
       ['Mutfak Eşyaları', 'mutfakesyalari'], ['Vasıta', 'vasita'],['Giyim', 'giyim'],['Ders Notu', 'dersnotu'], ['İncik Boncuk', 'incikboncuk'], ['Diğer', 'diger']],{}, {:class => " form-control"}  %>
 
 	</div>
@@ -185,16 +185,44 @@
 
 <% end %>
 <div class = "row form-group">
-	<div class = "col-sm-offset-2 col-sm-10">
+	<div class = "col-sm-offset-2 col-sm-5">
 		<%= t.submit 'İlanı Güncelle',class:"btn btn-default" %>
 	</div>
+	<div class = "col-sm-5">
+		<button type="button" class="btn btn-danger" onclick="ilankapat(<%= @advert.id %>);">İlanı Kapat</button>
+	</div>
 </div>
+
 <%end%>
 
 <% end %>
 <% end %>
 
 <script>
+function ilankapat(id){
+	$.ajax({
+		url : '/closeadvert',
+		data : {
+			authenticity_token : window._token,
+			advert: id
+		},
+		error : function() {
+			alert('error');
+		},
+		dataType : 'json',
+		success : function(data) {
+
+			if (data.check){
+				alert("ilanınız kaldırılmıştır");
+				window.location = "/";
+			}
+			
+		},
+		type : 'POST'
+	});
+}
+
+
 	function ikincielilanadiVerify() {
 var form = document.getElementById("ikincielform");
 var advertname = form.elements['advert_name'].value;

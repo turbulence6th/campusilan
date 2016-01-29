@@ -16,17 +16,4 @@ class Rack::Attack
     req.ip
   end
   
-  Rack::Attack.throttled_response = lambda do |env|
-    # name and other data about the matched throttle
-    body = [
-      env['rack.attack.matched'],
-      env['rack.attack.match_type'],
-      env['rack.attack.match_data']
-    ].inspect
-  
-    # Using 503 because it may make attacker think that they have successfully
-    # DOSed the site. Rack::Attack returns 429 for throttling by default
-    [ 503, {}, [body]]
-  end
-  
 end

@@ -1,6 +1,6 @@
 class AdvertMailer < ApplicationMailer
   
-  def newAdvert(advert)
+  def ilanekleme(advert)
     
     @advert = advert
     @user = advert.user

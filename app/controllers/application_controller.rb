@@ -58,7 +58,8 @@ class ApplicationController < ActionController::Base
   def topUniversities
     sql = "select universities.id, universities.name, count(universities)" + 
       "from universities, adverts, users " + 
-      "where adverts.user_id = users.id AND users.university_id = universities.id " +
+      "where adverts.user_id = users.id AND users.university_id = universities.id AND " +
+      "adverts.active=true AND adverts.verified=true " +
       "group by universities.id " + 
       "order by count(universities) DESC " +
       "limit 7" 
