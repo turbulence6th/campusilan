@@ -1149,9 +1149,21 @@
 							<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
 
 								<div style="" class="thumbnail">
+									
+									<div class="wrapper wrapper2">
 
 									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name %></a>
 
+								
+									<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+
+									</div>
 								</div>
 
 								<div class="caption">
@@ -1205,9 +1217,24 @@
 
 							<div class="col-lg-6 col-xs-6 col-md-4 col-sm-4">
 
-								<div style="" class="thumbnail">
+								<div style="" class="thumbnail ">
+									
+									<div class="wrapper wrapper2">
 
 									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name %></a>
+
+
+
+								<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+										
+										</div>
+
 
 								</div>
 
@@ -1358,17 +1385,34 @@
 
 					<div class="panel-body">
 
-						<div id="mi-slider" class="wrapper wrapper2 mi-slider" style="margin-top: -75px; clear: both;">
+						<div id="mi-slider" class=" mi-slider" style="margin-top: -75px; clear: both;">
 							<ul>
 								<% @ensonikinciel.each do |advert| %>
 								<li>
 
-									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
+									<div class="wrapper wrapper2">
+
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
+									
+
 									<% if advert.name.length <= 12 %> <h4><%= advert.name %></h4></a>
 
 									<% else %>
 									<h4><%= advert.name[0..11] + "..." %></h4></a>
 									<% end %>
+									
+									
+									<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+									
+									
+									
+									</div>
 
 								</li>
 
@@ -1437,6 +1481,8 @@
 							<ul>
 								<% @ensonikinciel.each do |advert| %>
 								<li>
+									
+									<div class="wrapper wrapper2">
 
 									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
 									<% if advert.name.length <= 7 %> <h4><%= advert.name %></h4></a>
@@ -1444,6 +1490,18 @@
 									<% else %>
 									<h4><%= advert.name[0..6] + "..." %></h4></a>
 									<% end %>
+									
+									
+									<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content2'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+									
+									
+									</div>
 
 								</li>
 
@@ -1514,7 +1572,7 @@
 
 									<li>
 
-										<div class='wrapper'>
+										<div class='wrapper wrapper2'>
 											<!-- image -->
 											<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),width:"373px",height:"373px" %></a>
 											<!-- description div -->
@@ -1525,6 +1583,15 @@
 												</div>
 												<!-- end description content -->
 											</div>
+
+											<div class='descriptionSabit2'>
+												<!-- description content -->
+												<div class='description_content'>
+													<%= advert.price %> &#x20BA;
+												</div>
+												<!-- end description content -->
+											</div>
+
 											<!-- end description div -->
 										</div>
 
@@ -1568,10 +1635,10 @@
 									<div class="wrapper wrapper2">
 
 										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
-										<% if advert.name.length <= 18 %> <h4><%= advert.name %></h4></a>
+										<% if advert.name.length <= 16 %> <h4><%= advert.name %></h4></a>
 
 										<% else %>
-										<h4><%= advert.name[0..17] + "..." %></h4></a>
+										<h4><%= advert.name[0..15] + "..." %></h4></a>
 										<% end %>
 
 										<div class='descriptionSabit2'>
@@ -1595,10 +1662,10 @@
 									<div class="wrapper wrapper2">
 
 										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
-										<% if advert.name.length <= 18 %> <h4><%= advert.name %></h4></a>
+										<% if advert.name.length <= 16 %> <h4><%= advert.name %></h4></a>
 
 										<% else %>
-										<h4><%= advert.name[0..17] + "..." %></h4></a>
+										<h4><%= advert.name[0..15] + "..." %></h4></a>
 										<% end %>
 
 										<div class='descriptionSabit2'>
@@ -1623,10 +1690,10 @@
 									<div class="wrapper wrapper2">
 
 										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
-										<% if advert.name.length <= 18 %> <h4><%= advert.name %></h4></a>
+										<% if advert.name.length <= 16 %> <h4><%= advert.name %></h4></a>
 
 										<% else %>
-										<h4><%= advert.name[0..17] + "..." %></h4></a>
+										<h4><%= advert.name[0..15] + "..." %></h4></a>
 										<% end %>
 
 										<div class='descriptionSabit2'>
@@ -1852,8 +1919,7 @@
 											</div>
 											<!-- end description content -->
 										</div>
-										
-										
+
 										<div class='descriptionSabit2'>
 											<!-- description content -->
 											<div class='description_content'>
@@ -1861,8 +1927,7 @@
 											</div>
 											<!-- end description content -->
 										</div>
-										
-										
+
 										<!-- end description div -->
 									</div>
 
@@ -1911,9 +1976,7 @@
 											</div>
 											<!-- end description content -->
 										</div>
-										
-										
-										
+
 										<div class='descriptionSabit2'>
 											<!-- description content -->
 											<div class='description_content'>
@@ -1921,7 +1984,7 @@
 											</div>
 											<!-- end description content -->
 										</div>
-										
+
 										<!-- end description div -->
 									</div>
 
@@ -2475,7 +2538,7 @@
 		<a id='backTop'>Back To Top</a>
 
 		<%= render "footer" %>
-		
+
 		<script src="resources/js/bootstrap.min.js"></script>
 
 		<script>
@@ -2484,81 +2547,79 @@
 		</script>
 
 		<% if params[:yenihesap] %>
-			
-			<div class = "kullanicieklendi modal fade" id = "myModal" tabindex = "-1" role = "dialog"
+
+		<div class = "kullanicieklendi modal fade" id = "myModal" tabindex = "-1" role = "dialog"
 		aria-labelledby = "myModalLabel" aria-hidden = "true">
 
-				<div class = "modal-dialog">
-					<div class = "modal-content">
-	
-						<div class = "modal-header">
-							<button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
-								&times;
-							</button>
-	
-							<h4 class = "modal-title" id = "myModalLabel"> Başarılı </h4>
-						</div>
-	
-						<div class = "modal-body">
-							Kullanıcı Hesabınız başarıyla oluşturuldu Aktive Etmek İçin E-posta'nıza Gelene Maili Onaylayınız.
-						</div>
-	
-						<div class = "modal-footer">
-							<button type = "button" class = "btn btn-primary" data-dismiss = "modal">
-								Kapat
-							</button>
-	
-						</div>
-	
-					</div><!-- /.modal-content -->
-				</div><!-- /.modal-dialog -->
-	
-			</div>
-			
-			<script>
-				$modaljquery('.kullanicieklendi').modal('show');
-		
-			</script>
-		
-		<% elsif params[:yeniilan] %>
-		
-			<div class = "ilaneklendi modal fade" id = "myModal" tabindex = "-1" role = "dialog"
-			aria-labelledby = "myModalLabel" aria-hidden = "true">
-	
-				<div class = "modal-dialog">
-					<div class = "modal-content">
-	
-						<div class = "modal-header">
-							<button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
-								&times;
-							</button>
-	
-							<h4 class = "modal-title" id = "myModalLabel"> Başarılı </h4>
-						</div>
-	
-						<div class = "modal-body">
-							İlanınız başarıyla eklendi.
-						</div>
-	
-						<div class = "modal-footer">
-							<button type = "button" class = "btn btn-primary" data-dismiss = "modal">
-								Kapat
-							</button>
-	
-						</div>
-	
-					</div><!-- /.modal-content -->
-				</div><!-- /.modal-dialog -->
-	
-			</div>
-			
-			<script>
-				$modaljquery('.ilaneklendi').modal('show');
-	
-			</script>
-		<% end %>
+			<div class = "modal-dialog">
+				<div class = "modal-content">
 
-		
+					<div class = "modal-header">
+						<button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+							&times;
+						</button>
+
+						<h4 class = "modal-title" id = "myModalLabel"> Başarılı </h4>
+					</div>
+
+					<div class = "modal-body">
+						Kullanıcı Hesabınız başarıyla oluşturuldu Aktive Etmek İçin E-posta'nıza Gelene Maili Onaylayınız.
+					</div>
+
+					<div class = "modal-footer">
+						<button type = "button" class = "btn btn-primary" data-dismiss = "modal">
+							Kapat
+						</button>
+
+					</div>
+
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+
+		</div>
+
+		<script>
+			$modaljquery('.kullanicieklendi').modal('show');
+
+		</script>
+
+		<% elsif params[:yeniilan] %>
+
+		<div class = "ilaneklendi modal fade" id = "myModal" tabindex = "-1" role = "dialog"
+		aria-labelledby = "myModalLabel" aria-hidden = "true">
+
+			<div class = "modal-dialog">
+				<div class = "modal-content">
+
+					<div class = "modal-header">
+						<button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+							&times;
+						</button>
+
+						<h4 class = "modal-title" id = "myModalLabel"> Başarılı </h4>
+					</div>
+
+					<div class = "modal-body">
+						İlanınız başarıyla eklendi.
+					</div>
+
+					<div class = "modal-footer">
+						<button type = "button" class = "btn btn-primary" data-dismiss = "modal">
+							Kapat
+						</button>
+
+					</div>
+
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+
+		</div>
+
+		<script>
+			$modaljquery('.ilaneklendi').modal('show');
+
+		</script>
+		<% end %>
 
 		<!-- plugin script importları: -->
 
@@ -2699,8 +2760,6 @@
 		<%= render "headerfixedjs" %>
 
 		<!-- Dropdown login box -->
-
-		
 
 	</body>
 

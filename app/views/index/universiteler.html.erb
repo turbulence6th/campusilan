@@ -126,31 +126,20 @@
 					padding-right: 50px;
 					padding-top: 30px;
 				}
-				
+
 				.duyurupaneli {
-					
-					height:300px;
-					
-					
+
+					height: 300px;
 				}
-				
-				
+
 			}
-			
-			
-			
-			
-			
+
 			@media screen and (min-width: 1500px) {
 				.duyurupaneli {
-					
-					height:500px;
-					
-					
+
+					height: 500px;
 				}
 			}
-			
-			
 
 			@media screen and (max-width: 1200px) {
 				body {
@@ -177,10 +166,7 @@
 			as needed -->
 			<script src="/resources/js/bootstrap.min.js"></script>
 
-			
 			<div class="row" style="position: relative;margin-bottom: 10px;">
-
-				
 
 				<div id="loginkismi "  class="visible-xs ">
 					<!-- Login Starts Here -->
@@ -205,7 +191,7 @@
 				<%= render "smartmenus" %>
 
 			</div>
-			
+
 			<br class="visible-sm">
 
 			<div style="margin-top:-30px;"class="row">
@@ -377,9 +363,6 @@
 							-Görüş ve Önerileriniz bizim için çok önemli!! <a href="/iletisim">İletişim</a> sayfasından bizimle iletişime geçebilirsiniz.
 
 						</div>
-						
-						
-						
 
 					</div>
 
@@ -401,7 +384,19 @@
 									<div class="col-lg-2 col-md-2 hidden-xs hidden-sm">
 
 										<div class="thumbnail">
-											<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %> </a>
+
+											<div class="wrapper wrapper2">
+												<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %> </a>
+
+												<div class='descriptionSabit2'>
+													<!-- description content -->
+													<div class='description_content2'>
+														<%= advert.price %> &#x20BA;
+													</div>
+													<!-- end description content -->
+												</div>
+
+											</div>
 
 										</div>
 
@@ -424,9 +419,20 @@
 									<div class="visible-xs visible-sm  col-sm-4 col-xs-6">
 
 										<div class="thumbnail">
-											<a href="<%= advert.href %>"> 
-											<%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
-											</a>
+
+											<div class="wrapper wrapper2">
+
+												<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %> </a>
+
+												<div class='descriptionSabit2'>
+													<!-- description content -->
+													<div class='description_content2'>
+														<%= advert.price %> &#x20BA;
+													</div>
+													<!-- end description content -->
+												</div>
+
+											</div>
 
 										</div>
 
@@ -497,9 +503,8 @@
 								<% @gununilanlari.each do |advert| %>
 
 								<li>
-									
 
-									<div class='wrapper'>
+									<div class='wrapper wrapper2'>
 										<!-- image -->
 										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %></a>
 										<!-- description div -->
@@ -510,10 +515,17 @@
 											</div>
 											<!-- end description content -->
 										</div>
+
+										<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+
 										<!-- end description div -->
 									</div>
-
-								
 
 								</li>
 
@@ -550,38 +562,50 @@
 
 									<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 
-										<div class="thumbnail">
-											<a href="<%= advert.href %>"> 
-											<%= image_tag advert.pimage.imagefile(:small) %>
-											</a>
+										<div class="thumbnail ">
+											<div class="wrapper wrapper2">
 
-										</div>
+											<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %> </a>
 
-										<div class="caption">
+											<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content2'>
+											<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+											</div>
+
+											</div>
+
+											</div>
+
+											<div class="caption">
 
 											<% if advert.name.length >= 10 %>
 
-											<h5><%= advert.name[0..9] %>...</h5>
+												<h5><%= advert.name[0..9] %>...</h5>
 
-											<% else %>
+												<% else %>
 
-											<h5><%= advert.name %></h5>
+												<h5><%= advert.name %></h5>
 
-											<% end %>
+												<% end %>
+
+											</div>
 
 										</div>
 
+										<% end %>
+
 									</div>
 
-									<% end %>
+									<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
 
-								</div>
+									<div style="clear:both;"  class="apple_pagination">
+										<%= will_paginate @adverts, :container => false,
+										:previous_label => 'Önceki', :next_label => 'Sonraki' %>
+									</div>
 
-								<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
-
-								<div style="clear:both;"  class="apple_pagination">
-									<%= will_paginate @adverts, :container => false,
-									:previous_label => 'Önceki', :next_label => 'Sonraki' %>
 								</div>
 
 							</div>
@@ -592,191 +616,180 @@
 
 				</div>
 
-			</div>
+				<div style=" margin-bottom:20px;" class="visible-xs visible-sm row">
 
-			<div style=" margin-bottom:20px;" class="visible-xs visible-sm row">
+					<img width="100%;" src="/resources/images/asdasd3.png">
 
-				<img width="100%;" src="/resources/images/asdasd3.png">
-
-			</div>
-			
-			
-			
-			<div class = "visible-sm panel panel-info">
-				<div class = "panel-heading">
-					<h3 style="text-align: center;" class="panel-title">Günün Fırsatları</h3>
 				</div>
 
-				<div class = "panel-body">
+				<div class = "visible-sm panel panel-info">
+					<div class = "panel-heading">
+						<h3 style="text-align: center;" class="panel-title">Günün Fırsatları</h3>
+					</div>
 
-					<div style="background:white;"class="jcarousel-wrapper" style="margin-bottom: 80px;">
-						<div class="jcarousel">
-							<ul>
+					<div class = "panel-body">
 
-								<% @gununilanlari.each do |advert| %>
+						<div style="background:white;"class="jcarousel-wrapper" style="margin-bottom: 80px;">
+							<div class="jcarousel">
+								<ul>
 
-								<li>
-									
+									<% @gununilanlari.each do |advert| %>
 
-									<div class='wrapper'>
-										<!-- image -->
-										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %></a>
-										<!-- description div -->
-										<div class='description'>
-											<!-- description content -->
-											<div class='description_content'>
-												<%= advert.name %>
+									<li>
+
+										<div class='wrapper'>
+											<!-- image -->
+											<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %></a>
+											<!-- description div -->
+											<div class='description'>
+												<!-- description content -->
+												<div class='description_content'>
+													<%= advert.name %>
+												</div>
+												<!-- end description content -->
 											</div>
-											<!-- end description content -->
+											<!-- end description div -->
 										</div>
-										<!-- end description div -->
-									</div>
 
-									
+									</li>
 
-								</li>
+									<% end %>
+								</ul>
+							</div>
 
-								<% end %>
-							</ul>
+							<a href="#" class="jcarousel-control-prev">&lsaquo;</a><a href="#"
+							class="jcarousel-control-next">&rsaquo;</a>
+
+							<p class="jcarousel-pagination hidden-xs"></p>
 						</div>
 
-						<a href="#" class="jcarousel-control-prev">&lsaquo;</a><a href="#"
-						class="jcarousel-control-next">&rsaquo;</a>
-
-						<p class="jcarousel-pagination hidden-xs"></p>
 					</div>
-
 				</div>
-			</div>
-			
-			
-			
-			<div style="margin-bottom:20px;" class="row">
 
-				<div class="col-lg-6 row">
+				<div style="margin-bottom:20px;" class="row">
 
-					<div class="hidden-xs hidden-sm">
-						<img src="/resources/images/sosyalmedya.png" width="100%" height="350px">
+					<div class="col-lg-6 row">
 
-					</div>
+						<div class="hidden-xs hidden-sm">
+							<img src="/resources/images/sosyalmedya.png" width="100%" height="350px">
 
-					<div class="visible-xs visible-sm">
-						<img src="/resources/images/sosyalmedya.png" width="100%" height="250px">
+						</div>
+
+						<div class="visible-xs visible-sm">
+							<img src="/resources/images/sosyalmedya.png" width="100%" height="250px">
+
+						</div>
 
 					</div>
 
 				</div>
 
-			</div>
+				<div >
 
-			<div >
+					<div style="background-color:#9DD2E3;" class="row well">
 
-				<div style="background-color:#9DD2E3;" class="row well">
+						<div class="col-lg-4">
 
-					<div class="col-lg-4">
+							<h4>Giriş mi Yapmak İstiyorsunuz?</h4>
+							<br class="hidden-xs hidden-sm">
 
-						<h4>Giriş mi Yapmak İstiyorsunuz?</h4>
-						<br class="hidden-xs hidden-sm">
+							<button type = "button" class = "btn btn-primary">
+								Giriş Yap
+							</button>
 
-						<button type = "button" class = "btn btn-primary">
-							Giriş Yap
-						</button>
+						</div>
 
-					</div>
+						<div class="col-lg-4">
 
-					<div class="col-lg-4">
+							<h4>Kayıt mı Olmak İstiyorsunuz?</h4>
+							<br class="hidden-xs hidden-sm">
 
-						<h4>Kayıt mı Olmak İstiyorsunuz?</h4>
-						<br class="hidden-xs hidden-sm">
+							<button type = "button" class = "btn btn-primary">
+								Kayıt Ol
+							</button>
 
-						<button type = "button" class = "btn btn-primary">
-							Kayıt Ol
-						</button>
+						</div>
 
-					</div>
+						<div class="col-lg-4">
 
-					<div class="col-lg-4">
+							<h4>Zaten giriş yaptınız ve ilan mı açmak istiyorsunuz?</h4>
 
-						<h4>Zaten giriş yaptınız ve ilan mı açmak istiyorsunuz?</h4>
+							<button type = "button" class = "btn btn-primary">
+								İlan Aç
+							</button>
 
-						<button type = "button" class = "btn btn-primary">
-							İlan Aç
-						</button>
+						</div>
 
 					</div>
 
 				</div>
 
-			</div>
-			
-			
+				<div class="row">
 
-			<div class="row">
+					<%= render "footer" %>
 
-				<%= render "footer" %>
+				</div>
 
-			</div>
+				<%= render 'paginationkaldir' %>
 
-			<%= render 'paginationkaldir' %>
+				<!-- pluginler -->
 
-			<!-- pluginler -->
+				<script>
+					if (hopscotch.getState() === "hello-hopscotch:9") {
+						hopscotch.startTour(tour);
+					}
 
-			<script>
-				if (hopscotch.getState() === "hello-hopscotch:9") {
-					hopscotch.startTour(tour);
-				}
+				</script>
 
-			</script>
+				<!-- JCarousel Plugin -->
 
-			<!-- JCarousel Plugin -->
+				<script type="text/javascript" src="/resources/plugins/jcarousel-0.3.3/libs/jquery/jquery.js"></script>
 
-			<script type="text/javascript" src="/resources/plugins/jcarousel-0.3.3/libs/jquery/jquery.js"></script>
+				<script>
+					var $jcarousel = jQuery.noConflict();
 
-			<script>
-				var $jcarousel = jQuery.noConflict();
+				</script>
 
-			</script>
+				<script>
+					//multilevel dropdown
 
-			<script>
-				//multilevel dropdown
-
-				$jcarousel(document).ready(function() {
-					$jcarousel('.dropdown-submenu a.test').on("click", function(e) {
-						$jcarousel(this).next('ul').toggle();
-						e.stopPropagation();
-						e.preventDefault();
+					$jcarousel(document).ready(function() {
+						$jcarousel('.dropdown-submenu a.test').on("click", function(e) {
+							$jcarousel(this).next('ul').toggle();
+							e.stopPropagation();
+							e.preventDefault();
+						});
 					});
-				});
-			</script>
+				</script>
 
-			<!-- Caption Eklentisi -->
+				<!-- Caption Eklentisi -->
 
-			<script src="/resources/plugins/captionplugin/caption.js"></script>
-			<link rel="stylesheet" href="/resources/plugins/captionplugin/caption.css">
+				<script src="/resources/plugins/captionplugin/caption.js"></script>
+				<link rel="stylesheet" href="/resources/plugins/captionplugin/caption.css">
 
-			<!-- Tooltip eklentisi-->
+				<!-- Tooltip eklentisi-->
 
-			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+				<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 
-			<script>
-				var $tooltip = jQuery.noConflict();
-			</script>
+				<script>
+					var $tooltip = jQuery.noConflict();
+				</script>
 
-			<script type="text/javascript" src="/resources/plugins/tooltipplugin/tooltip.js"></script>
+				<script type="text/javascript" src="/resources/plugins/tooltipplugin/tooltip.js"></script>
 
-			<!--  Dropdown menü-->
+				<!--  Dropdown menü-->
 
-			<script src="/resources/plugins/DropDownMenu/js/cbpHorizontalMenu.min.js"></script>
+				<script src="/resources/plugins/DropDownMenu/js/cbpHorizontalMenu.min.js"></script>
 
-			<script>
-				$(function() {
-					cbpHorizontalMenu.init();
-				});
-			</script>
+				<script>
+					$(function() {
+						cbpHorizontalMenu.init();
+					});
+				</script>
 
-			<!--  fixed header -->
+				<!--  fixed header -->
 
-			<%= render "headerfixedjs" %>
+				<%= render "headerfixedjs" %>
 
 	</body>
 
