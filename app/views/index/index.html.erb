@@ -2475,36 +2475,90 @@
 		<a id='backTop'>Back To Top</a>
 
 		<%= render "footer" %>
+		
+		<script src="resources/js/bootstrap.min.js"></script>
 
-		<div class = "ilaneklendi modal fade" id = "myModal" tabindex = "-1" role = "dialog"
+		<script>
+			var $modaljquery = jQuery.noConflict();
+
+		</script>
+
+		<% if params[:yenihesap] %>
+			
+			<div class = "kullanicieklendi modal fade" id = "myModal" tabindex = "-1" role = "dialog"
 		aria-labelledby = "myModalLabel" aria-hidden = "true">
 
-			<div class = "modal-dialog">
-				<div class = "modal-content">
+				<div class = "modal-dialog">
+					<div class = "modal-content">
+	
+						<div class = "modal-header">
+							<button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+								&times;
+							</button>
+	
+							<h4 class = "modal-title" id = "myModalLabel"> Başarılı </h4>
+						</div>
+	
+						<div class = "modal-body">
+							Kullanıcı Hesabınız başarıyla oluşturuldu Aktive Etmek İçin E-posta'nıza Gelene Maili Onaylayınız.
+						</div>
+	
+						<div class = "modal-footer">
+							<button type = "button" class = "btn btn-primary" data-dismiss = "modal">
+								Kapat
+							</button>
+	
+						</div>
+	
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+	
+			</div>
+			
+			<script>
+				$modaljquery('.kullanicieklendi').modal('show');
+		
+			</script>
+		
+		<% elsif params[:yeniilan] %>
+		
+			<div class = "ilaneklendi modal fade" id = "myModal" tabindex = "-1" role = "dialog"
+			aria-labelledby = "myModalLabel" aria-hidden = "true">
+	
+				<div class = "modal-dialog">
+					<div class = "modal-content">
+	
+						<div class = "modal-header">
+							<button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+								&times;
+							</button>
+	
+							<h4 class = "modal-title" id = "myModalLabel"> Başarılı </h4>
+						</div>
+	
+						<div class = "modal-body">
+							İlanınız başarıyla eklendi.
+						</div>
+	
+						<div class = "modal-footer">
+							<button type = "button" class = "btn btn-primary" data-dismiss = "modal">
+								Kapat
+							</button>
+	
+						</div>
+	
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+	
+			</div>
+			
+			<script>
+				$modaljquery('.ilaneklendi').modal('show');
+	
+			</script>
+		<% end %>
 
-					<div class = "modal-header">
-						<button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
-							&times;
-						</button>
-
-						<h4 class = "modal-title" id = "myModalLabel"> Başarılı </h4>
-					</div>
-
-					<div class = "modal-body">
-						İlanınız başarıyla eklendi.
-					</div>
-
-					<div class = "modal-footer">
-						<button type = "button" class = "btn btn-primary" data-dismiss = "modal">
-							Kapat
-						</button>
-
-					</div>
-
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-
-		</div>
+		
 
 		<!-- plugin script importları: -->
 
@@ -2646,19 +2700,7 @@
 
 		<!-- Dropdown login box -->
 
-		<script src="resources/js/bootstrap.min.js"></script>
-
-		<script>
-			var $modaljquery = jQuery.noConflict();
-
-		</script>
-
-		<% if params[:yeniilan] %>
-		<script>
-			$modaljquery('.ilaneklendi').modal('show');
-
-		</script>
-		<% end %>
+		
 
 	</body>
 

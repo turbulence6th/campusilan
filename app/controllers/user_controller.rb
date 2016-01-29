@@ -55,10 +55,11 @@ class UserController < ApplicationController
       URI.parse('https://www.google.com/recaptcha/api/siteverify'), postParams)
 
     if JSON.parse(x.body)["success"] && @user.save
-      #UserMailer.verify(@user).deliver_now
+      UserMailer.verify(@user).deliver_now if Rails.env.production?
+      redirect_to('/?yenihesap=1')
+    else
+      redirect_to('/kayitol')
     end
-
-    redirect_to "/"
 
   end
 
