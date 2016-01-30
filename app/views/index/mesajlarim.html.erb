@@ -14,7 +14,7 @@
 		<%= javascript_tag "window._token = '#{form_authenticity_token}';" %>
 		<!-- Bootstrap -->
 
-		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 
 		<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -35,13 +35,13 @@
 		<!-- dropdown login box -->
 
 		<link rel="stylesheet"
-		href="resources/plugins/dropdownloginbox/css/style.css" />
+		href="/resources/plugins/dropdownloginbox/css/style.css" />
 
-		<script src="resources/plugins/dropdownloginbox/js/login.js"></script>
+		<script src="/resources/plugins/dropdownloginbox/js/login.js"></script>
 
 		<!-- Fixed Header -->
 
-		<link rel="stylesheet" href="resources/assets/header-fixed.css">
+		<link rel="stylesheet" href="/resources/assets/header-fixed.css">
 
 		<link href='http://fonts.googleapis.com/css?family=Cookie'
 		rel='stylesheet' type='text/css'>
@@ -50,8 +50,8 @@
 
 		<!-- Cssmenu-3 -->
 
-		<link rel="stylesheet" href="resources/plugins/cssmenu-3/styles.css">
-		<script src="resources/plugins/cssmenu-3/script.js"></script>
+		<link rel="stylesheet" href="/resources/plugins/cssmenu-3/styles.css">
+		<script src="/resources/plugins/cssmenu-3/script.js"></script>
 
 		<!-- Arama Kutucuğu-->
 
@@ -63,7 +63,7 @@
 		<!-- Smart Menus plugin -->
 
 		<!-- jQuery import -->
-		<script src="resources/plugins/smartmenus/libs/jquery/jquery.js"
+		<script src="/resources/plugins/smartmenus/libs/jquery/jquery.js"
 		type="text/javascript"></script>
 
 		<script>
@@ -71,14 +71,14 @@
 		</script>
 
 		<!-- SmartMenus jQuery plugin -->
-		<script src="resources/plugins/smartmenus/jquery.smartmenus.js"
+		<script src="/resources/plugins/smartmenus/jquery.smartmenus.js"
 		type="text/javascript"></script>
 
 		<!-- SmartMenus core CSS (required) -->
-		<link href="resources/plugins/smartmenus/css/sm-core-css.css"
+		<link href="/resources/plugins/smartmenus/css/sm-core-css.css"
 		rel="stylesheet" type="text/css" />
 		<!-- "sm-blue" menu theme (optional, you can use your own CSS, too) -->
-		<link href="resources/plugins/smartmenus/css/sm-blue/sm-blue.css"
+		<link href="/resources/plugins/smartmenus/css/sm-blue/sm-blue.css"
 		rel="stylesheet" type="text/css" />
 
 		<!-- SmartMenus jQuery init -->
@@ -125,7 +125,7 @@
 
 			<!-- Include all compiled plugins (below), or include individual files
 			as needed -->
-			<script src="resources/js/bootstrap.min.js"></script>
+			<script src="/resources/js/bootstrap.min.js"></script>
 
 			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
@@ -187,7 +187,7 @@
 
 								</div>
 
-								<%= form_tag 'mesajlarim' ,:class =>"row", :method => :get do %>
+								<%= form_tag '/mesajlarim' ,:class =>"row", :method => :get do %>
 
 								<%= select_tag :messagetype,options_for_select([['Gelen Mesajlar','gelenmesajlar'], ['Giden Mesajlar','gidenmesajlar']],params[:messagetype]),{:onchange => "this.form.submit()",:style => "width:20%;",:class =>"form-control" } %>
 
@@ -566,7 +566,7 @@ $(".cevaplapaneli .ickisim").attr("placeholder", "<%= mesaj.to.username %>");
 
 							</div>
 
-							<%= form_tag 'mesajlarim' , :method => :get do %>
+							<%= form_tag '/mesajlarim' , :method => :get do %>
 
 							<%= select_tag :messagetype,options_for_select([['Gelen Mesajlar','gelenmesajlar'], ['Giden Mesajlar','gidenmesajlar']],params[:messagetype]),{:onchange => "this.form.submit()",:class => "form-control"} %>
 
@@ -913,7 +913,7 @@ $(".<%= mesaj.id %>").click(function() {
 
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-			<script src="resources/js/bootstrap.min.js"></script>
+			<script src="/resources/js/bootstrap.min.js"></script>
 
 			<script>
 				var $modaljquery = jQuery.noConflict();
@@ -936,7 +936,7 @@ $(".<%= mesaj.id %>").click(function() {
 
 					$.ajax({
 
-						url : 'mesajgonder',
+						url : '/mesajgonder',
 						data : {
 							authenticity_token : window._token,
 							username : username,
@@ -1007,7 +1007,7 @@ $(".<%= mesaj.id %>").click(function() {
 
 					$.ajax({
 
-						url : 'mesajgonder',
+						url : '/mesajgonder',
 						data : {
 							authenticity_token : window._token,
 							username : username,
@@ -1078,7 +1078,7 @@ $(".<%= mesaj.id %>").click(function() {
 
 					$.ajax({
 
-						url : 'mesajgonder',
+						url : '/mesajgonder',
 						data : {
 							authenticity_token : window._token,
 							username : username,
@@ -1149,7 +1149,7 @@ $(".<%= mesaj.id %>").click(function() {
 
 					$.ajax({
 
-						url : 'mesajgonder',
+						url : '/mesajgonder',
 						data : {
 							authenticity_token : window._token,
 							username : username,
@@ -1219,7 +1219,7 @@ $(".<%= mesaj.id %>").click(function() {
 
 					$.ajax({
 
-						url : 'mesajsil',
+						url : '/mesajsil',
 						data : {
 							authenticity_token : window._token,
 							mesajfromid : mesajfromid,
@@ -1294,7 +1294,7 @@ $(".<%= mesaj.id %>").click(function() {
 
 					$.ajax({
 
-						url : 'mesajsil',
+						url : '/mesajsil',
 						data : {
 							authenticity_token : window._token,
 							mesajfromid : mesajfromid,
@@ -1466,6 +1466,41 @@ $(".<%= mesaj.id %>").click(function() {
 				$(".birincimenu").addClass("active");
 
 			</script>
+			
+			
+			<% if params[:username] != nil && params[:screen] != nil %>
+			
+			<% if params[:screen] == "large" %>
+			
+			<script>
+			
+			
+			
+			$modaljquery('#mesajgonder').modal('show');
+			
+			$('.kullaniciadi').val("<%= params[:username]%>");
+			
+			</script>
+			
+			<% end %>
+			
+			<% if params[:screen] == "small" %>
+			
+			<script>
+			
+
+			$modaljquery('#mesajgonder2').modal('show');
+			
+			$('.kullaniciadi').val("<%= params[:username]%>");
+			
+			
+			
+			</script>
+			
+			
+			<% end %>
+			
+			<% end %>
 
 		
 
