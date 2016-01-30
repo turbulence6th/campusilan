@@ -42,9 +42,11 @@ ActiveAdmin.register_page "Dashboard" do
        column do
          panel "Waiting Adverts" do
            ul do
-             @waitings = Advert.where(:active => true, :verified => false).order('created_at ASC').limit(20)
+             @waitings = Advert.where(:verified => false).order('created_at ASC').limit(20)
              @waitings.map do |advert|
                li link_to(advert.name, "/admin/adverts/" + advert.id.to_s)
+               
+               
              end
            end
          end

@@ -14,7 +14,8 @@ class ApplicationController < ActionController::Base
   before_filter :check_admin_mode
 
   def check_admin_mode
-    if ENV['ADMIN_MODE'] && request.remote_ip != "144.122.120.18"
+    if ENV['ADMIN_MODE'] && (request.remote_ip != "144.122.120.18" &&
+       request.remote_ip != "144.122.75.31" && request.remote_ip != "144.122.120.164")
       redirect_to '/portfolio'
     end
   end
@@ -58,7 +59,8 @@ class ApplicationController < ActionController::Base
   def topUniversities
     sql = "select universities.id, universities.name, count(universities)" + 
       "from universities, adverts, users " + 
-      "where adverts.user_id = users.id AND users.university_id = universities.id " +
+      "where adverts.user_id = users.id AND users.university_id = universities.id AND " +
+      "adverts.active=true AND adverts.verified=true " +
       "group by universities.id " + 
       "order by count(universities) DESC " +
       "limit 7" 

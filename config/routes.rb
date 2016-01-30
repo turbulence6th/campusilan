@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   get 'kategoriler' => 'advert#kategoriler'
   get 'kategoriler/:kategori/:subkategori' => 'advert#kategoriler'  
   get 'firsatlar' => 'advert#firsatlar'
-  get 'uye/:username' => 'user#member'
+  get 'uye/:username' => 'user#member', :constraints => { :username => /[^\/]+/ }
   post 'profilephoto' => 'user#profilephoto'
   get 'universiteler' => 'index#universiteler'
   post 'vote' => 'advert#vote', defaults: {format: :json}
@@ -54,6 +54,8 @@ Rails.application.routes.draw do
   get 'ilanlarim' => 'index#ilanlarim'
   get 'incelediklerim' => 'index#incelediklerim'
   post 'votedelete' => 'advert#votedelete', defaults: {format: :json}
+  post 'iletisim' => 'index#iletisimPost'
+  post 'closeadvert' => 'advert#close', defaults: {format: :json}
 
   get "404" => "error#not_found"
   get "422" => "error#unacceptable"

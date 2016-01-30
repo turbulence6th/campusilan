@@ -341,7 +341,7 @@ class AdvertController < ApplicationController
       URI.parse('https://www.google.com/recaptcha/api/siteverify'), postParams)
 
     if JSON.parse(x.body)["success"] && @advert.save
-      AdverMailer.newAdvert(@advert).deliver_now if Rails.env.production? 
+      AdvertMailer.newAdvert(@advert).deliver_now if Rails.env.production? 
       redirect_to('/?yeniilan=1')
     else
       redirect_to('/ilanver')
@@ -514,28 +514,36 @@ class AdvertController < ApplicationController
   end
 
   def favorilerdenkaldir
-
     advertid = params[:advertid]
-
     a = Advert.available.find(advertid).favourite_adverts.find_by(:user => current_user)
     if a
-
       a.destroy
       respond_to do |format|
         msg = { :check => true}
         format.json  { render :json => msg }
-
       end
-
     else
-
       respond_to do |format|
         msg = { :check => false}
         format.json  { render :json => msg }
       end
-
     end
-
+  end
+  
+  def close
+    advert = Advert.find_by(:id => params[:advert])
+    if !current_user || (advert.user!=current_user && current_user.role!='admin')
+      respond_to do |format|
+        msg = { :check => false }
+        format.json  { render :json => msg }
+      end
+    else
+      advert.update_attributes(:active => false)
+      respond_to do |format|
+        msg = { :check => true }
+        format.json  { render :json => msg }
+      end
+    end
   end
 
 end
