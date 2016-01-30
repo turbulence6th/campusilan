@@ -53,8 +53,8 @@
 
 			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small), :class => 'img-responsive masterTooltip',title: advert.name %> </a>
 
-			<% if advert.name.size >= 8 %>
-			<h3><a href="<%= advert.href %>"> <%= advert.name[0..7] %>... </a></h3>
+			<% if advert.name.size >= 7 %>
+			<h3><a href="<%= advert.href %>"> <%= advert.name[0..6] %>... </a></h3>
 			<% else %>
 			<h3><a href="<%= advert.href %>"> <%= advert.name %> </a></h3>
 			<% end %>
