@@ -115,7 +115,30 @@
 				text-align: left;
 			}
 		</style>
-		<script src='https://www.google.com/recaptcha/api.js?hl=tr'></script>
+		<script src="https://www.google.com/recaptcha/api.js?onload=myCallBack&render=explicit&hl=tr" async defer></script>
+		<script>
+      var recaptcha1;
+      var recaptcha2;
+      var myCallBack = function() {
+        //Render the recaptcha1 on the element with ID "recaptcha1"
+        recaptcha1 = grecaptcha.render('recaptcha1', {
+          'sitekey' : '6Ld3uhYTAAAAAICn8yQ17ES81jCf7J4Dpz0yUgkf', //Replace this with your Site key
+          'theme' : 'light'
+        });
+        
+        //Render the recaptcha2 on the element with ID "recaptcha2"
+        recaptcha2 = grecaptcha.render('recaptcha2', {
+          'sitekey' : '6Ld3uhYTAAAAAICn8yQ17ES81jCf7J4Dpz0yUgkf', //Replace this with your Site key
+          'theme' : 'light'
+        });
+        
+        //Render the recaptcha3 on the element with ID "recaptcha2"
+        recaptcha3 = grecaptcha.render('recaptcha3', {
+          'sitekey' : '6Ld3uhYTAAAAAICn8yQ17ES81jCf7J4Dpz0yUgkf', //Replace this with your Site key
+          'theme' : 'light'
+        });
+      };
+    </script>
 	</head>
 
 	<body>
