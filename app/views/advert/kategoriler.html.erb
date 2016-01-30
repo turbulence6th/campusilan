@@ -180,7 +180,7 @@
 
 				<div class="main">
 					<nav id="cbp-hrmenu" class="cbp-hrmenu">
-						<ul>
+						<ul id="parent">
 							<li>
 								<a href="#">İkinci El İlan</a>
 								<div class="cbp-hrsub">
@@ -254,7 +254,27 @@
 								</div><!-- /cbp-hrsub -->
 							</li>
 
-							<li><a href="/kategoriler/evarkadasi">Ev Arkadaşı</a> </li>
+							<li>
+								<a href="#">Ev Arkadaşı</a>
+								<div class="cbp-hrsub">
+									<div class="cbp-hrsub-inner">
+
+
+										<div>
+											<h4>Ev Arkadaşı</h4>
+											<ul>
+												<li>
+													<a href="/kategoriler/ozelders/genelegitimbilimleri">Ev Arkadaşı İlanları</a>
+												</li>
+
+											</ul>
+
+										</div>
+
+									</div><!-- /cbp-hrsub-inner -->
+								</div><!-- /cbp-hrsub -->
+							</li>
+							
 
 							<li>
 								<a href="#">Özel Ders</a>
@@ -882,22 +902,20 @@
 							<div class="col-lg-3 col-xs-6 col-md-4 col-sm-4">
 
 								<div style="" class="thumbnail">
-									
+
 									<div class="wrapper wrapper2">
 
-									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
 
+										<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content2'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
 
-													<div class='descriptionSabit2'>
-														<!-- description content -->
-														<div class='description_content2'>
-															<%= advert.price %> &#x20BA;
-														</div>
-														<!-- end description content -->
-													</div>
-
-
-		</div>
+									</div>
 
 								</div>
 

@@ -10,7 +10,7 @@
 
 	<% @similar.each do |advert| %>
 
-	<div class="visible-lg hidden-sm col-md-4 col-md3">
+	<div class="visible-lg  col-md-4 col-md3">
 		<div class="col-md1 simpleCart_shelfItem">
 
 			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small), :class => 'img-responsive masterTooltip',title: advert.name %> </a>
@@ -29,7 +29,7 @@
 	</div>
 	
 	
-	<div class="visible-md hidden-sm col-md-4 col-md3">
+	<div class="visible-md  col-md-4 col-md3">
 		<div class="col-md1 simpleCart_shelfItem">
 
 			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small), :class => 'img-responsive masterTooltip',title: advert.name %> </a>
@@ -48,7 +48,7 @@
 	</div>
 	
 
-	<div class=" visible-xs visible-sm col-md-4 col-md3">
+	<div class=" visible-xs visible-sm col-md-4 col-md3 col-sm-4 ">
 		<div class="col-md1 simpleCart_shelfItem">
 
 			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small), :class => 'img-responsive masterTooltip',title: advert.name %> </a>
