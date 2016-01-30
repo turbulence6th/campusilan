@@ -126,14 +126,11 @@
 
 		<link rel="stylesheet" type="text/css"
 		href="/resources/plugins/tooltipplugin/tooltip.css" />
-		
-		
+
 		<!-- Caption Eklentisi -->
 
 		<script src="/resources/plugins/captionplugin/caption.js"></script>
 		<link rel="stylesheet" href="/resources/plugins/captionplugin/caption.css">
-		
-		
 
 		<!-- end of plugins  -->
 
@@ -251,19 +248,19 @@
 										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
 
 											<div class="thumbnail">
-												
+
 												<div class="wrapper wrapper2">
-												<a  href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
+													<a  href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
 
-<div class='descriptionSabit2'>
-											<!-- description content -->
-											<div class='description_content2'>
-												<%= advert.price %> &#x20BA;
-											</div>
-											<!-- end description content -->
-										</div>
+													<div class='descriptionSabit2'>
+														<!-- description content -->
+														<div class='description_content2'>
+															<%= advert.price %> &#x20BA;
+														</div>
+														<!-- end description content -->
+													</div>
 
-											</div>
+												</div>
 
 											</div>
 
@@ -460,23 +457,21 @@
 											<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">
 
 												<div class="thumbnail">
-													
+
 													<div class="wrapper wrapper2">
-													
-													<a  href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
-												
-												
-													<div class='descriptionSabit2'>
-											<!-- description content -->
-											<div class='description_content2'>
-												<%= advert.price %> &#x20BA;
-											</div>
-											<!-- end description content -->
-										</div>
-												
-												
+
+														<a  href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
+
+														<div class='descriptionSabit2'>
+															<!-- description content -->
+															<div class='description_content2'>
+																<%= advert.price %> &#x20BA;
+															</div>
+															<!-- end description content -->
+														</div>
+
 													</div>
-												
+
 												</div>
 
 												<div class="caption">
@@ -529,8 +524,6 @@
 									<div class="panel-body">
 
 										<div class="row">
-											
-											
 
 											<% @viewedadverts.each do |advert| %>
 
@@ -766,19 +759,17 @@
 											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
 
 												<div class="thumbnail">
-													
+
 													<div class="wrapper wrapper2">
-													<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
+														<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title:advert.name,class: "masterTooltip" %> </a>
 
-
-
-													<div class='descriptionSabit2'>
-											<!-- description content -->
-											<div class='description_content2'>
-												<%= advert.price %> &#x20BA;
-											</div>
-											<!-- end description content -->
-										</div>
+														<div class='descriptionSabit2'>
+															<!-- description content -->
+															<div class='description_content2'>
+																<%= advert.price %> &#x20BA;
+															</div>
+															<!-- end description content -->
+														</div>
 
 													</div>
 
@@ -855,8 +846,7 @@
 									:class => 'img-circle img-responsive' %>
 									<% end%>
 								</div>
-								
-								
+
 								<div style="margin-bottom:40px;" class="visible-sm col-md-3 col-lg-3 col-xs-10 col-sm-offset-1" align="center">
 									<% if !current_user.image && current_user.gender == "male" %>
 									<img src="/resources/images/erkek.png"
@@ -878,9 +868,6 @@
 									:class => 'img-circle img-responsive' %>
 									<% end%>
 								</div>
-								
-								
-								
 
 								<div style="margin-bottom:40px;" class="visible-xs col-md-3 col-lg-3 col-xs-10 col-xs-offset-1" align="center">
 									<% if !current_user.image && current_user.gender == "male" %>
@@ -962,8 +949,6 @@
 
 									<div class="hidden-md">
 
-										
-
 										<div class="row">
 
 											<a  style="margin-left: 20px;" class="hidden-xs hidden-sm col-lg-5 btn-file profilresmi btn btn-primary "> Profil Resmini Değiştir
@@ -1023,7 +1008,7 @@
 						</div>
 						<div class="panel-footer">
 							<a href="/mesajlarim" data-original-title="Mesajlarım"
-							 type="button"
+							type="button"
 							class="btn btn-sm btn-primary"><i
 							class="glyphicon glyphicon-envelope"></i></a>
 
@@ -1031,11 +1016,11 @@
 							class="pull-right"> <%= form_for :user, :url => 'hesabisil' , :method => :post , :html => {
 								:onsubmit => 'return vsubmit();',:id => 'uyeformu'
 								} do |t| %> <a href="/uye/<%= current_user.username %>?hesapayarlari=1"
-								data-original-title="Profili Düzenle" 
+								data-original-title="Profili Düzenle"
 								type="button" class="btn btn-sm btn-warning"><i
 								class="glyphicon glyphicon-edit"></i></a> <span data-toggle="modal" data-target = "#hesabisil"> <a
 									data-original-title="Hesabımı Sil"
-									    type="button"
+									type="button"
 									class="btn btn-sm btn-danger"><i
 									class="glyphicon glyphicon-remove"></i></a> </span> <% end %> </span>
 
