@@ -44,18 +44,6 @@
 </div>
 
 <div class = "row form-group">
-	<label class = "col-sm-2 control-label">Semt</label>
-
-	<div class = "col-sm-10">
-		<%= field.text_field :state, class:"form-control", :onkeyup => 'evarkadasisemtVerify()', :maxlength => 20 %>
-	</div>
-</div>
-
-<div style="display:none;" class = 'evarkadasiAlert evarkadasiStateAlert col-xs-12 label label-danger form-group'>
-	Geçersiz Semt Adı
-</div>
-
-<div class = "row form-group">
 	<label class = "col-sm-2 control-label">Şehir</label>
 
 	<div class = "col-sm-10">
@@ -65,6 +53,18 @@
 
 <div style="display:none;" class = 'evarkadasiAlert evarkadasiCityAlert col-xs-12 label label-danger form-group'>
 	Geçersiz Şehir Adı
+</div>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">Semt</label>
+
+	<div class = "col-sm-10">
+		<%= field.text_field :state, class:"form-control", :onkeyup => 'evarkadasisemtVerify()', :maxlength => 20 %>
+	</div>
+</div>
+
+<div style="display:none;" class = 'evarkadasiAlert evarkadasiStateAlert col-xs-12 label label-danger form-group'>
+	Geçersiz Semt Adı
 </div>
 
 <div class = "row form-group">
@@ -144,7 +144,7 @@
 	</div>
 </div>
 
-<div class="g-recaptcha" data-sitekey="6Ld3uhYTAAAAAICn8yQ17ES81jCf7J4Dpz0yUgkf"></div>
+<div id="recaptcha2"></div>
 <br>
 <div class = "row form-group">
 	<div class = " col-sm-10">
@@ -210,10 +210,14 @@
 
 <% end %>
 <div class = "row form-group">
-	<div class = "col-sm-offset-2 col-sm-10">
+	<div class = "col-sm-offset-2 col-sm-5">
 		<%= t.submit 'İlanı Güncelle',class:"btn btn-default" %>
 	</div>
+	<div class = "col-sm-5">
+		<button type="button" class="btn btn-danger" onclick="ilankapat(<%= @advert.id %>);">İlanı Kapat</button>
+	</div>
 </div>
+
 <%end%>
 
 <% end %>

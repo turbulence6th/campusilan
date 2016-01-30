@@ -10,7 +10,7 @@ class Privatelesson < ActiveRecord::Base
 
   enum :lecture => [ :matematik, :fizik, :kimya, :biyoloji, :genelmuhendislik, :genelegitimbilimleri]
 
-  enum :location => [ :ogrencievi, :ogretmenevi, :sinifta ]
+  enum :location => [ :ogrencievi, :ogretmenevi, :sinifta, :farketmez ]
 
   has_one :advert, :as => :advertable
   def locationType
