@@ -62,8 +62,18 @@ class IndexController < ApplicationController
     text = params[:text]
     user = User.find_by_username(username)
     yenimesaj = Message.new(:from => current_user, :to => user,:topic => topic,:text => text)
+    
+    captcha = params["g-recaptcha-response"]
+    postParams = {
+      :secret => "6Ld3uhYTAAAAADMhUY5DpJr2e333FOvp-ZWv45Ki",
+      :response => captcha,
+      :remoteip => request.remote_ip
+    }
+    
+    x = Net::HTTP.post_form(
+      URI.parse('https://www.google.com/recaptcha/api/siteverify'), postParams)
 
-    if user!=current_user && yenimesaj.save
+    if JSON.parse(x.body)["success"] && user!=current_user && yenimesaj.save
       respond_to do |format|
         msg = { :check => true}
         format.json  { render :json => msg }

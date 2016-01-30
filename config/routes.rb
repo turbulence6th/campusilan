@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get 'satis-alis/:alislarim' => 'index#satis_alis'
   
   get 'mesajlarim' => 'index#mesajlarim'
+  
+  
 
   
   post 'mesajgonder' => 'index#mesajPost', defaults: {format: :json}
