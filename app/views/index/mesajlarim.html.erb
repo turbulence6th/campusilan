@@ -114,7 +114,38 @@
 			}
 
 		</style>
-
+		<script src="https://www.google.com/recaptcha/api.js?onload=myCallBack&render=explicit&hl=tr" async defer></script>
+		<script>
+	      var recaptcha1;
+	      var recaptcha2;
+	      var recaptcha3;
+	      var recaptcha4;
+	      var myCallBack = function() {
+	        //Render the recaptcha1 on the element with ID "recaptcha1"
+	        recaptcha1 = grecaptcha.render('recaptcha1', {
+	          'sitekey' : '6Ld3uhYTAAAAAICn8yQ17ES81jCf7J4Dpz0yUgkf', //Replace this with your Site key
+	          'theme' : 'light'
+	        });
+	        
+	        //Render the recaptcha2 on the element with ID "recaptcha2"
+	        recaptcha2 = grecaptcha.render('recaptcha2', {
+	          'sitekey' : '6Ld3uhYTAAAAAICn8yQ17ES81jCf7J4Dpz0yUgkf', //Replace this with your Site key
+	          'theme' : 'light'
+	        });
+	        
+	        //Render the recaptcha3 on the element with ID "recaptcha2"
+	        recaptcha3 = grecaptcha.render('recaptcha3', {
+	          'sitekey' : '6Ld3uhYTAAAAAICn8yQ17ES81jCf7J4Dpz0yUgkf', //Replace this with your Site key
+	          'theme' : 'light'
+	        });
+	        
+	        //Render the recaptcha3 on the element with ID "recaptcha2"
+	        recaptcha4 = grecaptcha.render('recaptcha4', {
+	          'sitekey' : '6Ld3uhYTAAAAAICn8yQ17ES81jCf7J4Dpz0yUgkf', //Replace this with your Site key
+	          'theme' : 'light'
+	        });
+	      };
+	    </script>
 	</head>
 
 	<body>
@@ -392,8 +423,12 @@ $(".cevaplapaneli .ickisim").attr("placeholder", "<%= mesaj.to.username %>");
 												<%= m.text_area :text,rows: "2",class:"form-control",placeholder: "Mesaj İçeriği" %>
 
 											</div>
+											
+											<div style="margin-left: 20px;" id="recaptcha1"></div>
+										
 										</div>
 										<div class="modal-footer ">
+											
 											
 											
 											
@@ -443,7 +478,12 @@ $(".cevaplapaneli .ickisim").attr("placeholder", "<%= mesaj.to.username %>");
 												<%= m.text_area :text,rows: "2",class:"form-control",placeholder: "Mesaj İçeriği" %>
 
 											</div>
+											
+											<div style="margin-left: 20px;" id="recaptcha2"></div>
 										</div>
+										
+										<div style="margin-left: 20px"class="g-recaptcha" data-sitekey="6Ld3uhYTAAAAAICn8yQ17ES81jCf7J4Dpz0yUgkf"></div>
+										<br>
 										<div class="modal-footer ">
 											<button onclick="mesajgonder()" type="button" class="gonderbutonu btn btn-warning btn-lg"
 											style="width: 100%;">
@@ -762,6 +802,8 @@ $(".<%= mesaj.id %>").click(function() {
 											<%= m.text_area :text,rows: "2",class:"form-control",placeholder: "Mesaj İçeriği" %>
 
 										</div>
+										
+										<div style="margin-left: 20px;" id="recaptcha3"></div>
 									</div>
 									<div class="modal-footer ">
 										<button onclick="mesajcevapla2()" type="button" class="gonderbutonu btn btn-warning btn-lg"
@@ -810,6 +852,8 @@ $(".<%= mesaj.id %>").click(function() {
 											<%= m.text_area :text,rows: "2",class:"form-control",placeholder: "Mesaj İçeriği" %>
 
 										</div>
+										
+										<div style="margin-left: 20px;" id="recaptcha4"></div>
 									</div>
 									<div class="modal-footer ">
 										<button onclick="mesajgonder2()" type="button" class="gonderbutonu btn btn-warning btn-lg"
@@ -941,7 +985,8 @@ $(".<%= mesaj.id %>").click(function() {
 							authenticity_token : window._token,
 							username : username,
 							topic : topic,
-							text : text
+							text : text,
+							"g-recaptcha-response" : grecaptcha.getResponse(recaptcha2)
 						},
 						error : function() {
 
@@ -981,6 +1026,7 @@ $(".<%= mesaj.id %>").click(function() {
 								$("textarea#mesaj_text").removeAttr('disabled');
 
 								$(".gonderbutonu").removeAttr('disabled');
+								grecaptcha.reset(recaptcha2);
 
 							});
 
@@ -1012,7 +1058,8 @@ $(".<%= mesaj.id %>").click(function() {
 							authenticity_token : window._token,
 							username : username,
 							topic : topic,
-							text : text
+							text : text,
+							"g-recaptcha-response" : grecaptcha.getResponse(recaptcha4)
 						},
 						error : function() {
 
@@ -1052,6 +1099,7 @@ $(".<%= mesaj.id %>").click(function() {
 								$("textarea#mesaj_text").removeAttr('disabled');
 
 								$(".gonderbutonu").removeAttr('disabled');
+								grecaptcha.reset(recaptcha4);
 
 							});
 
@@ -1083,7 +1131,8 @@ $(".<%= mesaj.id %>").click(function() {
 							authenticity_token : window._token,
 							username : username,
 							topic : topic,
-							text : text
+							text : text,
+							"g-recaptcha-response" : grecaptcha.getResponse(recaptcha1)
 						},
 						error : function() {
 
@@ -1123,6 +1172,7 @@ $(".<%= mesaj.id %>").click(function() {
 								$("textarea#mesaj_text").removeAttr('disabled');
 
 								$(".gonderbutonu").removeAttr('disabled');
+								grecaptcha.reset(recaptcha1);
 
 							});
 
@@ -1154,7 +1204,8 @@ $(".<%= mesaj.id %>").click(function() {
 							authenticity_token : window._token,
 							username : username,
 							topic : topic,
-							text : text
+							text : text,
+							"g-recaptcha-response" : grecaptcha.getResponse(recaptcha3)
 						},
 						error : function() {
 
@@ -1194,6 +1245,7 @@ $(".<%= mesaj.id %>").click(function() {
 								$("textarea#mesaj_text").removeAttr('disabled');
 
 								$(".gonderbutonu").removeAttr('disabled');
+								grecaptcha.reset(recaptcha3);
 
 							});
 

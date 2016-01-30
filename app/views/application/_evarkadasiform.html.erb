@@ -310,7 +310,7 @@ var state = form.elements['advert_<%= advertable %>_state'].value;
 
 <% if local[:mode] == 0 %>
 	var kullanim = $("#ikincielform #kullanim").is(":checked");
-	return ilanadi && fiyat && marka && aciklama && kullanim && grecaptcha.getResponse()!="";
+	return ilanadi && fiyat && semt && sehir && aciklama && kullanim && grecaptcha.getResponse(recaptcha2)!="";
 <% elsif local[:mode] == 1 %>
-	return ilanadi && fiyat && marka && aciklama;
+	return ilanadi && fiyat && semt && sehir && aciklama;
 <% end %>}</script>
