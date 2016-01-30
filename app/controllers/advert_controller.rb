@@ -341,7 +341,7 @@ class AdvertController < ApplicationController
       URI.parse('https://www.google.com/recaptcha/api/siteverify'), postParams)
 
     if JSON.parse(x.body)["success"] && @advert.save
-      AdvertMailer.newAdvert(@advert).deliver_now if Rails.env.production? 
+      AdvertMailer.ilanekleme(@advert).deliver_now if Rails.env.production? 
       redirect_to('/?yeniilan=1')
     else
       redirect_to('/ilanver')
