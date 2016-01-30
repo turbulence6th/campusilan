@@ -145,6 +145,19 @@ class AdvertController < ApplicationController
         .order("RANDOM()").take(3)
       end
     end
+    
+    
+    
+    if @advert.active == false
+      
+      render 'ilankapandi'
+      
+      
+    end
+    
+    
+    
+    
 
   end
 

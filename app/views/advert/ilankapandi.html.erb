@@ -253,11 +253,14 @@
 
 							</div>
 
-							<div class="col-md-6 single-top-in">
+							<div class="hidden-xs col-md-6 single-top-in">
 								<div class="single-para simpleCart_shelfItem">
 
 									<h1 style="word-break: break-all;" class="hidden-xs hidden-sm "><%= @advert.name %></h1>
 									<h1 class="visible-xs visible-sm " style="word-break: break-all;text-align:center" ><u><%= @advert.name %></u></h1>
+									
+									<br>
+									<div class = "alert alert-danger">Bu İlan Kapanmıştır!! </div>
 
 									<br class="visible-xs visible-sm ">
 									<br class="visible-xs visible-sm ">
@@ -307,7 +310,7 @@
 
 									</div>
 
-									<br>
+									
 
 									<div class="hidden-sm hidden-xs">
 										<% if current_user!= nil %>
@@ -397,10 +400,10 @@
 
 									</div>
 
-									<div class=" hidden-sm">
+									<div class="visible-lg visible-md ">
 										<div class="star-on">
 
-											<div class = "row panel panel-info">
+											<div class = " panel panel-info">
 												<div class = "panel-heading">
 													<h4 style="text-align:center;">İlan ve Üye Bilgileri</h4>
 												</div>
@@ -436,9 +439,293 @@
 										</div>
 
 									</div>
+									
+									
+									<div class="visible-xs ">
+										<div class="star-on">
+
+											<div class = " panel panel-info">
+												<div class = "panel-heading">
+													<h4 style="text-align:center;">İlan ve Üye Bilgileri</h4>
+												</div>
+
+												<div class = "panel-body">
+
+													<% if current_user!= nil %>
+
+													<h4>Kullanıcı Güven Oyu</h4>
+													<br>
+
+													<input value="<%= @vote %>" type="number" class="rating input-21c" min=0 max=5 step=1 data-size="xs">
+
+													<% end %>
+
+													<div class="clearfix"></div>
+
+													<br>
+
+													<% if @advert.advertable_type == 'Secondhand' %>
+													<%= render "ilanikinciel" %>
+													<% elsif @advert.advertable_type == 'Homemate' %>
+													<%= render "ilanevarkadasi" %>
+													<% elsif @advert.advertable_type == 'Privatelesson' %>
+													<%= render "ilanozelders" %>
+													<% end %>
+
+													<h4  class="add-to item_price">İlan sahibinin telefonu: <span style="color:#4DACC9;" ><%= @advert_user.phone %></span></h4>
+													<br>
+													<h4> İlan sahibinin profili için <a href="/uye/<%= @advert_user.username %>">buraya</a> tıklayınız. </h4>
+												</div>
+											</div>
+										</div>
+
+									</div>
+									
+									
 
 								</div>
 							</div>
+							
+							
+							
+							
+							
+							
+							<div class="visible-xs row col-xs-12 single-top-in"> 
+								<div class="single-para simpleCart_shelfItem">
+
+									<h1 style="word-break: break-all;" class="hidden-xs hidden-sm "><%= @advert.name %></h1>
+									<h1 class="visible-xs visible-sm " style="word-break: break-all;text-align:center" ><u><%= @advert.name %></u></h1>
+									
+									<br>
+									<div class = "alert alert-danger">Bu İlan Kapanmıştır!! </div>
+
+									<br class="visible-xs visible-sm ">
+									<br class="visible-xs visible-sm ">
+
+									<div class="visible-xs visible-sm col-md-6">
+
+										<% if @images == [] %>
+										<div>
+											<a> <%= image_tag Image.new.imagefile, :class =>"img-responsive img-rounded",  width:"100%", height:"100%" %> </a>
+										</div>
+										<% else %>
+
+										<div class="row">
+
+											<% @images[0..1].each do |image|%>
+
+											<a rel="gallery-1" class="swipebox col-xs-6 col-sm-6" href="<%= image_path image.imagefile(:original) %>" data-standard="<%= image_path image.imagefile(:original) %>"> <img width="100%" height="100%" src="<%= image_path image.imagefile(:original) %>" alt="" class="img-rounded" /> </a>
+
+											<% end %>
+
+										</div>
+
+										<% if @images.count>2  %>
+
+										<div style="margin-top:20px; " class="row">
+											<% @images[2..3].each do |image|%>
+											<a rel="gallery-1" class="swipebox col-xs-6 col-sm-6" href="<%= image_path image.imagefile(:original) %>" data-standard="<%= image_path image.imagefile(:original) %>"> <img width="100%" height="100%" src="<%= image_path image.imagefile(:original)  %>" alt="" class="img-rounded" /> </a>
+											<% end%>
+										</div>
+
+										<% end %>
+
+										<% if @images.count>4 %>
+
+										<div style="margin-top:20px; " class="row">
+											<% @images[4..5].each do |image|%>
+											<a rel="gallery-1" class="swipebox col-xs-6 col-sm-6" href="<%= image_path image.imagefile(:original) %>" data-standard="<%= image_path image.imagefile(:original) %>"> <img width="100%" height="100%" src="<%= image_path image.imagefile(:original)  %>" alt="" class="img-rounded" /> </a>
+											<% end%>
+										</div>
+
+										<% end %>
+
+										<% end %>
+
+										<br>
+										<br>
+
+									</div>
+
+									
+
+									<div class="hidden-sm hidden-xs">
+										<% if current_user!= nil %>
+										<% fav = FavouriteAdvert.find_by(:advert => @advert, :user => current_user) %>
+
+										<button <% if fav %> style="display:none;" <% end %>  class="favorilereekle btn btn-danger">
+											Favorilere Ekle
+										</button>
+
+										<button <% if !fav  %> style="display:none;" <% end %> class="favorilerdenkaldir btn btn-danger">
+											Favorilerden Kaldır
+										</button>
+
+										<% end %>
+
+										<% if @advert.user == current_user || current_user!= nil && current_user.role == 'admin' %>
+
+										<button onclick="window.location = '<%= @advert.href_guncelle %>' " class="btn  btn-danger">
+											İlanı Düzenle
+										</button>
+
+										<% end %>
+
+									</div>
+
+									<div style="text-align:center;" class="visible-sm visible-xs">
+										<% if current_user!= nil %>
+										<% fav = FavouriteAdvert.find_by(:advert => @advert, :user => current_user) %>
+
+										<button <% if fav %> style="display:none;" <% end %>  class="favorilereekle btn btn-danger">
+											Favorilere Ekle
+										</button>
+
+										<button <% if !fav  %> style="display:none;" <% end %> class="favorilerdenkaldir btn btn-danger">
+											Favorilerden Kaldır
+										</button>
+
+										<% end %>
+
+										<% if @advert.user == current_user || current_user!= nil && current_user.role == 'admin' %>
+
+										<button onclick="window.location = '<%= @advert.href_guncelle %>' " class="btn  btn-danger">
+											İlanı Düzenle
+										</button>
+
+										<% end %>
+
+									</div>
+
+									<div class="row visible-sm">
+										<div class="star-on  ">
+
+											<div class = "panel panel-info" id="vote_panel">
+												<div class = "panel-heading">
+													<h4 style="text-align:center;">İlan ve Üye Bilgileri</h4>
+												</div>
+
+												<div class = "panel-body">
+
+													<% if current_user!= nil %>
+
+													<h4>Kullanıcı Güven Oyu</h4>
+													<br>
+
+													<input value="<%= @vote %>" type="number" class="rating input-21b" min=0 max=5 step=1 data-size="xs">
+
+													<% end %>
+
+													<div class="clearfix"></div>
+
+													<br>
+
+													<% if @advert.advertable_type == 'Secondhand' %>
+													<%= render "ilanikinciel" %>
+													<% elsif @advert.advertable_type == 'Homemate' %>
+													<%= render "ilanevarkadasi" %>
+													<% elsif @advert.advertable_type == 'Privatelesson' %>
+													<%= render "ilanozelders" %>
+													<% end %>
+
+													<h4  class="add-to item_price">İlan sahibinin telefonu: <span style="color:#4DACC9;" ><%= @advert_user.phone %></span></h4>
+													<br>
+													<h4> İlan sahibinin profili için <a href="/uye/<%= @advert_user.username %>">buraya</a> tıklayınız. </h4>
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+									<div class="visible-lg visible-md ">
+										<div class="star-on">
+
+											<div class = " panel panel-info">
+												<div class = "panel-heading">
+													<h4 style="text-align:center;">İlan ve Üye Bilgileri</h4>
+												</div>
+
+												<div class = "panel-body">
+
+													<% if current_user!= nil %>
+
+													<h4>Kullanıcı Güven Oyu</h4>
+													<br>
+
+													<input value="<%= @vote %>" type="number" class="rating input-21c" min=0 max=5 step=1 data-size="xs">
+
+													<% end %>
+
+													<div class="clearfix"></div>
+
+													<br>
+
+													<% if @advert.advertable_type == 'Secondhand' %>
+													<%= render "ilanikinciel" %>
+													<% elsif @advert.advertable_type == 'Homemate' %>
+													<%= render "ilanevarkadasi" %>
+													<% elsif @advert.advertable_type == 'Privatelesson' %>
+													<%= render "ilanozelders" %>
+													<% end %>
+
+													<h4  class="add-to item_price">İlan sahibinin telefonu: <span style="color:#4DACC9;" ><%= @advert_user.phone %></span></h4>
+													<br>
+													<h4> İlan sahibinin profili için <a href="/uye/<%= @advert_user.username %>">buraya</a> tıklayınız. </h4>
+												</div>
+											</div>
+										</div>
+
+									</div>
+									
+									
+									<div class="visible-xs ">
+										<div class="star-on">
+
+											<div class = " panel panel-info">
+												<div class = "panel-heading">
+													<h4 style="text-align:center;">İlan ve Üye Bilgileri</h4>
+												</div>
+
+												<div class = "panel-body">
+
+													<% if current_user!= nil %>
+
+													<h4>Kullanıcı Güven Oyu</h4>
+													<br>
+
+													<input value="<%= @vote %>" type="number" class="rating input-21c" min=0 max=5 step=1 data-size="xs">
+
+													<% end %>
+
+													<div class="clearfix"></div>
+
+													<br>
+
+													<% if @advert.advertable_type == 'Secondhand' %>
+													<%= render "ilanikinciel" %>
+													<% elsif @advert.advertable_type == 'Homemate' %>
+													<%= render "ilanevarkadasi" %>
+													<% elsif @advert.advertable_type == 'Privatelesson' %>
+													<%= render "ilanozelders" %>
+													<% end %>
+
+													<h4  class="add-to item_price">İlan sahibinin telefonu: <span style="color:#4DACC9;" ><%= @advert_user.phone %></span></h4>
+													<br>
+													<h4> İlan sahibinin profili için <a href="/uye/<%= @advert_user.username %>">buraya</a> tıklayınız. </h4>
+												</div>
+											</div>
+										</div>
+
+									</div>
+									
+									
+
+								</div>
+							</div>
+							
+							
+							
 							<div class="clearfix"></div>
 							<br>
 

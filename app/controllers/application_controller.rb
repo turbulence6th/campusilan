@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   def check_admin_mode
     if ENV['ADMIN_MODE'] && (request.remote_ip != "144.122.120.18" &&
        request.remote_ip != "144.122.75.31" && request.remote_ip != "144.122.120.164" &&
-       request.remote_ip != "185.40.73.252")
+       request.remote_ip != "185.40.73.252" && request.remote_ip != "78.177.158.196" && request.remote_ip != "144.122.150.67" )
       redirect_to '/portfolio'
     end
   end
