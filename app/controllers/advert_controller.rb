@@ -495,7 +495,7 @@ class AdvertController < ApplicationController
       @adverts = acililanlar
     end
 
-    @adverts = @adverts.paginate(:page => params[:page], :per_page => 18)
+    @adverts = @adverts.paginate(:page => params[:page], :per_page => 24)
 
     @bizimsectiklerimiz = Rails.cache.fetch("index_bizimsectiklerimiz", :expires_in => 5.minutes) do
       bizimsectiklerimiz.take(10)

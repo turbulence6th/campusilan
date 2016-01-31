@@ -151,7 +151,7 @@ University.create(:name => 'ONDOKUZ MAYIS ÜNİVERSİTESİ', :email => 'omu.edu.
 University.create(:name => 'ORDU ÜNİVERSİTESİ', :email => 'odu.edu.tr')
 University.create(:name => 'OSMANİYE KORKUT ATA ÜNİVERSİTESİ', :email => 'osmaniye.edu.tr')
 University.create(:name => 'ÖZYEĞİN ÜNİVERSİTESİ', :email => 'ozyegin.edu.tr')
-University.create(:name => 'PAMUKKALE ÜNİVERSİTESİ', :email => 'pau.edu.tr')
+University.create(:name => 'PAMUKKALE ÜNİVERSİTESİ', :email => 'posta.pau.edu.tr')
 University.create(:name => 'PİRİ REİS ÜNİVERSİTESİ', :email => 'pirireis.edu.tr')
 University.create(:name => 'PLATO MESLEK YÜKSEKOKULU', :email => 'plato.edu.tr')
 University.create(:name => 'RECEP TAYYİP ERDOĞAN ÜNİVERSİTESİ', :email => 'erdogan.edu.tr')
