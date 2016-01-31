@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109154837) do
+ActiveRecord::Schema.define(version: 20160130234327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,9 +79,11 @@ ActiveRecord::Schema.define(version: 20160109154837) do
     t.string   "imagefile_content_type"
     t.integer  "imagefile_file_size"
     t.datetime "imagefile_updated_at"
+    t.integer  "user_id"
   end
 
   add_index "images", ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id", using: :btree
+  add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
     t.integer  "from_id"
@@ -147,6 +149,8 @@ ActiveRecord::Schema.define(version: 20160109154837) do
     t.integer "advert_id"
     t.string  "ip"
   end
+
+  add_index "viewed_advert_counts", ["advert_id"], name: "index_viewed_advert_counts_on_advert_id", using: :btree
 
   create_table "viewed_adverts", force: :cascade do |t|
     t.integer  "user_id"

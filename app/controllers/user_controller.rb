@@ -68,6 +68,7 @@ class UserController < ApplicationController
     @user = User.find_by(:username => params[:user])
     if @user && @user.confirm_token==params[:token]
       @user.update_attributes(:verified => true, :confirm_token => nil)
+      reset_session
       session[:user_id] = @user.id
     end
     redirect_to '/'

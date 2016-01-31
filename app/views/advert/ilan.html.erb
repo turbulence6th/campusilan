@@ -194,7 +194,7 @@
 								</div>
 								<% else %>
 								<div class="row easyzoom easyzoom--overlay easyzoom--with-thumbnails">
-									<a href="<%= image_path @images[0].imagefile(:original) %>"> <%= image_tag @images[0].imagefile(:original), :class =>"img-responsive", :style => "width:400px;height:400px;"%> </a>
+									<a href="<%= image_path @advert.pimage.imagefile(:original) %>"> <%= image_tag @advert.pimage.imagefile(:original), :class =>"img-responsive", :style => "width:400px;height:400px;"%> </a>
 								</div>
 								<% end %>
 
