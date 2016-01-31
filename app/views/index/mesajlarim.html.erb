@@ -268,7 +268,8 @@
 												<td><%= mesaj.from.surname %></td>
 												<td style="word-break: break-all;"><%= mesaj.topic %></td>
 												<td><%= mesaj.from.username %></td>
-												<td><%= mesaj.created_at %></td>
+												<td><% tarih = mesaj.created_at %>
+												<%= tarih.day %> <%= months[tarih.month] %> <%= tarih.year %></td>
 												<td style="display:none;"><%= mesaj.id %></td>
 												
 												<td>
@@ -355,7 +356,8 @@ $(".<%= mesaj.id %>").click(function() {
 												<td><%= mesaj.to.surname %></td>
 												<td style="word-break: break-all;"><%= mesaj.topic %></td>
 												<td><%= mesaj.to.username %></td>
-												<td><%= mesaj.created_at %></td>
+												<td><% tarih = mesaj.created_at %>
+												<%= tarih.day %> <%= months[tarih.month] %> <%= tarih.year %></td>
 												<td style="display:none;"><%= mesaj.id %></td>
 												
 												<td>
