@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get 'girisyap' => 'user#login'
   get 'aktivasyon' => 'user#aktivasyon'
   post 'aktivasyon' => 'user#aktivasyonpost'
+  get 'sifredegistir' => 'user#sifredegistir'
   get 'sifremiunuttum' => 'user#sifremiunuttum'
   get 'risksizalisveris' => 'index#risksizalisveris'
   get 'duyurular' => 'index#duyurular'

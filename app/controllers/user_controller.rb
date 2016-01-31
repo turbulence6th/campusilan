@@ -205,6 +205,12 @@ class UserController < ApplicationController
     end
   end
   
+  def sifredegistir
+    
+    
+    
+  end
+  
   
   def aktivasyonpost
     
