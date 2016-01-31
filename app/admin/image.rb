@@ -1,7 +1,7 @@
 ActiveAdmin.register Image do
 
   permit_params :imageable_type, :imageable_id, :imagefile_file_name, :imagefile_content_type, 
-    :imagefile_file_size, :imagefile_updated_at
+    :imagefile_file_size, :imagefile_updated_at, :user
     
   index do
     id_column
@@ -19,13 +19,8 @@ ActiveAdmin.register Image do
    
    form do |f|
     inputs "Image" do
-
-      input :imageable_type
-      input :imageable_id
-      input :imagefile_file_name
-      input :imagefile_content_type
-      input :imagefile_file_size
-      input :imagefile_updated_at
+      
+      input :user, :as => :select, :collection => User.select(:id, :username)
 
     end   
 
