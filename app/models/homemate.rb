@@ -79,9 +79,9 @@ class Homemate < ActiveRecord::Base
 
       return "Hayır"
 
-    elsif self.smoke == 'degisken3'
+    elsif self.smoke == 'arada3'
 
-      return "Değişken"
+      return "Arada"
 
     end
 
@@ -97,9 +97,9 @@ class Homemate < ActiveRecord::Base
 
       return "Hayır"
 
-    elsif self.music == 'degisken4'
+    elsif self.music == 'arada4'
 
-      return "Değişken"
+      return "Arada"
 
     end
 
