@@ -204,7 +204,7 @@ class UserController < ApplicationController
       redirect_to "/"
     end
   end
- 
+
   def aktivasyonpost
     
     captcha = params["g-recaptcha-response"]
@@ -234,6 +234,21 @@ class UserController < ApplicationController
   end
   
   def sifremiunuttumPost
+    captcha = params["g-recaptcha-response"]
+    postParams = {
+      :secret => "6Ld3uhYTAAAAADMhUY5DpJr2e333FOvp-ZWv45Ki",
+      :response => captcha,
+      :remoteip => request.remote_ip
+    }
+    
+    x = Net::HTTP.post_form(
+      URI.parse('https://www.google.com/recaptcha/api/siteverify'), postParams)
+      
+    if !JSON.parse(x.body)["success"]
+      redirect_to('/sifremiunuttum?captcha=1')
+      return
+    end
+    
     user = User.valid.find_by(:email => params[:eposta].downcase)
     if user
       user.confirm_token = SecureRandom.urlsafe_base64.to_s
@@ -243,6 +258,32 @@ class UserController < ApplicationController
     elsif
       redirect_to('/sifremiunuttum?gecersiz=1')
     end 
+  end
+  
+  def sifredegistir
+    user = User.valid.find_by(:username => params[:user])
+    if user && user.confirm_token == params[:token]
+      
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end
+  
+  def sifredegistirPost
+    user = User.valid.find_by(:username => params[:user])
+    if user && user.confirm_token == params[:token]
+      user.password = params[:password]
+      user.password_confirmation = params[:password2]
+      if user.valid?
+        user.confirm_token = nil
+        user.save
+        redirect_to('/?sifredegisti=1')
+      else
+        redirect_to("/sifredegistir?user=#{params[:user]}&token=#{params[:token]}")
+      end
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 
   def logout

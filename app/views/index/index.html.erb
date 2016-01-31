@@ -2689,6 +2689,42 @@
 			$modaljquery('.unuttumgeldi').modal('show');
 
 		</script>
+		<% elsif params[:sifredegisti] %>
+
+		<div class = "sifredegisti modal fade" id = "myModal" tabindex = "-1" role = "dialog"
+		aria-labelledby = "myModalLabel" aria-hidden = "true">
+
+			<div class = "modal-dialog">
+				<div class = "modal-content">
+
+					<div class = "modal-header">
+						<button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+							&times;
+						</button>
+
+						<h4 class = "modal-title" id = "myModalLabel"> Başarılı </h4>
+					</div>
+
+					<div class = "modal-body">
+						Hesabınızın Şifresini Başarıyla Değiştirdiniz.
+					</div>
+
+					<div class = "modal-footer">
+						<button type = "button" class = "btn btn-primary" data-dismiss = "modal">
+							Kapat
+						</button>
+
+					</div>
+
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+
+		</div>
+
+		<script>
+			$modaljquery('.sifredegisti').modal('show');
+
+		</script>
 		<% end %>
 
 		<!-- plugin script importları: -->
