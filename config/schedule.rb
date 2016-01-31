@@ -1,3 +1,3 @@
-every 5.minutes do
+every 6.hours do
   rake 'delete_empty_images'
 end
