@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   post 'mesajgonder' => 'index#mesajPost', defaults: {format: :json}
   post 'mesajsil' => 'index#mesajSil', defaults: {format: :json}
   get 'girisyap' => 'user#login'
+  get 'sifremiunuttum' => 'user#sifremiunuttum'
   get 'risksizalisveris' => 'index#risksizalisveris'
   get 'duyurular' => 'index#duyurular'
   get 'hizmetlerimiz' => 'index#hizmetlerimiz'
