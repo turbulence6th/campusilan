@@ -99,6 +99,7 @@
 			}
 
 		</style>
+		<script src='https://www.google.com/recaptcha/api.js'></script>
 
 	</head>
 
@@ -161,6 +162,8 @@
 									<input class="form-control" type="text" id="" name="eposta" placeholder="E-posta adresinizi giriniz.">
 								</div>
 								<br />
+								<div class="g-recaptcha" data-sitekey="6Ld3uhYTAAAAAICn8yQ17ES81jCf7J4Dpz0yUgkf"></div>
+								<br>
 								<input type="submit" value="Gönder" class="btn btn-large btn-primary" />
 							
 								<% end %>
@@ -202,6 +205,36 @@
 
 					<div class = "modal-body">
 						Girdiğiniz e-posta adresi geçersiz yada sistemimizde kayıtlı değil.Lütfen geçerli bir e-posta adresi giriniz!!
+					</div>
+
+					<div class = "modal-footer">
+						<button type = "button" class = "btn btn-primary" data-dismiss = "modal">
+							Kapat
+						</button>
+
+					</div>
+
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+
+		</div>
+		<% elsif params[:captcha] %>
+		
+		<div class = "hata modal fade" id = "myModal" tabindex = "-1" role = "dialog" aria-labelledby = "myModalLabel" aria-hidden = "true">
+
+			<div class = "modal-dialog">
+				<div class = "modal-content">
+
+					<div class = "modal-header">
+						<button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+							&times;
+						</button>
+
+						<h4 class = "modal-title" id = "myModalLabel"> Hata!! </h4>
+					</div>
+
+					<div class = "modal-body">
+						Captcha'yı Onaylamayı Unutmayınız
 					</div>
 
 					<div class = "modal-footer">
