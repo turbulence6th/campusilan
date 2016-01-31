@@ -5893,6 +5893,7 @@ button.list-group-item-danger.active:focus {
   text-shadow: 0 1px 0 #fff;
   filter: alpha(opacity=20);
   opacity: .2;
+  
 }
 .close:hover,
 .close:focus {
@@ -5911,6 +5912,10 @@ button.close {
 }
 .modal-open {
   overflow: hidden;
+ 
+
+
+  
 }
 .modal {
   position: fixed;
@@ -5923,6 +5928,7 @@ button.close {
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
   outline: 0;
+  
 }
 .modal.fade .modal-dialog {
   -webkit-transition: -webkit-transform .3s ease-out;
@@ -5932,6 +5938,7 @@ button.close {
       -ms-transform: translate(0, -25%);
        -o-transform: translate(0, -25%);
           transform: translate(0, -25%);
+          
 }
 .modal.in .modal-dialog {
   -webkit-transform: translate(0, 0);
@@ -5942,6 +5949,7 @@ button.close {
 .modal-open .modal {
   overflow-x: hidden;
   overflow-y: auto;
+  margin-right: 0 !important;
 }
 .modal-dialog {
   position: relative;
@@ -5968,6 +5976,7 @@ button.close {
   left: 0;
   z-index: 1040;
   background-color: #000;
+  
 }
 .modal-backdrop.fade {
   filter: alpha(opacity=0);
