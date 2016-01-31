@@ -102,6 +102,7 @@ class AdvertController < ApplicationController
 
     if @advert.href != request.path
       redirect_to @advert.href
+      return
     end
 
     if current_user
