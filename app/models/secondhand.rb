@@ -11,9 +11,9 @@ class Secondhand < ActiveRecord::Base
   has_one :advert, :as => :advertable
 
   enum :category => [ :beyazesya, :evdekorasyonu, :muzikaletleri, :elektronik, :kirtasiye,
-     :mutfakesyalari, :vasita, :giyim, :kitapdersnotu, :incikboncuk, :diger ]
+     :mutfakesyalari, :vasita, :giyim, :kitapdersnotu, :takimucevher, :diger ]
 
-  enum :color => [ :siyah, :beyaz, :kirmizi, :mavi, :sari, :yesil ]
+  enum :color => [ :siyah, :beyaz, :kirmizi, :mavi, :sari, :yesil, :diger2, :turuncu, :pembe, :mor, :altin ]
   
   
   def renkler
@@ -35,6 +35,25 @@ class Secondhand < ActiveRecord::Base
 
     elsif self.color=='yesil'
       return 'Yeşil'
+      
+       elsif self.color=='turuncu'
+      return 'Turuncu'
+      
+      elsif self.color=='pembe'
+      return 'Pembe'
+      
+      elsif self.color=='mor'
+      return 'Mor'
+      
+       elsif self.color=='altin'
+      return 'Altın'
+      
+      elsif self.color=='diger'
+      return 'Diğer'
+      
+      
+      
+      
 
     end
 
