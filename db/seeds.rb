@@ -1,3 +1,4 @@
+
 University.create( :name => 'ORTA DOĞU TEKNİK ÜNİVERSİTESİ', :email => 'metu.edu.tr' )
 University.create(:name => 'ABANT İZZET BAYSAL ÜNİVERSİTESİ', :email => 'ibu.edu.tr')
 University.create(:name => 'ABDULLAH GÜL ÜNİVERSİTESİ', :email => 'agu.edu.tr')
@@ -209,3 +210,13 @@ onur = User.new( :username => "svmszcck", :password => "1234Onur1234", :password
   :verified => true, :birthday => Time.new(1991, 8, 14 ), :role => :admin, :deleted => false )
 onur.university = University.find_by_email('metu.edu.tr')
 onur.save 
+
+images = Image.all
+
+images.each do |img|
+  if img.user == nil
+    img.user = img.imageable.user
+    img.save
+  end
+end
+
