@@ -204,26 +204,45 @@ class UserController < ApplicationController
       redirect_to "/"
     end
   end
-  
-  
+ 
   def aktivasyonpost
     
-    @user = User.find_by(:email => params[:eposta].downcase)
+    captcha = params["g-recaptcha-response"]
+    postParams = {
+      :secret => "6Ld3uhYTAAAAADMhUY5DpJr2e333FOvp-ZWv45Ki",
+      :response => captcha,
+      :remoteip => request.remote_ip
+    }
     
-    @user.confirm_token = SecureRandom.urlsafe_base64.to_s
+    x = Net::HTTP.post_form(
+      URI.parse('https://www.google.com/recaptcha/api/siteverify'), postParams)
+      
+    if !JSON.parse(x.body)["success"]
+      redirect_to('/aktivasyon?captcha=1')
+      return
+    end
+    user = User.find_by(:email => params[:eposta].downcase)
     
-    
-    
-    
-    
-    
+    if user && !user.verified
+      user.confirm_token = SecureRandom.urlsafe_base64.to_s
+      UserMailer.verify(@user).deliver_now if Rails.env.production?
+      user.save
+      redirect_to('/?mailgeldi=1')
+    elsif
+      redirect_to('/aktivasyon?gecersiz=1')
+    end 
   end
   
-  def sifremiunuttum
-    
-    
-    
-    
+  def sifremiunuttumPost
+    user = User.valid.find_by(:email => params[:eposta].downcase)
+    if user
+      user.confirm_token = SecureRandom.urlsafe_base64.to_s
+      UserMailer.forgot_password(@user).deliver_now if Rails.env.production?
+      user.save
+      redirect_to('/?unuttumgeldi=1')
+    elsif
+      redirect_to('/sifremiunuttum?gecersiz=1')
+    end 
   end
 
   def logout

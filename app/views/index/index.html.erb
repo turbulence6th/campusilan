@@ -2616,6 +2616,79 @@
 			$modaljquery('.ilaneklendi').modal('show');
 
 		</script>
+		<% elsif params[:mailgeldi] %>
+
+		<div class = "mailgeldi modal fade" id = "myModal" tabindex = "-1" role = "dialog"
+		aria-labelledby = "myModalLabel" aria-hidden = "true">
+
+			<div class = "modal-dialog">
+				<div class = "modal-content">
+
+					<div class = "modal-header">
+						<button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+							&times;
+						</button>
+
+						<h4 class = "modal-title" id = "myModalLabel"> Başarılı </h4>
+					</div>
+
+					<div class = "modal-body">
+						Hesabınıza Aktivasyon Mailini Tekrar Gönderdik.<br>
+						Lütfen Posta Kutunuzu Kontrol Ediniz.
+					</div>
+
+					<div class = "modal-footer">
+						<button type = "button" class = "btn btn-primary" data-dismiss = "modal">
+							Kapat
+						</button>
+
+					</div>
+
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+
+		</div>
+
+		<script>
+			$modaljquery('.mailgeldi').modal('show');
+
+		</script>
+		<% elsif params[:unuttumgeldi] %>
+
+		<div class = "unuttumgeldi modal fade" id = "myModal" tabindex = "-1" role = "dialog"
+		aria-labelledby = "myModalLabel" aria-hidden = "true">
+
+			<div class = "modal-dialog">
+				<div class = "modal-content">
+
+					<div class = "modal-header">
+						<button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+							&times;
+						</button>
+
+						<h4 class = "modal-title" id = "myModalLabel"> Başarılı </h4>
+					</div>
+
+					<div class = "modal-body">
+						Şifre Yenileme Epostanız Başarılıyla Eposta Adresinize Ulaşmıştır.
+					</div>
+
+					<div class = "modal-footer">
+						<button type = "button" class = "btn btn-primary" data-dismiss = "modal">
+							Kapat
+						</button>
+
+					</div>
+
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+
+		</div>
+
+		<script>
+			$modaljquery('.unuttumgeldi').modal('show');
+
+		</script>
 		<% end %>
 
 		<!-- plugin script importları: -->

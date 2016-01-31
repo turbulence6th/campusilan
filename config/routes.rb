@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get 'aktivasyon' => 'user#aktivasyon'
   post 'aktivasyon' => 'user#aktivasyonpost'
   get 'sifremiunuttum' => 'user#sifremiunuttum'
+  post 'sifremiunuttum' => 'user#sifremiunuttumPost'
   get 'risksizalisveris' => 'index#risksizalisveris'
   get 'duyurular' => 'index#duyurular'
   get 'hizmetlerimiz' => 'index#hizmetlerimiz'
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
   get 'logout' => 'user#logout'
   post 'updateUser' => 'user#updateUser'
   get 'verify' => 'user#verify'
+  get 'forgot' => 'user#sifremiunuttumPost'
 
   get 'ikinciel/:advert_name' => 'advert#ilan'
   post 'favorilereekle' => 'advert#favorilereekle', defaults: {format: :json}
