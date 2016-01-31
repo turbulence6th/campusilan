@@ -178,7 +178,7 @@ class UserController < ApplicationController
       end
 
       @image = Image.new(:imagefile => params[:profilephoto])
-
+      @image.user = current_user
       current_user.image = @image
 
       redirect_to URI(request.referer).path
