@@ -35,6 +35,27 @@
     
 }
 
+
+@media screen and (max-width: 992px) {
+   
+   #loginButton span {
+    color:#445058; 
+    font-size:14px; 
+    font-weight:bold; 
+    text-shadow:1px 1px #fff; 
+    padding:7px 29px 9px 10px;
+    background:url(../images/loginArrow.png) no-repeat 130px 7px;
+    display:block;
+    
+}
+   
+   
+   
+}
+
+
+
+
 #loginButton:hover {
     
 }
