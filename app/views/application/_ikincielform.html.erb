@@ -6,7 +6,6 @@
 
 <%= form_for local[:advert], :url => local[:url] , :method => :post , :html => {
 :class => 'form-basic ikinciel' , :id => 'ikincielform',
-:multipart => true,
 :onsubmit => 'return ikincielsubmit();'
 } do |t| %>
 
@@ -101,9 +100,9 @@
 </div>
 
 <br>
-
+<input type='hidden' name='resimler' id='resimlerikinciel' />
 <div class="row">
-	<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image' %>
+	<%= file_field_tag 'image', :type => :file, :class => 'file_image', :id => 'imagesikinciel' %>
 </div>
 
 
@@ -153,7 +152,7 @@
 	<br>
 	<a  style="cursor: pointer;"   onclick="resimuste(<%= @advert.id %>,<%= image.id %>);" ><span title="Resmi birinci olarak seç" style="font-size:20px;"class="masterTooltip glyphicon glyphicon-triangle-top"></span></a>
 	&nbsp;
-	<a  style="cursor: pointer;" onclick="resimsil(<%= @advert.id %>,<%= image.id %>);" ><span title="Resmi sil" style="font-size:20px;"class="masterTooltip glyphicon glyphicon-trash"></span></a>
+	<a  style="cursor: pointer;" onclick="resimsil(<%= image.id %>);" ><span title="Resmi sil" style="font-size:20px;"class="masterTooltip glyphicon glyphicon-trash"></span></a>
 	<br>
 	<br>
 
@@ -175,7 +174,7 @@
 	<br class="visible-xs visible-sm">
 	<a  style="cursor: pointer;"   onclick="resimuste(<%= @advert.id %>,<%= image.id %>);" ><span title="Resmi birinci olarak seç" style="font-size:20px;"class="masterTooltip glyphicon glyphicon-triangle-top"></span></a>
 	&nbsp;
-	<a  style="cursor: pointer;" onclick="resimsil(<%= @advert.id %>,<%= image.id %>);" ><span title="Resmi sil" style="font-size:20px;"class="masterTooltip glyphicon glyphicon-trash"></span></a>
+	<a  style="cursor: pointer;" onclick="resimsil(<%= image.id %>);" ><span title="Resmi sil" style="font-size:20px;"class="masterTooltip glyphicon glyphicon-trash"></span></a>
 	<br>
 	<br>
 	

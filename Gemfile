@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'whenever', :require => false
+
 gem 'geocoder'
 
 gem 'activeadmin'

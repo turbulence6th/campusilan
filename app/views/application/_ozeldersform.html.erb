@@ -104,8 +104,9 @@
 </div>
 <br>
 
+<input type='hidden' name='resimler' id='resimlerozelders' />
 <div class="row">
-	<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image'%>
+	<%= file_field_tag 'image', :type => :file, :class => 'file_image', :id => 'imagesozelders' %>
 </div>
 
 <% if local[:mode] == 0 %>
