@@ -267,7 +267,26 @@
 								</div><!-- /cbp-hrsub -->
 							</li>
 
-							<a href="/kategoriler/evarkadasi">Ev Arkadaşı</a>
+							<li>
+								<a href="#">Ev Arkadaşı</a>
+								<div class="cbp-hrsub">
+									<div class="cbp-hrsub-inner">
+
+
+										<div>
+											<h4>Ev Arkadaşı</h4>
+											<ul>
+												<li>
+													<a href="/kategoriler/ozelders/genelegitimbilimleri">Ev Arkadaşı İlanları</a>
+												</li>
+
+											</ul>
+
+										</div>
+
+									</div><!-- /cbp-hrsub-inner -->
+								</div><!-- /cbp-hrsub -->
+							</li>
 
 							<li>
 								<a href="#">Özel Ders</a>
@@ -637,7 +656,7 @@
 
 									<li>
 
-										<div class='wrapper'>
+										<div class='wrapper wrapper2'>
 											<!-- image -->
 											<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %></a>
 											<!-- description div -->
@@ -648,6 +667,17 @@
 												</div>
 												<!-- end description content -->
 											</div>
+											
+											
+											<div class='descriptionSabit2'>
+													<!-- description content -->
+													<div class='description_content2'>
+														<%= advert.price %> &#x20BA;
+													</div>
+													<!-- end description content -->
+												</div>
+											
+											
 											<!-- end description div -->
 										</div>
 

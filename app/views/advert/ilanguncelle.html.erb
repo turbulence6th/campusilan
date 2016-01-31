@@ -420,6 +420,56 @@ imageupload('.file_image').filer({
     }
 });
 		</script>
+		
+		
+		
+		
+		<div class = "ilankapatildi modal fade" id = "myModal" tabindex = "-1" role = "dialog"
+		aria-labelledby = "myModalLabel" aria-hidden = "true">
+
+			<div class = "modal-dialog">
+				<div class = "modal-content">
+
+					<div class = "modal-header">
+						<button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+							&times;
+						</button>
+
+						<h4 class = "modal-title" id = "myModalLabel"> İlan Kaldırma </h4>
+					</div>
+
+					<div class = "modal-body">
+						İlanınızı kaldırmak istediğinizden emin misiniz?
+					</div>
+
+					<div class = "modal-footer">
+						
+						<button type = "button" class = "btn btn-primary" data-dismiss = "modal">
+							Hayır
+						</button>
+						
+						
+						<button type = "button" class = "btn btn-primary" onclick="ilankapat(<%= @advert.id %>);" data-dismiss = "modal">
+							Evet
+						</button>
+
+					
+
+
+					</div>
+					
+
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+
+		</div>
+
+		<script>
+			$modaljquery('.ilaneklendi').modal('show');
+
+		</script>
+		
+		
 
 		<!-- pluginler -->
 		

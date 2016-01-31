@@ -80,15 +80,16 @@
 		<!-- end of plugins  -->
 
 		<style>
-			body {
-				background-color: #F0F7F7;
-			}
-
+		
+		body {
+			background-color:#F0F7F7;
+			
+		}
 			@media screen and (min-width: 1200px) {
 				body {
 					padding-left: 50px;
-					padding-right: 50px;
-					padding-top: 30px;
+				padding-right: 50px;
+				padding-top:30px;
 				}
 			}
 
@@ -97,7 +98,6 @@
 					padding: 10px;
 				}
 			}
-
 		</style>
 
 	</head>
@@ -112,7 +112,9 @@
 
 		<div class="container-fluid">
 
-			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
+			<div class="row" style="position: relative;margin-bottom: 10px;">
+
+				
 
 				<div id="loginkismi "  class="visible-xs ">
 					<!-- Login Starts Here -->
@@ -138,46 +140,36 @@
 
 			</div>
 
-			<div style="padding:40px;" class="well row">
+			<div class="row">
 
-				<div >
-					<div class="row">
-						<div class="col-lg-6 col-md-6" >
-							<h2>Şifremi Unuttum</h2>
+				<div style="padding:30px;" class="well">
+					
+					<h2>Risksiz Alışveriş Sistemi </h2>
+					<br>
 
-							<p>
-								Eğer şifrenizi unuttuysanız doğru yerdesiniz.
-							</p>
-							<p>
-								Şifre hatırlatma e-postasını yollayabileceğimiz e-posta adresinizi aşağıya yazınız ve göndere basınız.
-							</p>
-
-							<br>
-
-							<form action="" method="post">
-								<div class="input-group">
-									<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-									<input class="form-control" type="text" id="" name="" placeholder="E-posta adresinizi giriniz.">
-								</div>
-								<br />
-								<input type="submit" value="Gönder" class="btn btn-large btn-primary" />
-							</form>
-						</div>
-
-						<div class="visible-lg  visible-md col-lg-5 col-md-5 col-md-offset-1 col-lg-offset-1">
-
-							<img class="img-responsive" width="40%;"  src="/resources/images/password.png" >
-
-						</div>
+					<p>-Campus İlan sizden asla ve asla kredi kartı bilgilerinizi istemez. Tamamen özgürce ilan açabilir ve hizmet alabilirsiniz.
+					
+					 Tek yapmanız gereken ilan açan kişinin kişisel bilgileri ile kendisine ulaşmak... Gerisi artık size kalmış.</p>
+					
+					<p> -Campus İlan elden ödeme sisteminin yanında kullanıcı bilgi gizliliğine önem verir ve gerektiğinde kullanıcının taleplerine yanıt verir.  </p>
+					
+					<p>-Eğer bir sorun yaşıyorsanız veya bizimle iletişim kurmak istiyorsanız <a href="/iletisim">buradan</a> bizimle iletişim kurabilirsiniz. </p>
+					
+					<br>
+					
+						<div style="text-align:center;" >
+					<img src="/resources/images/risksizalisveris.jpg"  width="500px;">
+					
 					</div>
+
 				</div>
 
 			</div>
-
+			
 			<div class="row">
 
-				<%= render "footer" %>
-
+			<%= render "footer" %>
+			
 			</div>
 
 		</div>

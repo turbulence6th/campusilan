@@ -204,6 +204,13 @@ class UserController < ApplicationController
       redirect_to "/"
     end
   end
+  
+  def sifremiunuttum
+    
+    
+    
+    
+  end
 
   def logout
     reset_session
