@@ -147,7 +147,7 @@ class UserController < ApplicationController
 
     elsif  current_user==nil || current_user.id != @other_user.id 
       
-      @lastadverts = @other_user.adverts.order('created_at DESC').limit(12)
+      @lastadverts = @other_user.adverts.where(:verified => true).order('created_at DESC').limit(12)
       render 'member2'
 
     else
@@ -155,7 +155,7 @@ class UserController < ApplicationController
       current_user.phone1 =  current_user.phone.split('-')[0]
       current_user.phone2 =  current_user.phone.split('-')[1]
 
-      @lastadverts = current_user.adverts.order('created_at DESC').limit(6)
+      @lastadverts = current_user.adverts.where(:verified => true).order('created_at DESC').limit(6)
 
       @favouriteadverts = Advert.available.select('adverts.*').from('adverts, users, favourite_adverts')
         .where('adverts.id=favourite_adverts.advert_id AND users.id=favourite_adverts.user_id AND users.id=?', current_user.id)
@@ -203,6 +203,20 @@ class UserController < ApplicationController
     if current_user!=nil
       redirect_to "/"
     end
+  end
+  
+  
+  def aktivasyonpost
+    
+    @user = User.find_by(:email => params[:eposta].downcase)
+    
+    @user.confirm_token = SecureRandom.urlsafe_base64.to_s
+    
+    
+    
+    
+    
+    
   end
   
   def sifremiunuttum

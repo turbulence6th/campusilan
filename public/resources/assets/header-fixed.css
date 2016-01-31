@@ -6,7 +6,8 @@
 	color: #ffffff;
 	box-sizing: border-box;
 	top:-100px;
-    border: 1px solid black;
+   border: 1px solid;
+   border-color: #D4D4D4;
     z-index: 30;
 
 	-webkit-transition:top 0.3s;
