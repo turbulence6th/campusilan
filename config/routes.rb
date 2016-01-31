@@ -58,6 +58,9 @@ Rails.application.routes.draw do
   post 'votedelete' => 'advert#votedelete', defaults: {format: :json}
   post 'iletisim' => 'index#iletisimPost'
   post 'closeadvert' => 'advert#close', defaults: {format: :json}
+  
+  post 'imageupload' => 'advert#imageupload', defaults: {format: :json}
+  post 'guncelleimageupload' => 'advert#guncelleimageupload', defaults: {format: :json}
 
   get "404" => "error#not_found"
   get "422" => "error#unacceptable"

@@ -3,45 +3,52 @@ class AdvertController < ApplicationController
   layout false
 
   helper_method :current_user
+  
+  def imageupload
+    if current_user && current_user.images.where(:imageable_id => nil).count < 20
+      imageId = Image.create(:imagefile => params[:image][0], :user => current_user).id
+      respond_to do |format|
+        msg = { :image => imageId }
+        format.json  { render :json => msg }
+      end
+    end
+  end
+  
+  def guncelleimageupload
+    advert = Advert.find_by(:id =>  params[:advert])
+    if current_user && (advert.user==current_user || current_user.role=='admin') && advert.images.count < 5
+      advert.images << Image.new(:imagefile => params[:image][0], :user => current_user)
+      respond_to do |format|
+        msg = { :check => true }
+        format.json  { render :json => msg }
+      end
+    end
+  end
 
   def vote
 
     if current_user
-
       advert = Advert.find_by(:id => params[:advert])
       point = params[:point]
-
       if Vote.where(:user => current_user, :advert => advert).present?
 
         vote = Vote.find_by(:user => current_user, :advert => advert)
         vote.point = point
-
       else
-
         vote = Vote.new(:user => current_user, :advert => advert, :point => point)
-
       end
-      
-      puts vote.user.id
-      puts vote.advert.id
-      puts vote.point
 
       if vote.save
-
         respond_to do |format|
           msg = { :check => true }
           format.json  { render :json => msg }
         end
-
       else
-
         respond_to do |format|
           msg = { :check => false }
           format.json  { render :json => msg }
         end
-
       end
-
     end
 
   end
@@ -160,7 +167,7 @@ class AdvertController < ApplicationController
 
     advert_name = params[:advert_name]
     id = advert_name.split('-')[-1]
-    @advert = Advert.available.find_by(:id => id, :verified => true)
+    @advert = Advert.available.find_by(:id => id)
 
     if !@advert
 
@@ -223,34 +230,19 @@ class AdvertController < ApplicationController
 
   def deleteimage
 
-    advert = Advert.find(params[:advert])
     image = Image.find(params[:image])
 
-    if !current_user || (advert.user!=current_user && current_user.role!='admin')
-
+    if !current_user || (image.user!=current_user && current_user.role!='admin')
       respond_to do |format|
         msg = {:check => false}
         format.json { render :json => msg}
-
       end
-    elsif advert.images.include? image
-
+    else
       image.destroy
-
       respond_to do |format|
         msg = {:check => true}
         format.json { render :json => msg}
-
       end
-
-    else
-
-      respond_to do |format|
-        msg = {:check => false}
-        format.json { render :json => msg}
-
-      end
-
     end
 
   end
@@ -315,17 +307,19 @@ class AdvertController < ApplicationController
     @advert.opportunity = false
     @advert.ours = false
 
-    if params[:images]
+    if params[:resimler]
 
-      images = params[:images].reverse
-
-      @image = Image.new(:imagefile => images.shift)
-      @advert.images << @image
-      @advert.image = @image
-
-      images.each do |image|
-        @image = Image.new(:imagefile => image)
-        @advert.images << @image
+      imageIds = params[:resimler].split(',')
+      
+      image = Image.find_by(:id => imageIds.shift)
+      @advert.images << image if image.user_id == current_user.id
+      @advert.image = image
+      
+      imageIds.each do |id|
+        image = Image.find_by(:id => id)
+        if image && !image.imageable
+          @advert.images << image if image.user_id == current_user.id
+        end
       end
 
     end

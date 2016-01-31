@@ -129,8 +129,9 @@
 
 <br/>
 
+<input type='hidden' name='resimler' id='resimlerevarkadasi' />
 <div class="row">
-	<%= file_field_tag 'images[]', :type => :file, :multiple => true, :class => 'file_image'%>
+	<%= file_field_tag 'image', :type => :file, :class => 'file_image', :id => 'imagesevarkadasi' %>
 </div>
 
 <% if local[:mode] == 0 %>
@@ -309,7 +310,7 @@ var state = form.elements['advert_<%= advertable %>_state'].value;
 	var aciklama = evarkadasiaciklamaVerify();
 
 <% if local[:mode] == 0 %>
-	var kullanim = $("#ikincielform #kullanim").is(":checked");
+	var kullanim = $("#evarkadasiform #kullanim").is(":checked");
 	return ilanadi && fiyat && semt && sehir && aciklama && kullanim && grecaptcha.getResponse(recaptcha2)!="";
 <% elsif local[:mode] == 1 %>
 	return ilanadi && fiyat && semt && sehir && aciklama;

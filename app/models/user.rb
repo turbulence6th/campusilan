@@ -71,6 +71,8 @@ class User < ActiveRecord::Base
   
   has_many :votes, :dependent => :destroy
   
+  has_many :images
+  
   def href
     "uye/" + self.username
   end
