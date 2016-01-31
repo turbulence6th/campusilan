@@ -366,5 +366,16 @@ class IndexController < ApplicationController
     redirect_to "/"
     
   end
+  
+  
+  def risksizalisveris
+    
+    
+    
+    
+    
+  end
+  
+  
 
 end

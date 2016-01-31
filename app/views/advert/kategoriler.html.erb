@@ -259,12 +259,11 @@
 								<div class="cbp-hrsub">
 									<div class="cbp-hrsub-inner">
 
-
 										<div>
 											<h4>Ev Arkadaşı</h4>
 											<ul>
 												<li>
-													<a href="/kategoriler/ozelders/genelegitimbilimleri">Ev Arkadaşı İlanları</a>
+													<a href="/kategoriler/evarkadasi">Ev Arkadaşı İlanları</a>
 												</li>
 
 											</ul>
@@ -274,7 +273,6 @@
 									</div><!-- /cbp-hrsub-inner -->
 								</div><!-- /cbp-hrsub -->
 							</li>
-							
 
 							<li>
 								<a href="#">Özel Ders</a>
@@ -393,7 +391,7 @@
 
 													<div class='descriptionSabit2'>
 														<!-- description content -->
-														<div class='description_conten2'>
+														<div class='description_content2'>
 															<%= advert.price %> &#x20BA;
 														</div>
 														<!-- end description content -->
@@ -1061,7 +1059,19 @@
 
 								<div style="" class="thumbnail">
 
-									<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
+									<div class="wrapper 2">
+
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %></a>
+
+										<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+
+									</div>
 
 								</div>
 

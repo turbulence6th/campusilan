@@ -444,7 +444,7 @@ class AdvertController < ApplicationController
     end
 
     @adverts = Rails.cache.fetch("#{request.path}/#{params[:page]}", :expires_in => 5.minutes) do
-      @adverts.order("created_at DESC").paginate(:page => params[:page], :per_page => 18).take(18)
+      @adverts.order("created_at DESC").paginate(:page => params[:page], :per_page => 24).take(24)
     end
 
     @gununilanlari = Rails.cache.fetch("index_gununilanlari", :expires_in => 5.minutes) do

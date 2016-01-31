@@ -17,11 +17,10 @@
 			</fieldset>
 			<%= submit_tag "Giriş Yap", :id => 'login' %>
 			<input type="button" id="login" onclick="yonlendir()" value="Kayıt Ol" />
-			<label for="checkbox">
-				<%= check_box_tag :remember, 1, false, :id => 'checkbox' %>
+			<label for="checkbox"> <%= check_box_tag :remember, 1, false, :id => 'checkbox' %>
 				Beni hatırla </label>
 		</fieldset>
-		<span><a href="#">Şifreni mi unuttun?</a></span>
+		<span><a href="/sifremiunuttum">Şifreni mi unuttun?</a></span>
 		<% end %>
 
 		<script>
@@ -35,7 +34,6 @@
 
 	</div>
 </div>
-
 
 <div class="visible-xs " id="loginContainer2">
 	<a href="#" id="loginButton"><span>Giriş Yap &amp; Kaydol</span><em></em></a>
@@ -54,11 +52,10 @@
 			</fieldset>
 			<%= submit_tag "Giriş Yap", :id => 'login' %>
 			<input type="button" id="login" onclick="yonlendir()" value="Kayıt Ol" />
-			<label for="checkbox">
-				<%= check_box_tag :remember, 1, false, :id => 'checkbox' %>
+			<label for="checkbox"> <%= check_box_tag :remember, 1, false, :id => 'checkbox' %>
 				Beni hatırla </label>
 		</fieldset>
-		<span><a href="#">Şifreni mi unuttun?</a></span>
+		<span><a href="/sifremiunuttum">Şifreni mi unuttun?</a></span>
 		<% end %>
 
 		<script>
@@ -73,8 +70,53 @@
 	</div>
 </div>
 
-
 <% else %>
+
+<div style="padding-right:20px;" class="hidden-xs row">
+
+	<div class="col-lg-10 col-md-10 col-sm-10">
+
+		<span style="color:black;"> Hoşgeldin; <%= current_user.username %> </span>
+
+		<div  style="color:black;clear: both;">
+
+			<% if current_user && current_user.role=='admin' %>
+			<a href="/admin"> Admin Paneli </a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<% end %>
+
+			<a href="/uye/<%= current_user.username %>"> Profilim </a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/logout"> Çıkış Yap </a>
+
+		</div>
+
+	</div>
+
+	<div  class="  col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+		<% if !current_user.image && current_user.gender == "male" %>
+		<img  style="position: relative;top:-5px;" src="/resources/images/erkek.png" width="50px" height="50px"
+		class='img-circle '
+		/>
+		<% elsif !current_user.image && current_user.gender == "female" %>
+		<img style="position: relative;top:-5px;" src="/resources/images/kadin.png" width="50px" height="50px"
+		class='img-circle img-responsive'
+		/>
+
+		<% elsif !current_user.image && current_user.gender == "other" %>
+		<img style="position: relative;top:-5px;" src="/resources/images/diger.png" width="50px" height="50px"
+		class='img-circle img-responsive' 
+		/>
+
+		<% else %>
+		<%= image_tag current_user.image.imagefile(:small),
+		:alt => 'User Pic',
+		:class => 'img-circle ',:width =>"50px",:height => "50px", :style => 'position: relative;top:-5px;' %>
+		<% end%>
+
+	</div>
+
+</div>
+
+<div class="visible-xs">
 
 <p style="color:black;float:right;">
 	Hoşgeldin; <%= current_user.username %>
@@ -87,7 +129,11 @@
 		<a href="/admin"> Admin Paneli </a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<% end %>
 	
-	<a href="/uye/<%= current_user.username %>"> Profilim </a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/logout"> Çıkış Yap </a>
+	<a href="/uye/<%= current_user.username %>"> Profilim </a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/logout"> Çıkış Yap </a>
+
+</div>
+
+
 </div>
 
 <%end%>
