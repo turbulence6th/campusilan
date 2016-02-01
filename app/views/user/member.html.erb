@@ -641,6 +641,13 @@
 
 													</div>
 												</div>
+												
+												<div class="form-group">
+													<label for="icode" class="col-md-3 control-label">Üniversite Seç</label>
+													<div class="col-md-9">
+														<%= t.select :university_id, [[""]] + @universities, {}, {:style => "width:100%; ", :class => 'form-control', :name => 'university_id'} %>
+													</div>
+												</div>
 
 												<div style="padding-top: 20px" class="row form-group">
 

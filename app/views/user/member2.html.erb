@@ -507,7 +507,7 @@
 																<td><%= gender[@other_user.gender] %></td>
 															</tr>
 
-															<% if @other_user.address!='' %>
+															<% if @other_user.address && @other_user.address!='' %>
 
 															<tr>
 																<td>Açık adres</td>
@@ -520,10 +520,14 @@
 																<td>E-posta</td>
 																<td style=" white-space: -webkit-pre-wrap;word-break: break-all;"><%= @other_user.email %></td>
 															</tr>
-															<td>Telefon Numarası</td>
-															<td><%= @other_user.phone %></td>
+															
+															<% if @other_user.phone && @other_user.phone!='' %>
+															<tr>
+																<td>Telefon Numarası</td>
+																<td><%= @other_user.phone %></td>
 
 															</tr>
+															<% end %>
 
 														</tbody>
 													</table>
