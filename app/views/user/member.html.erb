@@ -380,7 +380,7 @@
 															<td><%= gender[current_user.gender] %></td>
 														</tr>
 
-														<% if current_user.address!='' %>
+														<% if current_user.address && current_user.address != "" %>
 
 														<tr>
 															<td>Açık adres</td>
@@ -393,9 +393,10 @@
 															<td>E-posta</td>
 															<td><%= current_user.email %></td>
 														</tr>
-														<td>Telefon Numarası</td>
-														<td><%= current_user.phone %></td>
-
+														<% if current_user.phone %>
+															<td>Telefon Numarası</td>
+															<td><%= current_user.phone %></td>
+														<% end %>
 														</tr>
 
 													</tbody>
@@ -921,7 +922,7 @@
 												<td><%= gender[current_user.gender] %></td>
 											</tr>
 
-											<% if current_user.address!='' %>
+											<% if current_user.address && current_user.address != "" %>
 
 											<tr>
 												<td>Açık adres</td>
@@ -934,8 +935,10 @@
 												<td>E-posta</td>
 												<td style=" white-space: -webkit-pre-wrap;word-break: break-all;"><%= current_user.email %></td>
 											</tr>
-											<td>Telefon Numarası</td>
-											<td><%= current_user.phone %></td>
+											<% if current_user.phone %>
+												<td>Telefon Numarası</td>
+												<td><%= current_user.phone %></td>
+											<% end %>
 
 											</tr>
 

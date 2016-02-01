@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   
   scope :valid, -> { where(:deleted => false, :verified => true) }
   
-  validates :name, :surname, :username,  :phone, :role, :gender, :university, :presence => true
+  validates :name, :surname, :username, :role, :gender, :university, :presence => true
   
   validates :password_confirmation, :presence => true, :if => :password_digest_changed?
   
@@ -46,7 +46,8 @@ class User < ActiveRecord::Base
   }, :if => :password_digest_changed?
   
   validates :phone, :format => {
-    :with => /\d/
+    :with => /\d{3}-\d{7}/,
+    :allow_blank => true
   }
     
   has_secure_password
