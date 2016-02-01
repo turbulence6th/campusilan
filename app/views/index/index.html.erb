@@ -567,6 +567,116 @@
 					</div>
 
 				</div>
+				
+				<div class="row">
+
+			<div class="visible-lg" style="margin-bottom: 0px;">
+
+				<div id="5.kisim" class="panel panel-info">
+
+					<div class="panel-heading">
+						<h3 style="text-align: center;" class="panel-title">En Son
+						İlanlar</h3>
+					</div>
+
+					<div class=" panel-body">
+
+						<div id="mi-slider2" class=" ensonilanlar-large mi-slider" style=" clear: both;">
+							<ul>
+								<% @ensonikinciel.each do |advert| %>
+								<li>
+
+									<div class="wrapper wrapper2">
+
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
+										<% if advert.name.length <= 16 %> <h4><%= advert.name %></h4></a>
+
+										<% else %>
+										<h4><%= advert.name[0..15] + "..." %></h4></a>
+										<% end %>
+
+										<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+
+									</div>
+
+								</li>
+
+								<% end %>
+							</ul>
+							<ul>
+								<% @ensonevarkadasi.each do |advert| %>
+								<li>
+
+									<div class="wrapper wrapper2">
+
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
+										<% if advert.name.length <= 16 %> <h4><%= advert.name %></h4></a>
+
+										<% else %>
+										<h4><%= advert.name[0..15] + "..." %></h4></a>
+										<% end %>
+
+										<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content2'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+
+									</div>
+
+								</li>
+
+								<% end %>
+							</ul>
+
+							<ul>
+								<% @ensonozelders.each do |advert| %>
+								<li>
+
+									<div class="wrapper wrapper2">
+
+										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
+										<% if advert.name.length <= 16 %> <h4><%= advert.name %></h4></a>
+
+										<% else %>
+										<h4><%= advert.name[0..15] + "..." %></h4></a>
+										<% end %>
+
+										<div class='descriptionSabit2'>
+											<!-- description content -->
+											<div class='description_content2'>
+												<%= advert.price %> &#x20BA;
+											</div>
+											<!-- end description content -->
+										</div>
+
+									</div>
+
+								</li>
+
+								<% end %>
+							</ul>
+							<nav>
+								<a href="#">İKİNCİ EL</a><a href="#">EV ARKADAŞI</a><a href="#">ÖZEL DERS</a>
+
+							</nav>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
 
 				<div class=" row visible-lg">
 					<div class=" col-lg-6">
@@ -1266,39 +1376,7 @@
 
 		</div>
 
-		<div class="row visible-xs">
-
-			<div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 15px; padding-right: 15px;">
-
-				<div class="panel panel-success">
-
-					<div class="panel-heading">
-						<h3 style="text-align: center;" class="panel-title">Duyurular</h3>
-					</div>
-
-					<div class="panel-body">
-
-						-Campus İlan'a Hoşgeldiniz!!
-						<br>
-						<br>
-						-Campus İlan'ın ne olduğu ve nasıl kullanıldığı ile ilgili bilgilere <a href="#campusilanbilgi"  >buradan</a> ulaşabilirsiniz.
-						<br>
-						<br>
-						-Reklam vermek yada bağışta mı bulunmak istiyorsunuz? O zaman sizi <a href="#"  >böyle</a> alalım.
-						<br>
-						<br>
-						-Yardıma mı mı ihtiyacınız var? O zaman <a href="/yardim">buraya</a> tıklayın.
-						<br>
-						<br>
-						-Görüş ve Önerileriniz bizim için çok önemli!! <a href="/iletisim">İletişim</a> sayfasından bizimle iletişime geçebilirsiniz.
-
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
+		
 
 		<div class="row visible-xs" >
 
@@ -1610,115 +1688,7 @@
 
 		</div>
 
-		<div class="row">
-
-			<div class="visible-lg" style="margin-bottom: 0px;">
-
-				<div id="5.kisim" class="panel panel-info">
-
-					<div class="panel-heading">
-						<h3 style="text-align: center;" class="panel-title">En Son
-						İlanlar</h3>
-					</div>
-
-					<div class=" panel-body">
-
-						<div id="mi-slider2" class=" ensonilanlar-large mi-slider" style=" clear: both;">
-							<ul>
-								<% @ensonikinciel.each do |advert| %>
-								<li>
-
-									<div class="wrapper wrapper2">
-
-										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
-										<% if advert.name.length <= 16 %> <h4><%= advert.name %></h4></a>
-
-										<% else %>
-										<h4><%= advert.name[0..15] + "..." %></h4></a>
-										<% end %>
-
-										<div class='descriptionSabit2'>
-											<!-- description content -->
-											<div class='description_content'>
-												<%= advert.price %> &#x20BA;
-											</div>
-											<!-- end description content -->
-										</div>
-
-									</div>
-
-								</li>
-
-								<% end %>
-							</ul>
-							<ul>
-								<% @ensonevarkadasi.each do |advert| %>
-								<li>
-
-									<div class="wrapper wrapper2">
-
-										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
-										<% if advert.name.length <= 16 %> <h4><%= advert.name %></h4></a>
-
-										<% else %>
-										<h4><%= advert.name[0..15] + "..." %></h4></a>
-										<% end %>
-
-										<div class='descriptionSabit2'>
-											<!-- description content -->
-											<div class='description_content2'>
-												<%= advert.price %> &#x20BA;
-											</div>
-											<!-- end description content -->
-										</div>
-
-									</div>
-
-								</li>
-
-								<% end %>
-							</ul>
-
-							<ul>
-								<% @ensonozelders.each do |advert| %>
-								<li>
-
-									<div class="wrapper wrapper2">
-
-										<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
-										<% if advert.name.length <= 16 %> <h4><%= advert.name %></h4></a>
-
-										<% else %>
-										<h4><%= advert.name[0..15] + "..." %></h4></a>
-										<% end %>
-
-										<div class='descriptionSabit2'>
-											<!-- description content -->
-											<div class='description_content2'>
-												<%= advert.price %> &#x20BA;
-											</div>
-											<!-- end description content -->
-										</div>
-
-									</div>
-
-								</li>
-
-								<% end %>
-							</ul>
-							<nav>
-								<a href="#">İKİNCİ EL</a><a href="#">EV ARKADAŞI</a><a href="#">ÖZEL DERS</a>
-
-							</nav>
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
+		
 
 		<div class="visible-lg row">
 
@@ -1883,6 +1853,40 @@
 					</div>
 
 				</div>
+			</div>
+
+		</div>
+		
+		<div class="row visible-xs">
+
+			<div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 15px; padding-right: 15px;">
+
+				<div class="panel panel-success">
+
+					<div class="panel-heading">
+						<h3 style="text-align: center;" class="panel-title">Duyurular</h3>
+					</div>
+
+					<div class="panel-body">
+
+						-Campus İlan'a Hoşgeldiniz!!
+						<br>
+						<br>
+						-Campus İlan'ın ne olduğu ve nasıl kullanıldığı ile ilgili bilgilere <a href="#campusilanbilgi"  >buradan</a> ulaşabilirsiniz.
+						<br>
+						<br>
+						-Reklam vermek yada bağışta mı bulunmak istiyorsunuz? O zaman sizi <a href="#"  >böyle</a> alalım.
+						<br>
+						<br>
+						-Yardıma mı mı ihtiyacınız var? O zaman <a href="/yardim">buraya</a> tıklayın.
+						<br>
+						<br>
+						-Görüş ve Önerileriniz bizim için çok önemli!! <a href="/iletisim">İletişim</a> sayfasından bizimle iletişime geçebilirsiniz.
+
+					</div>
+
+				</div>
+
 			</div>
 
 		</div>
