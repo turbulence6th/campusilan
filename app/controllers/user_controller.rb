@@ -147,7 +147,7 @@ class UserController < ApplicationController
 
     elsif  current_user==nil || current_user.id != @other_user.id 
       
-      @lastadverts = @other_user.adverts.where(:verified => true).order('created_at DESC').limit(12)
+      @lastadverts = @other_user.adverts.where(:verified => true).order('created_at DESC').limit(8)
       render 'member2'
 
     else
