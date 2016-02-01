@@ -31,9 +31,8 @@ class UserController < ApplicationController
   def registerPost
 
     @user = User.new(params.require(:user).permit(:name, :surname, :username, :password, :password_confirmation, :email, :email_confirmation,
-   :phone1, :phone2, :bulletin, :gender))
+     :bulletin, :gender))
 
-    @user.phone = @user.phone1 + '-' + @user.phone2
     @user.role = 'member'
     @user.verified = false
     @user.deleted = false
@@ -102,9 +101,15 @@ class UserController < ApplicationController
 
   def updateUser
     attr = params.require(:user).permit(:name, :surname, :phone1, :phone2, :bulletin, :gender, :address, :birthday)
-    attr.merge! :phone => attr[:phone1] + '-' + attr[:phone2]
+    phone = attr[:phone1] + '-' + attr[:phone2]
+    if phone != "-"
+      puts phone
+      attr.merge! :phone => phone
+    else
+      attr.merge! :phone => nil
+    end
     current_user.update_attributes(attr)
-    redirect_to '/uye/' + current_user.username
+    redirect_to '/uye/' + current_user.username + "?hesapayarlari=1"
   end
 
   def member
@@ -151,9 +156,11 @@ class UserController < ApplicationController
       render 'member2'
 
     else
-
-      current_user.phone1 =  current_user.phone.split('-')[0]
-      current_user.phone2 =  current_user.phone.split('-')[1]
+      
+      if current_user.phone
+        current_user.phone1 =  current_user.phone.split('-')[0]
+        current_user.phone2 =  current_user.phone.split('-')[1]
+      end
 
       @lastadverts = current_user.adverts.where(:verified => true).order('created_at DESC').limit(6)
 

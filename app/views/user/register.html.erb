@@ -495,45 +495,7 @@
 
 								<div class="row">
 
-									<div class="form-group col-lg-2  ">
-										<label>Telefon</label>
-										
-										<%= t.text_field :phone1, :class => 'form-control', :placeholder => '123' , :onkeyup => 'phonecheck()', :maxlength => 3 %>
-
-										
-									</div>
 									
-									<div class=" col-md-12 visible-md phonekarakter">
-
-										<div style="display: none;"
-										class="col-lg-12 col-md-12 form-group  phonekarakterhatasi label label-danger">
-											Hatalı veya eksik telefon numarası
-										</div>
-
-									</div>
-									
-									
-
-									<div class="form-group col-lg-4  ">
-										<label>
-											<br>
-										</label>
-
-										
-										
-										<%= t.text_field :phone2, :class => 'form-control', :onkeyup => 'phonecheck()', :placeholder => '1234567' ,:maxlength => 7 %>
-										
-										
-									</div>
-
-									<div class="col-lg-12 col-md-12 hidden-lg hidden-md phonekarakter">
-
-										<div style="display: none;"
-										class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group  phonekarakterhatasi label label-danger">
-											Hatalı veya eksik telefon numarası
-										</div>
-
-									</div>
 									<br class="phonekarakterhatasi visible-xs visible-sm">
 
 									<div class="form-group col-lg-6 col-md-6">
@@ -546,15 +508,7 @@
 
 									</div>
 
-									<div class="col-lg-6 col-md-6 visible-lg phonekarakter">
-
-										<div style="display: none;"
-										class="col-lg-12 col-md-12 form-group  phonekarakterhatasi label label-danger">
-											Hatalı veya eksik telefon numarası
-										</div>
-
-									</div>
-
+									
 								</div>
 
 								<div class="col-sm-6">
@@ -1053,34 +1007,7 @@
 
 							}
 
-							function phonecheck() {
-
-								var form = document.getElementById("kayitformu");
-
-								var phone = form.elements['user_phone1'].value;
-
-								var phone2 = form.elements['user_phone2'].value;
-
-								var phoneRegexp = new RegExp("\\d{3}-\\d{7}");
-
-								var check = phoneRegexp.test(phone + "-" + phone2);
-								
-								var result = false;
-
-								if (phone == "" || phone2 == "" || !check) {
-
-									$(".phonekarakterhatasi").show();
-
-								} else {
-
-									$(".phonekarakterhatasi").hide();
-									result = true;
-
-								}
-								
-								return result;
-
-							}
+							
 						</script>
 
 						<!--  regexp kodu -->
@@ -1096,12 +1023,10 @@
 
 								var surnameCheck = surnamevalidator();
 
-								var phoneCheck = phonecheck();
-
 								var emailCheck = emailcheck();
 
 								if (usernameCheck && passwordCheck && nameCheck 
-									&& surnameCheck && phoneCheck && emailCheck && grecaptcha.getResponse()!="") {
+									&& surnameCheck && emailCheck && grecaptcha.getResponse()!="") {
 
 									return true;
 
