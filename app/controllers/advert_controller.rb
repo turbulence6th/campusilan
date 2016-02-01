@@ -388,8 +388,8 @@ class AdvertController < ApplicationController
         @title="Giyim"
       elsif subkategori=="kitapdersnotu"
         @title="Kitap ve Ders Notları"
-      elsif subkategori=="incikboncuk"
-        @title="İncik Boncuk"
+      elsif subkategori=="takimucevher"
+        @title="Takı-Mücevher"
       elsif subkategori=="diger"
         @title="Diğer"
       elsif !subkategori
