@@ -983,8 +983,8 @@
 			errors: {
 				filesLimit: "Sadece {{fi-limit}} dosya ekleyebilirsiniz.",
 				filesType: "Sadece resim ekleyebilirsiniz.",
-				filesSize: "{{fi-name}} çok büyük! En fazla ekleyebileceğiniz dosya boyutu: {{fi-maxSize}} MB.",
-				filesSizeAll: "Seçtiğiniz dosyalar çok büyük! Tek tek eklemeyi deneyin. İzin verilen en fazla dosya boyutu: {{fi-maxSize}} MB."
+				filesSize: "{{fi-name}} dosyası çok büyük! En fazla ekleyebileceğiniz dosya boyutu: {{fi-maxSize}} MB. Ayrıca sorunsuz kullanım deneyimi için dosyaları tek tek eklemeyi deneyin.",
+				filesSizeAll: "Seçtiğiniz dosyalar çok büyük! Sorunsuz kullanım deneyimi için dosyaları tek tek eklemeyi deneyin. İzin verilen en fazla dosya boyutu: {{fi-maxSize}} MB."
 			}
 		}
 	}
