@@ -11,13 +11,13 @@ class ApplicationController < ActionController::Base
   before_filter :check_admin_mode,
     :set_start_time, :if => proc {|c| current_user && current_user.role == 'admin' }
   
-  before_filter :check_admin_mode
+  #before_filter :check_admin_mode
 
-  def check_admin_mode
-    if ENV['ADMIN_MODE']
-      redirect_to '/portfolio'
-    end
-  end
+  #def check_admin_mode
+    #if ENV['ADMIN_MODE']
+     # redirect_to '/portfolio'
+    #end
+  #end
 
   def set_start_time
     @start_time = Time.now.to_f
