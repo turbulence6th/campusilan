@@ -430,12 +430,7 @@
 											Bu
 											E-mail adresini kullanabilirsiniz.
 										</div>
-										
-										<div style="display: none;"
-										class="col-sm-12 col-xs-12 hidden-lg hidden-md form-group  uniemailerror label label-danger ">
-											Lütfen üniversite E-mail adresinizi giriniz.
-										</div>
-
+	
 									</div>
 
 									<div class="form-group col-lg-6 col-md-6">
@@ -470,14 +465,7 @@
 										class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  emailvalid label label-success">
 											Bu
 											E-mail adresini kullanabilirsiniz.
-										</div>
-										
-										<div style="display: none;"
-										class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  uniemailerror label label-danger ">
-											Lütfen üniversite E-mail adresinizi giriniz.
-										</div>
-										
-										
+										</div>	
 
 									</div>
 
@@ -913,7 +901,6 @@
 									$(".emailvalid").hide();
 									$(".emailkarakterhatasi").hide();
 									$(".emailboskalamaz").show();
-									$(".uniemailerror").hide();
 
 								} else if (!check) {
 
@@ -921,7 +908,6 @@
 									$(".emailvalid").hide();
 									$(".emailboskalamaz").hide();
 									$(".emailkarakterhatasi").show();
-									$(".uniemailerror").hide();
 
 								} else {
 
@@ -943,19 +929,10 @@
 												$(".emailkarakterhatasi").hide();
 												$(".emailvalid").hide();
 												$(".emailerror").show();
-												$(".uniemailerror").hide();
+												
 
 											}
 											
-											else if(!data.unicheck){
-												
-												$(".emailboskalamaz").hide();
-												$(".emailkarakterhatasi").hide();
-												$(".emailvalid").hide();
-												$(".emailerror").hide();
-												$(".uniemailerror").show();
-												
-											}
 											
 											 else {
 
@@ -963,7 +940,7 @@
 												$(".emailkarakterhatasi").hide();
 												$(".emailerror").hide();
 												$(".emailvalid").show();
-												$(".uniemailerror").hide();
+												
 												
 												result = true;
 

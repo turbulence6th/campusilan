@@ -23,7 +23,7 @@ class UserController < ApplicationController
     email = params[:email]
     uni = University.find_by_email(email.downcase.partition('@').last) if email
     respond_to do |format|
-      msg = { :check => !User.create(:email => email).errors[:email].any?, :unicheck => uni!=nil }
+      msg = { :check => !User.create(:email => email).errors[:email].any? }
       format.json  { render :json => msg }
     end
   end
@@ -100,15 +100,19 @@ class UserController < ApplicationController
   end
 
   def updateUser
-    attr = params.require(:user).permit(:name, :surname, :phone1, :phone2, :bulletin, :gender, :address, :birthday)
+    attr = params.require(:user).permit(:name, :surname, :phone1, :phone2, :bulletin, :gender, 
+      :address, :birthday)
     phone = attr[:phone1] + '-' + attr[:phone2]
     if phone != "-"
       attr.merge! :phone => phone
     else
       attr.merge! :phone => nil
     end
+    
+    uni = University.find_by(:id => params[:university_id])
+    current_user.university = uni
     current_user.update_attributes(attr)
-    redirect_to '/uye/' + current_user.username
+    redirect_to '/uye/' + current_user.username + "?hesapayarlari=1"
   end
 
   def member
@@ -170,6 +174,10 @@ class UserController < ApplicationController
       @viewedadverts = Advert.available.select('adverts.*').from('adverts, viewed_adverts')
         .where('adverts.id=viewed_adverts.advert_id AND viewed_adverts.user_id = ?', current_user.id)
         .order('viewed_adverts.created_at DESC').limit(6)
+      
+      @universities = Rails.cache.fetch("universities", :expires_in => 5.minutes) do 
+         University.order(:name).collect { |a| [a.name, a.id] }
+      end
 
     end
 
