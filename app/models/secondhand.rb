@@ -11,15 +11,7 @@ class Secondhand < ActiveRecord::Base
   has_one :advert, :as => :advertable 
 
   enum :category => [ :beyazesya, :evdekorasyonu, :muzikaletleri, :elektronik, :kirtasiye,
-<<<<<<< HEAD
-<<<<<<< HEAD
-     :mutfakesyalari, :vasita, :giyim, :dersnotu, :takimucevher, :diger ]
-=======
-     :mutfakesyalari, :vasita, :giyim, :kitapdersnotu, :incikboncuk, :diger ]
->>>>>>> 5bbec4e9b906f8dca10f34808af16b46b935865f
-=======
      :mutfakesyalari, :vasita, :giyim, :kitapdersnotu, :takimucevher, :diger ]
->>>>>>> bb3348613243214f3b44bda4c16e6c1c1dd80c17
 
   enum :color => [ :siyah, :beyaz, :kirmizi, :mavi, :sari, :yesil, :diger2, :turuncu, :pembe, :mor, :altin ]
   
