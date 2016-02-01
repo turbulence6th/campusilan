@@ -103,13 +103,12 @@ class UserController < ApplicationController
     attr = params.require(:user).permit(:name, :surname, :phone1, :phone2, :bulletin, :gender, :address, :birthday)
     phone = attr[:phone1] + '-' + attr[:phone2]
     if phone != "-"
-      puts phone
       attr.merge! :phone => phone
     else
       attr.merge! :phone => nil
     end
     current_user.update_attributes(attr)
-    redirect_to '/uye/' + current_user.username + "?hesapayarlari=1"
+    redirect_to '/uye/' + current_user.username
   end
 
   def member
