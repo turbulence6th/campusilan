@@ -112,7 +112,11 @@
 
 		<div class="container-fluid">
 
-			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
+			<div class="row" style="position: relative;margin-bottom: 10px;">
+
+				<div class="hidden-xs col-sm-8 ">
+					<a><img class="img-responsive" src="resources/images/asdasd.jpg"  ></a>
+				</div>
 
 				<div id="loginkismi "  class="visible-xs ">
 					<!-- Login Starts Here -->
@@ -140,172 +144,78 @@
 
 			<div style="padding:40px;" class="well row">
 
-				<div >
-					<div class="row">
+				
+					<div class="hidden-xs hidden-sm row">
 						<div class="col-lg-6 col-md-6" >
 							<h2>Şifre Değiştirme</h2>
 
 							<p>
 								Şifrenizi değiştirmek için yeni şifrenizi iki kere giriniz.
 							</p>
-							
 
 							<br>
 
-								<%= form_tag '/sifredegistir', :id => 'loginform', :class => 'form-horizontal', :role => 'form',
-									:onsubmit =>"return vsubmit();" do  %>
+							<%= form_tag '/sifredegistir', :id => 'loginform', :class => 'form-horizontal', :role => 'form',
+							:onsubmit =>"return vsubmit();" do  %>
 
-								
-								
-								
-								<div class="input-group">
-									<span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-check"></span></span>
-									<input class="form-control" type="text" id="repassword" name="password" placeholder="Yeni Şifreniz."
-										onkeyup="passwordcheck()">
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-check"></span></span>
+								<input class="form-control" type="text" id="repassword" name="password" placeholder="Yeni Şifreniz."
+								onkeyup="passwordcheck()">
+							</div>
+
+							<div style="margin-top:10px;" class=" col-lg-12 ">
+
+								<div style="display: none;"
+								class="col-lg-12 col-md-12  form-group  passkarakterhatasi label label-danger">
+
+									Şifrenizde büyük harf,küçük harf ve sayı kullanmak
+									zorundasınız.
 								</div>
-								<div class="row passcheck">
+								<div style="display: none;"
+								class="col-lg-12 col-md-12  form-group  passboskalamaz label label-danger">
+									Şifre
+									kısmı boş kalamaz.
+								</div>
 
-									<div class="col-lg-6 col-md-6 passkarakter">
+								<div style="display: none;"
+								class="col-lg-12 col-md-12 form-group altidankucukhata label label-danger">
+									Şifre
+									6 karakterden az olamaz.
+								</div>
 
-										<div style="display: none;"
-										class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  passkarakterhatasi label label-danger">
-											Şifrenizde büyük harf,küçük harf ve
-											<br>
-											sayı kullanmak
-											zorundasınız.
-										</div>
-										<div style="display: none;"
-										class="col-lg-12 col-md-12 hidden-sm hidden-xs form-group  passboskalamaz label label-danger">
-											Şifre
-											kısmı boş kalamaz.
-										</div>
+							</div>
 
-										<div style="display: none;"
-										class="col-lg-12 col-md-12 hidden-xs hidden-sm form-group altidankucukhata label label-danger">
-											Şifre
-											6 karakterden az olamaz.
-										</div>
+							<br>
+
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-check"></span></span>
+								<input class="form-control" type="text" id="repassword2" name="password2" placeholder="Yeni Şifrenizi tekrar girin."
+								onkeyup="passwordrepeatcheck()">
+							</div>
+
+							<div style="margin-top:10px;" class=" col-lg-12 ">
+								
+
+									<div style="display: none;"
+									class="col-lg-12 col-md-12 form-group  passkarakterhatasirepeat label label-danger">
+										Şifreniz eşleşmiyor
 
 									</div>
 
-								</div>
-								<br>
 								
-								<div class="input-group">
-									<span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-check"></span></span>
-									<input class="form-control" type="text" id="repassword2" name="password2" placeholder="Yeni Şifrenizi tekrar girin."
-										onkeyup="passwordrepeatcheck()">
-								</div>
-								
-								<div class="row">
-								<div class="col-lg-6 col-md-6 passkarakterrepeat">
+							</div>
 
-										<div style="display: none;"
-										class="col-sm-12 form-group  passkarakterhatasirepeat label label-danger">
-											Şifreniz eşleşmiyor
+							<br />
 
-										</div>
+							<%= hidden_field_tag "user", params[:user] %>
+							<%= hidden_field_tag "token", params[:token] %>
+							<input type="submit" value="Şifremi Değiştir" class="btn btn-large btn-primary" />
 
-									</div>
-								</div>
-								
-								<br />
-								
-								<%= hidden_field_tag "user", params[:user] %>
-								<%= hidden_field_tag "token", params[:token] %>
-								<input type="submit" value="Şifremi Değiştir" class="btn btn-large btn-primary" />
+							<% end %>
+
 							
-								<% end %>
-								
-								<script>
-									function passwordcheck() {
 
-								var password = document.getElementById("repassword").value;
-
-								var passRegexp = new RegExp("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})");
-
-								var check = passRegexp.test(password);
-								
-								var result = false;
-
-								if (password == "") {
-
-									$(".passkarakterhatasi").hide();
-
-									$(".altidankucukhata").hide();
-
-									$(".passboskalamaz").show();
-
-								} else if (password.length < 6) {
-
-									$(".passkarakterhatasi").hide();
-									$(".passboskalamaz").hide();
-
-									$(".altidankucukhata").show();
-
-								} else if (!check) {
-
-									$(".passboskalamaz").hide();
-
-									$(".altidankucukhata").hide();
-
-									$(".passkarakterhatasi").show();
-
-								} else {
-
-									$(".passkarakterhatasi").hide();
-									$(".passboskalamaz").hide();
-
-									$(".altidankucukhata").hide();
-									result = true;
-
-								}
-
-								return result && passwordrepeatcheck();
-
-							}
-
-							function passwordrepeatcheck() {
-
-								var password = document.getElementById("repassword").value;
-
-								var password2 = document.getElementById("repassword2").value;
-
-								var check = password == password2;
-								
-								var result = false;
-
-								if (!check) {
-
-									$(".passkarakterhatasirepeat").show();
-
-								} else {
-
-									$(".passkarakterhatasirepeat").hide();
-									result = true;
-
-								}
-								
-								return result;
-
-							}
-							function vsubmit() {
-
-								var passwordCheck = passwordcheck();
-
-								if (passwordCheck) {
-
-									return true;
-
-								} else {
-
-									return false;
-
-								}
-
-							}
-								</script>
-							
 						</div>
 
 						<div class="visible-lg  visible-md col-lg-5 col-md-5 col-md-offset-1 col-lg-offset-1">
@@ -314,9 +224,202 @@
 
 						</div>
 					</div>
-				</div>
+					
+					
+					<div class="visible-xs visible-sm row">
+						
+						<div class="row">
+						
+							<h2>Şifre Değiştirme</h2>
+
+							<p>
+								Şifrenizi değiştirmek için yeni şifrenizi iki kere giriniz.
+							</p>
+							
+							</div>
+
+							<br>
+							
+							<div class="row">
+
+							<%= form_tag '/sifredegistir', :id => 'loginform', :class => 'form-horizontal', :role => 'form',
+							:onsubmit =>"return vsubmit();" do  %>
+
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-check"></span></span>
+								<input class="form-control" type="text" id="repassword" name="password" placeholder="Yeni Şifreniz."
+								onkeyup="passwordcheck()">
+							</div>
+
+							<div style="margin-top:10px;" class="">
+
+								<div style="margin-bottom:10px;margin-top:10px;display: none;"
+								class=" col-xs-12 col-sm-12  passkarakterhatasi label label-danger">
+										
+									Şifrenizde büyük harf,küçük harf ve sayı kullanmak
+									zorundasınız.
+									
+								</div>
+								
+								<div style="margin-bottom:10px;margin-top:10px;display: none;"
+								class=" col-xs-12 col-sm-12   passboskalamaz label label-danger">
+									Şifre kısmı boş kalamaz.
+								</div>
+	
+										
+
+								<div style="margin-bottom:10px;margin-top:10px;display: none;"
+								class="col-xs-12 col-sm-12   altidankucukhata label label-danger">
+									Şifre
+									6 karakterden az olamaz.
+								</div>
+
+							</div>
+
+							<br>
+
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-check"></span></span>
+								<input class="form-control" type="text" id="repassword2" name="password2" placeholder="Yeni Şifrenizi tekrar girin."
+								onkeyup="passwordrepeatcheck()">
+							</div>
+
+							<div style="margin-top:10px;" class="  ">
+								
+
+									<div style="display: none;"
+									class="col-lg-12 col-md-12 form-group  passkarakterhatasirepeat label label-danger">
+										Şifreniz eşleşmiyor
+
+									</div>
+
+								
+							</div>
+							
+							</div>
+
+							<br />
+
+							<%= hidden_field_tag "user", params[:user] %>
+							<%= hidden_field_tag "token", params[:token] %>
+							
+							<div style="text-align:center">
+							<input type="submit" value="Şifremi Değiştir" class="btn btn-large btn-primary" />
+							</div>
+							<% end %>
+
+							
+
+						
+						
+						<br>
+
+						<div style="text-align:center;"class="  row">
+
+							<img class="" width="40%;"  src="/resources/images/password.png" >
+
+						</div>
+					</div>
+					
+					
+				
 
 			</div>
+			
+			
+			
+			
+			
+			<script>
+								function passwordcheck() {
+
+									var password = document.getElementById("repassword").value;
+
+									var passRegexp = new RegExp("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})");
+
+									var check = passRegexp.test(password);
+
+									var result = false;
+
+									if (password == "") {
+
+										$(".passkarakterhatasi").hide();
+
+										$(".altidankucukhata").hide();
+
+										$(".passboskalamaz").show();
+
+									} else if (password.length < 6) {
+
+										$(".passkarakterhatasi").hide();
+										$(".passboskalamaz").hide();
+
+										$(".altidankucukhata").show();
+
+									} else if (!check) {
+
+										$(".passboskalamaz").hide();
+
+										$(".altidankucukhata").hide();
+
+										$(".passkarakterhatasi").show();
+
+									} else {
+
+										$(".passkarakterhatasi").hide();
+										$(".passboskalamaz").hide();
+
+										$(".altidankucukhata").hide();
+										result = true;
+
+									}
+
+									return result && passwordrepeatcheck();
+
+								}
+
+								function passwordrepeatcheck() {
+
+									var password = document.getElementById("repassword").value;
+
+									var password2 = document.getElementById("repassword2").value;
+
+									var check = password == password2;
+
+									var result = false;
+
+									if (!check) {
+
+										$(".passkarakterhatasirepeat").show();
+
+									} else {
+
+										$(".passkarakterhatasirepeat").hide();
+										result = true;
+
+									}
+
+									return result;
+
+								}
+
+								function vsubmit() {
+
+									var passwordCheck = passwordcheck();
+
+									if (passwordCheck) {
+
+										return true;
+
+									} else {
+
+										return false;
+
+									}
+
+								}
+							</script>
+			
 
 			<div class="row">
 
@@ -325,9 +428,9 @@
 			</div>
 
 		</div>
-		
+
 		<% if params[:basarisiz] %>
-		
+
 		<div class = "hata modal fade" id = "myModal" tabindex = "-1" role = "dialog" aria-labelledby = "myModalLabel" aria-hidden = "true">
 
 			<div class = "modal-dialog">
@@ -356,16 +459,16 @@
 			</div><!-- /.modal-dialog -->
 
 		</div>
-		
+
 		<% end %>
-		
+
 		<script src="resources/js/bootstrap.min.js"></script>
 
 		<script>
 			var $modaljquery = jQuery.noConflict();
 
 		</script>
-		
+
 		<script>
 			$modaljquery('.hata').modal('show');
 
