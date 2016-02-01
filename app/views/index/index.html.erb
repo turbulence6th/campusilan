@@ -460,12 +460,12 @@
 																<!-- description content -->
 																<div class='description_content'>
 
-																	<% if advert.name.length <= 32 %>
+																	<% if advert.name.length <= 25 %>
 																	<%= advert.name %>
 
 																	<% else %>
 
-																	<%= advert.name[0..31] %>...
+																	<%= advert.name[0..24] %>...
 																	<% end %>
 																</div>
 																<!-- end description content -->
