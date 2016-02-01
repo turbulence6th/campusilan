@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   
   validates :email_confirmation, :presence => true, :if => :email_changed?
   
-  validates :username, :uniqueness => true
+  validates :username, :uniqueness => { :case_sensitive => false }
   
   validates :email, :uniqueness => { :case_sensitive => false }
   
@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   }
   
   validates :username, :format => {
-    :with => /\A[a-z0-9._-]{3,15}\z/
+    :with => /\A[a-zA-Z0-9._-]{3,15}\z/
   }
   
   validates :email, :format => {

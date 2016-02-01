@@ -677,7 +677,7 @@
 								var form = document.getElementById("kayitformu");
 
 								var username = form.elements['user_username'].value;
-								var usernameRegexp = new RegExp("^[a-z0-9._-]{4,15}$");
+								var usernameRegexp = new RegExp("^[a-zA-Z0-9._-]{4,15}$");
 
 								var check = usernameRegexp.test(username);
 								
