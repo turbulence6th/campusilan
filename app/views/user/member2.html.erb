@@ -103,6 +103,16 @@
 		<!-- Tekliflerim kısmı-->
 
 		<link rel="stylesheet" href="/resources/css/teklifler.css">
+		
+		<!-- Tooltip eklentisi-->
+
+		<link rel="stylesheet" type="text/css"
+		href="/resources/plugins/tooltipplugin/tooltip.css" />
+		
+		<!-- Caption Eklentisi -->
+
+		<script src="/resources/plugins/captionplugin/caption.js"></script>
+		<link rel="stylesheet" href="/resources/plugins/captionplugin/caption.css">
 
 		<!-- end of plugins  -->
 
@@ -200,8 +210,10 @@
 										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
 
 											<div class="thumbnail">
-												<a title='<%= advert.name %>' href="<%= advert.href %>"> 
-												<%= image_tag advert.pimage.imagefile(:small) %>
+												
+												
+												<a  href="<%= advert.href %>"> 
+												<%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
 											 </a>
 
 											</div>
@@ -242,8 +254,8 @@
 										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
 
 											<div class="thumbnail">
-												<a title='<%= advert.name %>' href="<%= advert.href %>"> 
-												<%= image_tag advert.pimage.imagefile(:small) %>
+												<a  href="<%= advert.href %>"> 
+												<%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
 												</a>
 
 											</div>
@@ -297,8 +309,8 @@
 										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
 
 											<div class="thumbnail">
-												<a title='<%= advert.name %>' href="<%= advert.href %>">
-												<%= image_tag advert.pimage.imagefile(:small) %>
+												<a  href="<%= advert.href %>">
+												<%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
 												</a>
 
 											</div>
@@ -340,8 +352,8 @@
 										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
 
 											<div class="thumbnail">
-												<a title='<%= advert.name %>' href="<%= advert.href %>">
-												<%= image_tag advert.pimage.imagefile(:small) %>
+												<a  href="<%= advert.href %>">
+												<%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
 												</a>
 
 											</div>
@@ -564,7 +576,21 @@
 											<div class="col-lg-3 col-xs-6 col-md-3 col-sm-4">
 
 												<div class="thumbnail">
-													<a title="<%= advert.name %>" href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small) %> </a>
+													
+													<div class="wrapper2">
+													<a  href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %> </a>
+												
+												
+												<div class='descriptionSabit2'>
+														<!-- description content -->
+														<div class='description_content2'>
+															<%= advert.price %> &#x20BA;
+														</div>
+														<!-- end description content -->
+													</div>
+												
+												
+													</div>	
 												</div>
 
 												<div class="caption">
@@ -655,6 +681,16 @@
 		</div>
 
 		<!-- plugins -->
+		
+		<!-- Tooltip eklentisi-->
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+		<script>
+			var $tooltip = jQuery.noConflict();
+		</script>
+
+		<script type="text/javascript" src="/resources/plugins/tooltipplugin/tooltip.js"></script>
 
 		<!--  user panelinin js kodları -->
 
