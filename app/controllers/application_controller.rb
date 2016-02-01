@@ -14,11 +14,7 @@ class ApplicationController < ActionController::Base
   before_filter :check_admin_mode
 
   def check_admin_mode
-    if ENV['ADMIN_MODE'] && (request.remote_ip != "144.122.120.18" &&
-       request.remote_ip != "144.122.75.31" && request.remote_ip != "144.122.120.164" &&
-       request.remote_ip != "185.40.73.252" && request.remote_ip != "78.177.158.196" && request.remote_ip != "144.122.150.67" &&
-       request.remote_ip != "95.70.132.224" && request.remote_ip != "103.1.210.26" && request.remote_ip !="78.170.135.229" && request.remote_ip !="83.66.150.149" &&
-       request.remote_ip != "144.122.131.27" && request.remote_ip != "176.43.142.251")
+    if ENV['ADMIN_MODE']
       redirect_to '/portfolio'
     end
   end

@@ -252,7 +252,7 @@ class UserController < ApplicationController
     user = User.valid.find_by(:email => params[:eposta].downcase)
     if user
       user.confirm_token = SecureRandom.urlsafe_base64.to_s
-      UserMailer.forgot_password(@user).deliver_now if Rails.env.production?
+      UserMailer.forgot_password(user).deliver_now if Rails.env.production?
       user.save
       redirect_to('/?unuttumgeldi=1')
     elsif
@@ -277,6 +277,7 @@ class UserController < ApplicationController
       if user.valid?
         user.confirm_token = nil
         user.save
+        UserMailer.sifredegisti(user).deliver_now if Rails.env.production?
         redirect_to('/?sifredegisti=1')
       else
         redirect_to("/sifredegistir?user=#{params[:user]}&token=#{params[:token]}")
