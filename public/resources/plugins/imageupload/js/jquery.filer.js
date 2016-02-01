@@ -981,10 +981,10 @@
 			drop: "Drop file here to Upload",
 			removeConfirmation: "Are you sure you want to remove this file?",
 			errors: {
-				filesLimit: "Only {{fi-limit}} files are allowed to be uploaded.",
-				filesType: "Only Images are allowed to be uploaded.",
-				filesSize: "{{fi-name}} is too large! Please upload file up to {{fi-maxSize}} MB.",
-				filesSizeAll: "Files you've choosed are too large! Please upload files up to {{fi-maxSize}} MB."
+				filesLimit: "Sadece {{fi-limit}} dosya ekleyebilirsiniz.",
+				filesType: "Sadece resim ekleyebilirsiniz.",
+				filesSize: "{{fi-name}} çok büyük! En fazla ekleyebileceğiniz dosya boyutu: {{fi-maxSize}} MB.",
+				filesSizeAll: "Seçtiğiniz dosyalar çok büyük! Tek tek eklemeyi deneyin. İzin verilen en fazla dosya boyutu: {{fi-maxSize}} MB."
 			}
 		}
 	}
