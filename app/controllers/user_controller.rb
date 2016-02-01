@@ -277,6 +277,7 @@ class UserController < ApplicationController
       if user.valid?
         user.confirm_token = nil
         user.save
+        UserMailer.sifredegisti(user).deliver_now if Rails.env.production?
         redirect_to('/?sifredegisti=1')
       else
         redirect_to("/sifredegistir?user=#{params[:user]}&token=#{params[:token]}")
