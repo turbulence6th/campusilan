@@ -90,7 +90,8 @@ class IndexController < ApplicationController
     
     if !current_user
       
-      raise ActionController::RoutingError.new('Not Found')
+      redirect_to "/girisyap"
+      return
       
     end
     
@@ -308,7 +309,8 @@ class IndexController < ApplicationController
         .order('favourite_adverts.created_at DESC').paginate(:page => params[:page], :per_page => 9)
       
     else 
-      raise ActionController::RoutingError.new('Not Found')        
+      redirect_to "/girisyap"
+      return    
     end
     
     
@@ -319,7 +321,8 @@ class IndexController < ApplicationController
     if current_user!= nil 
       @lastadverts = current_user.adverts.order('created_at DESC').paginate(:page => params[:page], :per_page => 8) 
     else  
-       raise ActionController::RoutingError.new('Not Found')   
+       redirect_to "/girisyap"
+        return     
     end
     
   end
@@ -333,7 +336,8 @@ class IndexController < ApplicationController
         .where('adverts.id=viewed_adverts.advert_id AND users.id=viewed_adverts.user_id AND users.id=?', current_user.id)
         .order('viewed_adverts.created_at DESC').paginate(:page => params[:page], :per_page => 8)      
      else       
-        raise ActionController::RoutingError.new('Not Found')  
+        redirect_to "/girisyap"
+        return    
      end  
      
   end
@@ -367,14 +371,6 @@ class IndexController < ApplicationController
     
   end
   
-  
-  def risksizalisveris
-    
-    
-    
-    
-    
-  end
   
   
 
