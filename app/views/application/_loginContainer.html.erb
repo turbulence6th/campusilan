@@ -78,7 +78,7 @@
 
 		<span style="color:black; float:right"> Hoşgeldin; <%= current_user.name %> <%= current_user.surname %></span>
 
-		<div  style="color:black;clear: both;">
+		<div  style="color:black;clear: both;float:right;">
 
 			<% if current_user && current_user.role=='admin' %>
 			<a href="/admin"> Admin Paneli </a>&nbsp;&nbsp;|&nbsp;&nbsp;
@@ -99,12 +99,12 @@
 		/>
 		<% elsif !current_user.image && current_user.gender == "female" %>
 		<img style="position: relative;top:-5px;" src="/resources/images/kadin.png" width="50px" height="50px"
-		class='img-circle img-responsive'
+		class='img-circle '
 		/>
 
 		<% elsif !current_user.image && current_user.gender == "other" %>
 		<img style="position: relative;top:-5px;" src="/resources/images/diger.png" width="50px" height="50px"
-		class='img-circle img-responsive' 
+		class='img-circle ' 
 		/>
 
 		<% else %>
