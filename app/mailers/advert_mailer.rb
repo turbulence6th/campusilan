@@ -8,7 +8,11 @@ class AdvertMailer < ApplicationMailer
     
   end
   
-  def verifiedAdvert(advert)
+  def ilanonay(advert)
+    
+    @advert = advert
+    @user = advert.user
+    mail :to => @user.email, :subject => 'İlanınız Onaylandı'
     
   end
   
