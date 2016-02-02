@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   get 'satis-alis' => 'index#satis_alis'
   get 'satis-alis/:satislarim' => 'index#satis_alis'
   get 'satis-alis/:alislarim' => 'index#satis_alis'
+  get 'ilanonay' => 'user#ilanonay'
+  post 'ilanonay' => 'user#ilanonay'
+  post 'ilansil' => 'user#ilansil'
 
   get 'mesajlarim' => 'index#mesajlarim'
 

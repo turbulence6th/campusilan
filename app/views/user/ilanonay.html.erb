@@ -1,0 +1,93 @@
+<html>
+
+	<head>
+
+		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+
+		<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+		<script src="resources/js/bootstrap.min.js"></script>
+
+		<style>
+			body {
+
+				padding: 20px;
+			}
+
+		</style>
+
+	</head>
+
+	<body>
+		<div class="container">
+
+			<table class="table" style="width:100%">
+				<thead>
+					<tr>
+						<th>İlan Adı</th>
+						<th class="c">Açıklama</th>
+						<th>Resimler</th>
+						<th>Onayla</th>
+						<th>Sil </th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<% @adverts.each do |advert| %>
+
+					<tr style="margin-bottom:20px;">
+
+						<td><%= advert.name %></td>
+						<td><%= advert.explication %></td>
+
+						<td> <% advert.images.each do |image| %>
+						
+
+							<%= image_tag image.imagefile(:small),:class => "img-responsive",width:"150px",height:"150px" %>
+							<br>
+						 <% end %> </td>
+						 
+						 <%= form_tag '/ilanonay', :id => 'ilanonay', :class => 'form-horizontal', :role => 'form' do  %>
+
+						<td>
+							
+						
+						<input type="submit" class="btn btn-lg btn-primary" value="Onayla">
+						<input type="hidden" name="id" value="<%= advert.id %>">
+							
+						
+						
+						
+						</td>
+						
+						<% end %>
+						
+						<%= form_tag '/ilansil', :id => 'ilansil', :class => 'form-horizontal', :role => 'form' do  %>
+						
+						<td>
+							
+						
+						<input type="submit" class="btn btn-lg btn-primary" value="Sil">
+						
+						<input type="hidden" name="id" value="<%= advert.id %>">
+						
+							
+						</td>
+						
+						<% end %>
+						
+						
+						
+					</tr>
+
+					<% end %>
+
+				</tbody>
+			</table>
+
+		</div>
+
+	</body>
+
+</html>
