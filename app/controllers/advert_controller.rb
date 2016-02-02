@@ -123,6 +123,10 @@ class AdvertController < ApplicationController
         @vote = 0
       end
     end
+    
+    @viewed = Rails.cache.fetch("viewed/#{id}", :expires_in => 60.seconds) do
+      @advert.viewed_advert_counts.count
+    end
 
     @looked = Rails.cache.fetch("looked/#{id}", :expires_in => 5.minutes) do
       Advert.available.from('adverts, viewed_advert_counts v1, viewed_advert_counts v2')
