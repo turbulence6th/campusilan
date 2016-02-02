@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  
+
   using TurkishSupport
 
   layout false
@@ -42,16 +42,16 @@ class UserController < ApplicationController
 
     @user.university = University.find_by_email(@user.email.partition('@').last) if @user.email
     @user.confirm_token = SecureRandom.urlsafe_base64.to_s
-    
+
     captcha = params["g-recaptcha-response"]
     postParams = {
       :secret => "6Ld3uhYTAAAAADMhUY5DpJr2e333FOvp-ZWv45Ki",
       :response => captcha,
       :remoteip => request.remote_ip
     }
-    
+
     x = Net::HTTP.post_form(
-      URI.parse('https://www.google.com/recaptcha/api/siteverify'), postParams)
+    URI.parse('https://www.google.com/recaptcha/api/siteverify'), postParams)
 
     if JSON.parse(x.body)["success"] && @user.save
       UserMailer.verify(@user).deliver_now if Rails.env.production?
@@ -77,7 +77,7 @@ class UserController < ApplicationController
   def loginPost
     user = User.find_by_username(params[:username]).try(:authenticate, params[:password])
     if (user && user.verified && !user.deleted)
-      
+
       reset_session
 
       if params[:remember] != 1
@@ -99,16 +99,66 @@ class UserController < ApplicationController
     end
   end
 
+  def ilanonay
+
+    if current_user && current_user.role == 'admin'
+
+      @adverts = Advert.where(:verified =>false)
+
+      if params[:id]!= nil
+
+        id = params[:id]
+
+        a = Advert.find(id)
+
+        a.verified = true
+
+        a.save
+
+      end
+
+    else
+
+      raise ActionController::RoutingError.new('Not Found')
+
+    end
+
+  end
+
+  def ilansil
+
+    if current_user && current_user.role == 'admin'
+
+      if params[:id]!= nil
+
+        id = params[:id]
+
+        a = Advert.find_by(:id => id)
+
+        a.destroy
+
+        redirect_to
+
+      end
+
+    else
+
+      raise ActionController::RoutingError.new('Not Found')
+
+    end
+
+  end
+
   def updateUser
-    attr = params.require(:user).permit(:name, :surname, :phone1, :phone2, :bulletin, :gender, 
-      :address, :birthday)
+    attr = params.require(:user).permit(:name, :surname, :phone1, :phone2, :bulletin, :gender,
+    :address, :birthday)
     phone = attr[:phone1] + '-' + attr[:phone2]
     if phone != "-"
       attr.merge! :phone => phone
     else
       attr.merge! :phone => nil
     end
-    
+
     uni = University.find_by(:id => params[:university_id])
     current_user.university = uni
     current_user.update_attributes(attr)
@@ -117,8 +167,7 @@ class UserController < ApplicationController
 
   def member
 
-
-    @mostpopular = Rails.cache.fetch("user_mostpopular", :expires_in => 5.minutes) do 
+    @mostpopular = Rails.cache.fetch("user_mostpopular", :expires_in => 5.minutes) do
       mostpopular.take(6)
     end
 
@@ -153,13 +202,13 @@ class UserController < ApplicationController
     if @other_user == nil
       raise ActionController::RoutingError.new('Not Found')
 
-    elsif  current_user==nil || current_user.id != @other_user.id 
-      
+    elsif  current_user==nil || current_user.id != @other_user.id
+
       @lastadverts = @other_user.adverts.where(:verified => true).order('created_at DESC').limit(8)
       render 'member2'
 
     else
-      
+
       if current_user.phone
         current_user.phone1 =  current_user.phone.split('-')[0]
         current_user.phone2 =  current_user.phone.split('-')[1]
@@ -174,8 +223,8 @@ class UserController < ApplicationController
       @viewedadverts = Advert.available.select('adverts.*').from('adverts, viewed_adverts')
         .where('adverts.id=viewed_adverts.advert_id AND viewed_adverts.user_id = ?', current_user.id)
         .order('viewed_adverts.created_at DESC').limit(6)
-      
-      @universities = Rails.cache.fetch("universities", :expires_in => 5.minutes) do 
+
+      @universities = Rails.cache.fetch("universities", :expires_in => 5.minutes) do
          University.order(:name).collect { |a| [a.name, a.id] }
       end
 
@@ -220,33 +269,33 @@ class UserController < ApplicationController
   end
 
   def aktivasyonpost
-    
+
     captcha = params["g-recaptcha-response"]
     postParams = {
       :secret => "6Ld3uhYTAAAAADMhUY5DpJr2e333FOvp-ZWv45Ki",
       :response => captcha,
       :remoteip => request.remote_ip
     }
-    
+
     x = Net::HTTP.post_form(
-      URI.parse('https://www.google.com/recaptcha/api/siteverify'), postParams)
-      
+    URI.parse('https://www.google.com/recaptcha/api/siteverify'), postParams)
+
     if !JSON.parse(x.body)["success"]
       redirect_to('/aktivasyon?captcha=1')
-      return
+    return
     end
     user = User.find_by(:email => params[:eposta].downcase)
-    
+
     if user && !user.verified
       user.confirm_token = SecureRandom.urlsafe_base64.to_s
       UserMailer.verify(@user).deliver_now if Rails.env.production?
       user.save
       redirect_to('/?mailgeldi=1')
     elsif
-      redirect_to('/aktivasyon?gecersiz=1')
-    end 
+    redirect_to('/aktivasyon?gecersiz=1')
+    end
   end
-  
+
   def sifremiunuttumPost
     captcha = params["g-recaptcha-response"]
     postParams = {
@@ -254,15 +303,15 @@ class UserController < ApplicationController
       :response => captcha,
       :remoteip => request.remote_ip
     }
-    
+
     x = Net::HTTP.post_form(
-      URI.parse('https://www.google.com/recaptcha/api/siteverify'), postParams)
-      
+    URI.parse('https://www.google.com/recaptcha/api/siteverify'), postParams)
+
     if !JSON.parse(x.body)["success"]
       redirect_to('/sifremiunuttum?captcha=1')
-      return
+    return
     end
-    
+
     user = User.valid.find_by(:email => params[:eposta].downcase)
     if user
       user.confirm_token = SecureRandom.urlsafe_base64.to_s
@@ -270,19 +319,19 @@ class UserController < ApplicationController
       user.save
       redirect_to('/?unuttumgeldi=1')
     elsif
-      redirect_to('/sifremiunuttum?gecersiz=1')
-    end 
+    redirect_to('/sifremiunuttum?gecersiz=1')
+    end
   end
-  
+
   def sifredegistir
     user = User.valid.find_by(:username => params[:user])
     if user && user.confirm_token == params[:token]
-      
-    else
+
+      else
       raise ActionController::RoutingError.new('Not Found')
     end
   end
-  
+
   def sifredegistirPost
     user = User.valid.find_by(:username => params[:user])
     if user && user.confirm_token == params[:token]
