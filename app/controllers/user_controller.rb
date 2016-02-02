@@ -102,49 +102,30 @@ class UserController < ApplicationController
   def ilanonay
 
     if current_user && current_user.role == 'admin'
-
       @adverts = Advert.where(:verified =>false)
-
       if params[:id]!= nil
-
         id = params[:id]
-
         a = Advert.find(id)
-
         a.verified = true
-
         a.save
-
+        AdvertMailer.ilanonay(a).deliver_now
       end
-
     else
-
       raise ActionController::RoutingError.new('Not Found')
-
     end
 
   end
 
   def ilansil
-
     if current_user && current_user.role == 'admin'
-
       if params[:id]!= nil
-
         id = params[:id]
-
         a = Advert.find_by(:id => id)
-
         a.destroy
-
         redirect_to '/ilanonay'
-
       end
-
     else
-
       raise ActionController::RoutingError.new('Not Found')
-
     end
 
   end

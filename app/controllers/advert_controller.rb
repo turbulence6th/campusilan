@@ -447,8 +447,10 @@ class AdvertController < ApplicationController
     end
 
     @gununilanlari = Rails.cache.fetch("index_gununilanlari", :expires_in => 5.minutes) do
-      gununilanlari.take(8)
+      gununilanlari.take(10)
     end
+    
+    @gununilanlari = @gununilanlari[0..7]
 
     @mostpopular = Rails.cache.fetch("index_mostpopular", :expires_in => 5.minutes) do
       mostpopular.take(8)
