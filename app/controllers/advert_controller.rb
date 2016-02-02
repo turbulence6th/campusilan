@@ -325,7 +325,7 @@ class AdvertController < ApplicationController
     @advert.opportunity = false
     @advert.ours = false
 
-    if params[:resimler]
+    if params[:resimler] && params[:resimler] != ''
 
       imageIds = params[:resimler].split(',')
       

@@ -137,7 +137,7 @@ class UserController < ApplicationController
 
         a.destroy
 
-        redirect_to
+        redirect_to '/ilanonay'
 
       end
 
