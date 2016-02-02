@@ -757,7 +757,7 @@
 		
 		<div class="caption">
 			
-			<% if advert.name.length <= 22 %>
+			<% if advert.name.length <= 17 %>
 		<h4 class="group inner list-group-item-heading">
 			
 		<%= advert.name %></h4>
@@ -765,17 +765,17 @@
 		
 		<h4 class="group inner list-group-item-heading">
 			
-		<%= advert.name[0..21] %>...</h4>
+		<%= advert.name[0..16] %>...</h4>
 		
 		<% end %>
 		
-		<% if advert.explication.length <= 22 %>
+		<% if advert.explication.length <= 17 %>
 		<p class="group inner list-group-item-text">
 		<%= advert.explication %>  </p>
 		
 		<% else %>
 		<p class="group inner list-group-item-text">
-		<%= advert.explication[0..21] %>...  </p>
+		<%= advert.explication[0..16] %>...  </p>
 		
 		<% end 	%>
 		
@@ -800,7 +800,7 @@
 		
 		<div class="caption">
 			
-			<% if advert.name.length <= 45 %>
+			<% if advert.name.length <= 40 %>
 		<h4 class="group inner list-group-item-heading">
 			
 		<%= advert.name %></h4>
@@ -808,17 +808,17 @@
 		
 		<h4 class="group inner list-group-item-heading">
 			
-		<%= advert.name[0..44] %>...</h4>
+		<%= advert.name[0..39] %>...</h4>
 		
 		<% end %>
 		
-		<% if advert.explication.length <= 45 %>
+		<% if advert.explication.length <= 40 %>
 		<p class="group inner list-group-item-text">
 		<%= advert.explication %>  </p>
 		
 		<% else %>
 		<p class="group inner list-group-item-text">
-		<%= advert.explication[0..44] %>...  </p>
+		<%= advert.explication[0..39] %>...  </p>
 		
 		<% end 	%>
 		
