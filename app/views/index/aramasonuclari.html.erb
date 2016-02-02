@@ -800,7 +800,7 @@
 		
 		<div class="caption">
 			
-			<% if advert.name.length <= 40 %>
+			<% if advert.name.length <= 33 %>
 		<h4 class="group inner list-group-item-heading">
 			
 		<%= advert.name %></h4>
@@ -808,17 +808,17 @@
 		
 		<h4 class="group inner list-group-item-heading">
 			
-		<%= advert.name[0..39] %>...</h4>
+		<%= advert.name[0..32] %>...</h4>
 		
 		<% end %>
 		
-		<% if advert.explication.length <= 40 %>
+		<% if advert.explication.length <= 33 %>
 		<p class="group inner list-group-item-text">
 		<%= advert.explication %>  </p>
 		
 		<% else %>
 		<p class="group inner list-group-item-text">
-		<%= advert.explication[0..39] %>...  </p>
+		<%= advert.explication[0..32] %>...  </p>
 		
 		<% end 	%>
 		
