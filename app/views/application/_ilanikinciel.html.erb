@@ -6,8 +6,12 @@
 	<br>
 <% end %>
 
+
+<% if @advertable.brand != ""  %>
 <h4  class="add-to item_price">Marka: <span style="color:#4DACC9;;" ><%= @advertable.brand %></span></h4>
 <br>
+
+<% end %>
 
 <h4  class="add-to item_price">Kullanım Durumu: <% if @advertable.usage %> <span style="color:#4DACC9;;" >Sıfır</span> <% else %> <span style="color:#4DACC9;;" >İkinci El</span> <% end %> </h4>
 <br>
