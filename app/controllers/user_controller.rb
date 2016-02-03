@@ -54,7 +54,9 @@ class UserController < ApplicationController
     URI.parse('https://www.google.com/recaptcha/api/siteverify'), postParams)
 
     if JSON.parse(x.body)["success"] && @user.save
-      UserMailer.verify(@user).deliver_now if Rails.env.production?
+      Thread.new do
+        UserMailer.verify(@user).deliver_now if Rails.env.production?
+      end
       redirect_to('/?yenihesap=1')
     else
       redirect_to('/kayitol')
@@ -108,7 +110,9 @@ class UserController < ApplicationController
         a = Advert.find(id)
         a.verified = true
         a.save
-        AdvertMailer.ilanonay(a).deliver_now
+        Thread.new do
+          AdvertMailer.ilanonay(a).deliver_now if Rails.env.production?
+        end
       end
     else
       raise ActionController::RoutingError.new('Not Found')
@@ -153,7 +157,7 @@ class UserController < ApplicationController
     end
 
     @gununilanlari = Rails.cache.fetch("user_gununilanlari", :expires_in => 5.minutes) do
-      gununilanlari.take(9)
+      gununilanlari.take(12)
     end
 
     if params[:profilim]!=nil
