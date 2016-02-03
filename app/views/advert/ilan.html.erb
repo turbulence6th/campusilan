@@ -257,13 +257,15 @@
 								<div class="single-para simpleCart_shelfItem">
 
 									<h1 style="word-break: break-all;" class="hidden-xs hidden-sm "><%= @advert.name %></h1>
-									
-									<p class="hidden-xs hidden-sm">Bu ilan <%= @viewed %> kez görüntülenmiştir.</p>
-									
-													
+
+									<p class="hidden-xs hidden-sm">
+										Bu ilan <%= @viewed %> kez görüntülenmiştir.
+									</p>
+
 									<h1 class="visible-xs visible-sm " style="word-break: break-all;text-align:center" ><u><%= @advert.name %></u></h1>
-									<p style="text-align:center;" class="visible-xs visible-sm">Bu ilan <%= @viewed %> kez görüntülenmiştir.</p>
-									
+									<p style="text-align:center;" class="visible-xs visible-sm">
+										Bu ilan <%= @viewed %> kez görüntülenmiştir.
+									</p>
 
 									<br class="visible-xs visible-sm ">
 									<br class="visible-xs visible-sm ">
@@ -394,8 +396,6 @@
 													<%= render "ilanozelders" %>
 													<% end %>
 
-													
-													
 													<h4> İlan sahibinin profili için <a href="/uye/<%= @advert_user.username %>">buraya</a> tıklayınız. </h4>
 												</div>
 											</div>
@@ -434,68 +434,55 @@
 													<%= render "ilanozelders" %>
 													<% end %>
 
-													
-													
 													<h4> İlan sahibinin profili için <a href="/uye/<%= @advert_user.username %>">buraya</a> tıklayınız. </h4>
 												</div>
 											</div>
 										</div>
 
 									</div>
-									
-									
-									
-									
-									
 
 								</div>
 							</div>
 							<div class="clearfix"></div>
 							<br>
-							
-							
-							
-							
+
 							<div class=" visible-xs  ">
-										<div class="star-on">
+								<div class="star-on">
 
-											<div class = " panel panel-info">
-												<div class = "panel-heading">
-													<h4 style="text-align:center;">İlan ve Üye Bilgileri</h4>
-												</div>
-
-												<div class = "panel-body">
-
-													<% if current_user!= nil %>
-
-													<h4>Kullanıcı Güven Oyu</h4>
-													<br>
-
-													<input value="<%= @vote %>" type="number" class="rating input-21c" min=0 max=5 step=1 data-size="xs">
-
-													<% end %>
-
-													<div class="clearfix"></div>
-
-													<br>
-
-													<% if @advert.advertable_type == 'Secondhand' %>
-													<%= render "ilanikinciel" %>
-													<% elsif @advert.advertable_type == 'Homemate' %>
-													<%= render "ilanevarkadasi" %>
-													<% elsif @advert.advertable_type == 'Privatelesson' %>
-													<%= render "ilanozelders" %>
-													<% end %>
-
-													
-													<h4> İlan sahibinin profili için <a href="/uye/<%= @advert_user.username %>">buraya</a> tıklayınız. </h4>
-												</div>
-											</div>
+									<div class = " panel panel-info">
+										<div class = "panel-heading">
+											<h4 style="text-align:center;">İlan ve Üye Bilgileri</h4>
 										</div>
 
+										<div class = "panel-body">
+
+											<% if current_user!= nil %>
+
+											<h4>Kullanıcı Güven Oyu</h4>
+											<br>
+
+											<input value="<%= @vote %>" type="number" class="rating input-21c" min=0 max=5 step=1 data-size="xs">
+
+											<% end %>
+
+											<div class="clearfix"></div>
+
+											<br>
+
+											<% if @advert.advertable_type == 'Secondhand' %>
+											<%= render "ilanikinciel" %>
+											<% elsif @advert.advertable_type == 'Homemate' %>
+											<%= render "ilanevarkadasi" %>
+											<% elsif @advert.advertable_type == 'Privatelesson' %>
+											<%= render "ilanozelders" %>
+											<% end %>
+
+											<h4> İlan sahibinin profili için <a href="/uye/<%= @advert_user.username %>">buraya</a> tıklayınız. </h4>
+										</div>
 									</div>
-							
-							
+								</div>
+
+							</div>
 
 							<div  class=" hidden-sm">
 
