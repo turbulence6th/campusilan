@@ -22,6 +22,9 @@ class Privatelesson < ActiveRecord::Base
 
     elsif self.location=='sinifta'
       return "Sınıfta"
+      
+      elsif self.location=='farketmez'
+      return "Farketmez"
 
     end
 
