@@ -106,7 +106,7 @@
 				body {
 					padding-left: 50px;
 					padding-right: 50px;
-					padding-top: 30px;
+					padding-top: 5px;
 				}
 			}
 
@@ -757,32 +757,32 @@
 		
 		<div class="caption">
 			
-			<% if advert.name.length <= 22 %>
+			<% if advert.name.length <= 17 %>
 		<h4 class="group inner list-group-item-heading">
 			
-		<%= advert.name %></h4>
+		<%= advert.name.capitalize %></h4>
 		<% else %>
 		
 		<h4 class="group inner list-group-item-heading">
 			
-		<%= advert.name[0..21] %>...</h4>
+		<%= advert.name[0..16].capitalize %>...</h4>
 		
 		<% end %>
 		
-		<% if advert.explication.length <= 22 %>
+		<% if advert.explication.length <= 17 %>
 		<p class="group inner list-group-item-text">
 		<%= advert.explication %>  </p>
 		
 		<% else %>
 		<p class="group inner list-group-item-text">
-		<%= advert.explication[0..21] %>...  </p>
+		<%= advert.explication[0..16] %>...  </p>
 		
 		<% end 	%>
 		
 		<div style="margin-top:25px;" class="row">
 		<div class="col-xs-12 col-md-6">
 		<p class="lead">
-		<%= advert.price  %></p>
+		<%= advert.price  %> &#x20BA;</p>
 		</div>
 		<div class="col-xs-12 col-md-6">
 		<a style="float:right;" class="btn btn-success" href="<%= advert.href %>">İlana Git</a>
@@ -800,32 +800,32 @@
 		
 		<div class="caption">
 			
-			<% if advert.name.length <= 45 %>
+			<% if advert.name.length <= 33 %>
 		<h4 class="group inner list-group-item-heading">
 			
-		<%= advert.name %></h4>
+		<%= advert.name.capitalize %></h4>
 		<% else %>
 		
 		<h4 class="group inner list-group-item-heading">
 			
-		<%= advert.name[0..44] %>...</h4>
+		<%= advert.name[0..32].capitalize %>...</h4>
 		
 		<% end %>
 		
-		<% if advert.explication.length <= 45 %>
+		<% if advert.explication.length <= 33 %>
 		<p class="group inner list-group-item-text">
 		<%= advert.explication %>  </p>
 		
 		<% else %>
 		<p class="group inner list-group-item-text">
-		<%= advert.explication[0..44] %>...  </p>
+		<%= advert.explication[0..32] %>...  </p>
 		
 		<% end 	%>
 		
 		<div style="margin-top:25px;" class="row">
 		<div class="col-xs-12 col-md-6">
 		<p class="lead">
-		<%= advert.price  %></p>
+		<%= advert.price  %> &#x20BA;</p>
 		</div>
 		<div class="col-xs-12 col-md-6">
 		<a style="float:right;" class="btn btn-success" href="<%= advert.href %>">İlana Git</a>
@@ -844,21 +844,23 @@
 			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title: advert.name,class:"img-responsive masterTooltip" %></a>
 		
 		<div class="caption">
-		<h5 class="group inner list-group-item-heading">
+			
 			<% if advert.name.length <= 7 %>
-		<%= advert.name %></h5>
+		<h5 class="group inner list-group-item-heading">
+			
+		<%= advert.name.capitalize %></h5>
 		
 		<% else %>
 		
 		<h5 class="group inner list-group-item-heading">
 		
-		<%= advert.name[0..6] %>...</h5>
+		<%= advert.name[0..6].capitalize %>...</h5>
 		<% end %>
+		
+		<% if advert.explication.length <= 7 %>	
 		<p class="group inner list-group-item-text">
 			
-		<% if advert.explication.length <= 7 %>	
-		
-		<p class="group inner list-group-item-text">
+
 		<%= advert.explication %>  </p>
 		<% else %>
 		<p class="group inner list-group-item-text">
@@ -868,7 +870,7 @@
 		<div style="margin-top:25px;" class="row">
 		<div class="col-xs-12 col-md-6">
 		<p class="lead">
-		<%= advert.price  %></p>
+		<%= advert.price  %> &#x20BA;</p>
 		</div>
 		<div class="col-xs-12 col-md-6">
 		<a style="float:right;" class="btn btn-success" href="<%= advert.href %>">İlana Git</a>
@@ -886,18 +888,22 @@
 			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title: advert.name,class:"img-responsive masterTooltip" %></a>
 		
 		<div class="caption">
-		<h4 class="group inner list-group-item-heading">
+			
 			<% if advert.name.length <= 45 %>
-		<%= advert.name %></h4>
+		<h4 class="group inner list-group-item-heading">
+			
+		<%= advert.name.capitalize %></h4>
 		
 		<% else %>
 		
 		<h4 class="group inner list-group-item-heading">
-		<%= advert.name[0..44] %>...</h4>
+		<%= advert.name[0..44].capitalize %>...</h4>
 		<% end %>
+		
+		<% if advert.explication.length <=45 %>
 		<p class="group inner list-group-item-text">
 			
-		<% if advert.explication.length <=45 %>	
+			
 		<%= advert.explication %>  </p>
 		<% else %>
 		
@@ -907,7 +913,7 @@
 		<div style="margin-top:25px;" class="row">
 		<div class="col-xs-12 col-md-6">
 		<p class="lead">
-		<%= advert.price  %></p>
+		<%= advert.price  %> &#x20BA;</p>
 		</div>
 		<div class="col-xs-12 col-md-6">
 		<a style="float:right;" class="btn btn-success" href="<%= advert.href %>">İlana Git</a>

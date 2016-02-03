@@ -88,7 +88,7 @@
 				body {
 					padding-left: 50px;
 					padding-right: 50px;
-					padding-top: 30px;
+					padding-top: 5px;
 				}
 			}
 
@@ -111,7 +111,7 @@
 		<script src="resources/js/bootstrap.min.js"></script>
 
 		<div class="container-fluid">
-			
+
 			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
 				<div id="loginkismi "  class="visible-xs ">
@@ -154,7 +154,7 @@
 					</div>
 
 				</div>
-				
+
 				<%elsif params[:onay]%>
 				<div class="row">
 
@@ -169,8 +169,7 @@
 					</div>
 
 				</div>
-			
-				
+
 				<%elsif params[:silinmis]%>
 				<div class="row">
 
@@ -185,7 +184,7 @@
 					</div>
 
 				</div>
-			
+
 				<%end%>
 
 				<div class="row">
@@ -240,14 +239,15 @@
 										<br class="visible-xs">
 										<br class="visible-xs">
 
-
 										<br class="visible-xs">
 										<br class="visible-xs">
 										<a style="width:100%;" id="register" href="/kayitol"
 										class="visible-xs btn btn-primary">Kayıt Ol</a>
-										
+
 										<a id="register" href="/kayitol"
 										class="hidden-xs btn btn-primary">Kayıt Ol</a>
+
+										<div style="float:right;" class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
 									</div>
 								</div>
 
@@ -260,29 +260,40 @@
 
 					<div style="padding-left:50px;margin-top: 20px;" class="hidden-xs hidden-sm col-lg-7 col-md-7">
 
-						-Kullanım Koşulları için <a href="/kullanimkosullari">buraya</a> tıklayınız.<br><br>
-						
-						-Sitemizin işleyişiyle ilgili bilgi mi almak istiyorsunuz? <a href="">Buraya</a> tıklayın.<br><br>
-						-Üye oldunuz ve aktivasyon e-postası gelmedi mi? O zaman <a href="/aktivasyon" >buraya</a> tıklayınız.
-						<br><br>
-						-Hala daha yardıma mı ihtiyacınız var? O zaman <a href="/yardim">buraya</a> tıklayın. <br />
+						-Kullanım Koşulları için <a href="/kullanimkosullari">buraya</a> tıklayınız.
 						<br>
-						
+						<br>
+
+						-Sitemizin işleyişiyle ilgili bilgi mi almak istiyorsunuz? <a href="">Buraya</a> tıklayın.
+						<br>
+						<br>
+						-Üye oldunuz ve aktivasyon e-postası gelmedi mi? O zaman <a href="/aktivasyon" >buraya</a> tıklayınız.
+						<br>
+						<br>
+						-Hala daha yardıma mı ihtiyacınız var? O zaman <a href="/yardim">buraya</a> tıklayın.
+						<br />
+						<br>
+
 						<img class="img-responsive" width="150px" src="/resources/images/login-icon.png" >
 
 					</div>
-					
-					
+
 					<div style="margin-top: 20px;" class="visible-xs visible-sm col-lg-7 col-md-7">
 
-						-Kullanım Koşulları için <a href="/kullanimkosullari">buraya</a> tıklayınız.<br><br>
-						
-						-Sitemizin işleyişiyle ilgili bilgi mi almak istiyorsunuz? <a href="">Buraya</a> tıklayın.<br><br>
-						-Üye oldunuz ve aktivasyon e-postası gelmedi mi? O zaman <a href="/aktivasyon" >buraya</a> tıklayınız.
-						<br><br>
-						-Hala daha yardıma mı ihtiyacınız var? O zaman <a href="/yardim">buraya</a> tıklayın. <br />
+						-Kullanım Koşulları için <a href="/kullanimkosullari">buraya</a> tıklayınız.
 						<br>
-						
+						<br>
+
+						-Sitemizin işleyişiyle ilgili bilgi mi almak istiyorsunuz? <a href="">Buraya</a> tıklayın.
+						<br>
+						<br>
+						-Üye oldunuz ve aktivasyon e-postası gelmedi mi? O zaman <a href="/aktivasyon" >buraya</a> tıklayınız.
+						<br>
+						<br>
+						-Hala daha yardıma mı ihtiyacınız var? O zaman <a href="/yardim">buraya</a> tıklayın.
+						<br />
+						<br>
+
 						<img class="img-responsive"  width="150px"src="/resources/images/login-icon.png" >
 
 					</div>
@@ -293,8 +304,8 @@
 
 			<div class="row">
 
-			<%= render "footer" %>
-			
+				<%= render "footer" %>
+
 			</div>
 
 		</div>
@@ -304,6 +315,20 @@
 		<!--  fixed header -->
 
 		<%= render "headerfixedjs" %>
+
+		<div id="fb-root"></div>
+		<script>
+			( function(d, s, id) {
+					var js,
+					    fjs = d.getElementsByTagName(s)[0];
+					if (d.getElementById(id))
+						return;
+					js = d.createElement(s);
+					js.id = id;
+					js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5&appId=520201524824599";
+					fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));
+		</script>
 
 	</body>
 

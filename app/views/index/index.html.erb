@@ -1421,7 +1421,7 @@
 
 								<div class="caption">
 
-									<% if advert.name.length <= 15 %>
+									<% if advert.name.length <= 11 %>
 
 									<p>
 										<%= advert.name %>
@@ -1430,7 +1430,7 @@
 									<% else %>
 
 									<p>
-										<%= advert.name[0..15] + "..." %>
+										<%= advert.name[0..10] + "..." %>
 									</p>
 
 									<% end %>

@@ -148,10 +148,12 @@
 	
 
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<br>
 	
 	<br>
 	<a  style="cursor: pointer;"   onclick="resimuste(<%= @advert.id %>,<%= image.id %>);" ><span title="Resmi birinci olarak seç" style="font-size:20px;"class="masterTooltip glyphicon glyphicon-triangle-top"></span></a>
 	&nbsp;
+	
 	<a  style="cursor: pointer;" onclick="resimsil(<%= image.id %>);" ><span title="Resmi sil" style="font-size:20px;"class="masterTooltip glyphicon glyphicon-trash"></span></a>
 	<br>
 	<br>
@@ -187,6 +189,7 @@
 	<div class = "col-sm-offset-2 col-sm-5">
 		<%= t.submit 'İlanı Güncelle',class:"btn btn-default" %>
 	</div>
+	<br class="visible-xs">
 	<div class = "col-sm-5">
 		<button type="button" class="btn btn-danger" data-title="ilankapat" data-toggle="modal" data-target=".ilankapatildi">İlanı Kapat</button>
 	</div>
