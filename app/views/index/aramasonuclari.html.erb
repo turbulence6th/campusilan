@@ -844,8 +844,10 @@
 			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title: advert.name,class:"img-responsive masterTooltip" %></a>
 		
 		<div class="caption">
-		<h5 class="group inner list-group-item-heading">
+			
 			<% if advert.name.length <= 7 %>
+		<h5 class="group inner list-group-item-heading">
+			
 		<%= advert.name.capitalize %></h5>
 		
 		<% else %>
@@ -854,11 +856,11 @@
 		
 		<%= advert.name[0..6].capitalize %>...</h5>
 		<% end %>
+		
+		<% if advert.explication.length <= 7 %>	
 		<p class="group inner list-group-item-text">
 			
-		<% if advert.explication.length <= 7 %>	
-		
-		<p class="group inner list-group-item-text">
+
 		<%= advert.explication %>  </p>
 		<% else %>
 		<p class="group inner list-group-item-text">
@@ -886,8 +888,10 @@
 			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title: advert.name,class:"img-responsive masterTooltip" %></a>
 		
 		<div class="caption">
-		<h4 class="group inner list-group-item-heading">
+			
 			<% if advert.name.length <= 45 %>
+		<h4 class="group inner list-group-item-heading">
+			
 		<%= advert.name.capitalize %></h4>
 		
 		<% else %>
@@ -895,9 +899,11 @@
 		<h4 class="group inner list-group-item-heading">
 		<%= advert.name[0..44].capitalize %>...</h4>
 		<% end %>
+		
+		<% if advert.explication.length <=45 %>
 		<p class="group inner list-group-item-text">
 			
-		<% if advert.explication.length <=45 %>	
+			
 		<%= advert.explication %>  </p>
 		<% else %>
 		
