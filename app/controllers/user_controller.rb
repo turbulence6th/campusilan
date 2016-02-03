@@ -153,7 +153,7 @@ class UserController < ApplicationController
     end
 
     @gununilanlari = Rails.cache.fetch("user_gununilanlari", :expires_in => 5.minutes) do
-      gununilanlari.take(9)
+      gununilanlari.take(12)
     end
 
     if params[:profilim]!=nil
