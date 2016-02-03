@@ -8,7 +8,7 @@ class Privatelesson < ActiveRecord::Base
 
   enum :kind => [ :birebir, :grup, :sinifdersi ]
 
-  enum :lecture => [ :matematik, :fizik, :kimya, :biyoloji, :genelmuhendislik, :genelegitimbilimleri]
+  enum :lecture => [ :matematik, :fizik, :kimya, :biyoloji, :genelmuhendislik, :genelegitimbilimleri, :siyasalbilimler, :diger]
 
   enum :location => [ :ogrencievi, :ogretmenevi, :sinifta, :farketmez ]
 
@@ -70,6 +70,17 @@ class Privatelesson < ActiveRecord::Base
     elsif self.lecture == "genelegitimbilimleri"
 
       return "Genel Eğitim Bilimleri"
+      
+      
+      
+    elsif self.lecture == "siyasalbilimler"
+
+      return "Siyasal Bilimler"
+      
+      
+    elsif self.lecture == "diger"
+
+      return "Diğer"
 
     end
 
