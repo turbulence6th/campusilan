@@ -362,8 +362,10 @@ class IndexController < ApplicationController
       x = Net::HTTP.post_form(
         URI.parse('https://www.google.com/recaptcha/api/siteverify'), postParams)
       if JSON.parse(x.body)["success"] 
-        AnnounceMailer.iletisim(name, email, subject, message).deliver_now
-        AnnounceMailer.ulasti(email, message).deliver_now
+        Thread.new do
+          AnnounceMailer.iletisim(name, email, subject, message).deliver_now
+          AnnounceMailer.ulasti(email, message).deliver_now
+        end
       end
     end
     
