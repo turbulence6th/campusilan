@@ -20,6 +20,7 @@
 					<% topUniversities.each do |record| %>
 					<li><a href="/universiteler?universities=<%= record[0] %>"><%= record[1] + " (" + record[2]+ ")" %></a></li>
 					<% end %>
+					<li><a href="/universiteler">DİĞER</a></li>
 				</ul>
 				
 			</li>
@@ -45,8 +46,8 @@
 			<li><a href="/yardim">Yardım</a></li>
 
 			<div class="hidden-xs hidden-sm" style="float: right; margin: 6px;">
-				<form>
-					<input type="search" placeholder="Arama">
+				<form action="/aramasonuclari" method="get">
+					<input type="search" name="aramakismi"  placeholder="Arama">
 				</form>
 			</div>
 		</ul>
