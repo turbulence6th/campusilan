@@ -19,10 +19,12 @@ ActiveAdmin.register_page "Dashboard" do
        end
        
        column do
-         panel "Most Popular Adverts" do
+         panel "Recent Viewed Adverts" do
            ul do
-             @mostpopular = ApplicationController.new.mostpopular.limit(20)
-             @mostpopular.map do |advert|
+             viewedAdverts = Advert.select('adverts.*').from('adverts, viewed_advert_counts')
+              .where('adverts.id=viewed_advert_counts.advert_id').order('viewed_advert_counts.id DESC')
+              .limit(20)
+             viewedAdverts.map do |advert|
                li link_to(advert.name, "/admin/adverts/" + advert.id.to_s)
              end
            end
