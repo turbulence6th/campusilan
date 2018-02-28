@@ -2,11 +2,10 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  host: localhost
   
-
 development:
   <<: *default
+  host: localhost
   username: postgres
   password: postgres
   database: campusilan_development
@@ -14,12 +13,11 @@ development:
 
 test:
   <<: *default
+  host: localhost
   username: postgres
   password: postgres
   database: campusilan_test
 
 production:
   <<: *default
-  username: rails
-  password: EOhsHuNjvr
-  database: campusilan_production
+  url: <%= ENV['DATABASE_URL'] %>

@@ -49,7 +49,7 @@ class UserControllerTest < ActionController::TestCase
       :email => "email@metu.edu.tr", :email_confirmation => "Email@metu.edu.tr", :name => "name", :surname => "surname",
       :phone1 => "123", :phone2 => "5678900", :gender => "male", :bulletin => true }
     user = User.find_by_username("username")
-    assert_equal true, user!=nil
+    assert user
   end
   
   test "register user bulletin nil" do

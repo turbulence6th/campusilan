@@ -1,5 +1,4 @@
 require File.expand_path('../boot', __FILE__)
-
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
@@ -23,6 +22,24 @@ module Campusilan
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.middleware.use Rack::Attack
-    config.middleware.use Rack::Deflater
+    config.exceptions_app = self.routes
+    # Raises error for missing translations
+    # config.action_view.raise_on_missing_translations = true
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.delivery_method = :smtp
+    # SMTP settings for gmail 
+    config.action_mailer.smtp_settings = {
+
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :user_name            => 'campusilan@gmail.com',
+      :password             => 'turbulence6th3871',
+      :domain               => 'gmail.com',
+      :authentication       => "plain",
+      :enable_starttls_auto => true
+
+    }
+
+    config.action_mailer.raise_delivery_errors = true
   end
 end

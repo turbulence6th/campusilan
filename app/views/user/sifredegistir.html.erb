@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<title>Campus İlan</title>
+		<meta charset="utf-8">
+
+		<META http-equiv=content-type content=text/html;charset=iso-8859-9>
+		<META http-equiv=content-type content=text/html;charset=windows-1254>
+		<META http-equiv=content-type content=text/html;charset=x-mac-turkish>
+		<%= render 'metalar' %>
+		<!-- Bootstrap -->
+		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+
+		<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
+		queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page
+		via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/
+		html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/
+		respond.min.js"></script>
+		<![endif]-->
+
+		<!--plugins: -->
+
+		<!-- dropdown login box -->
+
+		<link rel="stylesheet"
+		href="resources/plugins/dropdownloginbox/css/style.css" />
+
+		<script src="resources/plugins/dropdownloginbox/js/login.js"></script>
+
+		<!-- Fixed Header -->
+
+		<link rel="stylesheet" href="resources/assets/header-fixed.css">
+
+		<link href='http://fonts.googleapis.com/css?family=Cookie'
+		rel='stylesheet' type='text/css'>
+
+		<!-- Fixed Header sonu -->
+
+		<link href="resources/css/searchbox.css" rel="stylesheet"
+		type="text/css" />
+
+		<!-- Smart Menus plugin -->
+
+		<!-- jQuery import -->
+		<script src="resources/plugins/smartmenus/libs/jquery/jquery.js"
+		type="text/javascript"></script>
+
+		<script>
+			var smartmenus = jQuery.noConflict();
+		</script>
+
+		<!-- SmartMenus jQuery plugin -->
+		<script src="resources/plugins/smartmenus/jquery.smartmenus.js"
+		type="text/javascript"></script>
+
+		<!-- SmartMenus core CSS (required) -->
+		<link href="resources/plugins/smartmenus/css/sm-core-css.css"
+		rel="stylesheet" type="text/css" />
+		<!-- "sm-blue" menu theme (optional, you can use your own CSS, too) -->
+		<link href="resources/plugins/smartmenus/css/sm-blue/sm-blue.css"
+		rel="stylesheet" type="text/css" />
+
+		<!-- SmartMenus jQuery init -->
+		<script>
+			smartmenus(document).ready(function() {
+				smartmenus('#main-menu').smartmenus();
+			});
+		</script>
+
+		<!-- end of plugins  -->
+
+		<style>
+			body {
+				background-color: #F0F7F7;
+			}
+
+			@media screen and (min-width: 1200px) {
+				body {
+					padding-left: 50px;
+					padding-right: 50px;
+					padding-top: 5px;
+				}
+			}
+
+			@media screen and (max-width: 1200px) {
+				body {
+					padding: 10px;
+				}
+			}
+
+		</style>
+
+	</head>
+
+	<body>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+		<!-- Include all compiled plugins (below), or include individual files
+		as needed -->
+		<script src="resources/js/bootstrap.min.js"></script>
+
+		<div class="container-fluid">
+
+			<div class="row" style="position: relative;margin-bottom: 10px;">
+
+				<div class="hidden-xs col-sm-8 ">
+					<a><img class="img-responsive" src="resources/images/asdasd.jpg"  ></a>
+				</div>
+
+				<div id="loginkismi "  class="visible-xs ">
+					<!-- Login Starts Here -->
+					<%= render "loginContainer" %>
+					<!-- Login Ends Here -->
+
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<%= render "headerfixed" %>
+
+			</div>
+
+			<!-- You need this element to prevent the content of the page from jumping up -->
+			<div class="header-fixed-placeholder"></div>
+
+			<div class="row">
+
+				<%= render "smartmenus" %>
+
+			</div>
+
+			<div style="padding:40px;" class="well row">
+
+				
+					<div class="hidden-xs hidden-sm row">
+						<div class="col-lg-6 col-md-6" >
+							<h2>Şifre Değiştirme</h2>
+
+							<p>
+								Şifrenizi değiştirmek için yeni şifrenizi iki kere giriniz.
+							</p>
+
+							<br>
+
+							<%= form_tag '/sifredegistir', :id => 'loginform', :class => 'form-horizontal', :role => 'form',
+							:onsubmit =>"return vsubmit();" do  %>
+
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-check"></span></span>
+								<input class="form-control" type="text" id="repassword" name="password" placeholder="Yeni Şifreniz."
+								onkeyup="passwordcheck()">
+							</div>
+
+							<div style="margin-top:10px;" class=" col-lg-12 ">
+
+								<div style="display: none;"
+								class="col-lg-12 col-md-12  form-group  passkarakterhatasi label label-danger">
+
+									Şifrenizde büyük harf,küçük harf ve sayı kullanmak
+									zorundasınız.
+								</div>
+								<div style="display: none;"
+								class="col-lg-12 col-md-12  form-group  passboskalamaz label label-danger">
+									Şifre
+									kısmı boş kalamaz.
+								</div>
+
+								<div style="display: none;"
+								class="col-lg-12 col-md-12 form-group altidankucukhata label label-danger">
+									Şifre
+									6 karakterden az olamaz.
+								</div>
+
+							</div>
+
+							<br>
+
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-check"></span></span>
+								<input class="form-control" type="text" id="repassword2" name="password2" placeholder="Yeni Şifrenizi tekrar girin."
+								onkeyup="passwordrepeatcheck()">
+							</div>
+
+							<div style="margin-top:10px;" class=" col-lg-12 ">
+								
+
+									<div style="display: none;"
+									class="col-lg-12 col-md-12 form-group  passkarakterhatasirepeat label label-danger">
+										Şifreniz eşleşmiyor
+
+									</div>
+
+								
+							</div>
+
+							<br />
+
+							<%= hidden_field_tag "user", params[:user] %>
+							<%= hidden_field_tag "token", params[:token] %>
+							<input type="submit" value="Şifremi Değiştir" class="btn btn-large btn-primary" />
+
+							<% end %>
+
+							
+
+						</div>
+
+						<div class="visible-lg  visible-md col-lg-5 col-md-5 col-md-offset-1 col-lg-offset-1">
+
+							<img class="img-responsive" width="40%;"  src="/resources/images/password.png" >
+
+						</div>
+					</div>
+					
+					
+					<div class="visible-xs visible-sm row">
+						
+						<div class="row">
+						
+							<h2>Şifre Değiştirme</h2>
+
+							<p>
+								Şifrenizi değiştirmek için yeni şifrenizi iki kere giriniz.
+							</p>
+							
+							</div>
+
+							<br>
+							
+							<div class="row">
+
+							<%= form_tag '/sifredegistir', :id => 'loginform', :class => 'form-horizontal', :role => 'form',
+							:onsubmit =>"return vsubmit();" do  %>
+
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-check"></span></span>
+								<input class="form-control" type="text" id="repassword" name="password" placeholder="Yeni Şifreniz."
+								onkeyup="passwordcheck()">
+							</div>
+
+							<div style="margin-top:10px;" class="">
+
+								<div style="margin-bottom:10px;margin-top:10px;display: none;"
+								class=" col-xs-12 col-sm-12  passkarakterhatasi label label-danger">
+										
+									Şifrenizde büyük harf,küçük harf ve sayı kullanmak
+									zorundasınız.
+									
+								</div>
+								
+								<div style="margin-bottom:10px;margin-top:10px;display: none;"
+								class=" col-xs-12 col-sm-12   passboskalamaz label label-danger">
+									Şifre kısmı boş kalamaz.
+								</div>
+	
+										
+
+								<div style="margin-bottom:10px;margin-top:10px;display: none;"
+								class="col-xs-12 col-sm-12   altidankucukhata label label-danger">
+									Şifre
+									6 karakterden az olamaz.
+								</div>
+
+							</div>
+
+							<br>
+
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-check"></span></span>
+								<input class="form-control" type="text" id="repassword2" name="password2" placeholder="Yeni Şifrenizi tekrar girin."
+								onkeyup="passwordrepeatcheck()">
+							</div>
+
+							<div style="margin-top:10px;" class="  ">
+								
+
+									<div style="display: none;"
+									class="col-lg-12 col-md-12 form-group  passkarakterhatasirepeat label label-danger">
+										Şifreniz eşleşmiyor
+
+									</div>
+
+								
+							</div>
+							
+							</div>
+
+							<br />
+
+							<%= hidden_field_tag "user", params[:user] %>
+							<%= hidden_field_tag "token", params[:token] %>
+							
+							<div style="text-align:center">
+							<input type="submit" value="Şifremi Değiştir" class="btn btn-large btn-primary" />
+							</div>
+							<% end %>
+
+							
+
+						
+						
+						<br>
+
+						<div style="text-align:center;"class="  row">
+
+							<img class="" width="40%;"  src="/resources/images/password.png" >
+
+						</div>
+					</div>
+					
+					
+				
+
+			</div>
+			
+			
+			
+			
+			
+			<script>
+								function passwordcheck() {
+
+									var password = document.getElementById("repassword").value;
+
+									var passRegexp = new RegExp("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})");
+
+									var check = passRegexp.test(password);
+
+									var result = false;
+
+									if (password == "") {
+
+										$(".passkarakterhatasi").hide();
+
+										$(".altidankucukhata").hide();
+
+										$(".passboskalamaz").show();
+
+									} else if (password.length < 6) {
+
+										$(".passkarakterhatasi").hide();
+										$(".passboskalamaz").hide();
+
+										$(".altidankucukhata").show();
+
+									} else if (!check) {
+
+										$(".passboskalamaz").hide();
+
+										$(".altidankucukhata").hide();
+
+										$(".passkarakterhatasi").show();
+
+									} else {
+
+										$(".passkarakterhatasi").hide();
+										$(".passboskalamaz").hide();
+
+										$(".altidankucukhata").hide();
+										result = true;
+
+									}
+
+									return result && passwordrepeatcheck();
+
+								}
+
+								function passwordrepeatcheck() {
+
+									var password = document.getElementById("repassword").value;
+
+									var password2 = document.getElementById("repassword2").value;
+
+									var check = password == password2;
+
+									var result = false;
+
+									if (!check) {
+
+										$(".passkarakterhatasirepeat").show();
+
+									} else {
+
+										$(".passkarakterhatasirepeat").hide();
+										result = true;
+
+									}
+
+									return result;
+
+								}
+
+								function vsubmit() {
+
+									var passwordCheck = passwordcheck();
+
+									if (passwordCheck) {
+
+										return true;
+
+									} else {
+
+										return false;
+
+									}
+
+								}
+							</script>
+			
+
+			<div class="row">
+
+				<%= render "footer" %>
+
+			</div>
+
+		</div>
+
+		<% if params[:basarisiz] %>
+
+		<div class = "hata modal fade" id = "myModal" tabindex = "-1" role = "dialog" aria-labelledby = "myModalLabel" aria-hidden = "true">
+
+			<div class = "modal-dialog">
+				<div class = "modal-content">
+
+					<div class = "modal-header">
+						<button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+							&times;
+						</button>
+
+						<h4 class = "modal-title" id = "myModalLabel"> Hata!! </h4>
+					</div>
+
+					<div class = "modal-body">
+						Girdiğiniz şifreler uyuşmuyor ya da geçerli değil.
+					</div>
+
+					<div class = "modal-footer">
+						<button type = "button" class = "btn btn-primary" data-dismiss = "modal">
+							Kapat
+						</button>
+
+					</div>
+
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+
+		</div>
+
+		<% end %>
+
+		<script src="resources/js/bootstrap.min.js"></script>
+
+		<script>
+			var $modaljquery = jQuery.noConflict();
+
+		</script>
+
+		<script>
+			$modaljquery('.hata').modal('show');
+
+		</script>
+
+		<!-- pluginler -->
+
+		<!--  fixed header -->
+
+		<%= render "headerfixedjs" %>
+
+	</body>
+
+</html>

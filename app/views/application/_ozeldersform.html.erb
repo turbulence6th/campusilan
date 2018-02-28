@@ -1,0 +1,292 @@
+<% if local[:mode] == 0 %>
+<% style = "display:none" %>
+<% advertable = "advertable" %>
+<% elsif local[:mode] == 1 %>
+<% style = "" %>
+<% advertable = "privatelesson" %>
+<% end %>
+
+<%= form_for local[:advert], :url => local[:url] , :method => :post , :html => {
+:class => 'form-basic ikinciel' , :id => 'ozeldersform',
+:multipart => true,
+:style => style,
+:onsubmit => 'return ozelderssubmit();'
+} do |t| %>
+
+<%= t.fields_for local[:advertable] do |field| %>
+
+<% if local[:mode] == 1%>
+<%= t.hidden_field :id %>
+<% end %>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">İlan Adı</label>
+
+	<div class = "col-sm-10">
+		<%= t.text_field :name, class:"form-control", :onkeyup => 'ozeldersilanadiVerify();' %>
+	</div>
+</div>
+
+<div style="display:none;" class = 'ozeldersAlert ozeldersNameAlert col-xs-12 label label-danger form-group'>
+	Lüften İlan Adı Giriniz
+</div>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">Saatlik Ücret</label>
+
+	<div class = "col-sm-10">
+		<%= t.text_field :price, class:"form-control",:placeholder => 'TL', :onkeyup => 'ozeldersfiyatVerify();' %>
+	</div>
+</div>
+
+<div style="display:none;" class = 'ozeldersAlert ozeldersPriceAlert col-xs-12 label label-danger form-group'>
+	Geçersiz Fiyat Değeri
+</div>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">Ders Kategorisi</label>
+
+	<div class = "col-sm-10">
+		<%= field.select :lecture, [['Matematik', 'matematik'], ['Fizik', 'fizik'], ['Kimya', 'kimya'],['Biyoloji','biyoloji'],['Genel Mühendislik','genelmuhendislik'],['Genel Eğitim Bilimleri','genelegitimbilimleri'],['Siyasal Bilimler','siyasalbilimler'],['Diğer','diger']],{}, {class:"form-control"}  %>
+	</div>
+</div>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">Şehir</label>
+
+	<div class = "col-sm-10">
+		<%= field.text_field  :city, class:"form-control", :onkeyup => 'ozelderssehirVerify();', :maxlength => 20 %>
+	</div>
+</div>
+
+<div style="display:none;" class = 'ozeldersAlert ozeldersCityAlert col-xs-12 label label-danger form-group'>
+	Geçersiz Şehir Adı
+</div>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">Semt</label>
+
+	<div class = "col-sm-10">
+		<%= field.text_field :state, class:"form-control", :onkeyup => 'ozelderssemtVerify();', :maxlength => 20 %>
+	</div>
+</div>
+
+<div style="display:none;" class = 'ozeldersAlert ozeldersStateAlert col-xs-12 label label-danger form-group'>
+	Geçersiz Semt Adı
+</div>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">Özel Ders Şekli</label>
+
+	<div class = "col-sm-10">
+		<%= field.select :kind, [['Birebir', 'birebir'], ['Grup', 'grup'], ['Sınıf Dersi', 'sinifdersi']],{}, {class:"form-control"}  %>
+	</div>
+</div>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">Dersi Nerede Verecek?</label>
+
+	<div class = "col-sm-10">
+		<%= field.select :location, [['Öğrenci Evinde', 'ogrencievi'], ['Öğretmenin Evinde', 'ogretmenevi'], ['Sınıfta', 'sinifta'], ['Fark etmez', 'farketmez']],{}, {class:"form-control"}  %>
+	</div>
+</div>
+
+<div class = "row form-group">
+	<label class = "col-sm-2 control-label">Açıklama</label>
+
+	<div class = "col-sm-10">
+		<%= t.text_area :explication, rows: "5", class:"form-control", :onkeyup => 'ozeldersaciklamaVerify();', :maxlength => 1000 %>
+	</div>
+</div>
+
+<div style="display:none;" class = 'ozeldersAlert ozeldersExplicationAlert col-xs-12 label label-danger form-group'>
+	Lüften Açıklama Giriniz
+</div>
+<br>
+
+<input type='hidden' name='resimler' id='resimlerozelders' />
+<div class="row">
+	<%= file_field_tag 'image', :type => :file, :class => 'file_image', :id => 'imagesozelders' %>
+</div>
+
+<% if local[:mode] == 0 %>
+<div class = "row form-group">
+	<div class = " col-sm-10">
+		<div class = "checkbox">
+			<label>
+				<input type = "checkbox" id="kullanim" value="true">
+				Kullanım koşullarını kabul ediyorum</label>
+		</div>
+	</div>
+</div>
+
+<div style="overflow:hidden;" id="recaptcha3"></div>
+<br>
+<div class = "row form-group">
+	<div class = " col-sm-10">
+		<%= t.submit 'İlan Ver',class:"btn btn-default" %>
+	</div>
+</div>
+<% elsif local[:mode] == 1 %>
+
+<div class = "hidden-xs hidden-sm alert alert-info">İlanınızın ana resmini(en başta gözükecek resim) resimlerin yanındaki yukarı ok butonuna tıklayarak belirleyebilirsiniz.</div>
+
+<div class = "hidden-xs hidden-sm alert alert-info">Silmek istediğiniz ilan resminin yanındaki çöp butonuna tıklayarak ilanın resmini kaldırabilirsiniz. </div>
+
+<div class = "visible-xs visible-sm alert alert-info">İlanınızın ana resmini(en başta gözükecek resim) resimlerin altındaki yukarı ok butonuna tıklayarak belirleyebilirsiniz.</div>
+
+<div class = "visible-xs visible-sm alert alert-info">Silmek istediğiniz ilan resminin altındaki çöp butonuna tıklayarak ilanın resmini kaldırabilirsiniz. </div>
+
+
+<% @images.each do |image|%>
+
+<div class = "visible-xs visible-sm panel panel-default">
+   <div class = "panel-body">
+     
+     
+     <div class="image-<%= image.id %>">
+
+	<%= image_tag image.imagefile(:small),width:"175px;",height:"175px;" %>
+	
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	
+	<br>
+	<a  style="cursor: pointer;"   onclick="resimuste(<%= @advert.id %>,<%= image.id %>);" ><span title="Resmi birinci olarak seç" style="font-size:20px;"class="masterTooltip glyphicon glyphicon-triangle-top"></span></a>
+	&nbsp;
+	<a  style="cursor: pointer;" onclick="resimsil(<%= image.id %>);" ><span title="Resmi sil" style="font-size:20px;"class="masterTooltip glyphicon glyphicon-trash"></span></a>
+	<br>
+	<br>
+
+</div>
+     
+     
+     
+   </div>
+</div>
+
+<div class="hidden-xs hidden-sm panel panel-default image-<%= image.id %>">
+
+	<div class = "panel-body">
+		
+	<%= image_tag image.imagefile(:small) %>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	
+	<br class="visible-xs visible-sm">
+	<a  style="cursor: pointer;"   onclick="resimuste(<%= @advert.id %>,<%= image.id %>);" ><span title="Resmi birinci olarak seç" style="font-size:20px;"class="masterTooltip glyphicon glyphicon-triangle-top"></span></a>
+	&nbsp;
+	<a  style="cursor: pointer;" onclick="resimsil(<%= image.id %>);" ><span title="Resmi sil" style="font-size:20px;"class="masterTooltip glyphicon glyphicon-trash"></span></a>
+	<br>
+	<br>
+	
+	</div>
+
+</div>
+
+<% end %>
+<div class = "row form-group">
+	<div class = "col-sm-offset-2 col-sm-5">
+		<%= t.submit 'İlanı Güncelle',class:"btn btn-default" %>
+	</div>
+	<div class = "col-sm-5">
+		<button type="button" class="btn btn-danger" onclick="ilankapat(<%= @advert.id %>);">İlanı Kapat</button>
+	</div>
+</div>
+
+<%end%>
+
+<% end %>
+<% end %>	
+
+<script>
+	function ozeldersilanadiVerify() {
+var form = document.getElementById("ozeldersform");
+var advertname = form.elements['advert_name'].value;
+var result = false;
+
+if (!/\S/.test(advertname)) {
+$('.ozeldersNameAlert').show();
+} else {
+$('.ozeldersNameAlert').hide();
+result = true;
+}
+return result;
+
+}
+
+function ozeldersfiyatVerify() {
+var form = document.getElementById("ozeldersform");
+var price = form.elements['advert_price'].value;
+var result = false;
+
+var priceRegexp = new RegExp('^[0-9]+$');
+var check = priceRegexp.test(price);
+
+if (!check) {
+$('.ozeldersPriceAlert').show();
+} else {
+$('.ozeldersPriceAlert').hide();
+result = true;
+}
+return result;
+}
+
+function ozelderssemtVerify() {
+var form = document.getElementById("ozeldersform");
+var state = form.elements['advert_<%= advertable %>_state'].value;
+	var result = false;
+
+	if (!/^[a-zA-Z0-9.-_ \u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}$/.test(state)) {
+	$('.ozeldersStateAlert').show();
+	} else {
+	$('.ozeldersStateAlert').hide();
+	result = true;
+	}
+	return result;
+
+	}
+
+	function ozelderssehirVerify() {
+	var form = document.getElementById("ozeldersform");
+	var city = form.elements['advert_<%= advertable %>_city'].value;
+	var result = false;
+
+	if (!/^[a-zA-Z0-9.-_ \u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,20}$/.test(city)) {
+	$('.ozeldersCityAlert').show();
+	} else {
+	$('.ozeldersCityAlert').hide();
+	result = true;
+	}
+	return result;
+
+	}
+
+	function ozeldersaciklamaVerify() {
+	var form = document.getElementById("ozeldersform");
+	var explication = form.elements['advert_explication'].value;
+	var result = false;
+
+	if (!/\S/.test(explication)) {
+	$('.ozeldersExplicationAlert').show();
+	} else {
+	$('.ozeldersExplicationAlert').hide();
+	result = true;
+	}
+	return result;
+	}
+
+	function ozelderssubmit() {
+
+	var ilanadi = ozeldersilanadiVerify();
+	var fiyat = ozeldersfiyatVerify();
+	var semt = ozelderssemtVerify();
+	var sehir = ozelderssehirVerify();
+	var aciklama = ozeldersaciklamaVerify();
+
+<% if local[:mode] == 0 %>
+	var kullanim = $("#ozeldersform #kullanim").is(":checked");
+	return ilanadi && fiyat && semt && sehir && aciklama && kullanim && grecaptcha.getResponse(recaptcha3)!="";
+<% elsif local[:mode] == 1 %>
+	return ilanadi && fiyat && semt && sehir && aciklama;
+<% end %>}</script>

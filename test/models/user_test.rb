@@ -3,9 +3,12 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   
   setup do
+    @university = University.find_by_email("metu.edu.tr")
     @user = User.new(:name => "name", :surname => "surname", :username => "username", :password => "oguzTanrikulu123", 
     :password_confirmation => "oguzTanrikulu123", :email => "email@metu.edu.tr", :email_confirmation => "email@metu.edu.tr", 
-    :gender => "male", :phone => "111-1111111", :bulletin => false, :role => 'member', :verified => false)
+    :gender => "male", :phone => "111-1111111", :bulletin => false, :role => 'member', :verified => false, :university => @university,
+    :deleted => false)
+    
   end
   
   test "isValid" do

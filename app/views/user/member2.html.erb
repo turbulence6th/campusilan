@@ -12,7 +12,7 @@
 		<META http-equiv=content-type content=text/html;charset=iso-8859-9>
 		<META http-equiv=content-type content=text/html;charset=windows-1254>
 		<META http-equiv=content-type content=text/html;charset=x-mac-turkish>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<%= render 'metalar' %>
 
 		<!-- Bootstrap -->
 		<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
@@ -39,17 +39,15 @@
 		<![endif]-->
 
 		<!--plugins: -->
-		
+
 		<!-- dropdown login box -->
 
 		<link rel="stylesheet"
 		href="/resources/plugins/dropdownloginbox/css/style.css" />
 
 		<script src="/resources/plugins/dropdownloginbox/js/login.js"></script>
-		
+
 		<!-- Fixed Header -->
-		
-		
 
 		<link rel="stylesheet" href="/resources/assets/header-fixed.css">
 
@@ -57,8 +55,6 @@
 		rel='stylesheet' type='text/css'>
 
 		<!-- Fixed Header sonu -->
-
-		
 
 		<link href="/resources/css/searchbox.css" rel="stylesheet"
 		type="text/css" />
@@ -107,10 +103,24 @@
 		<!-- Tekliflerim kısmı-->
 
 		<link rel="stylesheet" href="/resources/css/teklifler.css">
+		
+		<!-- Tooltip eklentisi-->
+
+		<link rel="stylesheet" type="text/css"
+		href="/resources/plugins/tooltipplugin/tooltip.css" />
+		
+		<!-- Caption Eklentisi -->
+
+		<script src="/resources/plugins/captionplugin/caption.js"></script>
+		<link rel="stylesheet" href="/resources/plugins/captionplugin/caption.css">
 
 		<!-- end of plugins  -->
 
 		<style>
+			body {
+
+				background-color: #F0F7F7;
+			}
 			#cssmenu {
 
 				width: 100%;
@@ -119,8 +129,8 @@
 			@media screen and (min-width: 1200px) {
 				body {
 					padding-left: 50px;
-				padding-right: 50px;
-				padding-top:30px;
+					padding-right: 50px;
+					padding-top: 5px;
 				}
 			}
 
@@ -143,13 +153,14 @@
 
 		<div class="container-fluid">
 
-			<div class="row" style="margin-bottom: 10px;">
+			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
 
-				<!-- Login Starts Here -->
+				<div id="loginkismi "  class="visible-xs ">
+					<!-- Login Starts Here -->
+					<%= render "loginContainer" %>
+					<!-- Login Ends Here -->
 
-				<%= render "loginContainer" %>
-
-				<!-- Login Ends Here -->
+				</div>
 
 			</div>
 
@@ -167,13 +178,14 @@
 				<%= render "smartmenus" %>
 
 			</div>
-			
 
-			<div class="visible-lg row" style="padding-bottom: 20px;">
+			<%= render "kullanicipaneli2"%>
 
-				<div class="row ustpaneller" style="padding:20px;">
+			<div class="row" style="margin-top:20px;padding-bottom: 20px;">
 
-					<aside class="col-lg-3 col-md-3 col-sm-3 hidden-xs ">
+				<div class=" ustpaneller">
+
+					<aside class="col-lg-3 col-md-3 col-sm-3 hidden-xs hidden-sm">
 
 						<div class="row">
 
@@ -183,93 +195,96 @@
 
 						<div class="row">
 
-							<div class="panel panel-danger">
+							<div class="panel panel-success">
 
 								<div class="panel-heading">
 									<h3 style="text-align: center;" class="panel-title">Popüler
 									İlanlar</h3>
 								</div>
 
-								<div class="panel-body">
+								<div class="hidden-md hidden-sm panel-body">
 
 									<div class="row">
+										<% @mostpopular[0..3].each do |advert| %>
+
 										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
 
 											<div class="thumbnail">
-												<a href="#"> <img src="/resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
+												
+												
+												<a  href="<%= advert.href %>"> 
+												<%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
+											 </a>
 
 											</div>
 
 											<div class="caption">
 
-												<h4>Thumbnail label</h4>
-												<p>
-													Some sample text.
-												</p>
+												<h5><% if advert.name.length > 14 %>
+												<%= advert.name[0..11] %>..
+												<% else %>
+												<%= advert.name %>
+												<% end %> </h5>
 
 											</div>
 
 										</div>
-
-										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="/resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h4>Thumbnail label</h4>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="/resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h4>Thumbnail label</h4>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="/resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h4>Thumbnail label</h4>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
+										<% end %>
 
 									</div>
+
+									<% if @mostpopular != [] %>
+									<br>
+									<div style="text-align:center;">
+
+										<button style="text-align:center;" onclick="window.location='/firsatlar?enpopulerilanlar=1'" type = "button" class = "btn btn-success">
+											Devamı İçin Tıklayınız.
+										</button>
+									</div>
+
+									<% end %>
+
+								</div>
+
+								<div class="visible-md visible-sm panel-body">
+
+									<div class="row">
+										<% @mostpopular[0..3].each do |advert| %>
+
+										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
+
+											<div class="thumbnail">
+												<a  href="<%= advert.href %>"> 
+												<%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
+												</a>
+
+											</div>
+
+											<div class="caption">
+
+												<h5><% if advert.name.length >= 10 %>
+												<%= advert.name[0..9] %>..
+												<% else %>
+												<%= advert.name %>
+												<% end %> </h5>
+
+											</div>
+
+										</div>
+										<% end %>
+
+									</div>
+
+									<% if @mostpopular != [] %>
+									<br>
+									<div style="text-align:center;">
+
+										<button style="text-align:center;" onclick="window.location='/firsatlar?enpopulerilanlar=1'" type = "button" class = "btn btn-success">
+											Devamı İçin Tıklayınız.
+										</button>
+									</div>
+
+									<% end %>
 
 								</div>
 
@@ -279,92 +294,95 @@
 
 						<div class="row">
 
-							<div class="panel panel-danger">
+							<div class="panel panel-success">
 
 								<div class="panel-heading">
 									<h3 style="text-align: center;" class="panel-title">Günün Fırsatları</h3>
 								</div>
 
-								<div class="panel-body">
+								<div class="hidden-md hidden-sm panel-body">
 
 									<div class="row">
+
+										<% @gununilanlari[0..3].each do |advert| %>
+
 										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
 
 											<div class="thumbnail">
-												<a href="#"> <img src="/resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
+												<a  href="<%= advert.href %>">
+												<%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
+												</a>
 
 											</div>
 
 											<div class="caption">
 
-												<h4>Thumbnail label</h4>
-												<p>
-													Some sample text.
-												</p>
+												<h5><% if advert.name.length > 14 %>
+												<%= advert.name[0..11] %>..
+												<% else %>
+												<%= advert.name %>
+												<% end %> </h5>
 
 											</div>
 
 										</div>
-
-										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="/resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h4>Thumbnail label</h4>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="/resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h4>Thumbnail label</h4>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
-
-										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
-
-											<div class="thumbnail">
-												<a href="#"> <img src="/resources/images/cat-demo.jpg"
-												alt="cat demo photo"> </img> </a>
-
-											</div>
-
-											<div class="caption">
-
-												<h4>Thumbnail label</h4>
-												<p>
-													Some sample text.
-												</p>
-
-											</div>
-
-										</div>
+										<% end %>
 
 									</div>
+
+									<% if @gununilanlari != [] %>
+									<br>
+									<div style="text-align:center;">
+
+										<button style="text-align:center;" onclick="window.location='/firsatlar?gununfirsatlari=1'" type = "button" class = "btn btn-success">
+											Devamı İçin Tıklayınız.
+										</button>
+									</div>
+
+									<% end %>
+
+								</div>
+
+								<div class="visible-md visible-sm panel-body">
+
+									<div class="row">
+
+										<% @gununilanlari[0..3].each do |advert| %>
+
+										<div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
+
+											<div class="thumbnail">
+												<a  href="<%= advert.href %>">
+												<%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %>
+												</a>
+
+											</div>
+
+											<div class="caption">
+
+												<h5><% if advert.name.length >= 10 %>
+												<%= advert.name[0..9] %>..
+												<% else %>
+												<%= advert.name %>
+												<% end %> </h5>
+
+											</div>
+
+										</div>
+										<% end %>
+
+									</div>
+
+									<% if @gununilanlari != [] %>
+									<br>
+									<div style="text-align:center;">
+
+										<button style="text-align:center;" onclick="window.location='/firsatlar?gununfirsatlari=1'" type = "button" class = "btn btn-success">
+											Devamı İçin Tıklayınız.
+										</button>
+									</div>
+
+									<% end %>
 
 								</div>
 
@@ -374,7 +392,7 @@
 
 					</aside>
 
-					<div class="col-lg-9 col-md-9 col-sm-9">
+					<div class="col-lg-9 col-md-9 col-sm-12">
 
 						<div class="row">
 
@@ -382,30 +400,78 @@
 
 								<div style="margin-top:0px;" class=" uyepaneli col-xs-12 col-sm-12 col-md-12 col-lg-12  toppad">
 
-									<div class="panelortak profilim panel panel-info">
+									<div class="row panelortak profilim panel panel-info">
 										<div class="panel-heading">
 											<h3 class="panel-title"><%= @other_user.name+" "+ @other_user.surname %> </h3>
 										</div>
 										<div class="panel-body">
 											<div class="row">
-												<div class="col-md-3 col-lg-3 " align="center">
-													<img alt="User Pic"
-													src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png"
-													class="img-circle img-responsive">
+												<div class="visible-md visible-lg col-md-3 col-lg-3 col-xs-10 " align="center">
+													<% if !@other_user.image && @other_user.gender == "male" %>
+													<img src="/resources/images/erkek.png"
+													class='img-circle img-responsive'
+													/>
+													<% elsif !@other_user.image && @other_user.gender == "female" %>
+													<img src="/resources/images/kadin.png"
+													class='img-circle img-responsive'
+													/>
+
+													<% elsif !@other_user.image && @other_user.gender == "other" %>
+													<img src="/resources/images/diger.png"
+													class='img-circle img-responsive'
+													/>
+
+													<% else %>
+													<%= image_tag @other_user.image.imagefile(:small),
+													:alt => 'User Pic',
+													:class => 'img-circle img-responsive' %>
+													<% end%>
 												</div>
 
-												<!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-												<dl>
-												<dt>DEPARTMENT:</dt>
-												<dd>Administrator</dd>
-												<dt>HIRE DATE</dt>
-												<dd>11/12/2013</dd>
-												<dt>DATE OF BIRTH</dt>
-												<dd>11/12/2013</dd>
-												<dt>GENDER</dt>
-												<dd>Male</dd>
-												</dl>
-												</div>-->
+												<div style="margin-bottom:40px;" class="visible-sm col-md-3 col-lg-3 col-xs-10 col-sm-offset-1" align="center">
+													<% if !@other_user.image && @other_user.gender == "male" %>
+													<img src="/resources/images/erkek.png"
+													class='img-circle img-responsive'
+													/>
+													<% elsif !@other_user.image && @other_user.gender == "female" %>
+													<img src="/resources/images/kadin.png"
+													class='img-circle img-responsive'
+													/>
+
+													<% elsif !@other_user.image && @other_user.gender == "other" %>
+													<img src="/resources/images/diger.png"
+													class='img-circle img-responsive'
+													/>
+
+													<% else %>
+													<%= image_tag @other_user.image.imagefile(:small),
+													:alt => 'User Pic',
+													:class => 'img-circle img-responsive' %>
+													<% end%>
+												</div>
+
+												<div style="margin-bottom:40px;" class="visible-xs col-md-3 col-lg-3 col-xs-10 col-xs-offset-1" align="center">
+													<% if !@other_user.image && @other_user.gender == "male" %>
+													<img src="/resources/images/erkek.png"
+													class='img-circle img-responsive'
+													/>
+													<% elsif !@other_user.image && @other_user.gender == "female" %>
+													<img src="/resources/images/kadin.png"
+													class='img-circle img-responsive'
+													/>
+
+													<% elsif !@other_user.image && @other_user.gender == "other" %>
+													<img src="/resources/images/diger.png"
+													class='img-circle img-responsive'
+													/>
+
+													<% else %>
+													<%= image_tag @other_user.image.imagefile(:small),
+													:alt => 'User Pic',
+													:class => 'img-circle img-responsive' %>
+													<% end%>
+												</div>
+
 												<div class=" col-md-9 col-lg-9 ">
 													<table class="table table-user-information">
 														<tbody>
@@ -441,7 +507,7 @@
 																<td><%= gender[@other_user.gender] %></td>
 															</tr>
 
-															<% if @other_user.address!=nil %>
+															<% if @other_user.address && @other_user.address!='' %>
 
 															<tr>
 																<td>Açık adres</td>
@@ -452,35 +518,38 @@
 
 															<tr>
 																<td>E-posta</td>
-																<td><%= @other_user.email %></td>
+																<td style=" white-space: -webkit-pre-wrap;word-break: break-all;"><%= @other_user.email %></td>
 															</tr>
-															<td>Telefon Numarası</td>
-															<td><%= @other_user.phone %></td>
+															
+															<% if @other_user.phone && @other_user.phone!='' %>
+															<tr>
+																<td>Telefon Numarası</td>
+																<td><%= @other_user.phone %></td>
 
 															</tr>
+															<% end %>
 
 														</tbody>
 													</table>
 
-													<a href="#" class="col-lg-5 btn btn-primary">İlan Ver</a>
-													<a href="#" style="margin-left: 20px;"
-													class="col-lg-5 btn btn-primary">Önceki İlanlarım</a>
 												</div>
 											</div>
 										</div>
-										<div class="panel-footer">
-											<a data-original-title="Mesajlarım"
+										<div class="hidden-xs hidden-sm panel-footer">
+											<a href="/mesajlarim/?username=<%= @other_user.username %>&screen=large" data-original-title="Mesaj Gönder"
 											data-toggle="tooltip" type="button"
 											class="btn btn-sm btn-primary"><i
-											class="glyphicon glyphicon-envelope"></i></a><span
-											class="pull-right"> <a href="edit.html"
-												data-original-title="Profili Düzenle" data-toggle="tooltip"
-												type="button" class="btn btn-sm btn-warning"><i
-												class="glyphicon glyphicon-edit"></i></a> <a
-												data-original-title="Hesabımı Sil"
-												data-toggle="tooltip" type="button"
-												class="btn btn-sm btn-danger"><i
-												class="glyphicon glyphicon-remove"></i></a> </span>
+											class="glyphicon glyphicon-envelope"></i></a>
+
+										</div>
+										
+										
+										<div class="visible-xs visible-sm panel-footer">
+											<a href="/mesajlarim/?username=<%= @other_user.username %>&screen=small" data-original-title="Mesaj Gönder"
+											data-toggle="tooltip" type="button"
+											class="btn btn-sm btn-primary"><i
+											class="glyphicon glyphicon-envelope"></i></a>
+
 										</div>
 
 									</div>
@@ -491,271 +560,63 @@
 
 						</div>
 
-						<div class="row">
+						<div >
 
-							<div
-							style="margin: 10px; padding-left: 10px; padding-right: 10px;">
+							<div >
 
-								<div class="panel panel-warning">
+								<div class="panel panel-info">
 
 									<div class="panel-heading">
-										<h3 style="text-align: center;" class="panel-title">Bu Kullanıcının Son Alışları</h3>
+										<h3 style="text-align: center;" class="panel-title">Bu Kullanıcının Son İlanları</h3>
 									</div>
 
 									<div class="panel-body">
 
 										<div class="row">
-											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
+
+											<% if @lastadverts!= [] %>
+											<% @lastadverts.each do |advert| %>
+
+											<div class="col-lg-3 col-xs-6 col-md-3 col-sm-4">
 
 												<div class="thumbnail">
-													<a href="#"> <img src="/resources/images/cat-demo.jpg"
-													alt="cat demo photo"> </img> </a>
-
+													
+													<div class="wrapper2">
+													<a  href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),:title => advert.name,class: "masterTooltip" %> </a>
+												
+												
+												<div class='descriptionSabit2'>
+														<!-- description content -->
+														<div class='description_content2'>
+															<%= advert.price %> &#x20BA;
+														</div>
+														<!-- end description content -->
+													</div>
+												
+												
+													</div>	
 												</div>
 
 												<div class="caption">
 
-													<h3>Thumbnail label</h3>
-													<p>
-														Some sample text.
-													</p>
+													<h5><% if advert.name.length > 12 %>
+													<%= advert.name[0..9] %>..
+													<% else %>
+													<%= advert.name %>
+													<% end %> </h5>
 
 												</div>
 
 											</div>
+											<% end %>
 
-											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
+											<% else %>
 
-												<div class="thumbnail">
-													<a href="#"> <img src="/resources/images/cat-demo.jpg"
-													alt="cat demo photo"> </img> </a>
-
-												</div>
-
-												<div class="caption">
-
-													<h3>Thumbnail label</h3>
-													<p>
-														Some sample text.
-													</p>
-
-												</div>
-
+											<div style="padding:20px;">
+												Henüz bu kullanıcının açtığı bir ilan bulunmamaktadır!!
 											</div>
 
-											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
-
-												<div class="thumbnail">
-													<a href="#"> <img src="/resources/images/cat-demo.jpg"
-													alt="cat demo photo"> </img> </a>
-
-												</div>
-
-												<div class="caption">
-
-													<h3>Thumbnail label</h3>
-													<p>
-														Some sample text.
-													</p>
-
-												</div>
-
-											</div>
-
-											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
-
-												<div class="thumbnail">
-													<a href="#"> <img src="/resources/images/cat-demo.jpg"
-													alt="cat demo photo"> </img> </a>
-
-												</div>
-
-												<div class="caption">
-
-													<h3>Thumbnail label</h3>
-													<p>
-														Some sample text.
-													</p>
-
-												</div>
-
-											</div>
-
-											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
-
-												<div class="thumbnail">
-													<a href="#"> <img src="/resources/images/cat-demo.jpg"
-													alt="cat demo photo"> </img> </a>
-
-												</div>
-
-												<div class="caption">
-
-													<h3>Thumbnail label</h3>
-													<p>
-														Some sample text.
-													</p>
-
-												</div>
-
-											</div>
-
-											<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
-
-												<div class="thumbnail">
-													<a href="#"> <img src="/resources/images/cat-demo.jpg"
-													alt="cat demo photo"> </img> </a>
-
-												</div>
-
-												<div class="caption">
-
-													<h3>Thumbnail label</h3>
-													<p>
-														Some sample text.
-													</p>
-
-												</div>
-
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-							</div>
-
-							<div class="row">
-
-								<div
-								style="margin: 25px; padding-left: 10px; padding-right: 10px;">
-
-									<div class="panel panel-warning">
-
-										<div class="panel-heading">
-											<h3 style="text-align: center;" class="panel-title">Bu Kullanıcının Son Satışları</h3>
-										</div>
-
-										<div class="panel-body">
-
-											<div class="row">
-												<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
-
-													<div class="thumbnail">
-														<a href="#"> <img src="/resources/images/cat-demo.jpg"
-														alt="cat demo photo"> </img> </a>
-
-													</div>
-
-													<div class="caption">
-
-														<h3>Thumbnail label</h3>
-														<p>
-															Some sample text.
-														</p>
-
-													</div>
-
-												</div>
-
-												<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
-
-													<div class="thumbnail">
-														<a href="#"> <img src="/resources/images/cat-demo.jpg"
-														alt="cat demo photo"> </img> </a>
-
-													</div>
-
-													<div class="caption">
-
-														<h3>Thumbnail label</h3>
-														<p>
-															Some sample text.
-														</p>
-
-													</div>
-
-												</div>
-
-												<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
-
-													<div class="thumbnail">
-														<a href="#"> <img src="/resources/images/cat-demo.jpg"
-														alt="cat demo photo"> </img> </a>
-
-													</div>
-
-													<div class="caption">
-
-														<h3>Thumbnail label</h3>
-														<p>
-															Some sample text.
-														</p>
-
-													</div>
-
-												</div>
-
-												<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
-
-													<div class="thumbnail">
-														<a href="#"> <img src="/resources/images/cat-demo.jpg"
-														alt="cat demo photo"> </img> </a>
-
-													</div>
-
-													<div class="caption">
-
-														<h3>Thumbnail label</h3>
-														<p>
-															Some sample text.
-														</p>
-
-													</div>
-
-												</div>
-
-												<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
-
-													<div class="thumbnail">
-														<a href="#"> <img src="/resources/images/cat-demo.jpg"
-														alt="cat demo photo"> </img> </a>
-
-													</div>
-
-													<div class="caption">
-
-														<h3>Thumbnail label</h3>
-														<p>
-															Some sample text.
-														</p>
-
-													</div>
-
-												</div>
-
-												<div class="col-lg-2 col-xs-6 col-md-4 col-sm-4">
-
-													<div class="thumbnail">
-														<a href="#"> <img src="/resources/images/cat-demo.jpg"
-														alt="cat demo photo"> </img> </a>
-
-													</div>
-
-													<div class="caption">
-
-														<h3>Thumbnail label</h3>
-														<p>
-															Some sample text.
-														</p>
-
-													</div>
-
-												</div>
-
-											</div>
+											<% end %>
 
 										</div>
 
@@ -767,532 +628,7 @@
 
 						</div>
 
-					</div>
-
-				</div>
-
-			</div>
-
-			<%= render "kullanicipaneli2"%>
-
-			<div style="padding:20px;" class="visible-xs visible-sm visible-md row">
-
-				<div class=" uyepaneli col-xs-12 col-sm-12 col-md-12 col-lg-12 toppad">
-
-					<div class="panelortak profilim panel panel-info">
-						<div class="panel-heading">
-							<h3 class="panel-title"><%= @other_user.name+" "+ @other_user.surname %> </h3>
-						</div>
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-md-3 col-lg-3 " align="center">
-									<img alt="User Pic"
-									src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png"
-									class="img-circle img-responsive">
-								</div>
-
-								<!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-								<dl>
-								<dt>DEPARTMENT:</dt>
-								<dd>Administrator</dd>
-								<dt>HIRE DATE</dt>
-								<dd>11/12/2013</dd>
-								<dt>DATE OF BIRTH</dt>
-								<dd>11/12/2013</dd>
-								<dt>GENDER</dt>
-								<dd>Male</dd>
-								</dl>
-								</div>-->
-								<div class=" col-md-9 col-lg-9 ">
-									<table class="table table-user-information">
-										<tbody>
-
-											<% if @other_user.university!=nil %>
-
-											<tr>
-												<td>Üniversite:</td>
-												<td><%= @other_user.university.name %></td>
-											</tr>
-
-											<% end %>
-
-											<tr>
-												<td>Ne zaman katıldı?:</td>
-												<td><% created_at = @other_user.created_at %>
-												<%= created_at.day %> <%= months[created_at.month] %> <%= created_at.year %> </td>
-											</tr>
-
-											<% if @other_user.birthday!=nil %>
-
-											<tr>
-												<td>Doğum Tarihi:</td>
-												<td><% birthday = @other_user.birthday %>
-												<%= birthday.day %> <%= months[birthday.month] %> <%= birthday.year %> </td>
-											</tr>
-
-											<% end %>
-
-											<tr>
-											<tr>
-												<td>Cinsiyet</td>
-												<td><%= gender[@other_user.gender] %></td>
-											</tr>
-
-											<% if @other_user.address!=nil %>
-
-											<tr>
-												<td>Açık adres</td>
-												<td><%= @other_user.address %></td>
-											</tr>
-
-											<% end %>
-
-											<tr>
-												<td>E-posta</td>
-												<td><%= @other_user.email %></td>
-											</tr>
-											<td>Telefon Numarası</td>
-											<td><%= @other_user.phone %></td>
-
-											</tr>
-
-										</tbody>
-									</table>
-
-									<a href="#" class="col-lg-5 btn btn-primary">İlan Ver</a>
-									<a href="#" style="margin-left: 20px;"
-									class="col-lg-5 btn btn-primary">Önceki İlanlarım</a>
-								</div>
-							</div>
-						</div>
-						<div class="panel-footer">
-							<a data-original-title="Mesajlarım"
-							data-toggle="tooltip" type="button"
-							class="btn btn-sm btn-primary"><i
-							class="glyphicon glyphicon-envelope"></i></a><span
-							class="pull-right"> <a href="edit.html"
-								data-original-title="Profili Düzenle" data-toggle="tooltip"
-								type="button" class="btn btn-sm btn-warning"><i
-								class="glyphicon glyphicon-edit"></i></a> <a
-								data-original-title="Hesabımı Sil"
-								data-toggle="tooltip" type="button"
-								class="btn btn-sm btn-danger"><i
-								class="glyphicon glyphicon-remove"></i></a> </span>
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="hidden-lg hidden-row" style="padding: 20px;">
-
-				<div style="">
-
-					<div class="panel panel-warning">
-
-						<div class="panel-heading">
-							<h3 style="text-align: center;" class="panel-title">Bu Kullanıcının Son Alışları</h3>
-						</div>
-
-						<div class="row">
-
-							<div class="panel-body">
-
-								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="/resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h3>Thumbnail label</h3>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="/resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h3>Thumbnail label</h3>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="/resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h3>Thumbnail label</h3>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="/resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h3>Thumbnail label</h3>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="/resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h3>Thumbnail label</h3>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="/resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h3>Thumbnail label</h3>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-							</div>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="hidden-lg hidden-row" style="padding: 20px;">
-
-				<div style="">
-
-					<div class="panel panel-warning">
-
-						<div class="panel-heading">
-							<h3 style="text-align: center;" class="panel-title">Bu Kullanıcının Son Satışları</h3>
-						</div>
-
-						<div class="row">
-
-							<div class="panel-body">
-
-								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="/resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h3>Thumbnail label</h3>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="/resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h3>Thumbnail label</h3>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="/resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h3>Thumbnail label</h3>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="/resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h3>Thumbnail label</h3>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="/resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h3>Thumbnail label</h3>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="/resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h3>Thumbnail label</h3>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-							</div>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="row" style="padding: 20px;">
-
-				<div style="">
-
-					<div class="panel panel-success">
-
-						<div class="panel-heading">
-							<h3 style="text-align: center;" class="panel-title">Bu Kullanıcının Arkadaş Listesi</h3>
-						</div>
-
-						<div class="row">
-
-							<div class="panel-body">
-
-								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="/resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h3>Thumbnail label</h3>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="/resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h3>Thumbnail label</h3>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="/resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h3>Thumbnail label</h3>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="/resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h3>Thumbnail label</h3>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="/resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h3>Thumbnail label</h3>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-								<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
-
-									<div class="thumbnail">
-										<a href="#"> <img src="/resources/images/cat-demo.jpg"
-										alt="cat demo photo"> </img> </a>
-
-									</div>
-
-									<div class="caption">
-
-										<h3>Thumbnail label</h3>
-										<p>
-											Some sample text.
-										</p>
-
-									</div>
-
-								</div>
-
-							</div>
-
-						</div>
+						
 
 					</div>
 
@@ -1308,7 +644,19 @@
 
 		</div>
 
+		</div>
+
 		<!-- plugins -->
+		
+		<!-- Tooltip eklentisi-->
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+		<script>
+			var $tooltip = jQuery.noConflict();
+		</script>
+
+		<script type="text/javascript" src="/resources/plugins/tooltipplugin/tooltip.js"></script>
 
 		<!--  user panelinin js kodları -->
 
@@ -1349,7 +697,7 @@
 
 				$uyepaneljs('button').click(function(e) {
 					e.preventDefault();
-					alert("This is a demo.\n :-)");
+
 				});
 			});
 		</script>

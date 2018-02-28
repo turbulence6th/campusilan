@@ -2,26 +2,52 @@
 
 	<div style="z-index: 3;">
 
-		<ul id="main-menu" class="sm sm-blue" style="border-radius: 0">
+		<ul id="main-menu" class="sm sm-blue" style="z-index: 3;border-radius: 0">
 			<li><a href="/">Anasayfa</a></li>
-			<li><a href="/kategoriler">Kategoriler</a>
+			<li><a style="cursor: pointer;">Kategoriler</a>
 				<ul>
 					<li><a href="/kategoriler/ikincielilan">İkinci El İlan</a></li>
 					
 					<li><a href="/kategoriler/evarkadasi">Ev Arkadaşı</a></li>
-					<li><a href="/kategoriler/dersnotu">Ders Notları</a></li>
 					<li><a href="/kategoriler/ozelders">Özel Ders</a></li>
 					
 				</ul>
 				
 			</li>
-			<li><a href="/aramasonuclari">Arama Formu</a></li>
+			<li><a style="cursor: pointer;">Üniversiteler</a>
+				
+				<ul>
+					<% topUniversities.each do |record| %>
+					<li><a href="/universiteler?universities=<%= record[0] %>"><%= record[1] + " (" + record[2]+ ")" %></a></li>
+					<% end %>
+					<li><a href="/universiteler">DİĞER</a></li>
+				</ul>
+				
+			</li>
+			
+			<li><a style="cursor: pointer;">Fırsatlar</a>
+				
+				<ul>
+					<li><a href="/firsatlar?acililanlar=1">Acil İlanlar</a></li>
+					
+					<li><a href="/firsatlar?gununfirsatlari=1">Günün Fırsatları</a></li>
+					<li><a href="/firsatlar?ensonilanlar=1">En Son İlanlar</a></li>
+					<li><a href="/firsatlar?enpopulerilanlar=1">En Popüler İlanlar</a></li>
+					<li><a href="/firsatlar?enguvenilirsaticilar=1">En Güvenilir Satıcılar</a></li>
+					<li><a href="/firsatlar?kendiuniversitemdekiler=1">Kendi Üniversitemdeki İlanlar</a></li>
+					
+				</ul>
+				
+			</li>
+			
+			<li><a href="/aramasonuclari">İlan Ara</a></li>
 			<li><a href="/hakkimizda">Hakkımızda</a></li>
 			<li><a href="/iletisim">İletişim</a></li>
+			<li><a href="/yardim">Yardım</a></li>
 
-			<div class="hidden-xs" style="float: right; margin: 6px;">
-				<form>
-					<input type="search" placeholder="Arama">
+			<div class="hidden-xs hidden-sm" style="float: right; margin: 6px;">
+				<form action="/aramasonuclari" method="get">
+					<input type="search" name="aramakismi"  placeholder="Arama">
 				</form>
 			</div>
 		</ul>

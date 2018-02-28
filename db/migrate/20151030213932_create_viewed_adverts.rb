@@ -6,6 +6,8 @@ class CreateViewedAdverts < ActiveRecord::Migration
       t.references :user, :index => true
       t.references :advert, :index => true
       
+      t.timestamps :null => false
+      
     end
     
   end

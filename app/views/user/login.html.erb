@@ -10,7 +10,7 @@
 		<META http-equiv=content-type content=text/html;charset=iso-8859-9>
 		<META http-equiv=content-type content=text/html;charset=windows-1254>
 		<META http-equiv=content-type content=text/html;charset=x-mac-turkish>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<%= render 'metalar' %>
 		<!-- Bootstrap -->
 		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
@@ -88,7 +88,7 @@
 				body {
 					padding-left: 50px;
 					padding-right: 50px;
-					padding-top: 30px;
+					padding-top: 5px;
 				}
 			}
 
@@ -111,12 +111,15 @@
 		<script src="resources/js/bootstrap.min.js"></script>
 
 		<div class="container-fluid">
-			
-			<div class="row" style="margin-bottom: 10px;">
 
-				<!-- Login Starts Here -->
-				<%= render "loginContainer" %>
-				<!-- Login Ends Here -->
+			<div class="visible-xs visible-sm row" style="margin-bottom: 10px;">
+
+				<div id="loginkismi "  class="visible-xs ">
+					<!-- Login Starts Here -->
+					<%= render "loginContainer" %>
+					<!-- Login Ends Here -->
+
+				</div>
 
 			</div>
 
@@ -135,34 +138,65 @@
 
 			</div>
 
-			<div  class="well">
+			<div  class="row well">
 
-				<%if params[:hataligiris]!=nil%>
+				<%if params[:hataligiris]%>
 				<div class="row">
 
-					<div style="margin-left:20px;"class="col-lg-4 col-md-5 hidden-sm hidden-xs alert alert-danger">
+					<div style="margin-left:20px;" class="col-lg-4 col-md-4 hidden-sm hidden-xs alert alert-danger">
 						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						<strong>Hata!</strong> Kullanıcı adınızı veya şifrenizi yanlış girdiniz
 					</div>
 
-					<div style=""class="hidden-lg hidden-md col-sm-12 col-xs-12 alert alert-danger">
+					<div style="margin-left:20px;"  class="hidden-lg hidden-md col-sm-6	 col-xs-10 alert alert-danger">
 						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						<strong>Hata!</strong> Kullanıcı adınızı veya şifrenizi yanlış girdiniz
 					</div>
 
 				</div>
+
+				<%elsif params[:onay]%>
+				<div class="row">
+
+					<div style="margin-left:20px;"class="col-lg-4 col-md-5 hidden-sm hidden-xs alert alert-danger">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<strong>Hata!</strong> Hesabınız henüz onaylanmadı
+					</div>
+
+					<div style=""class="hidden-lg hidden-md col-sm-12 col-xs-12 alert alert-danger">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<strong>Hata!</strong> Hesabınız henüz onaylanmadı
+					</div>
+
+				</div>
+
+				<%elsif params[:silinmis]%>
+				<div class="row">
+
+					<div style="margin-left:20px;"class="col-lg-4 col-md-5 hidden-sm hidden-xs alert alert-danger">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<strong>Hata!</strong> Hesabınız silinmiş tekrar etkinleştirmek için admin ile iletişime geçiniz
+					</div>
+
+					<div style=""class="hidden-lg hidden-md col-sm-12 col-xs-12 alert alert-danger">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<strong>Hata!</strong> Hesabınız silinmiş tekrar etkinleştirmek için admin ile iletişime geçiniz
+					</div>
+
+				</div>
+
 				<%end%>
 
 				<div class="row">
 
-					<div class="mainbox col-lg-4 col-md-4" id="loginbox" style="margin-top: 20px;">
+					<div class="mainbox col-lg-5 col-md-5" id="loginbox" style="margin-top: 20px;">
 						<div class="panel panel-info">
 							<div class="panel panel-heading">
 								<div class="panel-title">
-									Sign In
+									Giriş Yap
 								</div>
 								<div style="float: right; font-size: 80%; position: relative; top: -10px">
-									<a href="#">Forgot password?</a>
+									<a href="/sifremiunuttum">Şifrenizi mi unuttunuz?</a>
 								</div>
 							</div>
 
@@ -198,21 +232,22 @@
 
 									<div class="col-sm-12 col-xs-12 controls">
 
-										<input style="width:100%;" id="btn-login" class="visible-xs btn btn-success" type="submit" value="Login" />
+										<input style="width:100%;" id="btn-login" class="visible-xs btn btn-success" type="submit" value="Giriş" />
 
-										<input  id="btn-login" class="hidden-xs btn btn-success" type="submit" value="Login" />
+										<input  id="btn-login" class="hidden-xs btn btn-success" type="submit" value="Giriş" />
 
 										<br class="visible-xs">
 										<br class="visible-xs">
 
-										<a style="width:100%;" id="btn-fblogin" href="#" class="visible-xs btn btn-primary">Facebook İle Bağlan</a>
-										<br class="visible-xs">
-										<a  id="btn-fblogin" href="#" class="hidden-xs btn btn-primary">Facebook İle Bağlan
 										<br class="visible-xs">
 										<br class="visible-xs">
 										<a style="width:100%;" id="register" href="/kayitol"
-										class="visible-xs btn btn-primary">Kayıt Ol</a> <a id="register" href="/kayitol"
-										style="float: right;" class="hidden-xs btn btn-primary">Kayıt Ol</a>
+										class="visible-xs btn btn-primary">Kayıt Ol</a>
+
+										<a id="register" href="/kayitol"
+										class="hidden-xs btn btn-primary">Kayıt Ol</a>
+
+										<div style="float:right;" class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
 									</div>
 								</div>
 
@@ -223,12 +258,43 @@
 
 					</div>
 
-					<div style="padding-left:50px;margin-top: 20px;" class="col-lg-8 col-md-8">
+					<div style="padding-left:50px;margin-top: 20px;" class="hidden-xs hidden-sm col-lg-7 col-md-7">
 
-						-Kullanım Koşulları için <a href="/kullanimkosullari">buraya</a> tıklayınız.<br><br>
-						
-						-Sitemizin işleyişiyle ilgili bilgi mi almak istiyorsunuz? <a href="">Buraya</a> tıklayın.<br><br>
-						&nbsp;Ya da yardıma mı ihtiyacınız var? O zaman <a href="/yardim">buraya</a> tıklayın.
+						-Kullanım Koşulları için <a href="/kullanimkosullari">buraya</a> tıklayınız.
+						<br>
+						<br>
+
+						-Sitemizin işleyişiyle ilgili bilgi mi almak istiyorsunuz? <a href="">Buraya</a> tıklayın.
+						<br>
+						<br>
+						-Üye oldunuz ve aktivasyon e-postası gelmedi mi? O zaman <a href="/aktivasyon" >buraya</a> tıklayınız.
+						<br>
+						<br>
+						-Hala daha yardıma mı ihtiyacınız var? O zaman <a href="/yardim">buraya</a> tıklayın.
+						<br />
+						<br>
+
+						<img class="img-responsive" width="150px" src="/resources/images/login-icon.png" >
+
+					</div>
+
+					<div style="margin-top: 20px;" class="visible-xs visible-sm col-lg-7 col-md-7">
+
+						-Kullanım Koşulları için <a href="/kullanimkosullari">buraya</a> tıklayınız.
+						<br>
+						<br>
+
+						-Sitemizin işleyişiyle ilgili bilgi mi almak istiyorsunuz? <a href="">Buraya</a> tıklayın.
+						<br>
+						<br>
+						-Üye oldunuz ve aktivasyon e-postası gelmedi mi? O zaman <a href="/aktivasyon" >buraya</a> tıklayınız.
+						<br>
+						<br>
+						-Hala daha yardıma mı ihtiyacınız var? O zaman <a href="/yardim">buraya</a> tıklayın.
+						<br />
+						<br>
+
+						<img class="img-responsive"  width="150px"src="/resources/images/login-icon.png" >
 
 					</div>
 
@@ -236,7 +302,11 @@
 
 			</div>
 
-			<%= render "footer" %>
+			<div class="row">
+
+				<%= render "footer" %>
+
+			</div>
 
 		</div>
 
@@ -245,6 +315,20 @@
 		<!--  fixed header -->
 
 		<%= render "headerfixedjs" %>
+
+		<div id="fb-root"></div>
+		<script>
+			( function(d, s, id) {
+					var js,
+					    fjs = d.getElementsByTagName(s)[0];
+					if (d.getElementById(id))
+						return;
+					js = d.createElement(s);
+					js.id = id;
+					js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5&appId=520201524824599";
+					fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));
+		</script>
 
 	</body>
 

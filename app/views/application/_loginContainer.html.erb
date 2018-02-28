@@ -1,6 +1,6 @@
 <% if current_user==nil %>
 
-<div id="loginContainer">
+<div class="hidden-xs "  id="loginContainer">
 	<a href="#" id="loginButton"><span>Giriş Yap &amp; Kaydol</span><em></em></a>
 	<div style="clear: both"></div>
 	<div id="loginBox">
@@ -17,11 +17,45 @@
 			</fieldset>
 			<%= submit_tag "Giriş Yap", :id => 'login' %>
 			<input type="button" id="login" onclick="yonlendir()" value="Kayıt Ol" />
-			<label for="checkbox">
-				<%= check_box_tag :remember, 1, false, :id => 'checkbox' %>
+			<label for="checkbox"> <%= check_box_tag :remember, 1, false, :id => 'checkbox' %>
 				Beni hatırla </label>
 		</fieldset>
-		<span><a href="#">Şifreni mi unuttun?</a></span>
+		<span><a href="/sifremiunuttum">Şifreni mi unuttun?</a></span>
+		<% end %>
+
+		<script>
+			function yonlendir() {
+
+				window.location = "/kayitol";
+
+			}
+
+		</script>
+
+	</div>
+</div>
+
+<div class="visible-xs " id="loginContainer2">
+	<a href="#" id="loginButton"><span>Giriş Yap &amp; Kaydol</span><em></em></a>
+	<div style="clear: both"></div>
+	<div id="loginBox">
+
+		<%= form_tag '/login', :id => 'loginForm' do  %>
+		<fieldset id="body">
+			<fieldset>
+				<label for="username">Kullanıcı Adı</label>
+				<%= text_field_tag :username %>
+			</fieldset>
+			<fieldset>
+				<label for="password">Şifre</label>
+				<%= password_field_tag :password %>
+			</fieldset>
+			<%= submit_tag "Giriş Yap", :id => 'login' %>
+			<input type="button" id="login" onclick="yonlendir()" value="Kayıt Ol" />
+			<label for="checkbox"> <%= check_box_tag :remember, 1, false, :id => 'checkbox' %>
+				Beni hatırla </label>
+		</fieldset>
+		<span><a href="/sifremiunuttum">Şifreni mi unuttun?</a></span>
 		<% end %>
 
 		<script>
@@ -38,19 +72,70 @@
 
 <% else %>
 
-<p style="float:right;">
+<div style="padding-right:20px;" class="hidden-xs hidden-sm row">
+
+	<div style="margin-right:-10px;" class="col-lg-10 col-md-10 col-sm-10">
+
+		<span style="color:black; float:right"> Hoşgeldin; <%= current_user.name %> <%= current_user.surname %></span>
+
+		<div  style="color:black;float:right;">
+
+			<% if current_user && current_user.role=='admin' %>
+			<a href="/admin"> Admin Paneli </a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="/ilanonay"> İlan Onayla </a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<% end %>
+			
+			<a href="/ilanver"> İlan Ver </a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="/uye/<%= current_user.username %>"> Profilim </a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/logout">Çıkış Yap </a>
+
+		</div>
+
+	</div>
+
+	<div  class="  col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+		<% if !current_user.image && current_user.gender == "male" %>
+		<img  style="position: relative;top:-5px;" src="/resources/images/erkek.png" width="50px" height="50px"
+		class='img-circle '
+		/>
+		<% elsif !current_user.image && current_user.gender == "female" %>
+		<img style="position: relative;top:-5px;" src="/resources/images/kadin.png" width="50px" height="50px"
+		class='img-circle '
+		/>
+
+		<% elsif !current_user.image && current_user.gender == "other" %>
+		<img style="position: relative;top:-5px;" src="/resources/images/diger.png" width="50px" height="50px"
+		class='img-circle ' 
+		/>
+
+		<% else %>
+		<%= image_tag current_user.image.imagefile(:small),
+		:alt => 'User Pic',
+		:class => 'img-circle ',:width =>"50px",:height => "50px", :style => 'position: relative;top:-5px;' %>
+		<% end%>
+
+	</div>
+
+</div>
+
+<div class="visible-xs visible-sm">
+
+<p style="color:black;float:right;">
 	Hoşgeldin; <%= current_user.username %>
 </p>
 <br>
 
-<p  style="clear: both;float:right;">
+<div  style="color:black;clear: both;float:right;">
 	
 	<% if current_user && current_user.role=='admin' %>
-		<a href="/administrator"> Admin Paneli </a>&nbsp;&nbsp;|&nbsp;&nbsp;
+		<a href="/admin"> Admin Paneli </a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<% end %>
 	
-	<a href="/uye/<%= current_user.username %>"> Profilim </a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/logout"> Çıkış Yap </a>
-</p>
+	<a href="/uye/<%= current_user.username %>"> Profilim </a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/logout">Çıkış Yap </a>
+
+</div>
+
+
+</div>
 
 <%end%>
-

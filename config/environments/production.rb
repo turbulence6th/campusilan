@@ -22,7 +22,7 @@ config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
 config.assets.js_compressor = :uglifier
 # config.assets.css_compressor = :sass
 # Do not fallback to assets pipeline if a precompiled asset is missed.
-config.assets.compile = false
+config.assets.compile = true
 # Asset digests allow you to set far-future HTTP expiration dates on all assets,
 # yet still be able to expire them through the digest params.
 config.assets.digest = true
@@ -34,7 +34,11 @@ config.assets.digest = true
 # config.force_ssl = true
 # Use the lowest log level to ensure availability of diagnostic information
 # when problems arise.
+<<<<<<< HEAD
 config.log_level = :debug
+=======
+config.log_level = :error
+>>>>>>> fd66cc525bcfe9cedb964897caa0b34e784ae9ed
 RAILS_DEFAULT_LOGGER = Logger.new('log/production.log')
 # Prepend all log lines with the following tags.
 # config.log_tags = [ :subdomain, :uuid ]
@@ -56,4 +60,5 @@ config.active_support.deprecation = :notify
 config.log_formatter = ::Logger::Formatter.new
 # Do not dump schema after migrations.
 config.active_record.dump_schema_after_migration = false
+config.assets.precompile += %w[active_admin.css active_admin.js]
 end

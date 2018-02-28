@@ -1,6 +1,7 @@
+
 University.create( :name => 'ORTA DOĞU TEKNİK ÜNİVERSİTESİ', :email => 'metu.edu.tr' )
 University.create(:name => 'ABANT İZZET BAYSAL ÜNİVERSİTESİ', :email => 'ibu.edu.tr')
-University.create(:name => 'ABDULLAH GÜLL ÜNİVERSİTESİ', :email => 'agu.edu.tr')
+University.create(:name => 'ABDULLAH GÜL ÜNİVERSİTESİ', :email => 'agu.edu.tr')
 University.create(:name => 'ACIBADEM ÜNİVERSİTESİ', :email => 'acibadem.edu.tr')
 University.create(:name => 'ADANA BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ', :email => 'adanabtu.edu.tr')
 University.create(:name => 'ADIYAMAN ÜNİVERSİTESİ', :email => 'adiyaman.edu.tr')
@@ -151,7 +152,7 @@ University.create(:name => 'ONDOKUZ MAYIS ÜNİVERSİTESİ', :email => 'omu.edu.
 University.create(:name => 'ORDU ÜNİVERSİTESİ', :email => 'odu.edu.tr')
 University.create(:name => 'OSMANİYE KORKUT ATA ÜNİVERSİTESİ', :email => 'osmaniye.edu.tr')
 University.create(:name => 'ÖZYEĞİN ÜNİVERSİTESİ', :email => 'ozyegin.edu.tr')
-University.create(:name => 'PAMUKKALE ÜNİVERSİTESİ', :email => 'pau.edu.tr')
+University.create(:name => 'PAMUKKALE ÜNİVERSİTESİ', :email => 'posta.pau.edu.tr')
 University.create(:name => 'PİRİ REİS ÜNİVERSİTESİ', :email => 'pirireis.edu.tr')
 University.create(:name => 'PLATO MESLEK YÜKSEKOKULU', :email => 'plato.edu.tr')
 University.create(:name => 'RECEP TAYYİP ERDOĞAN ÜNİVERSİTESİ', :email => 'erdogan.edu.tr')
@@ -194,7 +195,7 @@ University.create(:name => 'ZİRVE ÜNİVERSİTESİ', :email => 'zirve.edu.tr')
 
 oguz = User.new( :username => "turbulence6th", :password => "oguzTanrikulu123", :password_confirmation => "oguzTanrikulu123", :email => "oguz.tanrikulu@metu.edu.tr",
   :email_confirmation => "oguz.tanrikulu@metu.edu.tr", :name => "Oğuz", :surname => "Tanrıkulu", :gender => :male, :bulletin => true, :phone => "538-3595977", 
-  :verified => true, :birthday => Time.new(1994, 4, 3 ), :role => :admin )
+  :verified => true, :birthday => Time.new(1994, 4, 3 ), :role => :admin, :deleted => false )
 oguz.university = University.find_by_email('metu.edu.tr')
 oguz.save
 
@@ -206,6 +207,17 @@ oguz.save
 
 onur = User.new( :username => "svmszcck", :password => "1234Onur1234", :password_confirmation => "1234Onur1234", :email => "demirtas.onur@metu.edu.tr",
   :email_confirmation => "demirtas.onur@metu.edu.tr", :name => "Onur", :surname => "Demirtaş", :gender => :male, :bulletin => true, :phone => "505-7822777", 
-  :verified => true, :birthday => Time.new(1991, 8, 14 ), :role => :admin )
+  :verified => true, :birthday => Time.new(1991, 8, 14 ), :role => :admin, :deleted => false )
 onur.university = University.find_by_email('metu.edu.tr')
 onur.save 
+
+images = Image.all
+
+images.each do |img|
+  if img.user == nil
+    img.user = img.imageable.user if img.imageable_type=='Advert'
+    img.user = img.imageable if img.imageable_type=='User'
+    img.save
+  end
+end
+

@@ -102,7 +102,7 @@
 .sm-blue ul a, .sm-blue ul a:hover, .sm-blue ul a:focus, .sm-blue ul a:active {
   background: transparent;
   color: #2b82ac;
-  font-size: 16px;
+  font-size: 15px;
   text-shadow: none;
   border-left: 8px solid transparent;
 }
@@ -149,7 +149,7 @@
   border-top: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   /* Switch to desktop layout
   -----------------------------------------------
      These transform the menu tree from

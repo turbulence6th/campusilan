@@ -16,7 +16,7 @@ class SecondhandTest < ActiveSupport::TestCase
   
   test 'no color' do
     @advertable.color = nil
-    assert @advertable.invalid?
+    assert @advertable.valid?
   end
   
   test 'no brand' do

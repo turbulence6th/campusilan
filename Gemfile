@@ -1,7 +1,24 @@
 source 'https://rubygems.org'
 
+ruby '2.2.0'
 
+gem 'rails_12factor', group: :production
 
+gem 'sitemap_generator'
+
+gem 'whenever', :require => false
+
+gem 'geocoder'
+
+gem 'activeadmin'
+
+# Plus integrations with:
+gem 'devise'
+gem 'cancan' # or cancancan
+gem 'draper'
+gem 'pundit'
+
+gem 'will_paginate', '~> 3.0.6'
 
 gem "paperclip", "~> 4.3"
 
@@ -14,7 +31,7 @@ gem 'rename'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '0.15'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -36,8 +53,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
+group :production do
+  gem 'unicorn'
+end
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

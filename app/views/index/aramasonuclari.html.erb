@@ -10,7 +10,7 @@
 		<META http-equiv=content-type content=text/html;charset=iso-8859-9>
 		<META http-equiv=content-type content=text/html;charset=windows-1254>
 		<META http-equiv=content-type content=text/html;charset=x-mac-turkish>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<%= render 'metalar' %>
 		<!-- Bootstrap -->
 		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
@@ -85,10 +85,20 @@
 		<link href="resources/plugins/listgridview/css/style.css"
 
 		<script src="resources/plugins/listgridview/js/script.js"
+		
+		<!-- hopscotch -->
+
+		<link rel="stylesheet" type="text/css" href="/resources/plugins/hopscotch/dist/css/hopscotch.css" />
+		
+		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/hopscotch.js"></script>
+		
+		<script type="text/javascript" src="/resources/plugins/hopscotch/dist/js/siteturu.js"></script>
 
 		<!-- end of plugins  -->
 
 		<style>
+		
+			
 			body {
 				background-color: #F0F7F7;
 			}
@@ -96,7 +106,7 @@
 				body {
 					padding-left: 50px;
 					padding-right: 50px;
-					padding-top: 30px;
+					padding-top: 5px;
 				}
 			}
 
@@ -106,10 +116,6 @@
 				}
 			}
 
-			.smartmenus li {
-
-				z-index: 3;
-			}
 		</style>
 
 		</head>
@@ -124,15 +130,18 @@
 
 		<div class="container-fluid">
 
-		<div class="row" style="margin-bottom: 10px;">
+		<div class="row" style="position: relative;margin-bottom: 10px;">
 
-		<!-- Login Starts Here -->
+				
 
-		<%= render "loginContainer" %>
+				<div id="loginkismi "  class="visible-xs ">
+					<!-- Login Starts Here -->
+					<%= render "loginContainer" %>
+					<!-- Login Ends Here -->
 
-		<!-- Login Ends Here -->
+				</div>
 
-		</div>
+			</div>
 
 		<div class="row">
 
@@ -157,54 +166,74 @@
 
 		<div style="margin-top:10px;" class="col-lg-3 col-md-3">
 
-		<form role = "form">
+		<%= form_tag 'aramasonuclari' , :method => :get , :html => {
 
-		<div class = "input-group">
-		<input placeholder="Arama Yap..."type = "text" class = "form-control">
+		} do  %>
 
-		<span class = "input-group-btn">
-		<button class = "btn btn-default" type = "button">
-		Ara
-		</button>
+		<div  id="onucuncukisim" style="z-index: 1;" class = "input-group">
+			<%= text_field_tag :aramakismi,params[:aramakismi],class: "form-control",placeholder: "Arama Yap..."  %>	
+			
+	
+			<span class = "input-group-btn">
+			<%= submit_tag 'Ara',name:nil,class: "btn btn-default" %>
+		
+		
 		</span>
 
 		</div>
 
-		</form>
-
 		<br>
 
-		<form action="">
-
-		<div class="panel panel-danger">
+		<div id="onikincikisim" class="panel panel-success">
 		<div class="panel-heading">
 		<h3 class="panel-title">Kategori</h3>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;İkinci El İlan<br>
-		</div>
-		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Ev Arkadaşı<br>
-		</div>
-		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Ders Notları<br>
-		</div>
-		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Özel Ders<br>
-		</div>
-		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Ev İlanları<br>
-		</div>
+		
+
+		
+		
+		
+		<%= select_tag :kategori,options_for_select([['Kategori Seçiniz', 'hepsi'], ['İkinci El İlan', 'ikinciel'], ['Ev Arkadaşı', 'evarkadasi'],['Özel Ders','ozelders']],params[:kategori]),:onChange => "changeformcontent(this.value)", class:"form-control"  %>
+
+		
 		</div>
 
-		<div class="panel panel-danger">
+		</div>
+
+		<div class="formicerigi" >
+			
+			
+
+		</div>
+
+		<% end %>
+
+		</div>
+		
+		
+		<div class="formicerigiyedek" >
+			
+			
+
+		</div>
+		
+		
+		
+		<%= form_for :arama,:url => 'aramasonuclari' , :method => :get , :html => {
+
+		} do |t| %>
+
+		<div class="evarkadasi" style="display:none;">
+			
+		<div class=" sehir panel panel-success">
 		<div class="panel-heading">
-		<h3 class="panel-title">Marka</h3>
+		<h3 class="panel-title">Şehir</h3>
 		</div>
 
 		<div class="panel-body">
-		<input style="padding:7px;border:solid 1px #000000;
+		<%= text_field_tag :sehir,params[:sehir]	,style: "padding:7px;border:solid 1px #000000;
 		-moz-border-radius-topleft: 13px;
 		-moz-border-radius-topright:12px;
 		-moz-border-radius-bottomleft:11px;
@@ -216,227 +245,718 @@
 		border-top-left-radius:13px;
 		border-top-right-radius:12px;
 		border-bottom-left-radius:11px;
-		border-bottom-right-radius:12px;" type="text" name="vehicle" placeholder="Markayı Giriniz..."  value="">&nbsp;<br>
+		border-bottom-right-radius:12px;",type:"text",placeholder:"Şehri Giriniz..." %> &nbsp;<br>
 		</div>
 
-		</div>
-
-		<div class="panel panel-danger">
+		</div>	
+		
+		<div class=" marka panel panel-success">
 		<div class="panel-heading">
-		<h3 class="panel-title">Renk</h3>
+		<h3 class="panel-title">Semt</h3>
 		</div>
 
 		<div class="panel-body">
-		<select>
-		<option value="volvo">Siyah</option>
-		<option value="saab">Beyaz</option>
-		<option value="mercedes">Kırmızı</option>
-		<option value="audi">Mavi</option>
-		<option value="audi">Sarı</option>
-		<option value="audi">Yeşil</option>
-		</select>
-		</div>
+		<%= text_field_tag :semt,params[:semt]	,style: "padding:7px;border:solid 1px #000000;
+		-moz-border-radius-topleft: 13px;
+		-moz-border-radius-topright:12px;
+		-moz-border-radius-bottomleft:11px;
+		-moz-border-radius-bottomright:12px;
+		-webkit-border-top-left-radius:13px;
+		-webkit-border-top-right-radius:12px;
+		-webkit-border-bottom-left-radius:11px;
+		-webkit-border-bottom-right-radius:12px;
+		border-top-left-radius:13px;
+		border-top-right-radius:12px;
+		border-bottom-left-radius:11px;
+		border-bottom-right-radius:12px;",type:"text",placeholder:"Semti Giriniz..." %> &nbsp;<br>
 		</div>
 
-		<div class="panel panel-danger">
+		</div>
+		
+		
+		
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Aranan </h3>
+		</div>
+
+		<div class="panel-body">
+		
+		
+		<%= select_tag :demand, options_for_select([['Erkek', 'male'], ['Kadın', 'female'], ['Hepsi', 'both']],params[:demand]), class:"form-control"  %>
+		</div>
+
+		</div>
+		
+		
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Genelde gece 12'den sonra uyur mu? </h3>
+		</div>
+
+		<div class="panel-body">
+		
+		<%= select_tag :sleep, options_for_select([['Hepsi', 'hepsi'], ['Evet', 'evet1'], ['Hayır', 'hayir1'], ['Değişken', 'degisken1']],params[:sleep]), class:"form-control"  %>
+		</div>
+
+		</div>
+		
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Eve arkadaşlarını getiriyor mu? </h3>
+		</div>
+
+		<div class="panel-body">
+		
+		<%= select_tag :friend, options_for_select([['Hepsi', 'hepsi'], ['Evet', 'evet2'], ['Hayır', 'hayir2'], ['Değişken', 'degisken2']],params[:friend]), class:"form-control"  %>
+		</div>
+
+		</div>
+		
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Sigara İçiyor mu? </h3>
+		</div>
+
+		<div class="panel-body">
+		
+		<%= select_tag :smoke, options_for_select([['Hepsi', 'hepsi'], ['Evet', 'evet3'], ['Hayır', 'hayir3'], ['Arada', 'arada3']],params[:smoke]), class:"form-control"  %>
+		</div>
+
+		</div>
+		
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Bölümü </h3>
+		</div>
+
+		<div class="panel-body">
+		
+		<%= select_tag :department, options_for_select([['Hepsi', 'hepsi'], ['Mühendislik', 'muhendislik'], ['Eğitim Bilimleri', 'egitim'], ['Siyasal Bilimler', 'siyasal'],['Tıp','tip'],['Diğer','diger']],params[:department]), class:"form-control"  %>
+		</div>
+
+		</div>
+		
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Sesli Müzik vs. dinler mi? </h3>
+		</div>
+
+		<div class="panel-body">
+		
+		
+		<%= select_tag :music, options_for_select([['Hepsi', 'hepsi'], ['Evet', 'evet4'], ['Hayır', 'hayir4'], ['Arada', 'arada4']],params[:music]), class:"form-control"  %>
+		</div>
+
+		</div>
+		
+		
+
+		<div class="panel panel-success">
 		<div class="panel-heading">
 		<h3 class="panel-title">Fırsatlardan seç</h3>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Acil İlanlar<br>
+		<%= check_box_tag :acililan,1,params[:acililan]  %> &nbsp;Acil İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Günün Fırsatları<br>
+		<%= check_box_tag :gununfirsatlari,1,params[:gununfirsatlari]  %> &nbsp;Günün Fırsatları<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Popüler İlanlar<br>
+		<%= check_box_tag :ensonilanlar,1,params[:ensonilanlar]  %> &nbsp;En Son İlanlar<br>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Son İlanlar<br>
+		<%= check_box_tag :enguvenilir,1,params[:enguvenilir]  %> &nbsp;En Güvenilir Satıcılardan<br>
+		</div>
+
+		</div>
+
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Aylık Kira Ücreti</h3>
+		</div>
+
+		<div class=" panel-body">
+			
+		 <%= text_field_tag :taban,params[:taban],:placeholder => 'TL'  %> &nbsp;ile <br><br>
+		
+		<%= text_field_tag :tavan,params[:tavan],:placeholder => 'TL' %> &nbsp; arası
+		</div>
+
+		
+
+		</div>
+		
+
+		</div>
+		
+		<% end %>
+		
+		
+		<%= form_for :arama,:url => 'aramasonuclari' , :method => :get , :html => {
+
+		} do |t| %>
+
+		<div class="ikincieldiger" style="display:none">
+			
+		<%= hidden_field_tag "kategori", "ikinciel" %>
+
+		
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Alt Kategori </h3>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;Fiyatı Düşenler<br>
+		<%= select_tag :altkategori,options_for_select([['Kategori Seçiniz', 'hepsi'],['Beyaz Eşya', 'beyazesya'], ['Ev Dekorasyonu',
+        'evdekorasyon'], ['Müzik Aletleri', 'muzikaletleri'], ['Elektronik', 'elektronik'], ['Kırtasiye', 'kirtasiye'],
+      ['Mutfak Eşyaları', 'mutfakesyalari'], ['Vasıta', 'vasita'],['Giyim', 'giyim'],['Kitap ve Ders Notu', 'kitapdersnotu'], ['İncik Boncuk', 'incikboncuk'], ['Diğer', 'diger']],params[:altkategori]), :class => 'form-control'  %>
+		</div>
+
+		</div>
+		
+			
+		<div class=" marka panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Marka</h3>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Güvenilir Satıcılardan<br>
+		<%= text_field_tag :marka,params[:marka]	,style: "padding:7px;border:solid 1px #000000;
+		-moz-border-radius-topleft: 13px;
+		-moz-border-radius-topright:12px;
+		-moz-border-radius-bottomleft:11px;
+		-moz-border-radius-bottomright:12px;
+		-webkit-border-top-left-radius:13px;
+		-webkit-border-top-right-radius:12px;
+		-webkit-border-bottom-left-radius:11px;
+		-webkit-border-bottom-right-radius:12px;
+		border-top-left-radius:13px;
+		border-top-right-radius:12px;
+		border-bottom-left-radius:11px;
+		border-bottom-right-radius:12px;",type:"text",placeholder:"Markayı Giriniz..." %> &nbsp;<br>
+		</div>
+
+		</div>
+		
+		
+
+		<div class="renk panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Renk</h3>
 		</div>
 
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;En Yakında Olan Satıcılardan<br>
+		<%= select_tag :color, options_for_select([['Hepsi', 'hepsi'], ['Siyah', 'siyah'], ['Beyaz', 'beyaz'], ['Kırmızı', 'kirmizi'],['Mavi','mavi'],['Sarı','sari'],['Yeşil','yesil']],params[:color]), class:"form-control"  %>
+		
+		</div>
+		</div>
+
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Fırsatlardan seç</h3>
+		</div>
+		
+		
+
+		<div class="panel-body">
+		<%= check_box_tag :acililan,1,params[:acililan]  %> &nbsp;Acil İlanlar<br>
+		</div>
+
+		<div class="panel-body">
+		<%= check_box_tag :gununfirsatlari,1,params[:gununfirsatlari]  %> &nbsp;Günün Fırsatları<br>
+		</div>
+
+		<div class="panel-body">
+		<%= check_box_tag :enpopuler,1,params[:enpopuler]  %> &nbsp;En Popüler İlanlar<br>
+		</div>
+
+		<div class="panel-body">
+		<%= check_box_tag :enguvenilir,1,params[:enguvenilir]  %> &nbsp;En Güvenilir Satıcılardan<br>
 		</div>
 
 		</div>
 
-		<div class="panel panel-danger">
+		<div class="panel panel-success">
 		<div class="panel-heading">
 		<h3 class="panel-title">Fiyat Aralığı</h3>
 		</div>
 
-		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;0 - 50 TL<br>
+		<div class=" panel-body">
+			
+		 <%= text_field_tag :taban,params[:taban],:placeholder => 'TL'  %> &nbsp;ile <br><br>
+		
+		<%= text_field_tag :tavan,params[:tavan],:placeholder => 'TL' %> &nbsp; arası
 		</div>
-		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;50 - 100 TL<br>
+
+		
+
 		</div>
-		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;100 - 250 TL<br>
+
 		</div>
-		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;250 - 500 TL<br>
+		
+		<% end %>
+		
+		
+		
+		
+		<%= form_for :arama,:url => 'aramasonuclari' , :method => :get , :html => {
+
+		} do |t| %>
+
+		<div class="ozelders" style="display:none">
+			
+		<div class=" sehir panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Şehir</h3>
 		</div>
+
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;500 - 1000 TL<br>
+		<%= text_field_tag :sehir,params[:sehir]	,style: "padding:7px;border:solid 1px #000000;
+		-moz-border-radius-topleft: 13px;
+		-moz-border-radius-topright:12px;
+		-moz-border-radius-bottomleft:11px;
+		-moz-border-radius-bottomright:12px;
+		-webkit-border-top-left-radius:13px;
+		-webkit-border-top-right-radius:12px;
+		-webkit-border-bottom-left-radius:11px;
+		-webkit-border-bottom-right-radius:12px;
+		border-top-left-radius:13px;
+		border-top-right-radius:12px;
+		border-bottom-left-radius:11px;
+		border-bottom-right-radius:12px;",type:"text",placeholder:"Şehri Giriniz..." %> &nbsp;<br>
 		</div>
+
+		</div>	
+		
+		<div class=" marka panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Semt</h3>
+		</div>
+
 		<div class="panel-body">
-		<input type="checkbox" name="vehicle" value="Bike">&nbsp;1000 TL üstü<br>
+		<%= text_field_tag :semt,params[:semt]	,style: "padding:7px;border:solid 1px #000000;
+		-moz-border-radius-topleft: 13px;
+		-moz-border-radius-topright:12px;
+		-moz-border-radius-bottomleft:11px;
+		-moz-border-radius-bottomright:12px;
+		-webkit-border-top-left-radius:13px;
+		-webkit-border-top-right-radius:12px;
+		-webkit-border-bottom-left-radius:11px;
+		-webkit-border-bottom-right-radius:12px;
+		border-top-left-radius:13px;
+		border-top-right-radius:12px;
+		border-bottom-left-radius:11px;
+		border-bottom-right-radius:12px;",type:"text",placeholder:"Semti Giriniz..." %> &nbsp;<br>
+		</div>
+
+		</div>	
+			
+			
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Ders Kategorisi </h3>
+		</div>
+
+		<div class="panel-body">
+		
+		<%= select_tag :altkategori, options_for_select([['Hepsi', 'hepsi'], ['Matematik', 'matematik'], ['Fizik', 'fizik'], ['Kimya', 'kimya'],['Biyoloji','biyoloji'],['Genel Mühendislik','genelmuhendislik'],['Genel Eğitim Bilimleri','genelegitimbilimleri']],params[:altkategori]), class:"form-control"  %>
+		
+		</div>
+
+		</div>	
+		
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Özel Ders Şekli </h3>
+		</div>
+
+		<div class="panel-body">
+		
+		<%= select_tag :kind, options_for_select([['Hepsi', 'hepsi'], ['Birebir', 'birebir'], ['Grup', 'grup'], ['Sınıf Dersi', 'sinifdersi']],params[:lecture]), class:"form-control"  %>
+		
+		</div>
+
+		</div>	
+		
+		
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Dersi Nerede verecek? </h3>
+		</div>
+
+		<div class="panel-body">
+		
+		<%= select_tag :location, options_for_select([['Hepsi', 'hepsi'], ['Öğrenci Evinde', 'ogrencievi'], ['Öğretmenin Evinde', 'ogretmenevi'], ['Sınıfta', 'sinifta']],params[:location]), class:"form-control"  %>
+		
+		
+		</div>
+
+		</div>	
+			
+			
+			
+
+
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Fırsatlardan seç</h3>
+		</div>
+		
+		
+
+		<div class="panel-body">
+		<%= check_box_tag :acililan,1,params[:acililan]  %> &nbsp;Acil İlanlar<br>
+		</div>
+
+		<div class="panel-body">
+		<%= check_box_tag :gununfirsatlari,1,params[:gununfirsatlari]  %> &nbsp;Günün Fırsatları<br>
+		</div>
+
+		<div class="panel-body">
+		<%= check_box_tag :enpopuler,1,params[:enpopuler]  %> &nbsp;En Popüler İlanlar<br>
+		</div>
+
+		<div class="panel-body">
+		<%= check_box_tag :enguvenilir,1,params[:enguvenilir]  %> &nbsp;En Güvenilir Satıcılardan<br>
 		</div>
 
 		</div>
 
-		</form>
+		<div class="panel panel-success">
+		<div class="panel-heading">
+		<h3 class="panel-title">Saatlik Ücret</h3>
+		</div>
+
+		<div class=" panel-body">
+			
+		 <%= text_field_tag :taban,params[:taban],:placeholder => 'TL'  %> &nbsp;ile <br><br>
+		
+		<%= text_field_tag :tavan,params[:tavan],:placeholder => 'TL' %> &nbsp; arası
+		</div>
+
+		
 
 		</div>
+
+		</div>
+		
+		<% end %>
+		
+		
+		<% if params[:kategori] == 'ikinciel'%>
+		
+		<script>
+			$(".formicerigi").html($(".ikincieldiger").html());
+			
+		</script>
+		
+		<% elsif params[:kategori] =='evarkadasi' %>
+		
+		<script>
+			$(".formicerigi").html($(".evarkadasi").html());
+			
+		</script>
+		
+		
+		<% elsif params[:kategori] =='ozelders' %>
+		
+		<script>
+			$(".formicerigi").html($(".ozelders").html());
+			
+		</script>
+		
+		
+		
+		
+		<% end %>
+		
+		
+		
+		
+		
+
+		<!-- Change Form Script-->
+
+		<script>
+			function changeformcontent(value) {
+
+				if (value == "ikinciel") {
+
+					$(".formicerigi").html($(".ikincieldiger").html());
+
+				} 
+				
+				else if (value == "evarkadasi") {
+
+					$(".formicerigi").html($(".evarkadasi").html());
+
+				}
+				
+				else if(value == "hepsi") {
+					
+					$(".formicerigi").html($(".formicerigiyedek").html());
+					
+				}
+				
+				
+				
+				else if (value == "ozelders") {
+
+					$(".formicerigi").html($(".ozelders").html());
+
+				}
+
+			}
+			
+			
+			
+			
+			
+
+		</script>
+
+		<!-- Arama Paneli-->
+
+		<script>
+			function changeform(value) {
+				if (value == "ikinciel") {
+					$(".renk").show();
+					$(".marka").show();
+				} else if (value == "evarkadasi") {
+					$(".renk").hide();
+					$(".marka").hide();
+				} else if (value == "dersnotlari") {
+					$(".renk").hide();
+					$(".marka").hide();
+				} else if (value == "ozelders") {
+					$(".renk").hide();
+					$(".marka").hide();
+				}
+				else if (value == "hepsi") {
+					$(".formicerigi").html($(".formicerigiyedek").html());
+
+				}
+			}
+
+		</script>
 
 		<div class="col-lg-9 col-md-9">
 
 		<div style="margin-top: 10px;" id="products" class="row list-group">
-		<div class="item  col-sm-6 col-xs-6 col-lg-4">
+		<% @adverts.each do |advert| %>	
+			
+		<div class="item visible-lg hidden-sm col-sm-6 col-xs-6 col-lg-4">
 		<div class="thumbnail">
-		<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+			
+			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title: advert.name,class:"img-responsive masterTooltip" %></a>
+		
 		<div class="caption">
+			
+			<% if advert.name.length <= 17 %>
 		<h4 class="group inner list-group-item-heading">
-		Product title</h4>
-		<p class="group inner list-group-item-text">
-		Deneme deneme deneme</p>
-		<div style="margin-top:25px;" class="row">
-		<div class="col-xs-12 col-md-6">
-		<p class="lead">
-		$21.000</p>
-		</div>
-		<div class="col-xs-12 col-md-6">
-		<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
-		</div>
-		</div>
-		</div>
-		</div>
-		</div>
-		<div class="item  col-sm-6 col-xs-6 col-lg-4">
-		<div class="thumbnail">
-		<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-		<div class="caption">
+			
+		<%= advert.name.capitalize %></h4>
+		<% else %>
+		
 		<h4 class="group inner list-group-item-heading">
-		Product title</h4>
+			
+		<%= advert.name[0..16].capitalize %>...</h4>
+		
+		<% end %>
+		
+		<% if advert.explication.length <= 17 %>
 		<p class="group inner list-group-item-text">
-		Deneme deneme deneme</p>
+		<%= advert.explication %>  </p>
+		
+		<% else %>
+		<p class="group inner list-group-item-text">
+		<%= advert.explication[0..16] %>...  </p>
+		
+		<% end 	%>
+		
 		<div style="margin-top:25px;" class="row">
 		<div class="col-xs-12 col-md-6">
 		<p class="lead">
-		$21.000</p>
+		<%= advert.price  %> &#x20BA;</p>
 		</div>
 		<div class="col-xs-12 col-md-6">
-		<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
+		<a style="float:right;" class="btn btn-success" href="<%= advert.href %>">İlana Git</a>
 		</div>
 		</div>
 		</div>
 		</div>
 		</div>
-		<div class="item  col-sm-6 col-xs-6 col-lg-4">
+		
+		
+		<div class="item visible-md  col-sm-6 col-xs-6 col-lg-4">
 		<div class="thumbnail">
-		<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+			
+			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title: advert.name,class:"img-responsive masterTooltip" %></a>
+		
 		<div class="caption">
-		<h4 class="group inner list-group-item-heading"> Product title</h4>
+			
+			<% if advert.name.length <= 33 %>
+		<h4 class="group inner list-group-item-heading">
+			
+		<%= advert.name.capitalize %></h4>
+		<% else %>
+		
+		<h4 class="group inner list-group-item-heading">
+			
+		<%= advert.name[0..32].capitalize %>...</h4>
+		
+		<% end %>
+		
+		<% if advert.explication.length <= 33 %>
 		<p class="group inner list-group-item-text">
-		Deneme deneme deneme
-		</p>
+		<%= advert.explication %>  </p>
+		
+		<% else %>
+		<p class="group inner list-group-item-text">
+		<%= advert.explication[0..32] %>...  </p>
+		
+		<% end 	%>
+		
 		<div style="margin-top:25px;" class="row">
 		<div class="col-xs-12 col-md-6">
 		<p class="lead">
-		$21.000
-		</p>
+		<%= advert.price  %> &#x20BA;</p>
 		</div>
 		<div class="col-xs-12 col-md-6">
-		<a style="float:right;"class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
+		<a style="float:right;" class="btn btn-success" href="<%= advert.href %>">İlana Git</a>
 		</div>
 		</div>
 		</div>
 		</div>
 		</div>
-		<div class="item  col-sm-6 col-xs-6 col-lg-4">
+		
+		
+		
+		
+		<div class="item visible-xs  col-sm-6 col-xs-6 col-lg-4">
 		<div class="thumbnail">
-		<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+			
+			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title: advert.name,class:"img-responsive masterTooltip" %></a>
+		
 		<div class="caption">
-		<h4 class="group inner list-group-item-heading"> Product title</h4>
+			
+			<% if advert.name.length <= 7 %>
+		<h5 class="group inner list-group-item-heading">
+			
+		<%= advert.name.capitalize %></h5>
+		
+		<% else %>
+		
+		<h5 class="group inner list-group-item-heading">
+		
+		<%= advert.name[0..6].capitalize %>...</h5>
+		<% end %>
+		
+		<% if advert.explication.length <= 7 %>	
 		<p class="group inner list-group-item-text">
-		Deneme deneme deneme
-		</p>
+			
+
+		<%= advert.explication %>  </p>
+		<% else %>
+		<p class="group inner list-group-item-text">
+		<%= advert.explication[0..6] %>...</p>
+		
+		<% end %>
 		<div style="margin-top:25px;" class="row">
 		<div class="col-xs-12 col-md-6">
 		<p class="lead">
-		$21.000
-		</p>
+		<%= advert.price  %> &#x20BA;</p>
 		</div>
 		<div class="col-xs-12 col-md-6">
-		<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
+		<a style="float:right;" class="btn btn-success" href="<%= advert.href %>">İlana Git</a>
 		</div>
 		</div>
 		</div>
 		</div>
 		</div>
-		<div class="item  col-sm-6 col-xs-6 col-lg-4">
+		
+		
+		
+		<div class="item visible-sm col-sm-6 col-xs-6 col-lg-4">
 		<div class="thumbnail">
-		<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+			
+			<a href="<%= advert.href %>"> <%= image_tag advert.pimage.imagefile(:small),title: advert.name,class:"img-responsive masterTooltip" %></a>
+		
 		<div class="caption">
-		<h4 class="group inner list-group-item-heading"> Product title</h4>
+			
+			<% if advert.name.length <= 45 %>
+		<h4 class="group inner list-group-item-heading">
+			
+		<%= advert.name.capitalize %></h4>
+		
+		<% else %>
+		
+		<h4 class="group inner list-group-item-heading">
+		<%= advert.name[0..44].capitalize %>...</h4>
+		<% end %>
+		
+		<% if advert.explication.length <=45 %>
 		<p class="group inner list-group-item-text">
-		Deneme deneme deneme
-		</p>
+			
+			
+		<%= advert.explication %>  </p>
+		<% else %>
+		
+		<%= advert.explication[0..44] %>...  </p>
+		
+		<% end %>
 		<div style="margin-top:25px;" class="row">
 		<div class="col-xs-12 col-md-6">
 		<p class="lead">
-		$21.000
-		</p>
+		<%= advert.price  %> &#x20BA;</p>
 		</div>
 		<div class="col-xs-12 col-md-6">
-			<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
+		<a style="float:right;" class="btn btn-success" href="<%= advert.href %>">İlana Git</a>
 		</div>
 		</div>
 		</div>
 		</div>
 		</div>
-		<div class="item  col-sm-6 col-xs-6 col-lg-4">
-			<div class="thumbnail">
-				<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-				<div class="caption">
-					<h4 class="group inner list-group-item-heading"> Product title</h4>
-					<p class="group inner list-group-item-text">
-						Deneme deneme deneme
-					</p>
-					<div style="margin-top:25px;" class="row">
-						<div class="col-xs-12 col-md-6">
-							<p class="lead">
-								$21.000
-							</p>
+		
+		
+		
+		
+		
+		
+		
+		
+		<% end %>
+		
+		
+		</div>
+		
+		
+
+		</div>
+		
+		
+
+		</div>
+		
+		
+		
+		<link href="http://mislav.github.io/will_paginate/pagination.css" rel="stylesheet">
+
+						<div style="clear:both;"  class="apple_pagination">
+							<%= will_paginate @adverts, :container => false,
+							:previous_label => 'Önceki', :next_label => 'Sonraki' %>
 						</div>
-						<div class="col-xs-12 col-md-6">
-							<a style="float:right;" class="btn btn-success" href="http://www.jquery2dotnet.com">İlana Git</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		</div>
+						
+						
+				
 
 		</div>
-
-		</div>
-
-		</div>
+		
 
 		</div>
 		<div class="row">
@@ -445,8 +965,17 @@
 		</div>
 
 		</div>
+		
+		<%= render 'paginationkaldir' %>
 
 		<!-- pluginler -->
+		
+		<script>
+			  if (hopscotch.getState() === "hello-hopscotch:11") {
+          hopscotch.startTour(tour);
+        }
+			
+		</script>
 
 		<!--  fixed header -->
 

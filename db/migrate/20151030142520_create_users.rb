@@ -11,11 +11,13 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :role
       t.integer :gender
       t.boolean :verified
+      t.string :confirm_token
       t.boolean :bulletin
       
       t.date :birthday
       t.text :address
       t.references :university
+      t.boolean :deleted
       
       t.timestamps :null => false
     end

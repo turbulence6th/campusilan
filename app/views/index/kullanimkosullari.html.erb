@@ -15,7 +15,7 @@
 <META http-equiv=content-type content=text/html;charset=iso-8859-9>
 <META http-equiv=content-type content=text/html;charset=windows-1254>
 <META http-equiv=content-type content=text/html;charset=x-mac-turkish>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%= render 'metalar' %>
 <!-- Bootstrap -->
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
@@ -129,7 +129,7 @@ body {
 				body {
 					padding-left: 50px;
 				padding-right: 50px;
-				padding-top:30px;
+				padding-top: 5px;
 				}
 			}
 
@@ -165,17 +165,18 @@ body {
 
 	<div class="container-fluid">
 
-		<div class="row" style="margin-bottom: 10px;">
+		<div class="row" style="position: relative;margin-bottom: 10px;">
 
-			<!-- Login Starts Here -->
+				
 
-			<%= render "loginContainer" %>
+				<div id="loginkismi "  class="visible-xs ">
+					<!-- Login Starts Here -->
+					<%= render "loginContainer" %>
+					<!-- Login Ends Here -->
 
-			<!-- Login Ends Here -->
+				</div>
 
-
-
-		</div>
+			</div>
 
 
 		<div class="row">
@@ -208,11 +209,91 @@ body {
 		<div class="row">
 
 
-			<div style="height: 500px;" class="well">
+			<div  class="well">
 
 				<h2 style="text-align: center;">KULLANIM KOŞULLARI</h2>
 
-				...
+									1. Sözleşmenin Konusu
+									<br>
+
+									İşbu Sözleşme’nin konusu Campüs İlan’ın sahip olduğu internet sitesi <a href="http://www.campusilan.com/">www.campusilan.com</a> ‘dan üyenin faydalanma şartlarının belirlenmesidir.
+									<br>
+									<br>
+
+									2. Tarafların Hak ve Yükümlülükleri
+									<br>
+
+									2.1. Üye, <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesine üye olurken verdiği kişisel ve diğer sair bilgilerin kanunlar önünde doğru olduğunu, Campüs İlan’ın bu bilgilerin gerçeğe aykırılığı nedeniyle uğrayacağı tüm zararları aynen ve derhal tazmin edeceğini beyan ve taahhüt eder.
+									<br>
+
+									2.2. Üye, Campüs İlan tarafından kendisine verilmiş olan şifreyi başka kişi ya da kuruluşlara veremez, üyenin sözkonusu şifreyi kullanma hakkı bizzat kendisine aittir. Bu sebeple doğabilecek tüm sorumluluk ile üçüncü kişiler veya yetkili merciler tarafından Campüs İlan’a karşı ileri sürülebilecek tüm iddia ve taleplere karşı, Campüs İlan’ın sözkonusu izinsiz kullanımdan kaynaklanan her türlü tazminat ve sair talep hakkı saklıdır.
+									<br>
+
+									2.3. Üye <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesini kullanırken yasal mevzuat hükümlerine riayet etmeyi ve bunları ihlal etmemeyi baştan kabul ve taahhüt eder. Aksi takdirde, doğacak tüm hukuki ve cezai yükümlülükler tamamen ve münhasıran üyeyi bağlayacaktır.
+									<br>
+
+									2.4. Üye, <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesini hiçbir şekilde kamu düzenini bozucu, genel ahlaka aykırı, başkalarını rahatsız ve taciz edici şekilde, yasalara aykırı bir amaç için, başkalarının fikri ve telif haklarına tecavüz edecek şekilde kullanamaz. Ayrıca, üye başkalarının hizmetleri kullanmasını önleyici veya zorlaştırıcı faaliyet (spam, virus, truva atı, vb.) ve işlemlerde bulunamaz.
+									<br>
+
+									2.5. <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesinde üyeler tarafından beyan edilen, yazılan, kullanılan fikir ve düşünceler, tamamen üyelerin kendi kişisel görüşleridir ve görüş sahibini bağlar. Bu görüş ve düşüncelerin Campüs İlan’la hiçbir ilgi ve bağlantısı yoktur. Campüs İlan’ın üyenin beyan edeceği fikir ve görüşler nedeniyle üçüncü kişilerin uğrayabileceği zararlardan ve üçüncü kişilerin beyan edeceği fikir ve görüşler nedeniyle üyenin uğrayabileceği zararlardan dolayı herhangi bir sorumluluğu bulunmamaktadır.
+									<br>
+
+									2.6. Campüs İlan, üye verilerinin yetkisiz kişilerce okunmasından ve üye yazılım ve verilerine gelebilecek zararlardan dolayı sorumlu olmayacaktır. Üye, www.campusilan.com internet sitesinin kullanılmasından dolayı uğrayabileceği herhangi bir zarar yüzünden Campüs İlan'dan tazminat talep etmemeyi peşinen kabul etmiştir.
+									<br>
+
+									2.7. Üye, diğer internet kullanıcılarının yazılımlarına ve verilerine izinsiz olarak ulaşmamayı veya bunları kullanmamayı kabul etmiştir. Aksi takdirde, bundan doğacak hukuki ve cezai sorumluluklar tamamen üyeye aittir.
+									<br>
+
+									2.8. İşbu üyelik sözleşmesi içerisinde sayılan maddelerden bir ya da birkaçını ihlal eden üye işbu ihlal nedeniyle cezai ve hukuki olarak şahsen sorumlu olup, Campüs İlan’ı bu ihlallerin hukuki ve cezai sonuçlarından ari tutacaktır. Ayrıca; işbu ihlal nedeniyle, olayın hukuk alanına intikal ettirilmesi halinde, Campüs İlan’ın üyeye karşı üyelik sözleşmesine uyulmamasından dolayı tazminat talebinde bulunma hakkı saklıdır.
+									<br>
+									2.9. Campüs İlan’ın her zaman tek taraflı olarak gerektiğinde üyenin üyeliğini silme, müşteriye ait dosya, belge ve bilgileri silme hakkı vardır. Üye işbu tasarrufu önceden kabul eder. Bu durumda, Campüs İlan’ın hiçbir sorumluluğu yoktur.
+									<br>
+
+									2.10. <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesi yazılım ve tasarımı Campüs İlan mülkiyetinde olup, bunlara ilişkin telif hakkı ve/veya diğer fikri mülkiyet hakları ilgili kanunlarca korunmakta olup, bunlar üye tarafından izinsiz kullanılamaz, iktisap edilemez ve değiştirilemez. Bu web sitesinde adı geçen başkaca şirketler ve ürünleri sahiplerinin ticari markalarıdır ve ayrıca fikri mülkiyet hakları kapsamında korunmaktadır.
+									<br>
+
+									2.11. Campüs İlan tarafından <a href="http://www.campusilan.com/">www.campusilan.com</a> internet sitesinin iyileştirilmesi, geliştirilmesine yönelik olarak ve/veya yasal mevzuat çerçevesinde siteye erişmek için kullanılan İnternet servis sağlayıcısının adı ve Internet Protokol (IP) adresi, Siteye erişilen tarih ve saat, sitede bulunulan sırada erişilen sayfalar ve siteye doğrudan bağlanılmasını sağlayan Web sitesinin Internet adresi gibi birtakım bilgiler toplanabilir.
+									<br>
+
+									2.12. Campüs İlan, üyenin kişisel bilgilerini yasal bir zorunluluk olarak istendiğinde veya (a) yasal gereklere uygun hareket etmek veya Campüs İlan'a tebliğ edilen yasal işlemlere uymak; (b) Campüs İlan web sitesi ailesinin haklarını ve mülkiyetini korumak ve savunmak için gerekli olduğuna iyi niyetle kanaat getirdiği hallerde açıklayabilir.
+									<br>
+
+									2.13. Campüs İlan web sitesinin virus ve benzeri amaçlı yazılımlardan arındırılmış olması için mevcut imkanlar dahilinde tedbir alınmıştır. Bunun yanında nihai güvenliğin sağlanması için kullanıcının, kendi virus koruma sistemini tedarik etmesi ve gerekli korunmayı sağlaması gerekmektedir. Bu bağlamda üye Campüs İlan web sitesi’ne girmesiyle, kendi yazılım ve işletim sistemlerinde oluşabilecek tüm hata ve bunların doğrudan yada dolaylı sonuçlarından kendisinin sorumlu olduğunu kabul etmiş sayılır.
+									<br>
+
+									2.14. Campüs İlan, sitenin içeriğini dilediği zaman değiştirme, kullanıcılara sağlanan herhangi bir hizmeti değiştirme yada sona erdirme veya Campüs İlan web sitesi’nde kayıtlı kullanıcı bilgi ve verilerini silme hakkını saklı tutar.
+									<br>
+
+									2.15. Campüs İlan, üyelik sözleşmesinin koşullarını hiçbir şekil ve surette ön ihbara ve/veya ihtara gerek kalmaksızın her zaman değiştirebilir, güncelleyebilir veya iptal edebilir. Değiştirilen, güncellenen yada yürürlükten kaldırılan her hüküm , yayın tarihinde tüm üyeler bakımından hüküm ifade edecektir.
+									<br>
+
+									2.16. Taraflar, Campüs İlan’a ait tüm bilgisayar kayıtlarının tek ve gerçek münhasır delil olarak, HUMK madde 287′ye uygun şekilde esas alınacağını ve söz konusu kayıtların bir delil sözleşmesi teşkil ettiği hususunu kabul ve beyan eder.
+									<br>
+
+									2.17. Campüs İlan, iş bu üyelik sözleşmesi uyarınca, üyelerinin kendisinde kayıtlı elektronik posta adreslerine bilgilendirme mailleri ve cep telefonlarına bilgilendirme SMS’leri gönderme yetkisine sahip olmakla beraber, üye işbu üyelik sözleşmesini onaylamasıyla beraber bilgilendirme maillerinin elektronik posta adresine ve bilgilendirme SMS’lerinin cep telefonuna gönderilmesini kabul etmiş sayılacaktır.
+									<br>
+									<br>
+
+									3. Sözleşmenin Feshi
+									<br>
+
+									İşbu sözleşme üyenin üyeliğini iptal etmesi veya Campüs İlan tarafından üyeliğinin iptal edilmesine kadar yürürlükte kalacaktır. Campüs İlan üyenin üyelik sözleşmesinin herhangi bir hükmünü ihlal etmesi durumunda üyenin üyeliğini iptal ederek sözleşmeyi tek taraflı olarak feshedebilecektir.
+									<br>
+									<br>
+
+									4. İhtilaflerin Halli
+									<br>
+
+									İşbu sözleşmeye ilişkin ihtilaflerde İstanbul Mahkemeleri ve İcra Daireleri yetkilidir.
+									<br>
+									<br>
+
+									5. Yürürlük
+									<br>
+
+									Üyenin, üyelik kaydı yapması üyenin üyelik sözleşmesinde yer alan tüm maddeleri okuduğu ve üyelik sözleşmesinde yer alan maddeleri kabul ettiği anlamına gelir. İşbu Sözleşme üyenin üye olması anında akdedilmiş ve karşılıklı olarak yürürlülüğe girmiştir.
+									<br>
+									
 
 
 

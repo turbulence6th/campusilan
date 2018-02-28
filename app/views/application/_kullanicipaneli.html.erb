@@ -1,8 +1,8 @@
-<div id='cssmenu'  style=" margin-bottom: 20px;">
+<div id='cssmenu'  style="width:100%; margin-bottom: 20px;">
 	<ul>
 
 		<% if current_user!=nil %>
-		<li class='has-sub'>
+		<li class='birincimenu  has-sub'>
 			<a href='#'><span>Kullanıcı
 				Paneli</span></a>
 			<ul>
@@ -12,17 +12,12 @@
 				<li>
 					<a  id="ilanver" href='/ilanver'><span>İlan Ver</span></a>
 				</li>
-				<li class='last'>
-					<a class="panellinkler" id="satislarim" href='/satis-alis/satislarim'><span>Satışlarım</span></a>
-				</li>
-				<li class='last'>
-					<a class="panellinkler" id="alislarim" href='/satis-alis/alislarim'><span>Alışlarım</span></a>
-				</li>
+				
 				<li class='last'>
 					<a class="panellinkler" id="favorilerid" href='/uye/<%= current_user.username%>?favorilerim=1'><span>Favorilerim</span></a>
 				</li>
 				<li class='last'>
-					<a class="panellinkler" id="mesajlarim" href='/uye/<%= current_user.username%>?mesajlarim=1'><span>Mesajlarım</span></a>
+					<a  id="mesajlarim" href='/mesajlarim'><span>Mesajlarım</span></a>
 				</li>
 				<li class='last'>
 					<a class="panellinkler" id="tekliflerim" href='/uye/<%= current_user.username%>?tekliflerim=1'><span>Tekliflerim</span></a>
@@ -39,7 +34,7 @@
 		</li>
 		<%end %>
 
-		<li class='has-sub'>
+		<li class='ikincimenu has-sub'>
 			<a href='#'><span>Kategoriler</span></a>
 			<ul>
 				<li>
@@ -48,17 +43,13 @@
 				<li>
 					<a href='/kategoriler/evarkadasi'><span>Ev Arkadaşı</span></a>
 				</li>
-				<li class='last'>
-					<a href='/kategoriler/dersnotu'><span>Ders
-						Notları</span></a>
-				</li>
-				<li class='last'>
+				<li>
 					<a href='/kategoriler/ozelders'><span>Özel Ders</span></a>
 				</li>
 				
 			</ul>
 		</li>
-		<li class='has-sub'>
+		<li class='ucuncumenu has-sub'>
 			<a href=''><span>Fırsatlar
 				Paneli</span></a>
 			<ul>
@@ -86,8 +77,7 @@
 						Güvenilir Satıcılar</span></a>
 				</li>
 				<li class='last'>
-					<a href='/firsatlar?enyakindakisaticilar=1'><span>En Yakında
-						Olan Satıcılar</span></a>
+					<a href='/firsatlar?kendiuniversitemdekiler=1'><span>Üniversitemdekiler</span></a>
 				</li>
 			</ul>
 		</li>
@@ -120,16 +110,41 @@
 		$("#hesapayarlariid").click(function() {
 
 			$(".panelortak").hide();
+			$(".tekliflerim").hide();
 			$(".degiskenpanel").show();
 
 			$(".hesapayarlari").show();
 
 		})
+		
+		$("#inceledigimilanlar").click(function(){
+			
+			
+			$(".panelortak").hide();
+			$(".tekliflerim").hide();
+			$(".degiskenpanel").hide();
+
+			$(".hesapayarlari").hide();
+			
+			$(".inceledigimilanlar").show();
+			
+			$(".profilim").hide();
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		)
 
 		$("#profilim").click(function() {
 
 			
 			$(".panelortak").hide();
+			$(".tekliflerim").hide();
 
 			$(".profilim").show();
 			
@@ -141,6 +156,7 @@
 
 			
 			$(".panelortak").hide();
+			$(".tekliflerim").hide();
 			$(".favoriler").show();
 			$(".degiskenpanel").hide();
 
@@ -148,7 +164,7 @@
 
 		$("#tekliflerim").click(function() {
 
-			$(".degiskenpanel").show();
+			$(".degiskenpanel").hide();
 			$(".panelortak").hide();
 			$(".tekliflerim").show();
 
@@ -156,7 +172,7 @@
 		
 		$("<%= @sekme %>").show(); 
 		
-		<% if @sekme==".tekliflerim" || @sekme==".hesapayarlari" %>
+		<% if  @sekme==".hesapayarlari" %>
 		
 		$(".degiskenpanel").show();
 		
@@ -174,12 +190,9 @@
 
 	});
 	
+
 	
-	
-	
-	
-	
-	
+
 
 </script>
 <% end %>

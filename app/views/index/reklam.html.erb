@@ -14,7 +14,7 @@
 <META http-equiv=content-type content=text/html;charset=iso-8859-9>
 <META http-equiv=content-type content=text/html;charset=windows-1254>
 <META http-equiv=content-type content=text/html;charset=x-mac-turkish>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%= render 'metalar' %>
 <!-- Bootstrap -->
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
@@ -128,7 +128,7 @@ body {
 				body {
 					padding-left: 50px;
 				padding-right: 50px;
-				padding-top:30px;
+				padding-top: 5px;
 				}
 			}
 
@@ -164,17 +164,18 @@ body {
 
 	<div class="container-fluid">
 
-		<div class="row" style="margin-bottom: 10px;">
+		<div class="row" style="position: relative;margin-bottom: 10px;">
 
-			<!-- Login Starts Here -->
+				
 
-			<%= render "loginContainer" %>
+				<div id="loginkismi "  class="visible-xs ">
+					<!-- Login Starts Here -->
+					<%= render "loginContainer" %>
+					<!-- Login Ends Here -->
 
-			<!-- Login Ends Here -->
+				</div>
 
-
-
-		</div>
+			</div>
 
 
 		<div class="row">

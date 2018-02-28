@@ -1,8 +1,20 @@
 class Advert < ActiveRecord::Base
   
+  #class UserValidator < ActiveModel::Validator
+   # def validate(record)
+    #  if record.user.role == 'buyer'
+     #   record.errors[:base] << "Invalid Role"
+     # end
+   # end
+ # end
+  
+  scope :available, -> { where(:verified => true, :active => true) }
+  
+  #validates_with UserValidator
+  
   validates :name, :price, :explication, :user, :advertable, :presence => true
   
-  validates :active, :urgent, :opportunity, :inclusion => { :in => [true, false] }
+  validates :active, :urgent, :opportunity, :ours, :inclusion => { :in => [true, false] }
   
   validates :name, :format => {
     :with => /\A[ -~\u00c7\u00e7\u011e\u011f\u0130\u0131\u00d6\u00f6\u015e\u015f\u00dc\u00fc]{1,60}\z/
@@ -24,24 +36,26 @@ class Advert < ActiveRecord::Base
   
   belongs_to :user
   
-  has_many :viewed_adverts
-  has_many :users, through: :viewed_adverts
+  has_many :viewed_adverts, :dependent => :destroy
   
-  has_many :favourite_adverts
-  has_many :users, through: :favourite_adverts
   
-  belongs_to :advertable, :polymorphic => true
+  has_many :favourite_adverts, :dependent => :destroy
   
-  has_many :images, :as => :imageable
   
-  has_many :viewed_advert_counts
+  belongs_to :advertable, :polymorphic => true, :dependent => :destroy
+  
+  has_many :images, :as => :imageable, :dependent => :destroy
+  
+  has_many :viewed_advert_counts, :dependent => :destroy
+  
+  has_many :votes, :dependent => :destroy
+  
+  belongs_to :image
   
   def href
     
     if self.advertable_type=='Secondhand'
       path = '/ikinciel/'
-    elsif self.advertable_type=='Lessonnote'
-      path = '/dersnotu/'
     elsif self.advertable_type=='Homemate'
       path = '/evarkadasi/'
     elsif self.advertable_type=='Privatelesson'
@@ -52,6 +66,15 @@ class Advert < ActiveRecord::Base
     
   end
   
+  def href_guncelle
+    
+    '/ilanguncelle/' + self.name.parameterize + '-' + self.id.to_s
+    
+  end
+  
+  def pimage
+    self.image || Image.new
+  end
   
   
 end

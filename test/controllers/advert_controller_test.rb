@@ -14,7 +14,7 @@ class AdvertControllerTest < ActionController::TestCase
     test_image = 'test/images' + '/image.jpg'
     imagefile = Rack::Test::UploadedFile.new(test_image, "image/jpeg")
     images << imagefile
-    post :secondhandPost, :advert => {:name => 'Satılık Gardrop', :price => 1200, :explication => 'Kullanılmamış garantili dolap',
+    post :newAdvertPost, :advert_type => 'secondhand', :advert => {:name => 'Satılık Gardrop', :price => 1200, :explication => 'Kullanılmamış garantili dolap',
       :advertable => { :category => 'beyazesya', :color => 'beyaz', :brand => 'Handy Mate', :usage => true, :warranty => true }}, :images => images
     advert = Advert.find_by_name('Satılık Gardrop')
     assert advert

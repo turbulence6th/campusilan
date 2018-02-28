@@ -1,0 +1,20 @@
+<h4  class="add-to item_price">Fiyat: <span style="color:#4DACC9;;" ><%= @advert.price %>&#8378;</span></h4>
+<br>
+
+<% if @advertable.renkler %>
+	<h4  class="add-to item_price">Ürün Rengi: <span style="color:#4DACC9;;" ><%= @advertable.renkler %></span></h4>
+	<br>
+<% end %>
+
+
+<% if @advertable.brand != ""  %>
+<h4  class="add-to item_price">Marka: <span style="color:#4DACC9;;" ><%= @advertable.brand %></span></h4>
+<br>
+
+<% end %>
+
+<h4  class="add-to item_price">Kullanım Durumu: <% if @advertable.usage %> <span style="color:#4DACC9;;" >Sıfır</span> <% else %> <span style="color:#4DACC9;;" >İkinci El</span> <% end %> </h4>
+<br>
+
+<h4  class="add-to item_price">Garanti Durumu: <% if @advertable.warranty %> <span style="color:#4DACC9;" >Var</span> <% else %> <span style="color:#4DACC9;;" >Yok</span> <% end %> </h4>
+<br>

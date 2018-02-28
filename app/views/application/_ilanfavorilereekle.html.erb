@@ -1,0 +1,68 @@
+<% if current_user!= nil %>
+
+<script>
+
+	$(".favorilereekle").click(function() {
+
+$.ajax({
+
+url : '/favorilereekle',
+data : {
+authenticity_token : window._token,
+advertid : <%= @advert.id %>,
+
+},
+error : function() {
+
+alert("Lütfen bağlantınızı kontrol edin!!")
+},
+dataType : 'json',
+success : function(data) {
+
+if (!data.check) {
+
+}
+
+else {
+
+$(".favorilerdenkaldir").show();
+$(".favorilereekle").hide();
+
+}
+
+},
+
+type : 'POST'
+
+})
+
+}
+
+)
+
+$(".favorilerdenkaldir").click(function() {
+
+$.ajax({
+
+url : '/favorilerdenkaldir',
+data : {
+authenticity_token : window._token,
+advertid : <%= @advert.id %>
+	,
+	}, error : function() {
+	alert("Lütfen bağlantınızı kontrol edin!!")
+	}, dataType : 'json',
+	success : function(data) {
+	if(!data.check) {
+	alert("Başarısız");
+	} else {
+	$(".favorilereekle").show();
+	$(".favorilerdenkaldir").hide();
+	}
+	}, type : 'POST'
+	})
+	}
+	)
+</script>
+
+<% end %>
