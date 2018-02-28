@@ -20,6 +20,4 @@ test:
 
 production:
   <<: *default
-  username: rails
-  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
-  database: campusilan_production
+  url: <%= ENV['DATABASE_URL'] %>

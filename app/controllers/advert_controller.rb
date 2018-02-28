@@ -344,7 +344,7 @@ class AdvertController < ApplicationController
     
     captcha = params["g-recaptcha-response"]
     postParams = {
-      :secret => "6Ld3uhYTAAAAADMhUY5DpJr2e333FOvp-ZWv45Ki",
+      :secret => "6Ldkq0kUAAAAAOlD1Du-GIF7LALxD5xc7KBuFA5Y",
       :response => captcha,
       :remoteip => request.remote_ip
     }

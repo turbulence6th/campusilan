@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 20160130234327) do
     t.datetime "updated_at",      null: false
   end
 
-  add_index "adverts", ["advertable_type", "advertable_id"], name: "index_adverts_on_advertable_type_and_advertable_id", using: :btree
   add_index "adverts", ["user_id"], name: "index_adverts_on_user_id", using: :btree
 
   create_table "favourite_adverts", force: :cascade do |t|
