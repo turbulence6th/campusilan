@@ -200,17 +200,6 @@ oguz.university = University.find_by_email('metu.edu.tr')
 oguz.save
 
 
-
-
-
-
-
-onur = User.new( :username => "svmszcck", :password => "1234Onur1234", :password_confirmation => "1234Onur1234", :email => "demirtas.onur@metu.edu.tr",
-  :email_confirmation => "demirtas.onur@metu.edu.tr", :name => "Onur", :surname => "Demirtaş", :gender => :male, :bulletin => true, :phone => "505-7822777", 
-  :verified => true, :birthday => Time.new(1991, 8, 14 ), :role => :admin, :deleted => false )
-onur.university = University.find_by_email('metu.edu.tr')
-onur.save 
-
 images = Image.all
 
 images.each do |img|
