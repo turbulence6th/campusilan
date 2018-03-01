@@ -1,7 +1,7 @@
 class AnnounceMailer < ApplicationMailer
   
   def iletisim(name, email, subject, message)  
-    mail(:to => "info@campusilan.com", :subject => subject, 
+    mail(:to => "campusilan@gmail.com", :subject => subject, 
       :content_type => "text/html") do |format|
         format.text { render :text => message + " #{email}" }
     end
