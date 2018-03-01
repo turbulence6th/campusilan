@@ -33,7 +33,7 @@ module Campusilan
       :address              => "smtp.gmail.com",
       :port                 => 587,
       :user_name            => 'campusilan@gmail.com',
-      :password             => 'turbulence6th3871',
+      :password             => ENV['EMAIL_PASSWORD'],
       :domain               => 'gmail.com',
       :authentication       => "plain",
       :enable_starttls_auto => true
